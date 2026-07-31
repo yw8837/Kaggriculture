@@ -1,5 +1,9 @@
 # Kaggriculture end-to-end operating playbook
 
+Read `CAMPAIGN_DIRECTIVE.md` before starting or resuming campaign work. It records the binding
+publication order, Fa naming, research scope, repository requirements, and independent-auditor
+rule that must survive context compaction and handoffs.
+
 This playbook exists to make the campaign evidence-driven and reproducible. It does not guarantee a top-3 finish; it prevents avoidable process failures and forces every major decision through explicit gates.
 
 ## Required project artifacts

@@ -30,6 +30,9 @@ Official links:
 
 ## Non-negotiable workflow
 
+The durable user direction and publication order are recorded in `CAMPAIGN_DIRECTIVE.md` and
+must be reread after every context reset or handoff.
+
 1. Reproduce the official environment locally and pin its exact version/commit.
 2. Establish deterministic baselines across many seeds and all built-in opponents.
 3. Build a replay/metrics warehouse: end cash, cash curve, action utilization, crop/animal ROI, market impact, failure counts.
