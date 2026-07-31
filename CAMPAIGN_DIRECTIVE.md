@@ -44,6 +44,10 @@ This file is the durable user directive for the campaign. It must be read togeth
   ladder strength. Rating bands are targets, not guarantees.
 - Public code must be genuinely useful, well commented, and honest about being a public
   baseline rather than the current private champion.
+- Treat public Discussion and Code titles as search/discovery assets. Front-load `Kaggriculture`,
+  include the concrete search intent (`Agent`, `Baseline`, `Evaluation`, `Strategy`, or the main
+  mechanism), and state a specific benefit without clickbait or unverified score claims. Keep a
+  title/query log so later views, votes, comments, and forks can be compared honestly.
 
 ## Evidence and repository requirements
 

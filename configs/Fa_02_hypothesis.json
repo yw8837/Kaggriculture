@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "registered_at_utc": "2026-07-31T14:18:43Z",
+  "sequence": "Fa_02",
+  "working_name": "Horizon Crop Rotation",
+  "candidate": {
+    "source": "artifacts/candidates/horizon_crop_rotation/main.py",
+    "sha256": "38F094549037A26466A11A217E65DD9FFA297C201B0D41EAE8B1BCDA547B2F9C"
+  },
+  "primary_hypothesis": "Fixed premium-crop targets strand empty tiles after their latest viable planting day. Replacing only expired empty-cell targets with the harvestable wheat/carrot option having the highest observed-price terminal cash increases final bank without displacing more valuable work.",
+  "isolated_change": [
+    "Do not change expansion, herd, labor, worker routing, inventory threshold, or liquidation.",
+    "For empty cells only, rotate an expired planned crop to feasible WHEAT or CARROT.",
+    "Choose by expected mature yield times current observed price minus seed cost.",
+    "Stop when neither short crop can finish before the terminal horizon."
+  ],
+  "expected_metric_movement": [
+    "higher final money and margin on scenarios with late empty cells",
+    "no new invalid actions or runtime regression",
+    "no decline in low-tail money large enough to indicate task displacement"
+  ],
+  "failure_modes": [
+    "watering and harvest work displaces animal care or liquidation",
+    "current price is a poor estimate of realized sell price after market impact",
+    "seed and worker opportunity costs exceed the late crop revenue",
+    "the overflow-routing parent remains unnecessary noise"
+  ],
+  "development_screen": {
+    "seeds": [
+      14000, 14001, 14002, 14003, 14004, 14005, 14006, 14007,
+      14008, 14009, 14010, 14011, 14012, 14013, 14014, 14015
+    ],
+    "opponents": [
+      "artifacts/candidates/final_day_labor/main.py",
+      "artifacts/candidates/overflow_drop/main.py"
+    ],
+    "both_seats": true,
+    "minimum_raw_games": 64,
+    "maximum_failures": 0,
+    "minimum_match_score": 0.52,
+    "minimum_mean_margin": 200.0,
+    "kill_rule": "Reject without validation if any development condition fails. Do not tune the crop choice on these seeds."
+  },
+  "validation_rule": "If development passes, register new unused validation/safety seeds and numeric gates in Git before running them.",
+  "ladder_use": "No Kaggle rating or competition submission may influence development or validation. Default endpoint is private Save & Run."
+}

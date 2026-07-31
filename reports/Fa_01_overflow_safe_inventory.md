@@ -42,6 +42,26 @@ An adversarial audit also exposed regressions hidden by saturated win counts:
 
 These regressions require a new sealed-seed gate before formal champion promotion.
 
+## Sealed revalidation (registered before opening results)
+
+The statistical thresholds and seeds were committed and pushed in `6f60a8d` before execution.
+Fa_01 received a **NO-GO**; thresholds were not edited after the result.
+
+| Gate | Required | Observed | Result |
+|---|---:|---:|---|
+| Direct match score, 128 both-seat games | >= 0.58 | 0.578125 (74-54) | FAIL |
+| Direct seed-cluster bootstrap 95% lower | > 0.50 | 0.4765625 | FAIL |
+| Direct mean margin | >= +500 | +445.39 | FAIL |
+| Direct failures | 0 | 0 | PASS |
+| Safety match-score delta vs previous | >= -0.03 | +0.02344 | PASS |
+| Safety mean-money delta vs previous | >= -250 | +663.30 | PASS |
+| Safety p10-money delta vs previous | >= -1,000 | -648.90 | PASS |
+| Safety failures | 0 | 0 | PASS |
+
+The safety panel improved on average (118-10 versus the previous champion's 115-13), but the
+direct gate failed all three strength thresholds. A 0.001875 miss on match score is still a miss;
+the lower confidence bound and margin also failed independently. Formal promotion is rejected.
+
 ## Runtime, archive, and private Save & Run
 
 - Runtime replay: 720 calls, zero invalid outputs; p50 0.5317 ms, p95 1.5169 ms,
@@ -56,8 +76,8 @@ These regressions require a new sealed-seed gate before formal champion promotio
 
 ## Verdict and limits
 
-Fa_01 is a verified private Save & Run artifact and the **provisional** local candidate. Formal
-champion promotion is suspended pending a truly preregistered sealed-seed comparison that includes
-the validation and adversarial regressions above. It is not a Kaggle competition submission.
-Nothing here establishes a future 1200 rating or final top-three placement; those remain campaign
-targets requiring further research and ladder evidence.
+Fa_01 remains a verified private Save & Run artifact, but its formal champion promotion is
+**rejected** by the preregistered sealed gate. `final_day_labor` remains the formal local champion.
+Fa_01 is not a Kaggle competition submission. Nothing here establishes a future 1200 rating or
+final top-three placement; those remain campaign targets requiring further research and ladder
+evidence.

@@ -441,6 +441,58 @@ def build_public_expansion_baseline(labor_rush: str) -> str:
     return source.rstrip() + "\n"
 
 
+HORIZON_CROP_ROTATION = '''def _apply_horizon_crop_rotation(obs, plan):
+    """Replace expired empty-cell targets with the best harvestable short crop."""
+    day = int(obs.get("day", 0))
+    prices = ((obs.get("market", {}) or {}).get("prices", {}) or {})
+    expected_yield = {"WHEAT": 6, "CARROT": 4}
+    feasible = []
+    for crop in ("WHEAT", "CARROT"):
+        cost, _, _, latest_plant_day, _ = CROP_RULES[crop]
+        if day > latest_plant_day:
+            continue
+        price = max(1, int(prices.get(crop, 1)))
+        terminal_cash = expected_yield[crop] * price - cost
+        feasible.append((terminal_cash, crop))
+    if not feasible:
+        return plan
+    fallback = max(feasible)[1]
+    return {
+        pos: fallback if day > CROP_RULES[planned][3] else planned
+        for pos, planned in plan.items()
+    }
+
+'''
+
+
+def build_horizon_crop_rotation(source_agent: str) -> str:
+    """Add a remaining-horizon crop fallback as the isolated Fa_02 hypothesis."""
+    marker = "def _add(tasks, priority, pos, action, need=None):\n"
+    if marker not in source_agent:
+        raise ValueError("crop-rotation insertion marker missing")
+    source = source_agent.replace(marker, HORIZON_CROP_ROTATION + marker, 1)
+    old_call = "    crop_plan = _crop_plan(board_size, quadrants, set(all_animal_slots))\n"
+    new_call = old_call + "    crop_plan = _apply_horizon_crop_rotation(obs, crop_plan)\n"
+    source = source.replace(old_call, new_call, 1)
+    if new_call not in source:
+        raise ValueError("crop-rotation agent call did not apply")
+    body_start = source.index("from collections import deque")
+    strategy_notes = '''# Fa_02 strategy notes
+# - Preserve the verified expansion, herd, labor, and inventory-routing foundation.
+# - When a fixed premium-crop target can no longer mature, re-use an empty tile for a
+#   short crop that can still be harvested before the 720-turn terminal cash check.
+# - Choose between wheat and carrot from current observed prices and expected mature yield.
+# - Stop rotating when neither short crop can finish; unsold or unfinished inventory is worth zero.
+#
+# Primary falsifiable hypothesis: fewer stranded empty cells increase terminal cash without
+# displacing higher-value care, harvest, liquidation, or storage work.
+
+'''
+    source = strategy_notes + source[body_start:]
+    compile(source, "horizon_crop_rotation.py", "exec")
+    return source.rstrip() + "\n"
+
+
 def _sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest().upper()
 
@@ -457,6 +509,7 @@ def run(base_path: Path, output_root: Path) -> dict:
     final_day_labor_13 = build_final_day_labor(cow_tilt, "final_day_labor_13.py", 13)
     overflow_drop = build_drop_policy(final_day_labor, "overflow_drop.py", "overflow")
     carrier_drop = build_drop_policy(final_day_labor, "carrier_drop.py", "carrier")
+    horizon_crop_rotation = build_horizon_crop_rotation(overflow_drop)
     staged_herd_final = build_final_day_labor(staged_herd, "staged_herd_final.py")
     labor_rush = fast_expansion.replace(
         'missing = max(0, 10 - len(farm.get("hands", []) or []))',
@@ -478,6 +531,7 @@ def run(base_path: Path, output_root: Path) -> dict:
         "final_day_labor_13": final_day_labor_13,
         "overflow_drop": overflow_drop,
         "carrier_drop": carrier_drop,
+        "horizon_crop_rotation": horizon_crop_rotation,
         "staged_herd_final": staged_herd_final,
         "labor_rush": labor_rush,
         "public_expansion_baseline": public_expansion_baseline,

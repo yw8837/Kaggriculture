@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "private_save_run_complete_requires_sealed_revalidation",
+  "status": "Fa_01_private_save_run_complete_sealed_revalidation_no_go",
   "sequence": "Fa_01",
   "agent": "artifacts/candidates/overflow_drop/main.py",
   "code_sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C",
@@ -9,6 +9,8 @@
   "evidence_report": "reports/Fa_01_overflow_safe_inventory.md",
   "previous_champion": "artifacts/candidates/final_day_labor/main.py",
   "previous_champion_sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
+  "formal_champion": "artifacts/candidates/final_day_labor/main.py",
+  "formal_champion_sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
   "active_submissions": [55137246, 55137248],
   "save_run": {
     "kernel": "yw8837/fa-01-overflow-safe-inventory",
@@ -16,5 +18,19 @@
     "status": "COMPLETE",
     "downloaded_output_sha256": "1B52522D0CD55536F1C45B73F5FC5A37A27CF924A218FA009D1D1786B72F53D1"
   },
-  "note": "Fa_01 has a verified private Save & Run and has not been submitted. Its direct threshold was set after all 96 direct games were available, so formal champion promotion is suspended pending a new sealed-seed gate. Validation and adversarial money also regressed versus the previous champion."
+  "sealed_revalidation": {
+    "registration_commit": "6f60a8d",
+    "direct_games": 128,
+    "direct_wins": 74,
+    "direct_losses": 54,
+    "direct_match_score": 0.578125,
+    "direct_cluster_bootstrap_95": [0.4765625, 0.671875],
+    "direct_mean_margin": 445.390625,
+    "safety_match_score_delta_vs_previous": 0.0234375,
+    "safety_mean_money_delta_vs_previous": 663.3046875,
+    "safety_p10_money_delta_vs_previous": -648.8999999999942,
+    "failures": 0,
+    "verdict": "NO_GO"
+  },
+  "note": "Fa_01 has a verified private Save & Run and has not been submitted. Its formal promotion was rejected because the preregistered sealed direct gate failed match score, confidence-bound, and mean-margin thresholds. final_day_labor remains formal local champion."
 }

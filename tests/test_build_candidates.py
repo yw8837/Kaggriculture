@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import ast
+import runpy
 from pathlib import Path
 
 from kaggriculture_lab.candidates.build import run
@@ -20,6 +21,7 @@ def test_second_generation_candidates_encode_isolated_hypotheses(tmp_path: Path)
         "carrier_drop",
         "staged_herd_final",
         "public_expansion_baseline",
+        "horizon_crop_rotation",
     } <= names
 
     staged = (tmp_path / "staged_herd" / "main.py").read_text(encoding="utf-8")
@@ -50,3 +52,19 @@ def test_second_generation_candidates_encode_isolated_hypotheses(tmp_path: Path)
     assert ast.dump(ast.parse(public), include_attributes=False) == ast.dump(
         ast.parse(labor_rush), include_attributes=False
     )
+
+    horizon_path = tmp_path / "horizon_crop_rotation" / "main.py"
+    namespace = runpy.run_path(str(horizon_path))
+    plan = {(0, 0): "STRAWBERRY", (1, 0): "CARROT"}
+    day17 = {"day": 17, "market": {"prices": {"WHEAT": 25, "CARROT": 35}}}
+    day25 = {"day": 25, "market": {"prices": {"WHEAT": 100, "CARROT": 1}}}
+    day26 = {"day": 26, "market": {"prices": {"WHEAT": 100, "CARROT": 100}}}
+    assert namespace["_apply_horizon_crop_rotation"](day17, plan) == {
+        (0, 0): "WHEAT",
+        (1, 0): "CARROT",
+    }
+    assert namespace["_apply_horizon_crop_rotation"](day25, plan) == {
+        (0, 0): "CARROT",
+        (1, 0): "CARROT",
+    }
+    assert namespace["_apply_horizon_crop_rotation"](day26, plan) is plan

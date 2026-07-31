@@ -2,7 +2,7 @@
   "schema_version": 1,
   "registered_at_utc": "2026-07-31T14:07:24Z",
   "parent": "configs/Fa_01_sealed_revalidation.json",
-  "status_at_registration": "direct evaluation running; no sealed result file existed",
+  "status_at_registration": "Created near direct-run completion; immediate pre-commit check found the direct result file already written, so exact ordering relative to file completion is not independently established. The package hash itself was already pinned in commit 6f60a8d and earlier Git history.",
   "purpose": "Fix the already-built package identity omitted from the parent registration without changing any statistical threshold or seed.",
   "expected_package": {
     "path": "dist/Fa_01 - Overflow-Safe Inventory.tar.gz",

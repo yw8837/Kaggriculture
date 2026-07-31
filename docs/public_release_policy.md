@@ -8,6 +8,8 @@ The private record repository contains production research and must remain priva
 - Public notebooks and Discussions use a separately packaged `Fa_XX_public` ablation that is
   measurably weaker than the active private champion.
 - Public material must say that it is a strong public baseline, not the current private champion.
+- Public titles must be SEO/discovery-aware: put `Kaggriculture` early, name the user intent and
+  concrete benefit, and never use an unmeasured rating or leaderboard claim as clickbait.
 - Before publication, verify the public artifact locally, quantify its gap from the champion,
   scan it for private strategy/code, and obtain explicit user approval for the exact release.
 
