@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "locked_at_utc": "2026-07-31T11:48:44Z",
+  "environment": {"name": "kaggriculture", "episode_steps": 720},
+  "development": {
+    "seeds": [0, 1, 2, 3, 4, 5, 6, 7],
+    "opponents": ["starter", "niits_pro_tier", "harvest_pulse", "diversified_scheduler"]
+  },
+  "validation": {
+    "seeds": [100, 101, 102, 103, 104, 105, 106, 107],
+    "opponents": ["barnyard_economist", "yumerous", "niits_many_hands"]
+  },
+  "holdout": {
+    "seeds": [1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007],
+    "opponents": ["scenario_aware", "hamburger_cow", "chaitanya_mixed"],
+    "policy": "milestone_only"
+  },
+  "adversarial": {
+    "seeds": [9000, 9001, 9002, 9003],
+    "families": ["self_play", "premium_glut", "wheat_scarcity", "late_liquidation"]
+  },
+  "seat_policy": "every candidate plays both seats for every seed/opponent pair",
+  "promotion_thresholds": null
+}
+

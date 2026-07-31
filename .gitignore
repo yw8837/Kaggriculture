@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+artifacts/*
+!artifacts/champion/
+!artifacts/champion/manifest.json
+dist/
+references/
+competition_data/
+*.tar.gz

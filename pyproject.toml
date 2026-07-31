@@ -1,0 +1,36 @@
+[project]
+name = "kaggriculture-lab"
+version = "0.1.0"
+description = "Reproducible research, evaluation, and agents for Kaggriculture"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "kaggle-environments==1.32.2",
+    "numpy>=2.5.1",
+    "pandas>=3.0.5",
+    "pyarrow>=21.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.0",
+    "ruff>=0.16.0",
+]
+
+[project.scripts]
+kg-analyze-replays = "kaggriculture_lab.research.replays:main"
+kg-analyze-top-replays = "kaggriculture_lab.research.top_replays:main"
+kg-build-candidates = "kaggriculture_lab.candidates.build:main"
+kg-package-candidates = "kaggriculture_lab.candidates.package:main"
+kg-extract-public-agents = "kaggriculture_lab.research.extract_public_agents:main"
+kg-benchmark = "kaggriculture_lab.evaluation.runner:main"
+
+[build-system]
+requires = ["uv_build>=0.11.0,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
