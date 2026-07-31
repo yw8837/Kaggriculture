@@ -22,6 +22,10 @@ def test_second_generation_candidates_encode_isolated_hypotheses(tmp_path: Path)
         "staged_herd_final",
         "public_expansion_baseline",
         "horizon_crop_rotation",
+        "horizon_crop_rotation_cap1",
+        "horizon_crop_rotation_cap2",
+        "horizon_crop_rotation_cap4",
+        "horizon_crop_rotation_cap8",
     } <= names
 
     staged = (tmp_path / "staged_herd" / "main.py").read_text(encoding="utf-8")
@@ -56,8 +60,16 @@ def test_second_generation_candidates_encode_isolated_hypotheses(tmp_path: Path)
     horizon_path = tmp_path / "horizon_crop_rotation" / "main.py"
     namespace = runpy.run_path(str(horizon_path))
     plan = {(0, 0): "STRAWBERRY", (1, 0): "CARROT"}
-    day17 = {"day": 17, "market": {"prices": {"WHEAT": 25, "CARROT": 35}}}
-    day25 = {"day": 25, "market": {"prices": {"WHEAT": 100, "CARROT": 1}}}
+    empty_tiles = [[None, None], [None, None]]
+    farms = [{"tiles": empty_tiles}]
+    day17 = {
+        "day": 17, "player": 0, "farms": farms,
+        "market": {"prices": {"WHEAT": 25, "CARROT": 35}},
+    }
+    day25 = {
+        "day": 25, "player": 0, "farms": farms,
+        "market": {"prices": {"WHEAT": 100, "CARROT": 1}},
+    }
     day26 = {"day": 26, "market": {"prices": {"WHEAT": 100, "CARROT": 100}}}
     assert namespace["_apply_horizon_crop_rotation"](day17, plan) == {
         (0, 0): "WHEAT",

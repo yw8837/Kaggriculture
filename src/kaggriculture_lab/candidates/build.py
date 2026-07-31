@@ -441,8 +441,10 @@ def build_public_expansion_baseline(labor_rush: str) -> str:
     return source.rstrip() + "\n"
 
 
-HORIZON_CROP_ROTATION = '''def _apply_horizon_crop_rotation(obs, plan):
-    """Replace expired empty-cell targets with the best harvestable short crop."""
+HORIZON_CROP_ROTATION = '''HORIZON_ROTATION_CAP = __ROTATION_CAP__
+
+def _apply_horizon_crop_rotation(obs, plan):
+    """Rotate only a bounded set of nearby, currently empty expired targets."""
     day = int(obs.get("day", 0))
     prices = ((obs.get("market", {}) or {}).get("prices", {}) or {})
     expected_yield = {"WHEAT": 6, "CARROT": 4}
@@ -457,20 +459,36 @@ HORIZON_CROP_ROTATION = '''def _apply_horizon_crop_rotation(obs, plan):
     if not feasible:
         return plan
     fallback = max(feasible)[1]
-    return {
-        pos: fallback if day > CROP_RULES[planned][3] else planned
-        for pos, planned in plan.items()
-    }
+    farms = obs.get("farms", []) or []
+    player = int(obs.get("player", 0))
+    if not (0 <= player < len(farms)):
+        return plan
+    farm = farms[player]
+    tiles = farm.get("tiles", []) or []
+    if not tiles:
+        return plan
+    h = len(tiles) // 2
+    shed = (h - 1, h - 1)
+    expired_empty = [
+        pos for pos, planned in plan.items()
+        if day > CROP_RULES[planned][3] and tiles[pos[1]][pos[0]] is None
+    ]
+    expired_empty.sort(key=lambda pos: (_dist(pos, shed), pos[1], pos[0]))
+    rotated = set(expired_empty[:HORIZON_ROTATION_CAP])
+    return {pos: fallback if pos in rotated else planned for pos, planned in plan.items()}
 
 '''
 
 
-def build_horizon_crop_rotation(source_agent: str) -> str:
+def build_horizon_crop_rotation(source_agent: str, rotation_cap: int = 2) -> str:
     """Add a remaining-horizon crop fallback as the isolated Fa_02 hypothesis."""
     marker = "def _add(tasks, priority, pos, action, need=None):\n"
     if marker not in source_agent:
         raise ValueError("crop-rotation insertion marker missing")
-    source = source_agent.replace(marker, HORIZON_CROP_ROTATION + marker, 1)
+    if rotation_cap <= 0:
+        raise ValueError("rotation cap must be positive")
+    rotation = HORIZON_CROP_ROTATION.replace("__ROTATION_CAP__", str(rotation_cap))
+    source = source_agent.replace(marker, rotation + marker, 1)
     old_call = "    crop_plan = _crop_plan(board_size, quadrants, set(all_animal_slots))\n"
     new_call = old_call + "    crop_plan = _apply_horizon_crop_rotation(obs, crop_plan)\n"
     source = source.replace(old_call, new_call, 1)
@@ -479,9 +497,10 @@ def build_horizon_crop_rotation(source_agent: str) -> str:
     body_start = source.index("from collections import deque")
     strategy_notes = '''# Fa_02 strategy notes
 # - Preserve the verified expansion, herd, labor, and inventory-routing foundation.
-# - When a fixed premium-crop target can no longer mature, re-use an empty tile for a
-#   short crop that can still be harvested before the 720-turn terminal cash check.
+# - When a fixed premium-crop target can no longer mature, re-use a bounded set of the
+#   nearest empty tiles for a short crop before the 720-turn terminal cash check.
 # - Choose between wheat and carrot from current observed prices and expected mature yield.
+# - Cap rotation at two nearby cells so watering cannot crowd out herd and premium-crop work.
 # - Stop rotating when neither short crop can finish; unsold or unfinished inventory is worth zero.
 #
 # Primary falsifiable hypothesis: fewer stranded empty cells increase terminal cash without
@@ -509,7 +528,11 @@ def run(base_path: Path, output_root: Path) -> dict:
     final_day_labor_13 = build_final_day_labor(cow_tilt, "final_day_labor_13.py", 13)
     overflow_drop = build_drop_policy(final_day_labor, "overflow_drop.py", "overflow")
     carrier_drop = build_drop_policy(final_day_labor, "carrier_drop.py", "carrier")
-    horizon_crop_rotation = build_horizon_crop_rotation(overflow_drop)
+    horizon_crop_rotation = build_horizon_crop_rotation(overflow_drop, 2)
+    horizon_crop_rotation_cap1 = build_horizon_crop_rotation(overflow_drop, 1)
+    horizon_crop_rotation_cap2 = build_horizon_crop_rotation(overflow_drop, 2)
+    horizon_crop_rotation_cap4 = build_horizon_crop_rotation(overflow_drop, 4)
+    horizon_crop_rotation_cap8 = build_horizon_crop_rotation(overflow_drop, 8)
     staged_herd_final = build_final_day_labor(staged_herd, "staged_herd_final.py")
     labor_rush = fast_expansion.replace(
         'missing = max(0, 10 - len(farm.get("hands", []) or []))',
@@ -532,6 +555,10 @@ def run(base_path: Path, output_root: Path) -> dict:
         "overflow_drop": overflow_drop,
         "carrier_drop": carrier_drop,
         "horizon_crop_rotation": horizon_crop_rotation,
+        "horizon_crop_rotation_cap1": horizon_crop_rotation_cap1,
+        "horizon_crop_rotation_cap2": horizon_crop_rotation_cap2,
+        "horizon_crop_rotation_cap4": horizon_crop_rotation_cap4,
+        "horizon_crop_rotation_cap8": horizon_crop_rotation_cap8,
         "staged_herd_final": staged_herd_final,
         "labor_rush": labor_rush,
         "public_expansion_baseline": public_expansion_baseline,
