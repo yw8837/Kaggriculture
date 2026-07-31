@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "registered_at_utc": "2026-07-31T14:21:13Z",
+  "registration_parent_commit": "75a2ab5",
+  "status_at_registration": "not_run",
+  "candidate": {
+    "source": "artifacts/candidates/horizon_crop_rotation/main.py",
+    "sha256": "38F094549037A26466A11A217E65DD9FFA297C201B0D41EAE8B1BCDA547B2F9C",
+    "artifact": "dist/Fa_02 - Horizon-Aware Crop Rotation.tar.gz",
+    "artifact_sha256": "9F03E7F6CE5F49DD41D4F140D9D6417789A11346C2196B1652B067AB4DD58C7F",
+    "artifact_bytes": 5185,
+    "members": ["main.py"]
+  },
+  "development_result": {
+    "seeds": "14000-14015",
+    "overall_record": [36, 28],
+    "overall_match_score": 0.5625,
+    "overall_mean_margin": 212.46875,
+    "vs_formal_champion_record": [21, 11],
+    "vs_formal_champion_mean_margin": 622.5625,
+    "vs_parent_record": [15, 17],
+    "vs_parent_mean_margin": -197.625,
+    "failures": 0
+  },
+  "primary_and_ablation_gate": {
+    "seeds": [
+      15000, 15001, 15002, 15003, 15004, 15005, 15006, 15007,
+      15008, 15009, 15010, 15011, 15012, 15013, 15014, 15015,
+      15016, 15017, 15018, 15019, 15020, 15021, 15022, 15023,
+      15024, 15025, 15026, 15027, 15028, 15029, 15030, 15031
+    ],
+    "both_seats": true,
+    "formal_champion": "artifacts/candidates/final_day_labor/main.py",
+    "parent_ablation": "artifacts/candidates/overflow_drop/main.py",
+    "minimum_raw_games_per_opponent": 64,
+    "maximum_failures": 0,
+    "formal_champion_minimum_match_score": 0.60,
+    "formal_champion_minimum_seed_cluster_bootstrap_95_lower": 0.50,
+    "formal_champion_minimum_mean_margin": 300.0,
+    "parent_minimum_match_score": 0.50,
+    "parent_minimum_mean_margin": 0.0
+  },
+  "safety_gate": {
+    "seeds": [
+      16000, 16001, 16002, 16003, 16004, 16005, 16006, 16007,
+      16008, 16009, 16010, 16011, 16012, 16013, 16014, 16015
+    ],
+    "opponents": [
+      "artifacts/candidates/fast_expansion/main.py",
+      "artifacts/candidates/cow_tilt/main.py"
+    ],
+    "both_seats": true,
+    "minimum_raw_games_per_agent": 64,
+    "maximum_failures": 0,
+    "minimum_match_score_delta_vs_formal_champion": -0.02,
+    "minimum_mean_money_delta_vs_formal_champion": -100.0,
+    "minimum_p10_money_delta_vs_formal_champion": -500.0
+  },
+  "runtime_gate": {
+    "calls": 720,
+    "maximum_invalid_outputs": 0,
+    "maximum_p95_ms": 5.0,
+    "maximum_single_call_ms": 20.0
+  },
+  "decision_rule": "GO only if every primary, ablation, safety, runtime, source-hash, deterministic-package, and private Save & Run condition passes. Do not edit thresholds after opening results."
+}
