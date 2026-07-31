@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "registered_at_utc": "2026-07-31T14:07:24Z",
+  "parent": "configs/Fa_01_sealed_revalidation.json",
+  "status_at_registration": "direct evaluation running; no sealed result file existed",
+  "purpose": "Fix the already-built package identity omitted from the parent registration without changing any statistical threshold or seed.",
+  "expected_package": {
+    "path": "dist/Fa_01 - Overflow-Safe Inventory.tar.gz",
+    "sha256": "1B52522D0CD55536F1C45B73F5FC5A37A27CF924A218FA009D1D1786B72F53D1",
+    "bytes": 4894,
+    "members": ["main.py"]
+  },
+  "decision_rule_change": "none"
+}

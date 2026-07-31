@@ -21,6 +21,13 @@ This file is the durable user directive for the campaign. It must be read togeth
    columns, and broad English/Korean web sources. Use Agent-Reach, Insane Search for blocked
    URLs, and available deep web search. Never claim literal exhaustive coverage without a saved
    query/source manifest.
+   - Continuously collect and analyze public replays from multiple current top-ranked users and
+     leaderboard snapshots. Preserve episode IDs, rank/rating snapshot, retrieval time, raw replay,
+     and hashes. Compare both seats, turn/day action traces, cash and inventory curves, expansion,
+     labor, crop/herd, market, storage, and end-game patterns.
+   - Never generalize from one replay or one leader. Recheck mechanisms across several top users,
+     seeds, seats, and time snapshots, and convert every retained pattern into a falsifiable local
+     experiment without copying or publishing private production strategy.
 4. Build Fa_01 and Fa_02 as two distinct private hypotheses. Perform pattern analysis,
    simulator inspection, paired both-seat experiments, held-out and adversarial validation,
    runtime checks, deterministic packaging, and independent review.

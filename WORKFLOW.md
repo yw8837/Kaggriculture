@@ -49,6 +49,8 @@ Run several independent lanes in parallel when useful:
 
 - Official environment mechanics and hidden edge cases.
 - Kaggle discussions, notebooks, datasets, and high-quality public agents.
+- Current top-user replays across multiple leaderboard snapshots, users, seeds, and both seats;
+  retain raw episodes/IDs/hashes and extract turn-level economic and action trajectories.
 - GitHub implementations, forks, issues, commits, and benchmark harnesses.
 - Related farming/economic simulators, planning competitions, market games, and finished competition solutions.
 - Relevant methods: finite-horizon planning, MPC, MCTS, dynamic programming, task allocation, opponent modelling, robust optimization, bandits, and policy ensembles.

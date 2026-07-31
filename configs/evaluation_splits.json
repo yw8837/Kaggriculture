@@ -29,7 +29,7 @@
   "promotion_thresholds": null,
   "promotion_thresholds_v2": {
     "locked_at_utc": "2026-07-31T13:20:00Z",
-    "limitation": "Set after preliminary direct probes but before validation, adversarial, confirmation, runtime, and packaging gates.",
+    "limitation": "Set after all 96 direct games were available, so the direct gate is post-selection exploratory evidence rather than preregistered promotion evidence. Validation, adversarial, confirmation, runtime, and packaging ran later.",
     "direct_h2h": {"minimum_games": 96, "minimum_match_score": 0.60, "failures": 0},
     "validation": {"minimum_match_score": 0.95, "failures": 0},
     "adversarial": {"minimum_match_score": 0.85, "failures": 0},
