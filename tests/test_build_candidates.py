@@ -26,6 +26,9 @@ def test_second_generation_candidates_encode_isolated_hypotheses(tmp_path: Path)
         "horizon_crop_rotation_cap2",
         "horizon_crop_rotation_cap4",
         "horizon_crop_rotation_cap8",
+        "terminal_carry_24",
+        "terminal_carry_36",
+        "terminal_carry_48",
     } <= names
 
     staged = (tmp_path / "staged_herd" / "main.py").read_text(encoding="utf-8")
@@ -80,3 +83,17 @@ def test_second_generation_candidates_encode_isolated_hypotheses(tmp_path: Path)
         (1, 0): "CARROT",
     }
     assert namespace["_apply_horizon_crop_rotation"](day26, plan) is plan
+
+    terminal24 = (tmp_path / "terminal_carry_24" / "main.py").read_text(
+        encoding="utf-8"
+    )
+    terminal36 = (tmp_path / "terminal_carry_36" / "main.py").read_text(
+        encoding="utf-8"
+    )
+    terminal48 = (tmp_path / "terminal_carry_48" / "main.py").read_text(
+        encoding="utf-8"
+    )
+    assert "endgame_turn >= 696" in terminal24
+    assert "endgame_turn >= 684" in terminal36
+    assert "endgame_turn >= 672" in terminal48
+    assert "Carried inventory has zero terminal value" in terminal24

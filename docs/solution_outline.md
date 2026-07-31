@@ -33,8 +33,9 @@ the shed discards inventory past capacity.
 - `final_day_labor` fixed final-day labor and remains the formal local champion.
 - Fa_01 added overflow routing and produced a byte-verified private Save & Run, but failed its later
   preregistered sealed direct gate and was not submitted.
-- Fa_02 tests a different finite-horizon hypothesis: rotate expired empty-cell crop targets to a
-  harvestable short crop chosen from observed prices.
+- Fa_02 tested a different finite-horizon crop-rotation hypothesis. Both unbounded and capped
+  versions failed untouched sealed gates, and a replay-derived early carry drain failed 3-61.
+  No Fa_02 Save & Run was created; these remain negative evidence, not a production agent.
 
 ## Publication strategy
 

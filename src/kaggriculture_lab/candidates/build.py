@@ -512,6 +512,45 @@ def build_horizon_crop_rotation(source_agent: str, rotation_cap: int = 2) -> str
     return source.rstrip() + "\n"
 
 
+def build_terminal_carry_drain(source_agent: str, remaining_turns: int) -> str:
+    """Return loaded workers early enough to convert carried goods into terminal cash."""
+    if remaining_turns not in (24, 36, 48):
+        raise ValueError("terminal carry drain supports 24, 36, or 48 remaining turns")
+    marker = "    if day >= 29 and hour >= 14:\n"
+    if marker not in source_agent:
+        raise ValueError("terminal carry insertion marker missing")
+    start_turn = 720 - remaining_turns
+    insertion = f'''    # Carried inventory has zero terminal value. During the registered endgame
+    # window, loaded units return while empty units can continue productive work.
+    endgame_turn = day * 24 + hour
+    if endgame_turn >= {start_turn}:
+        for i in sorted(tuple(free_units)):
+            if sum(int(value) for value in invs[i].values()) <= 0:
+                continue
+            s = _nearest_shed(len(farm["tiles"]), farm["tiles"], positions[i])
+            actions[i] = ["DROP"] if positions[i] == s else _move(farm["tiles"], positions[i], s)
+            free_units.remove(i)
+
+'''
+    source = source_agent.replace(marker, insertion + marker, 1)
+    if insertion not in source:
+        raise ValueError("terminal carry transformation did not apply")
+    body_start = source.index("from collections import deque")
+    strategy_notes = f'''# Fa_02 strategy notes
+# - Preserve the expansion, herd, labor, and overflow-safe routing foundation.
+# - Starting with {remaining_turns} turns left, loaded workers return to the nearest shed.
+# - Empty workers keep productive tasks until the existing final-ten-turn full return.
+# - The only objective is converting carried goods, which score zero, into sellable terminal cash.
+#
+# Primary falsifiable hypothesis: an earlier carry drain increases terminal bank without
+# sacrificing more production and travel time than the recovered inventory is worth.
+
+'''
+    source = strategy_notes + source[body_start:]
+    compile(source, f"terminal_carry_{remaining_turns}.py", "exec")
+    return source.rstrip() + "\n"
+
+
 def _sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest().upper()
 
@@ -533,6 +572,9 @@ def run(base_path: Path, output_root: Path) -> dict:
     horizon_crop_rotation_cap2 = build_horizon_crop_rotation(overflow_drop, 2)
     horizon_crop_rotation_cap4 = build_horizon_crop_rotation(overflow_drop, 4)
     horizon_crop_rotation_cap8 = build_horizon_crop_rotation(overflow_drop, 8)
+    terminal_carry_24 = build_terminal_carry_drain(overflow_drop, 24)
+    terminal_carry_36 = build_terminal_carry_drain(overflow_drop, 36)
+    terminal_carry_48 = build_terminal_carry_drain(overflow_drop, 48)
     staged_herd_final = build_final_day_labor(staged_herd, "staged_herd_final.py")
     labor_rush = fast_expansion.replace(
         'missing = max(0, 10 - len(farm.get("hands", []) or []))',
@@ -559,6 +601,9 @@ def run(base_path: Path, output_root: Path) -> dict:
         "horizon_crop_rotation_cap2": horizon_crop_rotation_cap2,
         "horizon_crop_rotation_cap4": horizon_crop_rotation_cap4,
         "horizon_crop_rotation_cap8": horizon_crop_rotation_cap8,
+        "terminal_carry_24": terminal_carry_24,
+        "terminal_carry_36": terminal_carry_36,
+        "terminal_carry_48": terminal_carry_48,
         "staged_herd_final": staged_herd_final,
         "labor_rush": labor_rush,
         "public_expansion_baseline": public_expansion_baseline,

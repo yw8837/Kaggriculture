@@ -19,7 +19,9 @@ remain ignored locally; hashes and conclusions are tracked.
 - Intermediate champion report: `reports/final_day_labor.md`
 - Fa_01 report and sealed NO-GO: `reports/Fa_01_overflow_safe_inventory.md`
 - Fa_01 sealed registration: `configs/Fa_01_sealed_revalidation.json`
-- Fa_02 registered hypothesis: `configs/Fa_02_hypothesis.json`
+- Fa_02 registered hypotheses and final NO-GO: `configs/Fa_02_hypothesis.json`,
+  `configs/Fa_02_sealed_validation.json`, `configs/Fa_02_sealed_validation_v2.json`,
+  `reports/Fa_02_horizon_aware_crop_rotation.md`
 - Current formal champion/candidate state: `artifacts/champion/manifest.json`
 
 ## External state
@@ -35,6 +37,7 @@ remain ignored locally; hashes and conclusions are tracked.
 - `milestone/fa-01-save-run-v2`: verified Fa_01 private Save & Run bytes
 - `6f60a8d`: Discussion/Code release and preregistered Fa_01 sealed gate
 - `75a2ab5`: honest Fa_01 NO-GO and preregistered Fa_02 development hypothesis
+- `8cdc280`: capped Fa_02 sealed-v2 registration and full research archive
 
 ## Claims that are not yet supported
 
