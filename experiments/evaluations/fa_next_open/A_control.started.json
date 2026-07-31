@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-07-31T20:18:40.256528+00:00",
+  "git_head_at_start": "b61d111abdded451e1a5ec2a7dc00bdc4764e43f",
+  "candidate": "artifacts/candidates/cow_tilt/main.py",
+  "candidate_path": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Desktop\\Kaggriculture\\artifacts\\candidates\\cow_tilt\\main.py",
+  "candidate_sha256_at_start": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E",
+  "opponents": [
+    "hamburger_current",
+    "scenario_aware",
+    "artifacts/candidates/cow_tilt/main.py",
+    "artifacts/candidates/public_expansion_baseline/main.py"
+  ],
+  "opponent_paths": {
+    "hamburger_current": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Desktop\\Kaggriculture\\artifacts\\opponents\\public_kaggle\\hamburger_current.py",
+    "scenario_aware": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Desktop\\Kaggriculture\\artifacts\\opponents\\public_kaggle\\scenario_aware.py",
+    "artifacts/candidates/cow_tilt/main.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Desktop\\Kaggriculture\\artifacts\\candidates\\cow_tilt\\main.py",
+    "artifacts/candidates/public_expansion_baseline/main.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Desktop\\Kaggriculture\\artifacts\\candidates\\public_expansion_baseline\\main.py"
+  },
+  "opponent_sha256_at_start": {
+    "hamburger_current": "A0F6B394C2DA7D420DECF448575B85E540C3249BF4AF1A3C69FA9B643411B793",
+    "scenario_aware": "13EBE04AAE9DC6C6788E7790383D8FBF47222DAA8AD4E88CAD82EC769FA16BF5",
+    "artifacts/candidates/cow_tilt/main.py": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E",
+    "artifacts/candidates/public_expansion_baseline/main.py": "BD32AEFDC00B1F0A41746EBACC4FCBF0AFF32AC061363179F15371B9ACE9A5C0"
+  },
+  "seeds": [
+    30000,
+    30001,
+    30002,
+    30003,
+    30004,
+    30005,
+    30006,
+    30007,
+    30008,
+    30009,
+    30010,
+    30011,
+    30012,
+    30013,
+    30014,
+    30015,
+    30016,
+    30017,
+    30018,
+    30019,
+    30020,
+    30021,
+    30022,
+    30023,
+    30024,
+    30025,
+    30026,
+    30027,
+    30028,
+    30029,
+    30030,
+    30031
+  ],
+  "seat_policy": "both seats",
+  "workers": 12,
+  "scenario_overrides": {
+    "default": {},
+    "premium_glut": {
+      "marketParams": {
+        "STRAWBERRY": {
+          "above_target": 2.4
+        },
+        "MELON": {
+          "above_target": 4.5
+        },
+        "MILK": {
+          "above_target": 2.4
+        },
+        "WOOL": {
+          "above_target": 4.0
+        }
+      }
+    },
+    "wheat_scarcity": {
+      "marketParams": {
+        "WHEAT": {
+          "below_target": 1.2
+        }
+      }
+    },
+    "low_town_demand": {
+      "townShopSellInterval": 8,
+      "townCenterSellInterval": 24
+    }
+  },
+  "effective_scenarios": {
+    "default": {
+      "episodeSteps": 720
+    },
+    "premium_glut": {
+      "episodeSteps": 720,
+      "marketParams": {
+        "MELON": {
+          "above_target": 4.5
+        },
+        "MILK": {
+          "above_target": 2.4
+        },
+        "STRAWBERRY": {
+          "above_target": 2.4
+        },
+        "WOOL": {
+          "above_target": 4.0
+        }
+      }
+    },
+    "wheat_scarcity": {
+      "episodeSteps": 720,
+      "marketParams": {
+        "WHEAT": {
+          "below_target": 1.2
+        }
+      }
+    },
+    "low_town_demand": {
+      "episodeSteps": 720,
+      "townCenterSellInterval": 24,
+      "townShopSellInterval": 8
+    }
+  },
+  "effective_scenarios_sha256": "162E3498439FEF55CFEA9414CFE9DCB7A936E80D418BBFDADAC42F8F5EA70EC0"
+}

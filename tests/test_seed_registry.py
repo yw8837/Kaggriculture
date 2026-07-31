@@ -71,7 +71,7 @@ def test_fa_ab_seed_pools_are_exact_disjoint_and_closed() -> None:
     assert legacy["opened"] is legacy["consumed"] is True
 
 
-def test_next_boundary_pools_are_disjoint_and_closed_with_runtime_gate() -> None:
+def test_next_boundary_pool_history_and_runtime_gate_are_preserved() -> None:
     registry = json.loads(
         Path("configs/fa_ab_seed_registry.json").read_text(encoding="utf-8")
     )
@@ -81,12 +81,22 @@ def test_next_boundary_pools_are_disjoint_and_closed_with_runtime_gate() -> None
         "B_greedy_confirmation": (32000, 32063, 64),
         "B_greedy_robustness": (33000, 33031, 32),
     }
+    lifecycle = {
+        "A_formal_scenario_confirmation": ("CLOSED", False, False),
+        "B_greedy_development": ("CONSUMED_NO_GO", True, True),
+        "B_greedy_confirmation": ("RETIRED_UNUSED", False, False),
+        "B_greedy_robustness": ("RETIRED_UNUSED", False, False),
+    }
     pools = []
     for name, bounds in expected.items():
         pool = registry["next_boundary_reservations"][name]
         assert (pool["start"], pool["end_inclusive"], pool["count"]) == bounds
-        assert pool["status"] == "CLOSED"
-        assert pool["opened"] is pool["consumed"] is False
+        status, opened, consumed = lifecycle[name]
+        assert (pool["status"], pool["opened"], pool["consumed"]) == (
+            status,
+            opened,
+            consumed,
+        )
         pools.append(_expand(pool))
     assert sum(map(len, pools)) == len(set().union(*pools))
 
@@ -115,13 +125,17 @@ def test_next_boundary_reservations_do_not_collide_with_historical_evidence() ->
             _expand(pool)
             for name, pool in registry["next_boundary_reservations"].items()
             if name != "policy"
+            and isinstance(pool, dict)
+            and pool.get("evaluated_games") == 0
         )
     )
     historical: set[int] = set()
     excluded = {
         Path("configs/fa_ab_seed_registry.json"),
         Path("configs/fa_next_boundary_draft.json"),
+        Path("configs/fa02_last_chance_boundary.json"),
         Path("experiments/source_snapshots/fa_next_boundary_manifest.json"),
+        Path("experiments/source_snapshots/fa02_last_chance_manifest.json"),
     }
     json_paths = [
         *Path("configs").glob("*.json"),

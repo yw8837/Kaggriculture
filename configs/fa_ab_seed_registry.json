@@ -2,6 +2,7 @@
   "schema_version": 2,
   "registered_at_utc": "2026-07-31T15:43:34Z",
   "policy": "Development may be opened after a frozen implementation commit. Sealed-strength and robustness pools remain forbidden until the separate auditor accepts the development boundary.",
+  "history_policy": "Append-only reservations: preserve every prior hypothesis and range; only advance lifecycle fields, retire unused downstream pools, and append newly named disjoint pools.",
   "retired_legacy_pools": [
     {
       "name": "legacy_development_validation_holdout",
@@ -102,27 +103,64 @@
       "end_inclusive": 31015,
       "count": 16,
       "purpose": "One-delta officially rescuable second-miss WATER/FEED bounded-greedy development.",
-      "status": "CLOSED",
-      "opened": false,
-      "consumed": false
+      "status": "CONSUMED_NO_GO",
+      "opened": true,
+      "consumed": true,
+      "promotion_eligible": false,
+      "evidence": "experiments/evaluations/fa_next_open/B_paired_gate.json",
+      "result": "Preregistered development gate failed: direct formal match and margin, paired match delta and confidence lower bound, and paired money mean all failed."
     },
     "B_greedy_confirmation": {
       "start": 32000,
       "end_inclusive": 32063,
       "count": 64,
       "purpose": "One-time B greedy confirmation after a separate development audit pass.",
-      "status": "CLOSED",
+      "status": "RETIRED_UNUSED",
       "opened": false,
-      "consumed": false
+      "consumed": false,
+      "promotion_eligible": false,
+      "reason": "B greedy development was accepted as NO-GO; this hypothesis-specific pool may not be reused."
     },
     "B_greedy_robustness": {
       "start": 33000,
       "end_inclusive": 33031,
       "count": 32,
       "purpose": "One-time B greedy effective-configuration stress suite after confirmation approval.",
+      "status": "RETIRED_UNUSED",
+      "opened": false,
+      "consumed": false,
+      "promotion_eligible": false,
+      "reason": "B greedy development was accepted as NO-GO; this hypothesis-specific pool may not be reused."
+    },
+    "Fa02_last_chance_development": {
+      "start": 34000,
+      "end_inclusive": 34015,
+      "count": 16,
+      "purpose": "One-candidate development of a priority-preserving exact second-miss tie-break on the frozen formal allocator.",
       "status": "CLOSED",
       "opened": false,
-      "consumed": false
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa02_last_chance_confirmation": {
+      "start": 35000,
+      "end_inclusive": 35063,
+      "count": 64,
+      "purpose": "One-time default-scenario confirmation only after the development gate and separate audit pass.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa02_last_chance_robustness": {
+      "start": 36000,
+      "end_inclusive": 36031,
+      "count": 32,
+      "purpose": "One-time four-scenario robustness only after confirmation approval.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
     }
   }
 }

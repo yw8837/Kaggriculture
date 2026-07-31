@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "source": "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+  "source_sha256": "6FDC6AEA32CF5DC2309D4B72BFA93937A79152A0F45E6A13A705BF1CEFD774B4",
+  "replay": "artifacts/submission_replays/episode-89143277-replay.json",
+  "replay_sha256": "1AA4495DBBC1439A2E5462245B4C6B725D89F9156A8F8C9ECFD4E29077D23285",
+  "player": 0,
+  "calls": 720,
+  "invalid_outputs": 0,
+  "p50_ms": 1.3081,
+  "p95_ms": 4.169,
+  "p99_ms": 5.4232,
+  "max_ms": 5.9492,
+  "reference_source": "artifacts/candidates/final_day_labor/main.py",
+  "reference_source_sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
+  "action_comparison_calls": 720,
+  "action_differences_vs_reference": 0,
+  "action_difference_steps": [],
+  "priority_inversions": 0,
+  "instrumentation": {
+    "eligible_opportunity": 29,
+    "rank_tiebreak_activated": 13,
+    "action_changed_vs_old_comparator_on_same_state": 0,
+    "last_chance_action_emitted_on_exact_target": 82,
+    "next_day_weed_or_escape_outcome": 0
+  },
+  "comparison_method": "Deep-copied player-0 observations from the tracked replay were passed to frozen final_day_labor and BT1; no environment or seed was run.",
+  "runtime_gate_ms": {
+    "p95_max": 8.0,
+    "p99_max": 15.0,
+    "absolute_max": 50.0,
+    "invalid_outputs": 0
+  },
+  "gate_result": "PASS"
+}

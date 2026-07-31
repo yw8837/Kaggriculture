@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_CLOSED_PENDING_SEED_OPEN_AUTHORIZATION",
+  "config": {
+    "path": "configs/fa02_last_chance_boundary.json",
+    "sha256": "58C0062BC9991AAE4006BECBB7913ADF34DF2405BE7DEDB45A651ADA7F619703",
+    "bytes": 8402
+  },
+  "scenario_config": {
+    "path": "configs/fa_ab_scenarios.json",
+    "sha256": "3BCB18188C1618236EF90F92F09D6D20DDF7178ADE625DC47D1A48ADAB7A16F2",
+    "bytes": 603
+  },
+  "agents": {
+    "BT1": {
+      "role": "frozen Fa_02 last-chance tie-break candidate",
+      "path": "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+      "sha256": "6FDC6AEA32CF5DC2309D4B72BFA93937A79152A0F45E6A13A705BF1CEFD774B4",
+      "bytes": 22008,
+      "provenance": "deterministic project-owned build from final_day_labor; no evaluation seed opened"
+    },
+    "final_day_labor": {
+      "role": "formal control and direct opponent",
+      "path": "artifacts/candidates/final_day_labor/main.py",
+      "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
+      "bytes": 16195,
+      "provenance": "project-owned formal local champion"
+    },
+    "hamburger_current": {
+      "role": "private evaluation opponent",
+      "path": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "sha256": "A0F6B394C2DA7D420DECF448575B85E540C3249BF4AF1A3C69FA9B643411B793",
+      "bytes": 17996,
+      "license_status": "not identified",
+      "usage_policy": "private evaluation only; exclude from every public release"
+    },
+    "scenario_aware": {
+      "role": "private evaluation opponent",
+      "path": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "sha256": "13EBE04AAE9DC6C6788E7790383D8FBF47222DAA8AD4E88CAD82EC769FA16BF5",
+      "bytes": 45280,
+      "license_status": "not identified",
+      "usage_policy": "private evaluation only; exclude from every public release"
+    },
+    "cow_tilt": {
+      "role": "submitted project-owned comparison opponent",
+      "path": "artifacts/candidates/cow_tilt/main.py",
+      "sha256": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E",
+      "bytes": 15703,
+      "provenance": "project-owned submitted initial agent"
+    },
+    "public_expansion_baseline": {
+      "role": "project-owned comparison opponent",
+      "path": "artifacts/candidates/public_expansion_baseline/main.py",
+      "sha256": "BD32AEFDC00B1F0A41746EBACC4FCBF0AFF32AC061363179F15371B9ACE9A5C0",
+      "bytes": 16365,
+      "provenance": "project-owned deliberately weakened public baseline"
+    }
+  },
+  "tooling": {
+    "builder": {
+      "path": "src/kaggriculture_lab/candidates/last_chance_tiebreak.py",
+      "sha256": "92535C9E83E9F94EA3FFA65769356B25A1D848F343A784E9FEB91A239925CB06",
+      "bytes": 9934
+    },
+    "runner": {
+      "path": "src/kaggriculture_lab/evaluation/runner.py",
+      "sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+      "bytes": 19694
+    },
+    "paired_analysis": {
+      "path": "src/kaggriculture_lab/evaluation/paired.py",
+      "sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
+      "bytes": 34461
+    },
+    "BT1_runtime_precheck": {
+      "path": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_runtime.json",
+      "sha256": "0B86EE3EF13D51FCFB8C084957083CFCADCE1A84699CFFF32A13D3E21983A106",
+      "bytes": 1353,
+      "result": "PASS: 720 historical replay calls; p95=4.169ms p99=5.4232ms max=5.9492ms invalid=0 action differences=0 priority inversions=0; no evaluation seed opened"
+    }
+  },
+  "test_evidence": {
+    "project_pytest": {
+      "path": "reports/test_evidence/fa02_last_chance_project_pytest.xml",
+      "sha256": "DFD6AB351FAE367A3610A10B0AA08F10870492D013BE3328BF54D4AF8AB8B372",
+      "bytes": 19377,
+      "result": "PASS: 148 tests"
+    },
+    "ruff": {
+      "path": "reports/test_evidence/fa02_last_chance_ruff.json",
+      "sha256": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+      "bytes": 2,
+      "result": "PASS: zero findings"
+    }
+  },
+  "seed_state": {
+    "Fa02_last_chance_development": "CLOSED",
+    "Fa02_last_chance_confirmation": "CLOSED",
+    "Fa02_last_chance_robustness": "CLOSED"
+  },
+  "note": "This manifest freezes local implementation-pass inputs only. It is not an independent-auditor acceptance, seed-opening authorization, experiment result, Save & Run, submission, or publication authorization."
+}
