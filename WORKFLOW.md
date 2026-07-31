@@ -191,6 +191,14 @@ The previous champion remains immutable and recoverable. A leaderboard increase 
 
 Only after explicit authorization:
 
+- Kaggriculture production candidates use `Fa_XX - Short Description.tar.gz`, starting at
+  `Fa_01`; the two unnumbered initial baseline submissions remain outside this sequence.
+- Default authority stops after a successful private Save & Run. A competition submission
+  requires the user to say to submit it explicitly.
+- Keep the record repository private. Any later public notebook or Discussion must use a
+  separately verified, slightly weaker public baseline and state honestly that it is not the
+  current private champion. Never publish the exact active or final production artifact.
+
 1. Build from the promoted immutable artifact.
 2. Verify entrypoint, dependencies, file size, runtime, network restrictions, and output schema.
 3. Compare hash against every prior upload to prevent duplicates.

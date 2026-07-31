@@ -1,4 +1,5 @@
 .venv/
+.kaggle/
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -7,6 +8,8 @@ artifacts/*
 !artifacts/champion/
 !artifacts/champion/manifest.json
 dist/
+kaggle_runs/
+work/
 references/
 competition_data/
 *.tar.gz

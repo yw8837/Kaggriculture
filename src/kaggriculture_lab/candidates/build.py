@@ -368,7 +368,9 @@ def build_final_day_labor(source_agent: str, filename: str, target_hands: int = 
 def build_drop_policy(source_agent: str, filename: str, mode: str) -> str:
     marker = "    while free_units and free_tasks:\n"
     if mode == "overflow":
-        condition = '''shed_load = sum(int(value) for value in shed.values())
+        condition = '''# Shed capacity is 100. Start returning carried goods at 90 so the
+    # end-of-day drop phase has a ten-item safety buffer instead of discarding overflow.
+    shed_load = sum(int(value) for value in shed.values())
     carried_load = sum(sum(int(value) for value in inv.values()) for inv in invs)
     drop_units = shed_load + carried_load >= 90'''
     elif mode == "carrier":
@@ -401,6 +403,18 @@ def build_drop_policy(source_agent: str, filename: str, mode: str) -> str:
     source = source_agent.replace(marker, insertion + marker, 1)
     if source == source_agent or insertion not in source:
         raise ValueError("drop-policy transformation did not apply")
+    if mode == "overflow":
+        strategy_notes = '''# Fa_01 strategy notes
+# - Scale to ten daily hands and buy land early to compound crop production.
+# - Use a seven-cow/two-sheep expanded herd while reserving enough wheat for feed.
+# - Route loaded workers back before the 100-item shed cap can destroy inventory.
+# - Hire ten hands before final-day liquidation so harvest does not stop early.
+#
+# These comments document the mechanism for audit and a future public-baseline write-up.
+# The exact production artifact remains private; any public release is a weaker ablation.
+
+'''
+        source = strategy_notes + source
     compile(source, filename, "exec")
     return source.rstrip() + "\n"
 
