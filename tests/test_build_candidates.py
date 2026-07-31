@@ -29,6 +29,9 @@ def test_second_generation_candidates_encode_isolated_hypotheses(tmp_path: Path)
         "terminal_carry_24",
         "terminal_carry_36",
         "terminal_carry_48",
+        "daily_labor_11",
+        "daily_labor_12",
+        "daily_labor_13",
     } <= names
 
     staged = (tmp_path / "staged_herd" / "main.py").read_text(encoding="utf-8")
@@ -97,3 +100,11 @@ def test_second_generation_candidates_encode_isolated_hypotheses(tmp_path: Path)
     assert "endgame_turn >= 684" in terminal36
     assert "endgame_turn >= 672" in terminal48
     assert "Carried inventory has zero terminal value" in terminal24
+
+    daily11 = (tmp_path / "daily_labor_11" / "main.py").read_text(encoding="utf-8")
+    daily12 = (tmp_path / "daily_labor_12" / "main.py").read_text(encoding="utf-8")
+    daily13 = (tmp_path / "daily_labor_13" / "main.py").read_text(encoding="utf-8")
+    assert daily11.count('missing = max(0, 11 - len(farm.get("hands", []) or []))') == 1
+    assert daily12.count('missing = max(0, 12 - len(farm.get("hands", []) or []))') == 1
+    assert daily13.count('missing = max(0, 13 - len(farm.get("hands", []) or []))') == 1
+    assert daily11.count('missing = max(0, 10 - len(farm.get("hands", []) or []))') == 1

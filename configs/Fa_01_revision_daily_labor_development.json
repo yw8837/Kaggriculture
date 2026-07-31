@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "registered_at_utc": "2026-07-31T15:00:16Z",
+  "registration_parent_commit": "f237554",
+  "status_at_registration": "not_run",
+  "hypothesis": "The overflow-safe Fa_01 work queue is under-served by ten ordinary-day hands; a small fixed increase can convert queued crop and animal work into terminal cash after Fibonacci hire cost.",
+  "isolated_change": "Ordinary-day target hands only. Final-day ten-hand branch, expansion, crop plan, herd, market logic, routing, and overflow threshold remain unchanged.",
+  "variants": [
+    {
+      "name": "daily_labor_11",
+      "source": "experiments/source_snapshots/fa01_daily_labor/daily_labor_11.py",
+      "sha256": "1730EB5CDA8D7122A6373EA8AF57E73E597236E84EEC081646CA542FBD0878EA"
+    },
+    {
+      "name": "daily_labor_12",
+      "source": "experiments/source_snapshots/fa01_daily_labor/daily_labor_12.py",
+      "sha256": "203DD3F97F248CC22A4676637BBE4660F61389B9B0F67DAE5548984006D009E7"
+    },
+    {
+      "name": "daily_labor_13",
+      "source": "experiments/source_snapshots/fa01_daily_labor/daily_labor_13.py",
+      "sha256": "13E373749958721ACFBE7E95DCDF4D5C83900F4F08FDD7808B2322CCB25925DC"
+    }
+  ],
+  "development_gate": {
+    "seeds": [
+      22000, 22001, 22002, 22003, 22004, 22005, 22006, 22007,
+      22008, 22009, 22010, 22011, 22012, 22013, 22014, 22015
+    ],
+    "both_seats": true,
+    "opponents": [
+      "artifacts/candidates/final_day_labor/main.py",
+      "artifacts/candidates/overflow_drop/main.py"
+    ],
+    "minimum_raw_games_per_variant": 64,
+    "maximum_failures": 0,
+    "minimum_overall_match_score": 0.55,
+    "minimum_overall_mean_margin": 300.0,
+    "minimum_parent_match_score": 0.50,
+    "minimum_parent_mean_margin": 0.0,
+    "selection_rule": "Among variants passing every condition, select the highest parent mean margin; ties use fewer hands. If none pass, kill the daily-labor hypothesis."
+  },
+  "provenance_gate": {
+    "required_git_head_at_start": "commit containing this config and all three source snapshots",
+    "require_start_receipt": true,
+    "require_sources_unchanged_during_run": true,
+    "workers": 4
+  },
+  "validation_rule": "A selected source must be copied byte-for-byte into a new named production path and registered with unused sealed seeds before validation or Save & Run."
+}

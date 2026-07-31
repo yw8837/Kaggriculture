@@ -551,6 +551,33 @@ def build_terminal_carry_drain(source_agent: str, remaining_turns: int) -> str:
     return source.rstrip() + "\n"
 
 
+def build_daily_labor(source_agent: str, target_hands: int) -> str:
+    """Increase ordinary-day labor while preserving the ten-hand final-day branch."""
+    if target_hands not in (11, 12, 13):
+        raise ValueError("daily labor target must be 11, 12, or 13")
+    needle = 'missing = max(0, 10 - len(farm.get("hands", []) or []))'
+    location = source_agent.rfind(needle)
+    if location < 0:
+        raise ValueError("ordinary-day labor target missing")
+    replacement = (
+        f'missing = max(0, {target_hands} - len(farm.get("hands", []) or []))'
+    )
+    source = source_agent[:location] + replacement + source_agent[location + len(needle):]
+    body_start = source.index("from collections import deque")
+    strategy_notes = f'''# Fa_01 revision strategy notes
+# - Preserve the verified expansion, herd, final-day labor, and overflow routing policy.
+# - Hire up to {target_hands} hands on ordinary days while keeping the final-day target at ten.
+# - The isolated question is whether one more daily worker converts the large crop/animal queue
+#   into terminal cash after its extra Fibonacci hire cost and travel opportunity cost.
+#
+# This named source is generated independently and must not share a mutable experiment path.
+
+'''
+    source = strategy_notes + source[body_start:]
+    compile(source, f"daily_labor_{target_hands}.py", "exec")
+    return source.rstrip() + "\n"
+
+
 def _sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest().upper()
 
@@ -575,6 +602,9 @@ def run(base_path: Path, output_root: Path) -> dict:
     terminal_carry_24 = build_terminal_carry_drain(overflow_drop, 24)
     terminal_carry_36 = build_terminal_carry_drain(overflow_drop, 36)
     terminal_carry_48 = build_terminal_carry_drain(overflow_drop, 48)
+    daily_labor_11 = build_daily_labor(overflow_drop, 11)
+    daily_labor_12 = build_daily_labor(overflow_drop, 12)
+    daily_labor_13 = build_daily_labor(overflow_drop, 13)
     staged_herd_final = build_final_day_labor(staged_herd, "staged_herd_final.py")
     labor_rush = fast_expansion.replace(
         'missing = max(0, 10 - len(farm.get("hands", []) or []))',
@@ -604,6 +634,9 @@ def run(base_path: Path, output_root: Path) -> dict:
         "terminal_carry_24": terminal_carry_24,
         "terminal_carry_36": terminal_carry_36,
         "terminal_carry_48": terminal_carry_48,
+        "daily_labor_11": daily_labor_11,
+        "daily_labor_12": daily_labor_12,
+        "daily_labor_13": daily_labor_13,
         "staged_herd_final": staged_herd_final,
         "labor_rush": labor_rush,
         "public_expansion_baseline": public_expansion_baseline,
