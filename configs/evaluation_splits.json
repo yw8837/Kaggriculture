@@ -15,11 +15,25 @@
     "opponents": ["scenario_aware", "hamburger_cow", "chaitanya_mixed"],
     "policy": "milestone_only"
   },
+  "confirmation": {
+    "locked_at_utc": "2026-07-31T13:20:00Z",
+    "seeds": [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007],
+    "opponents": ["scenario_aware", "hamburger_cow", "chaitanya_mixed"],
+    "policy": "single_access_for_overflow_drop_promotion"
+  },
   "adversarial": {
     "seeds": [9000, 9001, 9002, 9003],
     "families": ["self_play", "premium_glut", "wheat_scarcity", "late_liquidation"]
   },
   "seat_policy": "every candidate plays both seats for every seed/opponent pair",
-  "promotion_thresholds": null
+  "promotion_thresholds": null,
+  "promotion_thresholds_v2": {
+    "locked_at_utc": "2026-07-31T13:20:00Z",
+    "limitation": "Set after preliminary direct probes but before validation, adversarial, confirmation, runtime, and packaging gates.",
+    "direct_h2h": {"minimum_games": 96, "minimum_match_score": 0.60, "failures": 0},
+    "validation": {"minimum_match_score": 0.95, "failures": 0},
+    "adversarial": {"minimum_match_score": 0.85, "failures": 0},
+    "confirmation": {"minimum_match_score": 0.95, "failures": 0},
+    "runtime": {"maximum_call_ms": 100.0, "invalid_outputs": 0}
+  }
 }
-

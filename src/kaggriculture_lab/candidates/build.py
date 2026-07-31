@@ -365,6 +365,46 @@ def build_final_day_labor(source_agent: str, filename: str, target_hands: int = 
     return source.rstrip() + "\n"
 
 
+def build_drop_policy(source_agent: str, filename: str, mode: str) -> str:
+    marker = "    while free_units and free_tasks:\n"
+    if mode == "overflow":
+        condition = '''shed_load = sum(int(value) for value in shed.values())
+    carried_load = sum(sum(int(value) for value in inv.values()) for inv in invs)
+    drop_units = shed_load + carried_load >= 90'''
+    elif mode == "carrier":
+        condition = '''sellable = {
+        "CARROT", "TOMATO", "STRAWBERRY", "MELON",
+        "EGG", "MILK", "WOOL", "FERTILIZER",
+    }
+    drop_units = False'''
+    else:
+        raise ValueError(f"unsupported drop mode: {mode}")
+    per_unit_condition = (
+        "sum(int(value) for value in invs[i].values()) > 0"
+        if mode == "overflow"
+        else "sum(int(invs[i].get(item, 0)) for item in sellable) >= 6"
+    )
+    gate = (
+        f"if not drop_units or not ({per_unit_condition}):"
+        if mode == "overflow"
+        else f"if not ({per_unit_condition}):"
+    )
+    insertion = f'''    {condition}
+    for i in sorted(tuple(free_units)):
+        {gate}
+            continue
+        s = _nearest_shed(len(farm["tiles"]), farm["tiles"], positions[i])
+        actions[i] = ["DROP"] if positions[i] == s else _move(farm["tiles"], positions[i], s)
+        free_units.remove(i)
+
+'''
+    source = source_agent.replace(marker, insertion + marker, 1)
+    if source == source_agent or insertion not in source:
+        raise ValueError("drop-policy transformation did not apply")
+    compile(source, filename, "exec")
+    return source.rstrip() + "\n"
+
+
 def _sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest().upper()
 
@@ -379,6 +419,8 @@ def run(base_path: Path, output_root: Path) -> dict:
     final_day_labor = build_final_day_labor(cow_tilt, "final_day_labor.py")
     final_day_labor_12 = build_final_day_labor(cow_tilt, "final_day_labor_12.py", 12)
     final_day_labor_13 = build_final_day_labor(cow_tilt, "final_day_labor_13.py", 13)
+    overflow_drop = build_drop_policy(final_day_labor, "overflow_drop.py", "overflow")
+    carrier_drop = build_drop_policy(final_day_labor, "carrier_drop.py", "carrier")
     staged_herd_final = build_final_day_labor(staged_herd, "staged_herd_final.py")
     labor_rush = fast_expansion.replace(
         'missing = max(0, 10 - len(farm.get("hands", []) or []))',
@@ -397,6 +439,8 @@ def run(base_path: Path, output_root: Path) -> dict:
         "final_day_labor": final_day_labor,
         "final_day_labor_12": final_day_labor_12,
         "final_day_labor_13": final_day_labor_13,
+        "overflow_drop": overflow_drop,
+        "carrier_drop": carrier_drop,
         "staged_herd_final": staged_herd_final,
         "labor_rush": labor_rush,
     }

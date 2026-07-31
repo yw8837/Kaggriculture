@@ -267,7 +267,9 @@ def run_batch(
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run paired Kaggriculture evaluations")
     parser.add_argument("--agent", required=True, help="candidate path or registered name")
-    parser.add_argument("--partition", choices=("development", "validation", "holdout"))
+    parser.add_argument(
+        "--partition", choices=("development", "validation", "holdout", "confirmation")
+    )
     parser.add_argument("--opponents", help="comma-separated registered opponents")
     parser.add_argument("--seeds", help="comma-separated integer seeds")
     parser.add_argument("--config", type=Path, default=Path("configs/evaluation_splits.json"))

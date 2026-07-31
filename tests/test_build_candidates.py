@@ -15,6 +15,8 @@ def test_second_generation_candidates_encode_isolated_hypotheses(tmp_path: Path)
         "final_day_labor",
         "final_day_labor_12",
         "final_day_labor_13",
+        "overflow_drop",
+        "carrier_drop",
         "staged_herd_final",
     } <= names
 
@@ -23,6 +25,8 @@ def test_second_generation_candidates_encode_isolated_hypotheses(tmp_path: Path)
     combined = (tmp_path / "staged_herd_final" / "main.py").read_text(encoding="utf-8")
     final_day_12 = (tmp_path / "final_day_labor_12" / "main.py").read_text(encoding="utf-8")
     final_day_13 = (tmp_path / "final_day_labor_13" / "main.py").read_text(encoding="utf-8")
+    overflow = (tmp_path / "overflow_drop" / "main.py").read_text(encoding="utf-8")
+    carrier = (tmp_path / "carrier_drop" / "main.py").read_text(encoding="utf-8")
     assert 'else {"COW": 4, "SHEEP": 2}' in staged
     assert "return (hire_orders + orders)[:10]" not in staged
     assert 'else {"COW": 4, "SHEEP": 2}' not in final_day
@@ -31,3 +35,6 @@ def test_second_generation_candidates_encode_isolated_hypotheses(tmp_path: Path)
     assert "return (hire_orders + orders)[:10]" in combined
     assert 'missing = max(0, 12 - len(farm.get("hands", []) or []))' in final_day_12
     assert 'missing = max(0, 13 - len(farm.get("hands", []) or []))' in final_day_13
+    assert "shed_load + carried_load >= 90" in overflow
+    assert "shed_load + carried_load >= 90" not in carrier
+    assert ">= 6" in carrier
