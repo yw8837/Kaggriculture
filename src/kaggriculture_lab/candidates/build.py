@@ -419,6 +419,28 @@ def build_drop_policy(source_agent: str, filename: str, mode: str) -> str:
     return source.rstrip() + "\n"
 
 
+def build_public_expansion_baseline(labor_rush: str) -> str:
+    """Add public-facing documentation without changing the tested policy AST."""
+    strategy_notes = '''# Kaggriculture public expansion baseline
+#
+# Strategy
+# - Buy useful land early and run a mixed crop plan instead of a single-crop opening.
+# - Build a mixed cow/sheep herd and reserve wheat for daily feed.
+# - Hire up to twelve hands early in the day so expansion tiles can be worked in parallel.
+#
+# Known limitations
+# - Hiring is deliberately simple and can overpay when the marginal hand has little work.
+# - Crop and herd targets are fixed; the policy does not condition on the opponent.
+# - Late-horizon adaptation and inventory routing are intentionally simple.
+#
+# This is a reproducible public baseline, not the current private competition agent.
+
+'''
+    source = strategy_notes + labor_rush
+    compile(source, "public_expansion_baseline.py", "exec")
+    return source.rstrip() + "\n"
+
+
 def _sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest().upper()
 
@@ -443,6 +465,7 @@ def run(base_path: Path, output_root: Path) -> dict:
     if labor_rush == fast_expansion:
         raise ValueError("labor-rush transformation did not apply")
     compile(labor_rush, "labor_rush.py", "exec")
+    public_expansion_baseline = build_public_expansion_baseline(labor_rush)
     candidates = {
         "cow_compounder": base,
         "fast_expansion": fast_expansion,
@@ -457,6 +480,7 @@ def run(base_path: Path, output_root: Path) -> dict:
         "carrier_drop": carrier_drop,
         "staged_herd_final": staged_herd_final,
         "labor_rush": labor_rush,
+        "public_expansion_baseline": public_expansion_baseline,
     }
     records = []
     for name, source in candidates.items():

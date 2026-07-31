@@ -13,6 +13,12 @@ The private record repository contains production research and must remain priva
 
 ## Rolling release gate
 
+The initial 2026-07-31 bootstrap release is a recorded exception: the user explicitly classified
+the two unnumbered active submissions as baseline code and authorized Discussion-first publication
+of the current 1000-level baseline. `public_expansion_baseline` is therefore intentionally close to
+the unnumbered `fast_expansion` baseline. This exception does not apply to Fa production agents or
+later releases; all later public code must satisfy the gate below.
+
 Public strength may rise only after the private ladder strength is stable. A release candidate
 must satisfy all of the following before publication:
 

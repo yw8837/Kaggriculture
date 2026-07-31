@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import ast
 from pathlib import Path
 
 from kaggriculture_lab.candidates.build import run
@@ -18,6 +19,7 @@ def test_second_generation_candidates_encode_isolated_hypotheses(tmp_path: Path)
         "overflow_drop",
         "carrier_drop",
         "staged_herd_final",
+        "public_expansion_baseline",
     } <= names
 
     staged = (tmp_path / "staged_herd" / "main.py").read_text(encoding="utf-8")
@@ -38,3 +40,13 @@ def test_second_generation_candidates_encode_isolated_hypotheses(tmp_path: Path)
     assert "shed_load + carried_load >= 90" in overflow
     assert "shed_load + carried_load >= 90" not in carrier
     assert ">= 6" in carrier
+
+    labor_rush = (tmp_path / "labor_rush" / "main.py").read_text(encoding="utf-8")
+    public = (tmp_path / "public_expansion_baseline" / "main.py").read_text(
+        encoding="utf-8"
+    )
+    assert "This is a reproducible public baseline" in public
+    assert "Late-horizon adaptation and inventory routing are intentionally simple" in public
+    assert ast.dump(ast.parse(public), include_attributes=False) == ast.dump(
+        ast.parse(labor_rush), include_attributes=False
+    )

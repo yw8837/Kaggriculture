@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "private_save_run_complete_awaiting_submission_authorization",
+  "status": "private_save_run_complete_requires_sealed_revalidation",
   "sequence": "Fa_01",
   "agent": "artifacts/candidates/overflow_drop/main.py",
   "code_sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C",
@@ -16,5 +16,5 @@
     "status": "COMPLETE",
     "downloaded_output_sha256": "1B52522D0CD55536F1C45B73F5FC5A37A27CF924A218FA009D1D1786B72F53D1"
   },
-  "note": "Fa_01 passes the preregistered direct, validation, adversarial, confirmation, runtime, deterministic packaging, and private Save & Run gates. It has not been submitted."
+  "note": "Fa_01 has a verified private Save & Run and has not been submitted. Its direct threshold was set after all 96 direct games were available, so formal champion promotion is suspended pending a new sealed-seed gate. Validation and adversarial money also regressed versus the previous champion."
 }

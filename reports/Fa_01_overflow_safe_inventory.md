@@ -28,9 +28,19 @@ The production source adds eight audit comments. Its AST is identical to the eva
 - Adversarial versus submitted `cow_tilt` and `fast_expansion`: 28-4 (87.5%),
   mean margin +5,176.31, minimum 74,901, zero failures.
 
-The direct threshold was set after preliminary direct probes but before validation,
-adversarial, independent confirmation, runtime, and packaging. That limitation is retained in
-`configs/evaluation_splits.json` rather than presented as fully preregistered evidence.
+The direct threshold was written only after all 96 direct games were available. The direct result
+is therefore post-selection exploratory evidence, **not preregistered promotion evidence**.
+Validation, adversarial, confirmation, runtime, and packaging ran later, but they do not repair
+that ordering defect.
+
+An adversarial audit also exposed regressions hidden by saturated win counts:
+
+- Validation money versus the previous champion: 104,069.73 to 103,781.58 (mean -288.15),
+  with 21 games higher and 27 lower.
+- Adversarial money versus the previous champion: mean -600.06, with 13 games higher,
+  18 lower, and one tied; the win record moved from 31-1 to 28-4.
+
+These regressions require a new sealed-seed gate before formal champion promotion.
 
 ## Runtime, archive, and private Save & Run
 
@@ -46,7 +56,8 @@ adversarial, independent confirmation, runtime, and packaging. That limitation i
 
 ## Verdict and limits
 
-Fa_01 is the private local champion and a verified Save & Run artifact. It is not a Kaggle
-competition submission. Public opponents and early ratings are weaker evidence than mature
-top-ladder play, so this promotion does not establish a future 1200 rating or final top-three
-placement. Those remain campaign targets requiring further research and ladder evidence.
+Fa_01 is a verified private Save & Run artifact and the **provisional** local candidate. Formal
+champion promotion is suspended pending a truly preregistered sealed-seed comparison that includes
+the validation and adversarial regressions above. It is not a Kaggle competition submission.
+Nothing here establishes a future 1200 rating or final top-three placement; those remain campaign
+targets requiring further research and ladder evidence.
