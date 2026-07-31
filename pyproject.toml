@@ -23,6 +23,7 @@ kg-build-candidates = "kaggriculture_lab.candidates.build:main"
 kg-package-candidates = "kaggriculture_lab.candidates.package:main"
 kg-extract-public-agents = "kaggriculture_lab.research.extract_public_agents:main"
 kg-benchmark = "kaggriculture_lab.evaluation.runner:main"
+kg-benchmark-runtime = "kaggriculture_lab.evaluation.runtime:main"
 
 [build-system]
 requires = ["uv_build>=0.11.0,<0.12.0"]

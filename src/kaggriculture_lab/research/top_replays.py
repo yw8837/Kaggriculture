@@ -32,6 +32,60 @@ def _stamp(observation: dict[str, Any]) -> dict[str, int]:
     }
 
 
+def _inventory_totals(private: dict[str, Any]) -> dict[str, int]:
+    totals: Counter = Counter()
+    for inventory in private.get("inventories", []) or []:
+        totals.update({key: int(value) for key, value in (inventory or {}).items()})
+    return dict(totals)
+
+
+def _snapshot(obs: dict[str, Any], player: int) -> dict[str, Any]:
+    farm = obs["farms"][player]
+    private = obs.get("private") or {}
+    crops, animals = _tile_assets(farm.get("tiles") or [])
+    market = obs.get("market") or {}
+    return {
+        **_stamp(obs),
+        "money": float(farm.get("money", 0)),
+        "hands": len(farm.get("hands") or []),
+        "hires_today": int(farm.get("hires_today", 0)),
+        "quadrants": len(farm.get("unlocked_quadrants") or []),
+        "crops": dict(crops),
+        "animals": dict(animals),
+        "shed": {key: int(value) for key, value in (private.get("shed") or {}).items()},
+        "seeds": {key: int(value) for key, value in (private.get("seeds") or {}).items()},
+        "carried": _inventory_totals(private),
+        "market_prices": {
+            key: int(value) for key, value in (market.get("prices") or {}).items()
+        },
+        "market_inventory": {
+            key: int(value) for key, value in (market.get("inventory") or {}).items()
+        },
+        "town_shops": list((obs.get("town") or {}).get("unlocked_shops") or []),
+    }
+
+
+def _new_daily(day: int, opening: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "day": day,
+        "opening": opening,
+        "last_observation": opening,
+        "money_min": opening["money"],
+        "money_max": opening["money"],
+        "money_close_after_actions": opening["money"],
+        "cash_delta": 0.0,
+        "peak_hands": opening["hands"],
+        "peak_crops": Counter(opening["crops"]),
+        "peak_animals": Counter(opening["animals"]),
+        "market_order_counts": Counter(),
+        "market_quantities_requested": Counter(),
+        "unit_action_counts": Counter(),
+        "unit_action_capacity": 0,
+        "unit_actions_issued": 0,
+        "unit_non_pass_actions": 0,
+    }
+
+
 def _first_reached(milestones: dict[str, Any], key: str, value: int, obs: dict) -> None:
     if value and key not in milestones:
         milestones[key] = _stamp(obs)
@@ -51,16 +105,24 @@ def analyze_agent(replay: dict[str, Any], player: int) -> dict[str, Any]:
     peak_hands = 0
     peak_crops: Counter = Counter()
     peak_animals: Counter = Counter()
+    daily: dict[int, dict[str, Any]] = {}
 
-    for state in replay["steps"]:
+    for state_index, state in enumerate(replay["steps"]):
         agent_state = state[player]
         obs = agent_state.get("observation") or {}
         farms = obs.get("farms") or []
         if player >= len(farms):
             continue
         farm = farms[player]
+        day = int(obs.get("day", 0))
+        snapshot = _snapshot(obs, player)
+        day_row = daily.setdefault(day, _new_daily(day, snapshot))
+        day_row["last_observation"] = snapshot
+        day_row["money_min"] = min(day_row["money_min"], snapshot["money"])
+        day_row["money_max"] = max(day_row["money_max"], snapshot["money"])
         hands = len(farm.get("hands") or [])
         peak_hands = max(peak_hands, hands)
+        day_row["peak_hands"] = max(day_row["peak_hands"], hands)
         for target in (4, 8, 10, 12):
             if hands >= target:
                 _first_reached(milestones, f"hands_{target}", hands, obs)
@@ -72,6 +134,8 @@ def analyze_agent(replay: dict[str, Any], player: int) -> dict[str, Any]:
         crops, animals = _tile_assets(farm.get("tiles") or [])
         peak_crops |= crops
         peak_animals |= animals
+        day_row["peak_crops"] |= crops
+        day_row["peak_animals"] |= animals
         for animal in ("GOOSE", "COW", "SHEEP"):
             if animals[animal]:
                 _first_reached(milestones, f"first_{animal.lower()}", animals[animal], obs)
@@ -79,9 +143,27 @@ def analyze_agent(replay: dict[str, Any], player: int) -> dict[str, Any]:
         action = agent_state.get("action") or {}
         if not isinstance(action, dict):
             continue
+        if state_index == 0:
+            continue
+        previous_state = replay["steps"][state_index - 1][player]
+        action_obs = previous_state.get("observation") or {}
+        action_farms = action_obs.get("farms") or []
+        if player >= len(action_farms):
+            continue
+        action_farm = action_farms[player]
+        action_day = int(action_obs.get("day", 0))
+        action_opening = _snapshot(action_obs, player)
+        action_day_row = daily.setdefault(action_day, _new_daily(action_day, action_opening))
+        previous_money = float(action_farm.get("money", 0))
+        current_money = float(farm.get("money", 0))
+        cash_delta = current_money - previous_money
+        action_day_row["cash_delta"] += cash_delta
+        action_day_row["money_close_after_actions"] = current_money
+        action_day_row["money_min"] = min(action_day_row["money_min"], current_money)
+        action_day_row["money_max"] = max(action_day_row["money_max"], current_money)
         market = action.get("market") or []
         if market and initial_market is None:
-            initial_market = {**_stamp(obs), "orders": market}
+            initial_market = {**_stamp(action_obs), "orders": market}
         for order in market:
             if not order:
                 continue
@@ -89,19 +171,26 @@ def analyze_agent(replay: dict[str, Any], player: int) -> dict[str, Any]:
             item = str(order[1]) if len(order) > 1 else ""
             key = f"{name}:{item}" if item else name
             market_counts[key] += 1
+            action_day_row["market_order_counts"][key] += 1
             quantity = int(order[2]) if len(order) > 2 else 1
             market_quantities[key] += quantity
+            action_day_row["market_quantities_requested"][key] += quantity
             if name == "HIRE":
-                hires_by_day[int(obs.get("day", 0))] += 1
+                hires_by_day[action_day] += 1
             elif name == "BUY_LAND":
-                land_orders.append(_stamp(obs))
+                land_orders.append(_stamp(action_obs))
 
         units = [action.get("farmer") or ["PASS"], *(action.get("hands") or [])]
+        action_day_row["unit_action_capacity"] += 1 + len(action_farm.get("hands") or [])
+        action_day_row["unit_actions_issued"] += len(units)
         for unit_action in units:
             if not unit_action:
                 continue
             name = str(unit_action[0])
             unit_counts[name] += 1
+            action_day_row["unit_action_counts"][name] += 1
+            if name != "PASS":
+                action_day_row["unit_non_pass_actions"] += 1
             if name == "PLANT" and len(unit_action) > 1:
                 plant_counts[str(unit_action[1])] += 1
             if name == "PLACE" and len(unit_action) > 1:
@@ -110,7 +199,24 @@ def analyze_agent(replay: dict[str, Any], player: int) -> dict[str, Any]:
     final_state = replay["steps"][-1][player]
     final_obs = final_state["observation"]
     final_farm = final_obs["farms"][player]
+    final_private = final_obs.get("private") or {}
     final_crops, final_animals = _tile_assets(final_farm.get("tiles") or [])
+    daily_rows = []
+    for day in sorted(daily):
+        row = daily[day]
+        for key in (
+            "peak_crops",
+            "peak_animals",
+            "market_order_counts",
+            "market_quantities_requested",
+            "unit_action_counts",
+        ):
+            row[key] = dict(row[key].most_common())
+        capacity = row["unit_action_capacity"]
+        row["unit_non_pass_rate"] = (
+            row["unit_non_pass_actions"] / capacity if capacity else 0.0
+        )
+        daily_rows.append(row)
     return {
         "team": team,
         "player": player,
@@ -128,10 +234,18 @@ def analyze_agent(replay: dict[str, Any], player: int) -> dict[str, Any]:
         "unit_action_counts": dict(unit_counts.most_common()),
         "plant_counts": dict(plant_counts.most_common()),
         "place_counts": dict(place_counts.most_common()),
+        "daily": daily_rows,
         "final_money": final_farm.get("money"),
         "final_quadrants": final_farm.get("unlocked_quadrants"),
         "final_crops": dict(final_crops),
         "final_animals": dict(final_animals),
+        "final_shed": {
+            key: int(value) for key, value in (final_private.get("shed") or {}).items()
+        },
+        "final_seeds": {
+            key: int(value) for key, value in (final_private.get("seeds") or {}).items()
+        },
+        "final_carried": _inventory_totals(final_private),
     }
 
 
@@ -149,7 +263,7 @@ def run(source: Path, output: Path) -> dict[str, Any]:
                 "agents": [analyze_agent(replay, player) for player in range(2)],
             }
         )
-    report = {"schema_version": 1, "episode_count": len(episodes), "episodes": episodes}
+    report = {"schema_version": 2, "episode_count": len(episodes), "episodes": episodes}
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     return report

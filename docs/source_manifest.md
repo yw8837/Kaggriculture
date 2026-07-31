@@ -72,6 +72,8 @@ lags new submissions.
 Five direct top-ladder match replays were also downloaded through the official episode API:
 #89119601, #89123012, #89133857, #89135836, and #89138818. Their full action/state report
 has SHA-256 `57D702B9A56B291BF3DE2929A3C9FE9565DDE8846204419AB11285944A28E691`.
+The corrected action-time and daily-trajectory report has SHA-256
+`BD480E0962060B7BE05CC44A48C45D8715A8E8D6AC592F1070DE4F32FFE8116B`.
 Observed top policies hire roughly 10–13 daily hands, usually buy two additional land
 quadrants, and combine crops with animals. The then-first-place `smlcr` opening repeated
 exactly across four inspected replays: one cow, two sheep, 11 melon seeds, five strawberry
@@ -79,7 +81,10 @@ seeds, one carrot seed, one wheat seed, then six day-zero hires across the first
 
 ## GitHub
 
-Repository-name search returned 17 matches. Current-competition repositories inspected:
+Repository-name search returned 17 matches. A separate GitHub code-body search for Python
+`kaggriculture` references returned 34 files; the competition-specific hits reduced to the
+same official repository and already inspected solution/tooling repositories. Current-
+competition repositories inspected:
 `niits/kaggriculture` (`3c89b816e634653fcde40918edae5f65ff356f84`),
 `rooklift/krobus` (`92d8fe09386ad349a0e71ed9aba19fdc839db270`),
 `sota1111/kaggriculture-claude` (`39d46d3cad48451d6a3ad28ae058bee299308902`),

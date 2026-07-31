@@ -1,12 +1,13 @@
 {
   "schema_version": 1,
-  "status": "promoted_for_initial_ladder_probe",
-  "agent": "artifacts/candidates/cow_tilt/main.py",
-  "code_sha256": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E",
-  "artifact": "dist/cow_tilt.tar.gz",
-  "artifact_sha256": "73F15AECDD3CC786D755540C71D1E6035AD8D4435E813A02E56E923C8F791A86",
-  "evidence_report": "reports/cow_tilt.md",
-  "secondary_agent": "artifacts/candidates/fast_expansion/main.py",
-  "secondary_artifact_sha256": "2ECB98759CA02AB28C83C88832DB8DDFEEDDD7E2E4A7B80EA9BD0F1292251484",
-  "note": "Cow tilt leads the combined paired comparison 35-21, but loses the four-seed adversarial slice 3-5; both distinct artifacts are retained for the authorized two-submission probe."
+  "status": "promoted_local_only_awaiting_submission_authorization",
+  "agent": "artifacts/candidates/final_day_labor/main.py",
+  "code_sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
+  "artifact": "dist/final_day_labor.tar.gz",
+  "artifact_sha256": "59281C6434D6D48C429DDC7950266A1083454978A0425D143480E9BB75559670",
+  "evidence_report": "reports/final_day_labor.md",
+  "previous_champion": "artifacts/candidates/cow_tilt/main.py",
+  "previous_champion_sha256": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E",
+  "active_submissions": [55137246, 55137248],
+  "note": "Final-day labor beats cow_tilt 61-3 across two direct paired seed sets and passes development, validation, holdout, adversarial, runtime, and packaging gates. It has not been submitted."
 }

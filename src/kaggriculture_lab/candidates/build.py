@@ -311,6 +311,60 @@ def build_animal_tilt(fast_expansion: str, cows: int, sheep: int) -> str:
     return source.rstrip() + "\n"
 
 
+def build_staged_herd(cow_tilt: str) -> str:
+    opening = (
+        'target = {"COW": 7, "SHEEP": 2} if expanded else {"COW": 1, "SHEEP": 2}'
+    )
+    staged = '''target = (
+        {"COW": 7, "SHEEP": 2}
+        if len(quadrants) >= 3
+        else {"COW": 4, "SHEEP": 2}
+        if expanded
+        else {"COW": 1, "SHEEP": 2}
+    )'''
+    source = cow_tilt.replace(opening, staged, 1)
+    source = source.replace(
+        'expanded = True\n        target = {"COW": 7, "SHEEP": 2}',
+        '''expanded = True
+        target = (
+            {"COW": 7, "SHEEP": 2}
+            if extra_land >= 2
+            else {"COW": 4, "SHEEP": 2}
+        )''',
+        1,
+    )
+    if source == cow_tilt or staged not in source:
+        raise ValueError("staged-herd transformation did not apply")
+    compile(source, "staged_herd.py", "exec")
+    return source.rstrip() + "\n"
+
+
+def build_final_day_labor(source_agent: str, filename: str, target_hands: int = 10) -> str:
+    early_return = '''    if day >= 29:
+        return orders
+'''
+    final_day = '''    if day >= 29:
+        hire_orders = []
+        if hour <= 3:
+            missing = max(0, FINAL_DAY_HANDS - len(farm.get("hands", []) or []))
+            hire_index = int(farm.get("hires_today", 0))
+            while missing > 0 and len(hire_orders) < 10:
+                cost = _fib(hire_index)
+                if budget < cost + 20:
+                    break
+                hire_orders.append(["HIRE"])
+                budget -= cost
+                hire_index += 1
+                missing -= 1
+        return (hire_orders + orders)[:10]
+'''.replace("FINAL_DAY_HANDS", str(target_hands))
+    source = source_agent.replace(early_return, final_day, 1)
+    if source == source_agent or final_day not in source:
+        raise ValueError("final-day-labor transformation did not apply")
+    compile(source, filename, "exec")
+    return source.rstrip() + "\n"
+
+
 def _sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest().upper()
 
@@ -321,6 +375,11 @@ def run(base_path: Path, output_root: Path) -> dict:
     anti_meta = build_anti_meta(fast_expansion)
     sheep_tilt = build_animal_tilt(fast_expansion, 5, 4)
     cow_tilt = build_animal_tilt(fast_expansion, 7, 2)
+    staged_herd = build_staged_herd(cow_tilt)
+    final_day_labor = build_final_day_labor(cow_tilt, "final_day_labor.py")
+    final_day_labor_12 = build_final_day_labor(cow_tilt, "final_day_labor_12.py", 12)
+    final_day_labor_13 = build_final_day_labor(cow_tilt, "final_day_labor_13.py", 13)
+    staged_herd_final = build_final_day_labor(staged_herd, "staged_herd_final.py")
     labor_rush = fast_expansion.replace(
         'missing = max(0, 10 - len(farm.get("hands", []) or []))',
         'missing = max(0, 12 - len(farm.get("hands", []) or []))',
@@ -334,6 +393,11 @@ def run(base_path: Path, output_root: Path) -> dict:
         "anti_meta": anti_meta,
         "sheep_tilt": sheep_tilt,
         "cow_tilt": cow_tilt,
+        "staged_herd": staged_herd,
+        "final_day_labor": final_day_labor,
+        "final_day_labor_12": final_day_labor_12,
+        "final_day_labor_13": final_day_labor_13,
+        "staged_herd_final": staged_herd_final,
         "labor_rush": labor_rush,
     }
     records = []
