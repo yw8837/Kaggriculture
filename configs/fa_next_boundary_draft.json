@@ -52,7 +52,8 @@
     "scenario_config": {
       "path": "configs/fa_ab_scenarios.json",
       "sha256": "3BCB18188C1618236EF90F92F09D6D20DDF7178ADE625DC47D1A48ADAB7A16F2",
-      "required_names": ["default", "premium_glut", "wheat_scarcity", "low_town_demand"]
+      "required_names": ["default", "premium_glut", "wheat_scarcity", "low_town_demand"],
+      "expected_effective_scenarios_sha256": "162E3498439FEF55CFEA9414CFE9DCB7A936E80D418BBFDADAC42F8F5EA70EC0"
     },
     "variant_selection_allowed": false,
     "tuning_allowed": false,
@@ -66,6 +67,7 @@
       "minimum_seed_cluster_bootstrap_95_lower_delta": 0.0,
       "minimum_paired_mean_money_delta": 750.0,
       "minimum_paired_p10_money_delta": -1000.0,
+      "expected_contract": "must_use_preregistered",
       "all_required": true
     }
   },
@@ -77,9 +79,9 @@
     "candidate": {
       "identity": "BG1_rescue_greedy",
       "path": "experiments/source_snapshots/fa02_rescue_greedy/BG1.py",
-      "sha256": "631C2029AFB453DAA326C921E7080102B8F54D0E7D3BD36A71849B7FBF10E5EC",
+      "sha256": "801B2FA6621673379D23EBE7E7738077EAF5B43181913BDBFE28D800CEC9063F",
       "builder": "src/kaggriculture_lab/candidates/rescue_greedy.py",
-      "builder_sha256": "D149B6E343A7A49BDFF05FA4D8D9C01F557CED56197B04BE092D43BDD1D22F7C"
+      "builder_sha256": "6DB29D4B80CA7EFFD2F5D66FA54BC80B60591BEA412867FE4842A79242590AA8"
     },
     "control": {
       "identity": "B0_final_day_labor",
@@ -96,7 +98,12 @@
     "scenario_policy": {
       "development": ["default"],
       "confirmation": ["default"],
-      "robustness": ["default", "premium_glut", "wheat_scarcity", "low_town_demand"]
+      "robustness": ["default", "premium_glut", "wheat_scarcity", "low_town_demand"],
+      "expected_effective_scenarios_sha256": {
+        "development": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE",
+        "confirmation": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE",
+        "robustness": "162E3498439FEF55CFEA9414CFE9DCB7A936E80D418BBFDADAC42F8F5EA70EC0"
+      }
     },
     "eligibility": [
       "counter equals 1",
@@ -118,7 +125,7 @@
     },
     "paired_analysis": {
       "path": "src/kaggriculture_lab/evaluation/paired.py",
-      "sha256": "FF725F4133A913D107D19FA3E4B6906C475466866075742617DFEAB135C42548",
+      "sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
       "cell_key": ["scenario", "opponent", "seed", "seat"],
       "bootstrap_cluster_unit": "seed",
       "bootstrap_draws": 10000,
@@ -126,13 +133,16 @@
     },
     "runtime_precheck": {
       "report": "experiments/evaluations/fa_next_draft/BG1_runtime.json",
-      "report_sha256": "F6B59EF6A0A1298DB7DA43BD3BC21D6BE550AC3421847B2624D6D25788B0A2D5",
+      "report_sha256": "EAE14CE2B3AEB47426D64A900498105634E06D149950A49A179AC6D17DC80E2A",
       "replay_sha256": "1AA4495DBBC1439A2E5462245B4C6B725D89F9156A8F8C9ECFD4E29077D23285",
       "calls": 720,
       "invalid_outputs": 0,
-      "p95_ms": 1.8301,
-      "p99_ms": 3.5609,
-      "max_ms": 4.1475,
+      "p95_ms": 2.2469,
+      "p99_ms": 3.0684,
+      "max_ms": 4.1749,
+      "reference_source_sha256": "631C2029AFB453DAA326C921E7080102B8F54D0E7D3BD36A71849B7FBF10E5EC",
+      "action_comparison_calls": 720,
+      "action_differences_vs_reference": 0,
       "gate_result": "PASS"
     },
     "development_gates": {
@@ -149,6 +159,7 @@
       "minimum_completed_rescue_fraction_of_assignments": 0.80,
       "maximum_weed_or_escape_events_delta_vs_B0": 0,
       "runtime_gate_ref": "runtime_gate_ms",
+      "expected_contract": "must_use_preregistered",
       "all_required": true
     },
     "later_pool_policy": "Confirmation and robustness remain CLOSED until a separate development audit pass."

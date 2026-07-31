@@ -3,8 +3,8 @@
   "status": "DRAFT_CLOSED_PENDING_CORRECTIVE_AUDIT_PASS",
   "config": {
     "path": "configs/fa_next_boundary_draft.json",
-    "sha256": "DDBFC3B462B743527C1ACC1854B3152C1620E605D7CD652ACA7979F103A0F831",
-    "bytes": 7023
+    "sha256": "F089819A607ABD46B9B0AAC028DFA909F4ED3D3B06C618422507DDE03794B6A5",
+    "bytes": 7753
   },
   "scenario_config": {
     "path": "configs/fa_ab_scenarios.json",
@@ -53,16 +53,16 @@
     "BG1_rescue_greedy": {
       "role": "closed Fa_02 one-delta development candidate",
       "path": "experiments/source_snapshots/fa02_rescue_greedy/BG1.py",
-      "sha256": "631C2029AFB453DAA326C921E7080102B8F54D0E7D3BD36A71849B7FBF10E5EC",
-      "bytes": 25275,
-      "provenance": "deterministic project-owned build from final_day_labor; no evaluation seed opened"
+      "sha256": "801B2FA6621673379D23EBE7E7738077EAF5B43181913BDBFE28D800CEC9063F",
+      "bytes": 25849,
+      "provenance": "deterministic project-owned build from final_day_labor; action-identical to frozen 631C2029 source over all 720 historical replay observations; no evaluation seed opened"
     }
   },
   "tooling": {
     "rescue_builder": {
       "path": "src/kaggriculture_lab/candidates/rescue_greedy.py",
-      "sha256": "D149B6E343A7A49BDFF05FA4D8D9C01F557CED56197B04BE092D43BDD1D22F7C",
-      "bytes": 12819
+      "sha256": "6DB29D4B80CA7EFFD2F5D66FA54BC80B60591BEA412867FE4842A79242590AA8",
+      "bytes": 13393
     },
     "runner": {
       "path": "src/kaggriculture_lab/evaluation/runner.py",
@@ -71,14 +71,14 @@
     },
     "paired_analysis": {
       "path": "src/kaggriculture_lab/evaluation/paired.py",
-      "sha256": "FF725F4133A913D107D19FA3E4B6906C475466866075742617DFEAB135C42548",
-      "bytes": 19380
+      "sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
+      "bytes": 34461
     },
     "BG1_runtime_precheck": {
       "path": "experiments/evaluations/fa_next_draft/BG1_runtime.json",
-      "sha256": "F6B59EF6A0A1298DB7DA43BD3BC21D6BE550AC3421847B2624D6D25788B0A2D5",
-      "bytes": 492,
-      "result": "PASS p95<=8ms p99<=15ms max<=50ms invalid=0 on the frozen historical replay"
+      "sha256": "EAE14CE2B3AEB47426D64A900498105634E06D149950A49A179AC6D17DC80E2A",
+      "bytes": 901,
+      "result": "PASS p95=2.2469ms p99=3.0684ms max=4.1749ms invalid=0 and 0/720 action differences vs frozen 631C2029 source on the same historical replay"
     }
   },
   "seed_state": {

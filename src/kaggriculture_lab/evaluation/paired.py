@@ -7,9 +7,11 @@ cluster, so every scenario, opponent, and seat sharing a seed moves together.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 import random
+import re
 import statistics
 from collections.abc import Mapping, Sequence
 from fractions import Fraction
@@ -20,6 +22,17 @@ CellKey = tuple[str, str, int, int]
 
 BOOTSTRAP_DRAWS = 10_000
 BOOTSTRAP_RANDOM_SEED = 0
+
+EXPECTED_CONTRACT_FIELDS = (
+    "candidate_source_sha256",
+    "control_source_sha256",
+    "root_config",
+    "scenario_config",
+    "effective_scenarios_sha256",
+    "opponent_source_sha256",
+    "cell_keys",
+    "cell_count",
+)
 
 
 def _require_mapping(value: object, label: str) -> Mapping[str, Any]:
@@ -65,6 +78,312 @@ def _index_report(report: Mapping[str, Any], label: str) -> dict[CellKey, Mappin
             raise ValueError(f"duplicate {label} cell: {key}")
         indexed[key] = row
     return indexed
+
+
+def _normalized_sha256(value: object, label: str) -> str:
+    if not isinstance(value, str) or re.fullmatch(r"[0-9A-Fa-f]{64}", value) is None:
+        raise ValueError(f"{label} must be exactly 64 hexadecimal SHA-256 characters")
+    return value.upper()
+
+
+def _canonical_json_bytes(value: object, label: str) -> bytes:
+    """Match runner._json_sha256 serialization exactly."""
+    try:
+        return json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
+    except (TypeError, ValueError) as exc:
+        raise TypeError(f"{label} must be canonical-JSON serializable") from exc
+
+
+def _json_sha256(value: object, label: str) -> str:
+    return hashlib.sha256(_canonical_json_bytes(value, label)).hexdigest().upper()
+
+
+def _file_contract(contract: Mapping[str, Any], field: str) -> dict[str, str]:
+    entry = _require_mapping(contract.get(field), f"expected_contract.{field}")
+    path_value = entry.get("path")
+    if not isinstance(path_value, (str, Path)):
+        raise TypeError(f"expected_contract.{field}.path must be a path")
+    path = Path(path_value)
+    if not path.is_file():
+        raise FileNotFoundError(f"expected contract file does not exist: {path}")
+    expected = _normalized_sha256(entry.get("sha256"), f"expected_contract.{field}.sha256")
+    actual = hashlib.sha256(path.read_bytes()).hexdigest().upper()
+    if actual != expected:
+        raise ValueError(
+            f"{field} hash mismatch: expected={expected!r}, actual={actual!r}, path={path}"
+        )
+    return {"path": path.as_posix(), "sha256": actual}
+
+
+def _expected_cell_keys(contract: Mapping[str, Any]) -> tuple[set[CellKey], int]:
+    raw_keys = contract.get("cell_keys")
+    if not isinstance(raw_keys, list):
+        raise TypeError("expected_contract.cell_keys must be a list")
+    normalized = []
+    for index, raw_key in enumerate(raw_keys):
+        if not isinstance(raw_key, (list, tuple)) or len(raw_key) != 4:
+            raise ValueError(f"expected_contract.cell_keys[{index}] must have four fields")
+        normalized.append(
+            _cell_key(
+                dict(zip(("scenario", "opponent", "seed", "seat"), raw_key, strict=True)),
+                f"expected_contract.cell_keys[{index}]",
+            )
+        )
+    expected_keys = set(normalized)
+    if len(expected_keys) != len(normalized):
+        raise ValueError("expected_contract.cell_keys contains duplicates")
+    count = contract.get("cell_count")
+    if isinstance(count, bool) or not isinstance(count, int):
+        raise TypeError("expected_contract.cell_count must be an integer")
+    if count <= 0 or count != len(expected_keys):
+        raise ValueError(
+            f"expected contract cardinality mismatch: cell_count={count}, "
+            f"unique_cell_keys={len(expected_keys)}"
+        )
+    return expected_keys, count
+
+
+def _validate_report_source(report: Mapping[str, Any], label: str, expected_hash: str) -> None:
+    for field in ("candidate_sha256", "candidate_sha256_at_start", "candidate_sha256_at_end"):
+        actual = _normalized_sha256(report.get(field), f"{label}.{field}")
+        if actual != expected_hash:
+            raise ValueError(
+                f"{label} source hash mismatch at {field}: "
+                f"expected={expected_hash!r}, actual={actual!r}"
+            )
+    if report.get("sources_unchanged_during_run") is not True:
+        raise ValueError(f"{label}.sources_unchanged_during_run must be true")
+
+
+def _validate_opponent_sources(
+    report: Mapping[str, Any], label: str, expected: Mapping[str, Any]
+) -> None:
+    normalized_expected = {
+        str(name): _normalized_sha256(value, f"expected opponent {name!r}")
+        for name, value in expected.items()
+    }
+    for field in ("opponent_sha256_at_start", "opponent_sha256_at_end"):
+        actual = _require_mapping(report.get(field), f"{label}.{field}")
+        normalized_actual = {
+            str(name): _normalized_sha256(value, f"{label}.{field}[{name!r}]")
+            for name, value in actual.items()
+        }
+        if normalized_actual != normalized_expected:
+            raise ValueError(
+                f"{label} opponent source hash mismatch at {field}: "
+                f"expected={normalized_expected!r}, actual={normalized_actual!r}"
+            )
+
+
+def _validate_report_effective_scenarios(
+    report: Mapping[str, Any], label: str, expected_hash: str
+) -> Mapping[str, Any]:
+    scenarios = _require_mapping(report.get("effective_scenarios"), f"{label}.effective_scenarios")
+    recalculated_hash = _json_sha256(scenarios, f"{label}.effective_scenarios")
+    reported_hash = _normalized_sha256(
+        report.get("effective_scenarios_sha256"),
+        f"{label}.effective_scenarios_sha256",
+    )
+    if reported_hash != recalculated_hash:
+        raise ValueError(
+            f"{label} effective scenarios hash does not match mapping: "
+            f"reported={reported_hash!r}, recalculated={recalculated_hash!r}"
+        )
+    if recalculated_hash != expected_hash:
+        raise ValueError(
+            f"{label} effective scenario hash mismatch: "
+            f"expected={expected_hash!r}, actual={recalculated_hash!r}"
+        )
+    for scenario, configuration in scenarios.items():
+        if not isinstance(scenario, str) or not scenario:
+            raise ValueError(f"{label}.effective_scenarios keys must be non-empty strings")
+        _require_mapping(
+            configuration,
+            f"{label}.effective_scenarios[{scenario!r}]",
+        )
+    return scenarios
+
+
+def _validate_row_effective_configuration(
+    row: Mapping[str, Any],
+    label: str,
+    key: CellKey,
+    effective_scenarios: Mapping[str, Any],
+) -> None:
+    if key[0] not in effective_scenarios:
+        raise ValueError(f"{label} cell {key} references an unknown effective scenario")
+    scenario_configuration = _require_mapping(
+        effective_scenarios[key[0]],
+        f"{label}.effective_scenarios[{key[0]!r}]",
+    )
+    expected_configuration = dict(scenario_configuration)
+    expected_configuration["seed"] = key[2]
+    expected_payload = _canonical_json_bytes(
+        expected_configuration,
+        f"{label} cell {key} expected effective_configuration",
+    )
+    expected_hash = hashlib.sha256(expected_payload).hexdigest().upper()
+
+    actual_configuration = _require_mapping(
+        row.get("effective_configuration"),
+        f"{label} cell {key}.effective_configuration",
+    )
+    actual_payload = _canonical_json_bytes(
+        actual_configuration,
+        f"{label} cell {key}.effective_configuration",
+    )
+    recalculated_hash = hashlib.sha256(actual_payload).hexdigest().upper()
+    reported_hash = _normalized_sha256(
+        row.get("effective_configuration_sha256"),
+        f"{label} cell {key}.effective_configuration_sha256",
+    )
+    if reported_hash != recalculated_hash:
+        raise ValueError(
+            f"{label} cell {key} effective configuration hash does not match mapping: "
+            f"reported={reported_hash!r}, recalculated={recalculated_hash!r}"
+        )
+    if actual_payload != expected_payload or reported_hash != expected_hash:
+        raise ValueError(
+            f"{label} cell {key} effective configuration does not match "
+            "the scenario with requested seed injected"
+        )
+
+
+def _validated_environment_configuration(
+    row: Mapping[str, Any], label: str, key: CellKey
+) -> tuple[bytes, str]:
+    mapping_present = (
+        "environment_configuration" in row and row["environment_configuration"] is not None
+    )
+    hash_present = (
+        "environment_configuration_sha256" in row
+        and row["environment_configuration_sha256"] is not None
+    )
+    if not mapping_present or not hash_present:
+        raise ValueError(f"{label} cell {key} must provide environment_configuration and its hash")
+    configuration = _require_mapping(
+        row["environment_configuration"],
+        f"{label} cell {key}.environment_configuration",
+    )
+    payload = _canonical_json_bytes(
+        configuration,
+        f"{label} cell {key}.environment_configuration",
+    )
+    recalculated_hash = hashlib.sha256(payload).hexdigest().upper()
+    reported_hash = _normalized_sha256(
+        row["environment_configuration_sha256"],
+        f"{label} cell {key}.environment_configuration_sha256",
+    )
+    if reported_hash != recalculated_hash:
+        raise ValueError(
+            f"{label} cell {key} environment configuration hash does not match mapping: "
+            f"reported={reported_hash!r}, recalculated={recalculated_hash!r}"
+        )
+    return payload, reported_hash
+
+
+def _validate_expected_contract(
+    candidate_report: Mapping[str, Any],
+    control_report: Mapping[str, Any],
+    candidate_rows: Mapping[CellKey, Mapping[str, Any]],
+    control_rows: Mapping[CellKey, Mapping[str, Any]],
+    expected_contract: Mapping[str, Any],
+) -> dict[str, Any]:
+    missing = [field for field in EXPECTED_CONTRACT_FIELDS if field not in expected_contract]
+    if missing:
+        raise ValueError(f"expected_contract is missing required fields: {missing}")
+    candidate_hash = _normalized_sha256(
+        expected_contract["candidate_source_sha256"],
+        "expected_contract.candidate_source_sha256",
+    )
+    control_hash = _normalized_sha256(
+        expected_contract["control_source_sha256"],
+        "expected_contract.control_source_sha256",
+    )
+    _validate_report_source(candidate_report, "candidate_report", candidate_hash)
+    _validate_report_source(control_report, "control_report", control_hash)
+    root_config = _file_contract(expected_contract, "root_config")
+    scenario_config = _file_contract(expected_contract, "scenario_config")
+
+    effective_hash = _normalized_sha256(
+        expected_contract["effective_scenarios_sha256"],
+        "expected_contract.effective_scenarios_sha256",
+    )
+    candidate_scenarios = _validate_report_effective_scenarios(
+        candidate_report, "candidate_report", effective_hash
+    )
+    control_scenarios = _validate_report_effective_scenarios(
+        control_report, "control_report", effective_hash
+    )
+    if _canonical_json_bytes(
+        candidate_scenarios, "candidate_report.effective_scenarios"
+    ) != _canonical_json_bytes(control_scenarios, "control_report.effective_scenarios"):
+        raise ValueError("candidate/control effective scenario mappings do not match")
+
+    expected_keys, expected_count = _expected_cell_keys(expected_contract)
+    for label, actual_keys in (
+        ("candidate", set(candidate_rows)),
+        ("control", set(control_rows)),
+    ):
+        if actual_keys != expected_keys:
+            raise ValueError(
+                f"{label} cells violate expected contract: "
+                f"missing={sorted(expected_keys - actual_keys)}, "
+                f"unexpected={sorted(actual_keys - expected_keys)}"
+            )
+        if len(actual_keys) != expected_count:
+            raise ValueError(
+                f"{label} cell cardinality mismatch: "
+                f"expected={expected_count}, actual={len(actual_keys)}"
+            )
+
+    for key in sorted(expected_keys):
+        _validate_row_effective_configuration(
+            candidate_rows[key], "candidate", key, candidate_scenarios
+        )
+        _validate_row_effective_configuration(control_rows[key], "control", key, control_scenarios)
+        candidate_environment = _validated_environment_configuration(
+            candidate_rows[key], "candidate", key
+        )
+        control_environment = _validated_environment_configuration(
+            control_rows[key], "control", key
+        )
+        if candidate_environment != control_environment:
+            raise ValueError(f"candidate/control environment configuration mismatch for {key}")
+        for label, row in (
+            ("candidate", candidate_rows[key]),
+            ("control", control_rows[key]),
+        ):
+            resolved = row.get("resolved_environment_seed")
+            if resolved is None:
+                raise ValueError(f"{label} cell {key} is missing resolved_environment_seed")
+            if isinstance(resolved, bool) or not isinstance(resolved, int):
+                raise TypeError(f"{label} cell {key} resolved_environment_seed must be an integer")
+            if resolved != key[2]:
+                raise ValueError(
+                    f"{label} resolved environment seed mismatch for {key}: "
+                    f"requested={key[2]}, resolved={resolved}"
+                )
+
+    opponent_hashes = _require_mapping(
+        expected_contract["opponent_source_sha256"],
+        "expected_contract.opponent_source_sha256",
+    )
+    _validate_opponent_sources(candidate_report, "candidate_report", opponent_hashes)
+    _validate_opponent_sources(control_report, "control_report", opponent_hashes)
+
+    return {
+        "enforced": True,
+        "gate_eligible": True,
+        "candidate_source_sha256": candidate_hash,
+        "control_source_sha256": control_hash,
+        "root_config": root_config,
+        "scenario_config": scenario_config,
+        "effective_scenarios_sha256": effective_hash,
+        "expected_cell_count": expected_count,
+        "resolved_environment_seed_matches_requested": True,
+        "opponent_source_hashes_enforced": True,
+    }
 
 
 def _configuration_hash(row: Mapping[str, Any], label: str) -> str:
@@ -328,8 +647,15 @@ def compare_reports(
     *,
     bootstrap_draws: int = BOOTSTRAP_DRAWS,
     bootstrap_random_seed: int = BOOTSTRAP_RANDOM_SEED,
+    expected_contract: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """Strictly match and compare two in-memory runner reports."""
+    """Strictly match and compare two in-memory runner reports.
+
+    Historical/diagnostic callers may omit ``expected_contract`` and still obtain
+    metrics, but the result is explicitly ineligible for promotion-gate use.  A
+    gate-eligible comparison must pin sources, config files, effective scenarios,
+    the complete cell grid, and resolved environment seeds.
+    """
     candidate_report = _require_mapping(candidate_report, "candidate_report")
     control_report = _require_mapping(control_report, "control_report")
     _validate_report_configuration_hashes(candidate_report, control_report)
@@ -345,6 +671,20 @@ def compare_reports(
         )
     if not candidate_keys:
         raise ValueError("paired reports contain no cells")
+    if expected_contract is None:
+        contract_result = {
+            "enforced": False,
+            "gate_eligible": False,
+            "reason": "expected_contract was not supplied; metrics are diagnostic only",
+        }
+    else:
+        contract_result = _validate_expected_contract(
+            candidate_report,
+            control_report,
+            candidate_rows,
+            control_rows,
+            _require_mapping(expected_contract, "expected_contract"),
+        )
 
     cells: list[dict[str, Any]] = []
     for key in sorted(candidate_keys):
@@ -430,6 +770,8 @@ def compare_reports(
         "schema_version": 1,
         "cell_key": ["scenario", "opponent", "seed", "seat"],
         "raw_cells": len(cells),
+        "gate_eligible": contract_result["gate_eligible"],
+        "contract": contract_result,
         "candidate": candidate_summary,
         "control": control_summary,
         "paired": paired,
@@ -445,6 +787,7 @@ def compare_report_files(
     *,
     bootstrap_draws: int = BOOTSTRAP_DRAWS,
     bootstrap_random_seed: int = BOOTSTRAP_RANDOM_SEED,
+    expected_contract: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Load two JSON runner reports and return :func:`compare_reports`."""
     candidate = json.loads(Path(candidate_path).read_text(encoding="utf-8"))
@@ -454,7 +797,17 @@ def compare_report_files(
         control,
         bootstrap_draws=bootstrap_draws,
         bootstrap_random_seed=bootstrap_random_seed,
+        expected_contract=expected_contract,
     )
+
+
+def require_gate_eligible(result: Mapping[str, Any]) -> None:
+    """Reject a metric result that lacks a successfully enforced contract."""
+    result = _require_mapping(result, "paired_result")
+    contract = _require_mapping(result.get("contract"), "paired_result.contract")
+    if result.get("gate_eligible") is not True or contract.get("gate_eligible") is not True:
+        reason = contract.get("reason", "expected contract was not successfully enforced")
+        raise ValueError(f"paired result is not gate-eligible: {reason}")
 
 
 analyze_paired_reports = compare_reports

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "created_at_utc": "2026-07-31T17:21:00Z",
+  "created_at_utc": "2026-07-31T19:47:01Z",
   "environment": {
     "git_worktree_state": "corrective changes not yet frozen",
     "note": "These artifacts prove the local corrective worktree test executions. A later frozen handoff must bind them to its commit and report any post-run diff."
@@ -15,17 +15,17 @@
     },
     {
       "command": "uv run pytest -q --junitxml=reports/test_evidence/corrective_project_pytest.xml",
-      "result": "108 passed in 4.01s",
+      "result": "135 passed; JUnit suite time 4.292s",
       "artifact": "reports/test_evidence/corrective_project_pytest.xml",
-      "bytes": 14076,
-      "sha256": "C5DC0B483A75D92818EC9A44DCD5C19BF7CF010291026EB6C25F550732BA434E"
+      "bytes": 17534,
+      "sha256": "C7540C6452BE1F515035369A9B6F6993B1B6B0AE6CF8B32A2B6008BA73DB919B"
     },
     {
       "command": "uv run pytest -q references/kaggle-environments/tests/envs/kaggriculture/test_kaggriculture.py --junitxml=reports/test_evidence/corrective_official_simulator_pytest.xml",
-      "result": "67 passed in 1.90s",
+      "result": "67 passed; JUnit suite time 1.796s",
       "artifact": "reports/test_evidence/corrective_official_simulator_pytest.xml",
       "bytes": 11031,
-      "sha256": "33548A11E247583B44BCC1BD81CF541570C951655C2A1CB50B0DE751FC49F615"
+      "sha256": "8F6ACA5607050E6BAD3BC8F67470E9B321631F081CE315B7B2D6504A02E655AC"
     }
   ]
 }

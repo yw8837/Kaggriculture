@@ -53,27 +53,26 @@ def reset_rescue_metrics():
     _RESCUE_COMPLETED_SEEN.clear()
 
 
-def _path_length(tiles, source, target):
+def _distance_map(tiles, source):
     source = tuple(source)
-    target = tuple(target)
-    if source == target:
-        return 0
     n = len(tiles)
     queue = deque([(source, 0)])
-    seen = {source}
+    distances = {source: 0}
     while queue:
         current, distance = queue.popleft()
         for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
             nxt = (current[0] + dx, current[1] + dy)
             if not (0 <= nxt[0] < n and 0 <= nxt[1] < n):
                 continue
-            if nxt in seen or tiles[nxt[1]][nxt[0]] == "LOCKED":
+            if nxt in distances or tiles[nxt[1]][nxt[0]] == "LOCKED":
                 continue
-            if nxt == target:
-                return distance + 1
-            seen.add(nxt)
+            distances[nxt] = distance + 1
             queue.append((nxt, distance + 1))
-    return 10000
+    return distances
+
+
+def _path_length(tiles, source, target):
+    return _distance_map(tiles, source).get(tuple(target), 10000)
 
 
 def _is_rescue_task(farm, task):
@@ -97,20 +96,31 @@ def _is_rescue_task(farm, task):
     )
 
 
-def _rescue_route(farm, pos, inv, shed, task):
+def _rescue_route(farm, pos, inv, shed, task, distance_maps=None):
     """Return exact path action count and the selected shed, if needed."""
     target = tuple(task["pos"])
     tiles = farm["tiles"]
     action = task["action"][0]
+    if distance_maps is None:
+        distance_maps = {}
+
+    def distance(source, destination):
+        source = tuple(source)
+        distances = distance_maps.get(source)
+        if distances is None:
+            distances = _distance_map(tiles, source)
+            distance_maps[source] = distances
+        return distances.get(tuple(destination), 10000)
+
     if action == "WATER" or int(inv.get("WHEAT", 0)) > 0:
-        travel = _path_length(tiles, pos, target)
+        travel = distance(pos, target)
         return (travel + 1, None) if travel < 10000 else (10000, None)
     if int(shed.get("WHEAT", 0)) <= 0:
         return 10000, None
     routes = []
     for shed_pos in _shed_tiles(len(tiles), tiles):
-        first = _path_length(tiles, pos, shed_pos)
-        second = _path_length(tiles, shed_pos, target)
+        first = distance(pos, shed_pos)
+        second = distance(shed_pos, target)
         if first < 10000 and second < 10000:
             routes.append((first + 1 + second + 1, shed_pos[1], shed_pos[0], shed_pos))
     if not routes:
@@ -204,59 +214,67 @@ def _assign_rescues(
     rescue_tasks = {
         index for index, task in enumerate(tasks) if _is_rescue_task(farm, task)
     }
+    distance_maps = {}
+    distance_sources = set(tuple(position) for position in positions)
+    distance_sources.update(_shed_tiles(len(farm["tiles"]), farm["tiles"]))
+    for source in sorted(distance_sources, key=lambda pos: (pos[1], pos[0])):
+        distance_maps[source] = _distance_map(farm["tiles"], source)
+    candidates = []
+    for unit in sorted(free_units):
+        for task_index in sorted(rescue_tasks & free_tasks):
+            task = tasks[task_index]
+            needs_shared_wheat = (
+                task["action"][0] == "FEED"
+                and int(invs[unit].get("WHEAT", 0)) <= 0
+            )
+            if needs_shared_wheat and planned_wheat <= 0:
+                continue
+            bundle, shed_pos = _rescue_route(
+                farm,
+                positions[unit],
+                invs[unit],
+                shed_remaining,
+                task,
+                distance_maps,
+            )
+            if bundle > turns_left:
+                continue
+            key = (
+                bundle,
+                task["pos"][1],
+                task["pos"][0],
+                unit,
+                task_index,
+            )
+            candidates.append((key, unit, task_index, shed_pos, needs_shared_wheat))
+    candidates.sort(key=lambda candidate: candidate[0])
+
     rounds = 0
-    while free_units and rescue_tasks and rounds < _RESCUE_MAX_UNITS:
-        best = None
-        for unit in sorted(free_units):
-            for task_index in sorted(rescue_tasks):
-                task = tasks[task_index]
-                needs_shared_wheat = (
-                    task["action"][0] == "FEED"
-                    and int(invs[unit].get("WHEAT", 0)) <= 0
-                )
-                if needs_shared_wheat and planned_wheat <= 0:
-                    continue
-                bundle, shed_pos = _rescue_route(
-                    farm,
-                    positions[unit],
-                    invs[unit],
-                    shed_remaining,
-                    task,
-                )
-                if bundle > turns_left:
-                    continue
-                action = _rescue_action(
-                    farm,
-                    positions[unit],
-                    invs[unit],
-                    shed_remaining,
-                    task,
-                    shed_pos,
-                )
-                if action == ["PASS"]:
-                    continue
-                key = (
-                    bundle,
-                    task["pos"][1],
-                    task["pos"][0],
-                    unit,
-                    task_index,
-                )
-                if best is None or key < best[0]:
-                    best = (key, unit, task_index, action, needs_shared_wheat)
-        if best is None:
+    for _, unit, task_index, shed_pos, needs_shared_wheat in candidates:
+        if rounds >= _RESCUE_MAX_UNITS:
             break
-        _, unit, task_index, action, needs_shared_wheat = best
+        if unit not in free_units or task_index not in free_tasks:
+            continue
+        if needs_shared_wheat and planned_wheat <= 0:
+            continue
+        task = tasks[task_index]
+        action = _rescue_action(
+            farm,
+            positions[unit],
+            invs[unit],
+            shed_remaining,
+            task,
+            shed_pos,
+        )
+        if action == ["PASS"]:
+            continue
         if not _reserve_emitted_wheat(action, shed_remaining):
-            rescue_tasks.remove(task_index)
             continue
         if needs_shared_wheat:
             planned_wheat -= 1
         actions[unit] = action
         free_units.remove(unit)
         free_tasks.remove(task_index)
-        rescue_tasks.remove(task_index)
-        task = tasks[task_index]
         key = (
             int(obs.get("player", 0)),
             int(obs.get("day", 0)),

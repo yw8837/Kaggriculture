@@ -5,9 +5,22 @@ import json
 import subprocess
 from pathlib import Path
 
+from kaggriculture_lab.evaluation.runner import _effective_configuration
+
 
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest().upper()
+
+
+def _effective_scenarios_sha256(names: list[str]) -> str:
+    scenario_path = Path("configs/fa_ab_scenarios.json")
+    scenarios = json.loads(scenario_path.read_text(encoding="utf-8"))["scenarios"]
+    effective = {
+        name: _effective_configuration(scenarios[name], seed=None)
+        for name in names
+    }
+    canonical = json.dumps(effective, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(canonical.encode()).hexdigest().upper()
 
 
 def test_next_boundary_inputs_are_exact_tracked_and_all_pools_remain_closed() -> None:
@@ -54,11 +67,15 @@ def test_a_diagnostic_is_paired_seed_clustered_and_preregistered_without_tuning(
         "wheat_scarcity",
         "low_town_demand",
     ]
+    assert diagnostic["scenario_config"]["expected_effective_scenarios_sha256"] == (
+        _effective_scenarios_sha256(diagnostic["scenario_config"]["required_names"])
+    )
     assert len(diagnostic["opponents"]) == 4
     assert config["analysis"]["paired_delta_cluster_unit"] == "seed"
     assert diagnostic["paired_gates"]["all_required"] is True
     assert diagnostic["paired_gates"]["failed_games"] == 0
     assert diagnostic["paired_gates"]["invalid_outputs"] == 0
+    assert diagnostic["paired_gates"]["expected_contract"] == "must_use_preregistered"
 
 
 def test_b_greedy_gate_requires_runtime_and_causal_rescue_counters() -> None:
@@ -70,6 +87,11 @@ def test_b_greedy_gate_requires_runtime_and_causal_rescue_counters() -> None:
     assert greedy["development_gates"]["minimum_completed_rescues"] == 1
     assert greedy["development_gates"]["maximum_weed_or_escape_events_delta_vs_B0"] == 0
     assert greedy["development_gates"]["all_required"] is True
+    assert greedy["development_gates"]["expected_contract"] == "must_use_preregistered"
+    for partition in ("development", "confirmation", "robustness"):
+        assert greedy["scenario_policy"]["expected_effective_scenarios_sha256"][partition] == (
+            _effective_scenarios_sha256(greedy["scenario_policy"][partition])
+        )
     assert greedy["counter_capture"]["runner_sha256"] == _sha256(
         Path(greedy["counter_capture"]["runner"])
     )

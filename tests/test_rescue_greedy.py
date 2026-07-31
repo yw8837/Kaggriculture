@@ -377,6 +377,52 @@ def test_assignment_and_terminal_completion_are_unique_across_travel_hours() -> 
     assert namespace["rescue_metrics"]()["completed_rescues"] == 1
 
 
+def test_dense_rescue_runtime_precomputes_only_unique_source_distance_maps() -> None:
+    namespace = _namespace()
+    farm = _farm()
+    tasks = []
+    for y in range(10):
+        for x in range(10):
+            farm["tiles"][y][x] = _plant()
+            tasks.append(_task("WATER", (x, y)))
+    positions = [(4, 4)] * 11
+    actions = [["PASS"] for _ in positions]
+    calls = 0
+    move_calls = 0
+    original = namespace["_distance_map"]
+    original_move = namespace["_move"]
+
+    def counted_distance_map(tiles: list[object], source: tuple[int, int]) -> object:
+        nonlocal calls
+        calls += 1
+        return original(tiles, source)
+
+    def counted_move(tiles: list[object], source: object, target: object) -> object:
+        nonlocal move_calls
+        move_calls += 1
+        return original_move(tiles, source, target)
+
+    namespace["_distance_map"] = counted_distance_map
+    namespace["_move"] = counted_move
+    namespace["_assign_rescues"](
+        {"player": 0, "day": 4, "hour": 0},
+        farm,
+        positions,
+        [{} for _ in positions],
+        {},
+        tasks,
+        actions,
+        set(range(11)),
+        set(range(100)),
+    )
+
+    # One worker position overlaps one of the four shed cells: four unique BFS
+    # sources total, independent of 100 tasks and 11 greedy rounds.
+    assert calls == 4
+    assert move_calls <= 11
+    assert sum(action != ["PASS"] for action in actions) == 11
+
+
 def test_builder_changes_only_unit_allocator_and_preserves_terminal_ast() -> None:
     formal = FORMAL.read_text(encoding="utf-8")
     built = build_rescue_greedy(formal)
