@@ -43,12 +43,13 @@
     "development_config_sha256": "A72967570D0D825A9DB5745A57353AB389C70BFD5531F366B63D4B3E539C0B74",
     "seed_registry": "configs/fa_ab_seed_registry.json",
     "seed_registry_sha256": "384086676174BF7FE61E818C0A2217015FBE98394952AD253A2E443F543613F3",
+    "seed_registry_frozen_commit": "995359f25c96b44c2521cc211227ec1b0cd2272f",
     "scenario_config": "configs/fa_ab_scenarios.json",
     "scenario_config_sha256": "3BCB18188C1618236EF90F92F09D6D20DDF7178ADE625DC47D1A48ADAB7A16F2"
   },
   "limitations": [
     "A 1200+ ladder score and top-3 strength are targets, not verified claims.",
-    "No registered development, sealed-strength, or robustness seed was opened while generating these snapshots.",
+    "No registered development, sealed-strength, or robustness seed was opened while generating these snapshots. The development state was later updated after evaluation; the at-freeze hash is verified from the frozen commit.",
     "These snapshots have not been packaged, Save & Run, or competition-submitted."
   ]
 }

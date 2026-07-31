@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 
@@ -28,10 +29,22 @@ def test_frozen_source_snapshot_manifest_hashes_every_input() -> None:
     for path_key, hash_key in (
         ("runner", "runner_sha256"),
         ("development_config", "development_config_sha256"),
-        ("seed_registry", "seed_registry_sha256"),
         ("scenario_config", "scenario_config_sha256"),
     ):
         assert _sha256(Path(evaluation[path_key])) == evaluation[hash_key]
+
+    frozen_seed_registry = subprocess.run(
+        [
+            "git",
+            "show",
+            f"{evaluation['seed_registry_frozen_commit']}:{evaluation['seed_registry']}",
+        ],
+        check=True,
+        capture_output=True,
+    ).stdout
+    assert hashlib.sha256(frozen_seed_registry).hexdigest().upper() == evaluation[
+        "seed_registry_sha256"
+    ]
 
     parent_bytes = parent.read_bytes()
     assert Path(

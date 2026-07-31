@@ -31,8 +31,14 @@ def test_fa_ab_seed_pools_are_exact_disjoint_and_closed() -> None:
         for partition, bounds in partitions.items():
             pool = registry["candidates"][candidate][partition]
             assert (pool["start"], pool["end_inclusive"], pool["count"]) == bounds
-            assert pool["opened"] is False
-            assert pool["consumed"] is False
+            if partition == "development":
+                assert pool["opened"] is pool["consumed"] is True
+                assert pool["opened_at_utc"]
+                assert pool["completed_at_utc"]
+                assert pool["result"]
+            else:
+                assert pool["opened"] is False
+                assert pool["consumed"] is False
             pools.append(_expand(pool))
     assert sum(map(len, pools)) == len(set().union(*pools))
 

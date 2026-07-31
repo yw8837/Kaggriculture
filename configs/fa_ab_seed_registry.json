@@ -20,8 +20,11 @@
         "end_inclusive": 23015,
         "count": 16,
         "purpose": "Variant selection and falsification only.",
-        "opened": false,
-        "consumed": false
+        "opened": true,
+        "consumed": true,
+        "opened_at_utc": "2026-07-31T15:51:06.989196Z",
+        "completed_at_utc": "2026-07-31T16:20:55.690849Z",
+        "result": "A0/A1/A2/A4 complete; all challengers failed the preregistered formal direct gate."
       },
       "sealed_strength": {
         "start": 24000,
@@ -47,8 +50,11 @@
         "end_inclusive": 26015,
         "count": 16,
         "purpose": "Variant selection and falsification only.",
-        "opened": false,
-        "consumed": false
+        "opened": true,
+        "consumed": true,
+        "opened_at_utc": "2026-07-31T15:51:06.983544Z",
+        "completed_at_utc": "2026-07-31T16:55:48.011493Z",
+        "result": "B0/B1/B2 complete. B1/B2 failed direct and/or runtime gates; B4 full matrix skipped after its runtime hard-fail."
       },
       "sealed_strength": {
         "start": 27000,
