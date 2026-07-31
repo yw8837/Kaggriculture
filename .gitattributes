@@ -1,0 +1,7 @@
+# Byte-hashed frozen evidence must survive Windows checkouts unchanged.
+artifacts/candidates/**/*.py text eol=lf
+experiments/source_snapshots/** text eol=lf
+configs/fa_ab_*.json text eol=lf
+src/kaggriculture_lab/candidates/market_mpc.py text eol=lf
+src/kaggriculture_lab/candidates/task_bundle.py text eol=lf
+src/kaggriculture_lab/evaluation/runner.py text eol=lf

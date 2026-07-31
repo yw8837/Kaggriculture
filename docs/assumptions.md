@@ -11,8 +11,9 @@
 ## Measured facts
 
 - Local runtime resolves Python 3.12.13 and `kaggle-environments==1.32.2`.
-- Project tests pass 7/7 and the official simulator suite passes 67/67 against the installed
-  package. Public baseline reproduction beyond the smoke pair is still pending.
+- The historical project checkpoint passed 7/7 and the official simulator suite passed 67/67.
+  Those counts are not a current-suite claim; every frozen candidate handoff records fresh full
+  test output and its exact count.
 - The public replay snapshot is Apache-2.0 and locally hash-pinned.
 - Seat swapping is not outcome invariant in the official engine. Harvest Pulse versus starter
   at seed 0 reproducibly scored 46,540 from seat 0 and 44,350 from seat 1.
@@ -34,4 +35,6 @@
 - Exact Kaggle agent CPU/RAM/disk limits beyond `actTimeout=1`.
 - How representative the current replay crawl is of the final field.
 - Whether the current top three share one strategy or exploit different matchups.
-- Numeric promotion thresholds; these remain unset until baseline variance is measured.
+- Final ladder-rating/top-3 promotion thresholds remain unresolved. The A/B development-only
+  selection thresholds are preregistered in `configs/fa_ab_development.json`; they do not prove
+  a 1200 rating or top-3 strength.

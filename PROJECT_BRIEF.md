@@ -60,7 +60,9 @@ must be reread after every context reset or handoff.
 
 - `references/kaggle-environments`: commit `4f6e2763e2232605aacbade443715a9e2c9ef401` (sparse checkout of Kaggriculture environment and tests).
 - `references/niits-kaggriculture`: commit `3c89b816e634653fcde40918edae5f65ff356f84`.
-- Kaggle competition data download currently returns HTTP 403 because the account has not accepted this competition's rules. Do not bypass this; accept the rules explicitly before downloading in the next task.
+- The account has accepted the competition rules. `kaggle competitions files kaggriculture`
+  succeeds, and the official `AGENTS.md`/`README.md` are downloaded and hash-pinned under
+  `competition_data/official/`. The old 403 blocker is closed.
 
 ## Mandatory lessons carried forward from PS-S6E7
 
@@ -80,7 +82,7 @@ The previous campaign reached 0.95306 but exposed serious process failures. Thes
 ## New-task startup checklist
 
 1. Read `AGENTS.md` and this brief completely.
-2. Confirm the user has accepted the competition rules; then download and hash the official files.
+2. Verify the already accepted rules and re-check the hashes of the downloaded official files.
 3. Reproduce the pinned environment and public evaluation project from clean commands.
 4. Create the experiment ledger, immutable champion directory, seed split, opponent split, and promotion report template before optimization.
 5. Establish deterministic baseline distributions and confidence intervals.

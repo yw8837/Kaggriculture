@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "registered_at_utc": "2026-07-31T15:43:34Z",
+  "policy": "Development may be opened after a frozen implementation commit. Sealed-strength and robustness pools remain forbidden until the separate auditor accepts the development boundary.",
+  "retired_legacy_pools": [
+    {
+      "name": "legacy_development_validation_holdout",
+      "ranges": ["0-7", "100-107", "1000-1007"],
+      "opened": true,
+      "consumed": true,
+      "promotion_eligible": false,
+      "reason": "Repeatedly observed across historical evaluations."
+    }
+  ],
+  "candidates": {
+    "A": {
+      "hypothesis": "Self-exact market execution plus adaptive herd composition.",
+      "development": {
+        "start": 23000,
+        "end_inclusive": 23015,
+        "count": 16,
+        "purpose": "Variant selection and falsification only.",
+        "opened": false,
+        "consumed": false
+      },
+      "sealed_strength": {
+        "start": 24000,
+        "end_inclusive": 24063,
+        "count": 64,
+        "purpose": "One-time strength confirmation after independent audit acceptance.",
+        "opened": false,
+        "consumed": false
+      },
+      "robustness": {
+        "start": 25000,
+        "end_inclusive": 25031,
+        "count": 32,
+        "purpose": "One-time effective-configuration stress suite after strength confirmation.",
+        "opened": false,
+        "consumed": false
+      }
+    },
+    "B": {
+      "hypothesis": "Global task assignment plus task-chain and inventory coordination.",
+      "development": {
+        "start": 26000,
+        "end_inclusive": 26015,
+        "count": 16,
+        "purpose": "Variant selection and falsification only.",
+        "opened": false,
+        "consumed": false
+      },
+      "sealed_strength": {
+        "start": 27000,
+        "end_inclusive": 27063,
+        "count": 64,
+        "purpose": "One-time strength confirmation after independent audit acceptance.",
+        "opened": false,
+        "consumed": false
+      },
+      "robustness": {
+        "start": 28000,
+        "end_inclusive": 28031,
+        "count": 32,
+        "purpose": "One-time effective-configuration stress suite after strength confirmation.",
+        "opened": false,
+        "consumed": false
+      }
+    }
+  }
+}

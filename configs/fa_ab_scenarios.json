@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "source": "Official kaggriculture.json configuration keys and README marketParams sparse override contract.",
+  "scenarios": {
+    "default": {},
+    "premium_glut": {
+      "marketParams": {
+        "STRAWBERRY": {"above_target": 2.4},
+        "MELON": {"above_target": 4.5},
+        "MILK": {"above_target": 2.4},
+        "WOOL": {"above_target": 4.0}
+      }
+    },
+    "wheat_scarcity": {
+      "marketParams": {
+        "WHEAT": {"below_target": 1.2}
+      }
+    },
+    "low_town_demand": {
+      "townShopSellInterval": 8,
+      "townCenterSellInterval": 24
+    }
+  }
+}

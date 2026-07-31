@@ -7,6 +7,10 @@ __pycache__/
 artifacts/*
 !artifacts/champion/
 !artifacts/champion/manifest.json
+!artifacts/candidates/
+artifacts/candidates/*
+!artifacts/candidates/final_day_labor/
+!artifacts/candidates/final_day_labor/main.py
 dist/
 kaggle_runs/
 work/

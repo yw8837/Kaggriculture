@@ -7,6 +7,7 @@ import io
 import json
 import tarfile
 from pathlib import Path
+from typing import Any
 
 
 def _sha256(data: bytes) -> str:
@@ -52,6 +53,52 @@ def package(source: Path, output: Path) -> dict:
     }
 
 
+def resolve_current_champion(
+    manifest_path: Path, project_root: Path, *, require_artifact: bool = True,
+) -> dict[str, Any]:
+    """Resolve and hash-check the manifest's one current champion identity."""
+    payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+    current = payload.get("current_champion")
+    if not isinstance(current, dict):
+        raise TypeError("champion manifest must define current_champion object")
+    required = {"identity", "source", "source_sha256", "artifact", "artifact_sha256"}
+    missing = sorted(required - current.keys())
+    if missing:
+        raise ValueError(f"current_champion is missing fields: {missing}")
+
+    source = (project_root / current["source"]).resolve()
+    artifact = (project_root / current["artifact"]).resolve()
+    if not source.is_file():
+        raise FileNotFoundError(f"champion source not found: {source}")
+    source_sha256 = _sha256(source.read_bytes())
+    if source_sha256 != current["source_sha256"]:
+        raise ValueError("current champion source SHA-256 mismatch")
+    artifact_sha256 = None
+    if require_artifact:
+        if not artifact.is_file():
+            raise FileNotFoundError(f"champion artifact not found: {artifact}")
+        artifact_sha256 = _sha256(artifact.read_bytes())
+        if artifact_sha256 != current["artifact_sha256"]:
+            raise ValueError("current champion artifact SHA-256 mismatch")
+    return {
+        "identity": current["identity"],
+        "source": source,
+        "source_sha256": source_sha256,
+        "artifact": artifact,
+        "artifact_sha256": artifact_sha256,
+        "expected_artifact_sha256": current["artifact_sha256"],
+    }
+
+
+def package_registered_champion(manifest_path: Path, project_root: Path) -> dict[str, Any]:
+    """Package exactly the current manifest identity and verify its registered artifact hash."""
+    resolved = resolve_current_champion(manifest_path, project_root, require_artifact=False)
+    record = package(resolved["source"], resolved["artifact"])
+    if record["archive_sha256"] != resolved["expected_artifact_sha256"]:
+        raise ValueError("packaged current champion artifact SHA-256 mismatch")
+    return {"identity": resolved["identity"], **record}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build deterministic submission archives")
     parser.add_argument(
@@ -59,7 +106,13 @@ def main() -> None:
     )
     parser.add_argument("--source-root", type=Path, default=Path("artifacts/candidates"))
     parser.add_argument("--output-root", type=Path, default=Path("dist"))
+    parser.add_argument("--champion-manifest", type=Path)
+    parser.add_argument("--project-root", type=Path, default=Path("."))
     args = parser.parse_args()
+
+    if args.champion_manifest:
+        print(json.dumps(package_registered_champion(args.champion_manifest, args.project_root)))
+        return
 
     records = []
     for name in (part.strip() for part in args.candidates.split(",")):

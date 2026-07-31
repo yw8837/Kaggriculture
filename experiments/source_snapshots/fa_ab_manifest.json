@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-07-31T15:48:13Z",
+  "parent": {
+    "identity": "final_day_labor",
+    "source": "artifacts/candidates/final_day_labor/main.py",
+    "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B"
+  },
+  "candidate_A": {
+    "builder": "src/kaggriculture_lab/candidates/market_mpc.py",
+    "builder_sha256": "5D8A53C988D58D7AF27691252A0E595F8243466375E524AB8ABC94A0CC8D2889",
+    "snapshots": {
+      "A0": {"path": "experiments/source_snapshots/fa01_market_mpc/A0.py", "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B"},
+      "A1": {"path": "experiments/source_snapshots/fa01_market_mpc/A1.py", "sha256": "8C43E03ABE9951262FD1A48099AE6AF3897D6058A112BEE37BCBF9C1F66F7F4B"},
+      "A2": {"path": "experiments/source_snapshots/fa01_market_mpc/A2.py", "sha256": "C6E77C50FF4E69FD4B969443C94085484EB80D04434DA62529AFF197DAFD71D0"},
+      "A4": {"path": "experiments/source_snapshots/fa01_market_mpc/A4.py", "sha256": "0279382DD0487F881B4B0D338D34F247E4C4038892AA856C191EC6A3B65F8115"}
+    },
+    "claims": [
+      "A1 uses official self-only sequential price curves for its own requested SELL revenue and WHEAT BUY_PRODUCT cost; hidden opponent interleaving is not claimed exact.",
+      "A2 selects a visible-state nominal herd target from four registered mixes; no performance gain is claimed before development evaluation.",
+      "A4 combines A1 and A2 without claiming additivity."
+    ]
+  },
+  "candidate_B": {
+    "builder": "src/kaggriculture_lab/candidates/task_bundle.py",
+    "builder_sha256": "8CDED11D243BCAEF81AE308A7B7FA74DF3310DD816C0277C0699A8AE616EF6AB",
+    "snapshots": {
+      "B0": {"path": "experiments/source_snapshots/fa02_task_bundle/B0.py", "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B"},
+      "B1": {"path": "experiments/source_snapshots/fa02_task_bundle/B1.py", "sha256": "3F2A117ACE3D4EDBDE1FBBA1E7337BAB64C513C084D793447DCEEE78A69CE397"},
+      "B2": {"path": "experiments/source_snapshots/fa02_task_bundle/B2.py", "sha256": "933CAC158AB383E07D9634A076DC672C50968E194445E6D1C7C8000415EACA31"},
+      "B4": {"path": "experiments/source_snapshots/fa02_task_bundle/B4.py", "sha256": "60FEB42804B3FF24646B9FADDAA1A34C326103BB4FCAE1CCB2F7E01BB1E53D0D"}
+    },
+    "claims": [
+      "B1 is a top-18-pruned exact assignment over at most 11 units, not an exact assignment over every generated task.",
+      "B2 prioritizes officially rescuable second-miss WATER/FEED bundles before end of day.",
+      "B4 adds current-observation farmer-to-hands resource reservation and repair; it has no cross-turn hidden state."
+    ]
+  },
+  "evaluation": {
+    "runner": "src/kaggriculture_lab/evaluation/runner.py",
+    "runner_sha256": "8BBF1DBB8E841A16A122BD5A18E3141FC3A54BC6257E1C46B7115C6556C7215C",
+    "development_config": "configs/fa_ab_development.json",
+    "development_config_sha256": "A72967570D0D825A9DB5745A57353AB389C70BFD5531F366B63D4B3E539C0B74",
+    "seed_registry": "configs/fa_ab_seed_registry.json",
+    "seed_registry_sha256": "384086676174BF7FE61E818C0A2217015FBE98394952AD253A2E443F543613F3",
+    "scenario_config": "configs/fa_ab_scenarios.json",
+    "scenario_config_sha256": "3BCB18188C1618236EF90F92F09D6D20DDF7178ADE625DC47D1A48ADAB7A16F2"
+  },
+  "limitations": [
+    "A 1200+ ladder score and top-3 strength are targets, not verified claims.",
+    "No registered development, sealed-strength, or robustness seed was opened while generating these snapshots.",
+    "These snapshots have not been packaged, Save & Run, or competition-submitted."
+  ]
+}
