@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 
@@ -8,6 +9,27 @@ def _expand(pool: dict) -> set[int]:
     values = set(range(pool["start"], pool["end_inclusive"] + 1))
     assert len(values) == pool["count"]
     return values
+
+
+def _collect_seed_values(value: object, *, seed_context: bool = False) -> set[int]:
+    found: set[int] = set()
+    if isinstance(value, dict):
+        if seed_context and {"start", "end_inclusive"} <= value.keys():
+            found.update(range(int(value["start"]), int(value["end_inclusive"]) + 1))
+        for key, item in value.items():
+            found.update(
+                _collect_seed_values(item, seed_context=seed_context or "seed" in key.lower())
+            )
+    elif isinstance(value, list):
+        for item in value:
+            found.update(_collect_seed_values(item, seed_context=seed_context))
+    elif seed_context and isinstance(value, int) and not isinstance(value, bool):
+        found.add(value)
+    elif seed_context and isinstance(value, str):
+        match = re.fullmatch(r"(\d+)-(\d+)", value)
+        if match:
+            found.update(range(int(match.group(1)), int(match.group(2)) + 1))
+    return found
 
 
 def test_fa_ab_seed_pools_are_exact_disjoint_and_closed() -> None:
@@ -39,9 +61,79 @@ def test_fa_ab_seed_pools_are_exact_disjoint_and_closed() -> None:
             else:
                 assert pool["opened"] is False
                 assert pool["consumed"] is False
+                assert pool["status"] == "RETIRED_UNUSED"
+                assert pool["promotion_eligible"] is False
             pools.append(_expand(pool))
     assert sum(map(len, pools)) == len(set().union(*pools))
 
     legacy = registry["retired_legacy_pools"][0]
     assert legacy["promotion_eligible"] is False
     assert legacy["opened"] is legacy["consumed"] is True
+
+
+def test_next_boundary_pools_are_disjoint_and_closed_with_runtime_gate() -> None:
+    registry = json.loads(
+        Path("configs/fa_ab_seed_registry.json").read_text(encoding="utf-8")
+    )
+    expected = {
+        "A_formal_scenario_confirmation": (30000, 30031, 32),
+        "B_greedy_development": (31000, 31015, 16),
+        "B_greedy_confirmation": (32000, 32063, 64),
+        "B_greedy_robustness": (33000, 33031, 32),
+    }
+    pools = []
+    for name, bounds in expected.items():
+        pool = registry["next_boundary_reservations"][name]
+        assert (pool["start"], pool["end_inclusive"], pool["count"]) == bounds
+        assert pool["status"] == "CLOSED"
+        assert pool["opened"] is pool["consumed"] is False
+        pools.append(_expand(pool))
+    assert sum(map(len, pools)) == len(set().union(*pools))
+
+    draft = json.loads(Path("configs/fa_next_boundary_draft.json").read_text(encoding="utf-8"))
+    assert draft["status"] == "DRAFT_CLOSED_PENDING_CORRECTIVE_AUDIT_PASS"
+    assert draft["analysis"]["aggregate_cluster_unit"] == "seed"
+    assert draft["analysis"]["paired_delta_cluster_unit"] == "seed"
+    assert draft["runtime_gate_ms"] == {
+        "p95_max": 8.0,
+        "p99_max": 15.0,
+        "absolute_max": 50.0,
+        "invalid_outputs": 0,
+    }
+    assert draft["B_greedy"]["algorithm_constraint"].startswith("bounded greedy")
+    assert draft["B_greedy"]["development_pool"]["status"] == "CLOSED"
+    assert draft["B_greedy"]["confirmation_pool"]["status"] == "CLOSED"
+    assert draft["B_greedy"]["robustness_pool"]["status"] == "CLOSED"
+
+
+def test_next_boundary_reservations_do_not_collide_with_historical_evidence() -> None:
+    registry = json.loads(
+        Path("configs/fa_ab_seed_registry.json").read_text(encoding="utf-8")
+    )
+    proposed = set().union(
+        *(
+            _expand(pool)
+            for name, pool in registry["next_boundary_reservations"].items()
+            if name != "policy"
+        )
+    )
+    historical: set[int] = set()
+    excluded = {
+        Path("configs/fa_ab_seed_registry.json"),
+        Path("configs/fa_next_boundary_draft.json"),
+        Path("experiments/source_snapshots/fa_next_boundary_manifest.json"),
+    }
+    json_paths = [
+        *Path("configs").glob("*.json"),
+        *Path("experiments").rglob("*.json"),
+    ]
+    for path in json_paths:
+        if path in excluded:
+            continue
+        historical.update(
+            _collect_seed_values(json.loads(path.read_text(encoding="utf-8")))
+        )
+    for path in (Path("experiments/ledger.jsonl"), Path("submissions/ledger.jsonl")):
+        for line in path.read_text(encoding="utf-8").splitlines():
+            historical.update(_collect_seed_values(json.loads(line)))
+    assert proposed.isdisjoint(historical)

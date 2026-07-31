@@ -2,6 +2,14 @@
 
 **Verdict: NO-GO for every new challenger. Sealed-strength and robustness pools remain closed.**
 
+**CRITICAL correction:** the original handoff's current-state claims about exactly two
+submissions, no Fa_01 competition submission, and a current 2 x 19 inventory are withdrawn.
+Submission 55142935 existed from 2026-07-31T16:45:32.363Z, before evidence commit 171b8e9. The
+old snapshot is only a valid historical observation at 15:30:34.914Z. A new append-only
+3-submission snapshot ending 17:17:51.842Z is hash-registered. The user confirmed 55142935 was
+their manual Kaggle UI submission and not a Codex action. This does not authorize another
+submission. Overall audit verdict remains CRITICAL REJECTED pending corrective re-audit.
+
 This is production-task evidence for review by the structurally separate auditor. It is not an
 auditor-issued or auditor-approved report.
 
@@ -62,6 +70,27 @@ and B2 failed runtime (p95 111.8131 ms, max 158.1921 ms).
 | B2 raw / receipt | `4BBAAA81ADDFD581EF69E3F2B887A679589A612DB10373E1F730530658C69647` / `DE0A66E9EC1247BDE398EBB1D2F1C58D97E4EDE5FE5469F01406610DA4C2F9E6` |
 | B1 / B2 / B4 runtime | `D6127F39D5B9B6EFEFF410CA4874EC1BD33EC642B51C88381D863A2258ACEB63` / `3CE81CC6D517F93B29774BE6F1CA2AADD10F8B8EF654810FA09405C967CC2F07` / `05AFF707A12B3A0702CAFBF07731A2666B9FE5BC5868F6A905E4802CDD81E5E0` |
 
+## Corrective provenance and test evidence
+
+- Exact development opponent bytes are now frozen at their historical receipt paths:
+  `hamburger_current.py` SHA-256 `A0F6B394C2DA7D420DECF448575B85E540C3249BF4AF1A3C69FA9B643411B793`
+  (17,996 bytes) and `scenario_aware.py` SHA-256
+  `13EBE04AAE9DC6C6788E7790383D8FBF47222DAA8AD4E88CAD82EC769FA16BF5`
+  (45,280 bytes). Both are private-evaluation-only because no source license was identified;
+  every public release must exclude them.
+- The source snapshot test checks Git tracking, byte SHA/size/compilation, runner alias resolution,
+  and all seven raw plus seven receipt start/end hash mappings.
+- Future aggregate bootstrap now clusters every opponent/scenario/seat row by seed; the historical
+  development confidence intervals remain labeled as the old seed/opponent-pair analysis and are
+  not silently rewritten.
+- Corrective local test evidence is registered in `reports/test_evidence/manifest.json`: Ruff zero
+  findings SHA `4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945`,
+  project 108-pass JUnit SHA `C5DC0B483A75D92818EC9A44DCD5C19BF7CF010291026EB6C25F550732BA434E`,
+  and official simulator 67-pass JUnit SHA
+  `33548A11E247583B44BCC1BD81CF541570C951655C2A1CB50B0DE751FC49F615`.
+- These logs prove the current corrective worktree execution, not a remote CI run. The next frozen
+  handoff must bind them to its commit and disclose any diff created after the run.
+
 ## Scenario and remediation proof
 
 - The focused runner test intercepts the exact configuration passed to `make()` and verifies its
@@ -71,8 +100,9 @@ and B2 failed runtime (p95 111.8131 ms, max 158.1921 ms).
 - The champion resolver packages only `current_champion=final_day_labor`, verifies the source hash,
   deterministically rebuilds the artifact, and verifies artifact SHA-256
   `59281C6434D6D48C429DDC7950266A1083454978A0425D143480E9BB75559670`.
-- The complete API snapshot preserves 2 submissions x (18 PUBLIC + 1 VALIDATION) = 38 COMPLETE
-  episodes and is hash-registered in the append-only submission ledger.
+- The old API snapshot preserves 2 submissions x (18 PUBLIC + 1 VALIDATION) = 38 COMPLETE
+  episodes only as observed at 2026-07-31T15:30:34.914Z. It was stale by this evidence handoff.
+  The corrective 3-submission, per-query-time snapshot is append-only and hash-registered.
 - Project `AGENTS.md` remains deliberately unchanged under the global no-mid-session-edit rule;
   the stale 403 statement and next-session correction are explicit in the current-state document.
 
@@ -86,3 +116,19 @@ and B2 failed runtime (p95 111.8131 ms, max 158.1921 ms).
    - Fa_02 challenger: replace exponential global DP with one bounded greedy change that only
      prioritizes officially rescuable second-miss WATER/FEED tasks; require a new auditor-approved
      development/confirmation pool because B development seeds are consumed.
+
+## Closed next-boundary preparation (no seed opened)
+
+- A diagnostic input/gates are now explicit and CLOSED: `final_day_labor` and submitted
+  `cow_tilt` control share the same four scenarios, four exact tracked opponents, both seats, and
+  seed-clustered paired gates. Pool 30000-30031 remains unopened.
+- Fa_02 draft `BG1_rescue_greedy` changes only unit allocation, uses at most 11 bounded greedy
+  rounds, and only prioritizes exact counter==1 WATER/FEED rescues with full EOD route and shared
+  WHEAT feasibility. Exact source SHA is
+  `631C2029AFB453DAA326C921E7080102B8F54D0E7D3BD36A71849B7FBF10E5EC`.
+- Existing-replay runtime precheck passed without opening a seed: 720 calls, invalid 0,
+  p95 1.8301 ms, p99 3.5609 ms, max 4.1475 ms; report SHA
+  `F6B59EF6A0A1298DB7DA43BD3BC21D6BE550AC3421847B2624D6D25788B0A2D5`.
+- The runner now captures per-game causal rescue counters, and the paired analyzer rejects
+  missing/duplicate/config-mismatched cells and clusters every scenario/opponent/seat row by seed.
+- Pools 31000-31015, 32000-32063, and 33000-33031 remain CLOSED. No BG1 game-result claim exists.

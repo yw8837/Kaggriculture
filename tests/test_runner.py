@@ -11,14 +11,35 @@ from kaggriculture_lab.evaluation import runner
 from kaggriculture_lab.evaluation.runner import GameResult, summarize
 
 
-def _row(seat: int, mine: float, theirs: float) -> GameResult:
-    return GameResult("opponent", 7, seat, mine, theirs, "DONE", "DONE", 1.0, None)
+def _row(
+    seat: int,
+    mine: float,
+    theirs: float,
+    *,
+    seed: int = 7,
+    opponent: str = "opponent",
+    scenario: str = "default",
+) -> GameResult:
+    return GameResult(
+        opponent,
+        seed,
+        seat,
+        mine,
+        theirs,
+        "DONE",
+        "DONE",
+        1.0,
+        None,
+        scenario,
+    )
 
 
 def test_summary_clusters_but_scores_both_seats() -> None:
     summary = summarize([_row(0, 10, 5), _row(1, 10, 5)])
     assert summary["raw_games"] == 2
     assert summary["seed_opponent_pairs"] == 1
+    assert summary["bootstrap_seed_clusters"] == 1
+    assert summary["bootstrap_cluster_unit"] == "seed"
     assert summary["wins"] == 2
     assert summary["seat_pair_differences"] == []
 
@@ -26,6 +47,22 @@ def test_summary_clusters_but_scores_both_seats() -> None:
 def test_summary_flags_seat_difference() -> None:
     summary = summarize([_row(0, 10, 5), _row(1, 9, 5)])
     assert len(summary["seat_pair_differences"]) == 1
+
+
+def test_summary_keeps_all_opponents_and_scenarios_with_one_seed_in_one_cluster() -> None:
+    results = []
+    for scenario in ("default", "stress"):
+        for opponent in ("alpha", "beta"):
+            results.extend(
+                [
+                    _row(0, 10, 5, seed=11, opponent=opponent, scenario=scenario),
+                    _row(1, 10, 5, seed=11, opponent=opponent, scenario=scenario),
+                ]
+            )
+    summary = summarize(results)
+    assert summary["scenario_opponent_seed_pairs"] == 4
+    assert summary["bootstrap_seed_clusters"] == 1
+    assert summary["match_score_seed_cluster_bootstrap_95"] == [1.0, 1.0]
 
 
 def test_run_batch_writes_start_receipt_and_source_provenance(
@@ -155,6 +192,51 @@ def test_run_game_passes_and_records_effective_environment_configuration(
     assert result.environment_configuration == expected
     assert result.environment_configuration_sha256 == runner._json_sha256(expected)
     assert result.resolved_environment_seed == 23000
+    assert result.candidate_metrics is None
+
+
+def test_run_game_records_and_summarizes_instrumented_candidate_counters(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    candidate = tmp_path / "instrumented.py"
+    candidate.write_text(
+        """_METRICS = {"opportunities": 0, "assignments": 0}
+def rescue_metrics(): return dict(_METRICS)
+def reset_rescue_metrics():
+    for key in _METRICS: _METRICS[key] = 0
+def agent(obs):
+    _METRICS["opportunities"] += 2
+    _METRICS["assignments"] += 1
+    return {}
+""",
+        encoding="utf-8",
+    )
+
+    class FakeEnvironment:
+        def __init__(self) -> None:
+            self.configuration = {"episodeSteps": 720, "seed": 17}
+            self.info = {"seed": 17}
+            self.steps = [[
+                SimpleNamespace(reward=20.0, status="DONE"),
+                SimpleNamespace(reward=10.0, status="DONE"),
+            ]]
+
+        def run(self, agents) -> None:
+            agents[0]({})
+
+    import kaggle_environments
+
+    monkeypatch.setattr(kaggle_environments, "make", lambda *args, **kwargs: FakeEnvironment())
+    result = runner._run_game(
+        runner.GameSpec(
+            str(candidate), "opponent.py", "opponent", 17, 0, str(tmp_path),
+        )
+    )
+
+    assert result.candidate_metrics == {"opportunities": 2, "assignments": 1}
+    summary = summarize([result])
+    assert summary["candidate_metrics_games"] == 1
+    assert summary["candidate_metrics_total"] == {"opportunities": 2, "assignments": 1}
 
 
 def test_load_scenarios_rejects_seed_override(tmp_path: Path) -> None:

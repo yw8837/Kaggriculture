@@ -1,0 +1,427 @@
+{
+  "schema_version": 2,
+  "query_started_at_utc": "2026-07-31T17:17:45.698Z",
+  "observed_at_utc": "2026-07-31T17:17:51.842Z",
+  "competition": "kaggriculture",
+  "source_commands": [
+    "kaggle competitions submissions kaggriculture --page-size 200 --format json -q",
+    "kaggle competitions episodes 55137246 --format json -q",
+    "kaggle competitions episodes 55137248 --format json -q",
+    "kaggle competitions episodes 55142935 --format json -q"
+  ],
+  "submission_count": 3,
+  "submissions": [
+    {
+      "ref": 55137246,
+      "fileName": "fast_expansion.tar.gz",
+      "date": "2026-07-31T12:38:28.387000",
+      "description": "initial-01 fast expansion 10H 6C3S",
+      "status": "SubmissionStatus.COMPLETE",
+      "publicScore": "1068.0",
+      "privateScore": "",
+      "episodes_observed_at_utc": "2026-07-31T17:17:48.837Z",
+      "episode_inventory": {
+        "total": 19,
+        "public": 18,
+        "validation": 1,
+        "completed": 19,
+        "episodes": [
+          {
+            "id": 89152814,
+            "createTime": "2026-07-31T13:57:02.411000",
+            "endTime": "2026-07-31T13:58:28.174000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89152835,
+            "createTime": "2026-07-31T13:57:02.468000",
+            "endTime": "2026-07-31T13:58:24.058000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89150336,
+            "createTime": "2026-07-31T13:37:04.057000",
+            "endTime": "2026-07-31T13:38:25.353000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89150326,
+            "createTime": "2026-07-31T13:37:04.046000",
+            "endTime": "2026-07-31T13:38:14.635000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89149824,
+            "createTime": "2026-07-31T13:33:02.817000",
+            "endTime": "2026-07-31T13:34:04.783000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89149326,
+            "createTime": "2026-07-31T13:28:55.294000",
+            "endTime": "2026-07-31T13:30:12.252000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89148812,
+            "createTime": "2026-07-31T13:24:55.453000",
+            "endTime": "2026-07-31T13:26:18.810000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89148298,
+            "createTime": "2026-07-31T13:20:56.277000",
+            "endTime": "2026-07-31T13:21:59.568000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89147795,
+            "createTime": "2026-07-31T13:16:56.203000",
+            "endTime": "2026-07-31T13:18:03.163000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89147283,
+            "createTime": "2026-07-31T13:12:55.699000",
+            "endTime": "2026-07-31T13:14:03.011000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89146783,
+            "createTime": "2026-07-31T13:08:56.091000",
+            "endTime": "2026-07-31T13:10:22.161000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89146283,
+            "createTime": "2026-07-31T13:04:59.733000",
+            "endTime": "2026-07-31T13:06:23.427000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89145781,
+            "createTime": "2026-07-31T13:00:58.401000",
+            "endTime": "2026-07-31T13:02:29.323000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89145283,
+            "createTime": "2026-07-31T12:56:54.474000",
+            "endTime": "2026-07-31T12:58:14.905000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89144779,
+            "createTime": "2026-07-31T12:52:54.561000",
+            "endTime": "2026-07-31T12:54:16.151000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89144277,
+            "createTime": "2026-07-31T12:48:55.716000",
+            "endTime": "2026-07-31T12:50:03.185000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89143770,
+            "createTime": "2026-07-31T12:44:55.477000",
+            "endTime": "2026-07-31T12:45:52.475000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89143295,
+            "createTime": "2026-07-31T12:40:58.601000",
+            "endTime": "2026-07-31T12:42:17.037000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89142812,
+            "createTime": "2026-07-31T12:38:28.726000",
+            "endTime": "2026-07-31T12:39:46.571000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_VALIDATION"
+          }
+        ]
+      }
+    },
+    {
+      "ref": 55137248,
+      "fileName": "cow_tilt.tar.gz",
+      "date": "2026-07-31T12:38:37.067000",
+      "description": "initial-02 cow tilt 10H 7C2S",
+      "status": "SubmissionStatus.COMPLETE",
+      "publicScore": "1066.4",
+      "privateScore": "",
+      "episodes_observed_at_utc": "2026-07-31T17:17:50.062Z",
+      "episode_inventory": {
+        "total": 23,
+        "public": 22,
+        "validation": 1,
+        "completed": 23,
+        "episodes": [
+          {
+            "id": 89175712,
+            "createTime": "2026-07-31T16:57:02.421000",
+            "endTime": "2026-07-31T16:58:26.896000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89174185,
+            "createTime": "2026-07-31T16:45:02.622000",
+            "endTime": "2026-07-31T16:46:37.823000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89171657,
+            "createTime": "2026-07-31T16:25:06.705000",
+            "endTime": "2026-07-31T16:26:10.873000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89167559,
+            "createTime": "2026-07-31T15:53:04.572000",
+            "endTime": "2026-07-31T15:54:30.451000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89157905,
+            "createTime": "2026-07-31T14:37:03.880000",
+            "endTime": "2026-07-31T14:38:09.058000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89156358,
+            "createTime": "2026-07-31T14:25:03.605000",
+            "endTime": "2026-07-31T14:26:21.248000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89149324,
+            "createTime": "2026-07-31T13:28:55.287000",
+            "endTime": "2026-07-31T13:29:59.710000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89148816,
+            "createTime": "2026-07-31T13:24:55.462000",
+            "endTime": "2026-07-31T13:26:10.127000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89148304,
+            "createTime": "2026-07-31T13:20:56.288000",
+            "endTime": "2026-07-31T13:21:58.587000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89147801,
+            "createTime": "2026-07-31T13:16:56.218000",
+            "endTime": "2026-07-31T13:18:22.389000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89147799,
+            "createTime": "2026-07-31T13:16:56.211000",
+            "endTime": "2026-07-31T13:18:16.133000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89147287,
+            "createTime": "2026-07-31T13:12:55.706000",
+            "endTime": "2026-07-31T13:14:09.222000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89147299,
+            "createTime": "2026-07-31T13:12:55.733000",
+            "endTime": "2026-07-31T13:14:03.282000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89146786,
+            "createTime": "2026-07-31T13:08:56.097000",
+            "endTime": "2026-07-31T13:10:14.879000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89146284,
+            "createTime": "2026-07-31T13:04:59.735000",
+            "endTime": "2026-07-31T13:06:11.364000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89145785,
+            "createTime": "2026-07-31T13:00:58.410000",
+            "endTime": "2026-07-31T13:02:06.259000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89145281,
+            "createTime": "2026-07-31T12:56:54.473000",
+            "endTime": "2026-07-31T12:57:58.893000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89144781,
+            "createTime": "2026-07-31T12:52:54.565000",
+            "endTime": "2026-07-31T12:53:57.311000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89144276,
+            "createTime": "2026-07-31T12:48:55.715000",
+            "endTime": "2026-07-31T12:50:03.472000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89144281,
+            "createTime": "2026-07-31T12:48:55.723000",
+            "endTime": "2026-07-31T12:50:01.299000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89143769,
+            "createTime": "2026-07-31T12:44:55.476000",
+            "endTime": "2026-07-31T12:45:54.297000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89143277,
+            "createTime": "2026-07-31T12:40:58.580000",
+            "endTime": "2026-07-31T12:42:39.210000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89142813,
+            "createTime": "2026-07-31T12:38:37.423000",
+            "endTime": "2026-07-31T12:39:39.288000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_VALIDATION"
+          }
+        ]
+      }
+    },
+    {
+      "ref": 55142935,
+      "fileName": "Fa_01 - Overflow-Safe Inventory.tar.gz",
+      "date": "2026-07-31T16:45:32.363000",
+      "description": "",
+      "status": "SubmissionStatus.COMPLETE",
+      "publicScore": "966.7",
+      "privateScore": "",
+      "episodes_observed_at_utc": "2026-07-31T17:17:51.842Z",
+      "episode_inventory": {
+        "total": 9,
+        "public": 8,
+        "validation": 1,
+        "completed": 9,
+        "episodes": [
+          {
+            "id": 89177742,
+            "createTime": "2026-07-31T17:13:02.269000",
+            "endTime": "2026-07-31T17:14:21.037000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89177233,
+            "createTime": "2026-07-31T17:09:02.436000",
+            "endTime": "2026-07-31T17:10:22.672000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89176723,
+            "createTime": "2026-07-31T17:05:08.228000",
+            "endTime": "2026-07-31T17:06:43.813000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89176224,
+            "createTime": "2026-07-31T17:01:03.171000",
+            "endTime": "2026-07-31T17:02:06.814000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89176212,
+            "createTime": "2026-07-31T17:01:03.152000",
+            "endTime": "2026-07-31T17:02:04.486000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89175698,
+            "createTime": "2026-07-31T16:57:02.403000",
+            "endTime": "2026-07-31T16:58:25.929000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89175191,
+            "createTime": "2026-07-31T16:53:08.692000",
+            "endTime": "2026-07-31T16:54:08.702000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89174686,
+            "createTime": "2026-07-31T16:49:06.448000",
+            "endTime": "2026-07-31T16:50:24.999000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_PUBLIC"
+          },
+          {
+            "id": 89174216,
+            "createTime": "2026-07-31T16:45:32.526000",
+            "endTime": "2026-07-31T16:46:35.051000",
+            "state": "EpisodeState.COMPLETED",
+            "type": "EpisodeType.EPISODE_TYPE_VALIDATION"
+          }
+        ]
+      }
+    }
+  ],
+  "note": "Read-only Kaggle API inventory. Counts are historical observations at each episodes_observed_at_utc, not claims about later live state."
+}

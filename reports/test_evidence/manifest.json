@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-07-31T17:21:00Z",
+  "environment": {
+    "git_worktree_state": "corrective changes not yet frozen",
+    "note": "These artifacts prove the local corrective worktree test executions. A later frozen handoff must bind them to its commit and report any post-run diff."
+  },
+  "commands": [
+    {
+      "command": "uv run ruff check src tests --output-format json --output-file reports/test_evidence/corrective_ruff.json",
+      "result": "PASS; zero findings",
+      "artifact": "reports/test_evidence/corrective_ruff.json",
+      "bytes": 2,
+      "sha256": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945"
+    },
+    {
+      "command": "uv run pytest -q --junitxml=reports/test_evidence/corrective_project_pytest.xml",
+      "result": "108 passed in 4.01s",
+      "artifact": "reports/test_evidence/corrective_project_pytest.xml",
+      "bytes": 14076,
+      "sha256": "C5DC0B483A75D92818EC9A44DCD5C19BF7CF010291026EB6C25F550732BA434E"
+    },
+    {
+      "command": "uv run pytest -q references/kaggle-environments/tests/envs/kaggriculture/test_kaggriculture.py --junitxml=reports/test_evidence/corrective_official_simulator_pytest.xml",
+      "result": "67 passed in 1.90s",
+      "artifact": "reports/test_evidence/corrective_official_simulator_pytest.xml",
+      "bytes": 11031,
+      "sha256": "33548A11E247583B44BCC1BD81CF541570C951655C2A1CB50B0DE751FC49F615"
+    }
+  ]
+}

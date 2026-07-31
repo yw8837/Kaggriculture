@@ -68,6 +68,7 @@ class GameResult:
     environment_configuration: dict[str, Any] = field(default_factory=dict)
     environment_configuration_sha256: str | None = None
     resolved_environment_seed: int | None = None
+    candidate_metrics: dict[str, int] | None = None
 
 
 def _effective_configuration(
@@ -112,15 +113,40 @@ def _run_game(spec: GameSpec) -> GameResult:
             json.dumps(dict(env.configuration), sort_keys=True)
         )
         resolved_environment_seed = int(env.info["seed"])
+        candidate_agent: Any = spec.candidate
+        metrics_callable = None
+        candidate_path = Path(spec.candidate)
+        if candidate_path.is_file():
+            raw_candidate = candidate_path.read_text(encoding="utf-8")
+            if "def rescue_metrics(" in raw_candidate:
+                from kaggle_environments.agent import get_last_callable
+
+                candidate_agent = get_last_callable(raw_candidate, path=str(candidate_path))
+                metrics_callable = candidate_agent.__globals__.get("rescue_metrics")
+                reset_callable = candidate_agent.__globals__.get("reset_rescue_metrics")
+                if callable(reset_callable):
+                    reset_callable()
         agents = (
-            [spec.candidate, spec.opponent]
+            [candidate_agent, spec.opponent]
             if spec.seat == 0
-            else [spec.opponent, spec.candidate]
+            else [spec.opponent, candidate_agent]
         )
         env.run(agents)
         final = env.steps[-1]
         candidate_state = final[spec.seat]
         opponent_state = final[1 - spec.seat]
+        candidate_metrics = metrics_callable() if callable(metrics_callable) else None
+        if candidate_metrics is not None and (
+            not isinstance(candidate_metrics, dict)
+            or any(
+                not isinstance(key, str)
+                or isinstance(value, bool)
+                or not isinstance(value, int)
+                or value < 0
+                for key, value in candidate_metrics.items()
+            )
+        ):
+            raise TypeError("candidate rescue_metrics() returned an invalid counter mapping")
         return GameResult(
             opponent=spec.opponent_name,
             seed=spec.seed,
@@ -141,6 +167,7 @@ def _run_game(spec: GameSpec) -> GameResult:
             environment_configuration=environment_configuration,
             environment_configuration_sha256=_json_sha256(environment_configuration),
             resolved_environment_seed=resolved_environment_seed,
+            candidate_metrics=candidate_metrics,
         )
     except Exception as exc:  # noqa: BLE001 - batch failures must become auditable rows
         return GameResult(
@@ -191,6 +218,7 @@ def summarize(results: list[GameResult]) -> dict[str, Any]:
     for row in valid:
         by_pair.setdefault((row.scenario, row.opponent, row.seed), {})[row.seat] = row
     pair_scores = []
+    pair_scores_by_seed: dict[int, list[float]] = {}
     seat_differences = []
     for (scenario, opponent, seed), seats in sorted(by_pair.items()):
         if 0 not in seats or 1 not in seats:
@@ -204,7 +232,9 @@ def summarize(results: list[GameResult]) -> dict[str, Any]:
             )
             continue
         first, second = seats[0], seats[1]
-        pair_scores.append((_outcome(first) + _outcome(second)) / 2.0)
+        pair_score = (_outcome(first) + _outcome(second)) / 2.0
+        pair_scores.append(pair_score)
+        pair_scores_by_seed.setdefault(seed, []).append(pair_score)
         if (first.candidate_money, first.opponent_money) != (
             second.candidate_money,
             second.opponent_money,
@@ -219,22 +249,35 @@ def summarize(results: list[GameResult]) -> dict[str, Any]:
                 }
             )
 
+    seed_cluster_scores = [
+        statistics.mean(scores) for _, scores in sorted(pair_scores_by_seed.items())
+    ]
     cluster_ci = [0.0, 1.0]
-    if pair_scores:
+    if seed_cluster_scores:
         rng = random.Random(0)
         boot = sorted(
-            statistics.mean(rng.choice(pair_scores) for _ in pair_scores) for _ in range(10_000)
+            statistics.mean(rng.choice(seed_cluster_scores) for _ in seed_cluster_scores)
+            for _ in range(10_000)
         )
         cluster_ci = [boot[249], boot[9749]]
 
     money = [float(row.candidate_money) for row in valid]
     margins = [float(row.candidate_money - row.opponent_money) for row in valid]
+    metric_keys = sorted(
+        {key for row in valid for key in (row.candidate_metrics or {})}
+    )
+    candidate_metrics_total = {
+        key: sum(int((row.candidate_metrics or {}).get(key, 0)) for row in valid)
+        for key in metric_keys
+    }
     return {
         "raw_games": len(results),
         "valid_raw_games": len(valid),
         "failed_raw_games": len(results) - len(valid),
         "seed_opponent_pairs": len(pair_scores),
         "scenario_opponent_seed_pairs": len(pair_scores),
+        "bootstrap_seed_clusters": len(seed_cluster_scores),
+        "bootstrap_cluster_unit": "seed",
         "wins": wins,
         "losses": losses,
         "ties": ties,
@@ -242,12 +285,15 @@ def summarize(results: list[GameResult]) -> dict[str, Any]:
         "decisive_win_rate": wins / decisive if decisive else None,
         "decisive_win_rate_wilson_95_naive_raw_games": [low, high],
         "match_score_cluster_bootstrap_95": cluster_ci,
+        "match_score_seed_cluster_bootstrap_95": cluster_ci,
         "money_mean": statistics.mean(money) if money else None,
         "money_median": statistics.median(money) if money else None,
         "money_min": min(money) if money else None,
         "margin_mean": statistics.mean(margins) if margins else None,
         "margin_median": statistics.median(margins) if margins else None,
         "seat_pair_differences": seat_differences,
+        "candidate_metrics_total": candidate_metrics_total,
+        "candidate_metrics_games": sum(row.candidate_metrics is not None for row in valid),
         "elapsed_seconds_total": sum(row.elapsed_seconds for row in results),
     }
 
@@ -410,7 +456,7 @@ def run_batch(
         "opponent_sha256_at_end": opponent_hashes_end,
         "sources_unchanged_during_run": sources_unchanged,
         "seeds": seeds,
-        "seat_policy": "both seats scored; confidence interval is clustered by seed/opponent pair",
+        "seat_policy": "both seats scored; confidence interval is clustered by seed",
         "summary": summarize(results),
         "games": [asdict(row) for row in results],
     }

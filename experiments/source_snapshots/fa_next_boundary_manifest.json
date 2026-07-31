@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "status": "DRAFT_CLOSED_PENDING_CORRECTIVE_AUDIT_PASS",
+  "config": {
+    "path": "configs/fa_next_boundary_draft.json",
+    "sha256": "DDBFC3B462B743527C1ACC1854B3152C1620E605D7CD652ACA7979F103A0F831",
+    "bytes": 7023
+  },
+  "scenario_config": {
+    "path": "configs/fa_ab_scenarios.json",
+    "sha256": "3BCB18188C1618236EF90F92F09D6D20DDF7178ADE625DC47D1A48ADAB7A16F2",
+    "bytes": 603
+  },
+  "agents": {
+    "final_day_labor": {
+      "role": "A diagnostic candidate and B formal reference",
+      "path": "artifacts/candidates/final_day_labor/main.py",
+      "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
+      "bytes": 16195,
+      "provenance": "project-owned formal local champion"
+    },
+    "cow_tilt": {
+      "role": "frozen submitted control and A opponent",
+      "path": "artifacts/candidates/cow_tilt/main.py",
+      "sha256": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E",
+      "bytes": 15703,
+      "submission_ref": 55137248,
+      "provenance": "project-owned submitted initial agent"
+    },
+    "public_expansion_baseline": {
+      "role": "A diagnostic opponent",
+      "path": "artifacts/candidates/public_expansion_baseline/main.py",
+      "sha256": "BD32AEFDC00B1F0A41746EBACC4FCBF0AFF32AC061363179F15371B9ACE9A5C0",
+      "bytes": 16365,
+      "provenance": "project-owned deliberately weakened public baseline"
+    },
+    "hamburger_current": {
+      "role": "private A diagnostic opponent",
+      "path": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "sha256": "A0F6B394C2DA7D420DECF448575B85E540C3249BF4AF1A3C69FA9B643411B793",
+      "bytes": 17996,
+      "license_status": "not identified",
+      "usage_policy": "private evaluation only; exclude from every public release"
+    },
+    "scenario_aware": {
+      "role": "private A diagnostic opponent",
+      "path": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "sha256": "13EBE04AAE9DC6C6788E7790383D8FBF47222DAA8AD4E88CAD82EC769FA16BF5",
+      "bytes": 45280,
+      "license_status": "not identified",
+      "usage_policy": "private evaluation only; exclude from every public release"
+    },
+    "BG1_rescue_greedy": {
+      "role": "closed Fa_02 one-delta development candidate",
+      "path": "experiments/source_snapshots/fa02_rescue_greedy/BG1.py",
+      "sha256": "631C2029AFB453DAA326C921E7080102B8F54D0E7D3BD36A71849B7FBF10E5EC",
+      "bytes": 25275,
+      "provenance": "deterministic project-owned build from final_day_labor; no evaluation seed opened"
+    }
+  },
+  "tooling": {
+    "rescue_builder": {
+      "path": "src/kaggriculture_lab/candidates/rescue_greedy.py",
+      "sha256": "D149B6E343A7A49BDFF05FA4D8D9C01F557CED56197B04BE092D43BDD1D22F7C",
+      "bytes": 12819
+    },
+    "runner": {
+      "path": "src/kaggriculture_lab/evaluation/runner.py",
+      "sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+      "bytes": 19694
+    },
+    "paired_analysis": {
+      "path": "src/kaggriculture_lab/evaluation/paired.py",
+      "sha256": "FF725F4133A913D107D19FA3E4B6906C475466866075742617DFEAB135C42548",
+      "bytes": 19380
+    },
+    "BG1_runtime_precheck": {
+      "path": "experiments/evaluations/fa_next_draft/BG1_runtime.json",
+      "sha256": "F6B59EF6A0A1298DB7DA43BD3BC21D6BE550AC3421847B2624D6D25788B0A2D5",
+      "bytes": 492,
+      "result": "PASS p95<=8ms p99<=15ms max<=50ms invalid=0 on the frozen historical replay"
+    }
+  },
+  "seed_state": {
+    "A_formal_scenario_confirmation": "CLOSED",
+    "B_greedy_development": "CLOSED",
+    "B_greedy_confirmation": "CLOSED",
+    "B_greedy_robustness": "CLOSED"
+  },
+  "note": "This manifest freezes draft inputs only. It is not an auditor approval, seed-opening authorization, experiment result, Save & Run, or submission."
+}

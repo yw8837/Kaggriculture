@@ -1,8 +1,14 @@
 # Byte-hashed frozen evidence must survive Windows checkouts unchanged.
 artifacts/candidates/**/*.py text eol=lf
+artifacts/opponents/public_kaggle/*.py binary
 experiments/source_snapshots/** text eol=lf
 experiments/evaluations/**/*.json binary
+submissions/api_inventory*.json binary
+reports/test_evidence/** binary
 configs/fa_ab_*.json text eol=lf
+configs/fa_next_*.json text eol=lf
 src/kaggriculture_lab/candidates/market_mpc.py text eol=lf
 src/kaggriculture_lab/candidates/task_bundle.py text eol=lf
+src/kaggriculture_lab/candidates/rescue_greedy.py text eol=lf
 src/kaggriculture_lab/evaluation/runner.py text eol=lf
+src/kaggriculture_lab/evaluation/paired.py text eol=lf

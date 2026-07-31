@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "status": "DRAFT_CLOSED_PENDING_CORRECTIVE_AUDIT_PASS",
+  "external_action_policy": "Submission 55142935 is confirmed as the user's manual Kaggle UI action. No Save & Run, submission, publication, or seed opening is authorized until the corrective audit passes; later competition submission still requires the user's explicit submit instruction.",
+  "analysis": {
+    "aggregate_cluster_unit": "seed",
+    "paired_delta_cluster_unit": "seed",
+    "note": "All opponent/scenario/seat rows sharing a seed remain in one bootstrap cluster."
+  },
+  "runtime_gate_ms": {
+    "p95_max": 8.0,
+    "p99_max": 15.0,
+    "absolute_max": 50.0,
+    "invalid_outputs": 0
+  },
+  "A_formal_scenario_confirmation": {
+    "pool": {"start": 30000, "end_inclusive": 30031, "count": 32, "status": "CLOSED"},
+    "candidate": {
+      "identity": "final_day_labor",
+      "path": "artifacts/candidates/final_day_labor/main.py",
+      "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B"
+    },
+    "control": {
+      "identity": "cow_tilt_submitted_baseline",
+      "path": "artifacts/candidates/cow_tilt/main.py",
+      "sha256": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E",
+      "submission_ref": 55137248
+    },
+    "opponents": [
+      {
+        "identity": "hamburger_current",
+        "path": "artifacts/opponents/public_kaggle/hamburger_current.py",
+        "sha256": "A0F6B394C2DA7D420DECF448575B85E540C3249BF4AF1A3C69FA9B643411B793"
+      },
+      {
+        "identity": "scenario_aware",
+        "path": "artifacts/opponents/public_kaggle/scenario_aware.py",
+        "sha256": "13EBE04AAE9DC6C6788E7790383D8FBF47222DAA8AD4E88CAD82EC769FA16BF5"
+      },
+      {
+        "identity": "cow_tilt",
+        "path": "artifacts/candidates/cow_tilt/main.py",
+        "sha256": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E"
+      },
+      {
+        "identity": "public_expansion_baseline",
+        "path": "artifacts/candidates/public_expansion_baseline/main.py",
+        "sha256": "BD32AEFDC00B1F0A41746EBACC4FCBF0AFF32AC061363179F15371B9ACE9A5C0"
+      }
+    ],
+    "seat_policy": "both seats for every seed/scenario/opponent pair",
+    "scenario_config": {
+      "path": "configs/fa_ab_scenarios.json",
+      "sha256": "3BCB18188C1618236EF90F92F09D6D20DDF7178ADE625DC47D1A48ADAB7A16F2",
+      "required_names": ["default", "premium_glut", "wheat_scarcity", "low_town_demand"]
+    },
+    "variant_selection_allowed": false,
+    "tuning_allowed": false,
+    "paired_method": "Compare candidate and control at each identical seed/scenario/opponent/seat cell; average every cell sharing a seed before the deterministic 10000-draw seed-cluster bootstrap.",
+    "paired_gates": {
+      "failed_games": 0,
+      "invalid_outputs": 0,
+      "candidate_minimum_overall_match_score": 0.70,
+      "candidate_minimum_each_scenario_match_score": 0.60,
+      "minimum_paired_match_score_delta": 0.05,
+      "minimum_seed_cluster_bootstrap_95_lower_delta": 0.0,
+      "minimum_paired_mean_money_delta": 750.0,
+      "minimum_paired_p10_money_delta": -1000.0,
+      "all_required": true
+    }
+  },
+  "B_greedy": {
+    "development_pool": {"start": 31000, "end_inclusive": 31015, "count": 16, "status": "CLOSED"},
+    "confirmation_pool": {"start": 32000, "end_inclusive": 32063, "count": 64, "status": "CLOSED"},
+    "robustness_pool": {"start": 33000, "end_inclusive": 33031, "count": 32, "status": "CLOSED"},
+    "allowed_delta": "Prioritize only officially rescuable second-miss WATER/FEED tasks.",
+    "candidate": {
+      "identity": "BG1_rescue_greedy",
+      "path": "experiments/source_snapshots/fa02_rescue_greedy/BG1.py",
+      "sha256": "631C2029AFB453DAA326C921E7080102B8F54D0E7D3BD36A71849B7FBF10E5EC",
+      "builder": "src/kaggriculture_lab/candidates/rescue_greedy.py",
+      "builder_sha256": "D149B6E343A7A49BDFF05FA4D8D9C01F557CED56197B04BE092D43BDD1D22F7C"
+    },
+    "control": {
+      "identity": "B0_final_day_labor",
+      "path": "artifacts/candidates/final_day_labor/main.py",
+      "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B"
+    },
+    "development_opponents": [
+      "artifacts/candidates/final_day_labor/main.py",
+      "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "artifacts/candidates/cow_tilt/main.py",
+      "artifacts/candidates/public_expansion_baseline/main.py"
+    ],
+    "scenario_policy": {
+      "development": ["default"],
+      "confirmation": ["default"],
+      "robustness": ["default", "premium_glut", "wheat_scarcity", "low_town_demand"]
+    },
+    "eligibility": [
+      "counter equals 1",
+      "task is not already serviced or reserved",
+      "action plus pickup path is completable by end of day",
+      "shared WHEAT/resource reservation remains feasible"
+    ],
+    "algorithm_constraint": "bounded greedy; exponential DP forbidden",
+    "required_counters": [
+      "opportunities",
+      "assignments",
+      "completed_rescues",
+      "weed_or_escape_events"
+    ],
+    "counter_capture": {
+      "runner": "src/kaggriculture_lab/evaluation/runner.py",
+      "runner_sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+      "method": "Per-game in-process candidate callable exposes reset_rescue_metrics/rescue_metrics; raw GameResult and summary preserve non-negative integer counters."
+    },
+    "paired_analysis": {
+      "path": "src/kaggriculture_lab/evaluation/paired.py",
+      "sha256": "FF725F4133A913D107D19FA3E4B6906C475466866075742617DFEAB135C42548",
+      "cell_key": ["scenario", "opponent", "seed", "seat"],
+      "bootstrap_cluster_unit": "seed",
+      "bootstrap_draws": 10000,
+      "bootstrap_random_seed": 0
+    },
+    "runtime_precheck": {
+      "report": "experiments/evaluations/fa_next_draft/BG1_runtime.json",
+      "report_sha256": "F6B59EF6A0A1298DB7DA43BD3BC21D6BE550AC3421847B2624D6D25788B0A2D5",
+      "replay_sha256": "1AA4495DBBC1439A2E5462245B4C6B725D89F9156A8F8C9ECFD4E29077D23285",
+      "calls": 720,
+      "invalid_outputs": 0,
+      "p95_ms": 1.8301,
+      "p99_ms": 3.5609,
+      "max_ms": 4.1475,
+      "gate_result": "PASS"
+    },
+    "development_gates": {
+      "failed_games": 0,
+      "invalid_outputs": 0,
+      "minimum_overall_match_score": 0.70,
+      "minimum_direct_match_score_vs_formal": 0.55,
+      "minimum_direct_mean_margin_vs_formal": 0.0,
+      "minimum_paired_match_score_delta_vs_B0": 0.02,
+      "minimum_seed_cluster_bootstrap_95_lower_delta_vs_B0": -0.02,
+      "minimum_paired_mean_money_delta_vs_B0": 250.0,
+      "minimum_rescue_opportunities": 1,
+      "minimum_completed_rescues": 1,
+      "minimum_completed_rescue_fraction_of_assignments": 0.80,
+      "maximum_weed_or_escape_events_delta_vs_B0": 0,
+      "runtime_gate_ref": "runtime_gate_ms",
+      "all_required": true
+    },
+    "later_pool_policy": "Confirmation and robustness remain CLOSED until a separate development audit pass."
+  }
+}

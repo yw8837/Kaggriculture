@@ -12,8 +12,8 @@
 
 - Local runtime resolves Python 3.12.13 and `kaggle-environments==1.32.2`.
 - The historical project checkpoint passed 7/7 and the official simulator suite passed 67/67.
-  Those counts are not a current-suite claim; every frozen candidate handoff records fresh full
-  test output and its exact count.
+  Those counts are not a current-suite claim. A frozen handoff must include an immutable test log
+  with SHA-256 or a remote CI run; prose-only pass counts are unverified evidence.
 - The public replay snapshot is Apache-2.0 and locally hash-pinned.
 - Seat swapping is not outcome invariant in the official engine. Harvest Pulse versus starter
   at seed 0 reproducibly scored 46,540 from seat 0 and 44,350 from seat 1.

@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "registered_at_utc": "2026-07-31T15:43:34Z",
   "policy": "Development may be opened after a frozen implementation commit. Sealed-strength and robustness pools remain forbidden until the separate auditor accepts the development boundary.",
   "retired_legacy_pools": [
@@ -32,7 +32,10 @@
         "count": 64,
         "purpose": "One-time strength confirmation after independent audit acceptance.",
         "opened": false,
-        "consumed": false
+        "consumed": false,
+        "status": "RETIRED_UNUSED",
+        "promotion_eligible": false,
+        "reason": "Auditor accepted all candidate A challengers as NO-GO; this hypothesis-specific pool may not be reused."
       },
       "robustness": {
         "start": 25000,
@@ -40,7 +43,10 @@
         "count": 32,
         "purpose": "One-time effective-configuration stress suite after strength confirmation.",
         "opened": false,
-        "consumed": false
+        "consumed": false,
+        "status": "RETIRED_UNUSED",
+        "promotion_eligible": false,
+        "reason": "Auditor accepted all candidate A challengers as NO-GO; this hypothesis-specific pool may not be reused."
       }
     },
     "B": {
@@ -62,7 +68,10 @@
         "count": 64,
         "purpose": "One-time strength confirmation after independent audit acceptance.",
         "opened": false,
-        "consumed": false
+        "consumed": false,
+        "status": "RETIRED_UNUSED",
+        "promotion_eligible": false,
+        "reason": "Auditor accepted all candidate B challengers as NO-GO; this hypothesis-specific pool may not be reused."
       },
       "robustness": {
         "start": 28000,
@@ -70,8 +79,50 @@
         "count": 32,
         "purpose": "One-time effective-configuration stress suite after strength confirmation.",
         "opened": false,
-        "consumed": false
+        "consumed": false,
+        "status": "RETIRED_UNUSED",
+        "promotion_eligible": false,
+        "reason": "Auditor accepted all candidate B challengers as NO-GO; this hypothesis-specific pool may not be reused."
       }
+    }
+  },
+  "next_boundary_reservations": {
+    "policy": "Submission provenance is user-confirmed. Every pool remains CLOSED until the corrective frozen handoff passes separate audit.",
+    "A_formal_scenario_confirmation": {
+      "start": 30000,
+      "end_inclusive": 30031,
+      "count": 32,
+      "purpose": "Safety diagnostic only: frozen final_day_labor versus frozen submitted-baseline control on identical four-scenario/opponent/seat grids; no tuning or variant selection.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false
+    },
+    "B_greedy_development": {
+      "start": 31000,
+      "end_inclusive": 31015,
+      "count": 16,
+      "purpose": "One-delta officially rescuable second-miss WATER/FEED bounded-greedy development.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false
+    },
+    "B_greedy_confirmation": {
+      "start": 32000,
+      "end_inclusive": 32063,
+      "count": 64,
+      "purpose": "One-time B greedy confirmation after a separate development audit pass.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false
+    },
+    "B_greedy_robustness": {
+      "start": 33000,
+      "end_inclusive": 33031,
+      "count": 32,
+      "purpose": "One-time B greedy effective-configuration stress suite after confirmation approval.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false
     }
   }
 }

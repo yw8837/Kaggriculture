@@ -10,7 +10,7 @@
     "artifact_sha256": "59281C6434D6D48C429DDC7950266A1083454978A0425D143480E9BB75559670",
     "evidence_report": "reports/final_day_labor.md"
   },
-  "active_competition_submissions": [55137246, 55137248],
+  "active_competition_submissions": [55137246, 55137248, 55142935],
   "rejected_history": [
     {
       "sequence": "Fa_01",
@@ -33,8 +33,20 @@
         "direct_mean_margin": 445.390625,
         "verdict": "NO_GO"
       },
-      "submitted": false
+      "submitted": true,
+      "competition_submission": {
+        "ref": 55142935,
+        "submitted_at_api": "2026-07-31T16:45:32.363000",
+        "status": "COMPLETE",
+        "public_score_at_2026-07-31T17:17:51.842Z": "966.7",
+        "actor": "user_manual_kaggle_ui",
+        "authorization_provenance": "user_confirmed_direct_action",
+        "confirmed_at_utc": "2026-07-31T18:08:16.548Z",
+        "submitted_by_codex": false,
+        "uploaded_artifact_sha256": "unavailable_from_kaggle_api",
+        "local_matching_filename_artifact_sha256": "1B52522D0CD55536F1C45B73F5FC5A37A27CF924A218FA009D1D1786B72F53D1"
+      }
     }
   ],
-  "note": "The packaging resolver reads only current_champion and verifies both source and artifact SHA-256. Rejected candidates remain history and cannot be packaged as current."
+  "note": "The packaging resolver reads only current_champion and verifies both source and artifact SHA-256. Rejected candidates remain history and cannot be packaged as current. Submission 55142935 was confirmed as a manual Kaggle UI action by the user, not a Codex submission."
 }
