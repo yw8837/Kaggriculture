@@ -7,6 +7,7 @@ import json
 import os
 import random
 import statistics
+import subprocess
 import sys
 import time
 from dataclasses import asdict, dataclass
@@ -214,6 +215,26 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest().upper()
 
 
+def _git_head(project_root: Path) -> str | None:
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "HEAD"],
+            cwd=project_root,
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=5,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+    return result.stdout.strip() or None
+
+
+def _file_hash_or_none(reference: str) -> str | None:
+    path = Path(reference)
+    return _sha256(path) if path.is_file() else None
+
+
 def _load_partition(path: Path, partition: str) -> tuple[list[int], list[str]]:
     config = json.loads(path.read_text(encoding="utf-8"))
     section = config[partition]
@@ -232,6 +253,30 @@ def run_batch(
 ) -> dict[str, Any]:
     candidate = _resolve(candidate_ref, project_root)
     resolved_opponents = {name: _resolve(name, project_root) for name in opponents}
+    output.parent.mkdir(parents=True, exist_ok=True)
+    started_at = datetime.now(UTC).isoformat()
+    git_head = _git_head(project_root)
+    candidate_hash_start = _file_hash_or_none(candidate)
+    opponent_hashes_start = {
+        name: _file_hash_or_none(path) for name, path in resolved_opponents.items()
+    }
+    start_receipt = {
+        "schema_version": 1,
+        "started_at_utc": started_at,
+        "git_head_at_start": git_head,
+        "candidate": candidate_ref,
+        "candidate_path": candidate,
+        "candidate_sha256_at_start": candidate_hash_start,
+        "opponents": opponents,
+        "opponent_paths": resolved_opponents,
+        "opponent_sha256_at_start": opponent_hashes_start,
+        "seeds": seeds,
+        "seat_policy": "both seats",
+        "workers": workers,
+    }
+    receipt_path = output.with_name(f"{output.stem}.started.json")
+    receipt_path.write_text(json.dumps(start_receipt, indent=2) + "\n", encoding="utf-8")
+    receipt_sha256 = _sha256(receipt_path)
     specs = [
         GameSpec(candidate, resolved_opponents[name], name, seed, seat, str(project_root))
         for name in opponents
@@ -247,19 +292,38 @@ def run_batch(
     results.sort(key=lambda row: (row.opponent, row.seed, row.seat))
 
     candidate_path = Path(candidate)
+    completed_at = datetime.now(UTC).isoformat()
+    candidate_hash_end = _file_hash_or_none(candidate)
+    opponent_hashes_end = {
+        name: _file_hash_or_none(path) for name, path in resolved_opponents.items()
+    }
+    sources_unchanged = (
+        candidate_hash_start == candidate_hash_end
+        and opponent_hashes_start == opponent_hashes_end
+    )
     report = {
         "schema_version": 1,
-        "created_at_utc": datetime.now(UTC).isoformat(),
+        "created_at_utc": completed_at,
+        "started_at_utc": started_at,
+        "completed_at_utc": completed_at,
+        "git_head_at_start": git_head,
+        "workers": workers,
+        "start_receipt": receipt_path.as_posix(),
+        "start_receipt_sha256": receipt_sha256,
         "candidate": candidate_ref,
         "candidate_path": candidate,
         "candidate_sha256": _sha256(candidate_path),
+        "candidate_sha256_at_start": candidate_hash_start,
+        "candidate_sha256_at_end": candidate_hash_end,
         "opponents": opponents,
+        "opponent_sha256_at_start": opponent_hashes_start,
+        "opponent_sha256_at_end": opponent_hashes_end,
+        "sources_unchanged_during_run": sources_unchanged,
         "seeds": seeds,
         "seat_policy": "both seats scored; confidence interval is clustered by seed/opponent pair",
         "summary": summarize(results),
         "games": [asdict(row) for row in results],
     }
-    output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     return report
 

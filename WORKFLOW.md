@@ -159,6 +159,10 @@ Gate: candidate is distinguishable from prior artifacts and can be falsified loc
 4. Add structured logs for decisions, failures, and resource flows.
 5. Avoid unrelated refactors.
 6. Record code/config hash before running evaluation.
+7. Preserve every named variant source or a reproducible generator revision; do not reuse a
+   mutable default path for multiple experimental variants.
+8. Write a pre-run receipt containing start time, Git HEAD, workers, seeds, source/opponent
+   paths and hashes. The final report must include the receipt hash and matching end hashes.
 
 Gate: lint/static checks, focused unit tests, and a smoke simulation pass.
 
@@ -176,6 +180,10 @@ Run in increasing cost order:
 8. Stress/adversarial scenarios.
 9. Runtime, memory, timeout, crash, and invalid-action checks.
 10. Rule/compliance and packaging audit.
+
+For every batch, require `sources_unchanged_during_run=true`. Treat a missing start receipt,
+source hash mismatch, overwritten variant, or absent worker count as invalid provenance even if
+the score looks favorable.
 
 Investigate conflicting signals. Do not average away a severe regression or explain it after the fact without a new test.
 
