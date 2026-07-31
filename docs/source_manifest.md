@@ -103,3 +103,20 @@ code is not copied into a submission. It may only serve as read-only research or
 - Discord was not scraped; Kaggle explicitly describes it as public but unmonitored and asks
   that important information be kept in the competition forum.
 - This manifest is a dated snapshot and will be appended when new material changes strategy.
+
+## 2026-07-31 14:54 UTC meta refresh
+
+- Official leaderboard, team-submission, episode-list, replay, and public raw episode endpoints
+  were queried read-only. The tracked report is
+  `docs/research/meta_refresh_2026-07-31.md`, SHA-256
+  `55D014495EDF8BBEF94DA323D8D7335351A4E948FD6DDE8905EA4EAAAD666124`.
+- Seventy raw replay JSON files totaling 1,491,664,905 bytes are retained under the local,
+  Git-ignored `references/top-replays-refresh/`. Three independently rehashed examples matched
+  the report manifest exactly: episodes 89152814, 89158919, and 89157366.
+- The new window contains 47 episodes after the prior cutoff. The 1406.8 leader's available new
+  submission trace contains 21 public games, both seats, 21 distinct action hashes, and 21 wins.
+  This is correlated ladder evidence with possible public-episode selection bias, not an
+  independent win-rate estimate.
+- Retained mechanism changes are larger but state-dependent crew, variable herd composition,
+  high wheat throughput, and full liquidation. Requested order volume is not accepted volume;
+  accepted quantity/cash/inventory reconstruction is required before using it as a policy target.

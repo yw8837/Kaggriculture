@@ -1,7 +1,7 @@
 # Kaggriculture end-to-end operating playbook
 
 Read `CAMPAIGN_DIRECTIVE.md` before starting or resuming campaign work. It records the binding
-publication order, Fa naming, research scope, repository requirements, and independent-auditor
+publication order, Fa naming, research scope, repository requirements, and auditor
 rule that must survive context compaction and handoffs.
 
 This playbook exists to make the campaign evidence-driven and reproducible. It does not guarantee a top-3 finish; it prevents avoidable process failures and forces every major decision through explicit gates.
@@ -46,6 +46,9 @@ Gate: `docs/problem_spec.md` cites the source or test for every material rule.
 ## Stage 2 — Broad research and mechanism extraction
 
 Run several independent lanes in parallel when useful:
+
+Do not call a child/subagent lane structurally independent. That label is reserved for a separate
+user-owned Codex task outside the production tree.
 
 - Official environment mechanics and hidden edge cases.
 - Kaggle discussions, notebooks, datasets, and high-quality public agents.
@@ -200,6 +203,15 @@ Promote only when all are true:
 - A clean reproduction command succeeds.
 
 The previous champion remains immutable and recoverable. A leaderboard increase does not retroactively validate a broken local process.
+
+### Independent audit feedback loop
+
+Before a private production build is treated as ready, send the evidence state to the separate
+user-owned auditor. Record every finding and its disposition. Accepted findings must be taken
+through renewed research, review, correction, verification, and build. Return that evidence for
+re-audit. If the auditor rejects the rework, do not silently overrule it: preserve the conflicting
+evidence, ask the user to resolve any material judgment call, and iterate until accepted or
+objectively blocked.
 
 ## Stage 10 — Authorized Kaggle save-run or submission
 

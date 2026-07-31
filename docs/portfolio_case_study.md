@@ -14,7 +14,8 @@ campaign's leaderboard overfitting and unverifiable claims.
 - Immutable experiment, submission, publication, and audit records
 - Deterministic one-file packaging with source/archive SHA-256 identity
 - Private Kaggle Save & Run verification and a private GitHub evidence repository
-- An independent adversarial audit lane with no edit, publish, submit, or Git authority
+- An adversarial subagent review lane with no edit, publish, submit, or Git authority; structural
+  independence requires a separate user-owned task and is not claimed for the current lane
 
 ## Demonstrated outcomes
 

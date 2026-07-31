@@ -62,11 +62,21 @@ This file is the durable user directive for the campaign. It must be read togeth
 
 ## Independent adversarial auditor
 
-- Keep an independent adversarial auditor separate from the production agent workflow.
+- A structurally independent auditor must be a separate user-owned Codex task, not a child,
+  parent, or sibling in the production agent tree. Do not label an in-tree subagent independent.
+- Until that separate task exists, describe any in-tree review exactly as a subordinate
+  adversarial review and treat its conclusions as supporting evidence only.
 - The auditor distrusts the main agent's framing and rechecks source code, simulator outputs,
   Kaggle state, hashes, claims, publication leakage, and instruction compliance from originals.
 - The auditor has no permission to edit code, submit, publish, commit, or push. It reports defects
   directly to the user. Main work must not suppress or rewrite adverse findings.
+- Every completed audit must receive a written disposition for each finding: `accepted`,
+  `rejected with original evidence`, or `deferred with an explicit blocker`.
+- Accepted findings restart the relevant research -> review -> correction -> verification -> build
+  sequence. Send the resulting evidence back to the separate auditor for re-audit.
+- If the auditor rejects the reworked result, preserve both positions and evidence, discuss the
+  disputed decision with the user, and continue the loop until the user accepts a resolution or
+  an objective blocker is recorded. Audit approval is not inferred from silence.
 
 ## User coordination
 
