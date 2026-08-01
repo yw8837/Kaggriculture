@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-08-01T22:37:40.833643+00:00",
+  "git_head_at_start": "30e008b80b4d89f05d603c56e977930413c2a9f8",
+  "candidate": "experiments/source_snapshots/fa05_r145_trace/T1_R145_sell_guard.py",
+  "candidate_path": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\fa04_local\\experiments\\source_snapshots\\fa05_r145_trace\\T1_R145_sell_guard.py",
+  "candidate_sha256_at_start": "1ED43DDB04E0B47DD49AB2F8B3D75671F97383ACFE23CBE5C5BC468EF2665A8A",
+  "opponents": [
+    "experiments/source_snapshots/fa04_top_trace/C135.py",
+    "experiments/source_snapshots/fa04_top_trace/R140.py",
+    "experiments/source_snapshots/fa04_top_trace/R150.py",
+    "experiments/source_snapshots/fa04_top_trace/R155.py",
+    "artifacts/candidates/final_day_labor/main.py",
+    "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py"
+  ],
+  "opponent_paths": {
+    "experiments/source_snapshots/fa04_top_trace/C135.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\fa04_local\\experiments\\source_snapshots\\fa04_top_trace\\C135.py",
+    "experiments/source_snapshots/fa04_top_trace/R140.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\fa04_local\\experiments\\source_snapshots\\fa04_top_trace\\R140.py",
+    "experiments/source_snapshots/fa04_top_trace/R150.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\fa04_local\\experiments\\source_snapshots\\fa04_top_trace\\R150.py",
+    "experiments/source_snapshots/fa04_top_trace/R155.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\fa04_local\\experiments\\source_snapshots\\fa04_top_trace\\R155.py",
+    "artifacts/candidates/final_day_labor/main.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\fa04_local\\artifacts\\candidates\\final_day_labor\\main.py",
+    "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\fa04_local\\experiments\\source_snapshots\\fa04_top_trace\\G1_sell_guard.py"
+  },
+  "opponent_sha256_at_start": {
+    "experiments/source_snapshots/fa04_top_trace/C135.py": "13C88E1D9232F66A219AF0B66A36A46D622C2466856D191E57A8FDC42BC7C1EE",
+    "experiments/source_snapshots/fa04_top_trace/R140.py": "E4BDEDB791FC129AA73941D96BEA2C20709D9431A8C9628AB526EA186B0F4870",
+    "experiments/source_snapshots/fa04_top_trace/R150.py": "80AB5C9E50540FE49D68DED3D170FF79C34603FAF19257BD01554A19E30DA599",
+    "experiments/source_snapshots/fa04_top_trace/R155.py": "857A8F98425D06262E503D46C15FC9480358ADA7621BC5D6D30575B2B71A167C",
+    "artifacts/candidates/final_day_labor/main.py": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
+    "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+  },
+  "seeds": [
+    43000,
+    43001,
+    43002,
+    43003,
+    43004,
+    43005,
+    43006,
+    43007,
+    43008,
+    43009,
+    43010,
+    43011,
+    43012,
+    43013,
+    43014,
+    43015
+  ],
+  "seat_policy": "both seats",
+  "workers": 6,
+  "scenario_overrides": {
+    "default": {}
+  },
+  "effective_scenarios": {
+    "default": {
+      "episodeSteps": 720
+    }
+  },
+  "effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE"
+}

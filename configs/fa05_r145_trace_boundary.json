@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "identity": "Fa05_R145_trace_guard_T1",
-  "status": "DEVELOPMENT_OPEN_AUTHORIZED",
+  "status": "DEVELOPMENT_CONSUMED_NO_GO",
   "development_opened_at_utc": "2026-08-01T22:34:17.4394398Z",
   "opening_authority": "Independent auditor task 019fb8b8-7758-7860-9304-39eb4f06c65c authorizes only exact Fa05 development seeds 43000-43015.",
   "implementation_commit": "31a3bac508ea0ba083919b2aceea5b22bf1c01bb",
@@ -31,14 +31,14 @@
     "guarded_r145_margin_mean": 28979.46875
   },
   "seed_registry": "configs/fa_ab_seed_registry.json",
-  "seed_registry_sha256": "8A5DE9F8354E01DEDD77CF0337EAE666D21677D2BA164CC4B17B468EE00B4C09",
+  "seed_registry_sha256": "E2CF93D7ECBB085B6E4EB338C88F07A450217DF43096F0AF140DB274DBB94CE0",
   "pools": {
     "development": {
       "registry_key": "Fa05_R145_trace_guard_development",
       "start": 43000,
       "end_inclusive": 43015,
       "count": 16,
-      "status": "OPEN"
+      "status": "CONSUMED_NO_GO"
     },
     "confirmation": {
       "registry_key": "Fa05_R145_trace_guard_confirmation",
