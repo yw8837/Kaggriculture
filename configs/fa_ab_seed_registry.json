@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "registered_at_utc": "2026-07-31T15:43:34Z",
-  "policy": "Development may be opened after a frozen implementation commit. Sealed-strength and robustness pools remain forbidden until the separate auditor accepts the development boundary.",
+  "policy": "Historical lifecycle fields are authoritative and consumed or retired pools may never be reused. Any fresh CLOSED pool requires explicit user authorization after a frozen audited handoff; confirmation and robustness additionally require the preceding gate and separate audit to pass.",
   "history_policy": "Append-only reservations: preserve every prior hypothesis and range; only advance lifecycle fields, retire unused downstream pools, and append newly named disjoint pools.",
   "retired_legacy_pools": [
     {
@@ -88,15 +88,29 @@
     }
   },
   "next_boundary_reservations": {
-    "policy": "Submission provenance is user-confirmed. Every pool remains CLOSED until the corrective frozen handoff passes separate audit.",
+    "policy": "Submission provenance is user-confirmed. Historical A/B reservations retain their recorded consumed or retired lifecycle; only fresh Fa02 last-chance pools remain CLOSED pending their explicit authorization and prerequisite gates.",
     "A_formal_scenario_confirmation": {
       "start": 30000,
       "end_inclusive": 30031,
       "count": 32,
       "purpose": "Safety diagnostic only: frozen final_day_labor versus frozen submitted-baseline control on identical four-scenario/opponent/seat grids; no tuning or variant selection.",
-      "status": "CLOSED",
-      "opened": false,
-      "consumed": false
+      "status": "CONSUMED_PASS",
+      "opened": true,
+      "consumed": true,
+      "promotion_eligible": true,
+      "opened_at_utc": "2026-07-31T19:56:01.417366+00:00",
+      "completed_at_utc": "2026-07-31T20:31:30.162939+00:00",
+      "evaluated_candidate_games": 1024,
+      "evaluated_control_games": 1024,
+      "evaluated_games": 2048,
+      "evaluated_paired_cells": 1024,
+      "evidence": "experiments/evaluations/fa_next_open/A_paired_gate.json",
+      "candidate_report": "experiments/evaluations/fa_next_open/A_candidate.json",
+      "candidate_report_sha256": "7427A52B510AD89A677CBEA3987AB24350C99797D5C999DBE267977E27ABF476",
+      "control_report": "experiments/evaluations/fa_next_open/A_control.json",
+      "control_report_sha256": "72CFD25175A8D4E23B3C323FA35D2DB97614DB0334106AA6CDCF586EB44F1B1F",
+      "evidence_sha256": "CB39A34131DB02D866FEF8DFAFF963B9D7DB6EE063643BC9BC88A46FCACEE3D3",
+      "result": "Safety diagnostic passed every preregistered gate; final_day_labor remained the formal champion and was released for private Save & Run."
     },
     "B_greedy_development": {
       "start": 31000,

@@ -64,8 +64,8 @@
   "candidate": {
     "identity": "BT1",
     "path": "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
-    "sha256": "6FDC6AEA32CF5DC2309D4B72BFA93937A79152A0F45E6A13A705BF1CEFD774B4",
-    "bytes": 22008
+    "sha256": "10835A59BC58E5FA4B440D926DC7487E5317CBC07B0C8173EABCC8B57B8906DC",
+    "bytes": 26306
   },
   "opponents": [
     {
@@ -103,11 +103,24 @@
     "bootstrap_random_seed": 0,
     "expected_contract": "must_use_preregistered"
   },
+  "development_orchestration": {
+    "module": "kaggriculture_lab.evaluation.last_chance_gate",
+    "lane_subcommand": "--run-lane candidate|control",
+    "derived_cells_per_lane": 160,
+    "derivation": "1 default scenario x 5 frozen opponents x 16 seeds x 2 seats",
+    "aggregate_reporting": [
+      "all opponents including the formal self-lane",
+      "improvement gates excluding the formal self-lane"
+    ],
+    "candidate_counter_rows_required": 160
+  },
   "counter_semantics": {
-    "eligible_opportunity": "The currently selected minimum-priority feasible candidate group contains both rank-0 and rank-1 tasks.",
+    "eligible_opportunity": "Each formal allocator decision point where the current minimum-priority feasible unit-task pair group contains both rank-0 and rank-1 pairs.",
     "rank_tiebreak_activated": "Within the same formal priority, rank 0 actually replaces the rank-1 choice made by the old comparator.",
-    "action_changed_vs_old_comparator_on_same_state": "The selected unit or emitted action differs from the old comparator on the identical observation.",
+    "action_changed_vs_old_comparator_on_same_state": "The final emitted full action vector differs from the formal comparator on the identical observation; selection displacement alone remains rank_tiebreak_activated.",
     "last_chance_action_emitted_on_exact_target": "A terminal WATER or FEED action is actually emitted on the exact rank-0 target; travel or mere assignment does not count.",
+    "tiebreak_to_exact_target_action_emitted": "A terminal WATER or FEED action is emitted on the exact rank-0 target by an accepted causal tie-break trajectory.",
+    "formal_fallback_due_assignment_set_mismatch": "The ranked trajectory failed at least one frozen assignment-safety invariant, so the exact formal actions and trace were emitted instead.",
     "next_day_weed_or_escape_outcome": "A target with an emitted last-chance action is observed next day as WEED or with its animal missing."
   },
   "counter_capture": {
@@ -118,12 +131,14 @@
       "rank_tiebreak_activated",
       "action_changed_vs_old_comparator_on_same_state",
       "last_chance_action_emitted_on_exact_target",
+      "tiebreak_to_exact_target_action_emitted",
+      "formal_fallback_due_assignment_set_mismatch",
       "next_day_weed_or_escape_outcome"
     ]
   },
   "static_invariants": {
     "priority_boundary_inversions": 0,
-    "enforcement": "AST/property test proves last_chance_rank is ordered only after unchanged task_priority."
+    "enforcement": "AST/property tests require exact task ids, per-task proxy and BFS-path nonworsening, componentwise nonincreasing pickup count and quantity, post-seed non-PASS preservation, terminal-operation preservation, and exact formal fallback on any failure."
   },
   "runtime_gate_ms": {
     "p95_max": 8.0,
@@ -133,29 +148,33 @@
   },
   "tooling": {
     "builder": "src/kaggriculture_lab/candidates/last_chance_tiebreak.py",
-    "builder_sha256": "92535C9E83E9F94EA3FFA65769356B25A1D848F343A784E9FEB91A239925CB06",
+    "builder_sha256": "6FB8957B77550AB3E2E24595683A347B19D56EC9E0D4790FBAE82EA2CCA4C813",
     "runner": "src/kaggriculture_lab/evaluation/runner.py",
     "runner_sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
     "analyzer": "src/kaggriculture_lab/evaluation/paired.py",
-    "analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702"
+    "analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
+    "gate_evaluator": "src/kaggriculture_lab/evaluation/last_chance_gate.py",
+    "gate_evaluator_sha256": "9E94A8E7CA410FE331FAC52184A50AF078BFAF1F5FF1F6EE832C284B5452D239"
   },
   "runtime_precheck": {
     "path": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_runtime.json",
-    "sha256": "0B86EE3EF13D51FCFB8C084957083CFCADCE1A84699CFFF32A13D3E21983A106",
-    "bytes": 1353,
+    "sha256": "064AABD5F3C5E18C118CF92891F1D7CE4AA4CA9915EB59470A9AB5229C34DA4C",
+    "bytes": 2166,
     "calls": 720,
     "action_comparison_calls": 720,
     "action_differences_vs_reference": 0,
     "invalid_outputs": 0,
-    "p95_ms": 4.169,
-    "p99_ms": 5.4232,
-    "max_ms": 5.9492,
+    "p95_ms": 5.6774,
+    "p99_ms": 6.8791,
+    "max_ms": 8.9199,
     "priority_inversions": 0,
     "instrumentation": {
-      "eligible_opportunity": 29,
-      "rank_tiebreak_activated": 13,
+      "eligible_opportunity": 41,
+      "rank_tiebreak_activated": 8,
       "action_changed_vs_old_comparator_on_same_state": 0,
       "last_chance_action_emitted_on_exact_target": 82,
+      "tiebreak_to_exact_target_action_emitted": 0,
+      "formal_fallback_due_assignment_set_mismatch": 0,
       "next_day_weed_or_escape_outcome": 0
     },
     "gate_result": "PASS",
@@ -179,6 +198,7 @@
     "minimum_rank_tiebreak_activated": 1,
     "minimum_action_changed_vs_old_comparator_on_same_state": 1,
     "minimum_last_chance_action_emitted_on_exact_target": 1,
+    "minimum_tiebreak_to_exact_target_action_emitted": 1,
     "maximum_next_day_weed_or_escape_outcome": 0,
     "priority_boundary_invariant": "must_pass_ast_property_test",
     "runtime_gate_ref": "runtime_gate_ms",

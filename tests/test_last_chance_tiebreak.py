@@ -20,16 +20,21 @@ COUNTERS = {
     "rank_tiebreak_activated",
     "action_changed_vs_old_comparator_on_same_state",
     "last_chance_action_emitted_on_exact_target",
+    "tiebreak_to_exact_target_action_emitted",
+    "formal_fallback_due_assignment_set_mismatch",
     "next_day_weed_or_escape_outcome",
 }
 ADDED_FUNCTIONS = {
     "rescue_metrics",
     "reset_rescue_metrics",
     "_last_chance_rank",
-    "_last_chance_choices",
-    "_old_comparator_actions",
+    "_bfs_distance",
+    "_real_task_path_cost",
+    "_allocation_trace",
+    "_trace_tiebreak_event",
+    "_safe_allocation_actions",
     "_observe_last_chance_outcomes",
-    "_record_last_chance_action",
+    "_record_last_chance_actions",
 }
 
 
@@ -117,7 +122,7 @@ def test_ast_allowlist_preserves_every_formal_function_except_unit_allocator() -
     lines = formal.splitlines(keepends=True)
     assert built.startswith("".join(lines[:formal_start]))
     assert built.endswith("".join(lines[formal_end:]))
-    choice_source = ast.unparse(built_functions["_last_chance_choices"])
+    choice_source = ast.unparse(built_functions["_allocation_trace"])
     assert "(priority, cost, task['pos'][1], task['pos'][0], i, j)" in choice_source
     assert "(priority, rank, cost, task['pos'][1], task['pos'][0], i, j)" in choice_source
 
@@ -147,7 +152,7 @@ def test_rank_zero_matches_only_exact_auditor_definitions() -> None:
 def test_choice_property_is_exact_new_key_with_zero_priority_inversions() -> None:
     namespace = _namespace()
     namespace["_task_cost"] = lambda farm, pos, inv, shed, task: task["test_cost"]
-    choose = namespace["_last_chance_choices"]
+    allocate = namespace["_allocation_trace"]
 
     for ordinary_priority in range(4):
         for last_chance_priority in range(4):
@@ -170,7 +175,8 @@ def test_choice_property_is_exact_new_key_with_zero_priority_inversions() -> Non
                             cost=last_chance_cost,
                         ),
                     ]
-                    new, old, _, activated = choose(farm, [(0, 0)], [{}], {}, tasks, {0}, {0, 1})
+                    _, old_trace = allocate(farm, {"seeds": {}}, [(0, 0)], [{}], {}, tasks, False)
+                    _, new_trace = allocate(farm, {"seeds": {}}, [(0, 0)], [{}], {}, tasks, True)
                     expected_old = min(
                         range(2),
                         key=lambda j: (
@@ -194,33 +200,330 @@ def test_choice_property_is_exact_new_key_with_zero_priority_inversions() -> Non
                             j,
                         ),
                     )
-                    assert old[2] == expected_old
-                    assert new[2] == expected_new
-                    assert tasks[new[2]]["priority"] == min(task["priority"] for task in tasks)
-                    if activated:
-                        assert tasks[new[2]]["priority"] == tasks[old[2]]["priority"]
-                        assert namespace["_last_chance_rank"](farm, tasks[new[2]]) == 0
-                        assert namespace["_last_chance_rank"](farm, tasks[old[2]]) == 1
+                    assert old_trace[0][1] == expected_old
+                    assert new_trace[0][1] == expected_new
+                    assert tasks[new_trace[0][1]]["priority"] == min(
+                        task["priority"] for task in tasks
+                    )
 
 
-def test_activation_counts_actual_displacement_not_presence_or_travel_assignment() -> None:
+def test_activation_and_causal_terminal_counter_follow_accepted_full_trace() -> None:
     namespace = _namespace()
     namespace["reset_rescue_metrics"]()
-    farm = _farm(farmer=(0, 0))
-    farm["tiles"][4][4] = _animal()
-    private = {"inventories": [{"WHEAT": 1}], "shed": {}, "seeds": {}}
-    observation = {"player": 0, "day": 3, "hour": 0, "market": {"prices": {}}}
+    namespace["_task_cost"] = lambda farm, pos, inv, shed, task: task["test_cost"]
+    namespace["_task_action"] = lambda farm, pos, inv, shed, task: task["action"]
+    farm = _farm()
+    farm["tiles"][0][0] = _plant(0)
+    farm["tiles"][1][1] = _animal()
+    positions = [(1, 1), (0, 0)]
+    tasks = [_task("WATER", (0, 0), cost=0), _task("FEED", (1, 1), cost=5)]
 
-    action = namespace["_unit_actions"](observation, farm, private, [(0, 0), (4, 4)], {})[0]
+    result = namespace["_safe_allocation_actions"](
+        farm, {"seeds": {}}, positions, [{}, {}], {"WHEAT": 1}, tasks
+    )
+    actions, trace, formal_actions = result[:3]
+    assert result[7] is True
+    namespace["_record_last_chance_actions"](
+        {"player": 0, "day": 3},
+        farm,
+        positions,
+        tasks,
+        trace,
+        actions,
+        formal_actions,
+        True,
+    )
 
-    assert action not in (["BUILD_PASTURE"], ["FEED"])
     assert namespace["rescue_metrics"]() == {
         "eligible_opportunity": 1,
         "rank_tiebreak_activated": 1,
         "action_changed_vs_old_comparator_on_same_state": 1,
-        "last_chance_action_emitted_on_exact_target": 0,
+        "last_chance_action_emitted_on_exact_target": 1,
+        "tiebreak_to_exact_target_action_emitted": 1,
+        "formal_fallback_due_assignment_set_mismatch": 0,
         "next_day_weed_or_escape_outcome": 0,
     }
+
+
+def test_eligible_counts_formal_decision_even_when_old_already_selects_rank_zero() -> None:
+    namespace = _namespace()
+    namespace["reset_rescue_metrics"]()
+    namespace["_task_cost"] = lambda farm, pos, inv, shed, task: task["test_cost"]
+    namespace["_real_task_path_cost"] = lambda farm, pos, inv, shed, task: 0
+    namespace["_task_action"] = lambda farm, pos, inv, shed, task: ["EAST"]
+    farm = _farm()
+    farm["tiles"][0][0] = _plant(1, False)
+    farm["tiles"][0][1] = _plant(0, False)
+    tasks = [_task("WATER", (0, 0), cost=0), _task("WATER", (1, 0), cost=5)]
+
+    result = namespace["_safe_allocation_actions"](farm, {"seeds": {}}, [(0, 0)], [{}], {}, tasks)
+
+    assert result[4][0][1] == result[5][0][1] == 0
+    assert result[4][0][8] is True
+    assert result[6] is False
+    assert result[7] is True
+    metrics = namespace["rescue_metrics"]()
+    assert metrics["eligible_opportunity"] == 1
+    assert metrics["rank_tiebreak_activated"] == 0
+    assert metrics["action_changed_vs_old_comparator_on_same_state"] == 0
+
+
+def test_changed_assignment_with_identical_final_vector_is_not_action_change() -> None:
+    namespace = _namespace()
+    namespace["reset_rescue_metrics"]()
+    namespace["_task_cost"] = lambda farm, pos, inv, shed, task: task["test_cost"]
+    namespace["_real_task_path_cost"] = lambda farm, pos, inv, shed, task: 0
+    namespace["_task_action"] = lambda farm, pos, inv, shed, task: ["EAST"]
+    farm = _farm()
+    farm["tiles"][0][0] = _plant(0, False)
+    farm["tiles"][1][1] = _plant(1, False)
+    tasks = [_task("WATER", (0, 0), cost=0), _task("WATER", (1, 1), cost=5)]
+
+    result = namespace["_safe_allocation_actions"](
+        farm, {"seeds": {}}, [(0, 0), (1, 0)], [{}, {}], {}, tasks
+    )
+
+    assert result[4] != result[5]
+    assert result[2] == result[3] == [["EAST"], ["EAST"]]
+    assert result[6] is True
+    assert result[7] is True
+    metrics = namespace["rescue_metrics"]()
+    assert metrics["eligible_opportunity"] == 1
+    assert metrics["rank_tiebreak_activated"] == 1
+    assert metrics["action_changed_vs_old_comparator_on_same_state"] == 0
+
+
+def test_scarce_sheep_wheat_assignment_set_change_falls_back_exactly() -> None:
+    namespace = _namespace()
+    namespace["reset_rescue_metrics"]()
+    namespace["_task_cost"] = lambda farm, pos, inv, shed, task: task["costs"][pos[0]]
+    namespace["_task_action"] = lambda farm, pos, inv, shed, task: [
+        task["action"][0],
+        str(task["id"]),
+    ]
+    farm = _farm()
+    farm["tiles"][1][1] = _animal("SHEEP", 1, False)
+    farm["tiles"][2][2] = _animal("COW", 0, False)
+    tasks = [
+        {
+            "id": 0,
+            "priority": 0,
+            "pos": (0, 0),
+            "action": ["PLACE", "SHEEP"],
+            "need": "SHEEP",
+            "costs": [0, 10],
+        },
+        {
+            "id": 1,
+            "priority": 0,
+            "pos": (1, 1),
+            "action": ["FEED"],
+            "need": "WHEAT",
+            "costs": [5, 5],
+        },
+        {
+            "id": 2,
+            "priority": 0,
+            "pos": (2, 2),
+            "action": ["FEED"],
+            "need": "WHEAT",
+            "costs": [1, 1],
+        },
+    ]
+    result = namespace["_safe_allocation_actions"](
+        farm,
+        {"seeds": {}},
+        [(0, 0), (1, 0)],
+        [{}, {}],
+        {"SHEEP": 1, "WHEAT": 1},
+        tasks,
+    )
+    actions, trace, formal_actions, candidate_actions, formal_trace, candidate_trace = result[:6]
+
+    assert {step[1] for step in formal_trace} == {0, 2}
+    assert {step[1] for step in candidate_trace} == {1, 2}
+    assert candidate_actions != formal_actions
+    assert result[7] is False
+    assert actions == formal_actions
+    assert trace == formal_trace
+    metrics = namespace["rescue_metrics"]()
+    assert metrics["formal_fallback_due_assignment_set_mismatch"] == 1
+    assert metrics["rank_tiebreak_activated"] == 0
+    assert metrics["action_changed_vs_old_comparator_on_same_state"] == 0
+
+
+def test_same_task_set_harvest_terminal_swap_falls_back_exactly() -> None:
+    namespace = _namespace()
+    namespace["reset_rescue_metrics"]()
+    namespace["_task_cost"] = lambda farm, pos, inv, shed, task: task["costs"][pos[0]]
+    namespace["_task_action"] = lambda farm, pos, inv, shed, task: (
+        list(task["action"]) if tuple(pos) == tuple(task["pos"]) else ["MOVE", str(task["id"])]
+    )
+    farm = _farm()
+    farm["tiles"][1][0] = _plant(1, False)
+    tasks = [
+        {
+            "id": 0,
+            "priority": 0,
+            "pos": (0, 0),
+            "action": ["HARVEST"],
+            "need": None,
+            "costs": [0, 2],
+        },
+        {
+            "id": 1,
+            "priority": 0,
+            "pos": (0, 1),
+            "action": ["WATER"],
+            "need": None,
+            "costs": [1, 3],
+        },
+    ]
+    result = namespace["_safe_allocation_actions"](
+        farm, {"seeds": {}}, [(0, 0), (1, 0)], [{}, {}], {}, tasks
+    )
+    actions, trace, formal_actions, candidate_actions, formal_trace, candidate_trace = result[:6]
+
+    assert {step[1] for step in formal_trace} == {step[1] for step in candidate_trace}
+    assert formal_actions[0] == ["HARVEST"]
+    assert candidate_actions[0] == ["MOVE", "1"]
+    assert result[7] is False
+    assert actions == formal_actions
+    assert trace == formal_trace
+    assert namespace["rescue_metrics"]()["formal_fallback_due_assignment_set_mismatch"] == 1
+
+
+def test_locked_equal_manhattan_unreachable_swap_falls_back_exactly() -> None:
+    namespace = _namespace()
+    namespace["reset_rescue_metrics"]()
+    farm = _farm()
+    farm["tiles"][0][1] = "LOCKED"
+    farm["tiles"][0][3] = "LOCKED"
+    farm["tiles"][1][2] = "LOCKED"
+    farm["tiles"][2][0] = _plant(1, False)
+    tasks = [
+        {
+            "priority": 0,
+            "pos": (1, 1),
+            "action": ["HARVEST"],
+            "need": None,
+        },
+        {
+            "priority": 0,
+            "pos": (0, 2),
+            "action": ["WATER"],
+            "need": None,
+        },
+    ]
+    result = namespace["_safe_allocation_actions"](
+        farm, {"seeds": {}}, [(0, 0), (2, 0)], [{}, {}], {}, tasks
+    )
+    actions, trace, formal_actions, candidate_actions, formal_trace, candidate_trace = result[:6]
+    formal_paths = {step[1]: step[5] for step in formal_trace}
+    candidate_paths = {step[1]: step[5] for step in candidate_trace}
+
+    formal_costs = {step[1]: step[4] for step in formal_trace}
+    candidate_costs = {step[1]: step[4] for step in candidate_trace}
+    assert candidate_costs[0] == formal_costs[0] == 2
+    assert all(candidate_costs[j] <= formal_costs[j] for j in formal_costs)
+    assert formal_paths[0] == 2
+    assert candidate_paths[0] == 10000
+    assert candidate_actions[1] == ["PASS"]
+    assert result[7] is False
+    assert actions == formal_actions
+    assert trace == formal_trace
+    assert namespace["rescue_metrics"]()["formal_fallback_due_assignment_set_mismatch"] == 1
+
+
+def test_shared_shed_pickup_demand_cannot_increase_on_same_task_set() -> None:
+    namespace = _namespace()
+    namespace["reset_rescue_metrics"]()
+    namespace["_task_cost"] = lambda farm, pos, inv, shed, task: 0
+    farm = _farm()
+    farm["tiles"][4][4] = _animal("SHEEP", 1, False)
+    tasks = [
+        {
+            "priority": 0,
+            "pos": (0, 0),
+            "action": ["HARVEST"],
+            "need": None,
+        },
+        {
+            "priority": 0,
+            "pos": (4, 4),
+            "action": ["FEED"],
+            "need": "WHEAT",
+        },
+    ]
+    result = namespace["_safe_allocation_actions"](
+        farm,
+        {"seeds": {}},
+        [(4, 4), (0, 0)],
+        [{}, {"WHEAT": 1}],
+        {"WHEAT": 4},
+        tasks,
+    )
+    actions, trace, formal_actions, _, formal_trace, candidate_trace = result[:6]
+    candidate_trace_by_task = {item[1]: item for item in candidate_trace}
+
+    assert {step[1] for step in formal_trace} == {step[1] for step in candidate_trace}
+    assert all(candidate_trace_by_task[step[1]][5] <= step[5] for step in formal_trace)
+    assert sum(step[7] for step in formal_trace if step[6] == "WHEAT") == 0
+    assert sum(step[7] for step in candidate_trace if step[6] == "WHEAT") == 4
+    assert result[7] is False
+    assert actions == formal_actions
+    assert trace == formal_trace
+    assert namespace["rescue_metrics"]()["formal_fallback_due_assignment_set_mismatch"] == 1
+
+
+def test_post_seed_nonpass_task_identity_is_preserved() -> None:
+    namespace = _namespace()
+    namespace["reset_rescue_metrics"]()
+    namespace["_task_cost"] = lambda farm, pos, inv, shed, task: task["costs"][pos[0]]
+    namespace["_task_action"] = lambda farm, pos, inv, shed, task: list(task["action"])
+    farm = _farm()
+    farm["tiles"][2][0] = _plant(1, False)
+    tasks = [
+        {
+            "priority": 0,
+            "pos": (0, 0),
+            "action": ["PLANT", "WHEAT"],
+            "need": None,
+            "costs": [0, 10, 0],
+        },
+        {
+            "priority": 0,
+            "pos": (1, 0),
+            "action": ["PLANT", "WHEAT"],
+            "need": None,
+            "costs": [10, 0, 10],
+        },
+        {
+            "priority": 0,
+            "pos": (0, 2),
+            "action": ["WATER"],
+            "need": None,
+            "costs": [1, 9, 9],
+        },
+    ]
+    result = namespace["_safe_allocation_actions"](
+        farm,
+        {"seeds": {"WHEAT": 1}},
+        [(0, 0), (1, 0), (2, 0)],
+        [{}, {}, {}],
+        {},
+        tasks,
+    )
+    actions, trace, formal_actions, candidate_actions, formal_trace, candidate_trace = result[:6]
+    formal_units = {step[1]: step[0] for step in formal_trace}
+    candidate_units = {step[1]: step[0] for step in candidate_trace}
+
+    assert {step[1] for step in formal_trace} == {step[1] for step in candidate_trace}
+    assert formal_actions[formal_units[0]] == ["PLANT", "WHEAT"]
+    assert candidate_actions[candidate_units[0]] == ["PASS"]
+    assert result[7] is False
+    assert actions == formal_actions
+    assert trace == formal_trace
 
 
 def test_exact_terminal_action_and_next_day_outcome_are_observed_then_reset() -> None:

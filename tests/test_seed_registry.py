@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -9,6 +10,10 @@ def _expand(pool: dict) -> set[int]:
     values = set(range(pool["start"], pool["end_inclusive"] + 1))
     assert len(values) == pool["count"]
     return values
+
+
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest().upper()
 
 
 def _collect_seed_values(value: object, *, seed_context: bool = False) -> set[int]:
@@ -36,6 +41,9 @@ def test_fa_ab_seed_pools_are_exact_disjoint_and_closed() -> None:
     registry = json.loads(
         Path("configs/fa_ab_seed_registry.json").read_text(encoding="utf-8")
     )
+    assert "Every pool remains CLOSED" not in registry["next_boundary_reservations"][
+        "policy"
+    ]
     expected = {
         "A": {
             "development": (23000, 23015, 16),
@@ -66,6 +74,23 @@ def test_fa_ab_seed_pools_are_exact_disjoint_and_closed() -> None:
             pools.append(_expand(pool))
     assert sum(map(len, pools)) == len(set().union(*pools))
 
+    a_pool = registry["next_boundary_reservations"][
+        "A_formal_scenario_confirmation"
+    ]
+    assert a_pool["promotion_eligible"] is True
+    assert a_pool["opened_at_utc"] == "2026-07-31T19:56:01.417366+00:00"
+    assert a_pool["completed_at_utc"] == "2026-07-31T20:31:30.162939+00:00"
+    assert a_pool["evaluated_candidate_games"] == 1024
+    assert a_pool["evaluated_control_games"] == 1024
+    assert a_pool["evaluated_games"] == 2048
+    assert a_pool["evaluated_paired_cells"] == 1024
+    for path_field, hash_field in (
+        ("candidate_report", "candidate_report_sha256"),
+        ("control_report", "control_report_sha256"),
+        ("evidence", "evidence_sha256"),
+    ):
+        assert a_pool[hash_field] == _sha256(Path(a_pool[path_field]))
+
     legacy = registry["retired_legacy_pools"][0]
     assert legacy["promotion_eligible"] is False
     assert legacy["opened"] is legacy["consumed"] is True
@@ -82,7 +107,7 @@ def test_next_boundary_pool_history_and_runtime_gate_are_preserved() -> None:
         "B_greedy_robustness": (33000, 33031, 32),
     }
     lifecycle = {
-        "A_formal_scenario_confirmation": ("CLOSED", False, False),
+        "A_formal_scenario_confirmation": ("CONSUMED_PASS", True, True),
         "B_greedy_development": ("CONSUMED_NO_GO", True, True),
         "B_greedy_confirmation": ("RETIRED_UNUSED", False, False),
         "B_greedy_robustness": ("RETIRED_UNUSED", False, False),

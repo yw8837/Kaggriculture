@@ -261,6 +261,8 @@ _LAST_CHANCE_COUNTERS = {
     "rank_tiebreak_activated": 0,
     "action_changed_vs_old_comparator_on_same_state": 0,
     "last_chance_action_emitted_on_exact_target": 0,
+    "tiebreak_to_exact_target_action_emitted": 0,
+    "formal_fallback_due_assignment_set_mismatch": 0,
     "next_day_weed_or_escape_outcome": 0,
 }
 _LAST_CHANCE_PENDING = {}
@@ -298,62 +300,99 @@ def _last_chance_rank(farm, task):
     ) else 1
 
 
-def _last_chance_choices(farm, positions, invs, shed, tasks, free_units, free_tasks):
-    old_best = None
-    new_best = None
-    feasible = []
-    for i in free_units:
-        for j in free_tasks:
-            task = tasks[j]
-            cost = _task_cost(farm, positions[i], invs[i], shed, task)
-            if cost >= 10000:
+def _bfs_distance(tiles, source, target):
+    source = tuple(source)
+    target = tuple(target)
+    if source == target:
+        return 0
+    n = len(tiles)
+    queue = deque([(source, 0)])
+    visited = {source}
+    while queue:
+        current, distance = queue.popleft()
+        for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            nxt = (current[0] + dx, current[1] + dy)
+            if not (0 <= nxt[0] < n and 0 <= nxt[1] < n):
                 continue
-            priority = task["priority"]
-            rank = _last_chance_rank(farm, task)
-            old_key = (priority, cost, task["pos"][1], task["pos"][0], i, j)
-            new_key = (priority, rank, cost, task["pos"][1], task["pos"][0], i, j)
-            old_candidate = (old_key, i, j)
-            new_candidate = (new_key, i, j)
-            feasible.append((priority, rank))
-            if old_best is None or old_key < old_best[0]:
-                old_best = old_candidate
-            if new_best is None or new_key < new_best[0]:
-                new_best = new_candidate
-    if new_best is None:
-        return None, old_best, False, False
-    selected_priority = new_best[0][0]
-    ranks = {rank for priority, rank in feasible if priority == selected_priority}
-    eligible = ranks == {0, 1}
-    activated = bool(
-        old_best is not None
-        and (new_best[1], new_best[2]) != (old_best[1], old_best[2])
-        and new_best[0][0] == old_best[0][0]
-        and _last_chance_rank(farm, tasks[new_best[2]]) == 0
-        and _last_chance_rank(farm, tasks[old_best[2]]) == 1
-    )
-    return new_best, old_best, eligible, activated
+            if nxt in visited or tiles[nxt[1]][nxt[0]] == "LOCKED":
+                continue
+            if nxt == target:
+                return distance + 1
+            visited.add(nxt)
+            queue.append((nxt, distance + 1))
+    return 10000
 
 
-def _old_comparator_actions(farm, private, positions, invs, shed, tasks):
-    """Replay the frozen allocator on the same state for instrumentation only."""
+def _real_task_path_cost(farm, position, inventory, shed, task):
+    need = task["need"]
+    target = task["pos"]
+    tiles = farm["tiles"]
+    if need is None or int(inventory.get(need, 0)) > 0:
+        return _bfs_distance(tiles, position, target)
+    if int(shed.get(need, 0)) <= 0:
+        return 10000
+    pickup = _nearest_shed(len(tiles), tiles, position)
+    to_pickup = _bfs_distance(tiles, position, pickup)
+    to_target = _bfs_distance(tiles, pickup, target)
+    if to_pickup >= 10000 or to_target >= 10000:
+        return 10000
+    return to_pickup + 1 + to_target
+
+
+def _allocation_trace(farm, private, positions, invs, shed, tasks, ranked):
+    """Run one complete allocator trajectory and retain assigned task ids."""
     actions = [["PASS"] for _ in positions]
     free_units = set(range(len(positions)))
     free_tasks = set(range(len(tasks)))
+    trace = []
     while free_units and free_tasks:
         best = None
+        feasible_priority_ranks = []
         for i in free_units:
             for j in free_tasks:
                 task = tasks[j]
                 cost = _task_cost(farm, positions[i], invs[i], shed, task)
                 if cost >= 10000:
                     continue
-                key = (task["priority"], cost, task["pos"][1], task["pos"][0], i, j)
+                priority = task["priority"]
+                rank = _last_chance_rank(farm, task)
+                feasible_priority_ranks.append((priority, rank))
+                if ranked:
+                    key = (priority, rank, cost, task["pos"][1], task["pos"][0], i, j)
+                else:
+                    key = (priority, cost, task["pos"][1], task["pos"][0], i, j)
                 if best is None or key < best[0]:
-                    best = (key, i, j)
+                    best = (key, i, j, priority, rank, cost)
         if best is None:
             break
-        _, i, j = best
+        _, i, j, priority, rank, cost = best
+        minimum_priority = min(item[0] for item in feasible_priority_ranks)
+        minimum_priority_ranks = {
+            item[1] for item in feasible_priority_ranks if item[0] == minimum_priority
+        }
+        eligible_at_decision = minimum_priority_ranks >= {0, 1}
         actions[i] = _task_action(farm, positions[i], invs[i], shed, tasks[j])
+        need = tasks[j]["need"]
+        pickup_quantity = 0
+        if (
+            need is not None
+            and int(invs[i].get(need, 0)) <= 0
+            and int(shed.get(need, 0)) > 0
+        ):
+            pickup_quantity = 1 if need in ("COW", "SHEEP") else 4
+        trace.append(
+            (
+                i,
+                j,
+                priority,
+                rank,
+                cost,
+                _real_task_path_cost(farm, positions[i], invs[i], shed, tasks[j]),
+                need if pickup_quantity else None,
+                pickup_quantity,
+                eligible_at_decision,
+            )
+        )
         free_units.remove(i)
         free_tasks.remove(j)
     remaining = dict(private.get("seeds", {}) or {})
@@ -364,7 +403,98 @@ def _old_comparator_actions(farm, private, positions, invs, shed, tasks):
                 actions[i] = ["PASS"]
             else:
                 remaining[crop] -= 1
-    return actions
+    return actions, tuple(trace)
+
+
+def _trace_tiebreak_event(formal_trace, candidate_trace):
+    """Identify the first causal rank-zero displacement on full trajectories."""
+    for formal_step, candidate_step in zip(formal_trace, candidate_trace):
+        if formal_step[:2] == candidate_step[:2]:
+            continue
+        return bool(
+            formal_step[2] == candidate_step[2]
+            and formal_step[3] == 1
+            and candidate_step[3] == 0
+        )
+    return False
+
+
+def _safe_allocation_actions(farm, private, positions, invs, shed, tasks):
+    """Adopt BT1 only when its complete assigned task-id set is unchanged."""
+    formal_actions, formal_trace = _allocation_trace(
+        farm, private, positions, invs, shed, tasks, False
+    )
+    candidate_actions, candidate_trace = _allocation_trace(
+        farm, private, positions, invs, shed, tasks, True
+    )
+    tie_event = _trace_tiebreak_event(formal_trace, candidate_trace)
+    _LAST_CHANCE_COUNTERS["eligible_opportunity"] += sum(
+        step[8] for step in formal_trace
+    )
+    formal_costs = {step[1]: step[4] for step in formal_trace}
+    candidate_costs = {step[1]: step[4] for step in candidate_trace}
+    formal_path_costs = {step[1]: step[5] for step in formal_trace}
+    candidate_path_costs = {step[1]: step[5] for step in candidate_trace}
+    formal_units = {step[1]: step[0] for step in formal_trace}
+    candidate_units = {step[1]: step[0] for step in candidate_trace}
+    same_tasks = formal_costs.keys() == candidate_costs.keys()
+    cost_nonworsening = same_tasks and all(
+        candidate_costs[j] <= formal_costs[j] for j in formal_costs
+    )
+    path_nonworsening = same_tasks and all(
+        candidate_path_costs[j] <= formal_path_costs[j] for j in formal_path_costs
+    )
+    formal_pickups = {}
+    candidate_pickups = {}
+    for trace, totals in ((formal_trace, formal_pickups), (candidate_trace, candidate_pickups)):
+        for step in trace:
+            need, quantity = step[6], step[7]
+            if need is not None:
+                count, total_quantity = totals.get(need, (0, 0))
+                totals[need] = (count + 1, total_quantity + quantity)
+    pickup_nonincreasing = all(
+        candidate_pickups.get(need, (0, 0))[0] <= formal_pickups.get(need, (0, 0))[0]
+        and candidate_pickups.get(need, (0, 0))[1]
+        <= formal_pickups.get(need, (0, 0))[1]
+        for need in set(formal_pickups) | set(candidate_pickups)
+    )
+    nonpass_preserved = same_tasks and all(
+        formal_actions[formal_units[j]] == ["PASS"]
+        or candidate_actions[candidate_units[j]] != ["PASS"]
+        for j in formal_units
+    )
+    terminal_preserved = same_tasks and all(
+        not tasks[j].get("action")
+        or formal_actions[formal_units[j]][0] != tasks[j]["action"][0]
+        or candidate_actions[candidate_units[j]][0] == tasks[j]["action"][0]
+        for j in formal_units
+    )
+    accepted = (
+        cost_nonworsening
+        and path_nonworsening
+        and pickup_nonincreasing
+        and nonpass_preserved
+        and terminal_preserved
+    )
+    if accepted:
+        actions, trace = candidate_actions, candidate_trace
+        if tie_event:
+            _LAST_CHANCE_COUNTERS["rank_tiebreak_activated"] += 1
+    else:
+        actions, trace = formal_actions, formal_trace
+        _LAST_CHANCE_COUNTERS["formal_fallback_due_assignment_set_mismatch"] += 1
+    if actions != formal_actions:
+        _LAST_CHANCE_COUNTERS["action_changed_vs_old_comparator_on_same_state"] += 1
+    return (
+        actions,
+        trace,
+        formal_actions,
+        candidate_actions,
+        formal_trace,
+        candidate_trace,
+        tie_event,
+        accepted,
+    )
 
 
 def _observe_last_chance_outcomes(obs, farm):
@@ -387,18 +517,23 @@ def _observe_last_chance_outcomes(obs, farm):
                 _LAST_CHANCE_COUNTERS["next_day_weed_or_escape_outcome"] += 1
 
 
-def _record_last_chance_action(obs, farm, position, task, action):
-    if _last_chance_rank(farm, task) != 0:
-        return
-    operation = task["action"][0]
-    pos = tuple(task["pos"])
-    if tuple(position) != pos or not action or action[0] != operation:
-        return
-    _LAST_CHANCE_COUNTERS["last_chance_action_emitted_on_exact_target"] += 1
-    tile = farm["tiles"][pos[1]][pos[0]]
-    animal = tile.get("animal") if isinstance(tile, dict) else None
-    key = (int(obs.get("player", 0)), int(obs.get("day", 0)))
-    _LAST_CHANCE_PENDING.setdefault(key, {})[(operation, pos)] = animal
+def _record_last_chance_actions(
+    obs, farm, positions, tasks, trace, actions, formal_actions, activated
+):
+    for i, j, _, rank, *_ in trace:
+        task = tasks[j]
+        operation = task["action"][0]
+        pos = tuple(task["pos"])
+        action = actions[i]
+        if rank != 0 or tuple(positions[i]) != pos or not action or action[0] != operation:
+            continue
+        _LAST_CHANCE_COUNTERS["last_chance_action_emitted_on_exact_target"] += 1
+        if activated and action != formal_actions[i]:
+            _LAST_CHANCE_COUNTERS["tiebreak_to_exact_target_action_emitted"] += 1
+        tile = farm["tiles"][pos[1]][pos[0]]
+        animal = tile.get("animal") if isinstance(tile, dict) else None
+        key = (int(obs.get("player", 0)), int(obs.get("day", 0)))
+        _LAST_CHANCE_PENDING.setdefault(key, {})[(operation, pos)] = animal
 
 
 def _unit_actions(obs, farm, private, cow_slots, crop_plan):
@@ -425,7 +560,16 @@ def _unit_actions(obs, farm, private, cow_slots, crop_plan):
                 actions[i] = _move(farm["tiles"], pos, s)
         return actions
 
-    old_comparator_actions = _old_comparator_actions(
+    (
+        actions,
+        emitted_trace,
+        formal_actions,
+        _,
+        _,
+        _,
+        tie_event,
+        accepted,
+    ) = _safe_allocation_actions(
         farm,
         private,
         positions,
@@ -433,39 +577,16 @@ def _unit_actions(obs, farm, private, cow_slots, crop_plan):
         shed,
         tasks,
     )
-    while free_units and free_tasks:
-        best, _, eligible, activated = _last_chance_choices(
-            farm,
-            positions,
-            invs,
-            shed,
-            tasks,
-            free_units,
-            free_tasks,
-        )
-        if best is None:
-            break
-        if eligible:
-            _LAST_CHANCE_COUNTERS["eligible_opportunity"] += 1
-        _, i, j = best
-        action = _task_action(farm, positions[i], invs[i], shed, tasks[j])
-        if activated:
-            _LAST_CHANCE_COUNTERS["rank_tiebreak_activated"] += 1
-        actions[i] = action
-        _record_last_chance_action(obs, farm, positions[i], tasks[j], action)
-        free_units.remove(i)
-        free_tasks.remove(j)
-
-    remaining = dict(private.get("seeds", {}) or {})
-    for i, action in enumerate(actions):
-        if len(action) >= 2 and action[0] == "PLANT":
-            crop = action[1]
-            if int(remaining.get(crop, 0)) <= 0:
-                actions[i] = ["PASS"]
-            else:
-                remaining[crop] -= 1
-    if actions != old_comparator_actions:
-        _LAST_CHANCE_COUNTERS["action_changed_vs_old_comparator_on_same_state"] += 1
+    _record_last_chance_actions(
+        obs,
+        farm,
+        positions,
+        tasks,
+        emitted_trace,
+        actions,
+        formal_actions,
+        tie_event and accepted,
+    )
     return actions
 
 
