@@ -31,7 +31,7 @@
     "guarded_r145_margin_mean": 28979.46875
   },
   "seed_registry": "configs/fa_ab_seed_registry.json",
-  "seed_registry_sha256": "E2CF93D7ECBB085B6E4EB338C88F07A450217DF43096F0AF140DB274DBB94CE0",
+  "seed_registry_sha256": "A47178366A0B41FC26FC11E74FCCC087E91CF9D92365D27CA6FA15B942DF1290",
   "pools": {
     "development": {
       "registry_key": "Fa05_R145_trace_guard_development",
@@ -45,14 +45,14 @@
       "start": 44000,
       "end_inclusive": 44063,
       "count": 64,
-      "status": "CLOSED"
+      "status": "RETIRED_UNUSED"
     },
     "robustness": {
       "registry_key": "Fa05_R145_trace_guard_robustness",
       "start": 45000,
       "end_inclusive": 45031,
       "count": 32,
-      "status": "CLOSED"
+      "status": "RETIRED_UNUSED"
     }
   },
   "scenario_config": {

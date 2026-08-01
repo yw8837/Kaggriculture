@@ -279,20 +279,24 @@
       "end_inclusive": 44063,
       "count": 64,
       "purpose": "One-time independent confirmation after Fa05 R145 development passes.",
-      "status": "CLOSED",
+      "status": "RETIRED_UNUSED",
       "opened": false,
       "consumed": false,
-      "evaluated_games": 0
+      "evaluated_games": 0,
+      "promotion_eligible": false,
+      "reason": "Fa05 R145 development was accepted as NO-GO; evidence 9450738023B87798774883590C1EFCBB5174533FF48C090507E7E1F3463F8BB0. This candidate-specific pool may not be reused."
     },
     "Fa05_R145_trace_guard_robustness": {
       "start": 45000,
       "end_inclusive": 45031,
       "count": 32,
       "purpose": "One-time scenario robustness after Fa05 R145 confirmation passes.",
-      "status": "CLOSED",
+      "status": "RETIRED_UNUSED",
       "opened": false,
       "consumed": false,
-      "evaluated_games": 0
+      "evaluated_games": 0,
+      "promotion_eligible": false,
+      "reason": "Fa05 R145 development was accepted as NO-GO; evidence 9450738023B87798774883590C1EFCBB5174533FF48C090507E7E1F3463F8BB0. This candidate-specific pool may not be reused."
     }
   }
 }

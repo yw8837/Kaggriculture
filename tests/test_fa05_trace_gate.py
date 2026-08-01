@@ -38,7 +38,7 @@ def test_fa05_candidate_is_deterministic_attributed_and_compiles() -> None:
     compile(text, str(source), "exec")
 
 
-def test_fa05_pools_are_exact_disjoint_and_closed() -> None:
+def test_fa05_development_no_go_and_downstream_pools_retired() -> None:
     boundary = _load(BOUNDARY)
     registry = _load(REGISTRY)["next_boundary_reservations"]
     expected = {
@@ -50,17 +50,42 @@ def test_fa05_pools_are_exact_disjoint_and_closed() -> None:
     for lane, (key, start, end, count) in expected.items():
         pool = boundary["pools"][lane]
         registered = registry[key]
+        expected_status = (
+            "CONSUMED_NO_GO" if lane == "development" else "RETIRED_UNUSED"
+        )
         assert pool == {
             "registry_key": key,
             "start": start,
             "end_inclusive": end,
             "count": count,
-            "status": "CLOSED",
+            "status": expected_status,
         }
-        assert registered["status"] == "CLOSED"
-        assert registered["opened"] is False
-        assert registered["consumed"] is False
-        assert registered["evaluated_games"] == 0
+        assert registered["status"] == expected_status
+        if lane == "development":
+            assert registered["opened"] is True
+            assert registered["consumed"] is True
+            assert registered["evaluated_candidate_games"] == 192
+            assert registered["evaluated_control_games"] == 192
+            assert registered["evaluated_games"] == 384
+            assert registered["evaluated_paired_cells"] == 192
+            assert registered["promotion_eligible"] is False
+            assert registered["candidate_report_sha256"] == (
+                "3DF39DE7F7879B8D825619F81985E30120BA051452039EC5565508BC964A832A"
+            )
+            assert registered["control_report_sha256"] == (
+                "80D191D1C66F1AD1F36A092996FF9584BD12E04B0BCB21F85B5C88631D08AF74"
+            )
+            assert registered["evidence_sha256"] == (
+                "9450738023B87798774883590C1EFCBB5174533FF48C090507E7E1F3463F8BB0"
+            )
+        else:
+            assert registered["opened"] is False
+            assert registered["consumed"] is False
+            assert registered["evaluated_games"] == 0
+            assert registered["promotion_eligible"] is False
+            assert "9450738023B87798774883590C1EFCBB5174533FF48C090507E7E1F3463F8BB0" in (
+                registered["reason"]
+            )
         values = set(range(start, end + 1))
         assert not (values & all_values)
         all_values |= values
@@ -178,18 +203,8 @@ def test_fa05_every_frozen_input_hash_matches_actual_bytes() -> None:
 
 
 def test_fa05_lifecycle_rejects_non_utc_open_time() -> None:
-    boundary = _load(BOUNDARY)
-    registry = _load(REGISTRY)
-    boundary["status"] = "DEVELOPMENT_OPEN_AUTHORIZED"
-    boundary["pools"]["development"]["status"] = "OPEN"
-    boundary["development_opened_at_utc"] = "2026-08-02T06:00:00"
-    boundary["opening_authority"] = gate.OPENING_AUTHORITY
-    registered = registry["next_boundary_reservations"][gate.DEVELOPMENT_KEY]
-    registered["status"] = "OPEN"
-    registered["opened"] = True
-    registered["opened_at_utc"] = boundary["development_opened_at_utc"]
     with pytest.raises(ValueError, match="must be UTC"):
-        gate._validate_lifecycle(boundary, registry)
+        gate._utc_datetime("2026-08-02T06:00:00", "development_opened_at_utc")
 
 
 def test_fa05_runtime_rejects_out_of_order_percentiles() -> None:
