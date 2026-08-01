@@ -1,10 +1,8 @@
 {
   "schema_version": 1,
   "identity": "Fa04_top_trace_guard_G1",
-  "status": "DEVELOPMENT_OPEN_AUTHORIZED",
-  "development_opened_at_utc": "2026-08-01T14:12:16.1513157Z",
-  "opening_authority": "User directed autonomous local work and prioritized an early strong ladder probe; this opens local evaluation only, not competition submission.",
-  "implementation_commit": "aa0bc06f0eaff8112898576f418fffeb25c367f1",
+  "status": "CLOSED_PENDING_CORRECTED_FREEZE_AUDIT",
+  "implementation_commit": "c7b3d6d3f1e0884a66e4acfe67f2de4c640bb214",
   "hypothesis": "The public R130 capital and labor schedule is the current strategic leap; preserving it while clamping only impossible SELL orders improves drift safety without materially weakening cross-play.",
   "target": "Fast 1400-ladder probe; 1200 is the minimum target, neither score is guaranteed by local simulation.",
   "attribution": {
@@ -37,7 +35,7 @@
       "start": 40000,
       "end_inclusive": 40015,
       "count": 16,
-      "status": "OPEN"
+      "status": "CLOSED"
     },
     "confirmation": {
       "registry_key": "Fa04_top_trace_guard_confirmation",
@@ -57,7 +55,7 @@
   "scenario_overrides": {
     "default": {}
   },
-  "expected_effective_scenarios_sha256": "F960E92B5C5DF0FE21944D8195EC3731FA21368029C5731B1CC14BA35FB010CE",
+  "expected_effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE",
   "candidate": {
     "identity": "G1_R130_sell_guard",
     "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
