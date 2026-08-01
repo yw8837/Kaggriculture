@@ -3,6 +3,7 @@ from __future__ import annotations
 import ast
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 from kaggriculture_lab.evaluation.runner import _effective_configuration
@@ -11,6 +12,7 @@ ROOT = Path(".")
 CONFIG = ROOT / "configs/fa02_last_chance_boundary.json"
 MANIFEST = ROOT / "experiments/source_snapshots/fa02_last_chance_manifest.json"
 REGISTRY = ROOT / "configs/fa_ab_seed_registry.json"
+INPUT_FREEZE_COMMIT = "2424ac083faa71b57ab6fe478e9099129dc79c97"
 
 NEW_POOLS = {
     "Fa02_last_chance_development": (34000, 34015, 16),
@@ -57,6 +59,10 @@ def _load(path: Path) -> dict:
 
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest().upper()
+
+
+def _git_blob(commit: str, path: str) -> bytes:
+    return subprocess.check_output(["git", "show", f"{commit}:{path}"])
 
 
 def _expand(pool: dict) -> set[int]:
@@ -159,9 +165,12 @@ def test_manifest_hash_and_byte_loop_freezes_every_required_input() -> None:
     assert len(frozen) == 19
     assert {entry["path"] for entry in frozen} == expected_paths
     for entry in frozen:
-        path = Path(entry["path"])
-        assert path.stat().st_size == entry["bytes"]
-        assert _sha256(path) == entry["sha256"]
+        if entry.get("tracking") == "IMMUTABLE_LOCAL_EXTERNAL":
+            blob = Path(entry["path"]).read_bytes()
+        else:
+            blob = _git_blob(INPUT_FREEZE_COMMIT, entry["path"])
+        assert len(blob) == entry["bytes"]
+        assert hashlib.sha256(blob).hexdigest().upper() == entry["sha256"]
 
     assert manifest["status"] == config["status"]
     assert manifest["seed_state"] == {

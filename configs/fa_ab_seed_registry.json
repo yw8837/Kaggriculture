@@ -250,6 +250,36 @@
       "opened": false,
       "consumed": false,
       "evaluated_games": 0
+    },
+    "Fa05_R145_trace_guard_development": {
+      "start": 43000,
+      "end_inclusive": 43015,
+      "count": 16,
+      "purpose": "Fresh one-candidate development of the attributed R145 schedule with the audited impossible-SELL drift guard.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa05_R145_trace_guard_confirmation": {
+      "start": 44000,
+      "end_inclusive": 44063,
+      "count": 64,
+      "purpose": "One-time independent confirmation after Fa05 R145 development passes.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa05_R145_trace_guard_robustness": {
+      "start": 45000,
+      "end_inclusive": 45031,
+      "count": 32,
+      "purpose": "One-time scenario robustness after Fa05 R145 confirmation passes.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
     }
   }
 }

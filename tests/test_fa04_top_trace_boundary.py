@@ -3,6 +3,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import subprocess
 from datetime import datetime
 from pathlib import Path
 
@@ -71,6 +72,10 @@ def _canonical_projection_sha256(value: dict, excluded_paths: list[str]) -> str:
     return _json_sha256(_without_paths(value, excluded_paths))
 
 
+def _git_json(commit: str, path: str) -> dict:
+    return json.loads(subprocess.check_output(["git", "show", f"{commit}:{path}"]))
+
+
 def _assert_fa04_lifecycle(boundary: dict, registry: dict) -> None:
     boundary_pool = boundary["pools"]["development"]
     registry_pool = registry["next_boundary_reservations"]["Fa04_top_trace_guard_development"]
@@ -98,6 +103,7 @@ def test_fa04_top_trace_boundary_binds_exact_sources_and_attribution() -> None:
     assert config["status"] in {
         "CLOSED_PENDING_CORRECTED_FREEZE_AUDIT",
         "DEVELOPMENT_OPEN_AUTHORIZED",
+        "DEVELOPMENT_PASS_AWAITING_SAVERUN_AUDIT",
     }
     attribution = config["attribution"]
     assert attribution == {
@@ -159,9 +165,12 @@ def test_fa04_top_trace_scenario_and_seed_pools_are_exact_closed_and_disjoint() 
         if purpose != "development":
             assert pool["status"] == lane["status"] == "CLOSED"
             assert pool["opened"] is False
-        assert pool["consumed"] is False
-        assert pool["evaluated_games"] == 0
-    _assert_fa04_lifecycle(config, registry)
+            assert pool["consumed"] is False
+            assert pool["evaluated_games"] == 0
+        else:
+            assert pool["status"] == lane["status"] == "CONSUMED_PASS"
+            assert pool["opened"] is pool["consumed"] is True
+            assert pool["evaluated_games"] == 384
 
 
 def test_fa04_top_trace_gates_keep_score_target_as_an_unverified_goal() -> None:
@@ -211,8 +220,10 @@ def test_fa04_execution_freeze_binds_tooling_license_replay_and_exact_design() -
 
 def test_fa04_open_transition_canonical_invariant_is_preregistered() -> None:
     boundary = json.loads(BOUNDARY.read_text(encoding="utf-8"))
-    registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
     invariant = boundary["open_transition_invariant"]
+    closed_commit = boundary["implementation_commit"]
+    closed_boundary = _git_json(closed_commit, BOUNDARY.relative_to(ROOT).as_posix())
+    closed_registry = _git_json(closed_commit, REGISTRY.relative_to(ROOT).as_posix())
     assert invariant == {
         "schema_version": 1,
         "basis": {
@@ -255,11 +266,11 @@ def test_fa04_open_transition_canonical_invariant_is_preregistered() -> None:
         "canonical_registry_non_lifecycle_sha256": (EXPECTED_REGISTRY_NON_LIFECYCLE_SHA256),
     }
     assert (
-        _canonical_projection_sha256(boundary, BOUNDARY_EXCLUDED_PATHS)
+        _canonical_projection_sha256(closed_boundary, BOUNDARY_EXCLUDED_PATHS)
         == EXPECTED_BOUNDARY_NON_LIFECYCLE_SHA256
     )
     assert (
-        _canonical_projection_sha256(registry, REGISTRY_EXCLUDED_PATHS)
+        _canonical_projection_sha256(closed_registry, REGISTRY_EXCLUDED_PATHS)
         == EXPECTED_REGISTRY_NON_LIFECYCLE_SHA256
     )
     assert invariant["canonical_boundary_non_lifecycle_sha256"] == (
@@ -272,12 +283,14 @@ def test_fa04_open_transition_canonical_invariant_is_preregistered() -> None:
         "Development PASS permits only a separate SaveRun readiness request; "
         "no SaveRun without separate authorization/audit verdict."
     )
-    _assert_fa04_lifecycle(boundary, registry)
+    _assert_fa04_lifecycle(closed_boundary, closed_registry)
 
 
 def test_fa04_open_transition_changes_only_preregistered_lifecycle_fields() -> None:
-    boundary = json.loads(BOUNDARY.read_text(encoding="utf-8"))
-    registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
+    current = json.loads(BOUNDARY.read_text(encoding="utf-8"))
+    closed_commit = current["implementation_commit"]
+    boundary = _git_json(closed_commit, BOUNDARY.relative_to(ROOT).as_posix())
+    registry = _git_json(closed_commit, REGISTRY.relative_to(ROOT).as_posix())
     opened_boundary = copy.deepcopy(boundary)
     opened_registry = copy.deepcopy(registry)
     opened_at = "2026-08-02T00:00:00Z"

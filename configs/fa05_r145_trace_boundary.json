@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "identity": "Fa05_R145_trace_guard_T1",
+  "status": "CLOSED_PENDING_INDEPENDENT_AUDIT",
+  "implementation_commit": "PENDING_FREEZE",
+  "hypothesis": "A second attributed high-scoring R145 trajectory provides useful matchup diversity while the audited impossible-SELL guard prevents known off-trajectory market illegality.",
+  "claim_limit": "This is a complementary exploratory candidate. Local evidence cannot guarantee a 1200 rating or top-three finish.",
+  "attribution": {
+    "upstream_notebook": "https://www.kaggle.com/code/prvsiyan/kaggriculture-frontier-lab-high-score-visuals",
+    "upstream_author": "PRVSIYAN",
+    "upstream_license": "Apache-2.0",
+    "episode_id": 89268002,
+    "team": "radiant-allomancer",
+    "player": 1,
+    "replay_sha256": "BB2523859718C0C1CAA08277D3F058583E668C94565321E8F89BB3E77766094F",
+    "recorded_actions": 719
+  },
+  "screening_evidence": {
+    "purpose": "selection_only_consumed_seeds_not_promotion_evidence",
+    "seeds": "23000-23007",
+    "opponents": ["formal_final_day_labor", "Fa04_G1_sell_guard"],
+    "fixed_r145_record": "22-10",
+    "fixed_r145_match_score": 0.6875,
+    "fixed_r145_money_mean": 130249.6875,
+    "fixed_r145_margin_mean": 28978.84375,
+    "guarded_r145_record": "22-10",
+    "guarded_r145_match_score": 0.6875,
+    "guarded_r145_money_mean": 130250.03125,
+    "guarded_r145_margin_mean": 28979.46875
+  },
+  "seed_registry": "configs/fa_ab_seed_registry.json",
+  "seed_registry_sha256": "4E09FFD721A20785E9730C9D70FCFCE1E5F915FCB9946BD6D34D0AC85438C120",
+  "pools": {
+    "development": {
+      "registry_key": "Fa05_R145_trace_guard_development",
+      "start": 43000,
+      "end_inclusive": 43015,
+      "count": 16,
+      "status": "CLOSED"
+    },
+    "confirmation": {
+      "registry_key": "Fa05_R145_trace_guard_confirmation",
+      "start": 44000,
+      "end_inclusive": 44063,
+      "count": 64,
+      "status": "CLOSED"
+    },
+    "robustness": {
+      "registry_key": "Fa05_R145_trace_guard_robustness",
+      "start": 45000,
+      "end_inclusive": 45031,
+      "count": 32,
+      "status": "CLOSED"
+    }
+  },
+  "scenario_config": {
+    "path": "configs/fa05_r145_scenarios.json",
+    "sha256": "D344CBAF5675B642E18EED7BDE4719D7D6C30DCEAD0F8658412BEC99F06D64DB",
+    "bytes": 43
+  },
+  "expected_effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE",
+  "candidate": {
+    "identity": "T1_R145_sell_guard",
+    "path": "experiments/source_snapshots/fa05_r145_trace/T1_R145_sell_guard.py",
+    "sha256": "1ED43DDB04E0B47DD49AB2F8B3D75671F97383ACFE23CBE5C5BC468EF2665A8A",
+    "bytes": 205661
+  },
+  "control": {
+    "identity": "Fa04_G1_sell_guard",
+    "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+    "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+    "bytes": 197808
+  },
+  "opponents": [
+    {
+      "identity": "C135_chocolat",
+      "path": "experiments/source_snapshots/fa04_top_trace/C135.py",
+      "sha256": "13C88E1D9232F66A219AF0B66A36A46D622C2466856D191E57A8FDC42BC7C1EE"
+    },
+    {
+      "identity": "R140_radiant",
+      "path": "experiments/source_snapshots/fa04_top_trace/R140.py",
+      "sha256": "E4BDEDB791FC129AA73941D96BEA2C20709D9431A8C9628AB526EA186B0F4870"
+    },
+    {
+      "identity": "R150_radiant",
+      "path": "experiments/source_snapshots/fa04_top_trace/R150.py",
+      "sha256": "80AB5C9E50540FE49D68DED3D170FF79C34603FAF19257BD01554A19E30DA599"
+    },
+    {
+      "identity": "R155_radiant",
+      "path": "experiments/source_snapshots/fa04_top_trace/R155.py",
+      "sha256": "857A8F98425D06262E503D46C15FC9480358ADA7621BC5D6D30575B2B71A167C"
+    },
+    {
+      "identity": "formal_final_day_labor",
+      "path": "artifacts/candidates/final_day_labor/main.py",
+      "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B"
+    },
+    {
+      "identity": "Fa04_G1_sell_guard",
+      "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+      "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+    }
+  ],
+  "tooling": {
+    "generator": "src/kaggriculture_lab/research/replay_policy.py",
+    "generator_sha256": "7A8AF282BA98C18E50ACF99160E85A32690AEEAB51DC436FB3175C2B254C1E79",
+    "runner": "src/kaggriculture_lab/evaluation/runner.py",
+    "runner_sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+    "paired_analyzer": "src/kaggriculture_lab/evaluation/paired.py",
+    "paired_analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
+    "runtime_generator": "src/kaggriculture_lab/evaluation/fa05_trace_gate.py",
+    "runtime_generator_sha256": "FF7BFAEFAE167E09D15CC62EF101ADF78F3B51CD60EEA52718BCAF5F990BB416",
+    "runtime_benchmark": "src/kaggriculture_lab/evaluation/runtime.py",
+    "runtime_benchmark_sha256": "B7605EF73C62EA1CC55C187723F3D8E92E543286A4AB2E82C6C93AACD60F02F2",
+    "gate_evaluator": "src/kaggriculture_lab/evaluation/fa05_trace_gate.py",
+    "gate_evaluator_sha256": "FF7BFAEFAE167E09D15CC62EF101ADF78F3B51CD60EEA52718BCAF5F990BB416"
+  },
+  "development_design": {
+    "scenarios": ["default"],
+    "seeds": "43000-43015",
+    "seats": [0, 1],
+    "opponents": 6,
+    "exact_cells_per_lane": 192,
+    "workers_per_lane": 6,
+    "separate_start_receipts_required": true
+  },
+  "development_gates": {
+    "candidate_failures": 0,
+    "control_failures": 0,
+    "minimum_candidate_top_trace_match_score": 0.75,
+    "minimum_each_top_trace_match_score": 0.5,
+    "minimum_formal_match_score": 0.9,
+    "minimum_direct_g1_match_score": 0.5,
+    "minimum_direct_g1_margin": 0.0,
+    "minimum_each_opponent_mean_margin": 0.0,
+    "minimum_paired_external_match_delta": -0.02,
+    "minimum_paired_external_money_delta": -100.0,
+    "minimum_complementarity_lane_match_delta": 0.0625,
+    "minimum_complementarity_lane_money_delta": 0.0,
+    "runtime_p95_ms_max": 8.0,
+    "runtime_p99_ms_max": 15.0,
+    "runtime_absolute_ms_max": 50.0,
+    "invalid_outputs": 0
+  },
+  "execution_freeze": {
+    "development_gates_sha256": "3F737C3BF79FD3CA231A295D51E8F02736294FC0AAE9D0302161CD6C2583ED10",
+    "third_party_license": {
+      "path": "third_party/fa04_frontier_lab/LICENSE",
+      "sha256": "C71D239DF91726FC519C6EB72D318EC65820627232B2F796219E87DCF35D0AB4",
+      "bytes": 11357
+    },
+    "third_party_attribution": {
+      "path": "third_party/fa04_frontier_lab/ATTRIBUTION.md",
+      "sha256": "2EF65172CFAB942EDDB2372CB9A65CB2C2976455A14B869B6402DF3C0CADB91F",
+      "bytes": 555
+    },
+    "runtime_replay": {
+      "path": "references/fa04_teacher_replays/episode-89268002-replay.json",
+      "sha256": "BB2523859718C0C1CAA08277D3F058583E668C94565321E8F89BB3E77766094F",
+      "bytes": 24437865,
+      "player": 1,
+      "observations": 720,
+      "recorded_actions": 719
+    },
+    "artifacts": {
+      "candidate_report": "experiments/evaluations/fa05_r145_trace/T1_development.json",
+      "control_report": "experiments/evaluations/fa05_r145_trace/G1_control.json",
+      "candidate_start_receipt": "experiments/evaluations/fa05_r145_trace/T1_development.contract.started.json",
+      "control_start_receipt": "experiments/evaluations/fa05_r145_trace/G1_control.contract.started.json",
+      "runtime_report": "experiments/evaluations/fa05_r145_trace/T1_runtime.json",
+      "analysis_report": "experiments/evaluations/fa05_r145_trace/T1_development_gate.json"
+    }
+  },
+  "release_policy": "Development PASS permits only a separate private SaveRun readiness request. Confirmation, robustness, competition submission, and publication stay closed."
+}
