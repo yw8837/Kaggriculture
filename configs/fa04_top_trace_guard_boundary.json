@@ -2,7 +2,7 @@
   "schema_version": 1,
   "identity": "Fa04_top_trace_guard_G1",
   "status": "CLOSED_PENDING_CORRECTED_FREEZE_AUDIT",
-  "implementation_commit": "1af2b4a7bc58372dda473f3c388f2b4b200d7879",
+  "implementation_commit": "42950f6e51cb55e0e2ac3220c9e869136e34a7b2",
   "hypothesis": "The public R130 capital and labor schedule is the current strategic leap; preserving it while clamping only impossible SELL orders improves drift safety without materially weakening cross-play.",
   "target": "Fast 1400-ladder probe; 1200 is the minimum target, but 1200/1400 are not guaranteed by local simulation.",
   "attribution": {
