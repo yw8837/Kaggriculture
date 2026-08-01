@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import ast
+import copy
 import hashlib
 import json
 from pathlib import Path
@@ -11,6 +12,9 @@ from kaggriculture_lab.evaluation import top_trace_gate as gate
 
 IMPLEMENTATION_HEAD = "0" * 40
 EXECUTION_HEAD = "1" * 40
+S2_IMPLEMENTATION_HEAD = "2" * 40
+CLOSED_EXECUTION_HEAD = "3" * 40
+OPENED_AT = "2026-08-02T00:00:00Z"
 
 
 def _sha(path: Path) -> str:
@@ -27,6 +31,29 @@ def _write_json(path: Path, value: object) -> None:
     path.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
 
 
+def _json_bytes(value: object) -> bytes:
+    return (json.dumps(value, indent=2) + "\n").encode()
+
+
+def _value_sha(value: object) -> str:
+    return hashlib.sha256(_json_bytes(value)).hexdigest().upper()
+
+
+def _without_paths(value: dict[str, object], paths: tuple[str, ...]) -> dict[str, object]:
+    result = copy.deepcopy(value)
+    for path in paths:
+        parts = path.split(".")
+        current = result
+        for part in parts[:-1]:
+            if not isinstance(current, dict) or part not in current:
+                break
+            current = current[part]
+        else:
+            if isinstance(current, dict):
+                current.pop(parts[-1], None)
+    return result
+
+
 def _entry(root: Path, relative: str, payload: str) -> dict[str, object]:
     path = root / relative
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -34,7 +61,7 @@ def _entry(root: Path, relative: str, payload: str) -> dict[str, object]:
     return {"path": relative, "sha256": _sha(path), "bytes": path.stat().st_size}
 
 
-def _registry() -> dict[str, object]:
+def _registry(*, opened: bool = True) -> dict[str, object]:
     def pool(start: int, end: int, status: str, opened: bool) -> dict[str, object]:
         return {
             "start": start,
@@ -46,23 +73,28 @@ def _registry() -> dict[str, object]:
             "evaluated_games": 0,
         }
 
+    development = pool(
+        40000, 40015, "OPEN" if opened else "CLOSED", opened
+    )
+    if opened:
+        development["opened_at_utc"] = OPENED_AT
     return {
         "next_boundary_reservations": {
-            "dev": pool(40000, 40015, "OPEN", True),
+            "Fa04_top_trace_guard_development": development,
             "confirmation": pool(41000, 41063, "CLOSED", False),
             "robustness": pool(42000, 42031, "CLOSED", False),
         }
     }
 
 
-def _pools() -> dict[str, object]:
+def _pools(*, opened: bool = True) -> dict[str, object]:
     return {
         "development": {
-            "registry_key": "dev",
+            "registry_key": "Fa04_top_trace_guard_development",
             "start": 40000,
             "end_inclusive": 40015,
             "count": 16,
-            "status": "OPEN",
+            "status": "OPEN" if opened else "CLOSED",
         },
         "confirmation": {
             "registry_key": "confirmation",
@@ -96,6 +128,32 @@ def _gates() -> dict[str, object]:
         "runtime_p99_ms_max": 15.0,
         "runtime_absolute_ms_max": 50.0,
         "invalid_outputs": 0,
+    }
+
+
+def _transition_invariant(
+    closed_boundary: dict[str, object], closed_registry: dict[str, object]
+) -> dict[str, object]:
+    return {
+        "schema_version": 1,
+        "basis": {
+            "label": "S2_IMPLEMENTATION_E2_EXECUTION",
+            "implementation_commit": S2_IMPLEMENTATION_HEAD,
+            "closed_execution_commit": CLOSED_EXECUTION_HEAD,
+        },
+        "canonicalization": {
+            "algorithm": gate.CANONICAL_ALGORITHM,
+            "boundary_excluded_paths": list(gate.BOUNDARY_CANONICAL_EXCLUDED_PATHS),
+            "registry_excluded_paths": list(gate.REGISTRY_CANONICAL_EXCLUDED_PATHS),
+        },
+        "allowed_open_delta": gate.EXPECTED_ALLOWED_OPEN_DELTA,
+        "required_open_metadata": gate.EXPECTED_OPEN_METADATA,
+        "canonical_boundary_non_lifecycle_sha256": _json_sha(
+            _without_paths(closed_boundary, gate.BOUNDARY_CANONICAL_EXCLUDED_PATHS)
+        ),
+        "canonical_registry_non_lifecycle_sha256": _json_sha(
+            _without_paths(closed_registry, gate.REGISTRY_CANONICAL_EXCLUDED_PATHS)
+        ),
     }
 
 
@@ -208,7 +266,9 @@ def frozen_case(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, ob
     scenario_path = root / "configs/scenarios.json"
     _write_json(scenario_path, {"scenarios": {"default": {}}})
     registry_path = root / "configs/registry.json"
-    _write_json(registry_path, _registry())
+    closed_registry = _registry(opened=False)
+    registry = _registry(opened=True)
+    _write_json(registry_path, registry)
     tooling_entries = {
         name: _entry(root, f"tooling/{name}.py", f"# frozen {name}\n")
         for name in gate.TOOLING_KEYS
@@ -230,12 +290,12 @@ def frozen_case(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, ob
     boundary = {
         "schema_version": 2,
         "identity": "Fa04_top_trace_guard_G1",
-        "status": "DEVELOPMENT_OPEN_AUTHORIZED",
-        "implementation_commit": IMPLEMENTATION_HEAD,
+        "status": "CLOSED_PENDING_CORRECTED_FREEZE_AUDIT",
+        "implementation_commit": S2_IMPLEMENTATION_HEAD,
         "attribution": {"replay_sha256": runtime_replay["sha256"]},
         "seed_registry": "configs/registry.json",
-        "seed_registry_sha256": _sha(registry_path),
-        "pools": _pools(),
+        "seed_registry_sha256": _value_sha(closed_registry),
+        "pools": _pools(opened=False),
         "scenario_config": {
             "path": "configs/scenarios.json",
             "sha256": _sha(scenario_path),
@@ -269,9 +329,34 @@ def frozen_case(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, ob
             "runtime_replay": runtime_replay,
             "artifacts": artifacts,
         },
+        "release_policy": (
+            "Development PASS permits only a separate SaveRun readiness request; "
+            "no SaveRun without separate authorization/audit verdict."
+        ),
     }
+    boundary["open_transition_invariant"] = _transition_invariant(
+        boundary, closed_registry
+    )
+    closed_boundary = copy.deepcopy(boundary)
+    boundary["status"] = "DEVELOPMENT_OPEN_AUTHORIZED"
+    boundary["implementation_commit"] = IMPLEMENTATION_HEAD
+    boundary["seed_registry_sha256"] = _sha(registry_path)
+    boundary["pools"]["development"]["status"] = "OPEN"
+    boundary["development_opened_at_utc"] = OPENED_AT
+    boundary["opening_authority"] = gate.OPENING_AUTHORITY
     boundary_path = root / "configs/fa04_top_trace_guard_boundary.json"
     _write_json(boundary_path, boundary)
+    def fake_git_json_blob(
+        _project_root: Path, _head: str, relative: str, _label: str
+    ) -> tuple[dict[str, object], str]:
+        value = (
+            closed_boundary
+            if relative == gate.BOUNDARY_RELATIVE
+            else closed_registry
+        )
+        return copy.deepcopy(value), _value_sha(value)
+
+    monkeypatch.setattr(gate, "_git_json_blob", fake_git_json_blob)
     monkeypatch.setattr(
         gate,
         "_verify_git_freeze",
@@ -297,23 +382,36 @@ def frozen_case(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, ob
         }
         _write_json(root / artifacts[f"{lane}_report"], report)
     runtime_generator = tooling_entries["runtime_generator"]
+    runtime_receipt_relative = gate._runtime_receipt_relative(
+        artifacts["runtime_report"]
+    )
+    runtime_receipt_path = root / runtime_receipt_relative
+    _write_json(runtime_receipt_path, gate._runtime_receipt_payload(plan))
     runtime = {
         "git_head": EXECUTION_HEAD,
         "tracked_tree_clean": True,
+        "generation_receipt": {
+            "path": runtime_receipt_relative,
+            "sha256": _sha(runtime_receipt_path),
+        },
         "generator": {
             "path": str((root / runtime_generator["path"]).resolve()),
             "sha256": runtime_generator["sha256"],
         },
         "tracked_provenance": {
             "project_root": str(root.resolve()),
+            "implementation_commit": IMPLEMENTATION_HEAD,
             "git_head": EXECUTION_HEAD,
             "tracked_tree_clean": True,
             "source_relative": candidate["path"],
             "source_at_head_sha256": candidate["sha256"],
+            "runtime_replay": runtime_replay,
         },
         "source": str((root / candidate["path"]).resolve()),
         "source_sha256": candidate["sha256"],
+        "replay": str((root / runtime_replay["path"]).resolve()),
         "replay_sha256": runtime_replay["sha256"],
+        "player": 0,
         "calls": 720,
         "invalid_outputs": 0,
         "p95_ms": 1.0,
@@ -464,7 +562,9 @@ def test_wrong_git_head_workers_or_implementation_is_rejected(
         _analyze(frozen_case)
 
 
-@pytest.mark.parametrize("mode", ["effective", "environment", "resolved_seed"])
+@pytest.mark.parametrize(
+    "mode", ["effective", "environment", "environment_seed", "resolved_seed"]
+)
 def test_wrong_per_row_configuration_or_seed_is_rejected(
     frozen_case: dict[str, object], mode: str
 ) -> None:
@@ -480,6 +580,11 @@ def test_wrong_per_row_configuration_or_seed_is_rejected(
             row["environment_configuration_sha256"] = _json_sha(
                 row["environment_configuration"]
             )
+        elif mode == "environment_seed":
+            row["environment_configuration"]["seed"] += 1
+            row["environment_configuration_sha256"] = _json_sha(
+                row["environment_configuration"]
+            )
         else:
             row["resolved_environment_seed"] += 1
 
@@ -490,7 +595,9 @@ def test_wrong_per_row_configuration_or_seed_is_rejected(
 
 def test_closed_development_registry_is_rejected(frozen_case: dict[str, object]) -> None:
     def close(registry: dict[str, object]) -> None:
-        registry["next_boundary_reservations"]["dev"].update(
+        registry["next_boundary_reservations"][
+            "Fa04_top_trace_guard_development"
+        ].update(
             {"status": "CLOSED", "opened": False, "consumed": False}
         )
 
@@ -503,6 +610,49 @@ def test_closed_development_registry_is_rejected(frozen_case: dict[str, object])
     )
     with pytest.raises(ValueError, match="lifecycle"):
         _analyze(frozen_case)
+
+
+@pytest.mark.parametrize(
+    "mode",
+    ["threshold", "opponent", "replay", "artifact", "scenario", "registry", "self_hash"],
+)
+def test_production_invariant_rejects_non_lifecycle_self_hash_updates(
+    frozen_case: dict[str, object], mode: str
+) -> None:
+    boundary_path = frozen_case["boundary"]
+    registry_path = frozen_case["registry"]
+    boundary = json.loads(boundary_path.read_text(encoding="utf-8"))
+    if mode in {"threshold", "self_hash"}:
+        boundary["development_gates"]["minimum_actions_changed"] = 999
+        boundary["execution_freeze"]["development_gates_sha256"] = _json_sha(
+            boundary["development_gates"]
+        )
+        if mode == "self_hash":
+            boundary["open_transition_invariant"][
+                "canonical_boundary_non_lifecycle_sha256"
+            ] = _json_sha(
+                _without_paths(boundary, gate.BOUNDARY_CANONICAL_EXCLUDED_PATHS)
+            )
+    elif mode == "opponent":
+        boundary["opponents"][0]["sha256"] = "A" * 64
+    elif mode == "replay":
+        boundary["attribution"]["replay_sha256"] = "A" * 64
+        boundary["execution_freeze"]["runtime_replay"]["sha256"] = "A" * 64
+    elif mode == "artifact":
+        boundary["candidate"]["sha256"] = "A" * 64
+    elif mode == "scenario":
+        boundary["scenario_config"]["sha256"] = "A" * 64
+    else:
+        registry = json.loads(registry_path.read_text(encoding="utf-8"))
+        pool = registry["next_boundary_reservations"][
+            "Fa04_top_trace_guard_development"
+        ]
+        pool.update({"start": 40001, "end_inclusive": 40016, "count": 16})
+        _write_json(registry_path, registry)
+        boundary["seed_registry_sha256"] = _sha(registry_path)
+    _write_json(boundary_path, boundary)
+    with pytest.raises(ValueError, match="invariant"):
+        gate._frozen_plan(frozen_case["root"], boundary_path)
 
 
 def test_modified_gate_tooling_is_rejected(frozen_case: dict[str, object]) -> None:
@@ -522,6 +672,87 @@ def test_runtime_generator_and_tracked_source_are_required(
         ),
     )
     with pytest.raises(ValueError, match="runtime tracked source provenance"):
+        _analyze(frozen_case)
+
+
+@pytest.mark.parametrize(
+    "field,value",
+    [
+        ("p95_ms", float("nan")),
+        ("p95_ms", float("inf")),
+        ("p95_ms", -0.1),
+        ("p95_ms", 4.0),
+    ],
+)
+def test_runtime_timings_must_be_finite_nonnegative_and_ordered(
+    frozen_case: dict[str, object], field: str, value: float
+) -> None:
+    _mutate_json(
+        frozen_case["runtime"],
+        lambda report: report.__setitem__(field, value),
+    )
+    with pytest.raises(ValueError, match="finite nonnegative|p95 <= p99 <= max"):
+        _analyze(frozen_case)
+
+
+@pytest.mark.parametrize("field", ["implementation_commit", "runtime_replay"])
+def test_runtime_tracked_provenance_is_exact(
+    frozen_case: dict[str, object], field: str
+) -> None:
+    replacement: object = "F" * 40 if field == "implementation_commit" else {}
+    _mutate_json(
+        frozen_case["runtime"],
+        lambda report: report["tracked_provenance"].__setitem__(field, replacement),
+    )
+    with pytest.raises(ValueError, match="runtime tracked source provenance"):
+        _analyze(frozen_case)
+
+
+@pytest.mark.parametrize("mode", ["missing", "wrong_head", "wrong_hash"])
+def test_runtime_generation_receipt_is_required_and_bound_to_execution_contract(
+    frozen_case: dict[str, object], mode: str
+) -> None:
+    runtime = json.loads(frozen_case["runtime"].read_text(encoding="utf-8"))
+    receipt_path = frozen_case["root"] / runtime["generation_receipt"]["path"]
+    if mode == "missing":
+        receipt_path.unlink()
+    elif mode == "wrong_head":
+        _mutate_json(
+            receipt_path,
+            lambda receipt: receipt.__setitem__("git_head", "F" * 40),
+        )
+        _mutate_json(
+            frozen_case["runtime"],
+            lambda report: report["generation_receipt"].__setitem__(
+                "sha256", _sha(receipt_path)
+            ),
+        )
+    else:
+        _mutate_json(
+            frozen_case["runtime"],
+            lambda report: report["generation_receipt"].__setitem__(
+                "sha256", "F" * 64
+            ),
+        )
+    with pytest.raises(ValueError, match="runtime generation receipt"):
+        _analyze(frozen_case)
+
+
+def test_modified_runtime_generator_tooling_is_rejected(
+    frozen_case: dict[str, object],
+) -> None:
+    entry = frozen_case["tooling"]["runtime_generator"]
+    (frozen_case["root"] / entry["path"]).write_text("# modified\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="tooling.runtime_generator hash mismatch"):
+        _analyze(frozen_case)
+
+
+def test_modified_runtime_benchmark_tooling_is_rejected(
+    frozen_case: dict[str, object],
+) -> None:
+    entry = frozen_case["tooling"]["runtime_benchmark"]
+    (frozen_case["root"] / entry["path"]).write_text("# modified\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="tooling.runtime_benchmark hash mismatch"):
         _analyze(frozen_case)
 
 
@@ -573,6 +804,10 @@ def test_generate_runtime_binds_execution_head_source_and_replay(
 
     output = frozen_case["runtime"]
     output.unlink()
+    runtime_receipt = frozen_case["root"] / gate._runtime_receipt_relative(
+        frozen_case["artifacts"]["runtime_report"]
+    )
+    runtime_receipt.unlink()
     monkeypatch.setattr(
         runtime,
         "benchmark",
@@ -602,4 +837,6 @@ def test_generate_runtime_binds_execution_head_source_and_replay(
     assert report["tracked_provenance"]["runtime_replay"] == frozen_case["plan"][
         "runtime_replay"
     ]
+    assert runtime_receipt.is_file()
+    assert report["generation_receipt"]["sha256"] == _sha(runtime_receipt)
     assert json.loads(output.read_text(encoding="utf-8")) == report

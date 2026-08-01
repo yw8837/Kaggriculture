@@ -91,9 +91,11 @@
     "paired_analyzer": "src/kaggriculture_lab/evaluation/paired.py",
     "paired_analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
     "runtime_generator": "src/kaggriculture_lab/evaluation/top_trace_gate.py",
-    "runtime_generator_sha256": "2110F7E97ACDBA29EADC2D1D7A292AE5F8FD4294C9FB50436619AB746BC99270",
+    "runtime_generator_sha256": "E904ED918361583AC2349A13DB09EA9177F09662BEA33A28605DD02A296C1A17",
+    "runtime_benchmark": "src/kaggriculture_lab/evaluation/runtime.py",
+    "runtime_benchmark_sha256": "B7605EF73C62EA1CC55C187723F3D8E92E543286A4AB2E82C6C93AACD60F02F2",
     "gate_evaluator": "src/kaggriculture_lab/evaluation/top_trace_gate.py",
-    "gate_evaluator_sha256": "2110F7E97ACDBA29EADC2D1D7A292AE5F8FD4294C9FB50436619AB746BC99270"
+    "gate_evaluator_sha256": "E904ED918361583AC2349A13DB09EA9177F09662BEA33A28605DD02A296C1A17"
   },
   "development_design": {
     "scenarios": ["default"],
@@ -145,5 +147,47 @@
       "analysis_report": "experiments/evaluations/fa04_top_trace_guard/G1_development_gate.json"
     }
   },
-  "release_policy": "Development pass permits immediate private Save & Run packaging because the user prioritizes early ladder accumulation; competition submission remains user-controlled."
+  "open_transition_invariant": {
+    "schema_version": 1,
+    "basis": {
+      "label": "S2_IMPLEMENTATION_E2_EXECUTION",
+      "implementation_commit": "586e69c110ade7e1ca0a7c7bf49eb6aeb1ab6a82",
+      "closed_execution_commit": "bfbddb37c4f25ddbbf6f746f20604eff5f894663"
+    },
+    "canonicalization": {
+      "algorithm": "SHA256_CANONICAL_JSON_SORTED_KEYS_COMPACT_ASCII",
+      "boundary_excluded_paths": [
+        "open_transition_invariant",
+        "implementation_commit",
+        "seed_registry_sha256",
+        "status",
+        "pools.development.status",
+        "development_opened_at_utc",
+        "opening_authority"
+      ],
+      "registry_excluded_paths": [
+        "next_boundary_reservations.Fa04_top_trace_guard_development.status",
+        "next_boundary_reservations.Fa04_top_trace_guard_development.opened",
+        "next_boundary_reservations.Fa04_top_trace_guard_development.opened_at_utc"
+      ]
+    },
+    "allowed_open_delta": {
+      "boundary": {
+        "status": ["CLOSED_PENDING_CORRECTED_FREEZE_AUDIT", "DEVELOPMENT_OPEN_AUTHORIZED"],
+        "pools.development.status": ["CLOSED", "OPEN"]
+      },
+      "registry": {
+        "next_boundary_reservations.Fa04_top_trace_guard_development.status": ["CLOSED", "OPEN"],
+        "next_boundary_reservations.Fa04_top_trace_guard_development.opened": [false, true]
+      }
+    },
+    "required_open_metadata": {
+      "boundary.development_opened_at_utc": "RFC3339_UTC",
+      "boundary.opening_authority": "User authorization opens local development evaluation only; it does not authorize SaveRun or competition submission.",
+      "registry.next_boundary_reservations.Fa04_top_trace_guard_development.opened_at_utc": "MUST_EQUAL_BOUNDARY_DEVELOPMENT_OPENED_AT_UTC"
+    },
+    "canonical_boundary_non_lifecycle_sha256": "7B3D67E7F9714E9267E67A75D2134C4E3FD1DCCEC55D77327C9040EC2A63F057",
+    "canonical_registry_non_lifecycle_sha256": "9E38D7332622F0D1D4017BC82E42A4CAE54D0EBBB96B89F6464E4DC887CCCDAE"
+  },
+  "release_policy": "Development PASS permits only a separate SaveRun readiness request; no SaveRun without separate authorization/audit verdict."
 }

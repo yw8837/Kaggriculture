@@ -15,6 +15,7 @@ src/kaggriculture_lab/candidates/rescue_greedy.py text eol=lf
 src/kaggriculture_lab/evaluation/runner.py text eol=lf
 src/kaggriculture_lab/evaluation/paired.py text eol=lf
 src/kaggriculture_lab/evaluation/top_trace_gate.py text eol=lf
+src/kaggriculture_lab/evaluation/runtime.py -text
 src/kaggriculture_lab/research/replay_policy.py -text
 tests/test_replay_policy.py -text
 tests/test_top_trace_gate.py text eol=lf

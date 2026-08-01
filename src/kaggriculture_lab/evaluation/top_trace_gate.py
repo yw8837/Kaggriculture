@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import platform
 import statistics
 import subprocess
@@ -23,8 +24,55 @@ TOOLING_KEYS = (
     "runner",
     "paired_analyzer",
     "runtime_generator",
+    "runtime_benchmark",
     "gate_evaluator",
 )
+BOUNDARY_RELATIVE = "configs/fa04_top_trace_guard_boundary.json"
+CANONICAL_ALGORITHM = "SHA256_CANONICAL_JSON_SORTED_KEYS_COMPACT_ASCII"
+BOUNDARY_CANONICAL_EXCLUDED_PATHS = (
+    "open_transition_invariant",
+    "implementation_commit",
+    "seed_registry_sha256",
+    "status",
+    "pools.development.status",
+    "development_opened_at_utc",
+    "opening_authority",
+)
+REGISTRY_CANONICAL_EXCLUDED_PATHS = (
+    "next_boundary_reservations.Fa04_top_trace_guard_development.status",
+    "next_boundary_reservations.Fa04_top_trace_guard_development.opened",
+    "next_boundary_reservations.Fa04_top_trace_guard_development.opened_at_utc",
+)
+OPENING_AUTHORITY = (
+    "User authorization opens local development evaluation only; "
+    "it does not authorize SaveRun or competition submission."
+)
+EXPECTED_ALLOWED_OPEN_DELTA = {
+    "boundary": {
+        "status": [
+            "CLOSED_PENDING_CORRECTED_FREEZE_AUDIT",
+            "DEVELOPMENT_OPEN_AUTHORIZED",
+        ],
+        "pools.development.status": ["CLOSED", "OPEN"],
+    },
+    "registry": {
+        "next_boundary_reservations.Fa04_top_trace_guard_development.status": [
+            "CLOSED",
+            "OPEN",
+        ],
+        "next_boundary_reservations.Fa04_top_trace_guard_development.opened": [
+            False,
+            True,
+        ],
+    },
+}
+EXPECTED_OPEN_METADATA = {
+    "boundary.development_opened_at_utc": "RFC3339_UTC",
+    "boundary.opening_authority": OPENING_AUTHORITY,
+    "registry.next_boundary_reservations.Fa04_top_trace_guard_development.opened_at_utc": (
+        "MUST_EQUAL_BOUNDARY_DEVELOPMENT_OPENED_AT_UTC"
+    ),
+}
 
 
 def _load(path: Path) -> dict[str, Any]:
@@ -77,6 +125,45 @@ def _git_file_sha256(project_root: Path, head: str, relative: str) -> str:
     if not isinstance(payload, bytes):
         raise TypeError("git show did not return bytes")
     return hashlib.sha256(payload).hexdigest().upper()
+
+
+def _git_json_blob(
+    project_root: Path, head: str, relative: str, label: str
+) -> tuple[dict[str, Any], str]:
+    try:
+        payload = _git(project_root, "show", f"{head}:{relative}", text=False)
+    except subprocess.CalledProcessError as exc:
+        raise ValueError(f"{label} is absent at implementation commit") from exc
+    if not isinstance(payload, bytes):
+        raise TypeError("git show did not return bytes")
+    try:
+        value = json.loads(payload)
+    except (TypeError, json.JSONDecodeError) as exc:
+        raise ValueError(f"{label} at implementation commit is not valid JSON") from exc
+    if not isinstance(value, dict):
+        raise TypeError(f"{label} at implementation commit must be an object")
+    return value, hashlib.sha256(payload).hexdigest().upper()
+
+
+def _without_paths(value: Mapping[str, Any], paths: tuple[str, ...]) -> dict[str, Any]:
+    result = json.loads(json.dumps(value, sort_keys=True))
+    for path in paths:
+        parts = path.split(".")
+        current = result
+        for part in parts[:-1]:
+            if not isinstance(current, dict) or part not in current:
+                break
+            current = current[part]
+        else:
+            if isinstance(current, dict):
+                current.pop(parts[-1], None)
+    return result
+
+
+def _canonical_projection_sha256(
+    value: Mapping[str, Any], excluded_paths: tuple[str, ...]
+) -> str:
+    return _json_sha256(_without_paths(value, excluded_paths))
 
 
 def _relative_path(project_root: Path, path: Path, label: str) -> str:
@@ -232,6 +319,143 @@ def _validate_lifecycle(
     return development_seeds
 
 
+def _validate_open_transition_invariant(
+    project_root: Path,
+    boundary: Mapping[str, Any],
+    registry: Mapping[str, Any],
+    implementation_commit: str,
+    registry_relative: str,
+) -> None:
+    base_boundary, _ = _git_json_blob(
+        project_root,
+        implementation_commit,
+        BOUNDARY_RELATIVE,
+        "S3 boundary",
+    )
+    base_registry, base_registry_blob_sha256 = _git_json_blob(
+        project_root,
+        implementation_commit,
+        registry_relative,
+        "S3 seed registry",
+    )
+    invariant = dict(
+        _mapping(boundary.get("open_transition_invariant"), "open_transition_invariant")
+    )
+    base_invariant = dict(
+        _mapping(
+            base_boundary.get("open_transition_invariant"),
+            "S3 boundary.open_transition_invariant",
+        )
+    )
+    if invariant != base_invariant:
+        raise ValueError("open transition invariant differs from S3 implementation")
+
+    expected_canonicalization = {
+        "algorithm": CANONICAL_ALGORITHM,
+        "boundary_excluded_paths": list(BOUNDARY_CANONICAL_EXCLUDED_PATHS),
+        "registry_excluded_paths": list(REGISTRY_CANONICAL_EXCLUDED_PATHS),
+    }
+    if invariant.get("schema_version") != 1:
+        raise ValueError("open transition invariant schema is not version 1")
+    if invariant.get("canonicalization") != expected_canonicalization:
+        raise ValueError("open transition canonicalization contract is not exact")
+    if invariant.get("allowed_open_delta") != EXPECTED_ALLOWED_OPEN_DELTA:
+        raise ValueError("open transition allowed delta contract is not exact")
+    if invariant.get("required_open_metadata") != EXPECTED_OPEN_METADATA:
+        raise ValueError("open transition metadata contract is not exact")
+
+    basis = _mapping(invariant.get("basis"), "open_transition_invariant.basis")
+    if basis.get("label") != "S2_IMPLEMENTATION_E2_EXECUTION":
+        raise ValueError("open transition basis label is not exact")
+    basis_implementation = _commit(
+        basis.get("implementation_commit"),
+        "open_transition_invariant.basis.implementation_commit",
+    )
+    _commit(
+        basis.get("closed_execution_commit"),
+        "open_transition_invariant.basis.closed_execution_commit",
+    )
+    if _commit(
+        base_boundary.get("implementation_commit"),
+        "S3 boundary.implementation_commit",
+    ) != basis_implementation:
+        raise ValueError("S3 boundary is not bound to the S2 implementation basis")
+    if base_boundary.get("status") != "CLOSED_PENDING_CORRECTED_FREEZE_AUDIT":
+        raise ValueError("S3 boundary base is not CLOSED")
+    base_pools = _mapping(base_boundary.get("pools"), "S3 boundary.pools")
+    base_development = _mapping(
+        base_pools.get("development"), "S3 boundary.pools.development"
+    )
+    if base_development.get("status") != EXPECTED_CLOSED_POOL_STATUS:
+        raise ValueError("S3 boundary development base is not CLOSED")
+    base_registry_pools = _mapping(
+        base_registry.get("next_boundary_reservations"),
+        "S3 seed registry.next_boundary_reservations",
+    )
+    base_registered = _mapping(
+        base_registry_pools.get("Fa04_top_trace_guard_development"),
+        "S3 seed registry Fa04 development",
+    )
+    if (
+        base_registered.get("status") != EXPECTED_CLOSED_POOL_STATUS
+        or base_registered.get("opened") is not False
+        or "opened_at_utc" in base_registered
+    ):
+        raise ValueError("S3 seed registry development base is not CLOSED/unopened")
+    if _digest(
+        base_boundary.get("seed_registry_sha256"),
+        "S3 boundary.seed_registry_sha256",
+    ) != base_registry_blob_sha256:
+        raise ValueError("S3 boundary seed registry self-hash is invalid")
+
+    expected_boundary_hash = _digest(
+        invariant.get("canonical_boundary_non_lifecycle_sha256"),
+        "canonical_boundary_non_lifecycle_sha256",
+    )
+    expected_registry_hash = _digest(
+        invariant.get("canonical_registry_non_lifecycle_sha256"),
+        "canonical_registry_non_lifecycle_sha256",
+    )
+    for label, value in (("S3", base_boundary), ("current", boundary)):
+        if (
+            _canonical_projection_sha256(value, BOUNDARY_CANONICAL_EXCLUDED_PATHS)
+            != expected_boundary_hash
+        ):
+            raise ValueError(f"{label} boundary canonical invariant hash mismatch")
+    for label, value in (("S3", base_registry), ("current", registry)):
+        if (
+            _canonical_projection_sha256(value, REGISTRY_CANONICAL_EXCLUDED_PATHS)
+            != expected_registry_hash
+        ):
+            raise ValueError(f"{label} registry canonical invariant hash mismatch")
+
+    opened_at = boundary.get("development_opened_at_utc")
+    if not isinstance(opened_at, str) or "T" not in opened_at:
+        raise ValueError("development_opened_at_utc must be RFC3339 UTC")
+    try:
+        parsed_opened_at = datetime.fromisoformat(opened_at)
+    except ValueError as exc:
+        raise ValueError("development_opened_at_utc must be RFC3339 UTC") from exc
+    if (
+        parsed_opened_at.tzinfo is None
+        or parsed_opened_at.utcoffset() is None
+        or parsed_opened_at.utcoffset().total_seconds() != 0
+    ):
+        raise ValueError("development_opened_at_utc must be RFC3339 UTC")
+    if boundary.get("opening_authority") != OPENING_AUTHORITY:
+        raise ValueError("opening_authority is not the preregistered exact authority")
+    registry_pools = _mapping(
+        registry.get("next_boundary_reservations"),
+        "seed registry.next_boundary_reservations",
+    )
+    registered = _mapping(
+        registry_pools.get("Fa04_top_trace_guard_development"),
+        "seed registry Fa04 development",
+    )
+    if registered.get("opened_at_utc") != opened_at:
+        raise ValueError("registry opened_at_utc does not match boundary opening time")
+
+
 def _effective_configuration(override: Mapping[str, Any], seed: int | None) -> dict[str, Any]:
     configuration = {"episodeSteps": 720, **json.loads(json.dumps(override, sort_keys=True))}
     if seed is not None:
@@ -241,9 +465,7 @@ def _effective_configuration(override: Mapping[str, Any], seed: int | None) -> d
 
 def _frozen_plan(project_root: Path, boundary_path: Path) -> dict[str, Any]:
     boundary = _mapping(_load(boundary_path), "boundary")
-    if _relative_path(project_root, boundary_path, "boundary") != (
-        "configs/fa04_top_trace_guard_boundary.json"
-    ):
+    if _relative_path(project_root, boundary_path, "boundary") != BOUNDARY_RELATIVE:
         raise ValueError("unexpected Fa04 boundary path")
     implementation_commit = _commit(
         boundary.get("implementation_commit"), "implementation_commit"
@@ -258,6 +480,13 @@ def _frozen_plan(project_root: Path, boundary_path: Path) -> dict[str, Any]:
     if _sha256(registry_path) != expected_registry_hash:
         raise ValueError("seed registry hash mismatch")
     registry = _mapping(_load(registry_path), "seed registry")
+    _validate_open_transition_invariant(
+        project_root,
+        boundary,
+        registry,
+        implementation_commit,
+        registry_relative,
+    )
     seeds = _validate_lifecycle(boundary, registry)
 
     scenario_entry = _mapping(boundary.get("scenario_config"), "scenario_config")
@@ -397,6 +626,7 @@ def _frozen_plan(project_root: Path, boundary_path: Path) -> dict[str, Any]:
         _runner_receipt_relative(str(artifacts[f"{lane}_report"]))
         for lane in ("candidate", "control")
     )
+    allowed_untracked.add(_runtime_receipt_relative(str(artifacts["runtime_report"])))
     git_freeze = _verify_git_freeze(
         project_root,
         implementation_commit,
@@ -463,6 +693,11 @@ def _relative_report_path(project_root: Path, value: object, label: str) -> str:
 
 
 def _runner_receipt_relative(report_relative: str) -> str:
+    report_path = Path(report_relative)
+    return report_path.with_name(f"{report_path.stem}.started.json").as_posix()
+
+
+def _runtime_receipt_relative(report_relative: str) -> str:
     report_path = Path(report_relative)
     return report_path.with_name(f"{report_path.stem}.started.json").as_posix()
 
@@ -705,7 +940,15 @@ def _validate_report(
                 raise ValueError(
                     f"{label}.games[{index}] environment scenario value mismatch"
                 )
-        if row.get("resolved_environment_seed") != seed:
+        resolved_seed = row.get("resolved_environment_seed")
+        environment_seed = environment.get("seed")
+        if environment_seed is not None and (
+            environment_seed != seed or environment_seed != resolved_seed
+        ):
+            raise ValueError(
+                f"{label}.games[{index}] environment seed contradicts requested/resolved seed"
+            )
+        if resolved_seed != seed:
             raise ValueError(f"{label}.games[{index}] resolved seed mismatch")
         rows[key] = dict(row)
     if set(rows) != expected_keys:
@@ -740,6 +983,15 @@ def _outcome(row: Mapping[str, Any]) -> float:
     candidate = float(row["candidate_money"])
     opponent = float(row["opponent_money"])
     return 1.0 if candidate > opponent else 0.0 if candidate < opponent else 0.5
+
+
+def _finite_nonnegative(value: object, label: str) -> float:
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise TypeError(f"{label} must be a finite nonnegative number")
+    normalized = float(value)
+    if not math.isfinite(normalized) or normalized < 0:
+        raise ValueError(f"{label} must be a finite nonnegative number")
+    return normalized
 
 
 def _run_batch_exact(
@@ -823,6 +1075,59 @@ def run_development_lane(
     return report
 
 
+def _runtime_receipt_payload(plan: Mapping[str, Any]) -> dict[str, Any]:
+    return {
+        "schema_version": 1,
+        "created_at_utc": datetime.now(UTC).isoformat(),
+        "implementation_commit": plan["implementation_commit"],
+        "git_head": plan["execution_head"],
+        "tracked_tree_clean": True,
+        "output": plan["artifacts"]["runtime_report"],
+        "boundary": plan["boundary_file"],
+        "registry": plan["registry_file"],
+        "scenario_config": plan["scenario_file"],
+        "tooling": plan["tooling"],
+        "source": plan["candidate"],
+        "runtime_replay": plan["runtime_replay"],
+        "player": 0,
+        "command": (
+            "python -m kaggriculture_lab.evaluation.top_trace_gate "
+            "--generate-runtime --boundary "
+            f"{plan['boundary_file']['path']}"
+        ),
+    }
+
+
+def _validate_runtime_receipt(
+    project_root: Path,
+    runtime: Mapping[str, Any],
+    plan: Mapping[str, Any],
+) -> dict[str, str]:
+    link = _mapping(runtime.get("generation_receipt"), "runtime.generation_receipt")
+    expected_relative = _runtime_receipt_relative(
+        str(plan["artifacts"]["runtime_report"])
+    )
+    if link.get("path") != expected_relative:
+        raise ValueError("runtime generation receipt path mismatch")
+    receipt_path = project_root / expected_relative
+    if not receipt_path.is_file():
+        raise ValueError("runtime generation receipt is missing")
+    receipt_hash = _sha256(receipt_path)
+    if receipt_hash != _digest(
+        link.get("sha256"), "runtime.generation_receipt.sha256"
+    ):
+        raise ValueError("runtime generation receipt hash mismatch")
+    receipt = _mapping(_load(receipt_path), "runtime generation receipt")
+    expected = _runtime_receipt_payload(plan)
+    expected.pop("created_at_utc")
+    for key, value in expected.items():
+        if receipt.get(key) != value:
+            raise ValueError(f"runtime generation receipt {key} mismatch")
+    if not isinstance(receipt.get("created_at_utc"), str):
+        raise TypeError("runtime generation receipt created_at_utc is missing")
+    return {"path": expected_relative, "sha256": receipt_hash}
+
+
 def generate_runtime_report(project_root: Path, boundary_path: Path) -> dict[str, Any]:
     from kaggriculture_lab.evaluation.runtime import benchmark
 
@@ -831,10 +1136,16 @@ def generate_runtime_report(project_root: Path, boundary_path: Path) -> dict[str
     plan = _frozen_plan(project_root, boundary_path)
     output_relative = str(plan["artifacts"]["runtime_report"])
     output = project_root / output_relative
-    if output.exists():
-        raise ValueError("runtime report already exists; refusing evidence overwrite")
+    receipt_relative = _runtime_receipt_relative(output_relative)
+    receipt_path = project_root / receipt_relative
+    if output.exists() or receipt_path.exists():
+        raise ValueError("runtime report/receipt already exists; refusing evidence overwrite")
     source = project_root / plan["candidate"]["path"]
     replay = project_root / plan["runtime_replay"]["path"]
+    receipt = _runtime_receipt_payload(plan)
+    receipt_path.parent.mkdir(parents=True, exist_ok=True)
+    receipt_path.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+    receipt_hash = _sha256(receipt_path)
     report = benchmark(source, replay, 0)
     report.update(
         {
@@ -850,6 +1161,10 @@ def generate_runtime_report(project_root: Path, boundary_path: Path) -> dict[str
             "generator": dict(plan["tooling"]["runtime_generator"]),
             "git_head": plan["execution_head"],
             "tracked_tree_clean": True,
+            "generation_receipt": {
+                "path": receipt_relative,
+                "sha256": receipt_hash,
+            },
             "tracked_provenance": {
                 "project_root": project_root.as_posix(),
                 "implementation_commit": plan["implementation_commit"],
@@ -946,6 +1261,16 @@ def analyze(
         for row in candidate_rows.values()
     )
     gates = _mapping(plan["boundary"].get("development_gates"), "development_gates")
+    runtime_receipt = _validate_runtime_receipt(project_root, runtime, plan)
+    calls = _finite_nonnegative(runtime.get("calls"), "runtime.calls")
+    invalid_outputs = _finite_nonnegative(
+        runtime.get("invalid_outputs"), "runtime.invalid_outputs"
+    )
+    p95_ms = _finite_nonnegative(runtime.get("p95_ms"), "runtime.p95_ms")
+    p99_ms = _finite_nonnegative(runtime.get("p99_ms"), "runtime.p99_ms")
+    max_ms = _finite_nonnegative(runtime.get("max_ms"), "runtime.max_ms")
+    if not 0 <= p95_ms <= p99_ms <= max_ms:
+        raise ValueError("runtime timings must satisfy 0 <= p95 <= p99 <= max")
     runtime_head = runtime.get("git_head")
     if (
         runtime_head != plan["execution_head"]
@@ -969,9 +1294,11 @@ def analyze(
         raise TypeError("runtime tracked project root is missing")
     if (
         Path(tracked_project_root).resolve() != project_root.resolve()
+        or tracked.get("implementation_commit") != plan["implementation_commit"]
         or tracked.get("git_head") != plan["execution_head"]
         or tracked.get("tracked_tree_clean") is not True
         or tracked.get("source_relative") != plan["candidate"]["path"]
+        or tracked.get("runtime_replay") != plan["runtime_replay"]
         or _digest(
             tracked.get("source_at_head_sha256"),
             "runtime.tracked_provenance.source_at_head_sha256",
@@ -979,6 +1306,9 @@ def analyze(
         != plan["candidate"]["sha256"]
         or _relative_report_path(project_root, runtime.get("source"), "runtime source")
         != plan["candidate"]["path"]
+        or _relative_report_path(project_root, runtime.get("replay"), "runtime replay")
+        != plan["runtime_replay"]["path"]
+        or runtime.get("player") != 0
     ):
         raise ValueError("runtime tracked source provenance mismatch")
     checks = {
@@ -1004,11 +1334,11 @@ def analyze(
         "paired_money_noninferior": statistics.mean(paired_money)
         >= gates["minimum_paired_money_delta_vs_control"],
         "guard_activated": actions_changed >= gates["minimum_actions_changed"],
-        "runtime_calls": runtime.get("calls") == 720,
-        "runtime_invalid": runtime.get("invalid_outputs") == gates["invalid_outputs"],
-        "runtime_p95": runtime.get("p95_ms") <= gates["runtime_p95_ms_max"],
-        "runtime_p99": runtime.get("p99_ms") <= gates["runtime_p99_ms_max"],
-        "runtime_max": runtime.get("max_ms") <= gates["runtime_absolute_ms_max"],
+        "runtime_calls": calls == 720,
+        "runtime_invalid": invalid_outputs == gates["invalid_outputs"],
+        "runtime_p95": p95_ms <= gates["runtime_p95_ms_max"],
+        "runtime_p99": p99_ms <= gates["runtime_p99_ms_max"],
+        "runtime_max": max_ms <= gates["runtime_absolute_ms_max"],
         "runtime_source": runtime.get("source_sha256") == plan["candidate"]["sha256"],
         "runtime_replay": runtime.get("replay_sha256")
         == plan["boundary"]["attribution"]["replay_sha256"],
@@ -1023,6 +1353,7 @@ def analyze(
         "tooling": plan["tooling"],
         "candidate_start_receipt": candidate_receipt,
         "control_start_receipt": control_receipt,
+        "runtime_generation_receipt": runtime_receipt,
         "candidate_report_sha256": _sha256(candidate_report_path),
         "control_report_sha256": _sha256(control_report_path),
         "runtime_report_sha256": _sha256(runtime_report_path),
