@@ -2,7 +2,7 @@
   "schema_version": 1,
   "identity": "Fa05_W1_wool_glut_buffer",
   "status": "CLOSED_PENDING_INDEPENDENT_AUDIT",
-  "implementation_commit": "PENDING_CLOSED_FREEZE_COMMIT",
+  "implementation_commit": "95735367949dc7cf787176c95ddabddb3e075226",
   "hypothesis": "Against wool-producing weak lanes, withholding at most 20 legal WOOL units during a low-price glut and causally releasing only that reserve after recovery improves paired results while all protected lanes remain exact G1.",
   "claim_limit": "This preregistered local gate cannot guarantee a 1200 rating, SaveRun readiness, submission quality, or top-three placement.",
   "attribution": {
