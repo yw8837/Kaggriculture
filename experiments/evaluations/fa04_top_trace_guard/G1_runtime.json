@@ -1,0 +1,42 @@
+{
+  "schema_version": 2,
+  "source": "C:/Users/\ucd5c\uc6a9\uc6b0/Documents/Codex/2026-07-31/kaggriculture-3-github/work/fa04_local/experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+  "source_sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+  "replay": "C:/Users/\ucd5c\uc6a9\uc6b0/Documents/Codex/2026-07-31/kaggriculture-3-github/work/fa04_local/references/fa04_teacher_replays/episode-89256171-replay.json",
+  "replay_sha256": "ADADDE60EEFB93B56DBE9922B51D5D1970803F89DDF0EEEE67B9890024090405",
+  "player": 0,
+  "calls": 720,
+  "invalid_outputs": 0,
+  "p50_ms": 0.0402,
+  "p95_ms": 0.0488,
+  "p99_ms": 0.0581,
+  "max_ms": 0.0762,
+  "created_at_utc": "2026-08-01T16:24:38.684493+00:00",
+  "python": "3.12.13 (main, Mar  3 2026, 15:01:35) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "command": "python -m kaggriculture_lab.evaluation.top_trace_gate --generate-runtime --boundary configs/fa04_top_trace_guard_boundary.json",
+  "generator": {
+    "path": "src/kaggriculture_lab/evaluation/top_trace_gate.py",
+    "sha256": "D05C4B805D2AA025B856C5C6F7334CDCAFB54FCDAB173CF189BA6B9F2F3D0987",
+    "bytes": 60981
+  },
+  "git_head": "ed4c50b39fa3de9630d2f4d32d79762516772463",
+  "tracked_tree_clean": true,
+  "generation_receipt": {
+    "path": "experiments/evaluations/fa04_top_trace_guard/G1_runtime.started.json",
+    "sha256": "CCDE6BEFB5730E78E0840EF1E96A521AADD6D2CD7B80D71FB8696F6EB9557C7C"
+  },
+  "tracked_provenance": {
+    "project_root": "C:/Users/\ucd5c\uc6a9\uc6b0/Documents/Codex/2026-07-31/kaggriculture-3-github/work/fa04_local",
+    "implementation_commit": "a43cd954a59fd84e5e3738e03f3effe30cef36b4",
+    "git_head": "ed4c50b39fa3de9630d2f4d32d79762516772463",
+    "tracked_tree_clean": true,
+    "source_relative": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+    "source_at_head_sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+    "runtime_replay": {
+      "path": "references/fa04_teacher_replays/episode-89256171-replay.json",
+      "sha256": "ADADDE60EEFB93B56DBE9922B51D5D1970803F89DDF0EEEE67B9890024090405",
+      "bytes": 27128767
+    }
+  }
+}

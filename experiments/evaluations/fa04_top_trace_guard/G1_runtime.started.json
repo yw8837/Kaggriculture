@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-08-01T16:24:38.342929+00:00",
+  "implementation_commit": "a43cd954a59fd84e5e3738e03f3effe30cef36b4",
+  "git_head": "ed4c50b39fa3de9630d2f4d32d79762516772463",
+  "tracked_tree_clean": true,
+  "output": "experiments/evaluations/fa04_top_trace_guard/G1_runtime.json",
+  "boundary": {
+    "path": "configs/fa04_top_trace_guard_boundary.json",
+    "sha256": "B986D77AB9309C8F8A930983D5441AD09E430C821EB3D14889479A52E86F0F32",
+    "bytes": 9964
+  },
+  "registry": {
+    "path": "configs/fa_ab_seed_registry.json",
+    "sha256": "9A762696257E45A939CD214D7E2CBEA930012CDA4AB0C76D2F5D8310E021EEC9",
+    "bytes": 10691
+  },
+  "scenario_config": {
+    "path": "configs/fa04_top_trace_scenarios.json",
+    "sha256": "D344CBAF5675B642E18EED7BDE4719D7D6C30DCEAD0F8658412BEC99F06D64DB",
+    "bytes": 43
+  },
+  "tooling": {
+    "generator": {
+      "path": "src/kaggriculture_lab/research/replay_policy.py",
+      "sha256": "7A8AF282BA98C18E50ACF99160E85A32690AEEAB51DC436FB3175C2B254C1E79",
+      "bytes": 16285
+    },
+    "runner": {
+      "path": "src/kaggriculture_lab/evaluation/runner.py",
+      "sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+      "bytes": 19694
+    },
+    "paired_analyzer": {
+      "path": "src/kaggriculture_lab/evaluation/paired.py",
+      "sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
+      "bytes": 34461
+    },
+    "runtime_generator": {
+      "path": "src/kaggriculture_lab/evaluation/top_trace_gate.py",
+      "sha256": "D05C4B805D2AA025B856C5C6F7334CDCAFB54FCDAB173CF189BA6B9F2F3D0987",
+      "bytes": 60981
+    },
+    "runtime_benchmark": {
+      "path": "src/kaggriculture_lab/evaluation/runtime.py",
+      "sha256": "B7605EF73C62EA1CC55C187723F3D8E92E543286A4AB2E82C6C93AACD60F02F2",
+      "bytes": 2856
+    },
+    "gate_evaluator": {
+      "path": "src/kaggriculture_lab/evaluation/top_trace_gate.py",
+      "sha256": "D05C4B805D2AA025B856C5C6F7334CDCAFB54FCDAB173CF189BA6B9F2F3D0987",
+      "bytes": 60981
+    }
+  },
+  "source": {
+    "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+    "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+    "bytes": 197808
+  },
+  "runtime_replay": {
+    "path": "references/fa04_teacher_replays/episode-89256171-replay.json",
+    "sha256": "ADADDE60EEFB93B56DBE9922B51D5D1970803F89DDF0EEEE67B9890024090405",
+    "bytes": 27128767
+  },
+  "player": 0,
+  "command": "python -m kaggriculture_lab.evaluation.top_trace_gate --generate-runtime --boundary configs/fa04_top_trace_guard_boundary.json"
+}

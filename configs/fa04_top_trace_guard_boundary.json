@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "identity": "Fa04_top_trace_guard_G1",
-  "status": "DEVELOPMENT_OPEN_AUTHORIZED",
+  "status": "DEVELOPMENT_PASS_AWAITING_SAVERUN_AUDIT",
   "development_opened_at_utc": "2026-08-01T15:58:49.4228656Z",
   "opening_authority": "User authorization opens local development evaluation only; it does not authorize SaveRun or competition submission.",
   "implementation_commit": "a43cd954a59fd84e5e3738e03f3effe30cef36b4",
@@ -32,14 +32,14 @@
     "interpretation_limit": "All research screens use already-consumed seeds and select this one candidate only; they motivate but do not replace fresh development."
   },
   "seed_registry": "configs/fa_ab_seed_registry.json",
-  "seed_registry_sha256": "9A762696257E45A939CD214D7E2CBEA930012CDA4AB0C76D2F5D8310E021EEC9",
+  "seed_registry_sha256": "3F4C592597B6A93767C3B0D5A507DE33797883DE7524775FD89DA9315853D457",
   "pools": {
     "development": {
       "registry_key": "Fa04_top_trace_guard_development",
       "start": 40000,
       "end_inclusive": 40015,
       "count": 16,
-      "status": "OPEN"
+      "status": "CONSUMED_PASS"
     },
     "confirmation": {
       "registry_key": "Fa04_top_trace_guard_confirmation",
