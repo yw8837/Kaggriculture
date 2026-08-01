@@ -6,7 +6,6 @@ from pathlib import Path
 
 from kaggriculture_lab.evaluation.runner import _effective_configuration
 
-
 ROOT = Path(__file__).parents[1]
 BOUNDARY = ROOT / "configs/fa04_top_trace_guard_boundary.json"
 REGISTRY = ROOT / "configs/fa_ab_seed_registry.json"
@@ -107,3 +106,33 @@ def test_fa04_top_trace_gates_keep_score_target_as_an_unverified_goal() -> None:
     assert gates["runtime_p99_ms_max"] == 15.0
     assert gates["runtime_absolute_ms_max"] == 50.0
     assert gates["invalid_outputs"] == 0
+
+
+def test_fa04_execution_freeze_binds_tooling_license_replay_and_exact_design() -> None:
+    config = json.loads(BOUNDARY.read_text(encoding="utf-8"))
+    tooling = config["tooling"]
+    for name in (
+        "generator",
+        "runner",
+        "paired_analyzer",
+        "runtime_generator",
+        "gate_evaluator",
+    ):
+        assert _sha256(ROOT / tooling[name]) == tooling[f"{name}_sha256"]
+    for name in ("third_party_license", "third_party_attribution", "runtime_replay"):
+        entry = config["execution_freeze"][name]
+        path = ROOT / entry["path"]
+        assert path.stat().st_size == entry["bytes"]
+        assert _sha256(path) == entry["sha256"]
+    assert config["execution_freeze"]["runtime_replay"]["sha256"] == config[
+        "attribution"
+    ]["replay_sha256"]
+    assert config["development_design"] == {
+        "scenarios": ["default"],
+        "seeds": "40000-40015",
+        "seats": [0, 1],
+        "opponents": 6,
+        "exact_cells_per_lane": 192,
+        "workers_per_lane": 6,
+        "receipts": "separate candidate and control start receipts are mandatory",
+    }

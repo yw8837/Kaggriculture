@@ -14,10 +14,52 @@ from typing import Any
 RECORDED_ACTIONS = 719
 EPISODE_STEPS = 720
 MODES = ("fixed", "sell_guard", "terminal_guard")
+SOURCE_METADATA_FIELDS = ("title", "author", "url", "license", "license_context")
 
 
 def _sha256(payload: bytes) -> str:
     return hashlib.sha256(payload).hexdigest().upper()
+
+
+def _normalize_source_metadata(value: Mapping[str, Any] | None) -> dict[str, Any] | None:
+    if value is None:
+        return None
+    missing = set(SOURCE_METADATA_FIELDS) - value.keys()
+    if missing:
+        raise ValueError(f"missing source metadata fields: {sorted(missing)}")
+    normalized: dict[str, Any] = {}
+    for field in SOURCE_METADATA_FIELDS:
+        item = value[field]
+        if not isinstance(item, str) or not item or "\n" in item or "\r" in item:
+            raise ValueError(f"source metadata {field} must be a non-empty single line")
+        normalized[field] = item
+    modifications = value.get("modifications")
+    if not isinstance(modifications, Sequence) or isinstance(modifications, (str, bytes)):
+        raise TypeError("source metadata modifications must be a sequence of lines")
+    normalized_modifications = []
+    for line in modifications:
+        if not isinstance(line, str) or not line or "\n" in line or "\r" in line:
+            raise ValueError("each source metadata modification must be a non-empty single line")
+        normalized_modifications.append(line)
+    if not normalized_modifications:
+        raise ValueError("source metadata modifications must not be empty")
+    normalized["modifications"] = normalized_modifications
+    return normalized
+
+
+def _render_source_header(value: Mapping[str, Any] | None) -> str:
+    metadata = _normalize_source_metadata(value)
+    if metadata is None:
+        return ""
+    modifications = metadata["modifications"]
+    lines = [
+        f'# Derived from "{metadata["title"]}" by {metadata["author"]}.',
+        f"# Source: {metadata['url']}",
+        f"# Upstream license: {metadata['license']}, {metadata['license_context']}.",
+        f"# Modifications: {modifications[0]}",
+        *(f"# {line}" for line in modifications[1:]),
+    ]
+    return "\n".join(lines) + "\n"
 
 
 def extract_actions(replay: Mapping[str, Any], player: int) -> list[dict[str, Any]]:
@@ -90,7 +132,8 @@ def render_fixed_schedule(
     schedule = pprint.pformat(normalized, width=100, sort_dicts=True)
     team = str(metadata["team"])
     comment_team = " ".join(team.splitlines())
-    source = f"""# Fixed schedule extracted from a Kaggriculture replay.
+    source_header = _render_source_header(metadata.get("source_metadata"))
+    source = f"""{source_header}# Fixed schedule extracted from a Kaggriculture replay.
 # Source episode: {metadata["episode_id"]}
 # Source team: {comment_team}
 # Source player: {metadata["player"]}
@@ -198,7 +241,7 @@ def _normalize_hands(action, obs):
     return True
 
 
-def _predicted_shed(action, obs):
+def _predicted_shed(action, obs, config=None):
     private = _private(obs)
     raw_shed = private.get("shed", {})
     shed = {
@@ -208,6 +251,10 @@ def _predicted_shed(action, obs):
     inventories = private.get("inventories", [])
     if not isinstance(inventories, list):
         inventories = []
+    try:
+        shed_capacity = max(0, int((config or {}).get("shedCapacity", 100)))
+    except (AttributeError, TypeError, ValueError):
+        shed_capacity = 100
     farm = _current_farm(obs)
     units = [action.get("farmer", ["PASS"]), *action.get("hands", [])]
     for index, unit_action in enumerate(units):
@@ -219,8 +266,10 @@ def _predicted_shed(action, obs):
         if unit_action[0] == "DROP":
             for item, quantity in inventory.items():
                 amount = _nonnegative_int(quantity)
-                if amount:
-                    shed[str(item)] = shed.get(str(item), 0) + amount
+                room = max(0, shed_capacity - sum(shed.values()))
+                deposited = min(amount, room)
+                if deposited:
+                    shed[str(item)] = shed.get(str(item), 0) + deposited
         elif unit_action[0] == "PICKUP" and len(unit_action) >= 2:
             item = str(unit_action[1])
             quantity = _nonnegative_int(unit_action[2], 1) if len(unit_action) >= 3 else 1
@@ -280,7 +329,7 @@ def agent(obs, config=None):
     original = deepcopy(SCHEDULE[index])
     action = deepcopy(original)
     _normalize_hands(action, obs)
-    shed = _predicted_shed(action, obs)
+    shed = _predicted_shed(action, obs, config)
     market = action.get("market", [])
     if SOURCE_MODE == "terminal_guard" and _nonnegative_int(obs.get("day", 0)) >= 29:
         rewritten = _terminal_market(market, shed, obs)
@@ -298,12 +347,21 @@ def agent(obs, config=None):
     return source
 
 
-def build_file(replay_path: Path, player: int, output: Path, mode: str = "fixed") -> dict[str, Any]:
+def build_file(
+    replay_path: Path,
+    player: int,
+    output: Path,
+    mode: str = "fixed",
+    source_metadata: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
     raw = replay_path.read_bytes()
     replay = json.loads(raw)
     replay_sha256 = _sha256(raw)
     actions = extract_actions(replay, player)
     metadata = _metadata(replay, player, replay_sha256)
+    normalized_source_metadata = _normalize_source_metadata(source_metadata)
+    if normalized_source_metadata is not None:
+        metadata["source_metadata"] = normalized_source_metadata
     source = render_fixed_schedule(actions, metadata, mode=mode)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(source, encoding="utf-8", newline="\n")
@@ -325,10 +383,35 @@ def main(argv: Sequence[str] | None = None) -> None:
     parser.add_argument("--player", type=int, choices=(0, 1), required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--mode", choices=MODES, default="fixed")
+    parser.add_argument("--source-title")
+    parser.add_argument("--source-author")
+    parser.add_argument("--source-url")
+    parser.add_argument("--source-license")
+    parser.add_argument("--source-license-context")
+    parser.add_argument("--modification-line", action="append", default=[])
     args = parser.parse_args(argv)
+    raw_source_metadata = {
+        "title": args.source_title,
+        "author": args.source_author,
+        "url": args.source_url,
+        "license": args.source_license,
+        "license_context": args.source_license_context,
+        "modifications": args.modification_line,
+    }
+    source_metadata = (
+        None
+        if all(value in (None, []) for value in raw_source_metadata.values())
+        else raw_source_metadata
+    )
     print(
         json.dumps(
-            build_file(args.replay, args.player, args.output, mode=args.mode),
+            build_file(
+                args.replay,
+                args.player,
+                args.output,
+                mode=args.mode,
+                source_metadata=source_metadata,
+            ),
             sort_keys=True,
         )
     )

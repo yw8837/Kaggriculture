@@ -16,7 +16,21 @@ from kaggriculture_lab.research.replay_policy import (
     render_fixed_schedule,
 )
 
-ACTUAL_REPLAY = Path("artifacts/submission_replays/episode-89143277-replay.json")
+FA04_REPLAY = Path("references/fa04_teacher_replays/episode-89256171-replay.json")
+FA04_G1 = Path("experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py")
+SUBMISSION_REPLAY = Path("artifacts/submission_replays/episode-89143277-replay.json")
+ACTUAL_REPLAY = SUBMISSION_REPLAY if SUBMISSION_REPLAY.is_file() else FA04_REPLAY
+FA04_SOURCE_METADATA = {
+    "title": "Kaggriculture Frontier Lab | High-Score + Visuals",
+    "author": "PRVSIYAN",
+    "url": "https://www.kaggle.com/code/prvsiyan/kaggriculture-frontier-lab-high-score-visuals",
+    "license": "Apache-2.0",
+    "license_context": "as displayed on the public Kaggle Competition Notebook",
+    "modifications": [
+        "independently regenerated from the attributed public replay and added",
+        "observation-based hand normalization plus impossible-SELL drift guards.",
+    ],
+}
 
 
 def _action(index: int, player: int) -> dict[str, object]:
@@ -337,6 +351,81 @@ def test_sell_guard_applies_on_shed_drop_and_pickup(tmp_path: Path) -> None:
     assert observed["market"] == [["SELL", "WHEAT", 6]]
 
 
+def test_sell_guard_caps_same_turn_drop_at_official_shed_capacity(tmp_path: Path) -> None:
+    action = {
+        "farmer": ["DROP"],
+        "hands": [],
+        "market": [["SELL", "WHEAT", 104]],
+    }
+    namespace = _guard_namespace(tmp_path, action, "sell_guard")
+    observed = namespace["agent"](
+        _obs(shed={"WHEAT": 99}, inventories=[{"WHEAT": 5}]),
+        {"shedCapacity": 100},
+    )
+    assert observed["market"] == [["SELL", "WHEAT", 100]]
+
+
+def test_sell_guard_drop_capacity_follows_official_inventory_order(tmp_path: Path) -> None:
+    action = {
+        "farmer": ["DROP"],
+        "hands": [],
+        "market": [["SELL", "CARROT", 2], ["SELL", "WHEAT", 99]],
+    }
+    namespace = _guard_namespace(tmp_path, action, "sell_guard")
+    observed = namespace["agent"](
+        _obs(
+            shed={"WHEAT": 99},
+            inventories=[{"CARROT": 2, "WHEAT": 2}],
+        ),
+        {"shedCapacity": 100},
+    )
+    assert observed["market"] == [["SELL", "CARROT", 1], ["SELL", "WHEAT", 99]]
+
+
+def test_official_simulator_drop_then_market_caps_guarded_sell_at_100(
+    tmp_path: Path,
+) -> None:
+    from kaggle_environments import make
+
+    trace_action = {
+        "farmer": ["DROP"],
+        "hands": [],
+        "market": [["SELL", "WHEAT", 104]],
+    }
+    namespace = _guard_namespace(tmp_path, trace_action, "sell_guard")
+    pass_action = {"farmer": ["PASS"], "hands": [], "market": []}
+
+    def prepared_environment():
+        environment = make(
+            "kaggriculture",
+            configuration={"episodeSteps": 3, "seed": 123, "shedCapacity": 100},
+            debug=False,
+        )
+        private = environment.state[0].observation.private
+        private.shed["WHEAT"] = 99
+        private.inventories[0]["WHEAT"] = 5
+        return environment
+
+    guarded_environment = prepared_environment()
+    guarded = namespace["agent"](
+        guarded_environment.state[0].observation,
+        guarded_environment.configuration,
+    )
+    assert guarded["market"] == [["SELL", "WHEAT", 100]]
+    guarded_start_money = guarded_environment.state[0].observation.farms[0].money
+    guarded_environment.step([guarded, pass_action])
+    guarded_private = guarded_environment.state[0].observation.private
+    guarded_end_money = guarded_environment.state[0].observation.farms[0].money
+    assert guarded_private.shed["WHEAT"] == 0
+    assert guarded_private.inventories[0] == {}
+    assert guarded_end_money > guarded_start_money
+
+    unguarded_environment = prepared_environment()
+    unguarded_environment.step([trace_action, pass_action])
+    assert unguarded_environment.state[0].observation.private.shed["WHEAT"] == 0
+    assert unguarded_environment.state[0].observation.farms[0].money == guarded_end_money
+
+
 def test_terminal_guard_preserves_non_sells_and_caps_market_at_ten(
     tmp_path: Path,
 ) -> None:
@@ -388,8 +477,43 @@ def test_cli_accepts_guard_mode(tmp_path: Path, capsys: pytest.CaptureFixture[st
             str(output),
             "--mode",
             "sell_guard",
+            "--source-title",
+            FA04_SOURCE_METADATA["title"],
+            "--source-author",
+            FA04_SOURCE_METADATA["author"],
+            "--source-url",
+            FA04_SOURCE_METADATA["url"],
+            "--source-license",
+            FA04_SOURCE_METADATA["license"],
+            "--source-license-context",
+            FA04_SOURCE_METADATA["license_context"],
+            "--modification-line",
+            FA04_SOURCE_METADATA["modifications"][0],
+            "--modification-line",
+            FA04_SOURCE_METADATA["modifications"][1],
         ]
     )
     receipt = json.loads(capsys.readouterr().out)
     assert receipt["mode"] == "sell_guard"
+    assert receipt["source_metadata"] == FA04_SOURCE_METADATA
     assert runpy.run_path(str(output))["SOURCE_MODE"] == "sell_guard"
+    assert output.read_text(encoding="utf-8").startswith(
+        '# Derived from "Kaggriculture Frontier Lab | High-Score + Visuals" by PRVSIYAN.\n'
+    )
+
+
+def test_fa04_g1_snapshot_is_exact_attributed_regeneration() -> None:
+    raw = FA04_REPLAY.read_bytes()
+    replay = json.loads(raw)
+    source = render_fixed_schedule(
+        extract_actions(replay, 0),
+        {
+            "episode_id": 89256171,
+            "team": "radiant-allomancer",
+            "player": 0,
+            "replay_sha256": hashlib.sha256(raw).hexdigest().upper(),
+            "source_metadata": FA04_SOURCE_METADATA,
+        },
+        mode="sell_guard",
+    )
+    assert source.encode() == FA04_G1.read_bytes()

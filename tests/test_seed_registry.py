@@ -159,6 +159,7 @@ def test_next_boundary_reservations_do_not_collide_with_historical_evidence() ->
         Path("configs/fa_ab_seed_registry.json"),
         Path("configs/fa_next_boundary_draft.json"),
         Path("configs/fa02_last_chance_boundary.json"),
+        Path("configs/fa04_top_trace_guard_boundary.json"),
         Path("experiments/source_snapshots/fa_next_boundary_manifest.json"),
         Path("experiments/source_snapshots/fa02_last_chance_manifest.json"),
     }

@@ -4,7 +4,7 @@
   "status": "CLOSED_PENDING_CORRECTED_FREEZE_AUDIT",
   "implementation_commit": "c7b3d6d3f1e0884a66e4acfe67f2de4c640bb214",
   "hypothesis": "The public R130 capital and labor schedule is the current strategic leap; preserving it while clamping only impossible SELL orders improves drift safety without materially weakening cross-play.",
-  "target": "Fast 1400-ladder probe; 1200 is the minimum target, neither score is guaranteed by local simulation.",
+  "target": "Fast 1400-ladder probe; 1200 is the minimum target, but 1200/1400 are not guaranteed by local simulation.",
   "attribution": {
     "source": "official public Kaggle episode replay",
     "upstream_notebook": "https://www.kaggle.com/code/prvsiyan/kaggriculture-frontier-lab-high-score-visuals",
@@ -26,13 +26,11 @@
     "top_trace_crossplay_losses": 16,
     "top_trace_crossplay_match_score": 0.8,
     "top_trace_crossplay_margin_mean": 20807.725,
-    "guard_vs_fixed_cells": 80,
-    "guard_vs_fixed_same_money_cells": 77,
-    "guard_vs_fixed_better_money_cells": 3,
-    "guard_vs_fixed_worse_money_cells": 1,
+    "guard_vs_fixed_screen": "REMOVED_FROM_PROMOTION_EVIDENCE_INCONSISTENT_UNTRACKED_COUNTS",
     "interpretation_limit": "All research screens use already-consumed seeds and select this one candidate only; they motivate but do not replace fresh development."
   },
   "seed_registry": "configs/fa_ab_seed_registry.json",
+  "seed_registry_sha256": "D2666FAB7EE462A4285B8F84AFD2A67ABCCFFD1B451CE132D885AB029DF77BDC",
   "pools": {
     "development": {
       "registry_key": "Fa04_top_trace_guard_development",
@@ -59,18 +57,23 @@
   "scenario_overrides": {
     "default": {}
   },
+  "scenario_config": {
+    "path": "configs/fa04_top_trace_scenarios.json",
+    "sha256": "D344CBAF5675B642E18EED7BDE4719D7D6C30DCEAD0F8658412BEC99F06D64DB",
+    "bytes": 43
+  },
   "expected_effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE",
   "candidate": {
     "identity": "G1_R130_sell_guard",
     "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
-    "sha256": "432276BAF4569CCEE3093B75A95AFA81C2056590422600D16295202C3E092091",
-    "bytes": 197503
+    "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+    "bytes": 197808
   },
   "control": {
     "identity": "G0_R130_fixed",
     "path": "experiments/source_snapshots/fa04_top_trace/G0_fixed.py",
-    "sha256": "D44BBC1E290ED41D5A051D01DB5C708CEAB786475FAE3AF62FB2C2612671A036",
-    "bytes": 190855
+    "sha256": "EC1AC111E43A95D55E06623EADE60A3623FFD87AD41528159D9F48CD58B26F2B",
+    "bytes": 191213
   },
   "opponents": [
     {"identity": "C135_chocolat", "path": "experiments/source_snapshots/fa04_top_trace/C135.py", "sha256": "13C88E1D9232F66A219AF0B66A36A46D622C2466856D191E57A8FDC42BC7C1EE", "bytes": 217913},
@@ -82,11 +85,24 @@
   ],
   "tooling": {
     "generator": "src/kaggriculture_lab/research/replay_policy.py",
-    "generator_git_blob": "c5f99743952b48ec4889f5810e8006ad79c8a5af",
+    "generator_sha256": "7A8AF282BA98C18E50ACF99160E85A32690AEEAB51DC436FB3175C2B254C1E79",
     "runner": "src/kaggriculture_lab/evaluation/runner.py",
     "runner_sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
     "paired_analyzer": "src/kaggriculture_lab/evaluation/paired.py",
-    "paired_analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702"
+    "paired_analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
+    "runtime_generator": "src/kaggriculture_lab/evaluation/top_trace_gate.py",
+    "runtime_generator_sha256": "2110F7E97ACDBA29EADC2D1D7A292AE5F8FD4294C9FB50436619AB746BC99270",
+    "gate_evaluator": "src/kaggriculture_lab/evaluation/top_trace_gate.py",
+    "gate_evaluator_sha256": "2110F7E97ACDBA29EADC2D1D7A292AE5F8FD4294C9FB50436619AB746BC99270"
+  },
+  "development_design": {
+    "scenarios": ["default"],
+    "seeds": "40000-40015",
+    "seats": [0, 1],
+    "opponents": 6,
+    "exact_cells_per_lane": 192,
+    "workers_per_lane": 6,
+    "receipts": "separate candidate and control start receipts are mandatory"
   },
   "development_gates": {
     "candidate_failures": 0,
@@ -102,6 +118,32 @@
     "runtime_p99_ms_max": 15.0,
     "runtime_absolute_ms_max": 50.0,
     "invalid_outputs": 0
+  },
+  "execution_freeze": {
+    "development_gates_sha256": "B7113AE53BBE1EE82D26568455032D599028013E88908688E3EFB6D3C85D8EF7",
+    "third_party_license": {
+      "path": "third_party/fa04_frontier_lab/LICENSE",
+      "sha256": "C71D239DF91726FC519C6EB72D318EC65820627232B2F796219E87DCF35D0AB4",
+      "bytes": 11357
+    },
+    "third_party_attribution": {
+      "path": "third_party/fa04_frontier_lab/ATTRIBUTION.md",
+      "sha256": "2EF65172CFAB942EDDB2372CB9A65CB2C2976455A14B869B6402DF3C0CADB91F",
+      "bytes": 555
+    },
+    "runtime_replay": {
+      "path": "references/fa04_teacher_replays/episode-89256171-replay.json",
+      "sha256": "ADADDE60EEFB93B56DBE9922B51D5D1970803F89DDF0EEEE67B9890024090405",
+      "bytes": 27128767
+    },
+    "artifacts": {
+      "candidate_report": "experiments/evaluations/fa04_top_trace_guard/G1_development.json",
+      "control_report": "experiments/evaluations/fa04_top_trace_guard/G0_development.json",
+      "candidate_start_receipt": "experiments/evaluations/fa04_top_trace_guard/G1_development.contract.started.json",
+      "control_start_receipt": "experiments/evaluations/fa04_top_trace_guard/G0_development.contract.started.json",
+      "runtime_report": "experiments/evaluations/fa04_top_trace_guard/G1_runtime.json",
+      "analysis_report": "experiments/evaluations/fa04_top_trace_guard/G1_development_gate.json"
+    }
   },
   "release_policy": "Development pass permits immediate private Save & Run packaging because the user prioritizes early ladder accumulation; competition submission remains user-controlled."
 }

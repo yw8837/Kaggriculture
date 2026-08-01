@@ -6834,7 +6834,7 @@ def _normalize_hands(action, obs):
     return True
 
 
-def _predicted_shed(action, obs):
+def _predicted_shed(action, obs, config=None):
     private = _private(obs)
     raw_shed = private.get("shed", {})
     shed = {
@@ -6844,6 +6844,10 @@ def _predicted_shed(action, obs):
     inventories = private.get("inventories", [])
     if not isinstance(inventories, list):
         inventories = []
+    try:
+        shed_capacity = max(0, int((config or {}).get("shedCapacity", 100)))
+    except (AttributeError, TypeError, ValueError):
+        shed_capacity = 100
     farm = _current_farm(obs)
     units = [action.get("farmer", ["PASS"]), *action.get("hands", [])]
     for index, unit_action in enumerate(units):
@@ -6855,8 +6859,10 @@ def _predicted_shed(action, obs):
         if unit_action[0] == "DROP":
             for item, quantity in inventory.items():
                 amount = _nonnegative_int(quantity)
-                if amount:
-                    shed[str(item)] = shed.get(str(item), 0) + amount
+                room = max(0, shed_capacity - sum(shed.values()))
+                deposited = min(amount, room)
+                if deposited:
+                    shed[str(item)] = shed.get(str(item), 0) + deposited
         elif unit_action[0] == "PICKUP" and len(unit_action) >= 2:
             item = str(unit_action[1])
             quantity = _nonnegative_int(unit_action[2], 1) if len(unit_action) >= 3 else 1
@@ -6916,7 +6922,7 @@ def agent(obs, config=None):
     original = deepcopy(SCHEDULE[index])
     action = deepcopy(original)
     _normalize_hands(action, obs)
-    shed = _predicted_shed(action, obs)
+    shed = _predicted_shed(action, obs, config)
     market = action.get("market", [])
     if SOURCE_MODE == "terminal_guard" and _nonnegative_int(obs.get("day", 0)) >= 29:
         rewritten = _terminal_market(market, shed, obs)
