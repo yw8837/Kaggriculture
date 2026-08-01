@@ -216,6 +216,36 @@
       "evaluated_games": 0,
       "promotion_eligible": false,
       "reason": "D1 development was NO-GO; this candidate-specific pool may not be reused."
+    },
+    "Fa04_top_trace_guard_development": {
+      "start": 40000,
+      "end_inclusive": 40015,
+      "count": 16,
+      "purpose": "One-candidate fresh development of the attributed R130 schedule with sell-legality drift guards against frozen top-replay controls.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa04_top_trace_guard_confirmation": {
+      "start": 41000,
+      "end_inclusive": 41063,
+      "count": 64,
+      "purpose": "One-time independent confirmation after Fa04 top-trace development passes.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa04_top_trace_guard_robustness": {
+      "start": 42000,
+      "end_inclusive": 42031,
+      "count": 32,
+      "purpose": "One-time four-scenario robustness after Fa04 top-trace confirmation passes.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
     }
   }
 }

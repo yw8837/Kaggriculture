@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "identity": "Fa04_top_trace_guard_G1",
+  "status": "CLOSED_PENDING_FRESH_DEVELOPMENT",
+  "implementation_commit": "aa0bc06f0eaff8112898576f418fffeb25c367f1",
+  "hypothesis": "The public R130 capital and labor schedule is the current strategic leap; preserving it while clamping only impossible SELL orders improves drift safety without materially weakening cross-play.",
+  "target": "Fast 1400-ladder probe; 1200 is the minimum target, neither score is guaranteed by local simulation.",
+  "attribution": {
+    "source": "official public Kaggle episode replay",
+    "episode_id": 89256171,
+    "team": "radiant-allomancer",
+    "player": 0,
+    "replay_sha256": "ADADDE60EEFB93B56DBE9922B51D5D1970803F89DDF0EEEE67B9890024090405",
+    "recorded_actions": 719,
+    "policy": "Keep episode/team/player/replay hash in the generated source; do not claim authorship of the teacher trajectory."
+  },
+  "research_evidence": {
+    "old_strong_and_scenario_games": 192,
+    "old_strong_and_scenario_wins": 192,
+    "top_trace_crossplay_games": 80,
+    "top_trace_crossplay_wins": 64,
+    "top_trace_crossplay_losses": 16,
+    "top_trace_crossplay_match_score": 0.8,
+    "top_trace_crossplay_margin_mean": 20807.725,
+    "guard_vs_fixed_cells": 80,
+    "guard_vs_fixed_same_money_cells": 77,
+    "guard_vs_fixed_better_money_cells": 3,
+    "guard_vs_fixed_worse_money_cells": 1,
+    "interpretation_limit": "All research screens use already-consumed seeds and select this one candidate only; they motivate but do not replace fresh development."
+  },
+  "seed_registry": "configs/fa_ab_seed_registry.json",
+  "pools": {
+    "development": {
+      "registry_key": "Fa04_top_trace_guard_development",
+      "start": 40000,
+      "end_inclusive": 40015,
+      "count": 16,
+      "status": "CLOSED"
+    },
+    "confirmation": {
+      "registry_key": "Fa04_top_trace_guard_confirmation",
+      "start": 41000,
+      "end_inclusive": 41063,
+      "count": 64,
+      "status": "CLOSED"
+    },
+    "robustness": {
+      "registry_key": "Fa04_top_trace_guard_robustness",
+      "start": 42000,
+      "end_inclusive": 42031,
+      "count": 32,
+      "status": "CLOSED"
+    }
+  },
+  "scenario_overrides": {
+    "default": {}
+  },
+  "expected_effective_scenarios_sha256": "F960E92B5C5DF0FE21944D8195EC3731FA21368029C5731B1CC14BA35FB010CE",
+  "candidate": {
+    "identity": "G1_R130_sell_guard",
+    "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+    "sha256": "0343CF633CEB0054DB7C87F81CFDB370D28D66D91063A43ADB7AB51A07DADEF9",
+    "bytes": 197081
+  },
+  "control": {
+    "identity": "G0_R130_fixed",
+    "path": "experiments/source_snapshots/fa04_top_trace/G0_fixed.py",
+    "sha256": "D44BBC1E290ED41D5A051D01DB5C708CEAB786475FAE3AF62FB2C2612671A036",
+    "bytes": 190855
+  },
+  "opponents": [
+    {"identity": "C135_chocolat", "path": "experiments/source_snapshots/fa04_top_trace/C135.py", "sha256": "13C88E1D9232F66A219AF0B66A36A46D622C2466856D191E57A8FDC42BC7C1EE", "bytes": 217913},
+    {"identity": "R140_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R140.py", "sha256": "E4BDEDB791FC129AA73941D96BEA2C20709D9431A8C9628AB526EA186B0F4870", "bytes": 196104},
+    {"identity": "R145_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R145.py", "sha256": "99CE3CABA350D03DC59B9649B9E6D0D28F3D896C5BE0783D355A3D8701476650", "bytes": 198710},
+    {"identity": "R150_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R150.py", "sha256": "80AB5C9E50540FE49D68DED3D170FF79C34603FAF19257BD01554A19E30DA599", "bytes": 188137},
+    {"identity": "R155_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R155.py", "sha256": "857A8F98425D06262E503D46C15FC9480358ADA7621BC5D6D30575B2B71A167C", "bytes": 197609},
+    {"identity": "formal_final_day_labor", "path": "artifacts/candidates/final_day_labor/main.py", "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B", "bytes": 16195}
+  ],
+  "tooling": {
+    "generator": "src/kaggriculture_lab/research/replay_policy.py",
+    "generator_git_blob": "c5f99743952b48ec4889f5810e8006ad79c8a5af",
+    "runner": "src/kaggriculture_lab/evaluation/runner.py",
+    "runner_sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+    "paired_analyzer": "src/kaggriculture_lab/evaluation/paired.py",
+    "paired_analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702"
+  },
+  "development_gates": {
+    "candidate_failures": 0,
+    "control_failures": 0,
+    "minimum_candidate_top_trace_match_score": 0.75,
+    "minimum_each_top_trace_match_score": 0.5,
+    "minimum_formal_match_score": 0.9,
+    "minimum_each_opponent_mean_margin": 0.0,
+    "minimum_paired_match_delta_vs_control": -0.02,
+    "minimum_paired_money_delta_vs_control": -100.0,
+    "minimum_actions_changed": 1,
+    "runtime_p95_ms_max": 8.0,
+    "runtime_p99_ms_max": 15.0,
+    "runtime_absolute_ms_max": 50.0,
+    "invalid_outputs": 0
+  },
+  "release_policy": "Development pass permits immediate private Save & Run packaging because the user prioritizes early ladder accumulation; competition submission remains user-controlled."
+}
