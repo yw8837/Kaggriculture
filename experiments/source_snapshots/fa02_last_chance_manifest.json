@@ -4,8 +4,8 @@
   "status": "FROZEN_CLOSED_PENDING_SEED_OPEN_AUTHORIZATION",
   "config": {
     "path": "configs/fa02_last_chance_boundary.json",
-    "sha256": "F7878FE01310E5A0377ADDB5461AACD0DD6405549E402E62CFFAEC70F48F0EED",
-    "bytes": 11676
+    "sha256": "850AAC723DACE178128130D5708CE13DFE3220737C49C9DA5C3382DA28E530A3",
+    "bytes": 11790
   },
   "seed_registry": {
     "path": "configs/fa_ab_seed_registry.json",
@@ -20,7 +20,8 @@
   "runtime_replay": {
     "path": "artifacts/submission_replays/episode-89143277-replay.json",
     "sha256": "1AA4495DBBC1439A2E5462245B4C6B725D89F9156A8F8C9ECFD4E29077D23285",
-    "bytes": 16696969
+    "bytes": 16696969,
+    "tracking": "IMMUTABLE_LOCAL_EXTERNAL"
   },
   "agents": {
     "BT1": {
@@ -81,8 +82,8 @@
     },
     "development_orchestrator_gate_runtime_generator": {
       "path": "src/kaggriculture_lab/evaluation/last_chance_gate.py",
-      "sha256": "F657E15E458D2872A875F988590598A8CC2F440525D70E662CCD84126408614E",
-      "bytes": 49259,
+      "sha256": "4356AA03381C265346A699097DAFF638C35769FD7331B9C0ADACD611BE4AB72C",
+      "bytes": 51403,
       "result": "Derives and runs only the frozen 160-cell candidate/control lanes, enforces the strict gate, and reproduces the provenance-complete runtime report."
     },
     "BT1_runtime_precheck": {
@@ -95,8 +96,8 @@
   "test_sources": {
     "gate_adversarial": {
       "path": "tests/test_last_chance_gate.py",
-      "sha256": "9234CD9676694491621A51DAA144E72545E2453204AB6979FB670D935D8674D4",
-      "bytes": 29903
+      "sha256": "D6AC6D839D7AFC7BD25576DB10A6BD6592154045467258FAE6FE9D45E4E119BC",
+      "bytes": 32663
     },
     "candidate_and_runtime": {
       "path": "tests/test_last_chance_tiebreak.py",
@@ -105,8 +106,8 @@
     },
     "boundary_and_manifest": {
       "path": "tests/test_fa02_last_chance_boundary.py",
-      "sha256": "0FC5EA23D0A210ED2A6D93D96CCB5A1429B31231B27C704B81B9E6A47F4133E5",
-      "bytes": 12552
+      "sha256": "2568EFE3DA2EE7CEAD89162C34B8308F12468541C99BE8B5037935DDA2E0413B",
+      "bytes": 12756
     },
     "seed_registry": {
       "path": "tests/test_seed_registry.py",

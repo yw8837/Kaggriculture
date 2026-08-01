@@ -158,6 +158,17 @@ def validate_input_manifest(project_root: Path) -> dict[str, Any]:
     if manifest.get("schema_version") != 3 or manifest.get("role") != "INPUT_FREEZE":
         raise ValueError("input manifest schema/role mismatch")
     entries = _manifest_entries(manifest)
+    runtime_replay = _mapping(manifest.get("runtime_replay"), "manifest.runtime_replay")
+    if runtime_replay.get("tracking") != "IMMUTABLE_LOCAL_EXTERNAL":
+        raise ValueError("runtime replay must be declared immutable local external")
+    external_paths = {str(runtime_replay.get("path"))}
+    for entry in entries:
+        tracking = entry.get("tracking", "GIT_TRACKED")
+        if str(entry.get("path")) in external_paths:
+            if tracking != "IMMUTABLE_LOCAL_EXTERNAL":
+                raise ValueError("immutable local external input declaration mismatch")
+        elif tracking != "GIT_TRACKED":
+            raise ValueError("only the runtime replay may bypass Git-at-HEAD validation")
     paths: list[str] = []
     for entry in entries:
         relative, _ = _checked_source(project_root, entry, "input manifest entry")
@@ -169,6 +180,7 @@ def validate_input_manifest(project_root: Path) -> dict[str, Any]:
         "sha256": sha256(path),
         "bytes": path.stat().st_size,
         "entries": entries,
+        "immutable_local_external_paths": sorted(external_paths),
     }
 
 
@@ -192,6 +204,13 @@ def _execution_state(
         raise ValueError(f"tracked tree must be clean: {dirty}")
     if unexpected:
         raise ValueError(f"non-evidence tracked changes are forbidden: {unexpected}")
+    declared_external = freeze.get("immutable_local_external_inputs")
+    if (
+        not isinstance(declared_external, list)
+        or not all(isinstance(item, str) for item in declared_external)
+        or sorted(declared_external) != manifest["immutable_local_external_paths"]
+    ):
+        raise ValueError("immutable local external input declaration mismatch")
 
     thresholds = _mapping(config.get("development_gates"), "development_gates")
     threshold_hash = _json_sha256(thresholds)
@@ -229,6 +248,27 @@ def _execution_state(
             "sha256": actual,
             "bytes": (project_root / relative).stat().st_size,
         }
+    protected_paths = {
+        CONFIG_RELATIVE.as_posix(),
+        INPUT_MANIFEST_RELATIVE.as_posix(),
+        registry_relative,
+        scenario_relative,
+        *[entry["path"] for entry in tooling.values()],
+    }
+    for section in ("candidate", "control"):
+        entry = _mapping(config.get(section), section)
+        if isinstance(entry.get("path"), str):
+            protected_paths.add(str(entry["path"]))
+    opponents = config.get("opponents")
+    if isinstance(opponents, list):
+        protected_paths.update(
+            str(entry["path"])
+            for raw in opponents
+            for entry in [_mapping(raw, "opponent")]
+            if isinstance(entry.get("path"), str)
+        )
+    if protected_paths & set(declared_external):
+        raise ValueError("implementation/tooling/source cannot be a local external input")
     state = {
         "implementation_commit": head,
         "git_head": head,
@@ -255,8 +295,13 @@ def _execution_state(
         "development_gates_sha256": threshold_hash,
         "tooling": tooling,
     }
+    external_paths = set(manifest["immutable_local_external_paths"])
     head_paths = [
-        *[str(entry["path"]) for entry in manifest["entries"]],
+        *[
+            str(entry["path"])
+            for entry in manifest["entries"]
+            if str(entry["path"]) not in external_paths
+        ],
         INPUT_MANIFEST_RELATIVE.as_posix(),
     ]
     for relative in head_paths:

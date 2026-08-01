@@ -116,6 +116,9 @@
   },
   "execution_freeze": {
     "input_manifest": "experiments/source_snapshots/fa02_last_chance_manifest.json",
+    "immutable_local_external_inputs": [
+      "artifacts/submission_replays/episode-89143277-replay.json"
+    ],
     "development_gates_sha256": "97528A730391675FE1F36535B25AF24B078DE37FF69BFCEFFF019AB5532E2914",
     "artifacts": {
       "candidate_report": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_candidate.json",
@@ -177,7 +180,7 @@
     "analyzer": "src/kaggriculture_lab/evaluation/paired.py",
     "analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
     "gate_evaluator": "src/kaggriculture_lab/evaluation/last_chance_gate.py",
-    "gate_evaluator_sha256": "F657E15E458D2872A875F988590598A8CC2F440525D70E662CCD84126408614E"
+    "gate_evaluator_sha256": "4356AA03381C265346A699097DAFF638C35769FD7331B9C0ADACD611BE4AB72C"
   },
   "runtime_precheck": {
     "path": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_runtime.json",

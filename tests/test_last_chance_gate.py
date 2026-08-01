@@ -490,6 +490,9 @@ def _execution_state_fixture(tmp_path: Path) -> tuple[dict, dict]:
     gates = {"minimum": 1}
     config = {
         "seed_registry": "registry.json",
+        "candidate": {"path": "candidate.py"},
+        "control": {"path": "control.py"},
+        "opponents": [],
         "scenario_config": {"path": "scenario.json", "sha256": hashlib.sha256(
             (tmp_path / "scenario.json").read_bytes()
         ).hexdigest().upper()},
@@ -506,17 +509,22 @@ def _execution_state_fixture(tmp_path: Path) -> tuple[dict, dict]:
         "development_gates": gates,
         "execution_freeze": {
             "input_manifest": gate_module.INPUT_MANIFEST_RELATIVE.as_posix(),
+            "immutable_local_external_inputs": [],
             "development_gates_sha256": _json_sha256(gates),
             "allowed_evidence_only_tracked_paths": ["evidence.json"],
         },
     }
+    manifest_relative = gate_module.INPUT_MANIFEST_RELATIVE.as_posix()
+    manifest_path = tmp_path / manifest_relative
+    manifest_path.parent.mkdir(parents=True)
+    manifest_path.write_text("x", encoding="utf-8")
     manifest = {
-        "path": "manifest.json",
+        "path": manifest_relative,
         "sha256": "A" * 64,
         "bytes": 1,
         "entries": [{"path": "tool.py", "sha256": tool_hash}],
+        "immutable_local_external_paths": [],
     }
-    (tmp_path / "manifest.json").write_text("x", encoding="utf-8")
     return config, manifest
 
 
@@ -547,6 +555,55 @@ def test_execution_state_requires_frozen_inputs_to_exist_unchanged_at_head(
     monkeypatch.setattr(gate_module, "_git_tracked_dirty_paths", lambda root: [])
     monkeypatch.setattr(gate_module, "_git_file_sha256", lambda *args: "0" * 64)
     with pytest.raises(ValueError, match="differs from implementation HEAD"):
+        _REAL_EXECUTION_STATE(tmp_path, config, require_clean=False)
+
+
+def test_execution_state_allows_only_declared_local_external_replay(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    config, manifest = _execution_state_fixture(tmp_path)
+    external = "artifacts/submission_replays/episode-89143277-replay.json"
+    external_path = tmp_path / external
+    external_path.parent.mkdir(parents=True)
+    external_path.write_text("immutable replay", encoding="utf-8")
+    external_hash = hashlib.sha256(external_path.read_bytes()).hexdigest().upper()
+    manifest["entries"].append(
+        {
+            "path": external,
+            "sha256": external_hash,
+            "bytes": external_path.stat().st_size,
+            "tracking": "IMMUTABLE_LOCAL_EXTERNAL",
+        }
+    )
+    manifest["immutable_local_external_paths"] = [external]
+    config["execution_freeze"]["immutable_local_external_inputs"] = [external]
+    monkeypatch.setattr(gate_module, "validate_input_manifest", lambda root: manifest)
+    monkeypatch.setattr(gate_module, "_git_head", lambda root: "A" * 40)
+    monkeypatch.setattr(gate_module, "_git_tracked_dirty_paths", lambda root: [])
+    checked_at_head: list[str] = []
+
+    def fake_head_sha(root: Path, head: str, relative: str) -> str:
+        checked_at_head.append(relative)
+        return hashlib.sha256((root / relative).read_bytes()).hexdigest().upper()
+
+    monkeypatch.setattr(gate_module, "_git_file_sha256", fake_head_sha)
+    state = _REAL_EXECUTION_STATE(tmp_path, config, require_clean=False)
+    assert state["tracked_tree_clean"] is True
+    assert external not in checked_at_head
+    assert "tool.py" in checked_at_head
+
+
+def test_execution_state_never_allows_tooling_to_be_declared_external(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    config, manifest = _execution_state_fixture(tmp_path)
+    config["execution_freeze"]["immutable_local_external_inputs"] = ["tool.py"]
+    manifest["immutable_local_external_paths"] = ["tool.py"]
+    manifest["entries"][0]["tracking"] = "IMMUTABLE_LOCAL_EXTERNAL"
+    monkeypatch.setattr(gate_module, "validate_input_manifest", lambda root: manifest)
+    monkeypatch.setattr(gate_module, "_git_head", lambda root: "A" * 40)
+    monkeypatch.setattr(gate_module, "_git_tracked_dirty_paths", lambda root: [])
+    with pytest.raises(ValueError, match="tooling/source cannot"):
         _REAL_EXECUTION_STATE(tmp_path, config, require_clean=False)
 
 

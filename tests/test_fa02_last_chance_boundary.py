@@ -185,6 +185,7 @@ def test_manifest_hash_and_byte_loop_freezes_every_required_input() -> None:
 
 def test_execution_freeze_separates_inputs_from_evidence_and_hashes_thresholds() -> None:
     config = _load(CONFIG)
+    manifest = _load(MANIFEST)
     freeze = config["execution_freeze"]
     assert freeze["input_manifest"] == MANIFEST.as_posix()
     assert freeze["development_gates_sha256"] == hashlib.sha256(
@@ -197,6 +198,9 @@ def test_execution_freeze_separates_inputs_from_evidence_and_hashes_thresholds()
         freeze["artifacts"]["post_test_evidence_manifest"]
     }
     assert not any(path.startswith(("src/", "configs/")) for path in allowed)
+    replay = manifest["runtime_replay"]
+    assert replay["tracking"] == "IMMUTABLE_LOCAL_EXTERNAL"
+    assert freeze["immutable_local_external_inputs"] == [replay["path"]]
 
 
 def test_gates_counter_contract_and_priority_order_are_frozen() -> None:
