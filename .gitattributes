@@ -2,6 +2,8 @@
 artifacts/candidates/**/*.py text eol=lf
 artifacts/opponents/public_kaggle/*.py binary
 experiments/source_snapshots/** text eol=lf
+# The attributed public C02 control is frozen byte-for-byte with upstream CRLF.
+experiments/source_snapshots/fa04_c02_meta/*.py -text
 experiments/evaluations/**/*.json binary
 submissions/api_inventory*.json binary
 reports/test_evidence/** binary
