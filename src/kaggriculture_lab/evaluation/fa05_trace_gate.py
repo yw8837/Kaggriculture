@@ -283,11 +283,24 @@ def _frozen_plan(project_root: Path, boundary_path: Path) -> dict[str, Any]:
         for name in ("third_party_license", "third_party_attribution")
     }
     runtime_entry = core._mapping(freeze.get("runtime_replay"), "runtime replay")
-    runtime_replay = core._checked_file_entry(project_root, runtime_entry, "runtime replay")
+    runtime_replay = {
+        **core._checked_file_entry(project_root, runtime_entry, "runtime replay"),
+        "player": runtime_entry.get("player"),
+        "observations": runtime_entry.get("observations"),
+        "recorded_actions": runtime_entry.get("recorded_actions"),
+        "tracking": runtime_entry.get("tracking"),
+        "origin": runtime_entry.get("origin"),
+        "acquisition_provenance": runtime_entry.get("acquisition_provenance"),
+    }
     if (
         runtime_entry.get("player") != 1
         or runtime_entry.get("observations") != 720
         or runtime_entry.get("recorded_actions") != 719
+        or runtime_entry.get("tracking") != "IMMUTABLE_LOCAL_EXTERNAL"
+        or runtime_entry.get("origin")
+        != "public Kaggle competition replay episode 89268002"
+        or runtime_entry.get("acquisition_provenance")
+        != "LOCAL_HASH_PINNED; REMOTE_RETRIEVAL_RECEIPT_REQUIRED_BEFORE_SAVERUN_OR_PUBLICATION"
     ):
         raise ValueError("Fa05 runtime replay player/count contract mismatch")
     artifacts = core._mapping(freeze.get("artifacts"), "artifacts")
@@ -392,6 +405,13 @@ def _runtime_receipt(plan: Mapping[str, Any]) -> dict[str, Any]:
         "player": 1,
         "observations": 720,
         "recorded_actions": 719,
+        "step_reconstruction": {
+            "target_player": 1,
+            "shared_step_source_player": 0,
+            "only_fill_when_missing": True,
+            "required_observed_steps": "0-719_exact_unique",
+            "preserve_player_and_private": True,
+        },
         "command": command,
         "generator": plan["tooling"]["runtime_generator"],
         "tracked_provenance": {
@@ -405,7 +425,7 @@ def _runtime_receipt(plan: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def generate_runtime(project_root: Path, boundary_path: Path) -> dict[str, Any]:
-    from kaggriculture_lab.evaluation.runtime import benchmark
+    from kaggriculture_lab.evaluation.fa05_runtime import benchmark_player_replay
 
     plan = _frozen_plan(project_root.resolve(), boundary_path.resolve())
     output = project_root / plan["artifacts"]["runtime_report"]
@@ -415,7 +435,7 @@ def generate_runtime(project_root: Path, boundary_path: Path) -> dict[str, Any]:
     receipt = _runtime_receipt(plan)
     receipt_path.parent.mkdir(parents=True, exist_ok=True)
     receipt_path.write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
-    report = benchmark(
+    report = benchmark_player_replay(
         project_root / plan["candidate"]["path"],
         project_root / plan["runtime_replay"]["path"],
         1,
@@ -528,6 +548,10 @@ def _validate_runtime_report(
         "player",
         "observations",
         "recorded_actions",
+        "recorded_action_offset",
+        "recorded_action_matches",
+        "recorded_action_differences",
+        "step_provenance",
         "calls",
         "invalid_outputs",
         "p50_ms",
@@ -549,10 +573,35 @@ def _validate_runtime_report(
         ("player", 1),
         ("observations", 720),
         ("recorded_actions", 719),
+        ("recorded_action_offset", 1),
     ):
         actual = runtime.get(label)
         if isinstance(actual, bool) or not isinstance(actual, int) or actual != expected:
             raise ValueError(f"runtime.{label} must be the exact integer {expected}")
+    for label in ("recorded_action_matches", "recorded_action_differences"):
+        actual = runtime.get(label)
+        if isinstance(actual, bool) or not isinstance(actual, int) or actual < 0:
+            raise ValueError(f"runtime.{label} must be a nonnegative integer")
+    if (
+        runtime["recorded_action_matches"]
+        + runtime["recorded_action_differences"]
+        != 719
+    ):
+        raise ValueError("Fa05 runtime recorded action accounting mismatch")
+    step_provenance = core._mapping(
+        runtime.get("step_provenance"), "runtime.step_provenance"
+    )
+    if step_provenance != {
+        "method": "copy_player_observation_and_fill_only_missing_step_from_player0",
+        "observed_steps": list(range(720)),
+        "observed_step_start": 0,
+        "observed_step_end": 719,
+        "unique_observed_steps": 720,
+        "injected_missing_steps": 720,
+        "preserved_existing_steps": 0,
+        "player_and_private_preserved": True,
+    }:
+        raise ValueError("Fa05 runtime step reconstruction provenance mismatch")
     _utc_datetime(runtime.get("created_at_utc"), "runtime.created_at_utc")
     if (
         runtime.get("git_head") != plan["execution_head"]

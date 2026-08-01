@@ -2,7 +2,7 @@
   "schema_version": 1,
   "identity": "Fa05_R145_trace_guard_T1",
   "status": "CLOSED_PENDING_INDEPENDENT_AUDIT",
-  "implementation_commit": "b118d306f97d6126326b6693318de22a37de9c50",
+  "implementation_commit": "PENDING_FREEZE",
   "hypothesis": "A second attributed high-scoring R145 trajectory provides useful matchup diversity while the audited impossible-SELL guard prevents known off-trajectory market illegality.",
   "claim_limit": "This is a complementary exploratory candidate. Local evidence cannot guarantee a 1200 rating or top-three finish.",
   "attribution": {
@@ -111,11 +111,11 @@
     "paired_analyzer": "src/kaggriculture_lab/evaluation/paired.py",
     "paired_analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
     "runtime_generator": "src/kaggriculture_lab/evaluation/fa05_trace_gate.py",
-    "runtime_generator_sha256": "FF7BFAEFAE167E09D15CC62EF101ADF78F3B51CD60EEA52718BCAF5F990BB416",
-    "runtime_benchmark": "src/kaggriculture_lab/evaluation/runtime.py",
-    "runtime_benchmark_sha256": "B7605EF73C62EA1CC55C187723F3D8E92E543286A4AB2E82C6C93AACD60F02F2",
+    "runtime_generator_sha256": "BD8E8C8DF90439E648E44AD69D4E8BFE0250C343F60C86C68437890BBEF58165",
+    "runtime_benchmark": "src/kaggriculture_lab/evaluation/fa05_runtime.py",
+    "runtime_benchmark_sha256": "A364F36577C7BB62E5A4469CA3B23508790ECC7618D12011DBDDDC82E22BE89B",
     "gate_evaluator": "src/kaggriculture_lab/evaluation/fa05_trace_gate.py",
-    "gate_evaluator_sha256": "FF7BFAEFAE167E09D15CC62EF101ADF78F3B51CD60EEA52718BCAF5F990BB416"
+    "gate_evaluator_sha256": "BD8E8C8DF90439E648E44AD69D4E8BFE0250C343F60C86C68437890BBEF58165"
   },
   "development_design": {
     "scenarios": ["default"],
@@ -152,9 +152,9 @@
       "bytes": 11357
     },
     "third_party_attribution": {
-      "path": "third_party/fa04_frontier_lab/ATTRIBUTION.md",
-      "sha256": "2EF65172CFAB942EDDB2372CB9A65CB2C2976455A14B869B6402DF3C0CADB91F",
-      "bytes": 555
+      "path": "third_party/fa05_r145_trace/ATTRIBUTION.md",
+      "sha256": "52DD0CBCA7AEF0A376FB847669D59D8C3FE98A720852A499EADB5B2F4BFC921A",
+      "bytes": 655
     },
     "runtime_replay": {
       "path": "references/fa04_teacher_replays/episode-89268002-replay.json",
@@ -162,7 +162,10 @@
       "bytes": 24437865,
       "player": 1,
       "observations": 720,
-      "recorded_actions": 719
+      "recorded_actions": 719,
+      "tracking": "IMMUTABLE_LOCAL_EXTERNAL",
+      "origin": "public Kaggle competition replay episode 89268002",
+      "acquisition_provenance": "LOCAL_HASH_PINNED; REMOTE_RETRIEVAL_RECEIPT_REQUIRED_BEFORE_SAVERUN_OR_PUBLICATION"
     },
     "artifacts": {
       "candidate_report": "experiments/evaluations/fa05_r145_trace/T1_development.json",

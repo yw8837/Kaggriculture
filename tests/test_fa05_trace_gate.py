@@ -9,6 +9,7 @@ from pathlib import Path
 import pytest
 
 from kaggriculture_lab.evaluation import fa05_trace_gate as gate
+from kaggriculture_lab.evaluation.fa05_runtime import benchmark_player_replay
 
 ROOT = Path(__file__).resolve().parents[1]
 BOUNDARY = ROOT / "configs" / "fa05_r145_trace_boundary.json"
@@ -115,8 +116,34 @@ def test_fa05_runtime_contract_is_player_one_and_exact_length() -> None:
     assert runtime["player"] == 1
     assert runtime["observations"] == 720
     assert runtime["recorded_actions"] == 719
+    assert runtime["tracking"] == "IMMUTABLE_LOCAL_EXTERNAL"
+    assert "SAVERUN_OR_PUBLICATION" in runtime["acquisition_provenance"]
     assert _sha256(replay) == runtime["sha256"]
     assert replay.stat().st_size == runtime["bytes"]
+
+    attribution = boundary["execution_freeze"]["third_party_attribution"]
+    attribution_text = (ROOT / attribution["path"]).read_text(encoding="utf-8")
+    assert "Fa_05" in attribution_text
+    assert "89268002" in attribution_text
+    assert "Source player: `1`" in attribution_text
+    assert runtime["sha256"] in attribution_text
+
+
+def test_fa05_player_one_runtime_exercises_exact_schedule_indices() -> None:
+    boundary = _load(BOUNDARY)
+    result = benchmark_player_replay(
+        ROOT / boundary["candidate"]["path"],
+        ROOT / boundary["execution_freeze"]["runtime_replay"]["path"],
+        1,
+    )
+    provenance = result["step_provenance"]
+    assert result["calls"] == 720
+    assert result["invalid_outputs"] == 0
+    assert provenance["observed_steps"] == list(range(720))
+    assert provenance["unique_observed_steps"] == 720
+    assert provenance["injected_missing_steps"] == 720
+    assert provenance["player_and_private_preserved"] is True
+    assert result["recorded_action_matches"] + result["recorded_action_differences"] == 719
 
 
 def test_fa05_every_frozen_input_hash_matches_actual_bytes() -> None:
@@ -196,6 +223,19 @@ def test_fa05_runtime_rejects_out_of_order_percentiles() -> None:
         "player": 1,
         "observations": 720,
         "recorded_actions": 719,
+        "recorded_action_offset": 1,
+        "recorded_action_matches": 700,
+        "recorded_action_differences": 19,
+        "step_provenance": {
+            "method": "copy_player_observation_and_fill_only_missing_step_from_player0",
+            "observed_steps": list(range(720)),
+            "observed_step_start": 0,
+            "observed_step_end": 719,
+            "unique_observed_steps": 720,
+            "injected_missing_steps": 720,
+            "preserved_existing_steps": 0,
+            "player_and_private_preserved": True,
+        },
         "command": deepcopy(receipt["command"]),
         "generator": deepcopy(receipt["generator"]),
         "tracked_provenance": deepcopy(receipt["tracked_provenance"]),
