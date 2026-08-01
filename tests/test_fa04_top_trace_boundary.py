@@ -12,7 +12,7 @@ ROOT = Path(__file__).parents[1]
 BOUNDARY = ROOT / "configs/fa04_top_trace_guard_boundary.json"
 REGISTRY = ROOT / "configs/fa_ab_seed_registry.json"
 EXPECTED_BOUNDARY_NON_LIFECYCLE_SHA256 = (
-    "B01D69548E96869E56ECFB42A916045ABCBC1AD868C3DAC52DFC50B62152221F"
+    "AB06F2EBC08F6E9C311B4D915DA1A88A874A28BAC1FD5E32ECF652C0040140A5"
 )
 EXPECTED_REGISTRY_NON_LIFECYCLE_SHA256 = (
     "9E38D7332622F0D1D4017BC82E42A4CAE54D0EBBB96B89F6464E4DC887CCCDAE"
@@ -216,9 +216,9 @@ def test_fa04_open_transition_canonical_invariant_is_preregistered() -> None:
     assert invariant == {
         "schema_version": 1,
         "basis": {
-            "label": "S2_IMPLEMENTATION_E2_EXECUTION",
-            "implementation_commit": "586e69c110ade7e1ca0a7c7bf49eb6aeb1ab6a82",
-            "closed_execution_commit": "bfbddb37c4f25ddbbf6f746f20604eff5f894663",
+            "label": "PREVIOUS_IMPLEMENTATION_EXECUTION_PAIR",
+            "implementation_commit": "42950f6e51cb55e0e2ac3220c9e869136e34a7b2",
+            "closed_execution_commit": "55e4fa9b9d4570bc35fdd9aff37462d7c3cafc32",
         },
         "canonicalization": {
             "algorithm": "SHA256_CANONICAL_JSON_SORTED_KEYS_COMPACT_ASCII",

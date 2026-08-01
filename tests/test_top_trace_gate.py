@@ -137,7 +137,7 @@ def _transition_invariant(
     return {
         "schema_version": 1,
         "basis": {
-            "label": "S2_IMPLEMENTATION_E2_EXECUTION",
+            "label": "PREVIOUS_IMPLEMENTATION_EXECUTION_PAIR",
             "implementation_commit": S2_IMPLEMENTATION_HEAD,
             "closed_execution_commit": CLOSED_EXECUTION_HEAD,
         },

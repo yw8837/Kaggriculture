@@ -365,7 +365,7 @@ def _validate_open_transition_invariant(
         raise ValueError("open transition metadata contract is not exact")
 
     basis = _mapping(invariant.get("basis"), "open_transition_invariant.basis")
-    if basis.get("label") != "S2_IMPLEMENTATION_E2_EXECUTION":
+    if basis.get("label") != "PREVIOUS_IMPLEMENTATION_EXECUTION_PAIR":
         raise ValueError("open transition basis label is not exact")
     basis_implementation = _commit(
         basis.get("implementation_commit"),

@@ -91,11 +91,11 @@
     "paired_analyzer": "src/kaggriculture_lab/evaluation/paired.py",
     "paired_analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
     "runtime_generator": "src/kaggriculture_lab/evaluation/top_trace_gate.py",
-    "runtime_generator_sha256": "4CEC507C2A82813E476EEF815BFADBC668948DF953D53234FCEE861B2FC667ED",
+    "runtime_generator_sha256": "D05C4B805D2AA025B856C5C6F7334CDCAFB54FCDAB173CF189BA6B9F2F3D0987",
     "runtime_benchmark": "src/kaggriculture_lab/evaluation/runtime.py",
     "runtime_benchmark_sha256": "B7605EF73C62EA1CC55C187723F3D8E92E543286A4AB2E82C6C93AACD60F02F2",
     "gate_evaluator": "src/kaggriculture_lab/evaluation/top_trace_gate.py",
-    "gate_evaluator_sha256": "4CEC507C2A82813E476EEF815BFADBC668948DF953D53234FCEE861B2FC667ED"
+    "gate_evaluator_sha256": "D05C4B805D2AA025B856C5C6F7334CDCAFB54FCDAB173CF189BA6B9F2F3D0987"
   },
   "development_design": {
     "scenarios": ["default"],
@@ -150,9 +150,9 @@
   "open_transition_invariant": {
     "schema_version": 1,
     "basis": {
-      "label": "S2_IMPLEMENTATION_E2_EXECUTION",
-      "implementation_commit": "586e69c110ade7e1ca0a7c7bf49eb6aeb1ab6a82",
-      "closed_execution_commit": "bfbddb37c4f25ddbbf6f746f20604eff5f894663"
+      "label": "PREVIOUS_IMPLEMENTATION_EXECUTION_PAIR",
+      "implementation_commit": "42950f6e51cb55e0e2ac3220c9e869136e34a7b2",
+      "closed_execution_commit": "55e4fa9b9d4570bc35fdd9aff37462d7c3cafc32"
     },
     "canonicalization": {
       "algorithm": "SHA256_CANONICAL_JSON_SORTED_KEYS_COMPACT_ASCII",
@@ -186,7 +186,7 @@
       "boundary.opening_authority": "User authorization opens local development evaluation only; it does not authorize SaveRun or competition submission.",
       "registry.next_boundary_reservations.Fa04_top_trace_guard_development.opened_at_utc": "MUST_EQUAL_BOUNDARY_DEVELOPMENT_OPENED_AT_UTC"
     },
-    "canonical_boundary_non_lifecycle_sha256": "B01D69548E96869E56ECFB42A916045ABCBC1AD868C3DAC52DFC50B62152221F",
+    "canonical_boundary_non_lifecycle_sha256": "AB06F2EBC08F6E9C311B4D915DA1A88A874A28BAC1FD5E32ECF652C0040140A5",
     "canonical_registry_non_lifecycle_sha256": "9E38D7332622F0D1D4017BC82E42A4CAE54D0EBBB96B89F6464E4DC887CCCDAE"
   },
   "release_policy": "Development PASS permits only a separate SaveRun readiness request; no SaveRun without separate authorization/audit verdict."
