@@ -175,6 +175,38 @@
       "opened": false,
       "consumed": false,
       "evaluated_games": 0
+    },
+    "Fa04_C02_microlot_development": {
+      "start": 37000,
+      "end_inclusive": 37015,
+      "count": 16,
+      "purpose": "One-delta D1 WHEAT micro-lot development against the exact public C01/C02/C03 family.",
+      "status": "OPEN",
+      "opened": true,
+      "consumed": false,
+      "opened_at_utc": "2026-08-01T10:34:30.3938816Z",
+      "evaluated_candidate_games": 0,
+      "evaluated_control_games": 0
+    },
+    "Fa04_C02_microlot_confirmation": {
+      "start": 38000,
+      "end_inclusive": 38063,
+      "count": 64,
+      "purpose": "One-time confirmation only after D1 development passes and is independently reviewed.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa04_C02_microlot_robustness": {
+      "start": 39000,
+      "end_inclusive": 39031,
+      "count": 32,
+      "purpose": "One-time scenario robustness only after D1 confirmation passes.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
     }
   }
 }
