@@ -161,6 +161,8 @@ def test_next_boundary_reservations_do_not_collide_with_historical_evidence() ->
         Path("configs/fa02_last_chance_boundary.json"),
         Path("configs/fa04_top_trace_guard_boundary.json"),
         Path("configs/fa05_r145_trace_boundary.json"),
+        Path("configs/fa05_wool_glut_boundary.json"),
+        Path("configs/fa05_wool_glut_manifest.json"),
         Path("experiments/source_snapshots/fa_next_boundary_manifest.json"),
         Path("experiments/source_snapshots/fa02_last_chance_manifest.json"),
     }
@@ -178,3 +180,22 @@ def test_next_boundary_reservations_do_not_collide_with_historical_evidence() ->
         for line in path.read_text(encoding="utf-8").splitlines():
             historical.update(_collect_seed_values(json.loads(line)))
     assert proposed.isdisjoint(historical)
+
+
+def test_fa05_wool_seed_reservations_are_exact_closed_and_unused() -> None:
+    registry = json.loads(
+        Path("configs/fa_ab_seed_registry.json").read_text(encoding="utf-8")
+    )["next_boundary_reservations"]
+    expected = {
+        "Fa05_wool_glut_buffer_development": (46000, 46015, 16),
+        "Fa05_wool_glut_buffer_confirmation": (47000, 47063, 64),
+        "Fa05_wool_glut_buffer_robustness": (48000, 48031, 32),
+    }
+    for key, (start, end, count) in expected.items():
+        pool = registry[key]
+        assert (pool["start"], pool["end_inclusive"], pool["count"]) == (
+            start, end, count
+        )
+        assert pool["status"] == "CLOSED"
+        assert pool["opened"] is pool["consumed"] is False
+        assert pool["evaluated_games"] == 0

@@ -31,7 +31,7 @@
     "guarded_r145_margin_mean": 28979.46875
   },
   "seed_registry": "configs/fa_ab_seed_registry.json",
-  "seed_registry_sha256": "A47178366A0B41FC26FC11E74FCCC087E91CF9D92365D27CA6FA15B942DF1290",
+  "seed_registry_sha256": "A443626FF1E6FE2B84C9036454263AA4E8349C3E4ADE3686A6E449C3BA699C61",
   "pools": {
     "development": {
       "registry_key": "Fa05_R145_trace_guard_development",

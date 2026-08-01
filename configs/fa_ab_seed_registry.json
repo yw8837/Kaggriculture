@@ -297,6 +297,36 @@
       "evaluated_games": 0,
       "promotion_eligible": false,
       "reason": "Fa05 R145 development was accepted as NO-GO; evidence 9450738023B87798774883590C1EFCBB5174533FF48C090507E7E1F3463F8BB0. This candidate-specific pool may not be reused."
+    },
+    "Fa05_wool_glut_buffer_development": {
+      "start": 46000,
+      "end_inclusive": 46015,
+      "count": 16,
+      "purpose": "Fresh paired default-scenario development of the single-delta W1 Wool Glut Buffer against C135, R140, R145, R150, R155, and formal; no direct-G1 opponent lane.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa05_wool_glut_buffer_confirmation": {
+      "start": 47000,
+      "end_inclusive": 47063,
+      "count": 64,
+      "purpose": "One-time sealed-strength confirmation only after W1 development passes and a separate independent audit authorizes opening.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa05_wool_glut_buffer_robustness": {
+      "start": 48000,
+      "end_inclusive": 48031,
+      "count": 32,
+      "purpose": "One-time scenario robustness only after W1 sealed-strength confirmation passes and a separate independent audit authorizes opening.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
     }
   }
 }
