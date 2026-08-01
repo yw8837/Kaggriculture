@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "observed_at_utc": "2026-08-01T05:03:18.8934462Z",
+  "scope": "private Kaggle Save & Run only; no competition submission by Codex",
+  "fa02": {
+    "ref": "yw8837/fa-02-last-chance-tiebreak",
+    "status": "KernelWorkerStatus.COMPLETE",
+    "source_path": "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+    "source_sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740",
+    "archive_sha256": "E1DA47187E383023E1719479FEA82615FCEB17D217AB7855526A39767655FDEE",
+    "archive_bytes": 7029,
+    "remote_member": "main.py",
+    "remote_member_sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740",
+    "remote_member_bytes": 29265,
+    "runtime_gate": {
+      "calls": 720,
+      "invalid_outputs": 0,
+      "action_differences_vs_reference": 0,
+      "p95_ms": 6.3983,
+      "p99_ms": 7.7431,
+      "max_ms": 10.8309,
+      "result": "PASS"
+    }
+  },
+  "fa03": {
+    "ref": "yw8837/fa-03-meta-expansion",
+    "status": "KernelWorkerStatus.COMPLETE",
+    "selected_variant": "M2_hire_only_12_hands",
+    "source_path": "experiments/source_snapshots/fa03_meta_expansion/M2.py",
+    "source_sha256": "737DCC8BB014EF6915D6BC1F5020AA0330BB50D179A3A042B0813D3F11F6F7BA",
+    "archive_sha256": "B2D58348CCF221917390DE932BA2F2AF91FC8CC7F315E68EA72D1D352D6FBDDF",
+    "archive_bytes": 4385,
+    "remote_member": "main.py",
+    "remote_member_sha256": "737DCC8BB014EF6915D6BC1F5020AA0330BB50D179A3A042B0813D3F11F6F7BA",
+    "remote_member_bytes": 16195,
+    "diagnostic_screen": {
+      "cells": 80,
+      "failed_cells": 0,
+      "candidate_match_score": 0.9125,
+      "control_match_score": 0.8875,
+      "paired_match_delta": 0.025,
+      "paired_match_delta_seed_cluster_bootstrap_95": [-0.025, 0.075],
+      "paired_money_delta_mean": 1577.4875,
+      "paired_money_delta_seed_cluster_bootstrap_95": [57.9125, 3455.325],
+      "warning": "Diagnostic screen reused previously consumed seeds and is not promotion evidence."
+    }
+  },
+  "competition_submissions_after_saveruns": {
+    "count": 3,
+    "refs": [55142935, 55137248, 55137246],
+    "codex_created_new_submission": false
+  }
+}

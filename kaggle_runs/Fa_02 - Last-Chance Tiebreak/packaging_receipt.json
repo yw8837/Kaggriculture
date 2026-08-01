@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "record_type": "kaggle_private_save_run_local_packaging_receipt",
+  "status": "LOCAL_PREFLIGHT_PASS_READY_FOR_AUTHORIZED_PUSH",
+  "external_action_performed": false,
+  "identity": {
+    "sequence": "Fa_02",
+    "candidate": "last_chance_tiebreak_BT1",
+    "title": "Fa_02 - Last-Chance Tiebreak",
+    "kernel_id": "yw8837/fa-02-last-chance-tiebreak",
+    "competition": "kaggriculture",
+    "artifact_filename": "Fa_02 - Last-Chance Tiebreak.tar.gz"
+  },
+  "source": {
+    "path": "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+    "sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740",
+    "bytes": 29265
+  },
+  "archive": {
+    "path": "kaggle_runs/Fa_02 - Last-Chance Tiebreak/Fa_02 - Last-Chance Tiebreak.tar.gz",
+    "preflight_copy_path": "kaggle_runs/Fa_02 - Last-Chance Tiebreak/preflight/Fa_02 - Last-Chance Tiebreak.tar.gz",
+    "sha256": "E1DA47187E383023E1719479FEA82615FCEB17D217AB7855526A39767655FDEE",
+    "bytes": 7029,
+    "members": [
+      "main.py"
+    ],
+    "payload_matches_source": true,
+    "payload_compiles": true,
+    "deterministic_double_rebuild_matches": true,
+    "notebook_emission_matches_preflight": true,
+    "tar_mode": "0644",
+    "tar_uid": 0,
+    "tar_gid": 0,
+    "tar_mtime": 0
+  },
+  "notebook": {
+    "path": "kaggle_runs/Fa_02 - Last-Chance Tiebreak/Fa_02 - Last-Chance Tiebreak.ipynb",
+    "sha256": "30FAF6B324B76C67568D8182B81F6431388E008753409FDA7F01E74C73A45D71",
+    "bytes": 11725,
+    "local_stdout": "{\"artifact\": \"Fa_02 - Last-Chance Tiebreak.tar.gz\", \"sha256\": \"E1DA47187E383023E1719479FEA82615FCEB17D217AB7855526A39767655FDEE\", \"bytes\": 7029, \"members\": [\"main.py\"]}"
+  },
+  "kernel_metadata": {
+    "path": "kaggle_runs/Fa_02 - Last-Chance Tiebreak/kernel-metadata.json",
+    "sha256": "33028F85AE26BFF1F525DA0E7CFE0CA32893FD89B6B2E4C6FCB97A8F47B99AC5",
+    "bytes": 440,
+    "is_private": true,
+    "enable_internet": false,
+    "enable_gpu": false,
+    "enable_tpu": false,
+    "competition_sources": [
+      "kaggriculture"
+    ]
+  },
+  "preflight": {
+    "secret_or_local_path_hits": 0,
+    "archive_member_exact": true,
+    "source_token_compile": true,
+    "metadata_contract_exact": true,
+    "result": "PASS"
+  },
+  "authority": {
+    "private_save_run_push_performed": false,
+    "competition_submission_performed": false,
+    "publication_performed": false
+  }
+}

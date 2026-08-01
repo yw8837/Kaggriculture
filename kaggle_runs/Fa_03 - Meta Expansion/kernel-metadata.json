@@ -1,0 +1,18 @@
+{
+  "id": "yw8837/fa-03-meta-expansion",
+  "title": "Fa_03 - Meta Expansion",
+  "code_file": "Fa_03 - Meta Expansion.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "machine_shape": "",
+  "dataset_sources": [],
+  "competition_sources": [
+    "kaggriculture"
+  ],
+  "kernel_sources": [],
+  "model_sources": []
+}
