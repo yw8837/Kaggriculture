@@ -2,7 +2,7 @@
   "schema_version": 1,
   "identity": "Fa05_R145_trace_guard_T1",
   "status": "CLOSED_PENDING_INDEPENDENT_AUDIT",
-  "implementation_commit": "PENDING_FREEZE",
+  "implementation_commit": "b118d306f97d6126326b6693318de22a37de9c50",
   "hypothesis": "A second attributed high-scoring R145 trajectory provides useful matchup diversity while the audited impossible-SELL guard prevents known off-trajectory market illegality.",
   "claim_limit": "This is a complementary exploratory candidate. Local evidence cannot guarantee a 1200 rating or top-three finish.",
   "attribution": {
