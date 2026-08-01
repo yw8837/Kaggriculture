@@ -1,7 +1,9 @@
 {
   "schema_version": 1,
   "identity": "Fa05_R145_trace_guard_T1",
-  "status": "CLOSED_PENDING_INDEPENDENT_AUDIT",
+  "status": "DEVELOPMENT_OPEN_AUTHORIZED",
+  "development_opened_at_utc": "2026-08-01T22:34:17.4394398Z",
+  "opening_authority": "Independent auditor task 019fb8b8-7758-7860-9304-39eb4f06c65c authorizes only exact Fa05 development seeds 43000-43015.",
   "implementation_commit": "31a3bac508ea0ba083919b2aceea5b22bf1c01bb",
   "hypothesis": "A second attributed high-scoring R145 trajectory provides useful matchup diversity while the audited impossible-SELL guard prevents known off-trajectory market illegality.",
   "claim_limit": "This is a complementary exploratory candidate. Local evidence cannot guarantee a 1200 rating or top-three finish.",
@@ -29,14 +31,14 @@
     "guarded_r145_margin_mean": 28979.46875
   },
   "seed_registry": "configs/fa_ab_seed_registry.json",
-  "seed_registry_sha256": "4E09FFD721A20785E9730C9D70FCFCE1E5F915FCB9946BD6D34D0AC85438C120",
+  "seed_registry_sha256": "8A5DE9F8354E01DEDD77CF0337EAE666D21677D2BA164CC4B17B468EE00B4C09",
   "pools": {
     "development": {
       "registry_key": "Fa05_R145_trace_guard_development",
       "start": 43000,
       "end_inclusive": 43015,
       "count": 16,
-      "status": "CLOSED"
+      "status": "OPEN"
     },
     "confirmation": {
       "registry_key": "Fa05_R145_trace_guard_confirmation",

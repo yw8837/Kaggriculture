@@ -256,8 +256,9 @@
       "end_inclusive": 43015,
       "count": 16,
       "purpose": "Fresh one-candidate development of the attributed R145 schedule with the audited impossible-SELL drift guard.",
-      "status": "CLOSED",
-      "opened": false,
+      "status": "OPEN",
+      "opened": true,
+      "opened_at_utc": "2026-08-01T22:34:17.4394398Z",
       "consumed": false,
       "evaluated_games": 0
     },
