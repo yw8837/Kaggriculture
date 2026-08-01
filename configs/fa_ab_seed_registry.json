@@ -181,32 +181,41 @@
       "end_inclusive": 37015,
       "count": 16,
       "purpose": "One-delta D1 WHEAT micro-lot development against the exact public C01/C02/C03 family.",
-      "status": "OPEN",
+      "status": "CONSUMED_NO_GO",
       "opened": true,
-      "consumed": false,
+      "consumed": true,
       "opened_at_utc": "2026-08-01T10:34:30.3938816Z",
-      "evaluated_candidate_games": 0,
-      "evaluated_control_games": 0
+      "evaluated_candidate_games": 96,
+      "evaluated_control_games": 96,
+      "evaluated_paired_cells": 96,
+      "promotion_eligible": false,
+      "evidence": "experiments/evaluations/fa04_c02_microlot/D1_development_gate.json",
+      "evidence_sha256": "5ADDC4F12EBDE98EBBCA39986FBA4A56FBEDCDCB105BCB95D70EE85BB57A6BCD",
+      "result": "NO-GO: positive seed fraction was 0.1875 versus the preregistered minimum 0.5; improvement was confined to the exact C02 lane."
     },
     "Fa04_C02_microlot_confirmation": {
       "start": 38000,
       "end_inclusive": 38063,
       "count": 64,
       "purpose": "One-time confirmation only after D1 development passes and is independently reviewed.",
-      "status": "CLOSED",
+      "status": "RETIRED_UNUSED",
       "opened": false,
       "consumed": false,
-      "evaluated_games": 0
+      "evaluated_games": 0,
+      "promotion_eligible": false,
+      "reason": "D1 development was NO-GO; this candidate-specific pool may not be reused."
     },
     "Fa04_C02_microlot_robustness": {
       "start": 39000,
       "end_inclusive": 39031,
       "count": 32,
       "purpose": "One-time scenario robustness only after D1 confirmation passes.",
-      "status": "CLOSED",
+      "status": "RETIRED_UNUSED",
       "opened": false,
       "consumed": false,
-      "evaluated_games": 0
+      "evaluated_games": 0,
+      "promotion_eligible": false,
+      "reason": "D1 development was NO-GO; this candidate-specific pool may not be reused."
     }
   }
 }
