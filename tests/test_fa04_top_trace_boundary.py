@@ -29,7 +29,7 @@ def _expand(pool: dict) -> set[int]:
 
 def test_fa04_top_trace_boundary_binds_exact_sources_and_attribution() -> None:
     config = json.loads(BOUNDARY.read_text(encoding="utf-8"))
-    assert config["status"] == "CLOSED_PENDING_FRESH_DEVELOPMENT"
+    assert config["status"] == "DEVELOPMENT_OPEN_AUTHORIZED"
     assert config["attribution"] == {
         "source": "official public Kaggle episode replay",
         "episode_id": 89256171,
@@ -80,8 +80,13 @@ def test_fa04_top_trace_scenario_and_seed_pools_are_exact_closed_and_disjoint() 
         lane = config["pools"][purpose]
         pool = reservations[lane["registry_key"]]
         assert (pool["start"], pool["end_inclusive"], pool["count"]) == bounds
-        assert pool["status"] == lane["status"] == "CLOSED"
-        assert pool["opened"] is pool["consumed"] is False
+        if purpose == "development":
+            assert pool["status"] == lane["status"] == "OPEN"
+            assert pool["opened"] is True and pool["consumed"] is False
+            assert pool["opened_at_utc"] == config["development_opened_at_utc"]
+        else:
+            assert pool["status"] == lane["status"] == "CLOSED"
+            assert pool["opened"] is pool["consumed"] is False
         assert pool["evaluated_games"] == 0
 
 

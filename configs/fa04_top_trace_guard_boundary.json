@@ -1,7 +1,9 @@
 {
   "schema_version": 1,
   "identity": "Fa04_top_trace_guard_G1",
-  "status": "CLOSED_PENDING_FRESH_DEVELOPMENT",
+  "status": "DEVELOPMENT_OPEN_AUTHORIZED",
+  "development_opened_at_utc": "2026-08-01T14:12:16.1513157Z",
+  "opening_authority": "User directed autonomous local work and prioritized an early strong ladder probe; this opens local evaluation only, not competition submission.",
   "implementation_commit": "aa0bc06f0eaff8112898576f418fffeb25c367f1",
   "hypothesis": "The public R130 capital and labor schedule is the current strategic leap; preserving it while clamping only impossible SELL orders improves drift safety without materially weakening cross-play.",
   "target": "Fast 1400-ladder probe; 1200 is the minimum target, neither score is guaranteed by local simulation.",
@@ -35,7 +37,7 @@
       "start": 40000,
       "end_inclusive": 40015,
       "count": 16,
-      "status": "CLOSED"
+      "status": "OPEN"
     },
     "confirmation": {
       "registry_key": "Fa04_top_trace_guard_confirmation",

@@ -222,9 +222,10 @@
       "end_inclusive": 40015,
       "count": 16,
       "purpose": "One-candidate fresh development of the attributed R130 schedule with sell-legality drift guards against frozen top-replay controls.",
-      "status": "CLOSED",
-      "opened": false,
+      "status": "OPEN",
+      "opened": true,
       "consumed": false,
+      "opened_at_utc": "2026-08-01T14:12:16.1513157Z",
       "evaluated_games": 0
     },
     "Fa04_top_trace_guard_confirmation": {
