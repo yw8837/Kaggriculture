@@ -1,7 +1,9 @@
 {
   "schema_version": 1,
   "identity": "Fa04_top_trace_guard_G1",
-  "status": "CLOSED_PENDING_CORRECTED_FREEZE_AUDIT",
+  "status": "DEVELOPMENT_OPEN_AUTHORIZED",
+  "development_opened_at_utc": "2026-08-01T15:58:49.4228656Z",
+  "opening_authority": "User authorization opens local development evaluation only; it does not authorize SaveRun or competition submission.",
   "implementation_commit": "a43cd954a59fd84e5e3738e03f3effe30cef36b4",
   "hypothesis": "The public R130 capital and labor schedule is the current strategic leap; preserving it while clamping only impossible SELL orders improves drift safety without materially weakening cross-play.",
   "target": "Fast 1400-ladder probe; 1200 is the minimum target, but 1200/1400 are not guaranteed by local simulation.",
@@ -30,14 +32,14 @@
     "interpretation_limit": "All research screens use already-consumed seeds and select this one candidate only; they motivate but do not replace fresh development."
   },
   "seed_registry": "configs/fa_ab_seed_registry.json",
-  "seed_registry_sha256": "D2666FAB7EE462A4285B8F84AFD2A67ABCCFFD1B451CE132D885AB029DF77BDC",
+  "seed_registry_sha256": "9A762696257E45A939CD214D7E2CBEA930012CDA4AB0C76D2F5D8310E021EEC9",
   "pools": {
     "development": {
       "registry_key": "Fa04_top_trace_guard_development",
       "start": 40000,
       "end_inclusive": 40015,
       "count": 16,
-      "status": "CLOSED"
+      "status": "OPEN"
     },
     "confirmation": {
       "registry_key": "Fa04_top_trace_guard_confirmation",
