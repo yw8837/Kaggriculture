@@ -1,35 +1,43 @@
-# Kaggriculture Baseline Guide | Expansion Agent & Reproducible Evaluation
+# Kaggriculture Agent Guide | Expansion Strategy & Both-Seat Evaluation
 
-I am sharing a readable Kaggriculture baseline for players who want to move beyond a single-crop
-starter without jumping straight into a large optimizer.
+I am sharing a readable Kaggriculture agent for players who want to study expansion without first
+building a large optimizer. The companion notebook keeps the full source visible and produces a
+submission-ready archive with only root `main.py`.
 
-The agent focuses on three ideas:
+## What the baseline demonstrates
 
-- early land expansion;
-- a fixed mixed-crop plan plus a cow/sheep herd;
-- extra hands to keep the larger farm productive.
+- conditional land expansion during days 5-18;
+- a fixed mixed-crop layout and cow/sheep herd;
+- a wheat reserve for daily feed;
+- deterministic task assignment for a larger workforce;
+- deterministic packaging with source and archive verification.
 
-The source is standalone and fully visible. The package contains only root `main.py`, so it is easy
-to inspect, fork, and test locally.
+The rules are intentionally direct. That makes each decision easy to trace and gives experiments
+a clear baseline.
+
+## A useful way to test changes
+
+For each change, run the baseline and challenger on the same seed list in both seats. Evaluate the
+complete 720-turn horizon, keep development and confirmation seed sets separate, and record:
+
+- completed games, failures, and invalid actions;
+- match outcomes and money deltas;
+- runtime percentiles and the slowest call;
+- land timing, cash, labor, inventories, and end-game actions.
+
+One early ladder snapshot can be useful feedback, but it is not a stable estimate of general
+strength.
 
 ## Known limitations
 
-The hiring rule is deliberately simple and may overpay. Crop and herd targets are fixed, the policy
-does not react to the opponent, and its late-horizon and inventory routing are intentionally basic.
-This is a public learning baseline, not a current private competition agent or a guaranteed rating.
+Labor sizing can overpay, crop and herd targets are fixed, and the policy does not condition on the
+opponent. Its late-horizon and near-capacity inventory rules are intentionally basic. This is a
+public learning baseline, not a leaderboard guarantee or the current private competition agent.
 
-## How I recommend evaluating changes
+The most informative follow-up is a one-variable experiment: change labor sizing, crop mix, herd
+composition, or the end game while keeping the same paired both-seat evaluation contract.
 
-Use the same seeds in both seats, keep development and confirmation seeds separate, record invalid
-actions and runtime, and inspect the complete 720-turn horizon. A single early ladder result is not
-enough to establish general strength.
+Companion Code title: **Kaggriculture Agent | Early Expansion & Mixed-Farm Baseline**
 
-I would be interested to hear which part you improve first: crop mix, herd composition, labor
-sizing, or the end game.
-
-## Fixed publication titles
-
-- Discussion first: **Kaggriculture Baseline Guide | Expansion Agent & Reproducible Evaluation**
-- Kaggle Code second: **Kaggriculture Agent | Strong Expansion Baseline**
-
-These titles intentionally omit unverified rating claims and unstable implementation counts.
+No standalone reuse license has been selected; check the applicable Kaggle terms before reusing
+the source elsewhere.

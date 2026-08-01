@@ -1,52 +1,59 @@
 {
-  "schema_version": 1,
-  "base_commit": "4a997eb931f84c49d72b33316497a6d93637750d",
-  "status": "publication_authorized_hold_pending_independent_auditor_pass",
+  "schema_version": 2,
+  "status": "local_update_prepared_no_external_action",
   "explicit_user_publication_authorization": true,
   "independent_auditor_pass": false,
   "actual_publish_allowed": false,
   "actual_publish_gate": "HOLD_PENDING_INDEPENDENT_AUDITOR_PASS",
   "publication_order": ["discussion", "kaggle_code"],
   "titles": {
-    "discussion": "Kaggriculture Baseline Guide | Expansion Agent & Reproducible Evaluation",
-    "kaggle_code": "Kaggriculture Agent | Strong Expansion Baseline"
+    "discussion": "Kaggriculture Agent Guide | Expansion Strategy & Both-Seat Evaluation",
+    "kaggle_code": "Kaggriculture Agent | Early Expansion & Mixed-Farm Baseline"
   },
-  "proposed_filename": "Kaggriculture - Strong Expansion Baseline.tar.gz",
   "source": {
     "path": "artifacts/candidates/public_expansion_baseline/main.py",
     "bytes": 16365,
     "sha256": "BD32AEFDC00B1F0A41746EBACC4FCBF0AFF32AC061363179F15371B9ACE9A5C0"
   },
   "archive": {
-    "existing_local_path": "dist/public/public_expansion_baseline.tar.gz",
+    "filename": "public_expansion_baseline.tar.gz",
     "bytes": 4685,
     "sha256": "967A899A2BE149FF676B025E955AEDE2C42C0720C0A868428770A9B818F1144D",
     "members": ["main.py"],
-    "payload_matches_source": true
+    "payload_matches_source": true,
+    "generated_by_notebook": true,
+    "prebuilt_archive_present_in_current_checkout": false
   },
+  "local_notebook_update": {
+    "output_directory": "kaggle_runs/public-expansion-baseline",
+    "notebook": "kaggle_runs/public-expansion-baseline/public-expansion-baseline.ipynb",
+    "metadata": "kaggle_runs/public-expansion-baseline/kernel-metadata.json",
+    "kernel_id": "yw8837/kaggriculture-strong-expansion-baseline",
+    "is_private": false,
+    "competition_submission": false,
+    "external_action_performed": false
+  },
+  "public_payload_allowlist": [
+    "main.py",
+    "public-expansion-baseline.ipynb",
+    "kernel-metadata.json"
+  ],
   "private_content_in_archive": false,
   "license_status": "no explicit standalone license selected",
   "public_git_release_allowed": false,
   "actual_kaggle_publish_allowed": false,
   "existing_v1": {
-    "evidence_status": "verified_from_local_original_records",
     "slug": "yw8837/kaggriculture-strong-expansion-baseline",
     "version": 1,
     "visibility": "public",
     "status": "COMPLETE",
     "title": "Kaggriculture | Strong Expansion Baseline",
     "url": "https://www.kaggle.com/code/yw8837/kaggriculture-strong-expansion-baseline",
-    "competition_submission": false,
-    "evidence": [
-      "publications/ledger.jsonl",
-      "kaggle_runs/public-expansion-baseline/kernel-metadata.json",
-      "reports/public_expansion_baseline.md"
-    ]
+    "competition_submission": false
   },
   "notes": [
-    "The user explicitly authorized the public-code workflow.",
-    "Actual Discussion and Kaggle Code publication remains held until independent auditor PASS.",
-    "The public artifact is unnumbered so private production submissions retain the Fa_01+ sequence.",
-    "No commit, push, Save & Run, competition submission, or actual publication was performed by this draft."
+    "The public agent source and deterministic archive behavior remain unchanged.",
+    "The local notebook update adds explanatory and evaluation material only.",
+    "No publish, push, Save & Run, or competition submission was performed."
   ]
 }
