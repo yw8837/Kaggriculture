@@ -313,7 +313,7 @@ def test_gates_counter_contract_and_priority_order_are_frozen() -> None:
         "rank_tiebreak_activated": 8,
         "action_changed_vs_old_comparator_on_same_state": 0,
         "last_chance_action_emitted_on_exact_target": 82,
-        "tiebreak_to_exact_target_action_emitted": 0,
+        "tiebreak_to_exact_target_action_emitted": 8,
         "formal_fallback_due_assignment_set_mismatch": 0,
         "next_day_weed_or_escape_outcome": 0,
     }

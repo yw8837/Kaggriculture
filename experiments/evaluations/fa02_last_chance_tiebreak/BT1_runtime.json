@@ -1,25 +1,36 @@
 {
-  "schema_version": 2,
-  "created_at_utc": "2026-08-01T01:03:51.935451+00:00",
-  "git_head": "6dd3e92e419ea92d19d569e952ff06b6cad54d8b",
+  "schema_version": 3,
+  "created_at_utc": "2026-08-01T04:50:55.943349+00:00",
+  "git_head": "f419434f804c82af7d888fe43474bb43b83376cd",
   "command": "uv run python -m kaggriculture_lab.evaluation.last_chance_gate --generate-runtime --project-root . --output experiments/evaluations/fa02_last_chance_tiebreak/BT1_runtime.json",
   "python": "3.12.13 (main, Mar 10 2026, 18:15:39) [MSC v.1944 64 bit (AMD64)]",
   "platform": "Windows-11-10.0.26200-SP0",
   "generator": {
     "path": "src/kaggriculture_lab/evaluation/last_chance_gate.py",
-    "sha256": "9E94A8E7CA410FE331FAC52184A50AF078BFAF1F5FF1F6EE832C284B5452D239"
+    "sha256": "4356AA03381C265346A699097DAFF638C35769FD7331B9C0ADACD611BE4AB72C"
+  },
+  "tracked_provenance": {
+    "git_head": "f419434f804c82af7d888fe43474bb43b83376cd",
+    "implementation_commit": "f419434f804c82af7d888fe43474bb43b83376cd",
+    "tracked_tree_clean": true,
+    "tracked_modified_paths": [],
+    "development_gates_sha256": "97528A730391675FE1F36535B25AF24B078DE37FF69BFCEFFF019AB5532E2914",
+    "head_verified_files": {
+      "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740",
+      "src/kaggriculture_lab/evaluation/last_chance_gate.py": "4356AA03381C265346A699097DAFF638C35769FD7331B9C0ADACD611BE4AB72C"
+    }
   },
   "source": "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
-  "source_sha256": "10835A59BC58E5FA4B440D926DC7487E5317CBC07B0C8173EABCC8B57B8906DC",
+  "source_sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740",
   "replay": "artifacts/submission_replays/episode-89143277-replay.json",
   "replay_sha256": "1AA4495DBBC1439A2E5462245B4C6B725D89F9156A8F8C9ECFD4E29077D23285",
   "player": 0,
   "calls": 720,
   "invalid_outputs": 0,
-  "p50_ms": 1.9817,
-  "p95_ms": 5.6774,
-  "p99_ms": 6.8791,
-  "max_ms": 8.9199,
+  "p50_ms": 2.4119,
+  "p95_ms": 6.3983,
+  "p99_ms": 7.7431,
+  "max_ms": 10.8309,
   "reference_source": "artifacts/candidates/final_day_labor/main.py",
   "reference_source_sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
   "action_comparison_calls": 720,
@@ -31,7 +42,7 @@
     "rank_tiebreak_activated": 8,
     "action_changed_vs_old_comparator_on_same_state": 0,
     "last_chance_action_emitted_on_exact_target": 82,
-    "tiebreak_to_exact_target_action_emitted": 0,
+    "tiebreak_to_exact_target_action_emitted": 8,
     "formal_fallback_due_assignment_set_mismatch": 0,
     "next_day_weed_or_escape_outcome": 0
   },

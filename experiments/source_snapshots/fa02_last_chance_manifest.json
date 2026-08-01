@@ -4,8 +4,8 @@
   "status": "FROZEN_CLOSED_PENDING_SEED_OPEN_AUTHORIZATION",
   "config": {
     "path": "configs/fa02_last_chance_boundary.json",
-    "sha256": "850AAC723DACE178128130D5708CE13DFE3220737C49C9DA5C3382DA28E530A3",
-    "bytes": 11790
+    "sha256": "9C51B1281B038D8747F407C7E52D8AFCA9949DAD4357A017025D19C8B95ADFB0",
+    "bytes": 11791
   },
   "seed_registry": {
     "path": "configs/fa_ab_seed_registry.json",
@@ -88,9 +88,9 @@
     },
     "BT1_runtime_precheck": {
       "path": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_runtime.json",
-      "sha256": "064AABD5F3C5E18C118CF92891F1D7CE4AA4CA9915EB59470A9AB5229C34DA4C",
-      "bytes": 2166,
-      "result": "PASS: tracked generator, 720 replay calls, p95=5.6774ms p99=6.8791ms max=8.9199ms invalid=0 action differences=0 priority inversions=0"
+      "sha256": "AD279BD5707AD31AA56AABCDA9B8E439E5D6449E03A07A295DF7FF5125D14D9A",
+      "bytes": 2811,
+      "result": "PASS: clean tracked HEAD f419434f804c82af7d888fe43474bb43b83376cd, 720 replay calls, p95=6.3983ms p99=7.7431ms max=10.8309ms invalid=0 action differences=0 priority inversions=0"
     }
   },
   "test_sources": {
@@ -106,7 +106,7 @@
     },
     "boundary_and_manifest": {
       "path": "tests/test_fa02_last_chance_boundary.py",
-      "sha256": "2568EFE3DA2EE7CEAD89162C34B8308F12468541C99BE8B5037935DDA2E0413B",
+      "sha256": "891ACEC16D593DA9BA206C00FEB3943D3ECDEAF073B61FF743C04B40E45396C7",
       "bytes": 12756
     },
     "seed_registry": {
