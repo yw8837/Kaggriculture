@@ -11,7 +11,7 @@ import hashlib
 from pathlib import Path
 
 SOURCE_CONTROL_SHA256 = "C60147472E416CC1A9106FF2868023C69AB51220E8F959E05E861038CDC46E2E"
-VALID_MODES = ("V0", "A1", "B1", "C1", "D1", "D2")
+VALID_MODES = ("V0", "A1", "B1", "C1", "D1", "D2", "E1")
 
 _CROP_MIX_V0 = '''CROP_MIX = {
     "NW": {"MELON": 10, "WHEAT": 4, "CARROT": 2},
@@ -96,6 +96,23 @@ _SELL_RETURN_D1 = '''    if left <= 12:
 _FEED_STOCK_V0 = "FEED_STOCK_DAYS = 3\n"
 _FEED_STOCK_D2 = "FEED_STOCK_DAYS = 1\n"
 
+_ROLE_DAY_V0 = '''def _role_plan(obs, farm):
+    private = obs.get("private", {}) or {}
+'''
+_ROLE_DAY_E1 = '''def _role_plan(obs, farm):
+    day = int(obs.get("day", 0) or 0)
+    private = obs.get("private", {}) or {}
+'''
+
+_FIXED_CROPS_V0 = '''        fixed = dict(CROP_MIX[quadrant])
+        if quadrant == "NW":
+'''
+_FIXED_CROPS_E1 = '''        fixed = dict(CROP_MIX[quadrant])
+        if day >= 5:
+            fixed["WHEAT"] = 2 if quadrant == "NW" else 0
+        if quadrant == "NW":
+'''
+
 
 def _sha256(payload: bytes) -> str:
     return hashlib.sha256(payload).hexdigest().upper()
@@ -168,6 +185,19 @@ def build_c02_meta_family(source_control: bytes, mode: str) -> bytes:
             source,
             _FEED_STOCK_V0,
             _FEED_STOCK_D2,
+            newline=newline,
+        )
+    elif mode == "E1":
+        source = _replace_exact(
+            source,
+            _ROLE_DAY_V0,
+            _ROLE_DAY_E1,
+            newline=newline,
+        )
+        source = _replace_exact(
+            source,
+            _FIXED_CROPS_V0,
+            _FIXED_CROPS_E1,
             newline=newline,
         )
 

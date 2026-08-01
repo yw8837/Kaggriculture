@@ -16,10 +16,14 @@ from kaggriculture_lab.candidates.c02_meta_family import (
     _CROP_MIX_V0,
     _FEED_STOCK_D2,
     _FEED_STOCK_V0,
+    _FIXED_CROPS_E1,
+    _FIXED_CROPS_V0,
     _HERD_TARGETS_B1,
     _HERD_TARGETS_V0,
     _LAND_C1,
     _LAND_V0,
+    _ROLE_DAY_E1,
+    _ROLE_DAY_V0,
     _SELL_RETURN_D1,
     _SELL_RETURN_V0,
     SOURCE_CONTROL_SHA256,
@@ -79,6 +83,10 @@ def _normalize_to_v0(source: str, mode: str) -> str:
         "C1": ((_LAND_C1, _LAND_V0),),
         "D1": ((_SELL_RETURN_D1, _SELL_RETURN_V0),),
         "D2": ((_FEED_STOCK_D2, _FEED_STOCK_V0),),
+        "E1": (
+            (_ROLE_DAY_E1, _ROLE_DAY_V0),
+            (_FIXED_CROPS_E1, _FIXED_CROPS_V0),
+        ),
     }[mode]
     normalized = source
     for changed, control in pairs:
@@ -144,7 +152,7 @@ def _assert_action_schema(action: object, observation: dict) -> None:
 
 def test_source_control_provenance_and_snapshots_are_exact() -> None:
     control = _payload("V0")
-    assert VALID_MODES == ("V0", "A1", "B1", "C1", "D1", "D2")
+    assert VALID_MODES == ("V0", "A1", "B1", "C1", "D1", "D2", "E1")
     assert _sha256(control) == SOURCE_CONTROL_SHA256
     assert control.count(b"\r\n") == control.count(b"\n") > 0
     assert control.endswith(b"\r\n")
@@ -156,7 +164,7 @@ def test_source_control_provenance_and_snapshots_are_exact() -> None:
         assert build_c02_meta_family(control, mode) == candidate
         assert tuple(candidate.decode("utf-8").splitlines()[:3]) == ATTRIBUTION
         compile(candidate, f"{mode}.py", "exec")
-    assert len({_sha256(_payload(mode)) for mode in VALID_MODES}) == 6
+    assert len({_sha256(_payload(mode)) for mode in VALID_MODES}) == 7
 
 
 @pytest.mark.parametrize("mode", VALID_MODES)
@@ -168,6 +176,7 @@ def test_byte_allowlist_and_function_diff_are_exact(mode: str) -> None:
     changed_functions = {
         "B1": {"_herd_targets", "_role_plan"},
         "D1": {"_sell_quantity"},
+        "E1": {"_role_plan"},
     }.get(mode, set())
     for node in ast.parse(control).body:
         if isinstance(node, ast.FunctionDef) and node.name not in changed_functions:
@@ -260,6 +269,83 @@ def test_d2_changes_only_feed_stock_days() -> None:
     assert candidate["FEED_STOCK_DAYS"] == 1
     assert _function_source(_source("D2"), "_market_actions") == _function_source(
         _source("V0"), "_market_actions"
+    )
+
+
+def _crop_role_counts(namespace: dict[str, object], observation: dict) -> dict[str, Counter]:
+    roles = namespace["_role_plan"](observation, observation["farms"][0])
+    counts: dict[str, Counter] = {}
+    for position, (kind, item) in roles.items():
+        if kind != "CROP":
+            continue
+        quadrant = namespace["_quadrant_of"](position, 10)
+        counts.setdefault(quadrant, Counter())[item] += 1
+    return counts
+
+
+def test_e1_keeps_day_four_roles_and_reduces_day_five_fixed_wheat() -> None:
+    control = _namespace("V0")
+    candidate = _namespace("E1")
+    assert candidate["CROP_MIX"] == control["CROP_MIX"]
+
+    for day in (0, 4):
+        observation, _, _ = _herd_observation(day=day, milk=160, wool=200)
+        observation["farms"][0]["unlocked_quadrants"] = ["NW", "NE", "SW", "SE"]
+        assert candidate["_role_plan"](
+            observation, observation["farms"][0]
+        ) == control["_role_plan"](observation, observation["farms"][0])
+
+    observation, _, _ = _herd_observation(day=5, milk=160, wool=200)
+    observation["farms"][0]["unlocked_quadrants"] = ["NW", "NE", "SW", "SE"]
+    control_counts = _crop_role_counts(control, observation)
+    candidate_counts = _crop_role_counts(candidate, observation)
+    assert {q: candidate_counts[q]["WHEAT"] for q in ("NW", "NE", "SW", "SE")} == {
+        "NW": 2,
+        "NE": 0,
+        "SW": 0,
+        "SE": 0,
+    }
+    assert sum(candidate_counts[q]["STRAWBERRY"] for q in candidate_counts) == sum(
+        control_counts[q]["STRAWBERRY"] for q in control_counts
+    ) + 15
+
+
+def test_e1_actual_crop_and_weed_precede_the_new_role() -> None:
+    namespace = _namespace("E1")
+    control = _namespace("V0")
+    observation, farm, private = _herd_observation(day=5, milk=160, wool=200)
+    farm["unlocked_quadrants"] = ["NW", "NE", "SW", "SE"]
+    private["seeds"] = {"STRAWBERRY": 1}
+    candidate_roles = namespace["_role_plan"](observation, farm)
+    control_roles = control["_role_plan"](observation, farm)
+    target = next(
+        position
+        for position, role in candidate_roles.items()
+        if role == ("CROP", "STRAWBERRY")
+        and control_roles.get(position) == ("CROP", "WHEAT")
+    )
+    x, y = target
+
+    farm["tiles"][y][x] = {
+        "kind": "PLANT",
+        "crop": "WHEAT",
+        "planted_day": 0,
+        "yield_units": 6,
+        "watered_today": True,
+        "consecutive_unwatered": 0,
+    }
+    jobs = namespace["_field_jobs"](observation, farm, private, candidate_roles, False)
+    assert any(job["target"] == target and job["action"] == ["HARVEST"] for job in jobs)
+
+    farm["tiles"][y][x] = {"kind": "WEED"}
+    jobs = namespace["_field_jobs"](observation, farm, private, candidate_roles, False)
+    assert any(job["target"] == target and job["action"] == ["DIG"] for job in jobs)
+
+    farm["tiles"][y][x] = None
+    jobs = namespace["_field_jobs"](observation, farm, private, candidate_roles, False)
+    assert any(
+        job["target"] == target and job["action"] == ["PLANT", "STRAWBERRY"]
+        for job in jobs
     )
 
 
