@@ -512,6 +512,22 @@ def test_wrong_source_is_rejected(frozen_case: dict[str, object]) -> None:
         _analyze(frozen_case)
 
 
+@pytest.mark.parametrize("field", ["candidate_money", "opponent_money"])
+@pytest.mark.parametrize(
+    "value",
+    [float("nan"), float("inf"), float("-inf"), True, "200.0"],
+)
+def test_money_must_be_finite_numeric_not_bool(
+    frozen_case: dict[str, object], field: str, value: object
+) -> None:
+    def mutation(report: dict[str, object]) -> None:
+        report["games"][0][field] = value
+
+    _mutate_json(frozen_case["candidate_report"], mutation)
+    with pytest.raises((TypeError, ValueError), match="finite number"):
+        _analyze(frozen_case)
+
+
 def test_191_cells_are_rejected(frozen_case: dict[str, object]) -> None:
     def mutation(report: dict[str, object]) -> None:
         report["games"].pop()
@@ -563,7 +579,15 @@ def test_wrong_git_head_workers_or_implementation_is_rejected(
 
 
 @pytest.mark.parametrize(
-    "mode", ["effective", "environment", "environment_seed", "resolved_seed"]
+    "mode",
+    [
+        "effective",
+        "environment",
+        "environment_seed",
+        "environment_seed_missing",
+        "environment_random_seed",
+        "resolved_seed",
+    ],
 )
 def test_wrong_per_row_configuration_or_seed_is_rejected(
     frozen_case: dict[str, object], mode: str
@@ -582,6 +606,16 @@ def test_wrong_per_row_configuration_or_seed_is_rejected(
             )
         elif mode == "environment_seed":
             row["environment_configuration"]["seed"] += 1
+            row["environment_configuration_sha256"] = _json_sha(
+                row["environment_configuration"]
+            )
+        elif mode == "environment_seed_missing":
+            row["environment_configuration"].pop("seed")
+            row["environment_configuration_sha256"] = _json_sha(
+                row["environment_configuration"]
+            )
+        elif mode == "environment_random_seed":
+            row["environment_configuration"]["randomSeed"] = row["seed"] + 1
             row["environment_configuration_sha256"] = _json_sha(
                 row["environment_configuration"]
             )

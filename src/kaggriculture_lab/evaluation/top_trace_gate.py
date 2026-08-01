@@ -916,6 +916,14 @@ def _validate_report(
             or row.get("opponent_money") is None
         ):
             raise ValueError(f"{label}.games[{index}] is not a valid DONE result")
+        _finite_number(
+            row.get("candidate_money"),
+            f"{label}.games[{index}].candidate_money",
+        )
+        _finite_number(
+            row.get("opponent_money"),
+            f"{label}.games[{index}].opponent_money",
+        )
         effective = _mapping(
             row.get("effective_configuration"),
             f"{label}.games[{index}].effective_configuration",
@@ -941,13 +949,22 @@ def _validate_report(
                     f"{label}.games[{index}] environment scenario value mismatch"
                 )
         resolved_seed = row.get("resolved_environment_seed")
-        environment_seed = environment.get("seed")
-        if environment_seed is not None and (
-            environment_seed != seed or environment_seed != resolved_seed
-        ):
+        if "seed" not in environment:
+            raise ValueError(
+                f"{label}.games[{index}] environment seed key is missing"
+            )
+        environment_seed = environment["seed"]
+        if environment_seed is not None and environment_seed not in {seed, resolved_seed}:
             raise ValueError(
                 f"{label}.games[{index}] environment seed contradicts requested/resolved seed"
             )
+        if "randomSeed" in environment:
+            random_seed = environment["randomSeed"]
+            if random_seed is not None and random_seed not in {seed, resolved_seed}:
+                raise ValueError(
+                    f"{label}.games[{index}] environment randomSeed contradicts "
+                    "requested/resolved seed"
+                )
         if resolved_seed != seed:
             raise ValueError(f"{label}.games[{index}] resolved seed mismatch")
         rows[key] = dict(row)
@@ -983,6 +1000,15 @@ def _outcome(row: Mapping[str, Any]) -> float:
     candidate = float(row["candidate_money"])
     opponent = float(row["opponent_money"])
     return 1.0 if candidate > opponent else 0.0 if candidate < opponent else 0.5
+
+
+def _finite_number(value: object, label: str) -> float:
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise TypeError(f"{label} must be a finite number")
+    normalized = float(value)
+    if not math.isfinite(normalized):
+        raise ValueError(f"{label} must be a finite number")
+    return normalized
 
 
 def _finite_nonnegative(value: object, label: str) -> float:
