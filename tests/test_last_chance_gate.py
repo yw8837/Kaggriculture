@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import hashlib
+import inspect
 import json
 from pathlib import Path
 
@@ -22,6 +23,25 @@ from kaggriculture_lab.evaluation.last_chance_gate import (
 )
 
 PROJECT_ROOT = Path.cwd()
+_REAL_EXECUTION_STATE = gate_module._execution_state
+_REAL_RUNTIME_VALIDATOR = gate_module.validate_runtime_precheck
+_REAL_REPORT_VALIDATOR = gate_module.validate_execution_report
+
+
+@pytest.fixture(autouse=True)
+def _isolate_metric_tests_from_unopened_execution_gate(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Metric-unit tests use synthetic reports; receipt behavior is tested separately."""
+    monkeypatch.setattr(gate_module, "_validate_analysis_paths", lambda *args: None)
+    monkeypatch.setattr(
+        gate_module,
+        "validate_execution_report",
+        lambda *args: {"implementation_commit": "1" * 40},
+    )
+    monkeypatch.setattr(
+        gate_module, "validate_runtime_precheck", lambda *args: _runtime_pass()
+    )
 
 
 def _json_sha256(value: object) -> str:
@@ -99,6 +119,12 @@ def _report(plan: dict, *, candidate: bool) -> dict:
 
 
 def _write_reports(tmp_path: Path, candidate: dict, control: dict) -> tuple[Path, Path]:
+    candidate.setdefault(
+        "execution_provenance", {"start_receipt": {"sha256": "A" * 64}}
+    )
+    control.setdefault(
+        "execution_provenance", {"start_receipt": {"sha256": "B" * 64}}
+    )
     candidate_path = tmp_path / "candidate.json"
     control_path = tmp_path / "control.json"
     candidate_path.write_text(json.dumps(candidate), encoding="utf-8")
@@ -287,11 +313,45 @@ def test_lane_wrapper_calls_runner_with_only_frozen_default_grid(
 
     def fake_run_batch(*args: object) -> dict:
         captured["args"] = args
-        return {"summary": {"raw_games": 160}}
+        return {"summary": {"raw_games": 160}, "sources_unchanged_during_run": True}
 
     monkeypatch.setattr(gate_module, "run_batch", fake_run_batch)
+    receipt_path = tmp_path / "receipt.json"
+    receipt_path.write_text("{}", encoding="utf-8")
+    monkeypatch.setattr(
+        gate_module,
+        "create_execution_start_receipt",
+        lambda *args: (
+            {
+                "implementation_commit": "1" * 40,
+                    "boundary": {},
+                    "registry": {},
+                    "scenario_config": {},
+                    "input_manifest": {},
+                    "development_gates_sha256": "2" * 64,
+                    "tooling": {},
+            },
+            receipt_path,
+        ),
+    )
+    monkeypatch.setattr(
+        gate_module,
+        "_execution_state",
+        lambda *args, **kwargs: {
+            "implementation_commit": "1" * 40,
+                "boundary": {},
+                "registry": {},
+                "scenario_config": {},
+                "input_manifest": {},
+                "development_gates_sha256": "2" * 64,
+                "tooling": {},
+        },
+    )
+    monkeypatch.setattr(gate_module, "_relative_path", lambda *args: "receipt.json")
     output = tmp_path / f"{lane}.json"
-    report = run_development_lane(PROJECT_ROOT, lane, output, workers=3)
+    report = run_development_lane(
+        PROJECT_ROOT, lane, output, workers=3, implementation_commit="1" * 40
+    )
     plan = frozen_development_plan(PROJECT_ROOT)
     args = captured["args"]
     assert args[0] == plan[lane]
@@ -411,29 +471,276 @@ def test_counter_aggregation_and_160_of_160_coverage_are_exact() -> None:
     ]
 
 
-def test_runtime_report_binds_reproducible_generator_and_machine_provenance() -> None:
-    report = json.loads(
-        Path(
-            "experiments/evaluations/fa02_last_chance_tiebreak/BT1_runtime.json"
-        ).read_text(encoding="utf-8")
+def test_runtime_generator_requires_clean_tracked_implementation_head() -> None:
+    source = inspect.getsource(gate_module.generate_runtime_precheck)
+    assert "require_clean=True" in source
+    assert '"tracked_tree_clean"' in source
+    assert '"head_verified_files"' in source
+
+
+def _execution_state_fixture(tmp_path: Path) -> tuple[dict, dict]:
+    (tmp_path / "configs").mkdir()
+    (tmp_path / "configs/fa02_last_chance_boundary.json").write_text(
+        "{}", encoding="utf-8"
     )
-    assert report["schema_version"] == 2
-    assert report["created_at_utc"].endswith("+00:00")
-    assert len(report["git_head"]) == 40
-    assert report["command"] == (
-        "uv run python -m kaggriculture_lab.evaluation.last_chance_gate "
-        "--generate-runtime --project-root . "
-        "--output experiments/evaluations/fa02_last_chance_tiebreak/BT1_runtime.json"
+    (tmp_path / "registry.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "scenario.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "tool.py").write_text("VALUE = 1\n", encoding="utf-8")
+    tool_hash = hashlib.sha256((tmp_path / "tool.py").read_bytes()).hexdigest().upper()
+    gates = {"minimum": 1}
+    config = {
+        "seed_registry": "registry.json",
+        "scenario_config": {"path": "scenario.json", "sha256": hashlib.sha256(
+            (tmp_path / "scenario.json").read_bytes()
+        ).hexdigest().upper()},
+        "tooling": {
+            "builder": "tool.py",
+            "builder_sha256": tool_hash,
+            "runner": "tool.py",
+            "runner_sha256": tool_hash,
+            "analyzer": "tool.py",
+            "analyzer_sha256": tool_hash,
+            "gate_evaluator": "tool.py",
+            "gate_evaluator_sha256": tool_hash,
+        },
+        "development_gates": gates,
+        "execution_freeze": {
+            "input_manifest": gate_module.INPUT_MANIFEST_RELATIVE.as_posix(),
+            "development_gates_sha256": _json_sha256(gates),
+            "allowed_evidence_only_tracked_paths": ["evidence.json"],
+        },
+    }
+    manifest = {
+        "path": "manifest.json",
+        "sha256": "A" * 64,
+        "bytes": 1,
+        "entries": [{"path": "tool.py", "sha256": tool_hash}],
+    }
+    (tmp_path / "manifest.json").write_text("x", encoding="utf-8")
+    return config, manifest
+
+
+def test_execution_state_rejects_modified_tooling_and_threshold_mutation(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    config, manifest = _execution_state_fixture(tmp_path)
+    monkeypatch.setattr(gate_module, "validate_input_manifest", lambda root: manifest)
+    monkeypatch.setattr(gate_module, "_git_head", lambda root: "A" * 40)
+    monkeypatch.setattr(
+        gate_module, "_git_tracked_dirty_paths", lambda root: ["tool.py"]
     )
-    assert report["python"]
-    assert report["platform"]
-    generator = report["generator"]
-    assert generator["path"] == (
-        "src/kaggriculture_lab/evaluation/last_chance_gate.py"
+    with pytest.raises(ValueError, match="non-evidence tracked changes"):
+        _REAL_EXECUTION_STATE(tmp_path, config, require_clean=False)
+
+    monkeypatch.setattr(gate_module, "_git_tracked_dirty_paths", lambda root: [])
+    config["development_gates"]["minimum"] = 2
+    with pytest.raises(ValueError, match="threshold mutation"):
+        _REAL_EXECUTION_STATE(tmp_path, config, require_clean=False)
+
+
+def test_execution_state_requires_frozen_inputs_to_exist_unchanged_at_head(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    config, manifest = _execution_state_fixture(tmp_path)
+    monkeypatch.setattr(gate_module, "validate_input_manifest", lambda root: manifest)
+    monkeypatch.setattr(gate_module, "_git_head", lambda root: "A" * 40)
+    monkeypatch.setattr(gate_module, "_git_tracked_dirty_paths", lambda root: [])
+    monkeypatch.setattr(gate_module, "_git_file_sha256", lambda *args: "0" * 64)
+    with pytest.raises(ValueError, match="differs from implementation HEAD"):
+        _REAL_EXECUTION_STATE(tmp_path, config, require_clean=False)
+
+
+def _receipt_bound_report(tmp_path: Path, plan: dict) -> tuple[dict, dict, Path]:
+    state = {
+        "implementation_commit": "A" * 40,
+        "git_head": "A" * 40,
+        "tracked_tree_clean": True,
+        "tracked_modified_paths": [],
+        "boundary": {"path": "boundary.json", "sha256": "B" * 64, "bytes": 1},
+        "registry": {"path": "registry.json", "sha256": "C" * 64, "bytes": 1},
+        "scenario_config": {
+            "path": "scenario.json",
+            "sha256": "F" * 64,
+            "bytes": 1,
+        },
+        "input_manifest": {
+            "path": "manifest.json",
+            "sha256": "D" * 64,
+            "bytes": 1,
+        },
+        "development_gates_sha256": "E" * 64,
+        "tooling": {
+            "builder": {"path": "builder.py", "sha256": "1" * 64, "bytes": 1}
+        },
+    }
+    contract = plan["contract"]
+    receipt = {
+        "schema_version": 1,
+        **state,
+        "lane": "candidate",
+        "workers": 4,
+        "output": plan["config"]["execution_freeze"]["artifacts"][
+            "candidate_report"
+        ],
+        "source": {
+            "path": plan["candidate"],
+            "sha256": contract["candidate_source_sha256"],
+        },
+        "opponents": list(plan["opponents"]),
+        "opponent_source_sha256": dict(contract["opponent_source_sha256"]),
+        "seeds": list(plan["seeds"]),
+        "scenarios": ["default"],
+        "effective_scenarios_sha256": contract["effective_scenarios_sha256"],
+        "plan_contract_sha256": _json_sha256(contract),
+    }
+    receipt_path = tmp_path / "receipt.json"
+    receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
+    source_hash = contract["candidate_source_sha256"]
+    report = {
+        "git_head_at_start": "A" * 40,
+        "workers": 4,
+        "candidate_path": plan["candidate"],
+        "opponents": list(plan["opponents"]),
+        "seeds": list(plan["seeds"]),
+        "scenario_overrides": {"default": {}},
+        "effective_scenarios_sha256": contract["effective_scenarios_sha256"],
+        "candidate_sha256_at_start": source_hash,
+        "candidate_sha256_at_end": source_hash,
+        "sources_unchanged_during_run": True,
+        "opponent_sha256_at_start": dict(contract["opponent_source_sha256"]),
+        "opponent_sha256_at_end": dict(contract["opponent_source_sha256"]),
+        "execution_provenance": {
+            "lane": "candidate",
+            "workers": 4,
+            "start_receipt": {
+                "path": "receipt.json",
+                "sha256": hashlib.sha256(receipt_path.read_bytes()).hexdigest().upper(),
+            },
+            "end_state": state,
+            "sources_unchanged": True,
+        },
+    }
+    return report, state, receipt_path
+
+
+@pytest.mark.parametrize("mutation", ["missing_receipt", "missing_head", "workers", "threshold"])
+def test_report_validator_rejects_broken_receipt_linkage(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    mutation: str,
+) -> None:
+    plan = frozen_development_plan(PROJECT_ROOT)
+    report, state, receipt_path = _receipt_bound_report(tmp_path, plan)
+    monkeypatch.setattr(gate_module, "_execution_state", lambda *args, **kwargs: state)
+    monkeypatch.setattr(gate_module, "_git", lambda *args, **kwargs: "")
+    if mutation == "missing_receipt":
+        receipt_path.unlink()
+    elif mutation == "workers":
+        report["execution_provenance"]["workers"] = 0
+    else:
+        receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        if mutation == "missing_head":
+            receipt.pop("git_head")
+        else:
+            receipt["development_gates_sha256"] = "0" * 64
+        receipt_path.write_text(json.dumps(receipt), encoding="utf-8")
+        report["execution_provenance"]["start_receipt"]["sha256"] = hashlib.sha256(
+            receipt_path.read_bytes()
+        ).hexdigest().upper()
+    with pytest.raises(ValueError, match="receipt|HEAD|workers|threshold|development_gates"):
+        _REAL_REPORT_VALIDATOR(tmp_path, report, "candidate", plan)
+
+
+def _runtime_fixture(tmp_path: Path) -> tuple[dict, Path, dict[str, str]]:
+    (tmp_path / "candidate.py").write_text("def agent(x): return {}\n", encoding="utf-8")
+    (tmp_path / "gate.py").write_text("VALUE = 1\n", encoding="utf-8")
+    source_hash = hashlib.sha256((tmp_path / "candidate.py").read_bytes()).hexdigest().upper()
+    gate_hash = hashlib.sha256((tmp_path / "gate.py").read_bytes()).hexdigest().upper()
+    gates = {"limit": 1}
+    report = {
+        "schema_version": 3,
+        "git_head": "A" * 40,
+        "generator": {"path": "gate.py", "sha256": gate_hash},
+        "source": "candidate.py",
+        "source_sha256": source_hash,
+        "calls": 720,
+        "action_comparison_calls": 720,
+        "invalid_outputs": 0,
+        "p95_ms": 1.0,
+        "p99_ms": 1.0,
+        "max_ms": 1.0,
+        "priority_inversions": 0,
+        "gate_result": "PASS",
+        "instrumentation": {name: 0 for name in COUNTER_NAMES},
+        "tracked_provenance": {
+            "git_head": "A" * 40,
+            "tracked_tree_clean": True,
+            "tracked_modified_paths": [],
+            "development_gates_sha256": _json_sha256(gates),
+            "head_verified_files": {
+                "candidate.py": source_hash,
+                "gate.py": gate_hash,
+            },
+        },
+    }
+    path = tmp_path / "runtime.json"
+    path.write_text(json.dumps(report), encoding="utf-8")
+    config = {
+        "candidate": {"path": "candidate.py", "sha256": source_hash},
+        "development_gates": gates,
+        "runtime_gate_ms": {
+            "invalid_outputs": 0,
+            "p95_max": 8.0,
+            "p99_max": 15.0,
+            "absolute_max": 50.0,
+        },
+        "runtime_precheck": {
+            "path": "runtime.json",
+            "sha256": hashlib.sha256(path.read_bytes()).hexdigest().upper(),
+            "bytes": path.stat().st_size,
+        },
+    }
+    return config, path, {"candidate.py": source_hash, "gate.py": gate_hash}
+
+
+def test_runtime_validator_binds_clean_head_source_and_generator_bytes(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    config, _, head_hashes = _runtime_fixture(tmp_path)
+    monkeypatch.setattr(gate_module, "_git", lambda *args, **kwargs: "")
+    monkeypatch.setattr(
+        gate_module,
+        "_git_file_sha256",
+        lambda root, head, relative: head_hashes[relative],
     )
-    assert generator["sha256"] == hashlib.sha256(
-        Path(generator["path"]).read_bytes()
-    ).hexdigest().upper()
+    assert all(_REAL_RUNTIME_VALIDATOR(tmp_path, config).values())
+
+
+@pytest.mark.parametrize("mutation", ["dirty", "verified_files", "head_bytes"])
+def test_runtime_validator_rejects_unbound_provenance(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    mutation: str,
+) -> None:
+    config, path, head_hashes = _runtime_fixture(tmp_path)
+    report = json.loads(path.read_text(encoding="utf-8"))
+    if mutation == "dirty":
+        report["tracked_provenance"]["tracked_tree_clean"] = False
+    elif mutation == "verified_files":
+        report["tracked_provenance"]["head_verified_files"].pop("gate.py")
+    path.write_text(json.dumps(report), encoding="utf-8")
+    config["runtime_precheck"]["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest().upper()
+    config["runtime_precheck"]["bytes"] = path.stat().st_size
+    monkeypatch.setattr(gate_module, "_git", lambda *args, **kwargs: "")
+    monkeypatch.setattr(
+        gate_module,
+        "_git_file_sha256",
+        lambda root, head, relative: (
+            "0" * 64 if mutation == "head_bytes" else head_hashes[relative]
+        ),
+    )
+    with pytest.raises(ValueError, match="clean|verified|mismatch"):
+        _REAL_RUNTIME_VALIDATOR(tmp_path, config)
 
 
 def test_gate_module_consumes_every_preregistered_threshold() -> None:

@@ -37,6 +37,8 @@ _HELPERS_SOURCE = '''_LAST_CHANCE_COUNTERS = {
     "next_day_weed_or_escape_outcome": 0,
 }
 _LAST_CHANCE_PENDING = {}
+_LAST_CHANCE_CAUSAL_PENDING = {}
+_LAST_CHANCE_CAUSAL_CONTEXT = {}
 
 
 def rescue_metrics():
@@ -48,6 +50,8 @@ def reset_rescue_metrics():
     for key in _LAST_CHANCE_COUNTERS:
         _LAST_CHANCE_COUNTERS[key] = 0
     _LAST_CHANCE_PENDING.clear()
+    _LAST_CHANCE_CAUSAL_PENDING.clear()
+    _LAST_CHANCE_CAUSAL_CONTEXT.clear()
 
 
 def _last_chance_rank(farm, task):
@@ -177,17 +181,23 @@ def _allocation_trace(farm, private, positions, invs, shed, tasks, ranked):
     return actions, tuple(trace)
 
 
-def _trace_tiebreak_event(formal_trace, candidate_trace):
-    """Identify the first causal rank-zero displacement on full trajectories."""
+def _trace_tiebreak_displacement(formal_trace, candidate_trace):
+    """Return the first causal rank-zero displacement on full trajectories."""
     for formal_step, candidate_step in zip(formal_trace, candidate_trace):
         if formal_step[:2] == candidate_step[:2]:
             continue
-        return bool(
+        if (
             formal_step[2] == candidate_step[2]
             and formal_step[3] == 1
             and candidate_step[3] == 0
-        )
-    return False
+        ):
+            return candidate_step
+        return None
+    return None
+
+
+def _trace_tiebreak_event(formal_trace, candidate_trace):
+    return _trace_tiebreak_displacement(formal_trace, candidate_trace) is not None
 
 
 def _safe_allocation_actions(farm, private, positions, invs, shed, tasks):
@@ -271,6 +281,16 @@ def _safe_allocation_actions(farm, private, positions, invs, shed, tasks):
 def _observe_last_chance_outcomes(obs, farm):
     player = int(obs.get("player", 0))
     day = int(obs.get("day", 0))
+    hour = int(obs.get("hour", 0))
+    previous_player = _LAST_CHANCE_CAUSAL_CONTEXT.get("player")
+    previous_time = _LAST_CHANCE_CAUSAL_CONTEXT.get("time")
+    if previous_player is not None and (
+        player != previous_player or (previous_time is not None and (day, hour) < previous_time)
+    ):
+        _LAST_CHANCE_PENDING.clear()
+        _LAST_CHANCE_CAUSAL_PENDING.clear()
+    _LAST_CHANCE_CAUSAL_CONTEXT["player"] = player
+    _LAST_CHANCE_CAUSAL_CONTEXT["time"] = (day, hour)
     for key in sorted(_LAST_CHANCE_PENDING):
         pending_player, pending_day = key
         if pending_player != player or day <= pending_day:
@@ -287,10 +307,68 @@ def _observe_last_chance_outcomes(obs, farm):
             if adverse:
                 _LAST_CHANCE_COUNTERS["next_day_weed_or_escape_outcome"] += 1
 
+    for token, created_time in list(_LAST_CHANCE_CAUSAL_PENDING.items()):
+        token_player, _, operation, pos = token
+        if token_player != player:
+            continue
+        tile = farm["tiles"][pos[1]][pos[0]]
+        next_day = day > created_time[0]
+        if operation == "WATER":
+            completed_or_adverse = not (
+                isinstance(tile, dict)
+                and tile.get("kind") == "PLANT"
+                and not tile.get("watered_today", False)
+            )
+        else:
+            completed_or_adverse = not (
+                isinstance(tile, dict)
+                and tile.get("animal") in ("COW", "SHEEP")
+                and not tile.get("fed_today", False)
+            )
+        if next_day or completed_or_adverse or (day >= 29 and hour >= 14):
+            _LAST_CHANCE_CAUSAL_PENDING.pop(token, None)
+
 
 def _record_last_chance_actions(
-    obs, farm, positions, tasks, trace, actions, formal_actions, activated
+    obs,
+    farm,
+    positions,
+    tasks,
+    trace,
+    actions,
+    formal_actions,
+    formal_trace,
+    candidate_trace,
+    accepted,
 ):
+    player = int(obs.get("player", 0))
+    day = int(obs.get("day", 0))
+    hour = int(obs.get("hour", 0))
+    if not accepted:
+        _LAST_CHANCE_CAUSAL_PENDING.clear()
+    assignments = {step[0]: step for step in trace}
+    for token in list(_LAST_CHANCE_CAUSAL_PENDING):
+        token_player, unit, operation, pos = token
+        if token_player != player:
+            continue
+        step = assignments.get(unit)
+        if step is None:
+            _LAST_CHANCE_CAUSAL_PENDING.pop(token, None)
+            continue
+        task = tasks[step[1]]
+        current_target = (task["action"][0], tuple(task["pos"]))
+        if step[3] != 0 or current_target != (operation, pos):
+            _LAST_CHANCE_CAUSAL_PENDING.pop(token, None)
+
+    displacement = (
+        _trace_tiebreak_displacement(formal_trace, candidate_trace) if accepted else None
+    )
+    if displacement is not None:
+        unit, task_index = displacement[:2]
+        task = tasks[task_index]
+        key = (player, unit, task["action"][0], tuple(task["pos"]))
+        _LAST_CHANCE_CAUSAL_PENDING[key] = (day, hour)
+
     for i, j, _, rank, *_ in trace:
         task = tasks[j]
         operation = task["action"][0]
@@ -299,11 +377,13 @@ def _record_last_chance_actions(
         if rank != 0 or tuple(positions[i]) != pos or not action or action[0] != operation:
             continue
         _LAST_CHANCE_COUNTERS["last_chance_action_emitted_on_exact_target"] += 1
-        if activated and action != formal_actions[i]:
+        causal_key = (player, i, operation, pos)
+        if causal_key in _LAST_CHANCE_CAUSAL_PENDING:
             _LAST_CHANCE_COUNTERS["tiebreak_to_exact_target_action_emitted"] += 1
+            _LAST_CHANCE_CAUSAL_PENDING.pop(causal_key, None)
         tile = farm["tiles"][pos[1]][pos[0]]
         animal = tile.get("animal") if isinstance(tile, dict) else None
-        key = (int(obs.get("player", 0)), int(obs.get("day", 0)))
+        key = (player, day)
         _LAST_CHANCE_PENDING.setdefault(key, {})[(operation, pos)] = animal
 '''
 
@@ -313,9 +393,9 @@ _ALLOCATION_SOURCE = """    (
         emitted_trace,
         formal_actions,
         _,
+        formal_trace,
+        candidate_trace,
         _,
-        _,
-        tie_event,
         accepted,
     ) = _safe_allocation_actions(
         farm,
@@ -333,7 +413,9 @@ _ALLOCATION_SOURCE = """    (
         emitted_trace,
         actions,
         formal_actions,
-        tie_event and accepted,
+        formal_trace,
+        candidate_trace,
+        accepted,
     )
     return actions
 """

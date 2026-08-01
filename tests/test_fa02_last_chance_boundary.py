@@ -143,8 +143,6 @@ def test_manifest_hash_and_byte_loop_freezes_every_required_input() -> None:
         "tests/test_last_chance_tiebreak.py",
         "tests/test_fa02_last_chance_boundary.py",
         "tests/test_seed_registry.py",
-        "reports/test_evidence/fa02_last_chance_project_pytest.xml",
-        "reports/test_evidence/fa02_last_chance_ruff.json",
     }
     frozen = [
         manifest["config"],
@@ -154,9 +152,11 @@ def test_manifest_hash_and_byte_loop_freezes_every_required_input() -> None:
         *manifest["agents"].values(),
         *manifest["tooling"].values(),
         *manifest["test_sources"].values(),
-        *manifest["test_evidence"].values(),
     ]
-    assert len(frozen) == 21
+    assert manifest["schema_version"] == 3
+    assert manifest["role"] == "INPUT_FREEZE"
+    assert "test_evidence" not in manifest
+    assert len(frozen) == 19
     assert {entry["path"] for entry in frozen} == expected_paths
     for entry in frozen:
         path = Path(entry["path"])
@@ -181,6 +181,22 @@ def test_manifest_hash_and_byte_loop_freezes_every_required_input() -> None:
     assert config["tooling"]["gate_evaluator_sha256"] == manifest["tooling"][
         "development_orchestrator_gate_runtime_generator"
     ]["sha256"]
+
+
+def test_execution_freeze_separates_inputs_from_evidence_and_hashes_thresholds() -> None:
+    config = _load(CONFIG)
+    freeze = config["execution_freeze"]
+    assert freeze["input_manifest"] == MANIFEST.as_posix()
+    assert freeze["development_gates_sha256"] == hashlib.sha256(
+        json.dumps(
+            config["development_gates"], sort_keys=True, separators=(",", ":")
+        ).encode()
+    ).hexdigest().upper()
+    allowed = set(freeze["allowed_evidence_only_tracked_paths"])
+    assert set(freeze["artifacts"].values()) <= allowed | {
+        freeze["artifacts"]["post_test_evidence_manifest"]
+    }
+    assert not any(path.startswith(("src/", "configs/")) for path in allowed)
 
 
 def test_gates_counter_contract_and_priority_order_are_frozen() -> None:

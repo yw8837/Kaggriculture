@@ -64,8 +64,8 @@
   "candidate": {
     "identity": "BT1",
     "path": "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
-    "sha256": "10835A59BC58E5FA4B440D926DC7487E5317CBC07B0C8173EABCC8B57B8906DC",
-    "bytes": 26306
+    "sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740",
+    "bytes": 29265
   },
   "opponents": [
     {
@@ -105,7 +105,7 @@
   },
   "development_orchestration": {
     "module": "kaggriculture_lab.evaluation.last_chance_gate",
-    "lane_subcommand": "--run-lane candidate|control",
+    "lane_subcommand": "--run-lane candidate|control --implementation-commit <40-hex HEAD>",
     "derived_cells_per_lane": 160,
     "derivation": "1 default scenario x 5 frozen opponents x 16 seeds x 2 seats",
     "aggregate_reporting": [
@@ -113,6 +113,29 @@
       "improvement gates excluding the formal self-lane"
     ],
     "candidate_counter_rows_required": 160
+  },
+  "execution_freeze": {
+    "input_manifest": "experiments/source_snapshots/fa02_last_chance_manifest.json",
+    "development_gates_sha256": "97528A730391675FE1F36535B25AF24B078DE37FF69BFCEFFF019AB5532E2914",
+    "artifacts": {
+      "candidate_report": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_candidate.json",
+      "candidate_start_receipt": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_candidate.start-receipt.json",
+      "control_report": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_control.json",
+      "control_start_receipt": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_control.start-receipt.json",
+      "analysis_report": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_gate.json",
+      "post_test_evidence_manifest": "reports/test_evidence/fa02_last_chance_post_test_manifest.json"
+    },
+    "allowed_evidence_only_tracked_paths": [
+      "experiments/evaluations/fa02_last_chance_tiebreak/BT1_runtime.json",
+      "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_candidate.json",
+      "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_candidate.start-receipt.json",
+      "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_control.json",
+      "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_control.start-receipt.json",
+      "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_gate.json",
+      "reports/test_evidence/fa02_last_chance_project_pytest.xml",
+      "reports/test_evidence/fa02_last_chance_ruff.json",
+      "reports/test_evidence/fa02_last_chance_post_test_manifest.json"
+    ]
   },
   "counter_semantics": {
     "eligible_opportunity": "Each formal allocator decision point where the current minimum-priority feasible unit-task pair group contains both rank-0 and rank-1 pairs.",
@@ -148,13 +171,13 @@
   },
   "tooling": {
     "builder": "src/kaggriculture_lab/candidates/last_chance_tiebreak.py",
-    "builder_sha256": "6FB8957B77550AB3E2E24595683A347B19D56EC9E0D4790FBAE82EA2CCA4C813",
+    "builder_sha256": "E32AF58DB220D20AE5A18A86D5C2E2AE9DE531310CE682E99D0C0C35A51E790D",
     "runner": "src/kaggriculture_lab/evaluation/runner.py",
     "runner_sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
     "analyzer": "src/kaggriculture_lab/evaluation/paired.py",
     "analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
     "gate_evaluator": "src/kaggriculture_lab/evaluation/last_chance_gate.py",
-    "gate_evaluator_sha256": "9E94A8E7CA410FE331FAC52184A50AF078BFAF1F5FF1F6EE832C284B5452D239"
+    "gate_evaluator_sha256": "F657E15E458D2872A875F988590598A8CC2F440525D70E662CCD84126408614E"
   },
   "runtime_precheck": {
     "path": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_runtime.json",

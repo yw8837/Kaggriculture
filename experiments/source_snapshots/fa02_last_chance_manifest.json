@@ -1,10 +1,11 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
+  "role": "INPUT_FREEZE",
   "status": "FROZEN_CLOSED_PENDING_SEED_OPEN_AUTHORIZATION",
   "config": {
     "path": "configs/fa02_last_chance_boundary.json",
-    "sha256": "06C08B6D0F0543663FD045767B4DB66508D2DD5FA8E3681D80C297D552688510",
-    "bytes": 9926
+    "sha256": "F7878FE01310E5A0377ADDB5461AACD0DD6405549E402E62CFFAEC70F48F0EED",
+    "bytes": 11676
   },
   "seed_registry": {
     "path": "configs/fa_ab_seed_registry.json",
@@ -25,8 +26,8 @@
     "BT1": {
       "role": "frozen Fa_02 last-chance tie-break candidate",
       "path": "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
-      "sha256": "10835A59BC58E5FA4B440D926DC7487E5317CBC07B0C8173EABCC8B57B8906DC",
-      "bytes": 26306,
+      "sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740",
+      "bytes": 29265,
       "provenance": "deterministic project-owned build from final_day_labor; no evaluation seed opened"
     },
     "final_day_labor": {
@@ -65,8 +66,8 @@
   "tooling": {
     "builder": {
       "path": "src/kaggriculture_lab/candidates/last_chance_tiebreak.py",
-      "sha256": "6FB8957B77550AB3E2E24595683A347B19D56EC9E0D4790FBAE82EA2CCA4C813",
-      "bytes": 14594
+      "sha256": "E32AF58DB220D20AE5A18A86D5C2E2AE9DE531310CE682E99D0C0C35A51E790D",
+      "bytes": 17553
     },
     "runner": {
       "path": "src/kaggriculture_lab/evaluation/runner.py",
@@ -80,8 +81,8 @@
     },
     "development_orchestrator_gate_runtime_generator": {
       "path": "src/kaggriculture_lab/evaluation/last_chance_gate.py",
-      "sha256": "9E94A8E7CA410FE331FAC52184A50AF078BFAF1F5FF1F6EE832C284B5452D239",
-      "bytes": 28576,
+      "sha256": "F657E15E458D2872A875F988590598A8CC2F440525D70E662CCD84126408614E",
+      "bytes": 49259,
       "result": "Derives and runs only the frozen 160-cell candidate/control lanes, enforces the strict gate, and reproduces the provenance-complete runtime report."
     },
     "BT1_runtime_precheck": {
@@ -94,37 +95,23 @@
   "test_sources": {
     "gate_adversarial": {
       "path": "tests/test_last_chance_gate.py",
-      "sha256": "A01201BA1589BF7019A4A6E313F2FA4AD27A48B2C419B6E7A2B675EC9DABFAC2",
-      "bytes": 17627
+      "sha256": "9234CD9676694491621A51DAA144E72545E2453204AB6979FB670D935D8674D4",
+      "bytes": 29903
     },
     "candidate_and_runtime": {
       "path": "tests/test_last_chance_tiebreak.py",
-      "sha256": "57A0274D84D22557F0592AB5A286FCCE0F585272695696B02AEDBF28B662721F",
-      "bytes": 22192
+      "sha256": "D213823AE7C1A20E9932B13D28C8F1F94CE54D7CE0E55BE4E583EEC9FA660960",
+      "bytes": 28237
     },
     "boundary_and_manifest": {
       "path": "tests/test_fa02_last_chance_boundary.py",
-      "sha256": "2D9ECDD6104A9A9396995BED54716AE4A4F46C1AA479D12232DC34FAC666AEB6",
-      "bytes": 11899
+      "sha256": "0FC5EA23D0A210ED2A6D93D96CCB5A1429B31231B27C704B81B9E6A47F4133E5",
+      "bytes": 12552
     },
     "seed_registry": {
       "path": "tests/test_seed_registry.py",
       "sha256": "B9C7D4ABA1C3044C425DEF0D6F1C011694BA0BEF2CDA84208643FB312D8BFD8F",
       "bytes": 7115
-    }
-  },
-  "test_evidence": {
-    "project_pytest": {
-      "path": "reports/test_evidence/fa02_last_chance_project_pytest.xml",
-      "sha256": "B3414B24E55E3852E8DF12FDF9D5A3FC8CD36667E5BE1023FBC18EF38C723BB7",
-      "bytes": 24312,
-      "result": "PASS: 182 tests"
-    },
-    "ruff": {
-      "path": "reports/test_evidence/fa02_last_chance_ruff.json",
-      "sha256": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
-      "bytes": 2,
-      "result": "PASS: zero findings across the Fa02 builder, gate, and relevant test sources"
     }
   },
   "seed_state": {

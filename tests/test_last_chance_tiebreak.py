@@ -31,6 +31,7 @@ ADDED_FUNCTIONS = {
     "_bfs_distance",
     "_real_task_path_cost",
     "_allocation_trace",
+    "_trace_tiebreak_displacement",
     "_trace_tiebreak_event",
     "_safe_allocation_actions",
     "_observe_last_chance_outcomes",
@@ -91,6 +92,10 @@ def _task(
         "need": "WHEAT" if operation == "FEED" else None,
         "test_cost": cost,
     }
+
+
+def _trace_step(unit: int, task: int, rank: int, *, eligible: bool = False) -> tuple[object, ...]:
+    return (unit, task, 0, rank, 0, 0, None, 0, eligible)
 
 
 def _top_functions(source: str) -> dict[str, ast.FunctionDef]:
@@ -231,7 +236,9 @@ def test_activation_and_causal_terminal_counter_follow_accepted_full_trace() -> 
         trace,
         actions,
         formal_actions,
-        True,
+        result[4],
+        result[5],
+        result[7],
     )
 
     assert namespace["rescue_metrics"]() == {
@@ -291,6 +298,178 @@ def test_changed_assignment_with_identical_final_vector_is_not_action_change() -
     assert metrics["eligible_opportunity"] == 1
     assert metrics["rank_tiebreak_activated"] == 1
     assert metrics["action_changed_vs_old_comparator_on_same_state"] == 0
+
+
+def test_causal_token_survives_hours_until_original_unit_terminal_action() -> None:
+    namespace = _namespace()
+    namespace["reset_rescue_metrics"]()
+    namespace["_task_cost"] = lambda farm, pos, inv, shed, task: task["test_cost"]
+    namespace["_real_task_path_cost"] = lambda farm, pos, inv, shed, task: 0
+    namespace["_task_action"] = lambda farm, pos, inv, shed, task: ["EAST"]
+    farm = _farm()
+    farm["tiles"][0][0] = _plant(0, False)
+    farm["tiles"][0][2] = _plant(1, False)
+    farm["tiles"][0][3] = _plant(1, False)
+    tasks = [
+        _task("WATER", (0, 0), cost=0),
+        _task("WATER", (2, 0), cost=5),
+        _task("WATER", (3, 0), cost=6),
+    ]
+    positions = [(0, 0), (4, 0)]
+    h17 = {"player": 0, "day": 6, "hour": 17}
+    namespace["_observe_last_chance_outcomes"](h17, farm)
+    result = namespace["_safe_allocation_actions"](
+        farm, {"seeds": {}}, positions, [{}, {}], {}, tasks[:2]
+    )
+    namespace["_record_last_chance_actions"](
+        h17,
+        farm,
+        positions,
+        tasks[:2],
+        result[1],
+        result[0],
+        result[2],
+        result[4],
+        result[5],
+        result[7],
+    )
+    assert result[2] == result[3] == [["EAST"], ["EAST"]]
+    assert namespace["rescue_metrics"]()["rank_tiebreak_activated"] == 1
+    assert namespace["rescue_metrics"]()["action_changed_vs_old_comparator_on_same_state"] == 0
+
+    same_trace = (_trace_step(0, 1, 0), _trace_step(1, 0, 1))
+    h18 = {"player": 0, "day": 6, "hour": 18}
+    namespace["_observe_last_chance_outcomes"](h18, farm)
+    namespace["_record_last_chance_actions"](
+        h18,
+        farm,
+        [(1, 0), (4, 0)],
+        tasks[:2],
+        same_trace,
+        [["EAST"], ["PASS"]],
+        [["WEST"], ["PASS"]],
+        same_trace,
+        same_trace,
+        True,
+    )
+
+    h19 = {"player": 0, "day": 6, "hour": 19}
+    namespace["_observe_last_chance_outcomes"](h19, farm)
+    other_terminal_trace = (_trace_step(0, 1, 0), _trace_step(1, 2, 0))
+    namespace["_record_last_chance_actions"](
+        h19,
+        farm,
+        [(1, 0), (3, 0)],
+        tasks,
+        other_terminal_trace,
+        [["EAST"], ["WATER"]],
+        [["EAST"], ["WATER"]],
+        other_terminal_trace,
+        other_terminal_trace,
+        True,
+    )
+    assert namespace["rescue_metrics"]()["tiebreak_to_exact_target_action_emitted"] == 0
+
+    h20 = {"player": 0, "day": 6, "hour": 20}
+    namespace["_observe_last_chance_outcomes"](h20, farm)
+    terminal_trace = (_trace_step(0, 1, 0),)
+    namespace["_record_last_chance_actions"](
+        h20,
+        farm,
+        [(2, 0), (3, 0)],
+        tasks,
+        terminal_trace,
+        [["WATER"], ["PASS"]],
+        [["WATER"], ["PASS"]],
+        terminal_trace,
+        terminal_trace,
+        True,
+    )
+    metrics = namespace["rescue_metrics"]()
+    assert metrics["last_chance_action_emitted_on_exact_target"] == 2
+    assert metrics["tiebreak_to_exact_target_action_emitted"] == 1
+    assert namespace["_LAST_CHANCE_CAUSAL_PENDING"] == {}
+
+
+def test_causal_pending_lifecycle_clears_on_all_abandonment_boundaries() -> None:
+    namespace = _namespace()
+    farm = _farm()
+    target = (2, 0)
+    farm["tiles"][0][target[0]] = _plant(1, False)
+    tasks = [_task("WATER", (0, 0)), _task("WATER", target)]
+    formal_trace = (_trace_step(0, 0, 1, eligible=True), _trace_step(1, 1, 0))
+    candidate_trace = (_trace_step(0, 1, 0, eligible=True), _trace_step(1, 0, 1))
+
+    def seed(day: int = 5) -> None:
+        namespace["reset_rescue_metrics"]()
+        farm["tiles"][0][target[0]] = _plant(1, False)
+        obs = {"player": 0, "day": day, "hour": 17}
+        namespace["_observe_last_chance_outcomes"](obs, farm)
+        namespace["_record_last_chance_actions"](
+            obs,
+            farm,
+            [(0, 0), (4, 0)],
+            tasks,
+            candidate_trace,
+            [["EAST"], ["EAST"]],
+            [["EAST"], ["EAST"]],
+            formal_trace,
+            candidate_trace,
+            True,
+        )
+        assert len(namespace["_LAST_CHANCE_CAUSAL_PENDING"]) == 1
+
+    seed()
+    namespace["reset_rescue_metrics"]()
+    assert namespace["_LAST_CHANCE_CAUSAL_PENDING"] == {}
+
+    seed()
+    namespace["_record_last_chance_actions"](
+        {"player": 0, "day": 5, "hour": 18},
+        farm,
+        [(1, 0), (4, 0)],
+        tasks,
+        candidate_trace,
+        [["EAST"], ["EAST"]],
+        [["EAST"], ["EAST"]],
+        formal_trace,
+        candidate_trace,
+        False,
+    )
+    assert namespace["_LAST_CHANCE_CAUSAL_PENDING"] == {}
+
+    seed()
+    abandoned_trace = (_trace_step(0, 0, 1), _trace_step(1, 1, 0))
+    namespace["_record_last_chance_actions"](
+        {"player": 0, "day": 5, "hour": 18},
+        farm,
+        [(1, 0), (4, 0)],
+        tasks,
+        abandoned_trace,
+        [["WEST"], ["EAST"]],
+        [["WEST"], ["EAST"]],
+        abandoned_trace,
+        abandoned_trace,
+        True,
+    )
+    assert namespace["_LAST_CHANCE_CAUSAL_PENDING"] == {}
+
+    seed()
+    namespace["_observe_last_chance_outcomes"]({"player": 1, "day": 5, "hour": 18}, farm)
+    assert namespace["_LAST_CHANCE_CAUSAL_PENDING"] == {}
+
+    seed()
+    namespace["_observe_last_chance_outcomes"]({"player": 0, "day": 0, "hour": 0}, farm)
+    assert namespace["_LAST_CHANCE_CAUSAL_PENDING"] == {}
+
+    seed()
+    namespace["_observe_last_chance_outcomes"]({"player": 0, "day": 6, "hour": 0}, farm)
+    assert namespace["_LAST_CHANCE_CAUSAL_PENDING"] == {}
+
+    seed()
+    farm["tiles"][0][target[0]] = {"kind": "WEED"}
+    namespace["_observe_last_chance_outcomes"]({"player": 0, "day": 5, "hour": 18}, farm)
+    assert namespace["_LAST_CHANCE_CAUSAL_PENDING"] == {}
 
 
 def test_scarce_sheep_wheat_assignment_set_change_falls_back_exactly() -> None:
@@ -559,6 +738,8 @@ def test_exact_terminal_action_and_next_day_outcome_are_observed_then_reset() ->
     namespace["reset_rescue_metrics"]()
     assert namespace["rescue_metrics"]() == {name: 0 for name in COUNTERS}
     assert namespace["_LAST_CHANCE_PENDING"] == {}
+    assert namespace["_LAST_CHANCE_CAUSAL_PENDING"] == {}
+    assert namespace["_LAST_CHANCE_CAUSAL_CONTEXT"] == {}
 
 
 def test_old_and_new_actions_match_when_no_tiebreak_activation() -> None:
