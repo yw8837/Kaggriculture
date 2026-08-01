@@ -7,6 +7,10 @@
   "target": "Fast 1400-ladder probe; 1200 is the minimum target, neither score is guaranteed by local simulation.",
   "attribution": {
     "source": "official public Kaggle episode replay",
+    "upstream_notebook": "https://www.kaggle.com/code/prvsiyan/kaggriculture-frontier-lab-high-score-visuals",
+    "upstream_author": "PRVSIYAN",
+    "upstream_license": "Apache-2.0",
+    "upstream_public_score_observed": 1298.6,
     "episode_id": 89256171,
     "team": "radiant-allomancer",
     "player": 0,
@@ -59,8 +63,8 @@
   "candidate": {
     "identity": "G1_R130_sell_guard",
     "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
-    "sha256": "0343CF633CEB0054DB7C87F81CFDB370D28D66D91063A43ADB7AB51A07DADEF9",
-    "bytes": 197081
+    "sha256": "432276BAF4569CCEE3093B75A95AFA81C2056590422600D16295202C3E092091",
+    "bytes": 197503
   },
   "control": {
     "identity": "G0_R130_fixed",

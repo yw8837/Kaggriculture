@@ -30,8 +30,16 @@ def _expand(pool: dict) -> set[int]:
 def test_fa04_top_trace_boundary_binds_exact_sources_and_attribution() -> None:
     config = json.loads(BOUNDARY.read_text(encoding="utf-8"))
     assert config["status"] == "CLOSED_PENDING_CORRECTED_FREEZE_AUDIT"
-    assert config["attribution"] == {
+    attribution = config["attribution"]
+    assert attribution == {
         "source": "official public Kaggle episode replay",
+        "upstream_notebook": (
+            "https://www.kaggle.com/code/prvsiyan/"
+            "kaggriculture-frontier-lab-high-score-visuals"
+        ),
+        "upstream_author": "PRVSIYAN",
+        "upstream_license": "Apache-2.0",
+        "upstream_public_score_observed": 1298.6,
         "episode_id": 89256171,
         "team": "radiant-allomancer",
         "player": 0,
@@ -51,6 +59,8 @@ def test_fa04_top_trace_boundary_binds_exact_sources_and_attribution() -> None:
     assert "SOURCE_EPISODE_ID = 89256171" in candidate
     assert "SOURCE_TEAM = 'radiant-allomancer'" in candidate
     assert "SOURCE_MODE = 'sell_guard'" in candidate
+    assert "Upstream license: Apache-2.0" in candidate
+    assert "kaggriculture-frontier-lab-high-score-visuals" in candidate
 
 
 def test_fa04_top_trace_scenario_and_seed_pools_are_exact_closed_and_disjoint() -> None:

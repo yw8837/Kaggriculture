@@ -1,3 +1,8 @@
+# Derived from "Kaggriculture Frontier Lab | High-Score + Visuals" by PRVSIYAN.
+# Source: https://www.kaggle.com/code/prvsiyan/kaggriculture-frontier-lab-high-score-visuals
+# Upstream license: Apache-2.0, as displayed on the public Kaggle Competition Notebook.
+# Modifications: independently regenerated from the attributed public replay and added
+# observation-based hand normalization plus impossible-SELL drift guards.
 # Fixed schedule extracted from a Kaggriculture replay.
 # Source episode: 89256171
 # Source team: radiant-allomancer
