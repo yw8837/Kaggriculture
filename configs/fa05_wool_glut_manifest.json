@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "identity": "Fa05_W1_wool_glut_buffer_frozen_sources",
+  "status": "FROZEN_SOURCE_MANIFEST",
+  "candidate": {
+    "identity": "W1_wool_glut_buffer",
+    "path": "experiments/source_snapshots/fa05_wool_glut/W1_wool_glut_buffer.py",
+    "sha256": "78B9697E4646BA27516AE0DEE067B2F95E749B35B369583534FD6475AC2DA2C6",
+    "bytes": 221585
+  },
+  "control": {
+    "identity": "Fa04_G1_sell_guard_control",
+    "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+    "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+    "bytes": 197808
+  },
+  "opponents": [
+    {"identity": "C135_chocolat", "path": "experiments/source_snapshots/fa04_top_trace/C135.py", "sha256": "13C88E1D9232F66A219AF0B66A36A46D622C2466856D191E57A8FDC42BC7C1EE"},
+    {"identity": "R140_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R140.py", "sha256": "E4BDEDB791FC129AA73941D96BEA2C20709D9431A8C9628AB526EA186B0F4870"},
+    {"identity": "R145_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R145.py", "sha256": "99CE3CABA350D03DC59B9649B9E6D0D28F3D896C5BE0783D355A3D8701476650"},
+    {"identity": "R150_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R150.py", "sha256": "80AB5C9E50540FE49D68DED3D170FF79C34603FAF19257BD01554A19E30DA599"},
+    {"identity": "R155_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R155.py", "sha256": "857A8F98425D06262E503D46C15FC9480358ADA7621BC5D6D30575B2B71A167C"},
+    {"identity": "formal_final_day_labor", "path": "artifacts/candidates/final_day_labor/main.py", "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B"}
+  ],
+  "scenario_config": {
+    "path": "configs/fa05_wool_glut_scenarios.json",
+    "sha256": "D344CBAF5675B642E18EED7BDE4719D7D6C30DCEAD0F8658412BEC99F06D64DB",
+    "bytes": 43
+  },
+  "seed_registry": {
+    "path": "configs/fa_ab_seed_registry.json",
+    "sha256": "A443626FF1E6FE2B84C9036454263AA4E8349C3E4ADE3686A6E449C3BA699C61"
+  },
+  "tooling": {
+    "generator": "src/kaggriculture_lab/research/wool_glut_buffer.py",
+    "generator_sha256": "741CB0BBF4FA7476CD5511BF5CEDFBD1FC7901DCCC0427A0B6F6912DA94325ED",
+    "runner": "src/kaggriculture_lab/evaluation/runner.py",
+    "runner_sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+    "paired_analyzer": "src/kaggriculture_lab/evaluation/paired.py",
+    "paired_analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
+    "runtime_generator": "src/kaggriculture_lab/evaluation/fa05_wool_gate.py",
+    "runtime_generator_sha256": "9E7AF8FAA5C2926B78700B51C70792DBD1B0BAE36EE7D05D3DFA8D2F106C957C",
+    "runtime_benchmark": "src/kaggriculture_lab/evaluation/fa05_runtime.py",
+    "runtime_benchmark_sha256": "A364F36577C7BB62E5A4469CA3B23508790ECC7618D12011DBDDDC82E22BE89B",
+    "gate_evaluator": "src/kaggriculture_lab/evaluation/fa05_wool_gate.py",
+    "gate_evaluator_sha256": "9E7AF8FAA5C2926B78700B51C70792DBD1B0BAE36EE7D05D3DFA8D2F106C957C"
+  },
+  "single_delta_contract": {
+    "candidate_starts_with_control_bytes": true,
+    "only_permitted_action_delta": "legal SELL WOOL quantity",
+    "direct_g1_opponent_forbidden": true
+  }
+}

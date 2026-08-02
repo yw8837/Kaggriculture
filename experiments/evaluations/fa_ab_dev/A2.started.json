@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-07-31T16:09:41.650241+00:00",
+  "git_head_at_start": "995359f25c96b44c2521cc211227ec1b0cd2272f",
+  "candidate": "experiments/source_snapshots/fa01_market_mpc/A2.py",
+  "candidate_path": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Desktop\\Kaggriculture\\experiments\\source_snapshots\\fa01_market_mpc\\A2.py",
+  "candidate_sha256_at_start": "C6E77C50FF4E69FD4B969443C94085484EB80D04434DA62529AFF197DAFD71D0",
+  "opponents": [
+    "artifacts/candidates/final_day_labor/main.py",
+    "hamburger_current",
+    "scenario_aware",
+    "niits_pro_tier"
+  ],
+  "opponent_paths": {
+    "artifacts/candidates/final_day_labor/main.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Desktop\\Kaggriculture\\artifacts\\candidates\\final_day_labor\\main.py",
+    "hamburger_current": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Desktop\\Kaggriculture\\artifacts\\opponents\\public_kaggle\\hamburger_current.py",
+    "scenario_aware": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Desktop\\Kaggriculture\\artifacts\\opponents\\public_kaggle\\scenario_aware.py",
+    "niits_pro_tier": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Desktop\\Kaggriculture\\references\\niits-kaggriculture\\src\\kaggriculture\\agents\\kaggle_builtin\\pro_tier_agent.py"
+  },
+  "opponent_sha256_at_start": {
+    "artifacts/candidates/final_day_labor/main.py": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
+    "hamburger_current": "A0F6B394C2DA7D420DECF448575B85E540C3249BF4AF1A3C69FA9B643411B793",
+    "scenario_aware": "13EBE04AAE9DC6C6788E7790383D8FBF47222DAA8AD4E88CAD82EC769FA16BF5",
+    "niits_pro_tier": "8DFAA8C21F6DAFF4D74760B383579E6B76469AEEB7BD392C3FAEB035149CC7A2"
+  },
+  "seeds": [
+    23000,
+    23001,
+    23002,
+    23003,
+    23004,
+    23005,
+    23006,
+    23007,
+    23008,
+    23009,
+    23010,
+    23011,
+    23012,
+    23013,
+    23014,
+    23015
+  ],
+  "seat_policy": "both seats",
+  "workers": 4,
+  "scenario_overrides": {
+    "default": {}
+  },
+  "effective_scenarios": {
+    "default": {
+      "episodeSteps": 720
+    }
+  },
+  "effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE"
+}

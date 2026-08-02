@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "identity": "Fa04_C02_micro_lot_D1",
+  "status": "DEVELOPMENT_CONSUMED_NO_GO",
+  "development_evidence": {
+    "path": "experiments/evaluations/fa04_c02_microlot/D1_development_gate.json",
+    "sha256": "5ADDC4F12EBDE98EBBCA39986FBA4A56FBEDCDCB105BCB95D70EE85BB57A6BCD",
+    "bytes": 2800,
+    "verdict": "NO_GO"
+  },
+  "opened_at_utc": "2026-08-01T10:34:30.3938816Z",
+  "hypothesis": "Cap non-terminal WHEAT sales at four units per order so the agent avoids self-induced price impact while preserving C02's farm, herd, labor, feed-reserve, and terminal policies.",
+  "research_basis": {
+    "public_control": "Beiciccc Kaggriculture C02, reported public score 1147.4",
+    "top_replay_episode": 89256171,
+    "top_team": "radiant-allomancer",
+    "accepted_wheat_buy_quantity": 1057,
+    "accepted_wheat_sell_quantity": 767,
+    "accepted_wheat_sell_orders": 208,
+    "mean_accepted_wheat_sell_per_order": 3.6875,
+    "same_turn_wheat_buy_sell_turns": 174,
+    "interpretation_limit": "One exact replay supports micro-flow as a design prior, not a causal or top-3 claim."
+  },
+  "seed_registry": "configs/fa_ab_seed_registry.json",
+  "pools": {
+    "development": {
+      "registry_key": "Fa04_C02_microlot_development",
+      "start": 37000,
+      "end_inclusive": 37015,
+      "count": 16,
+      "status": "CONSUMED_NO_GO",
+      "scenarios": ["default"]
+    },
+    "confirmation": {
+      "registry_key": "Fa04_C02_microlot_confirmation",
+      "start": 38000,
+      "end_inclusive": 38063,
+      "count": 64,
+      "status": "RETIRED_UNUSED"
+    },
+    "robustness": {
+      "registry_key": "Fa04_C02_microlot_robustness",
+      "start": 39000,
+      "end_inclusive": 39031,
+      "count": 32,
+      "status": "RETIRED_UNUSED"
+    }
+  },
+  "seat_policy": "both seats for every seed and opponent",
+  "scenario_overrides": {
+    "default": {}
+  },
+  "candidate": {
+    "identity": "D1_micro_lot_wheat",
+    "path": "experiments/source_snapshots/fa04_c02_meta/D1.py",
+    "sha256": "BFECC34F97F22B5A928D7AA654815C1254CA5CECD4A763296158C9E3FD0C1A1A",
+    "bytes": 57227
+  },
+  "control": {
+    "identity": "C02_public_exact",
+    "path": "experiments/source_snapshots/fa04_c02_meta/V0.py",
+    "sha256": "C60147472E416CC1A9106FF2868023C69AB51220E8F959E05E861038CDC46E2E",
+    "bytes": 57165
+  },
+  "opponents": [
+    {
+      "identity": "C01_public_exact",
+      "path": "experiments/source_snapshots/fa04_c02_meta/C01_public.py",
+      "sha256": "6B35F75BC7F5484CCC802C598FF2B4AF5ECD4478CD1C072CA76B0D38481920AA",
+      "bytes": 56947
+    },
+    {
+      "identity": "C02_public_exact",
+      "path": "experiments/source_snapshots/fa04_c02_meta/V0.py",
+      "sha256": "C60147472E416CC1A9106FF2868023C69AB51220E8F959E05E861038CDC46E2E",
+      "bytes": 57165
+    },
+    {
+      "identity": "C03_public_exact",
+      "path": "experiments/source_snapshots/fa04_c02_meta/C03_public.py",
+      "sha256": "DCB065B71CF9CEEA1C2AD7280DCD0552B91679A644681025FA5209260CB17C6F",
+      "bytes": 57131
+    }
+  ],
+  "tooling": {
+    "builder_sha256": "E819227EDC1F3E7DDBC6FD384FF9EEF626B6F0AE174AED204F76D2EFA43492F4",
+    "runner_sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+    "analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702"
+  },
+  "development_gates": {
+    "candidate_failures": 0,
+    "control_failures": 0,
+    "minimum_candidate_match_score": 0.4,
+    "minimum_paired_match_score_delta": 0.02,
+    "minimum_seed_cluster_bootstrap_95_lower": 0.0,
+    "minimum_paired_margin_delta": -100.0,
+    "minimum_each_opponent_match_delta": 0.0,
+    "minimum_each_opponent_margin_delta": -250.0,
+    "minimum_positive_seed_fraction": 0.5,
+    "runtime_p95_ms_max": 8.0,
+    "runtime_p99_ms_max": 15.0,
+    "runtime_absolute_ms_max": 50.0,
+    "invalid_outputs": 0
+  },
+  "promotion_limit": "A development pass authorizes only a separate confirmation audit; it does not establish 1200+, Save & Run, submission, or publication readiness."
+}

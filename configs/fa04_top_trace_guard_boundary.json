@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "identity": "Fa04_top_trace_guard_G1",
+  "status": "DEVELOPMENT_PASS_AWAITING_SAVERUN_AUDIT",
+  "development_opened_at_utc": "2026-08-01T15:58:49.4228656Z",
+  "opening_authority": "User authorization opens local development evaluation only; it does not authorize SaveRun or competition submission.",
+  "implementation_commit": "a43cd954a59fd84e5e3738e03f3effe30cef36b4",
+  "hypothesis": "The public R130 capital and labor schedule is the current strategic leap; preserving it while clamping only impossible SELL orders improves drift safety without materially weakening cross-play.",
+  "target": "Fast 1400-ladder probe; 1200 is the minimum target, but 1200/1400 are not guaranteed by local simulation.",
+  "attribution": {
+    "source": "official public Kaggle episode replay",
+    "upstream_notebook": "https://www.kaggle.com/code/prvsiyan/kaggriculture-frontier-lab-high-score-visuals",
+    "upstream_author": "PRVSIYAN",
+    "upstream_license": "Apache-2.0",
+    "upstream_public_score_observed": 1298.6,
+    "episode_id": 89256171,
+    "team": "radiant-allomancer",
+    "player": 0,
+    "replay_sha256": "ADADDE60EEFB93B56DBE9922B51D5D1970803F89DDF0EEEE67B9890024090405",
+    "recorded_actions": 719,
+    "policy": "Keep episode/team/player/replay hash in the generated source; do not claim authorship of the teacher trajectory."
+  },
+  "research_evidence": {
+    "old_strong_and_scenario_games": 192,
+    "old_strong_and_scenario_wins": 192,
+    "top_trace_crossplay_games": 80,
+    "top_trace_crossplay_wins": 64,
+    "top_trace_crossplay_losses": 16,
+    "top_trace_crossplay_match_score": 0.8,
+    "top_trace_crossplay_margin_mean": 20807.725,
+    "guard_vs_fixed_screen": "REMOVED_FROM_PROMOTION_EVIDENCE_INCONSISTENT_UNTRACKED_COUNTS",
+    "interpretation_limit": "All research screens use already-consumed seeds and select this one candidate only; they motivate but do not replace fresh development."
+  },
+  "seed_registry": "configs/fa_ab_seed_registry.json",
+  "seed_registry_sha256": "3F4C592597B6A93767C3B0D5A507DE33797883DE7524775FD89DA9315853D457",
+  "pools": {
+    "development": {
+      "registry_key": "Fa04_top_trace_guard_development",
+      "start": 40000,
+      "end_inclusive": 40015,
+      "count": 16,
+      "status": "CONSUMED_PASS"
+    },
+    "confirmation": {
+      "registry_key": "Fa04_top_trace_guard_confirmation",
+      "start": 41000,
+      "end_inclusive": 41063,
+      "count": 64,
+      "status": "CLOSED"
+    },
+    "robustness": {
+      "registry_key": "Fa04_top_trace_guard_robustness",
+      "start": 42000,
+      "end_inclusive": 42031,
+      "count": 32,
+      "status": "CLOSED"
+    }
+  },
+  "scenario_overrides": {
+    "default": {}
+  },
+  "scenario_config": {
+    "path": "configs/fa04_top_trace_scenarios.json",
+    "sha256": "D344CBAF5675B642E18EED7BDE4719D7D6C30DCEAD0F8658412BEC99F06D64DB",
+    "bytes": 43
+  },
+  "expected_effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE",
+  "candidate": {
+    "identity": "G1_R130_sell_guard",
+    "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+    "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+    "bytes": 197808
+  },
+  "control": {
+    "identity": "G0_R130_fixed",
+    "path": "experiments/source_snapshots/fa04_top_trace/G0_fixed.py",
+    "sha256": "EC1AC111E43A95D55E06623EADE60A3623FFD87AD41528159D9F48CD58B26F2B",
+    "bytes": 191213
+  },
+  "opponents": [
+    {"identity": "C135_chocolat", "path": "experiments/source_snapshots/fa04_top_trace/C135.py", "sha256": "13C88E1D9232F66A219AF0B66A36A46D622C2466856D191E57A8FDC42BC7C1EE", "bytes": 217913},
+    {"identity": "R140_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R140.py", "sha256": "E4BDEDB791FC129AA73941D96BEA2C20709D9431A8C9628AB526EA186B0F4870", "bytes": 196104},
+    {"identity": "R145_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R145.py", "sha256": "99CE3CABA350D03DC59B9649B9E6D0D28F3D896C5BE0783D355A3D8701476650", "bytes": 198710},
+    {"identity": "R150_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R150.py", "sha256": "80AB5C9E50540FE49D68DED3D170FF79C34603FAF19257BD01554A19E30DA599", "bytes": 188137},
+    {"identity": "R155_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R155.py", "sha256": "857A8F98425D06262E503D46C15FC9480358ADA7621BC5D6D30575B2B71A167C", "bytes": 197609},
+    {"identity": "formal_final_day_labor", "path": "artifacts/candidates/final_day_labor/main.py", "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B", "bytes": 16195}
+  ],
+  "tooling": {
+    "generator": "src/kaggriculture_lab/research/replay_policy.py",
+    "generator_sha256": "7A8AF282BA98C18E50ACF99160E85A32690AEEAB51DC436FB3175C2B254C1E79",
+    "runner": "src/kaggriculture_lab/evaluation/runner.py",
+    "runner_sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+    "paired_analyzer": "src/kaggriculture_lab/evaluation/paired.py",
+    "paired_analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
+    "runtime_generator": "src/kaggriculture_lab/evaluation/top_trace_gate.py",
+    "runtime_generator_sha256": "D05C4B805D2AA025B856C5C6F7334CDCAFB54FCDAB173CF189BA6B9F2F3D0987",
+    "runtime_benchmark": "src/kaggriculture_lab/evaluation/runtime.py",
+    "runtime_benchmark_sha256": "B7605EF73C62EA1CC55C187723F3D8E92E543286A4AB2E82C6C93AACD60F02F2",
+    "gate_evaluator": "src/kaggriculture_lab/evaluation/top_trace_gate.py",
+    "gate_evaluator_sha256": "D05C4B805D2AA025B856C5C6F7334CDCAFB54FCDAB173CF189BA6B9F2F3D0987"
+  },
+  "development_design": {
+    "scenarios": ["default"],
+    "seeds": "40000-40015",
+    "seats": [0, 1],
+    "opponents": 6,
+    "exact_cells_per_lane": 192,
+    "workers_per_lane": 6,
+    "receipts": "separate candidate and control start receipts are mandatory"
+  },
+  "development_gates": {
+    "candidate_failures": 0,
+    "control_failures": 0,
+    "minimum_candidate_top_trace_match_score": 0.75,
+    "minimum_each_top_trace_match_score": 0.5,
+    "minimum_formal_match_score": 0.9,
+    "minimum_each_opponent_mean_margin": 0.0,
+    "minimum_paired_match_delta_vs_control": -0.02,
+    "minimum_paired_money_delta_vs_control": -100.0,
+    "minimum_actions_changed": 1,
+    "runtime_p95_ms_max": 8.0,
+    "runtime_p99_ms_max": 15.0,
+    "runtime_absolute_ms_max": 50.0,
+    "invalid_outputs": 0
+  },
+  "execution_freeze": {
+    "development_gates_sha256": "B7113AE53BBE1EE82D26568455032D599028013E88908688E3EFB6D3C85D8EF7",
+    "third_party_license": {
+      "path": "third_party/fa04_frontier_lab/LICENSE",
+      "sha256": "C71D239DF91726FC519C6EB72D318EC65820627232B2F796219E87DCF35D0AB4",
+      "bytes": 11357
+    },
+    "third_party_attribution": {
+      "path": "third_party/fa04_frontier_lab/ATTRIBUTION.md",
+      "sha256": "2EF65172CFAB942EDDB2372CB9A65CB2C2976455A14B869B6402DF3C0CADB91F",
+      "bytes": 555
+    },
+    "runtime_replay": {
+      "path": "references/fa04_teacher_replays/episode-89256171-replay.json",
+      "sha256": "ADADDE60EEFB93B56DBE9922B51D5D1970803F89DDF0EEEE67B9890024090405",
+      "bytes": 27128767
+    },
+    "artifacts": {
+      "candidate_report": "experiments/evaluations/fa04_top_trace_guard/G1_development.json",
+      "control_report": "experiments/evaluations/fa04_top_trace_guard/G0_development.json",
+      "candidate_start_receipt": "experiments/evaluations/fa04_top_trace_guard/G1_development.contract.started.json",
+      "control_start_receipt": "experiments/evaluations/fa04_top_trace_guard/G0_development.contract.started.json",
+      "runtime_report": "experiments/evaluations/fa04_top_trace_guard/G1_runtime.json",
+      "analysis_report": "experiments/evaluations/fa04_top_trace_guard/G1_development_gate.json"
+    }
+  },
+  "open_transition_invariant": {
+    "schema_version": 1,
+    "basis": {
+      "label": "PREVIOUS_IMPLEMENTATION_EXECUTION_PAIR",
+      "implementation_commit": "42950f6e51cb55e0e2ac3220c9e869136e34a7b2",
+      "closed_execution_commit": "55e4fa9b9d4570bc35fdd9aff37462d7c3cafc32"
+    },
+    "canonicalization": {
+      "algorithm": "SHA256_CANONICAL_JSON_SORTED_KEYS_COMPACT_ASCII",
+      "boundary_excluded_paths": [
+        "open_transition_invariant",
+        "implementation_commit",
+        "seed_registry_sha256",
+        "status",
+        "pools.development.status",
+        "development_opened_at_utc",
+        "opening_authority"
+      ],
+      "registry_excluded_paths": [
+        "next_boundary_reservations.Fa04_top_trace_guard_development.status",
+        "next_boundary_reservations.Fa04_top_trace_guard_development.opened",
+        "next_boundary_reservations.Fa04_top_trace_guard_development.opened_at_utc"
+      ]
+    },
+    "allowed_open_delta": {
+      "boundary": {
+        "status": ["CLOSED_PENDING_CORRECTED_FREEZE_AUDIT", "DEVELOPMENT_OPEN_AUTHORIZED"],
+        "pools.development.status": ["CLOSED", "OPEN"]
+      },
+      "registry": {
+        "next_boundary_reservations.Fa04_top_trace_guard_development.status": ["CLOSED", "OPEN"],
+        "next_boundary_reservations.Fa04_top_trace_guard_development.opened": [false, true]
+      }
+    },
+    "required_open_metadata": {
+      "boundary.development_opened_at_utc": "RFC3339_UTC",
+      "boundary.opening_authority": "User authorization opens local development evaluation only; it does not authorize SaveRun or competition submission.",
+      "registry.next_boundary_reservations.Fa04_top_trace_guard_development.opened_at_utc": "MUST_EQUAL_BOUNDARY_DEVELOPMENT_OPENED_AT_UTC"
+    },
+    "canonical_boundary_non_lifecycle_sha256": "AB06F2EBC08F6E9C311B4D915DA1A88A874A28BAC1FD5E32ECF652C0040140A5",
+    "canonical_registry_non_lifecycle_sha256": "9E38D7332622F0D1D4017BC82E42A4CAE54D0EBBB96B89F6464E4DC887CCCDAE"
+  },
+  "release_policy": "Development PASS permits only a separate SaveRun readiness request; no SaveRun without separate authorization/audit verdict."
+}

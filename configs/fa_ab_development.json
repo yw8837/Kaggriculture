@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "candidate_A": {
+    "modes": ["A0", "A1", "A2", "A4"],
+    "seeds": {"start": 23000, "end_inclusive": 23015, "count": 16},
+    "scenarios": ["default"],
+    "opponents": [
+      "artifacts/candidates/final_day_labor/main.py",
+      "hamburger_current",
+      "scenario_aware",
+      "niits_pro_tier"
+    ]
+  },
+  "candidate_B": {
+    "modes": ["B0", "B1", "B2", "B4"],
+    "seeds": {"start": 26000, "end_inclusive": 26015, "count": 16},
+    "scenarios": ["default"],
+    "opponents": [
+      "artifacts/candidates/final_day_labor/main.py",
+      "hamburger_current",
+      "scenario_aware",
+      "niits_pro_tier"
+    ]
+  },
+  "seat_policy": "both seats for every seed/opponent pair",
+  "selection_rule": {
+    "failures": 0,
+    "minimum_direct_match_score_vs_formal": 0.55,
+    "minimum_direct_mean_margin_vs_formal": 0.0,
+    "minimum_overall_match_score": 0.70,
+    "note": "Preregistered development selection gate only. It does not establish a 1200 rating or top-3 strength."
+  }
+}

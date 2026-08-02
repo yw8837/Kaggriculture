@@ -19,6 +19,7 @@ dev = [
 [project.scripts]
 kg-analyze-replays = "kaggriculture_lab.research.replays:main"
 kg-analyze-top-replays = "kaggriculture_lab.research.top_replays:main"
+kg-snapshot-kaggle-inventory = "kaggriculture_lab.research.kaggle_inventory:main"
 kg-build-candidates = "kaggriculture_lab.candidates.build:main"
 kg-package-candidates = "kaggriculture_lab.candidates.package:main"
 kg-prepare-save-run = "kaggriculture_lab.candidates.save_run:main"

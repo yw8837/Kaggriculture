@@ -1,0 +1,3549 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-08-01T04:49:22.082140+00:00",
+  "started_at_utc": "2026-08-01T04:47:21.534634+00:00",
+  "completed_at_utc": "2026-08-01T04:49:22.082140+00:00",
+  "git_head_at_start": "a6aecdb19e7c877385d1d149efd6f042edbfbfee",
+  "workers": 10,
+  "scenario_overrides": {
+    "default": {}
+  },
+  "effective_scenarios": {
+    "default": {
+      "episodeSteps": 720
+    }
+  },
+  "effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE",
+  "start_receipt": "experiments/evaluations/fa03_meta_expansion/formal_screen.started.json",
+  "start_receipt_sha256": "7A10BB55B640515043C6FF4E577FA876FD3CF5EEE2C673283344B93EF0342DDA",
+  "candidate": "artifacts/candidates/final_day_labor/main.py",
+  "candidate_path": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Desktop\\Kaggriculture\\artifacts\\candidates\\final_day_labor\\main.py",
+  "candidate_sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
+  "candidate_sha256_at_start": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
+  "candidate_sha256_at_end": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
+  "opponents": [
+    "artifacts/candidates/final_day_labor/main.py",
+    "artifacts/opponents/public_kaggle/hamburger_current.py",
+    "artifacts/opponents/public_kaggle/scenario_aware.py",
+    "artifacts/candidates/cow_tilt/main.py",
+    "artifacts/candidates/public_expansion_baseline/main.py"
+  ],
+  "opponent_sha256_at_start": {
+    "artifacts/candidates/final_day_labor/main.py": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
+    "artifacts/opponents/public_kaggle/hamburger_current.py": "A0F6B394C2DA7D420DECF448575B85E540C3249BF4AF1A3C69FA9B643411B793",
+    "artifacts/opponents/public_kaggle/scenario_aware.py": "13EBE04AAE9DC6C6788E7790383D8FBF47222DAA8AD4E88CAD82EC769FA16BF5",
+    "artifacts/candidates/cow_tilt/main.py": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E",
+    "artifacts/candidates/public_expansion_baseline/main.py": "BD32AEFDC00B1F0A41746EBACC4FCBF0AFF32AC061363179F15371B9ACE9A5C0"
+  },
+  "opponent_sha256_at_end": {
+    "artifacts/candidates/final_day_labor/main.py": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
+    "artifacts/opponents/public_kaggle/hamburger_current.py": "A0F6B394C2DA7D420DECF448575B85E540C3249BF4AF1A3C69FA9B643411B793",
+    "artifacts/opponents/public_kaggle/scenario_aware.py": "13EBE04AAE9DC6C6788E7790383D8FBF47222DAA8AD4E88CAD82EC769FA16BF5",
+    "artifacts/candidates/cow_tilt/main.py": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E",
+    "artifacts/candidates/public_expansion_baseline/main.py": "BD32AEFDC00B1F0A41746EBACC4FCBF0AFF32AC061363179F15371B9ACE9A5C0"
+  },
+  "sources_unchanged_during_run": true,
+  "seeds": [
+    23000,
+    23001,
+    23002,
+    23003,
+    23004,
+    23005,
+    23006,
+    23007
+  ],
+  "seat_policy": "both seats scored; confidence interval is clustered by seed",
+  "summary": {
+    "raw_games": 80,
+    "valid_raw_games": 80,
+    "failed_raw_games": 0,
+    "seed_opponent_pairs": 40,
+    "scenario_opponent_seed_pairs": 40,
+    "bootstrap_seed_clusters": 8,
+    "bootstrap_cluster_unit": "seed",
+    "wins": 71,
+    "losses": 9,
+    "ties": 0,
+    "match_score": 0.8875,
+    "decisive_win_rate": 0.8875,
+    "decisive_win_rate_wilson_95_naive_raw_games": [
+      0.7998178190762713,
+      0.9396731305336952
+    ],
+    "match_score_cluster_bootstrap_95": [
+      0.8625,
+      0.9
+    ],
+    "match_score_seed_cluster_bootstrap_95": [
+      0.8625,
+      0.9
+    ],
+    "money_mean": 90599.7875,
+    "money_median": 93305.0,
+    "money_min": 63889.0,
+    "margin_mean": 16538.4,
+    "margin_median": 8471.5,
+    "seat_pair_differences": [
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/cow_tilt/main.py",
+        "seed": 23000,
+        "seat0": [
+          102584.0,
+          98555.0
+        ],
+        "seat1": [
+          103695.0,
+          96926.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/cow_tilt/main.py",
+        "seed": 23001,
+        "seat0": [
+          71008.0,
+          67192.0
+        ],
+        "seat1": [
+          69906.0,
+          67971.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/cow_tilt/main.py",
+        "seed": 23002,
+        "seat0": [
+          79760.0,
+          75534.0
+        ],
+        "seat1": [
+          79244.0,
+          75809.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/cow_tilt/main.py",
+        "seed": 23003,
+        "seat0": [
+          91848.0,
+          88241.0
+        ],
+        "seat1": [
+          93242.0,
+          87172.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/cow_tilt/main.py",
+        "seed": 23004,
+        "seat0": [
+          95983.0,
+          91736.0
+        ],
+        "seat1": [
+          96112.0,
+          91608.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/cow_tilt/main.py",
+        "seed": 23005,
+        "seat0": [
+          69042.0,
+          60321.0
+        ],
+        "seat1": [
+          63961.0,
+          65907.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/cow_tilt/main.py",
+        "seed": 23006,
+        "seat0": [
+          99938.0,
+          94766.0
+        ],
+        "seat1": [
+          99503.0,
+          94904.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/cow_tilt/main.py",
+        "seed": 23007,
+        "seat0": [
+          104373.0,
+          96228.0
+        ],
+        "seat1": [
+          102171.0,
+          98396.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/final_day_labor/main.py",
+        "seed": 23000,
+        "seat0": [
+          102742.0,
+          103700.0
+        ],
+        "seat1": [
+          103700.0,
+          102742.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/final_day_labor/main.py",
+        "seed": 23001,
+        "seat0": [
+          70887.0,
+          69815.0
+        ],
+        "seat1": [
+          69815.0,
+          70887.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/final_day_labor/main.py",
+        "seed": 23002,
+        "seat0": [
+          79614.0,
+          79097.0
+        ],
+        "seat1": [
+          79097.0,
+          79614.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/final_day_labor/main.py",
+        "seed": 23003,
+        "seat0": [
+          91801.0,
+          93234.0
+        ],
+        "seat1": [
+          93234.0,
+          91801.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/final_day_labor/main.py",
+        "seed": 23004,
+        "seat0": [
+          95975.0,
+          96104.0
+        ],
+        "seat1": [
+          96104.0,
+          95975.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/final_day_labor/main.py",
+        "seed": 23005,
+        "seat0": [
+          68921.0,
+          63889.0
+        ],
+        "seat1": [
+          63889.0,
+          68921.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/final_day_labor/main.py",
+        "seed": 23006,
+        "seat0": [
+          99898.0,
+          99529.0
+        ],
+        "seat1": [
+          99529.0,
+          99898.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/final_day_labor/main.py",
+        "seed": 23007,
+        "seat0": [
+          104371.0,
+          102167.0
+        ],
+        "seat1": [
+          102167.0,
+          104371.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+        "seed": 23000,
+        "seat0": [
+          102933.0,
+          95107.0
+        ],
+        "seat1": [
+          104383.0,
+          85484.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+        "seed": 23001,
+        "seat0": [
+          86537.0,
+          81062.0
+        ],
+        "seat1": [
+          78810.0,
+          78162.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+        "seed": 23002,
+        "seat0": [
+          90807.0,
+          86875.0
+        ],
+        "seat1": [
+          94812.0,
+          91501.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+        "seed": 23003,
+        "seat0": [
+          92840.0,
+          88974.0
+        ],
+        "seat1": [
+          94559.0,
+          89060.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+        "seed": 23004,
+        "seat0": [
+          93368.0,
+          85146.0
+        ],
+        "seat1": [
+          90179.0,
+          84022.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+        "seed": 23006,
+        "seat0": [
+          101914.0,
+          90964.0
+        ],
+        "seat1": [
+          94304.0,
+          80700.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+        "seed": 23007,
+        "seat0": [
+          99849.0,
+          85770.0
+        ],
+        "seat1": [
+          97253.0,
+          86445.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+        "seed": 23000,
+        "seat0": [
+          99451.0,
+          72090.0
+        ],
+        "seat1": [
+          94986.0,
+          68948.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+        "seed": 23001,
+        "seat0": [
+          87726.0,
+          58865.0
+        ],
+        "seat1": [
+          80697.0,
+          48281.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+        "seed": 23002,
+        "seat0": [
+          65909.0,
+          35373.0
+        ],
+        "seat1": [
+          66335.0,
+          35876.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+        "seed": 23003,
+        "seat0": [
+          79577.0,
+          47579.0
+        ],
+        "seat1": [
+          78213.0,
+          45592.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+        "seed": 23004,
+        "seat0": [
+          100244.0,
+          76316.0
+        ],
+        "seat1": [
+          96559.0,
+          75748.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+        "seed": 23006,
+        "seat0": [
+          94581.0,
+          70112.0
+        ],
+        "seat1": [
+          88798.0,
+          64350.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+        "seed": 23007,
+        "seat0": [
+          81422.0,
+          54341.0
+        ],
+        "seat1": [
+          78954.0,
+          49578.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+        "seed": 23000,
+        "seat0": [
+          98780.0,
+          53867.0
+        ],
+        "seat1": [
+          101701.0,
+          53031.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+        "seed": 23001,
+        "seat0": [
+          102042.0,
+          49643.0
+        ],
+        "seat1": [
+          102030.0,
+          49561.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+        "seed": 23002,
+        "seat0": [
+          89557.0,
+          50631.0
+        ],
+        "seat1": [
+          92466.0,
+          50545.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+        "seed": 23003,
+        "seat0": [
+          93041.0,
+          56234.0
+        ],
+        "seat1": [
+          91091.0,
+          55518.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+        "seed": 23004,
+        "seat0": [
+          86502.0,
+          51561.0
+        ],
+        "seat1": [
+          89099.0,
+          50383.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+        "seed": 23005,
+        "seat0": [
+          96652.0,
+          48955.0
+        ],
+        "seat1": [
+          96755.0,
+          49447.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+        "seed": 23006,
+        "seat0": [
+          96718.0,
+          54930.0
+        ],
+        "seat1": [
+          99156.0,
+          54268.0
+        ]
+      },
+      {
+        "scenario": "default",
+        "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+        "seed": 23007,
+        "seat0": [
+          87485.0,
+          48361.0
+        ],
+        "seat1": [
+          88958.0,
+          54823.0
+        ]
+      }
+    ],
+    "candidate_metrics_total": {},
+    "candidate_metrics_games": 0,
+    "elapsed_seconds_total": 1163.998745699966
+  },
+  "games": [
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23000,
+      "seat": 0,
+      "candidate_money": 102584.0,
+      "opponent_money": 98555.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 18.366106600005878,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23000
+      },
+      "effective_configuration_sha256": "30CCFD6945D2A75E7F2F50BF67DC2E373017D5E98AFD717181924568B2CBEB41",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23000,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23000,
+      "seat": 1,
+      "candidate_money": 103695.0,
+      "opponent_money": 96926.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 18.213372199999867,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23000
+      },
+      "effective_configuration_sha256": "30CCFD6945D2A75E7F2F50BF67DC2E373017D5E98AFD717181924568B2CBEB41",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23000,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23001,
+      "seat": 0,
+      "candidate_money": 71008.0,
+      "opponent_money": 67192.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 14.174803000001702,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23001
+      },
+      "effective_configuration_sha256": "EA52887EFA974FF98D2A9CBA28CA6BFE2A9CBE0DC38420E2C3E6CFEF560B6B9B",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23001,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23001,
+      "seat": 1,
+      "candidate_money": 69906.0,
+      "opponent_money": 67971.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 13.971627399994759,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23001
+      },
+      "effective_configuration_sha256": "EA52887EFA974FF98D2A9CBA28CA6BFE2A9CBE0DC38420E2C3E6CFEF560B6B9B",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23001,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23002,
+      "seat": 0,
+      "candidate_money": 79760.0,
+      "opponent_money": 75534.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 13.67425299999013,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23002
+      },
+      "effective_configuration_sha256": "19E1EB34A7CB287CE5B3EA980F03898195B55724A6373D13B6BA393BB355CFFA",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23002,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23002,
+      "seat": 1,
+      "candidate_money": 79244.0,
+      "opponent_money": 75809.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 12.532229699994787,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23002
+      },
+      "effective_configuration_sha256": "19E1EB34A7CB287CE5B3EA980F03898195B55724A6373D13B6BA393BB355CFFA",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23002,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23003,
+      "seat": 0,
+      "candidate_money": 91848.0,
+      "opponent_money": 88241.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 13.640664599995944,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23003
+      },
+      "effective_configuration_sha256": "396EE58B5BE38BDFAC0F9239EBA24B8C88128861884FBF38ADE3E72059A9BDB2",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23003,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23003,
+      "seat": 1,
+      "candidate_money": 93242.0,
+      "opponent_money": 87172.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 12.488008300002548,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23003
+      },
+      "effective_configuration_sha256": "396EE58B5BE38BDFAC0F9239EBA24B8C88128861884FBF38ADE3E72059A9BDB2",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23003,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23004,
+      "seat": 0,
+      "candidate_money": 95983.0,
+      "opponent_money": 91736.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 11.450638000009349,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23004
+      },
+      "effective_configuration_sha256": "6D32C12C7C0841B039E7BFC58066304559465D25B411043CA1B1A1C8ECF73BC9",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23004,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23004,
+      "seat": 1,
+      "candidate_money": 96112.0,
+      "opponent_money": 91608.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 11.360644200001843,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23004
+      },
+      "effective_configuration_sha256": "6D32C12C7C0841B039E7BFC58066304559465D25B411043CA1B1A1C8ECF73BC9",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23004,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23005,
+      "seat": 0,
+      "candidate_money": 69042.0,
+      "opponent_money": 60321.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 11.64215260000492,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23005
+      },
+      "effective_configuration_sha256": "A2FE514999C0E4710F7F910487AA6DE52912F85273B26B4DED569B8B5A96DD2F",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23005,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23005,
+      "seat": 1,
+      "candidate_money": 63961.0,
+      "opponent_money": 65907.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 11.815272399995592,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23005
+      },
+      "effective_configuration_sha256": "A2FE514999C0E4710F7F910487AA6DE52912F85273B26B4DED569B8B5A96DD2F",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23005,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23006,
+      "seat": 0,
+      "candidate_money": 99938.0,
+      "opponent_money": 94766.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 12.555656600001385,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23006
+      },
+      "effective_configuration_sha256": "8632AA497856193B125E7DC30819E61F01E05DD0429AE1C1CAEBECB1D410C6AF",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23006,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23006,
+      "seat": 1,
+      "candidate_money": 99503.0,
+      "opponent_money": 94904.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 12.7777017000044,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23006
+      },
+      "effective_configuration_sha256": "8632AA497856193B125E7DC30819E61F01E05DD0429AE1C1CAEBECB1D410C6AF",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23006,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23007,
+      "seat": 0,
+      "candidate_money": 104373.0,
+      "opponent_money": 96228.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 13.02908939999179,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23007
+      },
+      "effective_configuration_sha256": "DD7DB6F2F61040E884C82ECB6D325F11E04E81CD8BB5D0B2FC3CAE1BAA980AED",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23007,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/cow_tilt/main.py",
+      "seed": 23007,
+      "seat": 1,
+      "candidate_money": 102171.0,
+      "opponent_money": 98396.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 12.951688700006343,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23007
+      },
+      "effective_configuration_sha256": "DD7DB6F2F61040E884C82ECB6D325F11E04E81CD8BB5D0B2FC3CAE1BAA980AED",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23007,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23000,
+      "seat": 0,
+      "candidate_money": 102742.0,
+      "opponent_money": 103700.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 17.677492100003292,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23000
+      },
+      "effective_configuration_sha256": "30CCFD6945D2A75E7F2F50BF67DC2E373017D5E98AFD717181924568B2CBEB41",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23000,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23000,
+      "seat": 1,
+      "candidate_money": 103700.0,
+      "opponent_money": 102742.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 15.18577070000174,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23000
+      },
+      "effective_configuration_sha256": "30CCFD6945D2A75E7F2F50BF67DC2E373017D5E98AFD717181924568B2CBEB41",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23000,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23001,
+      "seat": 0,
+      "candidate_money": 70887.0,
+      "opponent_money": 69815.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 15.628603099990869,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23001
+      },
+      "effective_configuration_sha256": "EA52887EFA974FF98D2A9CBA28CA6BFE2A9CBE0DC38420E2C3E6CFEF560B6B9B",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23001,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23001,
+      "seat": 1,
+      "candidate_money": 69815.0,
+      "opponent_money": 70887.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 17.202440300010494,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23001
+      },
+      "effective_configuration_sha256": "EA52887EFA974FF98D2A9CBA28CA6BFE2A9CBE0DC38420E2C3E6CFEF560B6B9B",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23001,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23002,
+      "seat": 0,
+      "candidate_money": 79614.0,
+      "opponent_money": 79097.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 15.799244499998167,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23002
+      },
+      "effective_configuration_sha256": "19E1EB34A7CB287CE5B3EA980F03898195B55724A6373D13B6BA393BB355CFFA",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23002,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23002,
+      "seat": 1,
+      "candidate_money": 79097.0,
+      "opponent_money": 79614.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 14.27919010000187,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23002
+      },
+      "effective_configuration_sha256": "19E1EB34A7CB287CE5B3EA980F03898195B55724A6373D13B6BA393BB355CFFA",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23002,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23003,
+      "seat": 0,
+      "candidate_money": 91801.0,
+      "opponent_money": 93234.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 15.908624099989538,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23003
+      },
+      "effective_configuration_sha256": "396EE58B5BE38BDFAC0F9239EBA24B8C88128861884FBF38ADE3E72059A9BDB2",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23003,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23003,
+      "seat": 1,
+      "candidate_money": 93234.0,
+      "opponent_money": 91801.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 16.179652199993143,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23003
+      },
+      "effective_configuration_sha256": "396EE58B5BE38BDFAC0F9239EBA24B8C88128861884FBF38ADE3E72059A9BDB2",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23003,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23004,
+      "seat": 0,
+      "candidate_money": 95975.0,
+      "opponent_money": 96104.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 14.859715099999448,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23004
+      },
+      "effective_configuration_sha256": "6D32C12C7C0841B039E7BFC58066304559465D25B411043CA1B1A1C8ECF73BC9",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23004,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23004,
+      "seat": 1,
+      "candidate_money": 96104.0,
+      "opponent_money": 95975.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 15.337372099995264,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23004
+      },
+      "effective_configuration_sha256": "6D32C12C7C0841B039E7BFC58066304559465D25B411043CA1B1A1C8ECF73BC9",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23004,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23005,
+      "seat": 0,
+      "candidate_money": 68921.0,
+      "opponent_money": 63889.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 14.74010019999696,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23005
+      },
+      "effective_configuration_sha256": "A2FE514999C0E4710F7F910487AA6DE52912F85273B26B4DED569B8B5A96DD2F",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23005,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23005,
+      "seat": 1,
+      "candidate_money": 63889.0,
+      "opponent_money": 68921.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 14.97694720000436,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23005
+      },
+      "effective_configuration_sha256": "A2FE514999C0E4710F7F910487AA6DE52912F85273B26B4DED569B8B5A96DD2F",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23005,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23006,
+      "seat": 0,
+      "candidate_money": 99898.0,
+      "opponent_money": 99529.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 14.379539099987596,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23006
+      },
+      "effective_configuration_sha256": "8632AA497856193B125E7DC30819E61F01E05DD0429AE1C1CAEBECB1D410C6AF",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23006,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23006,
+      "seat": 1,
+      "candidate_money": 99529.0,
+      "opponent_money": 99898.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 13.980176400000346,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23006
+      },
+      "effective_configuration_sha256": "8632AA497856193B125E7DC30819E61F01E05DD0429AE1C1CAEBECB1D410C6AF",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23006,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23007,
+      "seat": 0,
+      "candidate_money": 104371.0,
+      "opponent_money": 102167.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 15.889525199992931,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23007
+      },
+      "effective_configuration_sha256": "DD7DB6F2F61040E884C82ECB6D325F11E04E81CD8BB5D0B2FC3CAE1BAA980AED",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23007,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/final_day_labor/main.py",
+      "seed": 23007,
+      "seat": 1,
+      "candidate_money": 102167.0,
+      "opponent_money": 104371.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 14.581532800002606,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23007
+      },
+      "effective_configuration_sha256": "DD7DB6F2F61040E884C82ECB6D325F11E04E81CD8BB5D0B2FC3CAE1BAA980AED",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23007,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23000,
+      "seat": 0,
+      "candidate_money": 102933.0,
+      "opponent_money": 95107.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 13.342319899995346,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23000
+      },
+      "effective_configuration_sha256": "30CCFD6945D2A75E7F2F50BF67DC2E373017D5E98AFD717181924568B2CBEB41",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23000,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23000,
+      "seat": 1,
+      "candidate_money": 104383.0,
+      "opponent_money": 85484.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 13.14819800000987,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23000
+      },
+      "effective_configuration_sha256": "30CCFD6945D2A75E7F2F50BF67DC2E373017D5E98AFD717181924568B2CBEB41",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23000,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23001,
+      "seat": 0,
+      "candidate_money": 86537.0,
+      "opponent_money": 81062.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 12.94811209999898,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23001
+      },
+      "effective_configuration_sha256": "EA52887EFA974FF98D2A9CBA28CA6BFE2A9CBE0DC38420E2C3E6CFEF560B6B9B",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23001,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23001,
+      "seat": 1,
+      "candidate_money": 78810.0,
+      "opponent_money": 78162.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 12.831743999995524,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23001
+      },
+      "effective_configuration_sha256": "EA52887EFA974FF98D2A9CBA28CA6BFE2A9CBE0DC38420E2C3E6CFEF560B6B9B",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23001,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23002,
+      "seat": 0,
+      "candidate_money": 90807.0,
+      "opponent_money": 86875.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 12.65124680000008,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23002
+      },
+      "effective_configuration_sha256": "19E1EB34A7CB287CE5B3EA980F03898195B55724A6373D13B6BA393BB355CFFA",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23002,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23002,
+      "seat": 1,
+      "candidate_money": 94812.0,
+      "opponent_money": 91501.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 12.466153200002736,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23002
+      },
+      "effective_configuration_sha256": "19E1EB34A7CB287CE5B3EA980F03898195B55724A6373D13B6BA393BB355CFFA",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23002,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23003,
+      "seat": 0,
+      "candidate_money": 92840.0,
+      "opponent_money": 88974.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 11.409201700007543,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23003
+      },
+      "effective_configuration_sha256": "396EE58B5BE38BDFAC0F9239EBA24B8C88128861884FBF38ADE3E72059A9BDB2",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23003,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23003,
+      "seat": 1,
+      "candidate_money": 94559.0,
+      "opponent_money": 89060.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 10.803583000000799,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23003
+      },
+      "effective_configuration_sha256": "396EE58B5BE38BDFAC0F9239EBA24B8C88128861884FBF38ADE3E72059A9BDB2",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23003,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23004,
+      "seat": 0,
+      "candidate_money": 93368.0,
+      "opponent_money": 85146.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 10.561710900001344,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23004
+      },
+      "effective_configuration_sha256": "6D32C12C7C0841B039E7BFC58066304559465D25B411043CA1B1A1C8ECF73BC9",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23004,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23004,
+      "seat": 1,
+      "candidate_money": 90179.0,
+      "opponent_money": 84022.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 10.551380499993684,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23004
+      },
+      "effective_configuration_sha256": "6D32C12C7C0841B039E7BFC58066304559465D25B411043CA1B1A1C8ECF73BC9",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23004,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23005,
+      "seat": 0,
+      "candidate_money": 95133.0,
+      "opponent_money": 84988.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 10.236876700000721,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23005
+      },
+      "effective_configuration_sha256": "A2FE514999C0E4710F7F910487AA6DE52912F85273B26B4DED569B8B5A96DD2F",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23005,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23005,
+      "seat": 1,
+      "candidate_money": 95133.0,
+      "opponent_money": 84988.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 9.173167200002354,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23005
+      },
+      "effective_configuration_sha256": "A2FE514999C0E4710F7F910487AA6DE52912F85273B26B4DED569B8B5A96DD2F",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23005,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23006,
+      "seat": 0,
+      "candidate_money": 101914.0,
+      "opponent_money": 90964.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 9.352534599995124,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23006
+      },
+      "effective_configuration_sha256": "8632AA497856193B125E7DC30819E61F01E05DD0429AE1C1CAEBECB1D410C6AF",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23006,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23006,
+      "seat": 1,
+      "candidate_money": 94304.0,
+      "opponent_money": 80700.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 9.033380199995008,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23006
+      },
+      "effective_configuration_sha256": "8632AA497856193B125E7DC30819E61F01E05DD0429AE1C1CAEBECB1D410C6AF",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23006,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23007,
+      "seat": 0,
+      "candidate_money": 99849.0,
+      "opponent_money": 85770.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 8.66898279999441,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23007
+      },
+      "effective_configuration_sha256": "DD7DB6F2F61040E884C82ECB6D325F11E04E81CD8BB5D0B2FC3CAE1BAA980AED",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23007,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/candidates/public_expansion_baseline/main.py",
+      "seed": 23007,
+      "seat": 1,
+      "candidate_money": 97253.0,
+      "opponent_money": 86445.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 7.785683499998413,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23007
+      },
+      "effective_configuration_sha256": "DD7DB6F2F61040E884C82ECB6D325F11E04E81CD8BB5D0B2FC3CAE1BAA980AED",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23007,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23000,
+      "seat": 0,
+      "candidate_money": 99451.0,
+      "opponent_money": 72090.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 13.058509199996479,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23000
+      },
+      "effective_configuration_sha256": "30CCFD6945D2A75E7F2F50BF67DC2E373017D5E98AFD717181924568B2CBEB41",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23000,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23000,
+      "seat": 1,
+      "candidate_money": 94986.0,
+      "opponent_money": 68948.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 13.018217400007416,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23000
+      },
+      "effective_configuration_sha256": "30CCFD6945D2A75E7F2F50BF67DC2E373017D5E98AFD717181924568B2CBEB41",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23000,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23001,
+      "seat": 0,
+      "candidate_money": 87726.0,
+      "opponent_money": 58865.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 12.90733290000935,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23001
+      },
+      "effective_configuration_sha256": "EA52887EFA974FF98D2A9CBA28CA6BFE2A9CBE0DC38420E2C3E6CFEF560B6B9B",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23001,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23001,
+      "seat": 1,
+      "candidate_money": 80697.0,
+      "opponent_money": 48281.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 13.05157429999963,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23001
+      },
+      "effective_configuration_sha256": "EA52887EFA974FF98D2A9CBA28CA6BFE2A9CBE0DC38420E2C3E6CFEF560B6B9B",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23001,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23002,
+      "seat": 0,
+      "candidate_money": 65909.0,
+      "opponent_money": 35373.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 15.600730499994825,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23002
+      },
+      "effective_configuration_sha256": "19E1EB34A7CB287CE5B3EA980F03898195B55724A6373D13B6BA393BB355CFFA",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23002,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23002,
+      "seat": 1,
+      "candidate_money": 66335.0,
+      "opponent_money": 35876.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 14.499502799997572,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23002
+      },
+      "effective_configuration_sha256": "19E1EB34A7CB287CE5B3EA980F03898195B55724A6373D13B6BA393BB355CFFA",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23002,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23003,
+      "seat": 0,
+      "candidate_money": 79577.0,
+      "opponent_money": 47579.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 14.04188140000042,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23003
+      },
+      "effective_configuration_sha256": "396EE58B5BE38BDFAC0F9239EBA24B8C88128861884FBF38ADE3E72059A9BDB2",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23003,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23003,
+      "seat": 1,
+      "candidate_money": 78213.0,
+      "opponent_money": 45592.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 14.686378899990814,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23003
+      },
+      "effective_configuration_sha256": "396EE58B5BE38BDFAC0F9239EBA24B8C88128861884FBF38ADE3E72059A9BDB2",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23003,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23004,
+      "seat": 0,
+      "candidate_money": 100244.0,
+      "opponent_money": 76316.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 15.255859600001713,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23004
+      },
+      "effective_configuration_sha256": "6D32C12C7C0841B039E7BFC58066304559465D25B411043CA1B1A1C8ECF73BC9",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23004,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23004,
+      "seat": 1,
+      "candidate_money": 96559.0,
+      "opponent_money": 75748.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 15.617029700006242,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23004
+      },
+      "effective_configuration_sha256": "6D32C12C7C0841B039E7BFC58066304559465D25B411043CA1B1A1C8ECF73BC9",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23004,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23005,
+      "seat": 0,
+      "candidate_money": 92785.0,
+      "opponent_money": 68923.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 13.313684699998703,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23005
+      },
+      "effective_configuration_sha256": "A2FE514999C0E4710F7F910487AA6DE52912F85273B26B4DED569B8B5A96DD2F",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23005,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23005,
+      "seat": 1,
+      "candidate_money": 92785.0,
+      "opponent_money": 68923.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 19.22323509999842,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23005
+      },
+      "effective_configuration_sha256": "A2FE514999C0E4710F7F910487AA6DE52912F85273B26B4DED569B8B5A96DD2F",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23005,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23006,
+      "seat": 0,
+      "candidate_money": 94581.0,
+      "opponent_money": 70112.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 15.976980999999796,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23006
+      },
+      "effective_configuration_sha256": "8632AA497856193B125E7DC30819E61F01E05DD0429AE1C1CAEBECB1D410C6AF",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23006,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23006,
+      "seat": 1,
+      "candidate_money": 88798.0,
+      "opponent_money": 64350.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 14.834498700001859,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23006
+      },
+      "effective_configuration_sha256": "8632AA497856193B125E7DC30819E61F01E05DD0429AE1C1CAEBECB1D410C6AF",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23006,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23007,
+      "seat": 0,
+      "candidate_money": 81422.0,
+      "opponent_money": 54341.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 14.782969300009427,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23007
+      },
+      "effective_configuration_sha256": "DD7DB6F2F61040E884C82ECB6D325F11E04E81CD8BB5D0B2FC3CAE1BAA980AED",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23007,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "seed": 23007,
+      "seat": 1,
+      "candidate_money": 78954.0,
+      "opponent_money": 49578.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 14.014749800000573,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23007
+      },
+      "effective_configuration_sha256": "DD7DB6F2F61040E884C82ECB6D325F11E04E81CD8BB5D0B2FC3CAE1BAA980AED",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23007,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23000,
+      "seat": 0,
+      "candidate_money": 98780.0,
+      "opponent_money": 53867.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 16.22656179999467,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23000
+      },
+      "effective_configuration_sha256": "30CCFD6945D2A75E7F2F50BF67DC2E373017D5E98AFD717181924568B2CBEB41",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23000,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23000,
+      "seat": 1,
+      "candidate_money": 101701.0,
+      "opponent_money": 53031.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 14.034744399992633,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23000
+      },
+      "effective_configuration_sha256": "30CCFD6945D2A75E7F2F50BF67DC2E373017D5E98AFD717181924568B2CBEB41",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23000,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23001,
+      "seat": 0,
+      "candidate_money": 102042.0,
+      "opponent_money": 49643.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 17.893234699993627,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23001
+      },
+      "effective_configuration_sha256": "EA52887EFA974FF98D2A9CBA28CA6BFE2A9CBE0DC38420E2C3E6CFEF560B6B9B",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23001,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23001,
+      "seat": 1,
+      "candidate_money": 102030.0,
+      "opponent_money": 49561.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 17.193510100012645,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23001
+      },
+      "effective_configuration_sha256": "EA52887EFA974FF98D2A9CBA28CA6BFE2A9CBE0DC38420E2C3E6CFEF560B6B9B",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23001,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23002,
+      "seat": 0,
+      "candidate_money": 89557.0,
+      "opponent_money": 50631.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 16.123429699990083,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23002
+      },
+      "effective_configuration_sha256": "19E1EB34A7CB287CE5B3EA980F03898195B55724A6373D13B6BA393BB355CFFA",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23002,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23002,
+      "seat": 1,
+      "candidate_money": 92466.0,
+      "opponent_money": 50545.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 14.466920299993944,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23002
+      },
+      "effective_configuration_sha256": "19E1EB34A7CB287CE5B3EA980F03898195B55724A6373D13B6BA393BB355CFFA",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23002,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23003,
+      "seat": 0,
+      "candidate_money": 93041.0,
+      "opponent_money": 56234.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 20.268024199991487,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23003
+      },
+      "effective_configuration_sha256": "396EE58B5BE38BDFAC0F9239EBA24B8C88128861884FBF38ADE3E72059A9BDB2",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23003,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23003,
+      "seat": 1,
+      "candidate_money": 91091.0,
+      "opponent_money": 55518.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 19.160128200004692,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23003
+      },
+      "effective_configuration_sha256": "396EE58B5BE38BDFAC0F9239EBA24B8C88128861884FBF38ADE3E72059A9BDB2",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23003,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23004,
+      "seat": 0,
+      "candidate_money": 86502.0,
+      "opponent_money": 51561.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 20.35382180000306,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23004
+      },
+      "effective_configuration_sha256": "6D32C12C7C0841B039E7BFC58066304559465D25B411043CA1B1A1C8ECF73BC9",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23004,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23004,
+      "seat": 1,
+      "candidate_money": 89099.0,
+      "opponent_money": 50383.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 17.159743600001093,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23004
+      },
+      "effective_configuration_sha256": "6D32C12C7C0841B039E7BFC58066304559465D25B411043CA1B1A1C8ECF73BC9",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23004,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23005,
+      "seat": 0,
+      "candidate_money": 96652.0,
+      "opponent_money": 48955.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 18.30378670000937,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23005
+      },
+      "effective_configuration_sha256": "A2FE514999C0E4710F7F910487AA6DE52912F85273B26B4DED569B8B5A96DD2F",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23005,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23005,
+      "seat": 1,
+      "candidate_money": 96755.0,
+      "opponent_money": 49447.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 19.22424179999507,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23005
+      },
+      "effective_configuration_sha256": "A2FE514999C0E4710F7F910487AA6DE52912F85273B26B4DED569B8B5A96DD2F",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23005,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23006,
+      "seat": 0,
+      "candidate_money": 96718.0,
+      "opponent_money": 54930.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 18.462859000006574,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23006
+      },
+      "effective_configuration_sha256": "8632AA497856193B125E7DC30819E61F01E05DD0429AE1C1CAEBECB1D410C6AF",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23006,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23006,
+      "seat": 1,
+      "candidate_money": 99156.0,
+      "opponent_money": 54268.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 21.039264399994863,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23006
+      },
+      "effective_configuration_sha256": "8632AA497856193B125E7DC30819E61F01E05DD0429AE1C1CAEBECB1D410C6AF",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23006,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23007,
+      "seat": 0,
+      "candidate_money": 87485.0,
+      "opponent_money": 48361.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 21.65667680000479,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23007
+      },
+      "effective_configuration_sha256": "DD7DB6F2F61040E884C82ECB6D325F11E04E81CD8BB5D0B2FC3CAE1BAA980AED",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23007,
+      "candidate_metrics": null
+    },
+    {
+      "opponent": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "seed": 23007,
+      "seat": 1,
+      "candidate_money": 88958.0,
+      "opponent_money": 54823.0,
+      "candidate_status": "DONE",
+      "opponent_status": "DONE",
+      "elapsed_seconds": 22.334554200002458,
+      "error": null,
+      "scenario": "default",
+      "effective_configuration": {
+        "episodeSteps": 720,
+        "seed": 23007
+      },
+      "effective_configuration_sha256": "DD7DB6F2F61040E884C82ECB6D325F11E04E81CD8BB5D0B2FC3CAE1BAA980AED",
+      "environment_configuration": {
+        "actTimeout": 1,
+        "boardSize": 10,
+        "episodeSteps": 720,
+        "farmHandCostMult": 1,
+        "marketParams": {},
+        "maxMarketOrdersPerTurn": 10,
+        "runTimeout": 1200,
+        "seed": null,
+        "shedCapacity": 100,
+        "startingMoney": 3000,
+        "townCenterSellInterval": 12,
+        "townShopSellInterval": 4,
+        "townShopUnlockInterval": 3,
+        "turnsPerDay": 24,
+        "weedSpawnChance": 0.005
+      },
+      "environment_configuration_sha256": "0AA67E3C576B8BF885032E68B8D43EEFB8BC030727FA700A5588F48A58986111",
+      "resolved_environment_seed": 23007,
+      "candidate_metrics": null
+    }
+  ]
+}

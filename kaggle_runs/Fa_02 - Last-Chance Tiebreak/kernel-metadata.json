@@ -1,0 +1,18 @@
+{
+  "id": "yw8837/fa-02-last-chance-tiebreak",
+  "title": "Fa_02 - Last-Chance Tiebreak",
+  "code_file": "Fa_02 - Last-Chance Tiebreak.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "machine_shape": "",
+  "dataset_sources": [],
+  "competition_sources": [
+    "kaggriculture"
+  ],
+  "kernel_sources": [],
+  "model_sources": []
+}

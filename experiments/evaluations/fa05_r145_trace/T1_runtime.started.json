@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-08-01T22:36:03.774136+00:00",
+  "implementation_commit": "31a3bac508ea0ba083919b2aceea5b22bf1c01bb",
+  "git_head": "30e008b80b4d89f05d603c56e977930413c2a9f8",
+  "tracked_tree_clean": true,
+  "output": "experiments/evaluations/fa05_r145_trace/T1_runtime.json",
+  "boundary": {
+    "path": "configs/fa05_r145_trace_boundary.json",
+    "sha256": "4C79EA3B4A6FFD313A732580C9AA4B7B483538E7BED98031712A8C4D3B930C5E",
+    "bytes": 8120
+  },
+  "registry": {
+    "path": "configs/fa_ab_seed_registry.json",
+    "sha256": "8A5DE9F8354E01DEDD77CF0337EAE666D21677D2BA164CC4B17B468EE00B4C09",
+    "bytes": 12108
+  },
+  "scenario_config": {
+    "path": "configs/fa05_r145_scenarios.json",
+    "sha256": "D344CBAF5675B642E18EED7BDE4719D7D6C30DCEAD0F8658412BEC99F06D64DB",
+    "bytes": 43
+  },
+  "tooling": {
+    "generator": {
+      "path": "src/kaggriculture_lab/research/replay_policy.py",
+      "sha256": "7A8AF282BA98C18E50ACF99160E85A32690AEEAB51DC436FB3175C2B254C1E79",
+      "bytes": 16285
+    },
+    "runner": {
+      "path": "src/kaggriculture_lab/evaluation/runner.py",
+      "sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+      "bytes": 19694
+    },
+    "paired_analyzer": {
+      "path": "src/kaggriculture_lab/evaluation/paired.py",
+      "sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
+      "bytes": 34461
+    },
+    "runtime_generator": {
+      "path": "src/kaggriculture_lab/evaluation/fa05_trace_gate.py",
+      "sha256": "BD8E8C8DF90439E648E44AD69D4E8BFE0250C343F60C86C68437890BBEF58165",
+      "bytes": 36462
+    },
+    "runtime_benchmark": {
+      "path": "src/kaggriculture_lab/evaluation/fa05_runtime.py",
+      "sha256": "A364F36577C7BB62E5A4469CA3B23508790ECC7618D12011DBDDDC82E22BE89B",
+      "bytes": 5743
+    },
+    "gate_evaluator": {
+      "path": "src/kaggriculture_lab/evaluation/fa05_trace_gate.py",
+      "sha256": "BD8E8C8DF90439E648E44AD69D4E8BFE0250C343F60C86C68437890BBEF58165",
+      "bytes": 36462
+    }
+  },
+  "source": {
+    "path": "experiments/source_snapshots/fa05_r145_trace/T1_R145_sell_guard.py",
+    "sha256": "1ED43DDB04E0B47DD49AB2F8B3D75671F97383ACFE23CBE5C5BC468EF2665A8A",
+    "bytes": 205661
+  },
+  "runtime_replay": {
+    "path": "references/fa04_teacher_replays/episode-89268002-replay.json",
+    "sha256": "BB2523859718C0C1CAA08277D3F058583E668C94565321E8F89BB3E77766094F",
+    "bytes": 24437865,
+    "player": 1,
+    "observations": 720,
+    "recorded_actions": 719,
+    "tracking": "IMMUTABLE_LOCAL_EXTERNAL",
+    "origin": "public Kaggle competition replay episode 89268002",
+    "acquisition_provenance": "LOCAL_HASH_PINNED; REMOTE_RETRIEVAL_RECEIPT_REQUIRED_BEFORE_SAVERUN_OR_PUBLICATION"
+  },
+  "player": 1,
+  "observations": 720,
+  "recorded_actions": 719,
+  "step_reconstruction": {
+    "target_player": 1,
+    "shared_step_source_player": 0,
+    "only_fill_when_missing": true,
+    "required_observed_steps": "0-719_exact_unique",
+    "preserve_player_and_private": true
+  },
+  "command": [
+    "python",
+    "-m",
+    "kaggriculture_lab.evaluation.fa05_trace_gate",
+    "--boundary",
+    "configs/fa05_r145_trace_boundary.json",
+    "--generate-runtime"
+  ],
+  "generator": {
+    "path": "src/kaggriculture_lab/evaluation/fa05_trace_gate.py",
+    "sha256": "BD8E8C8DF90439E648E44AD69D4E8BFE0250C343F60C86C68437890BBEF58165",
+    "bytes": 36462
+  },
+  "tracked_provenance": {
+    "implementation_commit": "31a3bac508ea0ba083919b2aceea5b22bf1c01bb",
+    "execution_head": "30e008b80b4d89f05d603c56e977930413c2a9f8",
+    "source": {
+      "path": "experiments/source_snapshots/fa05_r145_trace/T1_R145_sell_guard.py",
+      "sha256": "1ED43DDB04E0B47DD49AB2F8B3D75671F97383ACFE23CBE5C5BC468EF2665A8A",
+      "bytes": 205661
+    },
+    "replay": {
+      "path": "references/fa04_teacher_replays/episode-89268002-replay.json",
+      "sha256": "BB2523859718C0C1CAA08277D3F058583E668C94565321E8F89BB3E77766094F",
+      "bytes": 24437865,
+      "player": 1,
+      "observations": 720,
+      "recorded_actions": 719,
+      "tracking": "IMMUTABLE_LOCAL_EXTERNAL",
+      "origin": "public Kaggle competition replay episode 89268002",
+      "acquisition_provenance": "LOCAL_HASH_PINNED; REMOTE_RETRIEVAL_RECEIPT_REQUIRED_BEFORE_SAVERUN_OR_PUBLICATION"
+    },
+    "player": 1
+  }
+}

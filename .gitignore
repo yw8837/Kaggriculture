@@ -3,10 +3,15 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.pytest-tmp/
 .ruff_cache/
 artifacts/*
 !artifacts/champion/
 !artifacts/champion/manifest.json
+!artifacts/candidates/
+artifacts/candidates/*
+!artifacts/candidates/final_day_labor/
+!artifacts/candidates/final_day_labor/main.py
 dist/
 kaggle_runs/
 work/

@@ -1,0 +1,25 @@
+# Byte-hashed frozen evidence must survive Windows checkouts unchanged.
+artifacts/candidates/**/*.py text eol=lf
+artifacts/opponents/public_kaggle/*.py binary
+experiments/source_snapshots/** text eol=lf
+# The attributed public C02 control is frozen byte-for-byte with upstream CRLF.
+experiments/source_snapshots/fa04_c02_meta/*.py -text
+experiments/evaluations/**/*.json binary
+submissions/api_inventory*.json binary
+reports/test_evidence/** binary
+configs/fa_ab_*.json text eol=lf
+configs/fa_next_*.json text eol=lf
+src/kaggriculture_lab/candidates/market_mpc.py text eol=lf
+src/kaggriculture_lab/candidates/task_bundle.py text eol=lf
+src/kaggriculture_lab/candidates/rescue_greedy.py text eol=lf
+src/kaggriculture_lab/evaluation/runner.py text eol=lf
+src/kaggriculture_lab/evaluation/paired.py text eol=lf
+src/kaggriculture_lab/evaluation/top_trace_gate.py text eol=lf
+src/kaggriculture_lab/evaluation/runtime.py -text
+src/kaggriculture_lab/research/replay_policy.py -text
+tests/test_replay_policy.py -text
+tests/test_top_trace_gate.py text eol=lf
+tests/test_fa04_top_trace_boundary.py text eol=lf
+tests/test_seed_registry.py -text
+configs/fa04_top_trace_*.json text eol=lf
+third_party/fa04_frontier_lab/* text eol=lf

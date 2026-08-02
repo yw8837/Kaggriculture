@@ -25,6 +25,69 @@ def prepare_public_notebook(
 
     source_text = payload.decode("utf-8")
     write_cell = "%%writefile main.py\n" + source_text
+    overview = f"""# {title}
+
+This notebook is a readable, reproducible starting agent for Kaggriculture. It demonstrates
+conditional early land expansion, a mixed crop and cow/sheep plan, a wheat feed reserve, and
+deterministic task assignment for a larger workforce.
+
+The goal is to make the policy easy to inspect and test. It is a public learning baseline, not a
+leaderboard promise or the current private competition agent.
+"""
+    timeline = """## Strategy timeline
+
+| Phase | What the agent does | Trade-off to inspect |
+|---|---|---|
+| Opening, days 0-4 | Starts the fixed crop and herd plan while preserving working capital. | Fixed targets are simple but cannot react to the opponent. |
+| Expansion, days 5-18 | Conditionally buys up to two additional land quadrants when the budget buffer permits. | Earlier land increases capacity but can delay animals, seeds, or labor. |
+| Production | Runs mixed crops, cow/sheep slots, a wheat feed reserve, and up to twelve hands. | The simple hiring target can overpay when little useful work remains. |
+| Late horizon | Harvests held output, sells inventory, and returns carried goods near the end. | The end-game and near-capacity routing rules are intentionally basic. |
+
+These are descriptions of the visible source below, not claims about a fixed leaderboard rating.
+"""
+    api_contract = """## Agent API contract
+
+`agent(obs)` reads the current public farm state plus the player's official private observation
+fields. It returns exactly three action channels:
+
+- `farmer`: one action for the farmer;
+- `hands`: one action per hired hand;
+- `market`: a bounded list of buy, sell, hire, and land orders.
+
+The policy is deterministic, uses only the Python standard library, and does not require internet
+access or external data.
+"""
+    evaluation = """## A fair evaluation checklist
+
+Use this checklist when changing one rule:
+
+1. Run the baseline and challenger on the same seed list in both seats.
+2. Score the full 720-turn horizon; do not stop after a strong opening.
+3. Keep development and confirmation seed sets separate.
+4. Record completed games, failures, invalid actions, and both match and money deltas.
+5. Report runtime percentiles and the slowest call, not only an average.
+6. Inspect cash, carried inventory, shed inventory, land timing, labor, and end-game actions.
+
+A single ladder snapshot is useful feedback, but it is not a stable estimate of general strength.
+"""
+    verification = f"""## Deterministic package verification
+
+The packaging cell below rereads the exact public source, verifies source SHA-256
+`{source_sha256}`, and writes a deterministic archive containing only root `main.py`. It fixes tar
+metadata and gzip time so identical source bytes produce identical archive bytes. The cell prints
+the resulting source hash, archive hash, and byte count for verification.
+
+## Known limitations and useful experiments
+
+- Labor sizing is fixed and can overpay.
+- Crop and herd targets do not condition on the opponent.
+- Late-horizon adaptation and near-capacity inventory routing are simple.
+- There is no standalone reuse license in this release; check the applicable Kaggle terms before
+  reusing the source elsewhere.
+
+Useful next experiments include changing one of labor sizing, crop mix, herd composition, or the
+end game while keeping the paired both-seat evaluation contract unchanged.
+"""
     package_cell = f'''import gzip
 import hashlib
 import io
@@ -71,22 +134,19 @@ print(json.dumps({{
                 "id": "public-strategy-overview",
                 "cell_type": "markdown",
                 "metadata": {},
-                "source": [
-                    f"# {title}\n",
-                    "\n",
-                    "A readable, reproducible expansion baseline for Kaggriculture. It buys ",
-                    "land early, runs mixed crops and a mixed herd, and uses extra hands to work ",
-                    "the larger farm. The source is fully visible below.\n",
-                    "\n",
-                    "## Important limitations\n",
-                    "\n",
-                    "The hiring rule is intentionally simple, targets are fixed, and the policy ",
-                    "has no opponent conditioning and uses simple late-horizon/inventory rules. ",
-                    "This is a public baseline, not our current private competition agent.\n",
-                    "\n",
-                    "Evaluate agents on paired seeds in both seats; a single ladder rating is a ",
-                    "noisy early signal, not a guaranteed strength estimate.\n",
-                ],
+                "source": overview.splitlines(keepends=True),
+            },
+            {
+                "id": "strategy-timeline",
+                "cell_type": "markdown",
+                "metadata": {},
+                "source": timeline.splitlines(keepends=True),
+            },
+            {
+                "id": "agent-api-contract",
+                "cell_type": "markdown",
+                "metadata": {},
+                "source": api_contract.splitlines(keepends=True),
             },
             {
                 "id": "readable-agent-source",
@@ -97,12 +157,24 @@ print(json.dumps({{
                 "source": write_cell.splitlines(keepends=True),
             },
             {
+                "id": "evaluation-checklist",
+                "cell_type": "markdown",
+                "metadata": {},
+                "source": evaluation.splitlines(keepends=True),
+            },
+            {
                 "id": "deterministic-package",
                 "cell_type": "code",
                 "execution_count": None,
                 "metadata": {},
                 "outputs": [],
                 "source": package_cell.splitlines(keepends=True),
+            },
+            {
+                "id": "package-verification-and-limitations",
+                "cell_type": "markdown",
+                "metadata": {},
+                "source": verification.splitlines(keepends=True),
             },
         ],
         "metadata": {

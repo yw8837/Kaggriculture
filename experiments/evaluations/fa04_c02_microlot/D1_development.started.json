@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-08-01T10:47:49.966139+00:00",
+  "git_head_at_start": "24d6d9b9264aafca066c121e082ee1c5082ee968",
+  "candidate": "experiments\\source_snapshots\\fa04_c02_meta\\D1.py",
+  "candidate_path": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Desktop\\Kaggriculture\\experiments\\source_snapshots\\fa04_c02_meta\\D1.py",
+  "candidate_sha256_at_start": "BFECC34F97F22B5A928D7AA654815C1254CA5CECD4A763296158C9E3FD0C1A1A",
+  "opponents": [
+    "experiments\\source_snapshots\\fa04_c02_meta\\C01_public.py",
+    "experiments\\source_snapshots\\fa04_c02_meta\\V0.py",
+    "experiments\\source_snapshots\\fa04_c02_meta\\C03_public.py"
+  ],
+  "opponent_paths": {
+    "experiments\\source_snapshots\\fa04_c02_meta\\C01_public.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Desktop\\Kaggriculture\\experiments\\source_snapshots\\fa04_c02_meta\\C01_public.py",
+    "experiments\\source_snapshots\\fa04_c02_meta\\V0.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Desktop\\Kaggriculture\\experiments\\source_snapshots\\fa04_c02_meta\\V0.py",
+    "experiments\\source_snapshots\\fa04_c02_meta\\C03_public.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Desktop\\Kaggriculture\\experiments\\source_snapshots\\fa04_c02_meta\\C03_public.py"
+  },
+  "opponent_sha256_at_start": {
+    "experiments\\source_snapshots\\fa04_c02_meta\\C01_public.py": "6B35F75BC7F5484CCC802C598FF2B4AF5ECD4478CD1C072CA76B0D38481920AA",
+    "experiments\\source_snapshots\\fa04_c02_meta\\V0.py": "C60147472E416CC1A9106FF2868023C69AB51220E8F959E05E861038CDC46E2E",
+    "experiments\\source_snapshots\\fa04_c02_meta\\C03_public.py": "DCB065B71CF9CEEA1C2AD7280DCD0552B91679A644681025FA5209260CB17C6F"
+  },
+  "seeds": [
+    37000,
+    37001,
+    37002,
+    37003,
+    37004,
+    37005,
+    37006,
+    37007,
+    37008,
+    37009,
+    37010,
+    37011,
+    37012,
+    37013,
+    37014,
+    37015
+  ],
+  "seat_policy": "both seats",
+  "workers": 8,
+  "scenario_overrides": {
+    "default": {}
+  },
+  "effective_scenarios": {
+    "default": {
+      "episodeSteps": 720
+    }
+  },
+  "effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE"
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "source": "experiments/source_snapshots/fa02_task_bundle/B2.py",
+  "source_sha256": "933CAC158AB383E07D9634A076DC672C50968E194445E6D1C7C8000415EACA31",
+  "replay": "artifacts/submission_replays/episode-89143277-replay.json",
+  "replay_sha256": "1AA4495DBBC1439A2E5462245B4C6B725D89F9156A8F8C9ECFD4E29077D23285",
+  "player": 0,
+  "calls": 720,
+  "invalid_outputs": 0,
+  "p50_ms": 26.744,
+  "p95_ms": 111.8131,
+  "p99_ms": 132.4332,
+  "max_ms": 158.1921
+}

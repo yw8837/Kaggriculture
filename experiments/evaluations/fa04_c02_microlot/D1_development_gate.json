@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "verdict": "NO_GO",
+  "reason": "The preregistered positive-seed fraction gate failed; the observed rating improvement was sparse and confined to the exact C02 family lane.",
+  "implementation_head": "24d6d9b9264aafca066c121e082ee1c5082ee968",
+  "candidate_report": {
+    "path": "experiments/evaluations/fa04_c02_microlot/D1_development.json",
+    "sha256": "1AB65662B7D12DBB7A83E4155537260D9E6102924ADADE97B28D7D00CDDDD0AE",
+    "bytes": 140003,
+    "start_receipt_sha256": "F188E8BE3AA28F7C91A73C5E90D3603AB54AC6B5501C30EDDF1B861A220A299A"
+  },
+  "control_report": {
+    "path": "experiments/evaluations/fa04_c02_microlot/V0_development.json",
+    "sha256": "94FD56F30730E15AD3E80D8095DA317FCAC5E50A921A4F1929EC62B794A8F906",
+    "bytes": 140033,
+    "start_receipt_sha256": "C4016328103E5190DB5E8EBB9CCB92FC84BA847DD86EC438464AFC8981C21CA8"
+  },
+  "contract": {
+    "seeds": [37000, 37001, 37002, 37003, 37004, 37005, 37006, 37007, 37008, 37009, 37010, 37011, 37012, 37013, 37014, 37015],
+    "opponents": ["C01_public", "C02_public_exact", "C03_public"],
+    "scenarios": ["default"],
+    "seats": [0, 1],
+    "cells_per_lane": 96,
+    "candidate_failures": 0,
+    "control_failures": 0,
+    "candidate_sources_unchanged": true,
+    "control_sources_unchanged": true
+  },
+  "observed": {
+    "candidate_match_score": 0.5833333333333334,
+    "control_match_score": 0.5520833333333334,
+    "paired_match_score_delta": 0.03125,
+    "paired_match_score_delta_seed_cluster_bootstrap_95": [0.0, 0.0625],
+    "candidate_money_delta": 5.770833333333333,
+    "candidate_money_delta_seed_cluster_bootstrap_95": [-29.291666666666668, 42.052083333333336],
+    "paired_margin_delta": 34.395833333333336,
+    "positive_seed_fraction": 0.1875,
+    "zero_seed_fraction": 0.8125,
+    "negative_seed_fraction": 0.0,
+    "minimum_seed_margin_delta": -182.67,
+    "maximum_seed_margin_delta": 242.0,
+    "per_opponent": {
+      "C01_public": {"match_score_delta": 0.0, "margin_delta": 70.4375},
+      "C02_public_exact": {"match_score_delta": 0.09375, "margin_delta": 78.0},
+      "C03_public": {"match_score_delta": 0.0, "margin_delta": -45.25}
+    }
+  },
+  "preregistered_gate_checks": {
+    "failures_zero": true,
+    "candidate_match_score_at_least_0_4": true,
+    "paired_match_delta_at_least_0_02": true,
+    "seed_cluster_ci_lower_at_least_0": true,
+    "paired_margin_delta_at_least_minus_100": true,
+    "each_opponent_match_delta_at_least_0": true,
+    "each_opponent_margin_delta_at_least_minus_250": true,
+    "positive_seed_fraction_at_least_0_5": false,
+    "all_required": false
+  },
+  "promotion": {
+    "development_pass": false,
+    "confirmation_opened": false,
+    "robustness_opened": false,
+    "save_run_authorized": false,
+    "submission_authorized": false
+  }
+}

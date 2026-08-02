@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-08-01T22:37:40.755152+00:00",
+  "lane": "control",
+  "implementation_commit": "31a3bac508ea0ba083919b2aceea5b22bf1c01bb",
+  "git_head": "30e008b80b4d89f05d603c56e977930413c2a9f8",
+  "tracked_tree_clean": true,
+  "workers": 6,
+  "output": "experiments/evaluations/fa05_r145_trace/G1_control.json",
+  "runner_start_receipt": "experiments/evaluations/fa05_r145_trace/G1_control.started.json",
+  "boundary": {
+    "path": "configs/fa05_r145_trace_boundary.json",
+    "sha256": "4C79EA3B4A6FFD313A732580C9AA4B7B483538E7BED98031712A8C4D3B930C5E",
+    "bytes": 8120
+  },
+  "registry": {
+    "path": "configs/fa_ab_seed_registry.json",
+    "sha256": "8A5DE9F8354E01DEDD77CF0337EAE666D21677D2BA164CC4B17B468EE00B4C09",
+    "bytes": 12108
+  },
+  "scenario_config": {
+    "path": "configs/fa05_r145_scenarios.json",
+    "sha256": "D344CBAF5675B642E18EED7BDE4719D7D6C30DCEAD0F8658412BEC99F06D64DB",
+    "bytes": 43
+  },
+  "development_gates_sha256": "3F737C3BF79FD3CA231A295D51E8F02736294FC0AAE9D0302161CD6C2583ED10",
+  "tooling": {
+    "generator": {
+      "path": "src/kaggriculture_lab/research/replay_policy.py",
+      "sha256": "7A8AF282BA98C18E50ACF99160E85A32690AEEAB51DC436FB3175C2B254C1E79",
+      "bytes": 16285
+    },
+    "runner": {
+      "path": "src/kaggriculture_lab/evaluation/runner.py",
+      "sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+      "bytes": 19694
+    },
+    "paired_analyzer": {
+      "path": "src/kaggriculture_lab/evaluation/paired.py",
+      "sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
+      "bytes": 34461
+    },
+    "runtime_generator": {
+      "path": "src/kaggriculture_lab/evaluation/fa05_trace_gate.py",
+      "sha256": "BD8E8C8DF90439E648E44AD69D4E8BFE0250C343F60C86C68437890BBEF58165",
+      "bytes": 36462
+    },
+    "runtime_benchmark": {
+      "path": "src/kaggriculture_lab/evaluation/fa05_runtime.py",
+      "sha256": "A364F36577C7BB62E5A4469CA3B23508790ECC7618D12011DBDDDC82E22BE89B",
+      "bytes": 5743
+    },
+    "gate_evaluator": {
+      "path": "src/kaggriculture_lab/evaluation/fa05_trace_gate.py",
+      "sha256": "BD8E8C8DF90439E648E44AD69D4E8BFE0250C343F60C86C68437890BBEF58165",
+      "bytes": 36462
+    }
+  },
+  "third_party": {
+    "third_party_license": {
+      "path": "third_party/fa04_frontier_lab/LICENSE",
+      "sha256": "C71D239DF91726FC519C6EB72D318EC65820627232B2F796219E87DCF35D0AB4",
+      "bytes": 11357
+    },
+    "third_party_attribution": {
+      "path": "third_party/fa05_r145_trace/ATTRIBUTION.md",
+      "sha256": "52DD0CBCA7AEF0A376FB847669D59D8C3FE98A720852A499EADB5B2F4BFC921A",
+      "bytes": 655
+    }
+  },
+  "runtime_replay": {
+    "path": "references/fa04_teacher_replays/episode-89268002-replay.json",
+    "sha256": "BB2523859718C0C1CAA08277D3F058583E668C94565321E8F89BB3E77766094F",
+    "bytes": 24437865,
+    "player": 1,
+    "observations": 720,
+    "recorded_actions": 719,
+    "tracking": "IMMUTABLE_LOCAL_EXTERNAL",
+    "origin": "public Kaggle competition replay episode 89268002",
+    "acquisition_provenance": "LOCAL_HASH_PINNED; REMOTE_RETRIEVAL_RECEIPT_REQUIRED_BEFORE_SAVERUN_OR_PUBLICATION"
+  },
+  "source": {
+    "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+    "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+    "bytes": 197808
+  },
+  "opponents": [
+    "experiments/source_snapshots/fa04_top_trace/C135.py",
+    "experiments/source_snapshots/fa04_top_trace/R140.py",
+    "experiments/source_snapshots/fa04_top_trace/R150.py",
+    "experiments/source_snapshots/fa04_top_trace/R155.py",
+    "artifacts/candidates/final_day_labor/main.py",
+    "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py"
+  ],
+  "opponent_source_sha256": {
+    "experiments/source_snapshots/fa04_top_trace/C135.py": "13C88E1D9232F66A219AF0B66A36A46D622C2466856D191E57A8FDC42BC7C1EE",
+    "experiments/source_snapshots/fa04_top_trace/R140.py": "E4BDEDB791FC129AA73941D96BEA2C20709D9431A8C9628AB526EA186B0F4870",
+    "experiments/source_snapshots/fa04_top_trace/R150.py": "80AB5C9E50540FE49D68DED3D170FF79C34603FAF19257BD01554A19E30DA599",
+    "experiments/source_snapshots/fa04_top_trace/R155.py": "857A8F98425D06262E503D46C15FC9480358ADA7621BC5D6D30575B2B71A167C",
+    "artifacts/candidates/final_day_labor/main.py": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
+    "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+  },
+  "seeds": [
+    43000,
+    43001,
+    43002,
+    43003,
+    43004,
+    43005,
+    43006,
+    43007,
+    43008,
+    43009,
+    43010,
+    43011,
+    43012,
+    43013,
+    43014,
+    43015
+  ],
+  "scenarios": [
+    "default"
+  ],
+  "scenario_overrides": {
+    "default": {}
+  },
+  "effective_scenarios": {
+    "default": {
+      "episodeSteps": 720
+    }
+  },
+  "effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE",
+  "cell_count": 192
+}

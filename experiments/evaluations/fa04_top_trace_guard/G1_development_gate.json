@@ -1,0 +1,176 @@
+{
+  "schema_version": 2,
+  "implementation_commit": "a43cd954a59fd84e5e3738e03f3effe30cef36b4",
+  "execution_head": "ed4c50b39fa3de9630d2f4d32d79762516772463",
+  "boundary": {
+    "path": "configs/fa04_top_trace_guard_boundary.json",
+    "sha256": "B986D77AB9309C8F8A930983D5441AD09E430C821EB3D14889479A52E86F0F32",
+    "bytes": 9964
+  },
+  "registry": {
+    "path": "configs/fa_ab_seed_registry.json",
+    "sha256": "9A762696257E45A939CD214D7E2CBEA930012CDA4AB0C76D2F5D8310E021EEC9",
+    "bytes": 10691
+  },
+  "scenario_config": {
+    "path": "configs/fa04_top_trace_scenarios.json",
+    "sha256": "D344CBAF5675B642E18EED7BDE4719D7D6C30DCEAD0F8658412BEC99F06D64DB",
+    "bytes": 43
+  },
+  "tooling": {
+    "generator": {
+      "path": "src/kaggriculture_lab/research/replay_policy.py",
+      "sha256": "7A8AF282BA98C18E50ACF99160E85A32690AEEAB51DC436FB3175C2B254C1E79",
+      "bytes": 16285
+    },
+    "runner": {
+      "path": "src/kaggriculture_lab/evaluation/runner.py",
+      "sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+      "bytes": 19694
+    },
+    "paired_analyzer": {
+      "path": "src/kaggriculture_lab/evaluation/paired.py",
+      "sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
+      "bytes": 34461
+    },
+    "runtime_generator": {
+      "path": "src/kaggriculture_lab/evaluation/top_trace_gate.py",
+      "sha256": "D05C4B805D2AA025B856C5C6F7334CDCAFB54FCDAB173CF189BA6B9F2F3D0987",
+      "bytes": 60981
+    },
+    "runtime_benchmark": {
+      "path": "src/kaggriculture_lab/evaluation/runtime.py",
+      "sha256": "B7605EF73C62EA1CC55C187723F3D8E92E543286A4AB2E82C6C93AACD60F02F2",
+      "bytes": 2856
+    },
+    "gate_evaluator": {
+      "path": "src/kaggriculture_lab/evaluation/top_trace_gate.py",
+      "sha256": "D05C4B805D2AA025B856C5C6F7334CDCAFB54FCDAB173CF189BA6B9F2F3D0987",
+      "bytes": 60981
+    }
+  },
+  "candidate_start_receipt": {
+    "path": "experiments/evaluations/fa04_top_trace_guard/G1_development.contract.started.json",
+    "sha256": "C853D88408469E9CEAECEB3DC9D585C51DC658DA887366FCFBB53AF051AB9225",
+    "workers": 6,
+    "runner_receipt": {
+      "path": "experiments/evaluations/fa04_top_trace_guard/G1_development.started.json",
+      "sha256": "751B3F72268DA91B08A7084E928A64E87F1533B8CFEC86C7EB7CA7E670038C61"
+    }
+  },
+  "control_start_receipt": {
+    "path": "experiments/evaluations/fa04_top_trace_guard/G0_development.contract.started.json",
+    "sha256": "6905B2DD101ECA9A35146F6CF52FA03CD8103A7D38B5C36FB579D6D188BC21DB",
+    "workers": 6,
+    "runner_receipt": {
+      "path": "experiments/evaluations/fa04_top_trace_guard/G0_development.started.json",
+      "sha256": "D80B5BF7F84363F2264D05569F36BF55F59E3873C09759D43B3AD3357FDAF591"
+    }
+  },
+  "runtime_generation_receipt": {
+    "path": "experiments/evaluations/fa04_top_trace_guard/G1_runtime.started.json",
+    "sha256": "CCDE6BEFB5730E78E0840EF1E96A521AADD6D2CD7B80D71FB8696F6EB9557C7C"
+  },
+  "candidate_report_sha256": "1560AE7D486051B08D5F26612C4919AF0E6F9564685972DEF721F0C29209B547",
+  "control_report_sha256": "7BCA1B38007B480E396A34CEAD5A3678BBAE96F47FEA7A822B905F09FDABDC56",
+  "runtime_report_sha256": "870EAD37228E2BE4D954A5049A4F6EE4EAB68FAC43620B6F32AA0AE17A4A3CCB",
+  "cells": 192,
+  "top_trace_match_score": 0.8125,
+  "formal_match_score": 1.0,
+  "per_opponent": {
+    "experiments/source_snapshots/fa04_top_trace/C135.py": {
+      "games": 32,
+      "match_score": 1.0,
+      "margin_mean": 72308.3125
+    },
+    "experiments/source_snapshots/fa04_top_trace/R140.py": {
+      "games": 32,
+      "match_score": 0.78125,
+      "margin_mean": 4594.8125
+    },
+    "experiments/source_snapshots/fa04_top_trace/R145.py": {
+      "games": 32,
+      "match_score": 0.6875,
+      "margin_mean": 2845.65625
+    },
+    "experiments/source_snapshots/fa04_top_trace/R150.py": {
+      "games": 32,
+      "match_score": 0.9375,
+      "margin_mean": 10495.84375
+    },
+    "experiments/source_snapshots/fa04_top_trace/R155.py": {
+      "games": 32,
+      "match_score": 0.65625,
+      "margin_mean": 2946.09375
+    },
+    "artifacts/candidates/final_day_labor/main.py": {
+      "games": 32,
+      "match_score": 1.0,
+      "margin_mean": 63442.28125
+    }
+  },
+  "paired_match_delta": 0.0,
+  "paired_money_delta": 0.6041666666666666,
+  "actions_changed": 844,
+  "runtime": {
+    "schema_version": 2,
+    "source": "C:/Users/\ucd5c\uc6a9\uc6b0/Documents/Codex/2026-07-31/kaggriculture-3-github/work/fa04_local/experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+    "source_sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+    "replay": "C:/Users/\ucd5c\uc6a9\uc6b0/Documents/Codex/2026-07-31/kaggriculture-3-github/work/fa04_local/references/fa04_teacher_replays/episode-89256171-replay.json",
+    "replay_sha256": "ADADDE60EEFB93B56DBE9922B51D5D1970803F89DDF0EEEE67B9890024090405",
+    "player": 0,
+    "calls": 720,
+    "invalid_outputs": 0,
+    "p50_ms": 0.0402,
+    "p95_ms": 0.0488,
+    "p99_ms": 0.0581,
+    "max_ms": 0.0762,
+    "created_at_utc": "2026-08-01T16:24:38.684493+00:00",
+    "python": "3.12.13 (main, Mar  3 2026, 15:01:35) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "command": "python -m kaggriculture_lab.evaluation.top_trace_gate --generate-runtime --boundary configs/fa04_top_trace_guard_boundary.json",
+    "generator": {
+      "path": "src/kaggriculture_lab/evaluation/top_trace_gate.py",
+      "sha256": "D05C4B805D2AA025B856C5C6F7334CDCAFB54FCDAB173CF189BA6B9F2F3D0987",
+      "bytes": 60981
+    },
+    "git_head": "ed4c50b39fa3de9630d2f4d32d79762516772463",
+    "tracked_tree_clean": true,
+    "generation_receipt": {
+      "path": "experiments/evaluations/fa04_top_trace_guard/G1_runtime.started.json",
+      "sha256": "CCDE6BEFB5730E78E0840EF1E96A521AADD6D2CD7B80D71FB8696F6EB9557C7C"
+    },
+    "tracked_provenance": {
+      "project_root": "C:/Users/\ucd5c\uc6a9\uc6b0/Documents/Codex/2026-07-31/kaggriculture-3-github/work/fa04_local",
+      "implementation_commit": "a43cd954a59fd84e5e3738e03f3effe30cef36b4",
+      "git_head": "ed4c50b39fa3de9630d2f4d32d79762516772463",
+      "tracked_tree_clean": true,
+      "source_relative": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+      "source_at_head_sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+      "runtime_replay": {
+        "path": "references/fa04_teacher_replays/episode-89256171-replay.json",
+        "sha256": "ADADDE60EEFB93B56DBE9922B51D5D1970803F89DDF0EEEE67B9890024090405",
+        "bytes": 27128767
+      }
+    }
+  },
+  "checks": {
+    "candidate_failures": true,
+    "control_failures": true,
+    "top_trace_match": true,
+    "each_top_trace_match": true,
+    "formal_match": true,
+    "each_margin": true,
+    "paired_match_noninferior": true,
+    "paired_money_noninferior": true,
+    "guard_activated": true,
+    "runtime_calls": true,
+    "runtime_invalid": true,
+    "runtime_p95": true,
+    "runtime_p99": true,
+    "runtime_max": true,
+    "runtime_source": true,
+    "runtime_replay": true
+  },
+  "development_pass": true
+}

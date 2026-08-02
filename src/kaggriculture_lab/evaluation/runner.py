@@ -10,7 +10,7 @@ import statistics
 import subprocess
 import sys
 import time
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -47,6 +47,8 @@ class GameSpec:
     seed: int
     seat: int
     project_root: str
+    scenario: str = "default"
+    configuration: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -60,6 +62,23 @@ class GameResult:
     opponent_status: str
     elapsed_seconds: float
     error: str | None
+    scenario: str = "default"
+    effective_configuration: dict[str, Any] = field(default_factory=dict)
+    effective_configuration_sha256: str | None = None
+    environment_configuration: dict[str, Any] = field(default_factory=dict)
+    environment_configuration_sha256: str | None = None
+    resolved_environment_seed: int | None = None
+    candidate_metrics: dict[str, int] | None = None
+
+
+def _effective_configuration(
+    override: dict[str, Any], seed: int | None = None,
+) -> dict[str, Any]:
+    normalized_override = json.loads(json.dumps(override, sort_keys=True))
+    configuration = {"episodeSteps": 720, **normalized_override}
+    if seed is not None:
+        configuration["seed"] = seed
+    return configuration
 
 
 def _resolve(reference: str, project_root: Path) -> str:
@@ -84,20 +103,50 @@ def _run_game(spec: GameSpec) -> GameResult:
     try:
         from kaggle_environments import make
 
+        configuration = _effective_configuration(spec.configuration, spec.seed)
         env = make(
             "kaggriculture",
-            configuration={"episodeSteps": 720, "seed": spec.seed},
+            configuration=configuration,
             debug=False,
         )
+        environment_configuration = json.loads(
+            json.dumps(dict(env.configuration), sort_keys=True)
+        )
+        resolved_environment_seed = int(env.info["seed"])
+        candidate_agent: Any = spec.candidate
+        metrics_callable = None
+        candidate_path = Path(spec.candidate)
+        if candidate_path.is_file():
+            raw_candidate = candidate_path.read_text(encoding="utf-8")
+            if "def rescue_metrics(" in raw_candidate:
+                from kaggle_environments.agent import get_last_callable
+
+                candidate_agent = get_last_callable(raw_candidate, path=str(candidate_path))
+                metrics_callable = candidate_agent.__globals__.get("rescue_metrics")
+                reset_callable = candidate_agent.__globals__.get("reset_rescue_metrics")
+                if callable(reset_callable):
+                    reset_callable()
         agents = (
-            [spec.candidate, spec.opponent]
+            [candidate_agent, spec.opponent]
             if spec.seat == 0
-            else [spec.opponent, spec.candidate]
+            else [spec.opponent, candidate_agent]
         )
         env.run(agents)
         final = env.steps[-1]
         candidate_state = final[spec.seat]
         opponent_state = final[1 - spec.seat]
+        candidate_metrics = metrics_callable() if callable(metrics_callable) else None
+        if candidate_metrics is not None and (
+            not isinstance(candidate_metrics, dict)
+            or any(
+                not isinstance(key, str)
+                or isinstance(value, bool)
+                or not isinstance(value, int)
+                or value < 0
+                for key, value in candidate_metrics.items()
+            )
+        ):
+            raise TypeError("candidate rescue_metrics() returned an invalid counter mapping")
         return GameResult(
             opponent=spec.opponent_name,
             seed=spec.seed,
@@ -112,6 +161,13 @@ def _run_game(spec: GameSpec) -> GameResult:
             opponent_status=str(opponent_state.status),
             elapsed_seconds=time.perf_counter() - started,
             error=None,
+            scenario=spec.scenario,
+            effective_configuration=configuration,
+            effective_configuration_sha256=_json_sha256(configuration),
+            environment_configuration=environment_configuration,
+            environment_configuration_sha256=_json_sha256(environment_configuration),
+            resolved_environment_seed=resolved_environment_seed,
+            candidate_metrics=candidate_metrics,
         )
     except Exception as exc:  # noqa: BLE001 - batch failures must become auditable rows
         return GameResult(
@@ -124,6 +180,11 @@ def _run_game(spec: GameSpec) -> GameResult:
             opponent_status="UNKNOWN",
             elapsed_seconds=time.perf_counter() - started,
             error=f"{type(exc).__name__}: {exc}",
+            scenario=spec.scenario,
+            effective_configuration=_effective_configuration(spec.configuration, spec.seed),
+            effective_configuration_sha256=_json_sha256(
+                _effective_configuration(spec.configuration, spec.seed)
+            ),
         )
 
 
@@ -153,25 +214,34 @@ def summarize(results: list[GameResult]) -> dict[str, Any]:
     decisive = wins + losses
     low, high = wilson_interval(wins, decisive) if decisive else (0.0, 1.0)
 
-    by_pair: dict[tuple[str, int], dict[int, GameResult]] = {}
+    by_pair: dict[tuple[str, str, int], dict[int, GameResult]] = {}
     for row in valid:
-        by_pair.setdefault((row.opponent, row.seed), {})[row.seat] = row
+        by_pair.setdefault((row.scenario, row.opponent, row.seed), {})[row.seat] = row
     pair_scores = []
+    pair_scores_by_seed: dict[int, list[float]] = {}
     seat_differences = []
-    for (opponent, seed), seats in sorted(by_pair.items()):
+    for (scenario, opponent, seed), seats in sorted(by_pair.items()):
         if 0 not in seats or 1 not in seats:
             seat_differences.append(
-                {"opponent": opponent, "seed": seed, "reason": "missing_seat"}
+                {
+                    "scenario": scenario,
+                    "opponent": opponent,
+                    "seed": seed,
+                    "reason": "missing_seat",
+                }
             )
             continue
         first, second = seats[0], seats[1]
-        pair_scores.append((_outcome(first) + _outcome(second)) / 2.0)
+        pair_score = (_outcome(first) + _outcome(second)) / 2.0
+        pair_scores.append(pair_score)
+        pair_scores_by_seed.setdefault(seed, []).append(pair_score)
         if (first.candidate_money, first.opponent_money) != (
             second.candidate_money,
             second.opponent_money,
         ):
             seat_differences.append(
                 {
+                    "scenario": scenario,
                     "opponent": opponent,
                     "seed": seed,
                     "seat0": [first.candidate_money, first.opponent_money],
@@ -179,21 +249,35 @@ def summarize(results: list[GameResult]) -> dict[str, Any]:
                 }
             )
 
+    seed_cluster_scores = [
+        statistics.mean(scores) for _, scores in sorted(pair_scores_by_seed.items())
+    ]
     cluster_ci = [0.0, 1.0]
-    if pair_scores:
+    if seed_cluster_scores:
         rng = random.Random(0)
         boot = sorted(
-            statistics.mean(rng.choice(pair_scores) for _ in pair_scores) for _ in range(10_000)
+            statistics.mean(rng.choice(seed_cluster_scores) for _ in seed_cluster_scores)
+            for _ in range(10_000)
         )
         cluster_ci = [boot[249], boot[9749]]
 
     money = [float(row.candidate_money) for row in valid]
     margins = [float(row.candidate_money - row.opponent_money) for row in valid]
+    metric_keys = sorted(
+        {key for row in valid for key in (row.candidate_metrics or {})}
+    )
+    candidate_metrics_total = {
+        key: sum(int((row.candidate_metrics or {}).get(key, 0)) for row in valid)
+        for key in metric_keys
+    }
     return {
         "raw_games": len(results),
         "valid_raw_games": len(valid),
         "failed_raw_games": len(results) - len(valid),
         "seed_opponent_pairs": len(pair_scores),
+        "scenario_opponent_seed_pairs": len(pair_scores),
+        "bootstrap_seed_clusters": len(seed_cluster_scores),
+        "bootstrap_cluster_unit": "seed",
         "wins": wins,
         "losses": losses,
         "ties": ties,
@@ -201,18 +285,26 @@ def summarize(results: list[GameResult]) -> dict[str, Any]:
         "decisive_win_rate": wins / decisive if decisive else None,
         "decisive_win_rate_wilson_95_naive_raw_games": [low, high],
         "match_score_cluster_bootstrap_95": cluster_ci,
+        "match_score_seed_cluster_bootstrap_95": cluster_ci,
         "money_mean": statistics.mean(money) if money else None,
         "money_median": statistics.median(money) if money else None,
         "money_min": min(money) if money else None,
         "margin_mean": statistics.mean(margins) if margins else None,
         "margin_median": statistics.median(margins) if margins else None,
         "seat_pair_differences": seat_differences,
+        "candidate_metrics_total": candidate_metrics_total,
+        "candidate_metrics_games": sum(row.candidate_metrics is not None for row in valid),
         "elapsed_seconds_total": sum(row.elapsed_seconds for row in results),
     }
 
 
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest().upper()
+
+
+def _json_sha256(value: Any) -> str:
+    payload = json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
+    return hashlib.sha256(payload).hexdigest().upper()
 
 
 def _git_head(project_root: Path) -> str | None:
@@ -243,6 +335,26 @@ def _load_partition(path: Path, partition: str) -> tuple[list[int], list[str]]:
     return [int(seed) for seed in section["seeds"]], list(section["opponents"])
 
 
+def _load_scenarios(path: Path) -> dict[str, dict[str, Any]]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    raw = payload.get("scenarios", payload)
+    if not isinstance(raw, dict) or not raw:
+        raise ValueError("scenario config must define a non-empty scenarios mapping")
+    scenarios: dict[str, dict[str, Any]] = {}
+    for name, configuration in raw.items():
+        if not isinstance(name, str) or not name.strip():
+            raise ValueError("scenario names must be non-empty strings")
+        if not isinstance(configuration, dict):
+            raise TypeError(f"scenario {name} configuration must be an object")
+        forbidden = {"seed", "episodeSteps"} & configuration.keys()
+        if forbidden:
+            raise ValueError(
+                f"scenario {name} cannot override runner-controlled keys: {sorted(forbidden)}"
+            )
+        scenarios[name] = configuration
+    return scenarios
+
+
 def run_batch(
     candidate_ref: str,
     opponents: list[str],
@@ -250,9 +362,17 @@ def run_batch(
     output: Path,
     workers: int,
     project_root: Path,
+    scenarios: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     candidate = _resolve(candidate_ref, project_root)
     resolved_opponents = {name: _resolve(name, project_root) for name in opponents}
+    scenarios = scenarios or {"default": {}}
+    if not scenarios:
+        raise ValueError("at least one evaluation scenario is required")
+    effective_scenarios = {
+        name: _effective_configuration(configuration)
+        for name, configuration in scenarios.items()
+    }
     output.parent.mkdir(parents=True, exist_ok=True)
     started_at = datetime.now(UTC).isoformat()
     git_head = _git_head(project_root)
@@ -273,13 +393,26 @@ def run_batch(
         "seeds": seeds,
         "seat_policy": "both seats",
         "workers": workers,
+        "scenario_overrides": scenarios,
+        "effective_scenarios": effective_scenarios,
+        "effective_scenarios_sha256": _json_sha256(effective_scenarios),
     }
     receipt_path = output.with_name(f"{output.stem}.started.json")
     receipt_path.write_text(json.dumps(start_receipt, indent=2) + "\n", encoding="utf-8")
     receipt_sha256 = _sha256(receipt_path)
     specs = [
-        GameSpec(candidate, resolved_opponents[name], name, seed, seat, str(project_root))
-        for name in opponents
+        GameSpec(
+            candidate,
+            resolved_opponents[opponent_name],
+            opponent_name,
+            seed,
+            seat,
+            str(project_root),
+            scenario_name,
+            scenario_configuration,
+        )
+        for scenario_name, scenario_configuration in scenarios.items()
+        for opponent_name in opponents
         for seed in seeds
         for seat in (0, 1)
     ]
@@ -289,7 +422,7 @@ def run_batch(
     else:
         with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as pool:
             results = list(pool.map(_run_game, specs))
-    results.sort(key=lambda row: (row.opponent, row.seed, row.seat))
+    results.sort(key=lambda row: (row.scenario, row.opponent, row.seed, row.seat))
 
     candidate_path = Path(candidate)
     completed_at = datetime.now(UTC).isoformat()
@@ -308,6 +441,9 @@ def run_batch(
         "completed_at_utc": completed_at,
         "git_head_at_start": git_head,
         "workers": workers,
+        "scenario_overrides": scenarios,
+        "effective_scenarios": effective_scenarios,
+        "effective_scenarios_sha256": _json_sha256(effective_scenarios),
         "start_receipt": receipt_path.as_posix(),
         "start_receipt_sha256": receipt_sha256,
         "candidate": candidate_ref,
@@ -320,7 +456,7 @@ def run_batch(
         "opponent_sha256_at_end": opponent_hashes_end,
         "sources_unchanged_during_run": sources_unchanged,
         "seeds": seeds,
-        "seat_policy": "both seats scored; confidence interval is clustered by seed/opponent pair",
+        "seat_policy": "both seats scored; confidence interval is clustered by seed",
         "summary": summarize(results),
         "games": [asdict(row) for row in results],
     }
@@ -337,6 +473,11 @@ def main() -> None:
     parser.add_argument("--opponents", help="comma-separated registered opponents")
     parser.add_argument("--seeds", help="comma-separated integer seeds")
     parser.add_argument("--config", type=Path, default=Path("configs/evaluation_splits.json"))
+    parser.add_argument(
+        "--scenario-config",
+        type=Path,
+        help="JSON scenarios mapping with Kaggriculture configuration overrides",
+    )
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--workers", type=int, default=min(4, os.cpu_count() or 1))
     args = parser.parse_args()
@@ -351,6 +492,7 @@ def main() -> None:
     if not 1 <= args.workers <= 12:
         parser.error("--workers must be between 1 and 12")
 
+    scenarios = _load_scenarios(args.scenario_config) if args.scenario_config else None
     report = run_batch(
         args.agent,
         opponents,
@@ -358,6 +500,7 @@ def main() -> None:
         args.output,
         args.workers,
         Path.cwd().resolve(),
+        scenarios,
     )
     print(json.dumps(report["summary"], indent=2))
 

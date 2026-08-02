@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "identity": "Fa05_W1_wool_glut_buffer",
+  "status": "CLOSED_PENDING_INDEPENDENT_AUDIT",
+  "implementation_commit": "95735367949dc7cf787176c95ddabddb3e075226",
+  "hypothesis": "Against wool-producing weak lanes, withholding at most 20 legal WOOL units during a low-price glut and causally releasing only that reserve after recovery improves paired results while all protected lanes remain exact G1.",
+  "claim_limit": "This preregistered local gate cannot guarantee a 1200 rating, SaveRun readiness, submission quality, or top-three placement.",
+  "attribution": {
+    "upstream_identity": "Fa04_G1_sell_guard",
+    "upstream_replay_episode": 89256171,
+    "upstream_replay_player": 0,
+    "upstream_replay_sha256": "ADADDE60EEFB93B56DBE9922B51D5D1970803F89DDF0EEEE67B9890024090405",
+    "upstream_license": "Apache-2.0"
+  },
+  "seed_registry": "configs/fa_ab_seed_registry.json",
+  "seed_registry_sha256": "A443626FF1E6FE2B84C9036454263AA4E8349C3E4ADE3686A6E449C3BA699C61",
+  "pools": {
+    "development": {"registry_key": "Fa05_wool_glut_buffer_development", "start": 46000, "end_inclusive": 46015, "count": 16, "status": "CLOSED"},
+    "confirmation": {"registry_key": "Fa05_wool_glut_buffer_confirmation", "start": 47000, "end_inclusive": 47063, "count": 64, "status": "CLOSED"},
+    "robustness": {"registry_key": "Fa05_wool_glut_buffer_robustness", "start": 48000, "end_inclusive": 48031, "count": 32, "status": "CLOSED"}
+  },
+  "scenario_config": {"path": "configs/fa05_wool_glut_scenarios.json", "sha256": "D344CBAF5675B642E18EED7BDE4719D7D6C30DCEAD0F8658412BEC99F06D64DB", "bytes": 43},
+  "expected_effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE",
+  "candidate": {"identity": "W1_wool_glut_buffer", "path": "experiments/source_snapshots/fa05_wool_glut/W1_wool_glut_buffer.py", "sha256": "78B9697E4646BA27516AE0DEE067B2F95E749B35B369583534FD6475AC2DA2C6", "bytes": 221585},
+  "control": {"identity": "Fa04_G1_sell_guard_control", "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py", "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922", "bytes": 197808},
+  "opponents": [
+    {"identity": "C135_chocolat", "path": "experiments/source_snapshots/fa04_top_trace/C135.py", "sha256": "13C88E1D9232F66A219AF0B66A36A46D622C2466856D191E57A8FDC42BC7C1EE"},
+    {"identity": "R140_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R140.py", "sha256": "E4BDEDB791FC129AA73941D96BEA2C20709D9431A8C9628AB526EA186B0F4870"},
+    {"identity": "R145_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R145.py", "sha256": "99CE3CABA350D03DC59B9649B9E6D0D28F3D896C5BE0783D355A3D8701476650"},
+    {"identity": "R150_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R150.py", "sha256": "80AB5C9E50540FE49D68DED3D170FF79C34603FAF19257BD01554A19E30DA599"},
+    {"identity": "R155_radiant", "path": "experiments/source_snapshots/fa04_top_trace/R155.py", "sha256": "857A8F98425D06262E503D46C15FC9480358ADA7621BC5D6D30575B2B71A167C"},
+    {"identity": "formal_final_day_labor", "path": "artifacts/candidates/final_day_labor/main.py", "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B"}
+  ],
+  "manifest": {"path": "configs/fa05_wool_glut_manifest.json", "sha256": "6E08728D3114814065F51E674226A46F0BFF3A56B95219D18C41E60F93455520", "bytes": 3233},
+  "tooling": {
+    "generator": "src/kaggriculture_lab/research/wool_glut_buffer.py",
+    "generator_sha256": "741CB0BBF4FA7476CD5511BF5CEDFBD1FC7901DCCC0427A0B6F6912DA94325ED",
+    "runner": "src/kaggriculture_lab/evaluation/runner.py",
+    "runner_sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+    "paired_analyzer": "src/kaggriculture_lab/evaluation/paired.py",
+    "paired_analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
+    "runtime_generator": "src/kaggriculture_lab/evaluation/fa05_wool_gate.py",
+    "runtime_generator_sha256": "9E7AF8FAA5C2926B78700B51C70792DBD1B0BAE36EE7D05D3DFA8D2F106C957C",
+    "runtime_benchmark": "src/kaggriculture_lab/evaluation/fa05_runtime.py",
+    "runtime_benchmark_sha256": "A364F36577C7BB62E5A4469CA3B23508790ECC7618D12011DBDDDC82E22BE89B",
+    "gate_evaluator": "src/kaggriculture_lab/evaluation/fa05_wool_gate.py",
+    "gate_evaluator_sha256": "9E7AF8FAA5C2926B78700B51C70792DBD1B0BAE36EE7D05D3DFA8D2F106C957C"
+  },
+  "development_design": {
+    "scenarios": ["default"],
+    "seeds": "46000-46015",
+    "seats": [0, 1],
+    "opponent_identities": ["C135_chocolat", "R140_radiant", "R145_radiant", "R150_radiant", "R155_radiant", "formal_final_day_labor"],
+    "opponents": 6,
+    "exact_cells_per_lane": 192,
+    "workers_per_lane": 6,
+    "separate_start_receipts_required": true,
+    "direct_g1_opponent_forbidden": true,
+    "control": "exact frozen Fa04 G1"
+  },
+  "formulas_and_semantics": {
+    "match_outcome": "1.0 if candidate_money > opponent_money; 0.5 if candidate_money == opponent_money; 0.0 otherwise.",
+    "paired_match_delta": "mean(candidate match outcome - control match outcome) over the exact paired cells.",
+    "paired_money_delta": "mean(candidate_money - control_money) over the exact paired cells.",
+    "candidate_absolute_margin": "mean(candidate_money - opponent_money) within each opponent lane.",
+    "seed_cluster_bootstrap": "For each seed, mean paired match deltas across both seats and selected opponents; resample the 16 seed means with replacement for 10,000 draws using random seed 0; the 95% interval uses sorted draw indices ceil(0.025*draws)-1 and ceil(0.975*draws)-1.",
+    "r7_p10": "Sorted x, h=(n-1)*0.10, j=floor(h), g=h-j; x[j]+g*(x[j+1]-x[j]), with the single endpoint when j+1 is absent.",
+    "reserve_conservation": "For every raw candidate game: create_observed_units - release_observed_units == pending_end.",
+    "causal_completion": "For every raw candidate game: release_observed_units == causal_completed_reserve_release_units.",
+    "protected_action_vector_proof": "The frozen candidate starts with exact G1 bytes and adds one overlay. On protected cells, sell_suppressed_orders + release_orders == 0, protected_lane_action_diff == 0, and outside_allowed_action_diff == 0; therefore the overlay returns the exact G1 action vector. Candidate and opponent final rewards/money must also compare as identical IEEE-754 binary64 values.",
+    "counter_source": "All counter verdicts are recomputed from every raw game candidate_metrics mapping; summary totals are cross-checked but never trusted as the verdict source.",
+    "transition_limit": "The standard runner does not retain full official transitions. Conservation is independently recomputed from raw per-game counters and frozen source semantics; no claim of independently archived transition traces is made."
+  },
+  "development_gates": {
+    "candidate_failures": 0,
+    "control_failures": 0,
+    "weak": {
+      "identities": ["R140_radiant", "R155_radiant"],
+      "exact_cells": 64,
+      "paired_match_delta_strict_gt": 0.03,
+      "seed_cluster_bootstrap_95_lower_gte": -0.02,
+      "bootstrap_draws": 10000,
+      "bootstrap_random_seed": 0,
+      "paired_money_delta_gte": 250.0,
+      "each_candidate_money_mean_strict_gt": 0.0,
+      "each_candidate_money_r7_p10_strict_gt": -500.0,
+      "each_lane_create_observed_units_strict_gt": 0,
+      "each_lane_release_observed_units_strict_gt": 0,
+      "each_lane_causal_completed_release_units_strict_gt": 0
+    },
+    "protected": {
+      "identities": ["C135_chocolat", "R150_radiant", "formal_final_day_labor"],
+      "exact_cells": 96,
+      "create_observed_units_eq": 0,
+      "release_observed_units_eq": 0,
+      "causal_completed_release_units_eq": 0,
+      "overlay_action_changes_eq": 0,
+      "protected_lane_action_diff_eq": 0,
+      "action_vectors_final_rewards_and_both_money_bit_exact": true
+    },
+    "r145": {"identity": "R145_radiant", "exact_cells": 32, "paired_match_delta_gte": -0.02, "paired_money_delta_gte": -100.0},
+    "all_opponents": {"exact_cells": 192, "each_candidate_absolute_margin_mean_gte": 0.0},
+    "safety": {
+      "reserve_conservation_each_game": true,
+      "causal_completion_identity_each_game": true,
+      "fallback_count_eq": 0,
+      "false_trigger_count_eq": 0,
+      "blocked_release_units_eq": 0,
+      "outside_allowed_action_diff_eq": 0,
+      "candidate_caused_overflow_or_discard_units_eq": 0,
+      "impossible_sell_units_eq": 0,
+      "terminal_pending_eq": 0,
+      "terminal_wool_remaining_eq": 0
+    },
+    "runtime": {"calls": 720, "invalid_outputs": 0, "p95_ms_max": 8.0, "p99_ms_max": 15.0, "absolute_ms_max": 50.0}
+  },
+  "execution_freeze": {
+    "development_gates_sha256": "C46AD32954ADCD5B86D4B3FE3ED9C88569B5A895005EA38366CFB5646AA360BA",
+    "third_party_license": {"path": "third_party/fa04_frontier_lab/LICENSE", "sha256": "C71D239DF91726FC519C6EB72D318EC65820627232B2F796219E87DCF35D0AB4", "bytes": 11357},
+    "third_party_attribution": {"path": "third_party/fa04_frontier_lab/ATTRIBUTION.md", "sha256": "2EF65172CFAB942EDDB2372CB9A65CB2C2976455A14B869B6402DF3C0CADB91F", "bytes": 555},
+    "runtime_replay": {"path": "references/fa04_teacher_replays/episode-89256171-replay.json", "sha256": "ADADDE60EEFB93B56DBE9922B51D5D1970803F89DDF0EEEE67B9890024090405", "bytes": 27128767, "player": 0, "observations": 720, "recorded_actions": 719},
+    "artifacts": {
+      "candidate_report": "experiments/evaluations/fa05_wool_glut/W1_development.json",
+      "control_report": "experiments/evaluations/fa05_wool_glut/G1_control.json",
+      "candidate_start_receipt": "experiments/evaluations/fa05_wool_glut/W1_development.contract.started.json",
+      "control_start_receipt": "experiments/evaluations/fa05_wool_glut/G1_control.contract.started.json",
+      "runtime_report": "experiments/evaluations/fa05_wool_glut/W1_runtime.json",
+      "analysis_report": "experiments/evaluations/fa05_wool_glut/W1_development_gate.json"
+    }
+  },
+  "release_policy": "Development PASS permits only a separate private SaveRun audit request. Confirmation, robustness, competition submission, and publication stay closed."
+}

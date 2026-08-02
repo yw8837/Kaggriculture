@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "identity": "Fa02_last_chance_tiebreak_BT1",
+  "status": "FROZEN_CLOSED_PENDING_SEED_OPEN_AUTHORIZATION",
+  "audit_basis": "LOCAL_IMPLEMENTATION_PASS",
+  "external_action_policy": "All pools remain CLOSED. No evaluation seed, Save & Run, submission, or publication is authorized by this file.",
+  "hypothesis": "Within the formal allocator's existing task-priority class, preferring an exact second-miss WATER or FEED task before route cost preserves the formal economic priority boundary while reducing irreversible weed or escape risk.",
+  "single_policy_delta": {
+    "parent": "artifacts/candidates/final_day_labor/main.py",
+    "scope": "ordinary allocator task ordering only",
+    "formal_key": ["task_priority", "task_cost", "target_y", "target_x", "unit", "task"],
+    "candidate_key": ["task_priority", "last_chance_rank", "task_cost", "target_y", "target_x", "unit", "task"],
+    "last_chance_rank": "0 only for an exact second-miss WATER or FEED task; 1 otherwise",
+    "forbidden": [
+      "separate rescue pre-pass",
+      "cross-priority promotion",
+      "market, crop-plan, herd, expansion, terminal, or resource-policy changes",
+      "multiple candidate variants on the development pool"
+    ]
+  },
+  "seed_registry": "configs/fa_ab_seed_registry.json",
+  "scenario_config": {
+    "path": "configs/fa_ab_scenarios.json",
+    "sha256": "3BCB18188C1618236EF90F92F09D6D20DDF7178ADE625DC47D1A48ADAB7A16F2"
+  },
+  "pools": {
+    "development": {
+      "registry_key": "Fa02_last_chance_development",
+      "start": 34000,
+      "end_inclusive": 34015,
+      "count": 16,
+      "status": "CLOSED",
+      "evaluated_games": 0,
+      "scenarios": ["default"],
+      "expected_effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE"
+    },
+    "confirmation": {
+      "registry_key": "Fa02_last_chance_confirmation",
+      "start": 35000,
+      "end_inclusive": 35063,
+      "count": 64,
+      "status": "CLOSED",
+      "evaluated_games": 0,
+      "scenarios": ["default"],
+      "expected_effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE"
+    },
+    "robustness": {
+      "registry_key": "Fa02_last_chance_robustness",
+      "start": 36000,
+      "end_inclusive": 36031,
+      "count": 32,
+      "status": "CLOSED",
+      "evaluated_games": 0,
+      "scenarios": ["default", "premium_glut", "wheat_scarcity", "low_town_demand"],
+      "expected_effective_scenarios_sha256": "162E3498439FEF55CFEA9414CFE9DCB7A936E80D418BBFDADAC42F8F5EA70EC0"
+    }
+  },
+  "seat_policy": "both seats for every seed/scenario/opponent cell",
+  "control": {
+    "identity": "final_day_labor",
+    "path": "artifacts/candidates/final_day_labor/main.py",
+    "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B"
+  },
+  "candidate": {
+    "identity": "BT1",
+    "path": "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+    "sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740",
+    "bytes": 29265
+  },
+  "opponents": [
+    {
+      "identity": "final_day_labor",
+      "path": "artifacts/candidates/final_day_labor/main.py",
+      "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B"
+    },
+    {
+      "identity": "hamburger_current",
+      "path": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "sha256": "A0F6B394C2DA7D420DECF448575B85E540C3249BF4AF1A3C69FA9B643411B793",
+      "usage_policy": "private evaluation only"
+    },
+    {
+      "identity": "scenario_aware",
+      "path": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "sha256": "13EBE04AAE9DC6C6788E7790383D8FBF47222DAA8AD4E88CAD82EC769FA16BF5",
+      "usage_policy": "private evaluation only"
+    },
+    {
+      "identity": "cow_tilt",
+      "path": "artifacts/candidates/cow_tilt/main.py",
+      "sha256": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E"
+    },
+    {
+      "identity": "public_expansion_baseline",
+      "path": "artifacts/candidates/public_expansion_baseline/main.py",
+      "sha256": "BD32AEFDC00B1F0A41746EBACC4FCBF0AFF32AC061363179F15371B9ACE9A5C0"
+    }
+  ],
+  "analysis": {
+    "cell_key": ["scenario", "opponent", "seed", "seat"],
+    "bootstrap_cluster_unit": "seed",
+    "bootstrap_draws": 10000,
+    "bootstrap_random_seed": 0,
+    "expected_contract": "must_use_preregistered"
+  },
+  "development_orchestration": {
+    "module": "kaggriculture_lab.evaluation.last_chance_gate",
+    "lane_subcommand": "--run-lane candidate|control --implementation-commit <40-hex HEAD>",
+    "derived_cells_per_lane": 160,
+    "derivation": "1 default scenario x 5 frozen opponents x 16 seeds x 2 seats",
+    "aggregate_reporting": [
+      "all opponents including the formal self-lane",
+      "improvement gates excluding the formal self-lane"
+    ],
+    "candidate_counter_rows_required": 160
+  },
+  "execution_freeze": {
+    "input_manifest": "experiments/source_snapshots/fa02_last_chance_manifest.json",
+    "immutable_local_external_inputs": [
+      "artifacts/submission_replays/episode-89143277-replay.json"
+    ],
+    "development_gates_sha256": "97528A730391675FE1F36535B25AF24B078DE37FF69BFCEFFF019AB5532E2914",
+    "artifacts": {
+      "candidate_report": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_candidate.json",
+      "candidate_start_receipt": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_candidate.start-receipt.json",
+      "control_report": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_control.json",
+      "control_start_receipt": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_control.start-receipt.json",
+      "analysis_report": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_gate.json",
+      "post_test_evidence_manifest": "reports/test_evidence/fa02_last_chance_post_test_manifest.json"
+    },
+    "allowed_evidence_only_tracked_paths": [
+      "experiments/evaluations/fa02_last_chance_tiebreak/BT1_runtime.json",
+      "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_candidate.json",
+      "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_candidate.start-receipt.json",
+      "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_control.json",
+      "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_control.start-receipt.json",
+      "experiments/evaluations/fa02_last_chance_tiebreak/BT1_development_gate.json",
+      "reports/test_evidence/fa02_last_chance_project_pytest.xml",
+      "reports/test_evidence/fa02_last_chance_ruff.json",
+      "reports/test_evidence/fa02_last_chance_post_test_manifest.json"
+    ]
+  },
+  "counter_semantics": {
+    "eligible_opportunity": "Each formal allocator decision point where the current minimum-priority feasible unit-task pair group contains both rank-0 and rank-1 pairs.",
+    "rank_tiebreak_activated": "Within the same formal priority, rank 0 actually replaces the rank-1 choice made by the old comparator.",
+    "action_changed_vs_old_comparator_on_same_state": "The final emitted full action vector differs from the formal comparator on the identical observation; selection displacement alone remains rank_tiebreak_activated.",
+    "last_chance_action_emitted_on_exact_target": "A terminal WATER or FEED action is actually emitted on the exact rank-0 target; travel or mere assignment does not count.",
+    "tiebreak_to_exact_target_action_emitted": "A terminal WATER or FEED action is emitted on the exact rank-0 target by an accepted causal tie-break trajectory.",
+    "formal_fallback_due_assignment_set_mismatch": "The ranked trajectory failed at least one frozen assignment-safety invariant, so the exact formal actions and trace were emitted instead.",
+    "next_day_weed_or_escape_outcome": "A target with an emitted last-chance action is observed next day as WEED or with its animal missing."
+  },
+  "counter_capture": {
+    "export_api": "rescue_metrics",
+    "reset_api": "reset_rescue_metrics",
+    "required_counters": [
+      "eligible_opportunity",
+      "rank_tiebreak_activated",
+      "action_changed_vs_old_comparator_on_same_state",
+      "last_chance_action_emitted_on_exact_target",
+      "tiebreak_to_exact_target_action_emitted",
+      "formal_fallback_due_assignment_set_mismatch",
+      "next_day_weed_or_escape_outcome"
+    ]
+  },
+  "static_invariants": {
+    "priority_boundary_inversions": 0,
+    "enforcement": "AST/property tests require exact task ids, per-task proxy and BFS-path nonworsening, componentwise nonincreasing pickup count and quantity, post-seed non-PASS preservation, terminal-operation preservation, and exact formal fallback on any failure."
+  },
+  "runtime_gate_ms": {
+    "p95_max": 8.0,
+    "p99_max": 15.0,
+    "absolute_max": 50.0,
+    "invalid_outputs": 0
+  },
+  "tooling": {
+    "builder": "src/kaggriculture_lab/candidates/last_chance_tiebreak.py",
+    "builder_sha256": "E32AF58DB220D20AE5A18A86D5C2E2AE9DE531310CE682E99D0C0C35A51E790D",
+    "runner": "src/kaggriculture_lab/evaluation/runner.py",
+    "runner_sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+    "analyzer": "src/kaggriculture_lab/evaluation/paired.py",
+    "analyzer_sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
+    "gate_evaluator": "src/kaggriculture_lab/evaluation/last_chance_gate.py",
+    "gate_evaluator_sha256": "4356AA03381C265346A699097DAFF638C35769FD7331B9C0ADACD611BE4AB72C"
+  },
+  "runtime_precheck": {
+    "path": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_runtime.json",
+    "sha256": "AD279BD5707AD31AA56AABCDA9B8E439E5D6449E03A07A295DF7FF5125D14D9A",
+    "bytes": 2811,
+    "calls": 720,
+    "action_comparison_calls": 720,
+    "action_differences_vs_reference": 0,
+    "invalid_outputs": 0,
+    "p95_ms": 6.3983,
+    "p99_ms": 7.7431,
+    "max_ms": 10.8309,
+    "priority_inversions": 0,
+    "instrumentation": {
+      "eligible_opportunity": 41,
+      "rank_tiebreak_activated": 8,
+      "action_changed_vs_old_comparator_on_same_state": 0,
+      "last_chance_action_emitted_on_exact_target": 82,
+      "tiebreak_to_exact_target_action_emitted": 8,
+      "formal_fallback_due_assignment_set_mismatch": 0,
+      "next_day_weed_or_escape_outcome": 0
+    },
+    "gate_result": "PASS",
+    "scope": "720 historical replay observations only; no evaluation seed was opened"
+  },
+  "development_gates": {
+    "all_required": true,
+    "candidate_failures": 0,
+    "control_failures": 0,
+    "candidate_invalid_outputs": 0,
+    "control_invalid_outputs": 0,
+    "minimum_overall_match_score": 0.70,
+    "minimum_direct_match_score_vs_formal": 0.55,
+    "minimum_direct_mean_margin_vs_formal": 0.0,
+    "minimum_paired_match_score_delta_vs_control": 0.02,
+    "minimum_seed_cluster_bootstrap_95_lower_delta_vs_control": -0.02,
+    "minimum_paired_mean_money_delta_vs_control": 250.0,
+    "minimum_paired_p10_money_delta_vs_control": -1000.0,
+    "minimum_each_opponent_mean_money_delta_vs_control": 0.0,
+    "minimum_eligible_opportunity": 1,
+    "minimum_rank_tiebreak_activated": 1,
+    "minimum_action_changed_vs_old_comparator_on_same_state": 1,
+    "minimum_last_chance_action_emitted_on_exact_target": 1,
+    "minimum_tiebreak_to_exact_target_action_emitted": 1,
+    "maximum_next_day_weed_or_escape_outcome": 0,
+    "priority_boundary_invariant": "must_pass_ast_property_test",
+    "runtime_gate_ref": "runtime_gate_ms",
+    "expected_contract": "must_use_preregistered"
+  },
+  "progression_policy": "One frozen BT1 only. Development may open only by explicit authorization after this frozen handoff; confirmation requires a development pass plus separate audit, and robustness requires confirmation approval."
+}

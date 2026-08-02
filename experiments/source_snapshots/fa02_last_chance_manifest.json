@@ -1,0 +1,124 @@
+{
+  "schema_version": 3,
+  "role": "INPUT_FREEZE",
+  "status": "FROZEN_CLOSED_PENDING_SEED_OPEN_AUTHORIZATION",
+  "config": {
+    "path": "configs/fa02_last_chance_boundary.json",
+    "sha256": "9C51B1281B038D8747F407C7E52D8AFCA9949DAD4357A017025D19C8B95ADFB0",
+    "bytes": 11791
+  },
+  "seed_registry": {
+    "path": "configs/fa_ab_seed_registry.json",
+    "sha256": "5249D96B8609DCABDBDD6CAECB1645ABE58EAA847565DE0A3C9D15A933ECFE28",
+    "bytes": 7904
+  },
+  "scenario_config": {
+    "path": "configs/fa_ab_scenarios.json",
+    "sha256": "3BCB18188C1618236EF90F92F09D6D20DDF7178ADE625DC47D1A48ADAB7A16F2",
+    "bytes": 603
+  },
+  "runtime_replay": {
+    "path": "artifacts/submission_replays/episode-89143277-replay.json",
+    "sha256": "1AA4495DBBC1439A2E5462245B4C6B725D89F9156A8F8C9ECFD4E29077D23285",
+    "bytes": 16696969,
+    "tracking": "IMMUTABLE_LOCAL_EXTERNAL"
+  },
+  "agents": {
+    "BT1": {
+      "role": "frozen Fa_02 last-chance tie-break candidate",
+      "path": "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+      "sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740",
+      "bytes": 29265,
+      "provenance": "deterministic project-owned build from final_day_labor; no evaluation seed opened"
+    },
+    "final_day_labor": {
+      "role": "formal control and direct opponent",
+      "path": "artifacts/candidates/final_day_labor/main.py",
+      "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B",
+      "bytes": 16195
+    },
+    "hamburger_current": {
+      "role": "private evaluation opponent",
+      "path": "artifacts/opponents/public_kaggle/hamburger_current.py",
+      "sha256": "A0F6B394C2DA7D420DECF448575B85E540C3249BF4AF1A3C69FA9B643411B793",
+      "bytes": 17996,
+      "usage_policy": "private evaluation only; exclude from every public release"
+    },
+    "scenario_aware": {
+      "role": "private evaluation opponent",
+      "path": "artifacts/opponents/public_kaggle/scenario_aware.py",
+      "sha256": "13EBE04AAE9DC6C6788E7790383D8FBF47222DAA8AD4E88CAD82EC769FA16BF5",
+      "bytes": 45280,
+      "usage_policy": "private evaluation only; exclude from every public release"
+    },
+    "cow_tilt": {
+      "role": "submitted project-owned comparison opponent",
+      "path": "artifacts/candidates/cow_tilt/main.py",
+      "sha256": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E",
+      "bytes": 15703
+    },
+    "public_expansion_baseline": {
+      "role": "project-owned comparison opponent",
+      "path": "artifacts/candidates/public_expansion_baseline/main.py",
+      "sha256": "BD32AEFDC00B1F0A41746EBACC4FCBF0AFF32AC061363179F15371B9ACE9A5C0",
+      "bytes": 16365
+    }
+  },
+  "tooling": {
+    "builder": {
+      "path": "src/kaggriculture_lab/candidates/last_chance_tiebreak.py",
+      "sha256": "E32AF58DB220D20AE5A18A86D5C2E2AE9DE531310CE682E99D0C0C35A51E790D",
+      "bytes": 17553
+    },
+    "runner": {
+      "path": "src/kaggriculture_lab/evaluation/runner.py",
+      "sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+      "bytes": 19694
+    },
+    "paired_analysis": {
+      "path": "src/kaggriculture_lab/evaluation/paired.py",
+      "sha256": "86F7EEFB5D3C69CB2465950314B871FCBB0320C8143F60A0EC41235B3DFF9702",
+      "bytes": 34461
+    },
+    "development_orchestrator_gate_runtime_generator": {
+      "path": "src/kaggriculture_lab/evaluation/last_chance_gate.py",
+      "sha256": "4356AA03381C265346A699097DAFF638C35769FD7331B9C0ADACD611BE4AB72C",
+      "bytes": 51403,
+      "result": "Derives and runs only the frozen 160-cell candidate/control lanes, enforces the strict gate, and reproduces the provenance-complete runtime report."
+    },
+    "BT1_runtime_precheck": {
+      "path": "experiments/evaluations/fa02_last_chance_tiebreak/BT1_runtime.json",
+      "sha256": "AD279BD5707AD31AA56AABCDA9B8E439E5D6449E03A07A295DF7FF5125D14D9A",
+      "bytes": 2811,
+      "result": "PASS: clean tracked HEAD f419434f804c82af7d888fe43474bb43b83376cd, 720 replay calls, p95=6.3983ms p99=7.7431ms max=10.8309ms invalid=0 action differences=0 priority inversions=0"
+    }
+  },
+  "test_sources": {
+    "gate_adversarial": {
+      "path": "tests/test_last_chance_gate.py",
+      "sha256": "D6AC6D839D7AFC7BD25576DB10A6BD6592154045467258FAE6FE9D45E4E119BC",
+      "bytes": 32663
+    },
+    "candidate_and_runtime": {
+      "path": "tests/test_last_chance_tiebreak.py",
+      "sha256": "D213823AE7C1A20E9932B13D28C8F1F94CE54D7CE0E55BE4E583EEC9FA660960",
+      "bytes": 28237
+    },
+    "boundary_and_manifest": {
+      "path": "tests/test_fa02_last_chance_boundary.py",
+      "sha256": "891ACEC16D593DA9BA206C00FEB3943D3ECDEAF073B61FF743C04B40E45396C7",
+      "bytes": 12756
+    },
+    "seed_registry": {
+      "path": "tests/test_seed_registry.py",
+      "sha256": "B9C7D4ABA1C3044C425DEF0D6F1C011694BA0BEF2CDA84208643FB312D8BFD8F",
+      "bytes": 7115
+    }
+  },
+  "seed_state": {
+    "Fa02_last_chance_development": "CLOSED",
+    "Fa02_last_chance_confirmation": "CLOSED",
+    "Fa02_last_chance_robustness": "CLOSED"
+  },
+  "note": "This manifest freezes local implementation-pass and audit-gate inputs only. It is not seed-opening, Save & Run, submission, or publication authorization."
+}

@@ -1,0 +1,332 @@
+{
+  "schema_version": 2,
+  "registered_at_utc": "2026-07-31T15:43:34Z",
+  "policy": "Historical lifecycle fields are authoritative and consumed or retired pools may never be reused. Any fresh CLOSED pool requires explicit user authorization after a frozen audited handoff; confirmation and robustness additionally require the preceding gate and separate audit to pass.",
+  "history_policy": "Append-only reservations: preserve every prior hypothesis and range; only advance lifecycle fields, retire unused downstream pools, and append newly named disjoint pools.",
+  "retired_legacy_pools": [
+    {
+      "name": "legacy_development_validation_holdout",
+      "ranges": ["0-7", "100-107", "1000-1007"],
+      "opened": true,
+      "consumed": true,
+      "promotion_eligible": false,
+      "reason": "Repeatedly observed across historical evaluations."
+    }
+  ],
+  "candidates": {
+    "A": {
+      "hypothesis": "Self-exact market execution plus adaptive herd composition.",
+      "development": {
+        "start": 23000,
+        "end_inclusive": 23015,
+        "count": 16,
+        "purpose": "Variant selection and falsification only.",
+        "opened": true,
+        "consumed": true,
+        "opened_at_utc": "2026-07-31T15:51:06.989196Z",
+        "completed_at_utc": "2026-07-31T16:20:55.690849Z",
+        "result": "A0/A1/A2/A4 complete; all challengers failed the preregistered formal direct gate."
+      },
+      "sealed_strength": {
+        "start": 24000,
+        "end_inclusive": 24063,
+        "count": 64,
+        "purpose": "One-time strength confirmation after independent audit acceptance.",
+        "opened": false,
+        "consumed": false,
+        "status": "RETIRED_UNUSED",
+        "promotion_eligible": false,
+        "reason": "Auditor accepted all candidate A challengers as NO-GO; this hypothesis-specific pool may not be reused."
+      },
+      "robustness": {
+        "start": 25000,
+        "end_inclusive": 25031,
+        "count": 32,
+        "purpose": "One-time effective-configuration stress suite after strength confirmation.",
+        "opened": false,
+        "consumed": false,
+        "status": "RETIRED_UNUSED",
+        "promotion_eligible": false,
+        "reason": "Auditor accepted all candidate A challengers as NO-GO; this hypothesis-specific pool may not be reused."
+      }
+    },
+    "B": {
+      "hypothesis": "Global task assignment plus task-chain and inventory coordination.",
+      "development": {
+        "start": 26000,
+        "end_inclusive": 26015,
+        "count": 16,
+        "purpose": "Variant selection and falsification only.",
+        "opened": true,
+        "consumed": true,
+        "opened_at_utc": "2026-07-31T15:51:06.983544Z",
+        "completed_at_utc": "2026-07-31T16:55:48.011493Z",
+        "result": "B0/B1/B2 complete. B1/B2 failed direct and/or runtime gates; B4 full matrix skipped after its runtime hard-fail."
+      },
+      "sealed_strength": {
+        "start": 27000,
+        "end_inclusive": 27063,
+        "count": 64,
+        "purpose": "One-time strength confirmation after independent audit acceptance.",
+        "opened": false,
+        "consumed": false,
+        "status": "RETIRED_UNUSED",
+        "promotion_eligible": false,
+        "reason": "Auditor accepted all candidate B challengers as NO-GO; this hypothesis-specific pool may not be reused."
+      },
+      "robustness": {
+        "start": 28000,
+        "end_inclusive": 28031,
+        "count": 32,
+        "purpose": "One-time effective-configuration stress suite after strength confirmation.",
+        "opened": false,
+        "consumed": false,
+        "status": "RETIRED_UNUSED",
+        "promotion_eligible": false,
+        "reason": "Auditor accepted all candidate B challengers as NO-GO; this hypothesis-specific pool may not be reused."
+      }
+    }
+  },
+  "next_boundary_reservations": {
+    "policy": "Submission provenance is user-confirmed. Historical A/B reservations retain their recorded consumed or retired lifecycle; only fresh Fa02 last-chance pools remain CLOSED pending their explicit authorization and prerequisite gates.",
+    "A_formal_scenario_confirmation": {
+      "start": 30000,
+      "end_inclusive": 30031,
+      "count": 32,
+      "purpose": "Safety diagnostic only: frozen final_day_labor versus frozen submitted-baseline control on identical four-scenario/opponent/seat grids; no tuning or variant selection.",
+      "status": "CONSUMED_PASS",
+      "opened": true,
+      "consumed": true,
+      "promotion_eligible": true,
+      "opened_at_utc": "2026-07-31T19:56:01.417366+00:00",
+      "completed_at_utc": "2026-07-31T20:31:30.162939+00:00",
+      "evaluated_candidate_games": 1024,
+      "evaluated_control_games": 1024,
+      "evaluated_games": 2048,
+      "evaluated_paired_cells": 1024,
+      "evidence": "experiments/evaluations/fa_next_open/A_paired_gate.json",
+      "candidate_report": "experiments/evaluations/fa_next_open/A_candidate.json",
+      "candidate_report_sha256": "7427A52B510AD89A677CBEA3987AB24350C99797D5C999DBE267977E27ABF476",
+      "control_report": "experiments/evaluations/fa_next_open/A_control.json",
+      "control_report_sha256": "72CFD25175A8D4E23B3C323FA35D2DB97614DB0334106AA6CDCF586EB44F1B1F",
+      "evidence_sha256": "CB39A34131DB02D866FEF8DFAFF963B9D7DB6EE063643BC9BC88A46FCACEE3D3",
+      "result": "Safety diagnostic passed every preregistered gate; final_day_labor remained the formal champion and was released for private Save & Run."
+    },
+    "B_greedy_development": {
+      "start": 31000,
+      "end_inclusive": 31015,
+      "count": 16,
+      "purpose": "One-delta officially rescuable second-miss WATER/FEED bounded-greedy development.",
+      "status": "CONSUMED_NO_GO",
+      "opened": true,
+      "consumed": true,
+      "promotion_eligible": false,
+      "evidence": "experiments/evaluations/fa_next_open/B_paired_gate.json",
+      "result": "Preregistered development gate failed: direct formal match and margin, paired match delta and confidence lower bound, and paired money mean all failed."
+    },
+    "B_greedy_confirmation": {
+      "start": 32000,
+      "end_inclusive": 32063,
+      "count": 64,
+      "purpose": "One-time B greedy confirmation after a separate development audit pass.",
+      "status": "RETIRED_UNUSED",
+      "opened": false,
+      "consumed": false,
+      "promotion_eligible": false,
+      "reason": "B greedy development was accepted as NO-GO; this hypothesis-specific pool may not be reused."
+    },
+    "B_greedy_robustness": {
+      "start": 33000,
+      "end_inclusive": 33031,
+      "count": 32,
+      "purpose": "One-time B greedy effective-configuration stress suite after confirmation approval.",
+      "status": "RETIRED_UNUSED",
+      "opened": false,
+      "consumed": false,
+      "promotion_eligible": false,
+      "reason": "B greedy development was accepted as NO-GO; this hypothesis-specific pool may not be reused."
+    },
+    "Fa02_last_chance_development": {
+      "start": 34000,
+      "end_inclusive": 34015,
+      "count": 16,
+      "purpose": "One-candidate development of a priority-preserving exact second-miss tie-break on the frozen formal allocator.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa02_last_chance_confirmation": {
+      "start": 35000,
+      "end_inclusive": 35063,
+      "count": 64,
+      "purpose": "One-time default-scenario confirmation only after the development gate and separate audit pass.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa02_last_chance_robustness": {
+      "start": 36000,
+      "end_inclusive": 36031,
+      "count": 32,
+      "purpose": "One-time four-scenario robustness only after confirmation approval.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa04_C02_microlot_development": {
+      "start": 37000,
+      "end_inclusive": 37015,
+      "count": 16,
+      "purpose": "One-delta D1 WHEAT micro-lot development against the exact public C01/C02/C03 family.",
+      "status": "CONSUMED_NO_GO",
+      "opened": true,
+      "consumed": true,
+      "opened_at_utc": "2026-08-01T10:34:30.3938816Z",
+      "evaluated_candidate_games": 96,
+      "evaluated_control_games": 96,
+      "evaluated_paired_cells": 96,
+      "promotion_eligible": false,
+      "evidence": "experiments/evaluations/fa04_c02_microlot/D1_development_gate.json",
+      "evidence_sha256": "5ADDC4F12EBDE98EBBCA39986FBA4A56FBEDCDCB105BCB95D70EE85BB57A6BCD",
+      "result": "NO-GO: positive seed fraction was 0.1875 versus the preregistered minimum 0.5; improvement was confined to the exact C02 lane."
+    },
+    "Fa04_C02_microlot_confirmation": {
+      "start": 38000,
+      "end_inclusive": 38063,
+      "count": 64,
+      "purpose": "One-time confirmation only after D1 development passes and is independently reviewed.",
+      "status": "RETIRED_UNUSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0,
+      "promotion_eligible": false,
+      "reason": "D1 development was NO-GO; this candidate-specific pool may not be reused."
+    },
+    "Fa04_C02_microlot_robustness": {
+      "start": 39000,
+      "end_inclusive": 39031,
+      "count": 32,
+      "purpose": "One-time scenario robustness only after D1 confirmation passes.",
+      "status": "RETIRED_UNUSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0,
+      "promotion_eligible": false,
+      "reason": "D1 development was NO-GO; this candidate-specific pool may not be reused."
+    },
+    "Fa04_top_trace_guard_development": {
+      "start": 40000,
+      "end_inclusive": 40015,
+      "count": 16,
+      "purpose": "One-candidate fresh development of the attributed R130 schedule with sell-legality drift guards against frozen top-replay controls.",
+      "status": "CONSUMED_PASS",
+      "opened": true,
+      "opened_at_utc": "2026-08-01T15:58:49.4228656Z",
+      "consumed": true,
+      "evaluated_games": 384,
+      "completed_at_utc": "2026-08-01T16:25:46.8206025Z",
+      "evidence": "experiments/evaluations/fa04_top_trace_guard/G1_development_gate.json",
+      "result": "Preregistered development PASS: 192 exact paired cells per lane, failures 0, top-trace match 0.8125, formal match 1.0, paired match delta 0.0, paired money delta +0.6041667, actions changed 844, runtime gates PASS."
+    },
+    "Fa04_top_trace_guard_confirmation": {
+      "start": 41000,
+      "end_inclusive": 41063,
+      "count": 64,
+      "purpose": "One-time independent confirmation after Fa04 top-trace development passes.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa04_top_trace_guard_robustness": {
+      "start": 42000,
+      "end_inclusive": 42031,
+      "count": 32,
+      "purpose": "One-time four-scenario robustness after Fa04 top-trace confirmation passes.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa05_R145_trace_guard_development": {
+      "start": 43000,
+      "end_inclusive": 43015,
+      "count": 16,
+      "purpose": "Fresh one-candidate development of the attributed R145 schedule with the audited impossible-SELL drift guard.",
+      "status": "CONSUMED_NO_GO",
+      "opened": true,
+      "opened_at_utc": "2026-08-01T22:34:17.4394398Z",
+      "consumed": true,
+      "evaluated_candidate_games": 192,
+      "evaluated_control_games": 192,
+      "evaluated_games": 384,
+      "evaluated_paired_cells": 192,
+      "completed_at_utc": "2026-08-01T22:44:01.2264847Z",
+      "promotion_eligible": false,
+      "candidate_report": "experiments/evaluations/fa05_r145_trace/T1_development.json",
+      "candidate_report_sha256": "3DF39DE7F7879B8D825619F81985E30120BA051452039EC5565508BC964A832A",
+      "control_report": "experiments/evaluations/fa05_r145_trace/G1_control.json",
+      "control_report_sha256": "80D191D1C66F1AD1F36A092996FF9584BD12E04B0BCB21F85B5C88631D08AF74",
+      "evidence": "experiments/evaluations/fa05_r145_trace/T1_development_gate.json",
+      "evidence_sha256": "9450738023B87798774883590C1EFCBB5174533FF48C090507E7E1F3463F8BB0",
+      "result": "NO-GO: failures 0 and formal match 1.0 passed, but top-trace aggregate 0.6484375, direct Fa04 match 0.25 with negative margin, external paired match delta -0.15625, every-opponent margin, and complementarity gates failed."
+    },
+    "Fa05_R145_trace_guard_confirmation": {
+      "start": 44000,
+      "end_inclusive": 44063,
+      "count": 64,
+      "purpose": "One-time independent confirmation after Fa05 R145 development passes.",
+      "status": "RETIRED_UNUSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0,
+      "promotion_eligible": false,
+      "reason": "Fa05 R145 development was accepted as NO-GO; evidence 9450738023B87798774883590C1EFCBB5174533FF48C090507E7E1F3463F8BB0. This candidate-specific pool may not be reused."
+    },
+    "Fa05_R145_trace_guard_robustness": {
+      "start": 45000,
+      "end_inclusive": 45031,
+      "count": 32,
+      "purpose": "One-time scenario robustness after Fa05 R145 confirmation passes.",
+      "status": "RETIRED_UNUSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0,
+      "promotion_eligible": false,
+      "reason": "Fa05 R145 development was accepted as NO-GO; evidence 9450738023B87798774883590C1EFCBB5174533FF48C090507E7E1F3463F8BB0. This candidate-specific pool may not be reused."
+    },
+    "Fa05_wool_glut_buffer_development": {
+      "start": 46000,
+      "end_inclusive": 46015,
+      "count": 16,
+      "purpose": "Fresh paired default-scenario development of the single-delta W1 Wool Glut Buffer against C135, R140, R145, R150, R155, and formal; no direct-G1 opponent lane.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa05_wool_glut_buffer_confirmation": {
+      "start": 47000,
+      "end_inclusive": 47063,
+      "count": 64,
+      "purpose": "One-time sealed-strength confirmation only after W1 development passes and a separate independent audit authorizes opening.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    },
+    "Fa05_wool_glut_buffer_robustness": {
+      "start": 48000,
+      "end_inclusive": 48031,
+      "count": 32,
+      "purpose": "One-time scenario robustness only after W1 sealed-strength confirmation passes and a separate independent audit authorizes opening.",
+      "status": "CLOSED",
+      "opened": false,
+      "consumed": false,
+      "evaluated_games": 0
+    }
+  }
+}
