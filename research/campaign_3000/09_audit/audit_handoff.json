@@ -759,31 +759,31 @@
     {
       "path": "research/campaign_3000/07_release/local_build/release_manifest.json",
       "bytes": 6998,
-      "sha256": "D2F7E361C2AD233A2528BD5C22CBED2A36EE35E24353176569D6DECFAD21DB72",
+      "sha256": "4BD2FC11D0D4554B5D1488CD44DB56F7C94203BF3A0868304E602AD124A9AE03",
       "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
     },
     {
       "path": "research/campaign_3000/07_release/verification/VERIFICATION.md",
       "bytes": 6346,
-      "sha256": "E69C699C8CC32DBB549553DC0CD9D58909F06E335F42D21E2A5183E8F6A9EE46",
+      "sha256": "F6864959AA21C11078EF93509B058388A1AC19F6C9A8F0A28218E80B3D5C0E90",
       "declared_by": "direct rehash of local release verification report"
     },
     {
       "path": "research/campaign_3000/08_public_release/SHA256SUMS",
       "bytes": 1795,
-      "sha256": "7343FE263D5EDF1AD7E46F64D82D25E86A998F61CFC96D9F80E579827622D765",
+      "sha256": "950A30A59C8825EBA85ECD3316F9FE6FE2B375BF63ADDEEAA175B7D06A6DE17F",
       "declared_by": "direct rehash of public-release checksum anchor"
     },
     {
       "path": "research/campaign_3000/08_public_release/release_manifest.json",
       "bytes": 7631,
-      "sha256": "62118CB021F9FDDC331439845E9659D32A3CC12ED40F2D68B0C02790711DF1BD",
+      "sha256": "6D996F1DF55F1D259F0C37513B5A39A6B6C4A4B3E1CF958CECBD32DD2F07FFF6",
       "declared_by": "research/campaign_3000/08_public_release/SHA256SUMS"
     },
     {
       "path": "research/campaign_3000/08_public_release/external_action_payload.json",
       "bytes": 3721,
-      "sha256": "A33306A1463A47B7E87E228F5BA2DC1C161C11947F21F05033C2E371919B0F32",
+      "sha256": "8623D9C4D3B2E40FE68E97C2525A0E97E1E382F1B9C20338DD32D6594BE2AB15",
       "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
     },
     {

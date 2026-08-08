@@ -5,6 +5,7 @@ import base64
 import hashlib
 import importlib.util
 import json
+import subprocess
 import tarfile
 from pathlib import Path
 from types import ModuleType
@@ -30,6 +31,17 @@ LICENSE_SHA256 = "1EB85FC97224598DAD1852B5D6483BBCF0AA8608790DCC657A5A2A761AE9C8
 TETSU_VERDICT_SHA256 = (
     "DA8764985D0EFCFC63867DB673E242D82B9D72CFE7495BFCB932A2DD6F0DF721"
 )
+
+
+def git_head_path() -> Path:
+    raw = subprocess.check_output(
+        ["git", "rev-parse", "--git-path", "HEAD"],
+        cwd=PROJECT_ROOT,
+        text=True,
+        encoding="utf-8",
+    ).strip()
+    path = Path(raw)
+    return path if path.is_absolute() else PROJECT_ROOT / path
 
 
 def sha256(payload: bytes) -> str:
@@ -419,7 +431,7 @@ def test_project_root_and_ancestor_outputs_are_rejected_before_write(
             PROJECT_ROOT / "src" / "kaggriculture_lab" / "evaluation" / "runner.py",
         ),
         (PROJECT_ROOT / "tests", Path(__file__).resolve()),
-        (PROJECT_ROOT / ".git", PROJECT_ROOT / ".git"),
+        (PROJECT_ROOT / ".git", git_head_path()),
     ),
 )
 def test_nonowned_project_and_git_outputs_are_rejected_before_write(
