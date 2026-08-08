@@ -170,9 +170,11 @@ def test_run_game_passes_and_records_effective_environment_configuration(
         captured.append(configuration)
         return FakeEnvironment()
 
-    import kaggle_environments
-
-    monkeypatch.setattr(kaggle_environments, "make", fake_make)
+    monkeypatch.setattr(
+        runner,
+        "_validated_kaggle_make",
+        lambda: (fake_make, runner.EXPECTED_MAKE_CALLABLE),
+    )
     override = {
         "townShopSellInterval": 8,
         "marketParams": {"WHEAT": {"below_target": 3.5}},
@@ -218,9 +220,13 @@ def test_run_game_rejects_failure_hidden_by_terminal_done(tmp_path: Path, monkey
         def run(self, _agents) -> None:
             return None
 
-    import kaggle_environments
-
-    monkeypatch.setattr(kaggle_environments, "make", lambda *_args, **_kwargs: FakeEnvironment())
+    def fake_make(*_args, **_kwargs):
+        return FakeEnvironment()
+    monkeypatch.setattr(
+        runner,
+        "_validated_kaggle_make",
+        lambda: (fake_make, runner.EXPECTED_MAKE_CALLABLE),
+    )
     result = runner._run_game(
         runner.GameSpec(
             "candidate.py", "opponent.py", "opponent", 23000, 0,
@@ -262,9 +268,13 @@ def agent(obs):
         def run(self, agents) -> None:
             agents[0]({})
 
-    import kaggle_environments
-
-    monkeypatch.setattr(kaggle_environments, "make", lambda *args, **kwargs: FakeEnvironment())
+    def fake_make(*_args, **_kwargs):
+        return FakeEnvironment()
+    monkeypatch.setattr(
+        runner,
+        "_validated_kaggle_make",
+        lambda: (fake_make, runner.EXPECTED_MAKE_CALLABLE),
+    )
     result = runner._run_game(
         runner.GameSpec(
             str(candidate), "opponent.py", "opponent", 17, 0, str(tmp_path),

@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "binding_protocol": "clean_two_stage_S_to_E_v1",
-  "implementation_commit": "a4dca809de3116107fde1cc196e39259f3be553d",
+  "implementation_commit": "PENDING",
   "input_manifest": {
     "path": "research/campaign_3000/06_candidates/manifest.json",
-    "bytes": 4376,
-    "sha256": "FBF560F617788022552B2115023639F81CB49E01E67B90AACE2291DA72DECE69"
+    "bytes": 4509,
+    "sha256": "1A2765982DB4FD3EC648BD9A68CC4F331761BF100E63950E02F57463BCCBCA9C"
   },
   "binding_path": "research/campaign_3000/06_candidates/execution_binding.json",
   "binding_excluded_from_input_manifest": true,
@@ -26,6 +26,7 @@
     "research/campaign_3000/06_candidates/snapshots/boatlee_v14.py",
     "research/campaign_3000/06_candidates/test_execution_binding.py",
     "tests/test_campaign_3000_candidate_freeze.py",
+    "tests/test_runner.py",
     "src/kaggriculture_lab/evaluation/runner.py",
     "configs/fa_ab_scenarios.json",
     "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",

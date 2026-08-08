@@ -232,6 +232,37 @@ def verify_populations(handoff: dict[str, Any]) -> None:
         == "UNVERIFIED_NOT_ZERO_CLAIM",
         "model population boundary weakened",
     )
+    model_population = population_by_id(handoff, "models")
+    model_rows = read_jsonl(public_dir / "model_inventory.jsonl")
+    require(model_population["analyzed_rows"] == len(model_rows) == 1,
+            "model analyzed-row count drift")
+    model = model_rows[0]
+    analysis = model["analysis"]
+    require(model_population["version_number"] == model["current_version"]["version_number"] == 8,
+            "model version drift")
+    require(model_population["checkpoint_bytes"] == analysis["checkpoint_bytes"] == 6431,
+            "model checkpoint byte drift")
+    require(
+        model_population["checkpoint_sha256"]
+        == analysis["checkpoint_sha256"]
+        == "9756ADC933DA10D78ADDA449397A83D923995EF4585500B9814A9030CE3E6A3A",
+        "model checkpoint hash drift",
+    )
+    require(
+        model_population["static_disposition"]
+        == analysis["decision"]
+        == "UNUSABLE_WITH_PUBLISHED_INTERFACE_AND_UNVERIFIED_FOR_KAGGRICULTURE",
+        "model design-impact disposition drift",
+    )
+    require(analysis["published_interface_compatible"] is False
+            and analysis["used_in_candidate"] is False,
+            "model was incorrectly admitted into a candidate")
+    disposition = load_json(public_dir / analysis["detail_path"])
+    inventory = load_json(public_dir / "model_v8/file_inventory_v8.json")
+    require(disposition["decision"] == analysis["decision"],
+            "model disposition evidence drift")
+    require(len(inventory["files"]) == model_population["published_file_count"] == 4,
+            "model file inventory drift")
 
     external_dir = ROOT / "research/campaign_3000/03_external"
     source_rows = read_jsonl(external_dir / "source_inventory.jsonl")
@@ -244,6 +275,19 @@ def verify_populations(handoff: dict[str, Any]) -> None:
         status_counts[row["status"]] = status_counts.get(row["status"], 0) + 1
     require(status_counts == external["source_status_counts"], "external status counts drift")
     print("PASS populations=22 submissions, top25, Code155, Discussion57, external35")
+
+
+def verify_current_qa_claims(handoff: dict[str, Any]) -> None:
+    qa = handoff["current_qa_claims"]
+    require(qa["project_pytest"] == "423 passed", "project QA claim drift")
+    require(qa["official_environment_pytest"] == "81 passed", "official QA claim drift")
+    require(qa["candidate_focused_pytest"] == "91 passed", "candidate QA claim drift")
+    require(qa["release_pytest"] == "28 passed", "release QA claim drift")
+    require(qa["public_release_pytest"] == "10 passed", "public QA claim drift")
+    require(qa["ruff"] == "All checks passed!", "Ruff QA claim drift")
+    require("not a self-authenticating attestation" in qa["claim_boundary"],
+            "QA claim boundary weakened")
+    print("PASS declared QA claims=423 project, 81 official, 91 candidate, 28 release, 10 public")
 
 
 def verify_tools_and_skills(handoff: dict[str, Any]) -> None:
@@ -804,6 +848,7 @@ def main() -> int:
     index = verify_evidence_files(handoff)
     verify_declared_children(index)
     verify_populations(handoff)
+    verify_current_qa_claims(handoff)
     verify_tools_and_skills(handoff)
     verify_candidates_and_seeds(handoff)
     verify_tetsu_ip(handoff)

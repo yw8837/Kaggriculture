@@ -1,8 +1,12 @@
 from __future__ import annotations
 
 import argparse
+import ast
 import concurrent.futures
 import hashlib
+import importlib
+import importlib.metadata
+import inspect
 import json
 import os
 import random
@@ -10,6 +14,7 @@ import statistics
 import subprocess
 import sys
 import time
+import types
 from dataclasses import asdict, dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
@@ -36,6 +41,34 @@ OPPONENT_PATHS = {
     "chaitanya_mixed": PUBLIC_ROOT / "chaitanya_mixed.py",
     "niits_pro_tier": NIITS_ROOT / "src/kaggriculture/agents/kaggle_builtin/pro_tier_agent.py",
     "niits_many_hands": NIITS_ROOT / "src/kaggriculture/agents/baseline/many_hands.py",
+}
+PYTHON_STARTUP_ENV_NAMES = (
+    "PYTHONPATH",
+    "PYTHONHOME",
+    "PYTHONSTARTUP",
+    "PYTHONINSPECT",
+    "PYTHONUSERBASE",
+)
+EXPECTED_MAKE_CALLABLE = {
+    "package_make_is_core_make": True,
+    "function_type": True,
+    "globals_is_core_module": True,
+    "module": "kaggle_environments.core",
+    "qualname": "make",
+    "source_path_matches_core": True,
+    "compiled_make_count": 1,
+    "ast_make_count": 1,
+    "ast_function_sha256": "7A9BCC66212C822AF494904756ECC915F6EC5DEEAF316EDB417648787E09E340",
+    "function_source_sha256": "3090CF7871CCF6C046138987B22B47956DE1B3C2B7CFF9FC3D5ED617AFEDFEB7",
+    "code_equals_compiled_source": True,
+    "startup_environment": {
+        "PYTHONPATH": None,
+        "PYTHONHOME": None,
+        "PYTHONSTARTUP": None,
+        "PYTHONINSPECT": None,
+        "PYTHONUSERBASE": None,
+    },
+    "defaults_sha256": "310DDDF0453ADA7D5A566EF2CDC450C58912C9FC466C552322FA9A0D27D0371C",
 }
 
 
@@ -69,12 +102,88 @@ class GameResult:
     environment_configuration_sha256: str | None = None
     resolved_environment_seed: int | None = None
     candidate_metrics: dict[str, int] | None = None
+    hidden_abnormal_status: dict[str, int | str] | None = None
+    runtime_make_callable: dict[str, Any] = field(default_factory=dict)
+
+
+def _validated_kaggle_make() -> tuple[Any, dict[str, Any]]:
+    distribution = importlib.metadata.distribution("kaggle-environments")
+    root = Path(distribution.locate_file("")).resolve()
+    core_path = (root / "kaggle_environments/core.py").resolve()
+    package_module = importlib.import_module("kaggle_environments")
+    core_module = importlib.import_module("kaggle_environments.core")
+    make_callable = getattr(package_module, "make", None)
+    core_make = getattr(core_module, "make", None)
+    function_type = isinstance(make_callable, types.FunctionType)
+    core_text = core_path.read_text(encoding="utf-8")
+    compiled_module = compile(core_text, str(core_path), "exec")
+    compiled_make = [
+        value
+        for value in compiled_module.co_consts
+        if isinstance(value, types.CodeType) and value.co_name == "make"
+    ]
+    parsed_module = ast.parse(core_text, filename=str(core_path))
+    ast_make = [
+        node
+        for node in parsed_module.body
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+        and node.name == "make"
+    ]
+    ast_dump = (
+        ast.dump(ast_make[0], annotate_fields=True, include_attributes=True).encode()
+        if len(ast_make) == 1
+        else b""
+    )
+    source_segment = (
+        (ast.get_source_segment(core_text, ast_make[0]) or "").encode()
+        if len(ast_make) == 1
+        else b""
+    )
+    try:
+        source_path = Path(inspect.getsourcefile(make_callable) or "").resolve()
+    except (TypeError, OSError):
+        source_path = Path.cwd()
+    try:
+        defaults_sha = _json_sha256(
+            {
+                "defaults": getattr(make_callable, "__defaults__", None),
+                "kwdefaults": getattr(make_callable, "__kwdefaults__", None),
+            }
+        )
+    except (TypeError, ValueError):
+        defaults_sha = None
+    snapshot = {
+        "package_make_is_core_make": make_callable is core_make,
+        "function_type": function_type,
+        "globals_is_core_module": function_type
+        and make_callable.__globals__ is core_module.__dict__,
+        "module": getattr(make_callable, "__module__", None),
+        "qualname": getattr(make_callable, "__qualname__", None),
+        "source_path_matches_core": source_path == core_path,
+        "compiled_make_count": len(compiled_make),
+        "ast_make_count": len(ast_make),
+        "ast_function_sha256": hashlib.sha256(ast_dump).hexdigest().upper(),
+        "function_source_sha256": hashlib.sha256(source_segment).hexdigest().upper(),
+        "code_equals_compiled_source": function_type
+        and len(compiled_make) == 1
+        and make_callable.__code__ == compiled_make[0],
+        "startup_environment": {
+            name: None if os.environ.get(name) in (None, "") else os.environ[name]
+            for name in PYTHON_STARTUP_ENV_NAMES
+        },
+        "defaults_sha256": defaults_sha,
+    }
+    if snapshot != EXPECTED_MAKE_CALLABLE:
+        raise RuntimeError("kaggle_environments.make callable identity mismatch")
+    return make_callable, snapshot
 
 
 def _effective_configuration(
     override: dict[str, Any], seed: int | None = None,
 ) -> dict[str, Any]:
-    normalized_override = json.loads(json.dumps(override, sort_keys=True))
+    normalized_override = json.loads(
+        json.dumps(override, sort_keys=True, allow_nan=False)
+    )
     configuration = {"episodeSteps": 720, **normalized_override}
     if seed is not None:
         configuration["seed"] = seed
@@ -111,8 +220,10 @@ def _run_game(spec: GameSpec) -> GameResult:
         sys.path.insert(0, niits_src)
 
     started = time.perf_counter()
+    hidden_abnormal_status: dict[str, int | str] | None = None
+    runtime_make_callable: dict[str, Any] = {}
     try:
-        from kaggle_environments import make
+        make, runtime_make_callable = _validated_kaggle_make()
 
         configuration = _effective_configuration(spec.configuration, spec.seed)
         env = make(
@@ -121,9 +232,12 @@ def _run_game(spec: GameSpec) -> GameResult:
             debug=False,
         )
         environment_configuration = json.loads(
-            json.dumps(dict(env.configuration), sort_keys=True)
+            json.dumps(dict(env.configuration), sort_keys=True, allow_nan=False)
         )
-        resolved_environment_seed = int(env.info["seed"])
+        raw_environment_seed = env.info["seed"]
+        if type(raw_environment_seed) is not int or raw_environment_seed != spec.seed:
+            raise ValueError("environment resolved seed is not the exact requested int")
+        resolved_environment_seed = raw_environment_seed
         candidate_agent: Any = spec.candidate
         metrics_callable = None
         candidate_path = Path(spec.candidate)
@@ -146,6 +260,11 @@ def _run_game(spec: GameSpec) -> GameResult:
         abnormal = _first_abnormal_status(env.steps)
         if abnormal is not None:
             step_index, player, status = abnormal
+            hidden_abnormal_status = {
+                "step": step_index,
+                "player": player,
+                "status": status,
+            }
             raise RuntimeError(
                 f"framework agent failure at step={step_index}, player={player}, status={status}"
             )
@@ -185,6 +304,8 @@ def _run_game(spec: GameSpec) -> GameResult:
             environment_configuration_sha256=_json_sha256(environment_configuration),
             resolved_environment_seed=resolved_environment_seed,
             candidate_metrics=candidate_metrics,
+            hidden_abnormal_status=None,
+            runtime_make_callable=runtime_make_callable,
         )
     except Exception as exc:  # noqa: BLE001 - batch failures must become auditable rows
         return GameResult(
@@ -202,6 +323,8 @@ def _run_game(spec: GameSpec) -> GameResult:
             effective_configuration_sha256=_json_sha256(
                 _effective_configuration(spec.configuration, spec.seed)
             ),
+            hidden_abnormal_status=hidden_abnormal_status,
+            runtime_make_callable=runtime_make_callable,
         )
 
 
@@ -311,6 +434,9 @@ def summarize(results: list[GameResult]) -> dict[str, Any]:
         "seat_pair_differences": seat_differences,
         "candidate_metrics_total": candidate_metrics_total,
         "candidate_metrics_games": sum(row.candidate_metrics is not None for row in valid),
+        "hidden_abnormal_status_failures": sum(
+            row.hidden_abnormal_status is not None for row in results
+        ),
         "elapsed_seconds_total": sum(row.elapsed_seconds for row in results),
     }
 
@@ -320,7 +446,9 @@ def _sha256(path: Path) -> str:
 
 
 def _json_sha256(value: Any) -> str:
-    payload = json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
+    payload = json.dumps(
+        value, sort_keys=True, separators=(",", ":"), allow_nan=False
+    ).encode()
     return hashlib.sha256(payload).hexdigest().upper()
 
 
@@ -363,7 +491,7 @@ def _load_scenarios(path: Path) -> dict[str, dict[str, Any]]:
             raise ValueError("scenario names must be non-empty strings")
         if not isinstance(configuration, dict):
             raise TypeError(f"scenario {name} configuration must be an object")
-        forbidden = {"seed", "episodeSteps"} & configuration.keys()
+        forbidden = {"seed", "randomSeed", "episodeSteps"} & configuration.keys()
         if forbidden:
             raise ValueError(
                 f"scenario {name} cannot override runner-controlled keys: {sorted(forbidden)}"
@@ -386,6 +514,17 @@ def run_batch(
     scenarios = scenarios or {"default": {}}
     if not scenarios:
         raise ValueError("at least one evaluation scenario is required")
+    for name, configuration in scenarios.items():
+        if not isinstance(name, str) or not name.strip():
+            raise ValueError("scenario names must be non-empty strings")
+        if not isinstance(configuration, dict):
+            raise TypeError(f"scenario {name} configuration must be an object")
+        forbidden = {"seed", "randomSeed", "episodeSteps"} & configuration.keys()
+        if forbidden:
+            raise ValueError(
+                f"scenario {name} cannot override runner-controlled keys: {sorted(forbidden)}"
+            )
+        _json_sha256(configuration)
     effective_scenarios = {
         name: _effective_configuration(configuration)
         for name, configuration in scenarios.items()
@@ -477,7 +616,9 @@ def run_batch(
         "summary": summarize(results),
         "games": [asdict(row) for row in results],
     }
-    output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    output.write_text(
+        json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
     return report
 
 

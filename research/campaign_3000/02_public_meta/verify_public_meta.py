@@ -19,7 +19,7 @@ B85_ROUTE_RE = re.compile(r"b85decode\('([^']+)'\)")
 EXPECTED_HASHES = {
     "code_inventory.jsonl": "E510D00AB0AFB35E06B90EFD8EB8CC96DA08F29D8398DF682CDDDD060A7BEEC1",
     "discussion_inventory.jsonl": "8A296AE0C70728883FA9A2506B263DA3A3907678F03FCAB5D2357DF6B348B767",
-    "model_inventory.jsonl": "6807E5AC0DB8B02EBE5BFF62AC764454A5CD208C3F6C8A2666934C61F8C8D60E",
+    "model_inventory.jsonl": "073957AE03F99686ADA346111EB3F3FFC2B4D53C834E551350793AB875785C4E",
     "github_inventory.jsonl": "F0C4FDE4978D196B02A94EBB9DDAA3D03C31C7A22B78928D9B417344FCB30D87",
     "query_log.json": "EF4247B7915DBD544C21A68D3DEA18AAA7D60E63288B7C49E454B6287CF92AAF",
     "kernel_output_manifest.jsonl": "F72D9C5FECB8CA4213BBE07F76E5549C1FE1923C3655918E72C43C45CD5359AA",
@@ -27,6 +27,13 @@ EXPECTED_HASHES = {
     "kernel_static_analysis.jsonl": "BD4AF58185A718F436756093F0C2713831A5632B30C7BAA8F3D9F627E39CE256",
     "tape_lineage.jsonl": "D95EA5E4AFF77025B4B8A8BEA71C1A8ECAE28208DB8845FF488C1F98D5AF0A5B",
     "tetsu_v16_provenance.json": "2DFAF0128B3E1DA60554B9D4D04BF5A5D7528BF0CD6A5DA2DE39F252309BE6AA",
+}
+MODEL_V8_EXPECTED_HASHES = {
+    "model_v8/api_snapshot_v8.json": "2772796DC48E5B535B1A535644378302A4E5D0C4D1A0A2AE30CF467F239D7D10",
+    "model_v8/checkpoint_static_analysis.json": "70D9AEC891EC1DB6A739997A7952235C180978E8FCBB0D52CAAAD7827F1B412B",
+    "model_v8/disposition.json": "7200FCC24FBF68AEEE1F3C83D4DAB7923E9AD74142399F9620F3793845C9F520",
+    "model_v8/file_inventory_v8.json": "B8541A5BE1C1F3FF82EAA9BFAD49CEC88D03B2E15678B95FE8D2642FF103C972",
+    "model_v8/tool_evidence.json": "709B278A06B44653D6067E5653F6268FE33C4F2F33EBF89879C2E4B4387E5443",
 }
 
 
@@ -132,6 +139,50 @@ def _verify_tetsu_provenance(code_by_ref: dict[str, dict[str, Any]]) -> None:
     )
 
 
+def _verify_model_v8() -> None:
+    for relative, expected in MODEL_V8_EXPECTED_HASHES.items():
+        actual = _sha(ROOT / relative)
+        _require(actual == expected, f"model-v8 evidence hash: {relative}: {actual} != {expected}")
+
+    model_root = ROOT / "model_v8"
+    api = json.loads((model_root / "api_snapshot_v8.json").read_text(encoding="utf-8"))
+    files = json.loads((model_root / "file_inventory_v8.json").read_text(encoding="utf-8"))
+    analysis = json.loads((model_root / "checkpoint_static_analysis.json").read_text(encoding="utf-8"))
+    disposition = json.loads((model_root / "disposition.json").read_text(encoding="utf-8"))
+    tools = json.loads((model_root / "tool_evidence.json").read_text(encoding="utf-8"))
+    _require(api["model"]["id"] == 737778, "model-v8 id")
+    _require(api["variation"]["version_number"] == 8, "model-v8 version")
+    _require(api["variation"]["license_name"] == "Apache 2.0", "model-v8 license")
+    _require(api["variation"]["total_uncompressed_bytes"] == 1_070_833, "model-v8 total bytes")
+
+    by_name = {row["name"]: row for row in files["files"]}
+    _require(
+        set(by_name) == {"README.md", "README.md.metadata.json", "banner.jpg", "dqn_baseline_weights.pth"},
+        "model-v8 file set",
+    )
+    _require(sum(row["bytes"] for row in by_name.values()) == 1_070_833, "model-v8 file sum")
+    _require(
+        analysis["state_dict"]["tensor_shapes"]
+        == {"fc1.weight": [64, 10], "fc1.bias": [64], "fc2.weight": [4, 64], "fc2.bias": [4]},
+        "model-v8 state dict",
+    )
+    _require(analysis["state_dict"]["parameter_count"] == 964, "model-v8 parameter count")
+    _require(analysis["execution_safety"]["arbitrary_code_executed"] is False, "model-v8 execution safety")
+    _require(
+        disposition["decision"] == "UNUSABLE_WITH_PUBLISHED_INTERFACE_AND_UNVERIFIED_FOR_KAGGRICULTURE",
+        "model-v8 disposition",
+    )
+    _require(disposition["design_impact"]["used_in_kag_01_or_kag_02"] is False, "model-v8 candidate use")
+    _require(tools["agent_reach"]["authoritative_model_evidence_source"] is False, "model-v8 Agent-Reach claim")
+
+    download = CAMPAIGN_ROOT / "dist/model-v8-download"
+    for name, row in by_name.items():
+        path = download / name
+        _require(path.is_file(), f"missing model-v8 raw download: {path}")
+        _require(path.stat().st_size == row["bytes"], f"model-v8 raw bytes: {name}")
+        _require(_sha(path) == row["sha256"], f"model-v8 raw hash: {name}")
+
+
 def main() -> None:
     for name, expected in EXPECTED_HASHES.items():
         actual = _sha(ROOT / name)
@@ -171,6 +222,13 @@ def main() -> None:
         models[0]["competition_linkage"] == "TEXT_SEARCH_ONLY_NOT_OFFICIAL_COMPETITION_FILTER",
         "Model limitation lost",
     )
+    _require(models[0]["current_version"]["version_number"] == 8, "Model current version")
+    _require(
+        models[0]["analysis"]["decision"]
+        == "UNUSABLE_WITH_PUBLISHED_INTERFACE_AND_UNVERIFIED_FOR_KAGGRICULTURE",
+        "Model analysis disposition",
+    )
+    _verify_model_v8()
 
     github = _jsonl("github_inventory.jsonl")
     kinds = Counter(row["kind"] for row in github)
@@ -253,6 +311,7 @@ def main() -> None:
         "code_refs": len(code),
         "discussion_ids": len(discussions),
         "model_search_rows": len(models),
+        "model_v8_static_analysis": "PASS_NO_UNPICKLE_UNUSABLE_WITH_PUBLISHED_INTERFACE",
         "github_kinds": dict(kinds),
         "high_score_output_refs": len(outputs),
         "high_score_output_files": sum(len(row["files"]) for row in outputs),

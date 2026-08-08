@@ -10,7 +10,7 @@ submission, commit, or push was performed.
 ```text
 > .\.venv\Scripts\python.exe -m pytest -q -p no:cacheprovider research\campaign_3000\08_public_release\test_release.py
 ..........                                                               [100%]
-10 passed in 0.27s
+10 passed
 
 > .\.venv\Scripts\python.exe -m ruff check research\campaign_3000\08_public_release
 All checks passed!
@@ -25,15 +25,15 @@ enforces the fixed Discussion-first, public-Code-second order.
 
 ## Two-build byte identity
 
-Two consecutive self-contained `build` runs returned `identical=True` for every core output:
+Two consecutive self-contained `all` runs compared 20 files and returned zero hash drift:
 
 ```text
 artifact/kaggriculture_fixed_trace_safety_baseline.tar.gz  2730084026B6C0EA68D1D54FF469E1B80D9ABF9BEF43285B15366CF13CF8ACCB
-external_action_payload.json                              B970E56EDEBC9A7E35659977F16E86CDB007C59FBA00F615E5FA5992FE82C633
+external_action_payload.json                              3211EED27C575E58E3917FAD22DC9494A54E0CDA425459BC570071C6BE4E17A5
 kaggle_code_draft/kaggriculture-fixed-trace-safety-baseline.ipynb  F24F4939C8EC591D5794C650923E583658F0BE05E47FA7A6F049D53664F74153
 kaggle_code_draft/kernel-metadata.json                    A6550E25FE46FBB82E6722AA73D1458F1850D2B621ABCADC34F286EDAC0FFC7F
 public_source/main.py                                     81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922
-release_manifest.json                                     82560413B968544B03038868AC2B2C61C825E37571FB3B23EA6560C3A2AF1F9C
+release_manifest.json                                     6F415DB92D391F9D9D885A9B5A1BA6F7815CAE3CDD9413436B4759812599532D
 ```
 
 The archive member list was exactly `['main.py']`, and its payload hash matched the public source.

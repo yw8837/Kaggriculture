@@ -101,6 +101,36 @@ run receipt and its SHA in both outer receipts; raw/synthetic runner output from
 rejected. No current receipt, O, post-O verdict, or run receipt exists, so state remains CLOSED and
 seed execution remains zero.
 
+Immediately before and after the child run, the outer receipts measure the actually imported
+`kaggle-environments` distribution and its package/core/utils/agent/Kaggriculture Python+JSON
+dependency manifest, plus the live plan/gate/selection/scenario/runner/orchestrator/tool and source
+hashes. Imported module paths must resolve to the selected distribution root. The three
+start=end flags are derived from those measurements; they are never hard-coded receipt claims.
+The runtime also requires `PYTHONPATH`, `PYTHONHOME`, `PYTHONSTARTUP`, `PYTHONINSPECT`, and
+`PYTHONUSERBASE` to be absent or empty, and binds the package/core `make` callable identity,
+globals, source path, AST/source hashes, and equality to the exact same-process `core.py` compile.
+
+This is an explicit trusted-interpreter/process-memory boundary, not a sandbox proof. A privileged
+host that mutates arbitrary module globals in memory after all measured startup checks is outside
+what these receipts can cryptographically exclude. Such a host or interpreter compromise remains
+a declared trust assumption; module/callable identity and startup-environment checks are hard
+gates for the execution environment we control.
+The live `kaggle_environments.make` callable must also be the exact `core.make` function, use the
+core module globals and source path, and match a fresh compile of the pinned `core.py`; its
+process-stable function-source and AST hashes are recorded in every runtime snapshot and raw row.
+This blocks path shadowing and in-process callable replacement. The remaining explicit trust
+boundary is the selected Python interpreter and host process memory itself; the evidence does not
+claim cryptographic protection from an already-compromised interpreter or administrator.
+
+Every raw row must preserve the official environment's full typed configuration and canonical
+finite-JSON hash. The scrubbed configuration `seed` is exactly `null`, while the separately
+resolved seed is an exact int-not-bool equal to the requested seed; `randomSeed` is forbidden.
+Seed, seat, elapsed time, and both money values are type/finite checked without lossy coercion.
+The hardened runner records its actual full-step abnormal-status scan in every row and recomputes
+the mandatory summary counters. Strict promotion also applies nonnegative mean-margin floors to
+every opponent in every phase and to every scenario in robustness, so aggregate gains cannot
+average away a catastrophic lane.
+
 ## Read-only checks
 
 ```powershell

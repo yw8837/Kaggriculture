@@ -1,0 +1,15 @@
+{
+  "agent_reach": {
+    "authoritative_model_evidence_source": false,
+    "doctor_status": "EXECUTED_READ_ONLY_SUCCESS",
+    "independent_auditor_exa_attempt": "FAILED_MCP_ERROR_-32000_CONNECTION_CLOSED",
+    "model_query_disposition": "DO_NOT_CLAIM_EXA_AS_MODEL_METADATA_SOURCE;_OFFICIAL_KAGGLE_API_USED",
+    "note": "A later local retry returned generic DQN/agriculture pages but no authoritative bytes or Kaggle model contract; it does not cure or replace the auditor-observed failure."
+  },
+  "official_kaggle_api": {
+    "download": "EXECUTED_READ_ONLY_SUCCESS",
+    "file_list": "EXECUTED_READ_ONLY_SUCCESS",
+    "model_get": "EXECUTED_READ_ONLY_SUCCESS"
+  },
+  "schema_version": 1
+}

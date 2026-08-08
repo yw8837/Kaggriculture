@@ -1,0 +1,135 @@
+{
+  "architecture_comparison": {
+    "api_usage_claim": "Sequential Linear(10,256), ReLU, Linear(256,128), ReLU, Linear(128,4)",
+    "checkpoint_inferred": "Linear(10,64), unknown activation, Linear(64,4)",
+    "checkpoint_keys": [
+      "fc1.weight",
+      "fc1.bias",
+      "fc2.weight",
+      "fc2.bias"
+    ],
+    "published_interface_compatible": false,
+    "published_readme_claim": "self.fc Sequential Linear(10,256), ReLU, Linear(256,128), ReLU, Linear(128,4)",
+    "published_readme_expected_keys": [
+      "fc.0.weight",
+      "fc.0.bias",
+      "fc.2.weight",
+      "fc.2.bias",
+      "fc.4.weight",
+      "fc.4.bias"
+    ]
+  },
+  "checkpoint": {
+    "bytes": 6431,
+    "serialization": "PYTORCH_ZIP_STATIC_ONLY",
+    "sha256": "9756ADC933DA10D78ADDA449397A83D923995EF4585500B9814A9030CE3E6A3A"
+  },
+  "execution_safety": {
+    "arbitrary_code_executed": false,
+    "pickle_unpickled": false,
+    "pytorch_imported": false,
+    "technique": "zipfile + pickletools opcode scan only"
+  },
+  "pickle": {
+    "bytes": 471,
+    "globals": [
+      "collections OrderedDict",
+      "torch FloatStorage",
+      "torch._utils _rebuild_tensor_v2"
+    ],
+    "sha256": "B7145ED44072177A7B870C92EDF7C10BB4B2D9935BB434FD36E71EC2575024F0"
+  },
+  "retrieved_at_utc": "2026-08-08T21:52:08.818274Z",
+  "schema_version": 1,
+  "state_dict": {
+    "inferred_compatible_linear_shapes": [
+      "10->64",
+      "64->4"
+    ],
+    "parameter_count": 964,
+    "tensor_keys": [
+      "fc1.weight",
+      "fc1.bias",
+      "fc2.weight",
+      "fc2.bias"
+    ],
+    "tensor_shapes": {
+      "fc1.bias": [
+        64
+      ],
+      "fc1.weight": [
+        64,
+        10
+      ],
+      "fc2.bias": [
+        4
+      ],
+      "fc2.weight": [
+        4,
+        64
+      ]
+    }
+  },
+  "zip_members": [
+    {
+      "compressed_bytes": 471,
+      "crc32": "640695B3",
+      "name": "dqn_baseline_weights/data.pkl",
+      "uncompressed_bytes": 471
+    },
+    {
+      "compressed_bytes": 1,
+      "crc32": "83DCEFB7",
+      "name": "dqn_baseline_weights/.format_version",
+      "uncompressed_bytes": 1
+    },
+    {
+      "compressed_bytes": 2,
+      "crc32": "E971773F",
+      "name": "dqn_baseline_weights/.storage_alignment",
+      "uncompressed_bytes": 2
+    },
+    {
+      "compressed_bytes": 6,
+      "crc32": "19E33D85",
+      "name": "dqn_baseline_weights/byteorder",
+      "uncompressed_bytes": 6
+    },
+    {
+      "compressed_bytes": 2560,
+      "crc32": "653F0B55",
+      "name": "dqn_baseline_weights/data/0",
+      "uncompressed_bytes": 2560
+    },
+    {
+      "compressed_bytes": 256,
+      "crc32": "07F09809",
+      "name": "dqn_baseline_weights/data/1",
+      "uncompressed_bytes": 256
+    },
+    {
+      "compressed_bytes": 1024,
+      "crc32": "AF8762AA",
+      "name": "dqn_baseline_weights/data/2",
+      "uncompressed_bytes": 1024
+    },
+    {
+      "compressed_bytes": 16,
+      "crc32": "2075C8D9",
+      "name": "dqn_baseline_weights/data/3",
+      "uncompressed_bytes": 16
+    },
+    {
+      "compressed_bytes": 2,
+      "crc32": "55679ED1",
+      "name": "dqn_baseline_weights/version",
+      "uncompressed_bytes": 2
+    },
+    {
+      "compressed_bytes": 40,
+      "crc32": "09F91200",
+      "name": "dqn_baseline_weights/.data/serialization_id",
+      "uncompressed_bytes": 40
+    }
+  ]
+}

@@ -20,7 +20,7 @@
   },
   "runner": {
     "path": "src/kaggriculture_lab/evaluation/runner.py",
-    "sha256": "8F35F4D52870DB06FDFF60D03665E234F4994DD18D17BDB2E7FBC5D7F9F21A39",
+    "sha256": "51E7BF197223BECE8F2BA7D002BE213630C56EFB289C6A132AB91C02A563F713",
     "entrypoint": "kaggriculture_lab.evaluation.runner.run_batch",
     "required_failure_guard": "_first_abnormal_status"
   },

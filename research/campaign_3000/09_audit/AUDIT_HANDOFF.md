@@ -37,7 +37,7 @@ to E, an exact hash-matched execution binding, and exactly that binding path as 
 | Public Code | 155 refs, pages `100 + 55 + 0`; 0 failed rows | Current ref/version population; 61 source calls succeeded and 94 were rate-limited; public code was not executed |
 | Discussions | 57 topics, pages `20 + 20 + 17 + 0`; 0 failed rows | Declared total plus terminal empty page, deduplicated by topic ID |
 | GitHub | 256 rows | Union of saved repository and issue/PR query families, not exhaustive GitHub coverage |
-| Models | 1 search row | No official competition filter; population remains `UNVERIFIED_NOT_ZERO_CLAIM` |
+| Models | 1 search row; 1 current v8 model statically analyzed | Four published files were inventoried and the 6,431-byte checkpoint was inspected without unpickling. The published 10→64→4 interface is incompatible with its checkpoint and lacks a Kaggriculture encoder/action decoder, so it is unused. No official competition filter exists; population remains `UNVERIFIED_NOT_ZERO_CLAIM`. |
 | External methods | 35 retained sources from 28 query events | 31 `VERIFIED`, 1 `VERIFIED_LIMITED`, 3 `VERIFIED_LOCAL`; diminishing-return stop, not exhaustive internet coverage |
 
 The replay integrity report rehashed all 89 selected raw replays: 44 from our submission cohort and
@@ -167,24 +167,31 @@ Both actions are disabled now. Competition submission is separately
 paraphrase, private Save & Run authority, Code push authority, or publication authority cannot be
 treated as competition-submission authority.
 
+## Current QA claims
+
+The current command-output claims are 423 project tests, 81 official-environment tests, 91
+candidate-freeze tests, 28 private-release tests, and 10 public-release tests, with scoped Ruff
+passing. These strings are not a self-authenticating CI attestation; remote CI check count remains
+zero, so the auditor must rerun the relevant commands from the exact freeze.
+
 ## Hash anchors
 
 | Anchor | SHA-256 |
 |---|---|
 | `01_internal/evidence_manifest.json` | `4A07D2AFAC7EE2F99C223AC5B4D35C07CA325363C25441109976917E1D6AE6E6` |
-| `02_public_meta/source_manifest.json` | `5A6EDF659C7F8C9B0C999535F42513BC7C55D7CC231FBF5543FF66888CF8EE1B` |
+| `02_public_meta/source_manifest.json` | `4080781AEBA0B088197CDD0B38651E0D7044AAD45C9552586A5795A2931CE86F` |
 | `03_external/manifest.json` | `1D2578AB7BCB44AEB9E740F874832F83CC96E4F97B758835DBC5967C17CBE893` |
 | `04_synthesis/autoresearch_portfolio_result.json` | `4B289DF099A6BCAA6747B1DF3F2A3F83B587FD117C6EB7C979A60C1762A6C9C9` |
 | `05_engine_screen/manifest.json` | `A819E229B8FA101730B759AE30B224D692944129B55E7A3B1BEA44ACBDC70D48` |
 | `05_engine_screen_ray_c45_addendum/manifest.json` | `2449F4A771CA0F8716AE1EFCE05FB8842D310BD381895C14F162EF1DC9B812D9` |
-| `06_candidates/manifest.json` | `FBF560F617788022552B2115023639F81CB49E01E67B90AACE2291DA72DECE69` |
+| `06_candidates/manifest.json` | `1A2765982DB4FD3EC648BD9A68CC4F331761BF100E63950E02F57463BCCBCA9C` |
 | `06_candidates/lifecycle.json` | `839CD70EE519C7220697500747D0EFBD2D801580E0F3132F1E56A00D82E88E6A` |
-| `07_release/release_spec.json` | `BBE3B7DA2C14B5C4DD752AE67C55FD1898E1B9DF613162DA7FCAEC32009680F4` |
+| `07_release/release_spec.json` | `516CB6A5FFC73467062708EA0E7228B406FA7EE58F21D953E91C772F49F3EBBB` |
 | `07_release/evidence/raw/RECEIPT.json` | `B3F54DDD8C888665C8755B806F10094F999C63E3409130587FD94C2982759772` |
-| `07_release/local_build/release_manifest.json` | `DCF7C3CD881941386480746D7BF1F505BF0F067D3021D8274B613861D48B7625` |
-| `07_release/verification/VERIFICATION.md` | `33A771C1C607E8437BF43CF8121FF10C9F759927AD5AFAF41E63835E5D333E58` |
-| `08_public_release/SHA256SUMS` | `D385449E9A35B4A49043DCADC5B43BD94F9522C4F5832255D0D422C3ACA83B9C` |
-| `08_public_release/release_manifest.json` | `82560413B968544B03038868AC2B2C61C825E37571FB3B23EA6560C3A2AF1F9C` |
+| `07_release/local_build/release_manifest.json` | `A5846B67ADFA76875434CAFE3CD9B915F20FFEB6648F207F9695B3B05708C129` |
+| `07_release/verification/VERIFICATION.md` | `712DC52D346E981C2B5DD3A0E1B866F4046C68359C85DBBE9B00D01558C13BBE` |
+| `08_public_release/SHA256SUMS` | `DAA5EBB407FDFAEA990E9B847D7AEB6266E92CD0E148D188783DBF23FC9E56DD` |
+| `08_public_release/release_manifest.json` | `6F415DB92D391F9D9D885A9B5A1BA6F7815CAE3CDD9413436B4759812599532D` |
 | `08_public_release/artifact/kaggriculture_fixed_trace_safety_baseline.tar.gz` | `2730084026B6C0EA68D1D54FF469E1B80D9ABF9BEF43285B15366CF13CF8ACCB` |
 | `06_candidates/execution_binding.json` | `PENDING_FREEZE` |
 

@@ -17,7 +17,7 @@ Status: internal research evidence, **not** an independent-auditor verdict.  Fut
 |---|---:|---:|---|
 | `code_inventory.jsonl` | 155 | 328,991 | `E510D00AB0AFB35E06B90EFD8EB8CC96DA08F29D8398DF682CDDDD060A7BEEC1` |
 | `discussion_inventory.jsonl` | 57 | 43,333 | `8A296AE0C70728883FA9A2506B263DA3A3907678F03FCAB5D2357DF6B348B767` |
-| `model_inventory.jsonl` | 1 `UNVERIFIED` search hit | 485 | `6807E5AC0DB8B02EBE5BFF62AC764454A5CD208C3F6C8A2666934C61F8C8D60E` |
+| `model_inventory.jsonl` | 1 analyzed search hit; population still `UNVERIFIED` | 1,203 | `073957AE03F99686ADA346111EB3F3FFC2B4D53C834E551350793AB875785C4E` |
 | `github_inventory.jsonl` | 256 | 196,404 | `F0C4FDE4978D196B02A94EBB9DDAA3D03C31C7A22B78928D9B417344FCB30D87` |
 | `query_log.json` | query/page/tool receipts | 35,530 | `EF4247B7915DBD544C21A68D3DEA18AAA7D60E63288B7C49E454B6287CF92AAF` |
 
@@ -95,7 +95,13 @@ Current remediation is recorded separately from this lane's collection-time obse
 
 ## Models
 
-The only text-search hit was `saitejabandaruin/kaggriculture-dqn-weights`, ID 737778, subtitle “Starter PyTorch DQN Baseline,” record SHA `2E0B5778...F9E`. Competition linkage is only name/text search, not an official competition filter. No model was executed, downloaded, or treated as competitive evidence.
+The only text-search hit was `saitejabandaruin/kaggriculture-dqn-weights`, ID 737778. Competition linkage remains name/text search only: the official model API has no competition filter, so this is one analyzed hit, **not** an exactly-one population claim.
+
+The current official API snapshot is public Apache-2.0 PyTorch variation `pytorch-v1` version 8 (version ID 958411), updated `2026-08-08T19:45:18.732Z`. Its four files total 1,070,833 bytes: README 1,738, README metadata 94, banner 1,062,570, and `dqn_baseline_weights.pth` 6,431. All hashes, file-list metadata, and the read-only download command are frozen under `model_v8/`.
+
+Static inspection did **not** call `torch.load` or unpickle the file. ZIP plus `pickletools` inspection found only four tensors: `fc1.weight [64,10]`, `fc1.bias [64]`, `fc2.weight [4,64]`, and `fc2.bias [4]` (964 parameters). This conflicts with both published loading examples, which advertise a 10→256→128→4 network and different module keys. The README also points to version `/3/`, not current v8. More importantly, no ordered 10-feature encoder or mapping from four Q indices to the game's variable composite `{farmer,hands,market}` action is included. The claimed “~1200+” Elo and 5M training frames have no submission, training-log, seed, or environment receipt in the model files.
+
+Falsifiable disposition: `UNUSABLE_WITH_PUBLISHED_INTERFACE_AND_UNVERIFIED_FOR_KAGGRICULTURE`. It was not used in `Kag_01`, `Kag_02`, or any candidate delta. Reassessment requires an exact compatible 10→64→4 module (including activation), a pinned 10-feature encoder, a legal four-index macro/action decoder, and hash-bound training and both-seat evaluation receipts. See `model_v8/disposition.json` and `model_v8/checkpoint_static_analysis.json`.
 
 ## GitHub
 
@@ -117,8 +123,8 @@ Against the separately captured top-25 team display names:
 
 ## Tool evidence
 
-- Agent-Reach doctor was run: GitHub, Exa web search, web pages, and YouTube were available; Reddit and X were not available in the local setup.
-- Exa was actually queried for Kaggriculture Code/Discussion/GitHub discovery. Its results were supplemental; official APIs define the saved population.
+- Agent-Reach doctor was run: GitHub, Exa web search, web pages, and YouTube were reported available; Reddit and X were not available in the local setup.
+- Earlier Exa queries were supplemental to Code/Discussion/GitHub discovery. The independent auditor's later model-specific Exa call failed with `MCP error -32000 Connection closed`; a subsequent generic retry returned no authoritative model bytes. The v8 model evidence therefore comes only from the official Kaggle API/CLI, and Exa success is not claimed for this model audit.
 - Context7 resolved `/kaggle/kaggle-cli` and returned official pagination/topics/models documentation.
 - Serena was actually used on `src/kaggriculture_lab/research/kaggle_inventory.py::collect_inventory` to inspect existing collector symbols before writing this campaign collector.
 - Insane Search was **not invoked**: no concrete URL remained blocked after official APIs and Jina Reader. This is recorded as `NOT_INVOKED`, not claimed as successful use.

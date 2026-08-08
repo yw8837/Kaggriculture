@@ -152,7 +152,17 @@
       "id": "models",
       "definition": "Official Kaggle model text search plus the competition Models UI; no official CLI competition filter was available.",
       "search_rows": 1,
-      "population_status": "UNVERIFIED_NOT_ZERO_CLAIM"
+      "analyzed_rows": 1,
+      "analyzed_ref": "saitejabandaruin/kaggriculture-dqn-weights/PyTorch/pytorch-v1/8",
+      "version_number": 8,
+      "version_id": 958411,
+      "published_file_count": 4,
+      "checkpoint_bytes": 6431,
+      "checkpoint_sha256": "9756ADC933DA10D78ADDA449397A83D923995EF4585500B9814A9030CE3E6A3A",
+      "static_disposition": "UNUSABLE_WITH_PUBLISHED_INTERFACE_AND_UNVERIFIED_FOR_KAGGRICULTURE",
+      "candidate_use": false,
+      "population_status": "UNVERIFIED_NOT_ZERO_CLAIM",
+      "claim_limit": "The one current text-search hit was downloaded and statically analyzed without unpickling; one analyzed hit is not an exhaustive competition-model population."
     },
     {
       "id": "external_corpus",
@@ -227,6 +237,15 @@
       "reason": "No autonomous self-modification result may be represented as evidence before the exact frozen state receives separate independent audit."
     }
   ],
+  "current_qa_claims": {
+    "project_pytest": "423 passed",
+    "official_environment_pytest": "81 passed",
+    "candidate_focused_pytest": "91 passed",
+    "release_pytest": "28 passed",
+    "public_release_pytest": "10 passed",
+    "ruff": "All checks passed!",
+    "claim_boundary": "Current command-output claims for this freeze; remote CI check count remains zero and these strings are not a self-authenticating attestation."
+  },
   "candidate_decisions": [
     {
       "slot": "Kag_01",
@@ -548,8 +567,8 @@
     },
     {
       "path": "research/campaign_3000/02_public_meta/source_manifest.json",
-      "bytes": 3947,
-      "sha256": "5A6EDF659C7F8C9B0C999535F42513BC7C55D7CC231FBF5543FF66888CF8EE1B",
+      "bytes": 6112,
+      "sha256": "4080781AEBA0B088197CDD0B38651E0D7044AAD45C9552586A5795A2931CE86F",
       "declared_by": "direct rehash of manifest anchor"
     },
     {
@@ -572,8 +591,8 @@
     },
     {
       "path": "research/campaign_3000/02_public_meta/model_inventory.jsonl",
-      "bytes": 485,
-      "sha256": "6807E5AC0DB8B02EBE5BFF62AC764454A5CD208C3F6C8A2666934C61F8C8D60E",
+      "bytes": 1203,
+      "sha256": "073957AE03F99686ADA346111EB3F3FFC2B4D53C834E551350793AB875785C4E",
       "declared_by": "research/campaign_3000/02_public_meta/source_manifest.json"
     },
     {
@@ -584,8 +603,8 @@
     },
     {
       "path": "research/campaign_3000/02_public_meta/verification.json",
-      "bytes": 1591,
-      "sha256": "020FBC550A5DE6E393CC8101C1C723EB3E6D639FBBE95278602E401BC963B1B8",
+      "bytes": 1675,
+      "sha256": "EF56E70B3C9220741C9A909F6FB1F75DDCD0362E232ABAD4FE947B4129528ACD",
       "declared_by": "research/campaign_3000/02_public_meta/source_manifest.json"
     },
     {
@@ -656,26 +675,26 @@
     },
     {
       "path": "research/campaign_3000/06_candidates/manifest.json",
-      "bytes": 4376,
-      "sha256": "FBF560F617788022552B2115023639F81CB49E01E67B90AACE2291DA72DECE69",
+      "bytes": 4509,
+      "sha256": "1A2765982DB4FD3EC648BD9A68CC4F331761BF100E63950E02F57463BCCBCA9C",
       "declared_by": "research/campaign_3000/06_candidates/manifest.sha256"
     },
     {
       "path": "research/campaign_3000/06_candidates/candidate_plan.json",
       "bytes": 6950,
-      "sha256": "7167430237ACFF5846C8DFD6F948DC846BC5DB3BCBFCE973505DF3E86A0D33C8",
+      "sha256": "F57E076D11A91B2E344056EC74ECCA430F80EF3922D07A9001479B96DDEE5D1C",
       "declared_by": "research/campaign_3000/06_candidates/manifest.json"
     },
     {
       "path": "research/campaign_3000/06_candidates/gate_config.json",
-      "bytes": 3347,
-      "sha256": "F9E82C8F1EE992FB2F82B3EB8DE476410A0695E05C06C35AD951A21AAE8750DB",
+      "bytes": 5855,
+      "sha256": "9D88AA8DEE2021F458896D681FB0958B6F26772F03ABB4507EC888C80970307D",
       "declared_by": "research/campaign_3000/06_candidates/manifest.json"
     },
     {
       "path": "research/campaign_3000/06_candidates/seed_collision_scan.json",
       "bytes": 2981,
-      "sha256": "B54201122781D71CE24868B46550309B262FD45F0CA2D25961FB87AB7451B416",
+      "sha256": "0A24EE14447E7937491DB6A55D99671B3106B7009EEF2E4A3A234863AB033223",
       "declared_by": "research/campaign_3000/06_candidates/manifest.json"
     },
     {
@@ -693,7 +712,7 @@
     {
       "path": "research/campaign_3000/07_release/release_spec.json",
       "bytes": 5527,
-      "sha256": "BBE3B7DA2C14B5C4DD752AE67C55FD1898E1B9DF613162DA7FCAEC32009680F4",
+      "sha256": "516CB6A5FFC73467062708EA0E7228B406FA7EE58F21D953E91C772F49F3EBBB",
       "declared_by": "direct rehash of release specification"
     },
     {
@@ -759,31 +778,31 @@
     {
       "path": "research/campaign_3000/07_release/local_build/release_manifest.json",
       "bytes": 6989,
-      "sha256": "DCF7C3CD881941386480746D7BF1F505BF0F067D3021D8274B613861D48B7625",
+      "sha256": "A5846B67ADFA76875434CAFE3CD9B915F20FFEB6648F207F9695B3B05708C129",
       "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
     },
     {
       "path": "research/campaign_3000/07_release/verification/VERIFICATION.md",
       "bytes": 6695,
-      "sha256": "33A771C1C607E8437BF43CF8121FF10C9F759927AD5AFAF41E63835E5D333E58",
+      "sha256": "712DC52D346E981C2B5DD3A0E1B866F4046C68359C85DBBE9B00D01558C13BBE",
       "declared_by": "direct rehash of local release verification report"
     },
     {
       "path": "research/campaign_3000/08_public_release/SHA256SUMS",
       "bytes": 1795,
-      "sha256": "D385449E9A35B4A49043DCADC5B43BD94F9522C4F5832255D0D422C3ACA83B9C",
+      "sha256": "DAA5EBB407FDFAEA990E9B847D7AEB6266E92CD0E148D188783DBF23FC9E56DD",
       "declared_by": "direct rehash of public-release checksum anchor"
     },
     {
       "path": "research/campaign_3000/08_public_release/release_manifest.json",
       "bytes": 7631,
-      "sha256": "82560413B968544B03038868AC2B2C61C825E37571FB3B23EA6560C3A2AF1F9C",
+      "sha256": "6F415DB92D391F9D9D885A9B5A1BA6F7815CAE3CDD9413436B4759812599532D",
       "declared_by": "research/campaign_3000/08_public_release/SHA256SUMS"
     },
     {
       "path": "research/campaign_3000/08_public_release/external_action_payload.json",
       "bytes": 3721,
-      "sha256": "B970E56EDEBC9A7E35659977F16E86CDB007C59FBA00F615E5FA5992FE82C633",
+      "sha256": "3211EED27C575E58E3917FAD22DC9494A54E0CDA425459BC570071C6BE4E17A5",
       "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
     },
     {

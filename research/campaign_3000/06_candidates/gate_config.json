@@ -25,6 +25,46 @@
     "all_numeric_inputs_and_derived_metrics_finite": true,
     "failures": 0,
     "hidden_abnormal_status_failures": 0,
+    "environment_configuration_contract": {
+      "actTimeout": 1,
+      "boardSize": 10,
+      "episodeSteps": 720,
+      "farmHandCostMult": 1,
+      "marketParams": {},
+      "maxMarketOrdersPerTurn": 10,
+      "runTimeout": 1200,
+      "seed": null,
+      "shedCapacity": 100,
+      "startingMoney": 3000,
+      "townCenterSellInterval": 24,
+      "townShopSellInterval": 4,
+      "townShopUnlockInterval": 3,
+      "turnsPerDay": 24,
+      "weedSpawnChance": 0.005
+    },
+    "engine_runtime_dependency_manifest": {
+      "kaggle_environments/__init__.py": {"bytes": 4713, "sha256": "05304FFE18CB783E24CB825B441047A9CBC45B201BE11E7B83507A035BC33A19"},
+      "kaggle_environments/core.py": {"bytes": 30284, "sha256": "0922C4599A1B6E0D8C3DADF06AE5297F98138D859D686F00DAEE6F36E6D45D0E"},
+      "kaggle_environments/utils.py": {"bytes": 8634, "sha256": "537B627B11784D424147EF57EBB0369B039BF83C9F891E81F10486B1F552334B"},
+      "kaggle_environments/agent.py": {"bytes": 8090, "sha256": "9B7682CE9921C8F34080A8BE0F7B41598CC12AC7EB14D24E4B707883F25213B6"},
+      "kaggle_environments/envs/kaggriculture/kaggriculture.py": {"bytes": 39801, "sha256": "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF"},
+      "kaggle_environments/envs/kaggriculture/kaggriculture.json": {"bytes": 5877, "sha256": "7F196F4AAF9B4E482FBD61BA4BF19F5CEC4DA0F81938ECE756954035A65C0BB5"}
+    },
+    "runtime_make_callable_contract": {
+      "package_make_is_core_make": true,
+      "function_type": true,
+      "globals_is_core_module": true,
+      "module": "kaggle_environments.core",
+      "qualname": "make",
+      "source_path_matches_core": true,
+      "compiled_make_count": 1,
+      "ast_make_count": 1,
+      "ast_function_sha256": "7A9BCC66212C822AF494904756ECC915F6EC5DEEAF316EDB417648787E09E340",
+      "function_source_sha256": "3090CF7871CCF6C046138987B22B47956DE1B3C2B7CFF9FC3D5ED617AFEDFEB7",
+      "code_equals_compiled_source": true,
+      "startup_environment": {"PYTHONPATH": null, "PYTHONHOME": null, "PYTHONSTARTUP": null, "PYTHONINSPECT": null, "PYTHONUSERBASE": null},
+      "defaults_sha256": "310DDDF0453ADA7D5A566EF2CDC450C58912C9FC466C552322FA9A0D27D0371C"
+    },
     "self_lane_cells": 0
   },
   "strict_performance_promotion_thresholds": {
@@ -33,6 +73,7 @@
       "minimum_match_score_seed_cluster_bootstrap_95_lower": 0.35,
       "minimum_mean_margin": 0.0,
       "minimum_each_opponent_match_score": 0.10,
+      "minimum_each_opponent_mean_margin": 0.0,
       "maximum_game_runtime_p99_seconds": 25.0,
       "maximum_game_runtime_seconds": 30.0
     },
@@ -41,6 +82,7 @@
       "minimum_match_score_seed_cluster_bootstrap_95_lower": 0.50,
       "minimum_mean_margin": 0.0,
       "minimum_each_opponent_match_score": 0.25,
+      "minimum_each_opponent_mean_margin": 0.0,
       "maximum_game_runtime_p99_seconds": 25.0,
       "maximum_game_runtime_seconds": 30.0
     },
@@ -50,7 +92,9 @@
       "minimum_mean_margin": 0.0,
       "minimum_margin_p10": -5000.0,
       "minimum_each_opponent_match_score": 0.20,
+      "minimum_each_opponent_mean_margin": 0.0,
       "minimum_each_scenario_match_score": 0.45,
+      "minimum_each_scenario_mean_margin": 0.0,
       "maximum_game_runtime_p99_seconds": 25.0,
       "maximum_game_runtime_seconds": 30.0
     }
@@ -81,6 +125,7 @@
     "all_strict_checks_pass": "STRICT_PROMOTION_PASS",
     "exploratory_checks_pass": "EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION",
     "missing_or_nonfinite_metric": "INVALID",
-    "no_averaging_away_opponent_or_scenario_regressions": true
+    "no_averaging_away_opponent_or_scenario_regressions": true,
+    "no_averaging_enforcement": "Per-opponent mean-margin bounds in every phase and per-scenario match/margin bounds in robustness."
   }
 }

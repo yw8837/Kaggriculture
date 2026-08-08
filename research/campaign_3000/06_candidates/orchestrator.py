@@ -1,15 +1,20 @@
 from __future__ import annotations
 
 import argparse
+import ast
 import hashlib
+import importlib
 import importlib.metadata
+import inspect
 import json
 import math
+import os
 import random
 import re
 import statistics
 import subprocess
 import sys
+import types
 from collections.abc import Iterable, Mapping, Sequence
 from datetime import datetime
 from pathlib import Path
@@ -58,10 +63,34 @@ SCAN_EXCLUDED_PREFIXES = (
     "research/campaign_3000/09_audit/",
 )
 PHASES = ("development", "confirmation", "robustness")
+PYTHON_STARTUP_ENV_NAMES = (
+    "PYTHONPATH",
+    "PYTHONHOME",
+    "PYTHONSTARTUP",
+    "PYTHONINSPECT",
+    "PYTHONUSERBASE",
+)
+
+
+def _reject_nonfinite_json(value: str) -> Any:
+    raise ValueError(f"nonfinite JSON token is forbidden: {value}")
+
+
+def _strict_json_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError(f"duplicate JSON key is forbidden: {key}")
+        result[key] = value
+    return result
 
 
 def _load(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(
+        path.read_text(encoding="utf-8"),
+        parse_constant=_reject_nonfinite_json,
+        object_pairs_hook=_strict_json_object,
+    )
 
 
 def _sha256(path: Path) -> str:
@@ -73,8 +102,24 @@ def _sha256_bytes(payload: bytes) -> str:
 
 
 def _json_sha256(value: Any) -> str:
-    payload = json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
+    payload = json.dumps(
+        value, sort_keys=True, separators=(",", ":"), allow_nan=False
+    ).encode()
     return hashlib.sha256(payload).hexdigest().upper()
+
+
+def _require_typed_json_equal(actual: Any, expected: Any, label: str) -> None:
+    try:
+        actual_bytes = json.dumps(
+            actual, sort_keys=True, separators=(",", ":"), allow_nan=False
+        ).encode()
+        expected_bytes = json.dumps(
+            expected, sort_keys=True, separators=(",", ":"), allow_nan=False
+        ).encode()
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{label} is not strict finite JSON") from exc
+    if actual_bytes != expected_bytes:
+        raise ValueError(f"{label} mismatch")
 
 
 def _relative(path: Path) -> str:
@@ -260,17 +305,192 @@ def _inventory_row(ref: str) -> dict[str, Any]:
     return matches[0]
 
 
-def _environment_snapshot() -> dict[str, str]:
-    distribution = importlib.metadata.distribution("kaggle-environments")
-    path = Path(
-        distribution.locate_file(
-            "kaggle_environments/envs/kaggriculture/kaggriculture.py"
+def _startup_environment_snapshot() -> dict[str, str | None]:
+    return {
+        name: None if os.environ.get(name) in (None, "") else os.environ[name]
+        for name in PYTHON_STARTUP_ENV_NAMES
+    }
+
+
+def _make_callable_snapshot(
+    package_module: Any, core_module: Any, core_path: Path
+) -> dict[str, Any]:
+    make_callable = getattr(package_module, "make", None)
+    core_make = getattr(core_module, "make", None)
+    function_type = isinstance(make_callable, types.FunctionType)
+    core_text = core_path.read_text(encoding="utf-8")
+    compiled_module = compile(core_text, str(core_path), "exec")
+    compiled_make = [
+        value
+        for value in compiled_module.co_consts
+        if isinstance(value, types.CodeType) and value.co_name == "make"
+    ]
+    parsed_module = ast.parse(core_text, filename=str(core_path))
+    ast_make = [
+        node
+        for node in parsed_module.body
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+        and node.name == "make"
+    ]
+    ast_dump = (
+        ast.dump(ast_make[0], annotate_fields=True, include_attributes=True).encode()
+        if len(ast_make) == 1
+        else b""
+    )
+    source_segment = (
+        (ast.get_source_segment(core_text, ast_make[0]) or "").encode()
+        if len(ast_make) == 1
+        else b""
+    )
+    try:
+        source_path = Path(inspect.getsourcefile(make_callable) or "").resolve()
+    except (TypeError, OSError):
+        source_path = Path.cwd()
+    try:
+        defaults_sha = _json_sha256(
+            {
+                "defaults": getattr(make_callable, "__defaults__", None),
+                "kwdefaults": getattr(make_callable, "__kwdefaults__", None),
+            }
         )
+    except (TypeError, ValueError):
+        defaults_sha = None
+    return {
+        "package_make_is_core_make": make_callable is core_make,
+        "function_type": function_type,
+        "globals_is_core_module": function_type
+        and make_callable.__globals__ is core_module.__dict__,
+        "module": getattr(make_callable, "__module__", None),
+        "qualname": getattr(make_callable, "__qualname__", None),
+        "source_path_matches_core": source_path == core_path,
+        "compiled_make_count": len(compiled_make),
+        "ast_make_count": len(ast_make),
+        "ast_function_sha256": _sha256_bytes(ast_dump),
+        "function_source_sha256": _sha256_bytes(source_segment),
+        "code_equals_compiled_source": function_type
+        and len(compiled_make) == 1
+        and make_callable.__code__ == compiled_make[0],
+        "startup_environment": _startup_environment_snapshot(),
+        "defaults_sha256": defaults_sha,
+    }
+
+
+def _environment_snapshot() -> dict[str, Any]:
+    distribution = importlib.metadata.distribution("kaggle-environments")
+    distribution_root = Path(distribution.locate_file("")).resolve()
+    dependencies = _load(GATE_PATH)["hard_integrity"][
+        "engine_runtime_dependency_manifest"
+    ]
+    module_paths = {
+        "kaggle_environments/__init__.py": "kaggle_environments",
+        "kaggle_environments/core.py": "kaggle_environments.core",
+        "kaggle_environments/utils.py": "kaggle_environments.utils",
+        "kaggle_environments/agent.py": "kaggle_environments.agent",
+        "kaggle_environments/envs/kaggriculture/kaggriculture.py": (
+            "kaggle_environments.envs.kaggriculture.kaggriculture"
+        ),
+    }
+    actual_dependencies: dict[str, dict[str, Any]] = {}
+    import_paths_match_distribution = True
+    for relative in dependencies:
+        distribution_path = (distribution_root / relative).resolve()
+        if not distribution_path.is_relative_to(distribution_root):
+            raise ValueError("engine dependency escapes its distribution root")
+        module_name = module_paths.get(relative)
+        measured_path = distribution_path
+        if module_name is not None:
+            module = importlib.import_module(module_name)
+            module_path = Path(module.__file__ or "").resolve()
+            import_paths_match_distribution &= module_path == distribution_path
+            measured_path = module_path
+        actual_dependencies[relative] = {
+            "bytes": measured_path.stat().st_size,
+            "sha256": _sha256(measured_path),
+        }
+    package_module = importlib.import_module("kaggle_environments")
+    core_module = importlib.import_module("kaggle_environments.core")
+    make_callable = _make_callable_snapshot(
+        package_module,
+        core_module,
+        (distribution_root / "kaggle_environments/core.py").resolve(),
     )
     return {
         "version": distribution.version,
-        "kaggriculture_py_sha256": _sha256(path),
+        "kaggriculture_py_sha256": actual_dependencies[
+            "kaggle_environments/envs/kaggriculture/kaggriculture.py"
+        ]["sha256"],
+        "runtime_dependencies": actual_dependencies,
+        "runtime_dependencies_sha256": _json_sha256(actual_dependencies),
+        "import_paths_match_distribution": import_paths_match_distribution,
+        "make_callable": make_callable,
+        "startup_environment": _startup_environment_snapshot(),
     }
+
+
+def _expected_environment_snapshot(plan: Mapping[str, Any]) -> dict[str, Any]:
+    dependencies = _load(GATE_PATH)["hard_integrity"][
+        "engine_runtime_dependency_manifest"
+    ]
+    make_callable = _load(GATE_PATH)["hard_integrity"][
+        "runtime_make_callable_contract"
+    ]
+    startup_environment = make_callable["startup_environment"]
+    return {
+        "version": plan["engine"]["version"],
+        "kaggriculture_py_sha256": plan["engine"]["kaggriculture_py_sha256"],
+        "runtime_dependencies": dependencies,
+        "runtime_dependencies_sha256": _json_sha256(dependencies),
+        "import_paths_match_distribution": True,
+        "make_callable": make_callable,
+        "startup_environment": startup_environment,
+    }
+
+
+def _execution_input_snapshot(plan: Mapping[str, Any]) -> dict[str, str]:
+    """Hash every executable/config input that may change during a run."""
+    paths = {
+        "candidate_plan": PLAN_PATH,
+        "gate_config": GATE_PATH,
+        "selection_evidence": SELECTION_PATH,
+        "scenario_source": PROJECT_ROOT / plan["scenario_source"]["path"],
+        "runner": PROJECT_ROOT / plan["runner"]["path"],
+        "orchestrator": Path(__file__),
+        "authorized_runner": HERE / "authorized_runner.py",
+    }
+    return {name: _sha256(path) for name, path in paths.items()}
+
+
+def _source_snapshot(contract: Mapping[str, Any]) -> dict[str, dict[str, str]]:
+    return {
+        alias: {
+            "path": source["path"],
+            "sha256": _sha256(PROJECT_ROOT / source["path"]),
+        }
+        for alias, source in contract["sources"].items()
+    }
+
+
+def _require_runtime_freeze(
+    plan: Mapping[str, Any],
+    contract: Mapping[str, Any],
+    environment: Mapping[str, Any],
+    execution_inputs: Mapping[str, str],
+    sources: Mapping[str, Any],
+) -> None:
+    _require_equal(
+        environment,
+        _expected_environment_snapshot(plan),
+        "actual kaggle-environments runtime",
+    )
+    _require_equal(
+        execution_inputs.get("runner"), plan["runner"]["sha256"], "actual runner SHA"
+    )
+    _require_equal(
+        execution_inputs.get("scenario_source"),
+        plan["scenario_source"]["sha256"],
+        "actual scenario source SHA",
+    )
+    _require_equal(sources, contract["sources"], "actual source snapshot")
 
 
 def _repo_path(project_root: Path, portable_path: str) -> Path:
@@ -660,10 +880,7 @@ def validate_plan(check_seed_snapshot: bool = True) -> dict[str, Any]:
             errors.append(f"reserved seed collision: {sorted(set(collisions))}")
 
     environment = _environment_snapshot()
-    if environment != {
-        "version": plan["engine"]["version"],
-        "kaggriculture_py_sha256": plan["engine"]["kaggriculture_py_sha256"],
-    }:
+    if environment != _expected_environment_snapshot(plan):
         errors.append("installed environment identity mismatch")
 
     kaito = _candidate(plan, "Kag_02")["license_gate"]
@@ -1192,6 +1409,12 @@ def create_authorized_run_receipt(slot: str, phase: str = "development") -> Path
     )
     plan = _load(PLAN_PATH)
     contract = run_contract(plan, slot, phase)
+    environment_snapshot = _environment_snapshot()
+    execution_inputs = _execution_input_snapshot(plan)
+    sources = _source_snapshot(contract)
+    _require_runtime_freeze(
+        plan, contract, environment_snapshot, execution_inputs, sources
+    )
     paths = _authorized_run_paths(PROJECT_ROOT, slot)
     run_path = _repo_path(PROJECT_ROOT, paths["authorized_run_receipt"])
     if not _git_path_is_ignored(PROJECT_ROOT, paths["authorized_run_receipt"]):
@@ -1211,6 +1434,9 @@ def create_authorized_run_receipt(slot: str, phase: str = "development") -> Path
         "selection_sha256": _sha256(SELECTION_PATH),
         "runner_sha256": plan["runner"]["sha256"],
         "engine": plan["engine"],
+        "actual_environment_at_receipt_creation": environment_snapshot,
+        "execution_inputs_at_receipt_creation": execution_inputs,
+        "sources_at_receipt_creation": sources,
         "authority": {
             key: authority[key]
             for key in (
@@ -1264,6 +1490,12 @@ def validate_authorized_run_receipt(run_receipt_path: Path) -> dict[str, Any]:
     )
     plan = _load(PLAN_PATH)
     contract = run_contract(plan, slot, phase)
+    environment_snapshot = _environment_snapshot()
+    execution_inputs = _execution_input_snapshot(plan)
+    sources = _source_snapshot(contract)
+    _require_runtime_freeze(
+        plan, contract, environment_snapshot, execution_inputs, sources
+    )
     paths = _authorized_run_paths(root, slot)
     expected = {
         "schema_version": 1,
@@ -1276,6 +1508,9 @@ def validate_authorized_run_receipt(run_receipt_path: Path) -> dict[str, Any]:
         "selection_sha256": _sha256(SELECTION_PATH),
         "runner_sha256": plan["runner"]["sha256"],
         "engine": plan["engine"],
+        "actual_environment_at_receipt_creation": environment_snapshot,
+        "execution_inputs_at_receipt_creation": execution_inputs,
+        "sources_at_receipt_creation": sources,
         "authority": {
             key: authority[key]
             for key in (
@@ -1320,6 +1555,31 @@ def execute_authorized_run_receipt(run_receipt_path: Path) -> dict[str, Any]:
     paths = run["outputs"]
     outer_started_path = _repo_path(PROJECT_ROOT, paths["outer_started"])
     run_sha256 = _sha256(run_receipt_path)
+    environment_at_start = _environment_snapshot()
+    execution_inputs_at_start = _execution_input_snapshot(plan)
+    sources_at_start = _source_snapshot(contract)
+    _require_runtime_freeze(
+        plan,
+        contract,
+        environment_at_start,
+        execution_inputs_at_start,
+        sources_at_start,
+    )
+    _require_equal(
+        environment_at_start,
+        run["actual_environment_at_receipt_creation"],
+        "receipt-to-start environment",
+    )
+    _require_equal(
+        execution_inputs_at_start,
+        run["execution_inputs_at_receipt_creation"],
+        "receipt-to-start execution inputs",
+    )
+    _require_equal(
+        sources_at_start,
+        run["sources_at_receipt_creation"],
+        "receipt-to-start sources",
+    )
     outer_started = {
         "slot": run["slot"],
         "phase": run["phase"],
@@ -1327,9 +1587,12 @@ def execute_authorized_run_receipt(run_receipt_path: Path) -> dict[str, Any]:
         "plan_sha256": run["plan_sha256"],
         "gate_sha256": run["gate_sha256"],
         "selection_sha256": run["selection_sha256"],
-        "runner_sha256": run["runner_sha256"],
-        "engine": run["engine"],
-        "sources_at_start": contract["sources"],
+        "runner_sha256": execution_inputs_at_start["runner"],
+        "planned_engine": plan["engine"],
+        "engine": environment_at_start,
+        "actual_environment_at_start": environment_at_start,
+        "execution_inputs_at_start": execution_inputs_at_start,
+        "sources_at_start": sources_at_start,
         "grid_sha256": contract["grid_sha256"],
         "authority": run["authority"],
         "runner_argv": run["runner_argv"],
@@ -1360,6 +1623,19 @@ def execute_authorized_run_receipt(run_receipt_path: Path) -> dict[str, Any]:
 
     raw_path = _repo_path(PROJECT_ROOT, paths["raw_report"])
     runner_started_path = _repo_path(PROJECT_ROOT, paths["runner_started"])
+    environment_at_end = _environment_snapshot()
+    execution_inputs_at_end = _execution_input_snapshot(plan)
+    sources_at_end = _source_snapshot(contract)
+    environment_unchanged = (
+        environment_at_start
+        == environment_at_end
+        == _expected_environment_snapshot(plan)
+    )
+    execution_inputs_unchanged = execution_inputs_at_start == execution_inputs_at_end
+    sources_unchanged = (
+        sources_at_start == sources_at_end == contract["sources"]
+        and report["sources_unchanged_during_run"] is True
+    )
     outer_completed = {
         "outer_start_receipt_sha256": _sha256(outer_started_path),
         "runner_start_receipt_sha256": _sha256(runner_started_path),
@@ -1368,17 +1644,22 @@ def execute_authorized_run_receipt(run_receipt_path: Path) -> dict[str, Any]:
         "plan_sha256_at_end": _sha256(PLAN_PATH),
         "gate_sha256_at_end": _sha256(GATE_PATH),
         "selection_sha256_at_end": _sha256(SELECTION_PATH),
-        "runner_sha256_at_end": plan["runner"]["sha256"],
-        "engine_at_end": plan["engine"],
-        "sources_at_end": contract["sources"],
+        "runner_sha256_at_end": execution_inputs_at_end["runner"],
+        "planned_engine_at_end": plan["engine"],
+        "engine_at_end": environment_at_end,
+        "actual_environment_at_end": environment_at_end,
+        "execution_inputs_at_end": execution_inputs_at_end,
+        "sources_at_end": sources_at_end,
         "executed_cells": len(report["games"]),
-        "sources_unchanged_during_phase": report["sources_unchanged_during_run"],
-        "environment_unchanged_during_phase": True,
-        "configs_unchanged_during_phase": True,
+        "sources_unchanged_during_phase": sources_unchanged,
+        "environment_unchanged_during_phase": environment_unchanged,
+        "configs_unchanged_during_phase": execution_inputs_unchanged,
     }
     _repo_path(PROJECT_ROOT, paths["outer_completed"]).write_text(
         json.dumps(outer_completed, indent=2) + "\n", encoding="utf-8"
     )
+    if not (sources_unchanged and environment_unchanged and execution_inputs_unchanged):
+        raise RuntimeError("authorized run completed with runtime freeze drift")
     return {"status": "AUTHORIZED_RUN_COMPLETED", "summary": report["summary"]}
 
 
@@ -1465,6 +1746,8 @@ def validate_report_files(
     outer_started = _load(outer_started_path)
     outer_completed = _load(outer_completed_path)
     run_receipt_sha256 = _sha256(authorized_run_receipt_path)
+    expected_environment = _expected_environment_snapshot(plan)
+    expected_inputs = authorized_run["execution_inputs_at_receipt_creation"]
 
     _require_equal(outer_started.get("slot"), slot, "outer start slot")
     _require_equal(outer_started.get("phase"), phase, "outer start phase")
@@ -1476,7 +1759,20 @@ def validate_report_files(
     _require_equal(
         outer_started.get("runner_sha256"), plan["runner"]["sha256"], "start runner SHA"
     )
-    _require_equal(outer_started.get("engine"), plan["engine"], "start engine")
+    _require_equal(
+        outer_started.get("planned_engine"), plan["engine"], "planned start engine"
+    )
+    _require_equal(outer_started.get("engine"), expected_environment, "start engine")
+    _require_equal(
+        outer_started.get("actual_environment_at_start"),
+        expected_environment,
+        "actual environment at start",
+    )
+    _require_equal(
+        outer_started.get("execution_inputs_at_start"),
+        expected_inputs,
+        "execution inputs at start",
+    )
     _require_equal(outer_started.get("sources_at_start"), contract["sources"], "start sources")
     _require_equal(outer_started.get("grid_sha256"), contract["grid_sha256"], "start grid")
     _require_equal(
@@ -1521,17 +1817,48 @@ def validate_report_files(
         plan["runner"]["sha256"],
         "end runner SHA",
     )
-    _require_equal(outer_completed.get("engine_at_end"), plan["engine"], "end engine")
+    _require_equal(
+        outer_completed.get("planned_engine_at_end"),
+        plan["engine"],
+        "planned end engine",
+    )
+    _require_equal(
+        outer_completed.get("engine_at_end"), expected_environment, "end engine"
+    )
+    _require_equal(
+        outer_completed.get("actual_environment_at_end"),
+        expected_environment,
+        "actual environment at end",
+    )
+    _require_equal(
+        outer_completed.get("execution_inputs_at_end"),
+        expected_inputs,
+        "execution inputs at end",
+    )
     _require_equal(outer_completed.get("sources_at_end"), contract["sources"], "end sources")
     _require_equal(
         outer_completed.get("executed_cells"), contract["expected_cells"], "executed cells"
     )
-    for flag in (
-        "sources_unchanged_during_phase",
-        "environment_unchanged_during_phase",
-        "configs_unchanged_during_phase",
-    ):
-        if outer_completed.get(flag) is not True:
+    derived_flags = {
+        "sources_unchanged_during_phase": (
+            outer_started.get("sources_at_start")
+            == outer_completed.get("sources_at_end")
+            == contract["sources"]
+            and report.get("sources_unchanged_during_run") is True
+        ),
+        "environment_unchanged_during_phase": (
+            outer_started.get("actual_environment_at_start")
+            == outer_completed.get("actual_environment_at_end")
+            == expected_environment
+        ),
+        "configs_unchanged_during_phase": (
+            outer_started.get("execution_inputs_at_start")
+            == outer_completed.get("execution_inputs_at_end")
+            == expected_inputs
+        ),
+    }
+    for flag, derived in derived_flags.items():
+        if outer_completed.get(flag) is not derived or derived is not True:
             raise ValueError(f"receipt integrity flag failed: {flag}")
 
     _require_equal(runner_started.get("candidate"), contract["candidate_path"], "runner candidate")
@@ -1586,33 +1913,51 @@ def validate_report_files(
         (row["scenario"], row["opponent"], row["seed"], row["seat"])
         for row in expected_grid(plan, slot, phase)
     }
+    gate = _load(GATE_PATH)
+    environment_base = gate["hard_integrity"]["environment_configuration_contract"]
+    make_callable_contract = gate["hard_integrity"]["runtime_make_callable_contract"]
     actual_keys: list[tuple[str, str, int, int]] = []
     for index, row in enumerate(games):
-        try:
-            key = (
-                str(row["scenario"]),
-                str(row["opponent"]),
-                int(row["seed"]),
-                int(row["seat"]),
-            )
-        except (KeyError, TypeError, ValueError) as error:
-            raise ValueError(f"invalid cell key at row {index}") from error
+        scenario = row.get("scenario")
+        opponent = row.get("opponent")
+        seed = row.get("seed")
+        seat = row.get("seat")
+        if not isinstance(scenario, str) or not isinstance(opponent, str):
+            raise TypeError(f"invalid cell key at row {index}")
+        if not isinstance(seed, int) or isinstance(seed, bool):
+            raise TypeError(f"invalid exact-int seed at row {index}")
+        if (
+            not isinstance(seat, int)
+            or isinstance(seat, bool)
+            or seat not in plan["execution"]["seats"]
+        ):
+            raise ValueError(f"invalid exact-int seat at row {index}")
+        key = (scenario, opponent, seed, seat)
         actual_keys.append(key)
         if row.get("error") is not None:
             raise ValueError(f"runner/framework error at row {index}: {row['error']}")
         if row.get("candidate_status") != "DONE" or row.get("opponent_status") != "DONE":
             raise ValueError(f"non-DONE status at row {index}")
-        if row.get("hidden_abnormal_status") not in (None, False):
+        if "hidden_abnormal_status" not in row:
+            raise ValueError(f"missing hidden abnormal status at row {index}")
+        if row["hidden_abnormal_status"] is not None:
             raise ValueError(f"hidden abnormal status at row {index}")
+        _require_typed_json_equal(
+            row.get("runtime_make_callable"),
+            make_callable_contract,
+            f"row {index} runtime make callable",
+        )
         for field in ("candidate_money", "opponent_money", "elapsed_seconds"):
             if not _finite_number(row.get(field)):
                 raise ValueError(f"nonfinite {field} at row {index}")
+        if row["elapsed_seconds"] < 0:
+            raise ValueError(f"negative elapsed_seconds at row {index}")
         expected_configuration = {
             "episodeSteps": plan["engine"]["episode_steps"],
             **contract["scenarios"][key[0]],
             "seed": key[2],
         }
-        _require_equal(
+        _require_typed_json_equal(
             row.get("effective_configuration"), expected_configuration, f"row {index} config"
         )
         _require_equal(
@@ -1620,10 +1965,37 @@ def validate_report_files(
             _json_sha256(expected_configuration),
             f"row {index} config SHA",
         )
-        _require_equal(row.get("resolved_environment_seed"), key[2], f"row {index} seed")
+        resolved_seed = row.get("resolved_environment_seed")
+        if (
+            not isinstance(resolved_seed, int)
+            or isinstance(resolved_seed, bool)
+            or resolved_seed != key[2]
+        ):
+            raise ValueError(f"row {index} resolved environment seed mismatch")
+        environment = row.get("environment_configuration")
+        if not isinstance(environment, dict):
+            raise TypeError(f"row {index} environment_configuration must be an object")
         env_sha = row.get("environment_configuration_sha256")
-        if not isinstance(env_sha, str) or not re.fullmatch(r"[0-9A-F]{64}", env_sha):
-            raise ValueError(f"row {index} environment config SHA missing")
+        if env_sha != _json_sha256(environment):
+            raise ValueError(f"row {index} environment config SHA mismatch")
+        if "seed" not in environment:
+            raise ValueError(f"row {index} environment seed missing")
+        environment_seed = environment["seed"]
+        if environment_seed is not None:
+            raise ValueError(f"row {index} environment seed contradiction")
+        if "randomSeed" in environment:
+            raise ValueError(f"row {index} contradictory randomSeed")
+        expected_environment_configuration = {
+            **environment_base,
+            **contract["scenarios"][key[0]],
+            "episodeSteps": plan["engine"]["episode_steps"],
+            "seed": environment["seed"],
+        }
+        _require_typed_json_equal(
+            environment,
+            expected_environment_configuration,
+            f"row {index} environment configuration",
+        )
 
     actual_set = set(actual_keys)
     if len(actual_keys) != len(actual_set):
@@ -1635,9 +2007,33 @@ def validate_report_files(
     summary = report.get("summary")
     if not isinstance(summary, dict):
         raise TypeError("runner summary missing")
-    if summary.get("failed_raw_games") != 0:
+    failed_rows = sum(
+        row.get("error") is not None
+        or row.get("candidate_status") != "DONE"
+        or row.get("opponent_status") != "DONE"
+        or not _finite_number(row.get("candidate_money"))
+        or not _finite_number(row.get("opponent_money"))
+        for row in games
+    )
+    failed_raw_games = summary.get("failed_raw_games")
+    if (
+        not isinstance(failed_raw_games, int)
+        or isinstance(failed_raw_games, bool)
+        or failed_raw_games != failed_rows
+        or failed_raw_games != 0
+    ):
         raise ValueError("runner summary reports failures")
-    if summary.get("hidden_abnormal_status_failures", 0) != 0:
+    if "hidden_abnormal_status_failures" not in summary:
+        raise ValueError("runner summary missing hidden abnormal status failures")
+    hidden_failures = summary["hidden_abnormal_status_failures"]
+    if (
+        not isinstance(hidden_failures, int)
+        or isinstance(hidden_failures, bool)
+        or hidden_failures != sum(
+            row["hidden_abnormal_status"] is not None for row in games
+        )
+        or hidden_failures != 0
+    ):
         raise ValueError("runner summary reports hidden abnormal status")
     return games
 
@@ -1713,6 +2109,7 @@ def summarize_rows(rows: Sequence[Mapping[str, Any]], bootstrap: Mapping[str, An
         "by_opponent_match_score": _group_match(rows, "opponent"),
         "by_opponent_mean_margin": _group_margin(rows, "opponent"),
         "by_scenario_match_score": _group_match(rows, "scenario"),
+        "by_scenario_mean_margin": _group_margin(rows, "scenario"),
     }
     if not all(
         _finite_number(value)
@@ -1723,6 +2120,7 @@ def summarize_rows(rows: Sequence[Mapping[str, Any]], bootstrap: Mapping[str, An
             "by_opponent_match_score",
             "by_opponent_mean_margin",
             "by_scenario_match_score",
+            "by_scenario_mean_margin",
         }
     ):
         raise ValueError("derived metric is nonfinite")
@@ -1738,6 +2136,8 @@ def evaluate_thresholds(summary: Mapping[str, Any], phase: str) -> dict[str, Any
         "mean_margin": summary["mean_margin"] >= thresholds["minimum_mean_margin"],
         "each_opponent": min(summary["by_opponent_match_score"].values())
         >= thresholds["minimum_each_opponent_match_score"],
+        "each_opponent_mean_margin": min(summary["by_opponent_mean_margin"].values())
+        >= thresholds["minimum_each_opponent_mean_margin"],
         "runtime_p99": summary["game_runtime_p99_seconds"]
         <= thresholds["maximum_game_runtime_p99_seconds"],
         "runtime_max": summary["game_runtime_max_seconds"]
@@ -1748,6 +2148,9 @@ def evaluate_thresholds(summary: Mapping[str, Any], phase: str) -> dict[str, Any
         checks["each_scenario"] = min(summary["by_scenario_match_score"].values()) >= thresholds[
             "minimum_each_scenario_match_score"
         ]
+        checks["each_scenario_mean_margin"] = min(
+            summary["by_scenario_mean_margin"].values()
+        ) >= thresholds["minimum_each_scenario_mean_margin"]
     return {"verdict": "PASS" if all(checks.values()) else "NO_GO", "checks": checks}
 
 

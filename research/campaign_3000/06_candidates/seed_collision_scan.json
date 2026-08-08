@@ -22,14 +22,14 @@
     "range_cap": 100000
   },
   "scan": {
-    "enumerated_rg_files": 402,
-    "scanned_text_files": 382,
-    "seed_bearing_files": 199,
-    "seed_evidence_files_sha256": "5633FAAD4C55DE4C6233C89AAFD084AF7B7B7A44D53911D207BE9DE530603EE4",
-    "observed_seed_count": 1692,
+    "enumerated_rg_files": 440,
+    "scanned_text_files": 373,
+    "seed_bearing_files": 197,
+    "seed_evidence_files_sha256": "8D2CF7AC412FD208EED40427DFCC894FB9ACDFCA7DD062FACB76DBD7854173C6",
+    "observed_seed_count": 1693,
     "observed_seed_min": 0,
     "observed_seed_max": 2111044932,
-    "observed_seed_values_sha256": "3A9183A27AC8484A5F45C055924B6A7778C9B7FEF8CC45C70F99AB82AB914CCC",
+    "observed_seed_values_sha256": "10905A366D79E4C3B305BF5EDB9C3DDF6C1BA2DC2341C3CB335E70EF8325C152",
     "last_observed_campaign_ranges_before_reservation": [
       [43000, 43015],
       [44000, 44063],

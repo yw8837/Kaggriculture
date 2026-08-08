@@ -3,15 +3,15 @@
   "candidate_evaluation_prerequisites": {
     "candidate_gate": {
       "path": "research/campaign_3000/06_candidates/gate_config.json",
-      "sha256": "F9E82C8F1EE992FB2F82B3EB8DE476410A0695E05C06C35AD951A21AAE8750DB"
+      "sha256": "9D88AA8DEE2021F458896D681FB0958B6F26772F03ABB4507EC888C80970307D"
     },
     "candidate_manifest": {
       "path": "research/campaign_3000/06_candidates/manifest.json",
-      "sha256": "FBF560F617788022552B2115023639F81CB49E01E67B90AACE2291DA72DECE69"
+      "sha256": "1A2765982DB4FD3EC648BD9A68CC4F331761BF100E63950E02F57463BCCBCA9C"
     },
     "candidate_plan": {
       "path": "research/campaign_3000/06_candidates/candidate_plan.json",
-      "sha256": "7167430237ACFF5846C8DFD6F948DC846BC5DB3BCBFCE973505DF3E86A0D33C8"
+      "sha256": "F57E076D11A91B2E344056EC74ECCA430F80EF3922D07A9001479B96DDEE5D1C"
     },
     "development_result": {
       "required": true,
@@ -55,7 +55,7 @@
       },
       "prepush": {
         "path": "Kag_01 - Tetsu v16 Exact/prepush.json",
-        "sha256": "1AAEC168EBD026810BBF8F9965DCA8DE0D8DB578914944C71A953D8177A43140"
+        "sha256": "BFF4273DD74F91DE810AA246863E09FFD37EB184892B262F246B17B3980FDE73"
       },
       "sequence": "Kag_01",
       "source_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
@@ -88,7 +88,7 @@
       },
       "prepush": {
         "path": "Kag_02 - Kaito v22 Price Impact/prepush.json",
-        "sha256": "2FE18CE217182ACC3EF49C1225DD8BA24C5D8F7E98D0CCFD7C7EC8C9DCF94443"
+        "sha256": "5E567845C871230C717983F907A06DE7B9D976FF4B9249F97D070C8570DD09B3"
       },
       "sequence": "Kag_02",
       "source_sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
@@ -154,7 +154,7 @@
     },
     "spec": {
       "path": "research/campaign_3000/07_release/release_spec.json",
-      "sha256": "BBE3B7DA2C14B5C4DD752AE67C55FD1898E1B9DF613162DA7FCAEC32009680F4"
+      "sha256": "516CB6A5FFC73467062708EA0E7228B406FA7EE58F21D953E91C772F49F3EBBB"
     },
     "status": "PENDING_FINAL_GIT_FREEZE"
   }

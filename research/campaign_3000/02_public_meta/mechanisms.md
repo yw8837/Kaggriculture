@@ -109,6 +109,12 @@ This is narrower and more falsifiable than the crowded “robust market” label
 6. Treat public replay/code as hypothesis-generation and opponent construction. It is not fresh promotion evidence.
 7. Preserve Apache-2.0 license and attribution only for exact reused bytes; `UNVERIFIED` pages and most GitHub repositories are not safe reuse sources.
 
+## Public DQN model: inspected but not integratable
+
+The official text-search hit `saitejabandaruin/kaggriculture-dqn-weights` v8 does not supply an executable Kaggriculture policy contract. Safe static inspection found a two-layer 10→64→4 state dict, while its README and API usage both show a 10→256→128→4 network with incompatible parameter names. No observation encoder or mapping from four indices to the structured farmer/hands/market action exists in the files.
+
+This creates one useful design constraint rather than a candidate mechanism: learned-policy claims are meaningless here unless encoder, macro-action decoder, module source, checkpoint, engine, reward, and both-seat evaluation are frozen together. The checkpoint itself was not executed, unpickled, copied into a submission, or used to modify `Kag_01`/`Kag_02`. Exact evidence and falsifiers are in `model_v8/`.
+
 ## Public content implication
 
 If a public Code/Discussion piece is later prepared, it should teach a deliberately weaker, already-audited historical mechanism rather than disclose `Kag_01`/`Kag_02` production bytes. A useful SEO title can truthfully center on “Kaggriculture 1.32.6 Town Rebalance,” “Replay-Route Baseline,” or “Price-Impact Safety,” but page-score claims must cite the exact version and observation time. No publication is authorized by this report.

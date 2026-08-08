@@ -1,0 +1,59 @@
+{
+  "claim_review": {
+    "api_description": "UNVERIFIED_MARKETING_CLAIM_NO_TRAINING_RECEIPT",
+    "five_million_frames": "UNVERIFIED_NO_TRAINING_LOG_OR_ENVIRONMENT_BINDING",
+    "initial_elo_1200_plus": "UNVERIFIED_NO_SUBMISSION_OR_EVALUATION_RECEIPT",
+    "strong_baseline": "UNVERIFIED_AND_NOT_USED_AS_COMPETITIVE_EVIDENCE"
+  },
+  "decision": "UNUSABLE_WITH_PUBLISHED_INTERFACE_AND_UNVERIFIED_FOR_KAGGRICULTURE",
+  "design_impact": {
+    "candidate_delta": "NONE",
+    "reason": "The model does not provide an executable observation encoder or composite-action decoder, and its published network is incompatible with its own checkpoint.",
+    "safe_lesson": "Any future learned policy must freeze the exact nested-observation encoder, macro/action decoder, network source, checkpoint, training engine, and both-seat evaluation receipts as one contract.",
+    "used_in_kag_01_or_kag_02": false
+  },
+  "environment_contract": {
+    "action": "object with farmer action, zero-or-more hand actions, and zero-or-more market orders in the same turn",
+    "action_default": {
+      "farmer": [
+        "PASS"
+      ],
+      "hands": [],
+      "market": []
+    },
+    "installed_kaggriculture_json_bytes": 5877,
+    "installed_kaggriculture_json_sha256": "7F196F4AAF9B4E482FBD61BA4BF19F5CEC4DA0F81938ECE756954035A65C0BB5",
+    "observation_top_level": [
+      "player",
+      "farms",
+      "private",
+      "market",
+      "town",
+      "day",
+      "hour"
+    ],
+    "pinned_package": "kaggle-environments==1.32.6"
+  },
+  "falsifiers_that_would_allow_reassessment": [
+    "Exact source for a module whose names and tensor shapes match fc1(10,64) and fc2(64,4), including activation semantics.",
+    "Exact ordered and normalized 10-feature encoder from the nested Kaggriculture observation.",
+    "Exact mapping from four Q-value indices to legal composite farmer/hands/market actions, including dynamic hand counts and market quantities.",
+    "Hash-pinned training engine, reward, replay/training logs, seed protocol, and both-seat evaluation against known controls.",
+    "A checkpoint-loading and 720-turn execution receipt for those exact bytes."
+  ],
+  "missing_contracts": [
+    "10-feature encoder and normalization",
+    "four-index action or macro-action mapping",
+    "compatible module source and activation",
+    "reward definition and training configuration",
+    "training logs or claimed 5M-frame receipt",
+    "Elo/submission/evaluation provenance"
+  ],
+  "observed_incompatibilities": [
+    "README advertises a 10->256->128->4 Sequential with six parameter keys; checkpoint has a 10->64->4 two-layer state dict with four keys.",
+    "README example points at version /3/ while the current public model is version 8.",
+    "API usage advertises the same 256/128 architecture under module name network, which also cannot match fc1/fc2 keys.",
+    "Four scalar Q outputs have no supplied mapping to Kaggriculture's structured, variable-cardinality action object."
+  ],
+  "schema_version": 1
+}

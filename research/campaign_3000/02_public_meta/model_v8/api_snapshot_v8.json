@@ -1,0 +1,46 @@
+{
+  "capture": {
+    "command_get": "kaggle models get saitejabandaruin/kaggriculture-dqn-weights",
+    "command_files": "kaggle models instances versions files saitejabandaruin/kaggriculture-dqn-weights/PyTorch/pytorch-v1/8 --format json",
+    "retrieved_at_utc": "2026-08-08T21:45:23.885Z",
+    "transport": "OFFICIAL_KAGGLE_CLI_READ_ONLY"
+  },
+  "model": {
+    "author": "Sai Teja Bandaru",
+    "description": "Pre-trained PyTorch weights for the Kaggriculture simulation. This DQN baseline provides a robust starting point for reinforcement learning agents in the Kaggriculture environment. Example usage includes loading these weights into a PyTorch DQN model and continuing training or evaluating the policy.",
+    "id": 737778,
+    "provenance_sources_sha256": "8E9AFCD8359C49C7F55072F63F6C459E823C9F9AAD13506A933F4DADCFE78AD0",
+    "ref": "saitejabandaruin/kaggriculture-dqn-weights",
+    "subtitle": "Starter PyTorch DQN Baseline",
+    "title": "Kaggriculture DQN Weights",
+    "update_time": "2026-08-08T19:45:18.732Z",
+    "url": "https://www.kaggle.com/models/saitejabandaruin/kaggriculture-dqn-weights",
+    "vote_count": 7
+  },
+  "schema_version": 1,
+  "variation": {
+    "fine_tunable": true,
+    "framework": "MODEL_FRAMEWORK_PY_TORCH",
+    "id": 726072,
+    "license_name": "Apache 2.0",
+    "model_instance_type": "MODEL_INSTANCE_TYPE_BASE_MODEL",
+    "slug": "pytorch-v1",
+    "total_uncompressed_bytes": 1070833,
+    "url": "https://www.kaggle.com/models/saitejabandaruin/kaggriculture-dqn-weights/PyTorch/pytorch-v1",
+    "usage_observed": {
+      "action_dim": 4,
+      "declared_layers": [
+        "Linear(10,256)",
+        "ReLU",
+        "Linear(256,128)",
+        "ReLU",
+        "Linear(128,4)"
+      ],
+      "module_attribute": "network",
+      "state_dim": 10
+    },
+    "usage_sha256": "FB0BDE95020B4E1493F1DAFC71A6379CD6CCDDBA0321A2268F357ADB7697CC48",
+    "version_id": 958411,
+    "version_number": 8
+  }
+}
