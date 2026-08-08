@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "binding_protocol": "clean_two_stage_S_to_E_v1",
-  "implementation_commit": "PENDING",
+  "implementation_commit": "564e6634e286e1e6744d135c9e251d5f35e8771f",
   "input_manifest": {
     "path": "research/campaign_3000/06_candidates/manifest.json",
     "bytes": 4376,
