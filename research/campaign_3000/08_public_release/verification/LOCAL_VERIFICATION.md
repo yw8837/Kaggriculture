@@ -29,11 +29,11 @@ Two consecutive self-contained `build` runs returned `identical=True` for every 
 
 ```text
 artifact/kaggriculture_fixed_trace_safety_baseline.tar.gz  2730084026B6C0EA68D1D54FF469E1B80D9ABF9BEF43285B15366CF13CF8ACCB
-external_action_payload.json                              8623D9C4D3B2E40FE68E97C2525A0E97E1E382F1B9C20338DD32D6594BE2AB15
+external_action_payload.json                              B970E56EDEBC9A7E35659977F16E86CDB007C59FBA00F615E5FA5992FE82C633
 kaggle_code_draft/kaggriculture-fixed-trace-safety-baseline.ipynb  F24F4939C8EC591D5794C650923E583658F0BE05E47FA7A6F049D53664F74153
 kaggle_code_draft/kernel-metadata.json                    A6550E25FE46FBB82E6722AA73D1458F1850D2B621ABCADC34F286EDAC0FFC7F
 public_source/main.py                                     81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922
-release_manifest.json                                     6D996F1DF55F1D259F0C37513B5A39A6B6C4A4B3E1CF958CECBD32DD2F07FFF6
+release_manifest.json                                     82560413B968544B03038868AC2B2C61C825E37571FB3B23EA6560C3A2AF1F9C
 ```
 
 The archive member list was exactly `['main.py']`, and its payload hash matched the public source.

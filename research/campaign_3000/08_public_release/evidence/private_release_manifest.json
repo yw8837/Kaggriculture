@@ -55,7 +55,7 @@
       },
       "prepush": {
         "path": "Kag_01 - Tetsu v16 Exact/prepush.json",
-        "sha256": "093C9199388B82B8A083A014684E7011D693D7A89DA06CA1B0D0F6002B93D2A7"
+        "sha256": "1AAEC168EBD026810BBF8F9965DCA8DE0D8DB578914944C71A953D8177A43140"
       },
       "sequence": "Kag_01",
       "source_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
@@ -88,7 +88,7 @@
       },
       "prepush": {
         "path": "Kag_02 - Kaito v22 Price Impact/prepush.json",
-        "sha256": "3EA06F8A1D2944B9AD5E1F1678C7B8D7B6798705A2CDFE8D55954DD90C7FD8E0"
+        "sha256": "2FE18CE217182ACC3EF49C1225DD8BA24C5D8F7E98D0CCFD7C7EC8C9DCF94443"
       },
       "sequence": "Kag_02",
       "source_sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
@@ -146,11 +146,11 @@
     "binding": "WORKTREE_PINNED",
     "builder": {
       "path": "research/campaign_3000/07_release/build_release.py",
-      "sha256": "F31DAFF27A7EEF2FB4EE34E56F7DB060CFB549B0D42611717528C6832D8FC9DF"
+      "sha256": "13FFCD70149E84774E8033C8496BC86F4502C091DE7A4FF11E1DA789067AB867"
     },
     "git_head": {
-      "claim": "BASE_HEAD_ONLY_NOT_COMMIT_CONTAINMENT",
-      "commit": "cec6534dff5004d83039521a04a378c486741c06"
+      "claim": "NO_COMMIT_CONTAINMENT_CLAIM_LOCAL_BUILD_ONLY",
+      "commit": "PENDING_FINAL_GIT_FREEZE"
     },
     "spec": {
       "path": "research/campaign_3000/07_release/release_spec.json",

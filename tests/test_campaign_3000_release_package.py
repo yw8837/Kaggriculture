@@ -104,6 +104,52 @@ def test_two_build_roots_are_byte_identical(builder: ModuleType, tmp_path: Path)
     ]["sha256"]
 
 
+def test_local_build_is_independent_of_observed_git_head(
+    builder: ModuleType,
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    original_run = builder.subprocess.run
+    mocked_head = {"value": "a" * 40}
+    head_queries: list[str] = []
+
+    def run_with_mocked_head(command: list[str], *args: object, **kwargs: object) -> object:
+        if command[-2:] == ["rev-parse", "HEAD"]:
+            head_queries.append(mocked_head["value"])
+            return subprocess.CompletedProcess(
+                command,
+                0,
+                stdout=f"{mocked_head['value']}\n",
+                stderr="",
+            )
+        return original_run(command, *args, **kwargs)
+
+    monkeypatch.setattr(builder.subprocess, "run", run_with_mocked_head)
+    first_root = tmp_path / "head-a"
+    second_root = tmp_path / "head-b"
+    builder.build_all(PROJECT_ROOT, first_root)
+    mocked_head["value"] = "b" * 40
+    builder.build_all(PROJECT_ROOT, second_root)
+
+    assert head_queries == []
+    assert file_map(first_root) == file_map(second_root)
+    manifest = json.loads((first_root / "release_manifest.json").read_bytes())
+    bindings = [manifest["worktree_binding"]]
+    for candidate in manifest["candidates"]:
+        prepush = json.loads((first_root / candidate["prepush"]["path"]).read_bytes())
+        bindings.append(prepush["worktree_binding"])
+    for binding in bindings:
+        assert binding["git_head"] == {
+            "commit": "PENDING_FINAL_GIT_FREEZE",
+            "claim": "NO_COMMIT_CONTAINMENT_CLAIM_LOCAL_BUILD_ONLY",
+        }
+        commit = binding["git_head"]["commit"]
+        assert not (
+            len(commit) == 40
+            and all(character in "0123456789abcdef" for character in commit)
+        )
+
+
 def test_archives_are_exact_licensed_and_attributed(
     builder: ModuleType, tmp_path: Path
 ) -> None:

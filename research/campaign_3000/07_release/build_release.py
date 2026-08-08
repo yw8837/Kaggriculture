@@ -618,19 +618,6 @@ def _validate_official_capture_receipt(
     return receipt_spec
 
 
-def _git_head(project_root: Path) -> str:
-    completed = subprocess.run(
-        ["git", "-C", str(project_root), "rev-parse", "HEAD"],
-        check=True,
-        capture_output=True,
-        text=True,
-    )
-    commit = completed.stdout.strip()
-    if len(commit) != 40 or any(character not in "0123456789abcdef" for character in commit):
-        raise ValueError("Git HEAD is not a 40-hex commit")
-    return commit
-
-
 def _relative_or_absolute(path: Path, project_root: Path) -> str:
     resolved = path.resolve()
     try:
@@ -648,8 +635,8 @@ def _worktree_binding(
         "binding": "WORKTREE_PINNED",
         "status": "PENDING_FINAL_GIT_FREEZE",
         "git_head": {
-            "commit": _git_head(project_root),
-            "claim": "BASE_HEAD_ONLY_NOT_COMMIT_CONTAINMENT",
+            "commit": "PENDING_FINAL_GIT_FREEZE",
+            "claim": "NO_COMMIT_CONTAINMENT_CLAIM_LOCAL_BUILD_ONLY",
         },
         "builder": {
             "path": _relative_or_absolute(builder_path, project_root),

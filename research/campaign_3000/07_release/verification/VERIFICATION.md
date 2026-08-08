@@ -5,13 +5,16 @@ Run, submission, publication, or other external mutation was performed.
 
 Status: `PENDING_FINAL_GIT_FREEZE`. External action gate: `HOLD`. This local
 receipt does not claim that the worktree bytes are contained in a final commit.
+Local manifests do not observe live Git HEAD: they record the fixed
+`PENDING_FINAL_GIT_FREEZE` marker with
+`NO_COMMIT_CONTAINMENT_CLAIM_LOCAL_BUILD_ONLY`.
 
 ## Commands and raw outcomes
 
 ```text
 > .\.venv\Scripts\python.exe -m pytest -q -p no:cacheprovider tests\test_campaign_3000_release_package.py
-...........................                                              [100%]
-27 passed in 3.58s
+............................                                             [100%]
+28 passed in 2.94s
 
 > .\.venv\Scripts\python.exe -m ruff check research\campaign_3000\07_release\build_release.py tests\test_campaign_3000_release_package.py
 All checks passed!
@@ -33,10 +36,13 @@ prerequisites, and external-action HOLD. Safety tests reject project
 root/ancestor, `src`, `tests`, Git metadata, frozen-input ancestors, symlink,
 and non-owned nonempty output roots before mutation. Atomicity tests preserve an
 old output byte-for-byte after both an injected second-candidate build failure
-and an injected staging-to-output `os.replace` failure. A first PowerShell
-hash-map attempt used an unavailable framework method and produced no valid
-comparison; the compatible rerun above is the reported evidence. Earlier
-provisional 06 pins were discarded; the final 06 manifest is re-pinned below.
+and an injected staging-to-output `os.replace` failure. A commit-independence
+regression supplies two different mocked HEAD values, proves the builder never
+queries either value, compares every output byte, and rejects any 40-hex local
+commit claim. A first PowerShell hash-map attempt used an unavailable framework
+method and produced no valid comparison; the compatible rerun above is the
+reported evidence. Earlier provisional 06 pins were discarded; the final 06
+manifest is re-pinned below.
 
 ## Generated local-only outputs
 
@@ -45,12 +51,12 @@ provisional 06 pins were discarded; the final 06 manifest is re-pinned below.
 | `Kag_01 - Tetsu v16 Exact.tar.gz` | 19,099 | `184F687C474933A7215DB97E8C5A5F823AE79233EEA42D04B70EABC001BF9E16` |
 | `Kag_01 - Tetsu v16 Exact.ipynb` | 33,912 | `0C8D17DA3266804597EA753A401FDEAE8AAF4E04CDE305C2E7F9C6FF61CDF895` |
 | Kag_01 `kernel-metadata.json` | 428 | `F58F72FDC99FB5FB828732EF93546F0285F02024643884D88EAFCAF768B98746` |
-| Kag_01 `prepush.json` | 5,560 | `093C9199388B82B8A083A014684E7011D693D7A89DA06CA1B0D0F6002B93D2A7` |
+| Kag_01 `prepush.json` | 5,551 | `1AAEC168EBD026810BBF8F9965DCA8DE0D8DB578914944C71A953D8177A43140` |
 | `Kag_02 - Kaito v22 Price Impact.tar.gz` | 17,360 | `37EA53D3046E3D1DA914F8A89C6F4BB02E240E1BB85857BDA149273FC4DD974C` |
 | `Kag_02 - Kaito v22 Price Impact.ipynb` | 31,126 | `01003AADA83D0688DB40A01B19D4886871EE0A2317A5F8F897E82FB78130A431` |
 | Kag_02 `kernel-metadata.json` | 449 | `A32152D8D2DA2BE06D08C7F2C01C401BA84EA7B4BC8E69F189110FC54A3EDCFA` |
-| Kag_02 `prepush.json` | 5,612 | `3EA06F8A1D2944B9AD5E1F1678C7B8D7B6798705A2CDFE8D55954DD90C7FD8E0` |
-| `release_manifest.json` | 6,998 | `4BD2FC11D0D4554B5D1488CD44DB56F7C94203BF3A0868304E602AD124A9AE03` |
+| Kag_02 `prepush.json` | 5,603 | `2FE18CE217182ACC3EF49C1225DD8BA24C5D8F7E98D0CCFD7C7EC8C9DCF94443` |
+| `release_manifest.json` | 6,989 | `DCF7C3CD881941386480746D7BF1F505BF0F067D3021D8274B613861D48B7625` |
 
 ## Archive members
 
@@ -71,7 +77,7 @@ names. Gzip mtime and embedded filename are also fixed to zero/empty.
 
 | Input | SHA-256 |
 |---|---|
-| `build_release.py` | `F31DAFF27A7EEF2FB4EE34E56F7DB060CFB549B0D42611717528C6832D8FC9DF` |
+| `build_release.py` | `13FFCD70149E84774E8033C8496BC86F4502C091DE7A4FF11E1DA789067AB867` |
 | `release_spec.json` | `BBE3B7DA2C14B5C4DD752AE67C55FD1898E1B9DF613162DA7FCAEC32009680F4` |
 | `source/tetsu_v16_main.py` | `997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6` |
 | `source/kaito_v22_main.py` | `62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A` |
@@ -89,7 +95,7 @@ names. Gzip mtime and embedded filename are also fixed to zero/empty.
 | `06_candidates/candidate_plan.json` | `7167430237ACFF5846C8DFD6F948DC846BC5DB3BCBFCE973505DF3E86A0D33C8` |
 | `06_candidates/gate_config.json` | `F9E82C8F1EE992FB2F82B3EB8DE476410A0695E05C06C35AD951A21AAE8750DB` |
 | `06_candidates/manifest.json` | `FBF560F617788022552B2115023639F81CB49E01E67B90AACE2291DA72DECE69` |
-| `tests/test_campaign_3000_release_package.py` | `DEE69F4E90C8C0962870F0782A2071015A05C52EE1A8EB144F4E68FD489E7E85` |
+| `tests/test_campaign_3000_release_package.py` | `7CC752C8077D378C402D3579D6E3DE53627A19435065DC24A89D1A9FC0DA5406` |
 
 The immutable `TETSU_IP_VERDICT.md` retains its historical cutoff-era `dist/`
 path wording because the closed 06 plan pins its exact SHA-256. Clean-clone
