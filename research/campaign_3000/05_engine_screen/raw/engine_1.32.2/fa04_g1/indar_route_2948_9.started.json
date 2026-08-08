@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-08-08T18:32:48.903700+00:00",
+  "git_head_at_start": "72b12208dd8faf78df267738b017ec3a049334ea",
+  "candidate": "dist/campaign_3000_public_agents/indarkarhana__kaggriculture-verified-route-replay-2948-9.py",
+  "candidate_path": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\dist\\campaign_3000_public_agents\\indarkarhana__kaggriculture-verified-route-replay-2948-9.py",
+  "candidate_sha256_at_start": "18DD8CB938AE72CF6511F23189B8C128BE8092ED9EC3BAECDD3F9E75D6A7D03C",
+  "opponents": [
+    "fa04_g1"
+  ],
+  "opponent_paths": {
+    "fa04_g1": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\experiments\\source_snapshots\\fa04_top_trace\\G1_sell_guard.py"
+  },
+  "opponent_sha256_at_start": {
+    "fa04_g1": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+  },
+  "seeds": [
+    23000,
+    23001
+  ],
+  "seat_policy": "both seats",
+  "workers": 8,
+  "scenario_overrides": {
+    "default": {}
+  },
+  "effective_scenarios": {
+    "default": {
+      "episodeSteps": 720
+    }
+  },
+  "effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE"
+}

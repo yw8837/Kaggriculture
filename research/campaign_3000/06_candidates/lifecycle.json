@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "lifecycle_protocol": "auditor_exact_development_open_v1",
+  "state": "CLOSED",
+  "execution_commit": "PENDING",
+  "authority_receipt": {
+    "path": "dist/campaign_3000/authority/auditor_development_open.json",
+    "bytes": 0,
+    "sha256": "PENDING"
+  },
+  "auditor_open_delivery": {
+    "path": "dist/campaign_3000/authority/auditor_development_open.delivery.json",
+    "bytes": 0,
+    "sha256": "PENDING"
+  },
+  "phases": {
+    "Kag_01": {
+      "development": "CLOSED",
+      "confirmation": "HOLD",
+      "robustness": "HOLD"
+    },
+    "Kag_02": {
+      "development": "CLOSED",
+      "confirmation": "HOLD",
+      "robustness": "HOLD"
+    }
+  },
+  "external_actions": "HOLD",
+  "fresh_games_executed": 0
+}

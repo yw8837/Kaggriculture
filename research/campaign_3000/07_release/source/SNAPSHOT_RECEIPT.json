@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "snapshots": [
+    {
+      "path": "research/campaign_3000/07_release/source/tetsu_v16_main.py",
+      "bytes": 27244,
+      "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+      "origin": "tetsutani/adaptive-farming-strategy-for-kaggriculture, kernel 129434690, v16, cell 14 WRITEFILE_MAIN_PY",
+      "origin_source_sha256": "81DA966E92F9889836E22142FD7A60CEBEAEE81CB3C52661AA286AC8C727BAF9"
+    },
+    {
+      "path": "research/campaign_3000/07_release/source/kaito_v22_main.py",
+      "bytes": 18609,
+      "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+      "origin": "kaitofukami/44-46-strict-future-top-30-v22-price-impact, kernel 129916747, v2, cell 11 _AGENT_B85_PARTS via AST literal evaluation, Base85 decode, and zlib decompress",
+      "origin_source_sha256": "BE57F757AAAAFA37A1AAB1EB5FE827925144EC7F3825A6236053329C15F2E859"
+    }
+  ]
+}

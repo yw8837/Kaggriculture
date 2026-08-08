@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "pass": true,
+  "score": 2927.4,
+  "portfolio": [
+    "kaito_v22",
+    "ray_c45"
+  ],
+  "candidate_rows": [
+    {
+      "source_sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+      "license": "Apache 2.0",
+      "public_score": 2957.6,
+      "g1_match_score": 1.0,
+      "status": "AUDIT_CANDIDATE"
+    },
+    {
+      "source_sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73",
+      "license": "Apache 2.0",
+      "public_score": 2927.4,
+      "g1_match_score": 1.0,
+      "status": "AUDIT_CANDIDATE"
+    }
+  ],
+  "failure_reasons": [],
+  "claim_boundary": "This selects an immediately auditable private-SaveRun portfolio. It is not a local promotion verdict or a 3000-rating guarantee.",
+  "input_hashes": {
+    "public_inventory_sha256": "E510D00AB0AFB35E06B90EFD8EB8CC96DA08F29D8398DF682CDDDD060A7BEEC1",
+    "engine_summary_sha256": "193FB33CA537681E510C74C9E6ED947CD1FB0D806911BB1C93AF95AC8C50D94F",
+    "ray_addendum_summary_sha256": "991FA149FE4ACBF38F82814A2D5FACA28F02188732CCFEEFEE565FB28018932A"
+  },
+  "evaluated_at_utc": "2026-08-08T18:49:54.811645Z"
+}

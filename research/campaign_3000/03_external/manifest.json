@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-08-08T18:13:59.3928291Z",
+  "lane": "external_methods_inventory",
+  "author_role": "internal subordinate researcher; not independent auditor",
+  "git_head_observed": "72b12208dd8faf78df267738b017ec3a049334ea",
+  "state": "UNFROZEN_UNTRACKED_CAMPAIGN_WORKTREE",
+  "external_writes": 0,
+  "upload_saverun_submit_publication_authority": "NONE",
+  "independent_audit_status": "NOT_REQUESTED_FOR_THESE_BYTES",
+  "dirty_inventory_observed": [
+    "M src/kaggriculture_lab/evaluation/runner.py",
+    "M tests/test_runner.py",
+    "?? .claude/",
+    "?? .serena/",
+    "?? config/",
+    "?? research/"
+  ],
+  "validation": {
+    "query_jsonl_lines": 28,
+    "source_jsonl_lines": 35,
+    "hypothesis_cards": 4,
+    "json_parse_errors": 0,
+    "duplicate_query_ids": 0,
+    "duplicate_source_ids": 0,
+    "missing_hypothesis_source_refs": 0
+  },
+  "files": [
+    {
+      "path": "competition_cases.md",
+      "bytes": 7952,
+      "sha256": "92DF565EF7A3A82AFE5DFE62CF168531AB968A061C07F6BE079B1838127AF0AA"
+    },
+    {
+      "path": "hypothesis_cards.json",
+      "bytes": 10058,
+      "sha256": "F26077725866746BAC99B10F1251A4864EA7591380AB0413E9EC34B8C147CAF6"
+    },
+    {
+      "path": "paper_mechanisms.md",
+      "bytes": 8073,
+      "sha256": "C8C8119C581E9504EFF1546A9D51F4AAA59E35FEC3366AA5CCCD5C540A828A33"
+    },
+    {
+      "path": "query_log.jsonl",
+      "bytes": 9313,
+      "sha256": "4CFA2FDD739D9DBF150F82D29261E4FDD315F47FBB15D909F73A7AA459E49D7B"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2283,
+      "sha256": "2D7F5052ADA9DE1556233981FEDAB581B213D4D0747B469DECDA54DA21A0D604"
+    },
+    {
+      "path": "source_inventory.jsonl",
+      "bytes": 36443,
+      "sha256": "EA486E092CB4961CE1BD3B4DDCA9365B2CD04AB10BBC873C2062340D074AA557"
+    },
+    {
+      "path": "tool_and_coverage_evidence.md",
+      "bytes": 6803,
+      "sha256": "3203E54673C57ADF212AD51D9AFDBA800424AC86759DFC01C36285582C85C3D1"
+    }
+  ],
+  "manifest_self_hash": null,
+  "notes": [
+    "Manifest does not self-hash.",
+    "The parent task must freeze these exact bytes in a clean commit before independent audit.",
+    "Sibling public-meta page claims were integrated at 2026-08-08T18:08Z; public code was not executed in this lane.",
+    "No 3000-point, medal or top-3 guarantee is made."
+  ]
+}

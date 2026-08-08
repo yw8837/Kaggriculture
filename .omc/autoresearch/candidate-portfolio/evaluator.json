@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "command": ".\\.venv\\Scripts\\python.exe research\\campaign_3000\\04_synthesis\\evaluate_portfolio.py --portfolio <candidate_a> <candidate_b> --output <evaluation.json>",
+  "required_boolean": "pass",
+  "optional_numeric": "score",
+  "direction": "higher_is_better",
+  "max_runtime_seconds": 600,
+  "terminal_condition": "first passing portfolio"
+}

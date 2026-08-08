@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Reproducible research, evaluation, and agents for Kaggriculture"
 requires-python = ">=3.12,<3.13"
 dependencies = [
-    "kaggle-environments==1.32.2",
+    "kaggle-environments==1.32.6",
     "numpy>=2.5.1",
     "pandas>=3.0.5",
     "pyarrow>=21.0.0",

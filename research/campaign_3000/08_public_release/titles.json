@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "selection_policy": {
+    "front_load": "Kaggriculture",
+    "required_intent": "Agent, Baseline, Evaluation, Strategy, or mechanism",
+    "benefit": "name a concrete learning value",
+    "forbidden": "clickbait or an unverified score claim"
+  },
+  "selected": {
+    "kaggle_code": "Kaggriculture Agent | Fixed Trace + Safe Selling",
+    "discussion": "Kaggriculture Strategy | Replay Agents, Sell Guards & Engine Drift"
+  },
+  "kaggle_code_shortlist": [
+    {
+      "title": "Kaggriculture Agent | Fixed Trace + Safe Selling",
+      "selected": true,
+      "search_intent": "find a readable Kaggriculture agent and safe-selling mechanism",
+      "specific_benefit": "auditable replay baseline with inventory-aware sell guards",
+      "score_claim": false
+    },
+    {
+      "title": "Kaggriculture Baseline | Replay Policy + Sell Guard",
+      "selected": false,
+      "search_intent": "find a Kaggriculture replay baseline",
+      "specific_benefit": "learn the plan-plus-guardrail pattern",
+      "score_claim": false
+    },
+    {
+      "title": "Kaggriculture Agent Guide | Deterministic Replay Baseline",
+      "selected": false,
+      "search_intent": "learn how a deterministic Kaggriculture agent works",
+      "specific_benefit": "visible source and reproducible packaging",
+      "score_claim": false
+    },
+    {
+      "title": "Kaggriculture Code | 719-Step Trace with Safety Guards",
+      "selected": false,
+      "search_intent": "inspect a fixed-trace Kaggriculture implementation",
+      "specific_benefit": "concrete trace and drift-guard anatomy",
+      "score_claim": false
+    }
+  ],
+  "discussion_shortlist": [
+    {
+      "title": "Kaggriculture Strategy | Replay Agents, Sell Guards & Engine Drift",
+      "selected": true,
+      "search_intent": "understand replay agents and version-sensitive evaluation",
+      "specific_benefit": "connects implementation guards with engine-drift evidence",
+      "score_claim": false
+    },
+    {
+      "title": "Kaggriculture Evaluation | Why Fixed Traces Break Across Engines",
+      "selected": false,
+      "search_intent": "evaluate Kaggriculture agents across engine versions",
+      "specific_benefit": "practical version-pinning and paired-test checklist",
+      "score_claim": false
+    },
+    {
+      "title": "Kaggriculture Agent Strategy | Open-Loop Plans, Closed-Loop Guards",
+      "selected": false,
+      "search_intent": "learn a reusable agent-design pattern",
+      "specific_benefit": "explains exactly where state-aware safeguards belong",
+      "score_claim": false
+    },
+    {
+      "title": "Kaggriculture Guide | Reproducible Replay-Agent Experiments",
+      "selected": false,
+      "search_intent": "run reproducible Kaggriculture experiments",
+      "specific_benefit": "both-seat, hash-pinned experiment ladder",
+      "score_claim": false
+    }
+  ],
+  "selection_rationale": "The selected Code title is compact and mechanism-specific. The selected Discussion title covers three high-intent concepts without claiming a rating: strategy, sell guards, and engine drift."
+}
+

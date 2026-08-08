@@ -42,6 +42,13 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest().upper()
 
 
+def _git_blob_sha256(commit: str, path: Path) -> str:
+    payload = subprocess.check_output(
+        ["git", "show", f"{commit}:{path.as_posix()}"], cwd=ROOT
+    )
+    return hashlib.sha256(payload).hexdigest().upper()
+
+
 def _json_sha256(value: object) -> str:
     payload = json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
     return hashlib.sha256(payload).hexdigest().upper()
@@ -190,6 +197,7 @@ def test_fa04_top_trace_gates_keep_score_target_as_an_unverified_goal() -> None:
 def test_fa04_execution_freeze_binds_tooling_license_replay_and_exact_design() -> None:
     config = json.loads(BOUNDARY.read_text(encoding="utf-8"))
     tooling = config["tooling"]
+    implementation_commit = config["implementation_commit"]
     for name in (
         "generator",
         "runner",
@@ -197,7 +205,9 @@ def test_fa04_execution_freeze_binds_tooling_license_replay_and_exact_design() -
         "runtime_generator",
         "gate_evaluator",
     ):
-        assert _sha256(ROOT / tooling[name]) == tooling[f"{name}_sha256"]
+        assert _git_blob_sha256(
+            implementation_commit, Path(tooling[name])
+        ) == tooling[f"{name}_sha256"]
     for name in ("third_party_license", "third_party_attribution", "runtime_replay"):
         entry = config["execution_freeze"][name]
         path = ROOT / entry["path"]

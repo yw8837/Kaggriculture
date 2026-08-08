@@ -14,9 +14,7 @@ This file is the durable user directive for the campaign. It must be read togeth
 
 ## Immediate ordered work
 
-1. Publish a useful Kaggriculture Discussion first.
-2. Publish a commented public baseline around the 1050 rating band second.
-3. Search, archive, analyze, and cross-check Kaggle Code and Discussions, GitHub, completed
+1. Search, archive, analyze, and cross-check Kaggle Code and Discussions, GitHub, completed
    algorithmic-agent competitions and hackathons, academic papers, official documentation,
    columns, and broad English/Korean web sources. Use Agent-Reach, Insane Search for blocked
    URLs, and available deep web search. Never claim literal exhaustive coverage without a saved
@@ -28,20 +26,23 @@ This file is the durable user directive for the campaign. It must be read togeth
    - Never generalize from one replay or one leader. Recheck mechanisms across several top users,
      seeds, seats, and time snapshots, and convert every retained pattern into a falsifiable local
      experiment without copying or publishing private production strategy.
-4. Build Fa_01 and Fa_02 as two distinct private hypotheses. Perform pattern analysis,
+2. Build Kag_01 and Kag_02 as two distinct private candidates. Perform pattern analysis,
    simulator inspection, paired both-seat experiments, held-out and adversarial validation,
    runtime checks, deterministic packaging, and independent review.
-5. Private Save & Run is the default stopping point. Competition submission happens only when
+3. After both private Save & Runs are verified, publish the useful Discussion first and the
+   deliberately weaker, commented public Code second.
+4. Private Save & Run is the default stopping point. Competition submission happens only when
    the user explicitly says to submit.
 
 ## Naming and release policy
 
 - The two initial baseline submissions remain unnumbered.
-- Production filenames are `Fa_XX - Short Description.tar.gz`, starting with Fa_01.
+- Production filenames are `Kag_XX - Short Description.tar.gz`, starting with Kag_01.
 - Keep the exact active and final production agents private.
 - When the private score band is stable, continue publishing older or ablated code below it.
-  The first public target is approximately 1050 while private candidates target 1200-level
-  ladder strength. Rating bands are targets, not guarantees.
+  The public payload must remain clearly below the two current private candidates. The current
+  private research target is 3000+ on the observed ladder, but no local or remote score is
+  guaranteed and exact upstream-version score claims must remain version-bound.
 - Public code must be genuinely useful, well commented, and honest about being a public
   baseline rather than the current private champion.
 - Treat public Discussion and Code titles as search/discovery assets. Front-load `Kaggriculture`,

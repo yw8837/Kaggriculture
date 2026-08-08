@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "run_id": "campaign_3000_ray_c45_addendum_v1",
+  "completed_at_utc": "2026-08-08T18:41:30.154375+00:00",
+  "git_head_at_end": "72b12208dd8faf78df267738b017ec3a049334ea",
+  "start_receipt": "research/campaign_3000/05_engine_screen_ray_c45_addendum/receipts/engine_1.32.6.started.json",
+  "start_receipt_sha256": "3AA7A1BEA01E09AF23A12FC5FF17A2C2E48E0306F6E290F1A42F99DBE4864356",
+  "cell_registry_sha256_at_end": "B6F2A9D16345625B72FAB7DD05A1E886D6D085DA29B1B20F0F8C74BBE1E215FD",
+  "sources_at_end": {
+    "files": {
+      "configs/fa_ab_seed_registry.json": {
+        "bytes": 14721,
+        "sha256": "A443626FF1E6FE2B84C9036454263AA4E8349C3E4ADE3686A6E449C3BA699C61"
+      },
+      "dist/campaign_3000_public_agents/boatlee__84-84-base-public-holdout-v14-clone-preemption.py": {
+        "bytes": 26304,
+        "sha256": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B"
+      },
+      "dist/campaign_3000_public_agents/kaitofukami__44-46-strict-future-top-30-v22-price-impact.py": {
+        "bytes": 18609,
+        "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A"
+      },
+      "dist/campaign_3000_public_agents/ray_c45.py": {
+        "bytes": 26545,
+        "sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73"
+      },
+      "dist/campaign_3000_public_agents/tetsutani__adaptive-farming-strategy-for-kaggriculture.py": {
+        "bytes": 27244,
+        "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+      },
+      "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py": {
+        "bytes": 197808,
+        "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+      },
+      "research/campaign_3000/05_engine_screen_ray_c45_addendum/run_addendum.py": {
+        "bytes": 25836,
+        "sha256": "32C21B928A7B7C98F76C88EEB16FEA97815CD96FCEECD36E334C1879D3A66197"
+      },
+      "research/campaign_3000/05_engine_screen_ray_c45_addendum/screen_config.json": {
+        "bytes": 4187,
+        "sha256": "F6AF82A81186A6F18CC80962ADA7E2E03A8FF0BE79727BC6B8A5B68F254362A6"
+      },
+      "src/kaggriculture_lab/evaluation/runner.py": {
+        "bytes": 20458,
+        "sha256": "8F35F4D52870DB06FDFF60D03665E234F4994DD18D17BDB2E7FBC5D7F9F21A39"
+      }
+    },
+    "notebook_inventory_row_canonical_sha256": "E53C34030EF89CA00C643C50F4764C2DFD90B65501B771831A4C09E78CF7F090",
+    "snapshot_sha256": "0B31DB137AEBE4764C6163ECAF29391AB38A4421B91A469CA8F2F23470025282"
+  },
+  "environment_at_end": {
+    "kaggle_environments_version": "1.32.6",
+    "python_version": "3.12.13",
+    "python_executable": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\.venv\\Scripts\\python.exe",
+    "engine_directory": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\.venv\\Lib\\site-packages\\kaggle_environments\\envs\\kaggriculture",
+    "engine_files": {
+      "AGENTS.md": {
+        "bytes": 13708,
+        "sha256": "E1A80501A7B02A212EAAC9370ADA4129A64E0EE6CB3CBC790F3D77D22863FE22"
+      },
+      "kaggriculture.json": {
+        "bytes": 5877,
+        "sha256": "7F196F4AAF9B4E482FBD61BA4BF19F5CEC4DA0F81938ECE756954035A65C0BB5"
+      },
+      "kaggriculture.py": {
+        "bytes": 39801,
+        "sha256": "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF"
+      },
+      "README.md": {
+        "bytes": 25724,
+        "sha256": "63D0497CA655EA1857A96A3226BED6664A2FA98506D76D1FA14CE9101C5F1D34"
+      }
+    },
+    "engine_files_sha256": "6930C780E3E0B9EA0AC8DE6DFDE6821C2276E3E2E4CEA423B7093F3FAE806594",
+    "distribution_metadata": {
+      "kaggle_environments-1.32.6.dist-info/METADATA": {
+        "bytes": 871,
+        "sha256": "77C1E06239D293E0F7D630C4B152DAFE2CFD90F06409D0ABF33E30E58D92CF8E"
+      },
+      "kaggle_environments-1.32.6.dist-info/WHEEL": {
+        "bytes": 81,
+        "sha256": "FF23073DA055FACE9F40CC14A28F3735275308CDDCF315D6157461A9A7CDFBB6"
+      }
+    },
+    "default_environment_configuration": {
+      "actTimeout": 1,
+      "boardSize": 10,
+      "episodeSteps": 720,
+      "farmHandCostMult": 1,
+      "marketParams": {},
+      "maxMarketOrdersPerTurn": 10,
+      "runTimeout": 1200,
+      "seed": null,
+      "shedCapacity": 100,
+      "startingMoney": 3000,
+      "townCenterSellInterval": 24,
+      "townShopSellInterval": 4,
+      "townShopUnlockInterval": 3,
+      "turnsPerDay": 24,
+      "weedSpawnChance": 0.005
+    },
+    "default_environment_configuration_sha256": "1A9006518CCBE403A70E107BB041CC2489E38DA637AE0E3872500010963C46F3",
+    "snapshot_sha256": "459FD4AA9EC51100610E846144E02B455D532C3D7073154C6400B39AF196ED97"
+  },
+  "sources_unchanged_during_phase": true,
+  "environment_unchanged_during_phase": true,
+  "cell_registry_unchanged_during_phase": true,
+  "raw_report": "research/campaign_3000/05_engine_screen_ray_c45_addendum/raw/ray_c45_exact.json",
+  "raw_report_sha256": "39672F7A9E4A6C09C8A9FCF8ADC44B678FC8D3C17E200995A317D329C331AA3A",
+  "runner_start_receipt": "research/campaign_3000/05_engine_screen_ray_c45_addendum/raw/ray_c45_exact.started.json",
+  "runner_start_receipt_sha256": "D0CAE6A497AE23143266B8FB7A8F8661492D786673C2869620EBC0ED601FAF9D",
+  "executed_cells": 64
+}

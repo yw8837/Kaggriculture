@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-08-08T18:53:47Z",
+  "capture_note": "The cutoff hashes are timestamped capture attestations whose bodies were not archived. Later read-only candidate-page captures are tracked below and independently hash-verifiable; they do not rewrite the cutoff record.",
+  "rules": {
+    "url": "https://www.kaggle.com/competitions/kaggriculture/rules",
+    "capture_method": "Jina Reader UTF-8 render of the official URL",
+    "bytes": 37141,
+    "sha256": "6E08C28F5EEA043B17FEBAAE43D724A8BFE9E69C34587417EFF7B9C9255E76BD",
+    "verified_facts": [
+      "maximum five submissions per day",
+      "maximum two final submissions",
+      "public Competition Code shared through a competition notebook is deemed OSI-approved without commercial-use restriction",
+      "open-source submission code must use an OSI-approved license without commercial-use restriction",
+      "public sharing must not violate third-party intellectual-property rights",
+      "winner deliverable license is CC-BY 4.0",
+      "Competition Data access/use license is Apache 2.0"
+    ]
+  },
+  "pages": [
+    {
+      "ref": "tetsutani/adaptive-farming-strategy-for-kaggriculture",
+      "url": "https://www.kaggle.com/code/tetsutani/adaptive-farming-strategy-for-kaggriculture",
+      "bytes": 5128,
+      "sha256": "56128BD9BBD09F0F4D48A19E3304690570F23776045A045665124F351432D55F",
+      "body_archive_status": "TIMESTAMPED_CAPTURE_ATTESTATION_BODY_NOT_ARCHIVED",
+      "displayed_license": "Apache-2.0",
+      "score_boundary": "At the cutoff capture, 2703.1 belonged to V15 and no v16 score was claimed.",
+      "tracked_live_capture": {
+        "retrieved_utc": "2026-08-08T20:35:30.9673192Z",
+        "method": "Jina Reader UTF-8 render of the official URL",
+        "path": "research/campaign_3000/07_release/evidence/raw/tetsutani_adaptive-farming-strategy-for-kaggriculture_page_20260808T2036Z.md",
+        "bytes": 2921,
+        "sha256": "7247E047A8CE43BE59DAB9886DED9A5B8832E3D14F69925A1894A3B5EEC5B19B",
+        "displayed_license": "Apache-2.0"
+      },
+      "live_remote_score_evidence": {
+        "status": "LIVE_REMOTE_PAGE_SCORE_V16_NOT_LOCAL_REPRODUCTION",
+        "score": 3097.4,
+        "version": 16,
+        "script_version_id": 341040786,
+        "claim_gate": "PENDING_INDEPENDENT_AUDITOR_CONFIRMATION"
+      }
+    },
+    {
+      "ref": "kaitofukami/44-46-strict-future-top-30-v22-price-impact",
+      "url": "https://www.kaggle.com/code/kaitofukami/44-46-strict-future-top-30-v22-price-impact",
+      "bytes": 4673,
+      "sha256": "44280B0DDB720522B8B97BA124C00A3C7D443520CF78BAF0973AD60621965073",
+      "body_archive_status": "TIMESTAMPED_CAPTURE_ATTESTATION_BODY_NOT_ARCHIVED",
+      "displayed_license": "Apache-2.0",
+      "score_boundary": "2957.6 V2 is captured remote page evidence",
+      "tracked_live_capture": {
+        "retrieved_utc": "2026-08-08T20:35:35.0001730Z",
+        "method": "Jina Reader UTF-8 render of the official URL",
+        "path": "research/campaign_3000/07_release/evidence/raw/kaitofukami_44-46-strict-future-top-30-v22-price-impact_page_20260808T2036Z.md",
+        "bytes": 4673,
+        "sha256": "215183C1DF46AA58D6A4F2BD76644E1E16488DD7A513679493E2F282B36125C1",
+        "displayed_license": "Apache-2.0"
+      }
+    },
+    {
+      "ref": "boatlee/84-84-base-public-holdout-v14-clone-preemption",
+      "url": "https://www.kaggle.com/code/boatlee/84-84-base-public-holdout-v14-clone-preemption",
+      "bytes": 4308,
+      "sha256": "C68675A3B91A9BC257B2C683D1206B640C92D915843F608FB80D4FE18812D8AF",
+      "displayed_license": "Apache-2.0"
+    },
+    {
+      "ref": "flexonafft/kaggriculture-adaptive-replay-agent",
+      "url": "https://www.kaggle.com/code/flexonafft/kaggriculture-adaptive-replay-agent",
+      "bytes": 3327,
+      "sha256": "25A6D44854B9FBB06FEC60B849A643A71A45AF7F652638F78D1289DFFF27C1E0",
+      "displayed_license": "Apache-2.0"
+    }
+  ],
+  "official_api_sources": [
+    {
+      "ref": "tetsutani/adaptive-farming-strategy-for-kaggriculture",
+      "kernel_id": 129434690,
+      "version": 16,
+      "is_private": false,
+      "bytes": 158263,
+      "sha256": "81DA966E92F9889836E22142FD7A60CEBEAEE81CB3C52661AA286AC8C727BAF9"
+    },
+    {
+      "ref": "kaitofukami/44-46-strict-future-top-30-v22-price-impact",
+      "kernel_id": 129916747,
+      "version": 2,
+      "is_private": false,
+      "bytes": 33211,
+      "sha256": "BE57F757AAAAFA37A1AAB1EB5FE827925144EC7F3825A6236053329C15F2E859"
+    },
+    {
+      "ref": "boatlee/84-84-base-public-holdout-v14-clone-preemption",
+      "kernel_id": 130060645,
+      "version": 4,
+      "is_private": false,
+      "bytes": 95034,
+      "sha256": "9AB82FD86A9F3BE300EC4EE2AE2A6A9BDABC5A1232926ED57A5E3B645DDA11E0"
+    },
+    {
+      "ref": "flexonafft/kaggriculture-adaptive-replay-agent",
+      "kernel_id": 129367546,
+      "version": 42,
+      "is_private": false,
+      "bytes": 29113,
+      "sha256": "25D06F9006C0A6A6185E5A9D5D92AA27592818096C0E9E76CEED8A0BEE854A51"
+    }
+  ],
+  "official_environment": {
+    "commit": "bded87b0d7879078c726a93a4884d044f79c4eed",
+    "source_url": "https://github.com/Kaggle/kaggle-environments/tree/bded87b0d7879078c726a93a4884d044f79c4eed/kaggle_environments/envs/kaggriculture",
+    "license_url": "https://github.com/Kaggle/kaggle-environments/blob/bded87b0d7879078c726a93a4884d044f79c4eed/LICENSE",
+    "license_sha256": "1EB85FC97224598DAD1852B5D6483BBCF0AA8608790DCC657A5A2A761AE9C8C6"
+  }
+}

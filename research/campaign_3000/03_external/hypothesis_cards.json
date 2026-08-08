@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-08-08T18:02:00Z",
+  "author_role": "internal subordinate external-methods researcher; not independent auditor",
+  "production_naming_rule": ["Kag_01", "Kag_02"],
+  "external_action_authority": "NONE",
+  "cards": [
+    {
+      "candidate_name": "Kag_01",
+      "working_title": "Bounded Contention Assignment",
+      "status": "HYPOTHESIS_ONLY_UNIMPLEMENTED_UNAUDITED",
+      "priority": 1,
+      "source_evidence": ["C02", "C01", "P04", "P10", "T03", "T02"],
+      "local_negative_boundary": ["L01", "L03"],
+      "current_competition_collision_check": {
+        "received_utc": "2026-08-08T18:08:00Z",
+        "source_lane": "public_meta_inventory; page claims captured, code not executed",
+        "broad_collisions": [
+          "sidhaarthshree/a-reactive-agent-with-optimal-task: scheduling/task assignment, reported 778.6",
+          "prvsiyan/kaggle-frontier-lab-strategy-improvement: router/closed-loop control, reported 2346.6"
+        ],
+        "exact_novelty": "UNKNOWN_PENDING_SOURCE_CROSSCHECK: no current evidence yet of exact multi-worker scarce-resource polynomial matching among 2400+ public sources."
+      },
+      "hypothesis": "When two or more same-priority feasible tasks compete for scarce workers or shared inventory, a small deterministic rectangular assignment can improve completed-task value without reducing any higher-priority completion, while remaining much faster than the rejected global bitmask DP.",
+      "single_delta": "Inside the existing formal worker allocator, invoke a capped O(n^3) rectangular assignment only on a preregistered rare-contention subset. Keep task generation, market policy, herd/crop plan, priorities and every non-trigger action exact to the frozen control.",
+      "must_not_repeat": [
+        "The B1/B2/B4 top-18 global bitmask DP or its objective under a different name.",
+        "Deadline priority changes, market changes, herd changes or opponent-identity branches in the same candidate.",
+        "A SciPy dependency unless the exact Kaggle environment and package payload are independently verified."
+      ],
+      "safety_contract": [
+        "Formal priority is lexicographically dominant; no lower-priority assignment may strand a higher-priority feasible task.",
+        "Shared WHEAT/COW/SHEEP/seed inventory is reserved in official execution order.",
+        "PASS dummy jobs make unassigned workers/tasks explicit.",
+        "Matrix size and execution time are hard capped; any invariant failure returns exact control action vector.",
+        "No opponent identity, replay path, episode number or exposed seed appears in the action path."
+      ],
+      "required_instrumentation": [
+        "contention_trigger_turns",
+        "assignment_action_changed_turns",
+        "formal_priority_completed_delta",
+        "stranded_higher_priority_tasks",
+        "shared_resource_conflicts",
+        "fallback_count",
+        "matrix_rows_cols",
+        "runtime_p50_p95_p99_max"
+      ],
+      "development_falsifiers": [
+        "action_changed_turns equals zero",
+        "stranded_higher_priority_tasks or shared_resource_conflicts is nonzero",
+        "runtime hard gate fails",
+        "paired match or money improvement is negative on the diverse external-opponent aggregate",
+        "any protected non-contention action differs from control",
+        "benefit appears only against one source lineage or one seat"
+      ],
+      "evaluation_shape": {
+        "control": "exact frozen current champion selected by the main task",
+        "opponents": "diverse frozen pool with source-lineage deduplication; exact choice owned by main/public-meta research",
+        "scenario": "default plus preregistered resource/path stress scenarios",
+        "balance": "same seeds, both seats, exact candidate/control Cartesian cells",
+        "leakage": "fresh development pool; confirmation and robustness remain sealed until separate verdict",
+        "claims_if_pass": "bounded contention mechanism survived local gates only; no 3000/top-3 guarantee"
+      }
+    },
+    {
+      "candidate_name": "Kag_02",
+      "working_title": "Short-Horizon Robust Market MPC",
+      "status": "HYPOTHESIS_ONLY_UNIMPLEMENTED_UNAUDITED",
+      "priority": 2,
+      "source_evidence": ["P01", "P06", "P07", "C08", "C09", "C10", "C01"],
+      "local_negative_boundary": ["L01", "L02"],
+      "current_competition_collision_check": {
+        "received_utc": "2026-08-08T18:08:00Z",
+        "source_lane": "public_meta_inventory; page claims captured, code not executed",
+        "broad_collisions": [
+          "kaitofukami/44-46-strict-future-top-30-v22-price-impact: price impact, order slot and future gate, reported 2957.6 v2",
+          "boatlee/v13-r3-top-meta-order-safe-premium-control: order-safe premium control, reported 2477 v5",
+          "kaitofukami/v15-top5-robust-market-gate: robust market gate, reported 1956",
+          "debmalya84/kaggriculture-route-refresh-price-impact: price impact, reported 1935.6",
+          "web3cainiao/kaggriculture-v21-tactical-memory: route memory and one-turn early forecast, reported 2491.7"
+        ],
+        "exact_novelty": "Broad robust-market language is not novel. Kag_02 is distinct only if exact code proves a frozen finite uncertainty set, bounded receding horizon, first-action-only execution and strict fallback/gates rather than a renamed price-impact/future heuristic."
+      },
+      "hypothesis": "A one-to-two-day receding-horizon choice over a small fixed set of market/resource plans can improve tail cash and direct margin when plans are scored under preregistered price, inventory and opponent-response scenarios, while exact fallback prevents impossible orders and protected-lane regressions.",
+      "single_delta": "At a narrow market/resource trigger, enumerate a fixed capped plan set, evaluate each plan over a frozen uncertainty set, execute only the first market action, then replan next observation. All worker actions, task allocation and non-trigger market actions remain exact control.",
+      "must_not_repeat": [
+        "A1 self-order price arithmetic, A2 visible-state herd target or A4 combination under a new name.",
+        "A large global DP or deep online MCTS.",
+        "Post-seed changes to horizon, scenario set, robust penalty, candidate plans or trigger.",
+        "Opponent identity or replay-source branching."
+      ],
+      "safety_contract": [
+        "Projection matches official farmer, hands and market order with shed capacity, market cap and impossible-SELL checks.",
+        "Horizon, plan set, uncertainty scenarios and robust score are frozen before any fresh seed opens.",
+        "Only the first action is emitted; next state replans from observation.",
+        "Malformed state, projection disagreement, timeout or infeasible plan returns exact control.",
+        "No overflow, discard, duplicate market order, negative inventory or impossible quantity may be candidate-caused."
+      ],
+      "required_instrumentation": [
+        "trigger_turns",
+        "plan_action_changed_turns",
+        "selected_plan_and_scenario_values",
+        "predicted_vs_realized_cash_error",
+        "nominal_and_worst_scenario_value",
+        "impossible_order_units",
+        "candidate_caused_overflow_or_discard",
+        "fallback_count",
+        "runtime_p50_p95_p99_max"
+      ],
+      "development_falsifiers": [
+        "AST/action-diff analysis shows equivalence to A1/A2/A4",
+        "trigger or action change count is zero",
+        "nominal direct margin falls below the preregistered noninferiority gate",
+        "paired p10/worst-scenario money does not improve",
+        "any opponent mean money delta violates its floor",
+        "projection error, impossible order, overflow/discard or runtime failure is nonzero"
+      ],
+      "evaluation_shape": {
+        "control": "exact frozen current champion selected by the main task",
+        "opponents": "diverse frozen opponent pool, separating direct-control lane from external aggregate",
+        "scenario": "frozen nominal/adverse price-inventory/terminal-pressure set actually passed into the official environment",
+        "balance": "same seeds, both seats, exact candidate/control Cartesian cells",
+        "leakage": "fresh development pool; sealed confirmation and robustness opened only after separate audit",
+        "claims_if_pass": "short-horizon robust-market mechanism survived local gates only; no 3000/top-3 guarantee"
+      }
+    },
+    {
+      "candidate_name": "BACKLOG_OBSERVABLE_ARCHETYPE_GATE",
+      "working_title": "Observable Opponent Archetype Expert Gate",
+      "status": "RESEARCH_BACKLOG_NOT_PRODUCTION",
+      "priority": 3,
+      "source_evidence": ["C03", "C04", "C09", "P11", "P14"],
+      "hypothesis": "A fixed classifier over early observable behavior may choose between frozen policies better than a single policy on lineage-held-out opponents.",
+      "minimum_delta": "Choose one of two already-frozen experts from early action/state features; no online learning.",
+      "blockers": [
+        "Need replay inventory with lineage labels and held-out split.",
+        "Need proof that no identity/path/episode/seed field enters features.",
+        "Need counterfactual replay showing both experts are selected and each selection is causal."
+      ],
+      "reason_deferred": "It mixes policy-selection and classification risk and is less direct than Kag_01/Kag_02."
+    },
+    {
+      "candidate_name": "DEFER_ONLINE_SEARCH_OR_RL",
+      "working_title": "MCTS, RHEA, AlphaZero or full self-play",
+      "status": "EXPLICITLY_DEPRIORITIZED",
+      "priority": 99,
+      "source_evidence": ["C04", "C07", "P02", "P03", "P12", "P13", "P15", "P16"],
+      "allowed_use": "Offline counterfactual evaluator and replay-state adversarial test generation only.",
+      "reason_deferred": "Branching, simultaneous-action semantics, compute, opaque tuning, state exploration, single-file package and runtime risks exceed current evidence budget."
+    }
+  ]
+}

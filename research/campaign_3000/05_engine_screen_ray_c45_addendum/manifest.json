@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "run_id": "campaign_3000_ray_c45_addendum_v1",
+  "created_at_utc": "2026-08-08T18:42:36.782024+00:00",
+  "git_head": "72b12208dd8faf78df267738b017ec3a049334ea",
+  "artifact_root": "research/campaign_3000/05_engine_screen_ray_c45_addendum",
+  "artifact_files": {
+    "cell_registry.json": {
+      "bytes": 24459,
+      "sha256": "B6F2A9D16345625B72FAB7DD05A1E886D6D085DA29B1B20F0F8C74BBE1E215FD"
+    },
+    "raw/ray_c45_exact.json": {
+      "bytes": 83416,
+      "sha256": "39672F7A9E4A6C09C8A9FCF8ADC44B678FC8D3C17E200995A317D329C331AA3A"
+    },
+    "raw/ray_c45_exact.started.json": {
+      "bytes": 2309,
+      "sha256": "D0CAE6A497AE23143266B8FB7A8F8661492D786673C2869620EBC0ED601FAF9D"
+    },
+    "raw_games.json": {
+      "bytes": 75027,
+      "sha256": "45A2E19913B4D2AD2001255B06962D29E975556CB7EAA317FF730E73C31998FF"
+    },
+    "README.md": {
+      "bytes": 2385,
+      "sha256": "49ED2B553FA25DBC5AE5092FB4BBDF31664EB73DA2D11AEF7BF320560FCE582A"
+    },
+    "receipts/engine_1.32.6.completed.json": {
+      "bytes": 5435,
+      "sha256": "2E36DE392B8F0F7AEE751FE4DE6FE28D2A60E1E4FF4364E9CB32BF89E3B75C0D"
+    },
+    "receipts/engine_1.32.6.started.json": {
+      "bytes": 8331,
+      "sha256": "3AA7A1BEA01E09AF23A12FC5FF17A2C2E48E0306F6E290F1A42F99DBE4864356"
+    },
+    "run_addendum.py": {
+      "bytes": 25836,
+      "sha256": "32C21B928A7B7C98F76C88EEB16FEA97815CD96FCEECD36E334C1879D3A66197"
+    },
+    "screen_config.json": {
+      "bytes": 4187,
+      "sha256": "F6AF82A81186A6F18CC80962ADA7E2E03A8FF0BE79727BC6B8A5B68F254362A6"
+    },
+    "summary.json": {
+      "bytes": 18921,
+      "sha256": "991FA149FE4ACBF38F82814A2D5FACA28F02188732CCFEEFEE565FB28018932A"
+    },
+    "test_addendum.py": {
+      "bytes": 1587,
+      "sha256": "1941F7F5A8A7311DAD33C38C85F2ABE339100020DA32452DAD1EF906BB4540BF"
+    },
+    "verification/pytest.txt": {
+      "bytes": 281,
+      "sha256": "80F7BDDDC0DB978891ED5987322333C0E8D01BD73745A7C558803CEE8F893F44"
+    },
+    "verification/ruff.txt": {
+      "bytes": 318,
+      "sha256": "C66B3BE0AFCD37D928ABF7D147E770B1A341AD9C58E46DDB11CF5A0FFD1C346F"
+    }
+  },
+  "artifact_files_canonical_sha256": "C31929E5DAFCD21ABBBED16AC31D733E2B3059D6A86010868D732F43DD338440",
+  "external_frozen_sources_at_manifest": {
+    "files": {
+      "configs/fa_ab_seed_registry.json": {
+        "bytes": 14721,
+        "sha256": "A443626FF1E6FE2B84C9036454263AA4E8349C3E4ADE3686A6E449C3BA699C61"
+      },
+      "dist/campaign_3000_public_agents/boatlee__84-84-base-public-holdout-v14-clone-preemption.py": {
+        "bytes": 26304,
+        "sha256": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B"
+      },
+      "dist/campaign_3000_public_agents/kaitofukami__44-46-strict-future-top-30-v22-price-impact.py": {
+        "bytes": 18609,
+        "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A"
+      },
+      "dist/campaign_3000_public_agents/ray_c45.py": {
+        "bytes": 26545,
+        "sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73"
+      },
+      "dist/campaign_3000_public_agents/tetsutani__adaptive-farming-strategy-for-kaggriculture.py": {
+        "bytes": 27244,
+        "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+      },
+      "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py": {
+        "bytes": 197808,
+        "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+      },
+      "research/campaign_3000/05_engine_screen_ray_c45_addendum/run_addendum.py": {
+        "bytes": 25836,
+        "sha256": "32C21B928A7B7C98F76C88EEB16FEA97815CD96FCEECD36E334C1879D3A66197"
+      },
+      "research/campaign_3000/05_engine_screen_ray_c45_addendum/screen_config.json": {
+        "bytes": 4187,
+        "sha256": "F6AF82A81186A6F18CC80962ADA7E2E03A8FF0BE79727BC6B8A5B68F254362A6"
+      },
+      "src/kaggriculture_lab/evaluation/runner.py": {
+        "bytes": 20458,
+        "sha256": "8F35F4D52870DB06FDFF60D03665E234F4994DD18D17BDB2E7FBC5D7F9F21A39"
+      }
+    },
+    "notebook_inventory_row_canonical_sha256": "E53C34030EF89CA00C643C50F4764C2DFD90B65501B771831A4C09E78CF7F090",
+    "snapshot_sha256": "0B31DB137AEBE4764C6163ECAF29391AB38A4421B91A469CA8F2F23470025282"
+  },
+  "phase_integrity": {
+    "sources_unchanged_during_phase": true,
+    "environment_unchanged_during_phase": true,
+    "cell_registry_unchanged_during_phase": true
+  },
+  "manifest_exclusions": [
+    "manifest.json (self)",
+    "manifest.sha256 (sidecar)",
+    "__pycache__/**",
+    "*.pyc"
+  ]
+}

@@ -93,6 +93,17 @@ def _resolve(reference: str, project_root: Path) -> str:
     return str(path.resolve())
 
 
+def _first_abnormal_status(steps: list[Any]) -> tuple[int, int, str] | None:
+    """Return the first framework failure before the terminal interpreter can hide it."""
+    allowed = {"ACTIVE", "INACTIVE", "DONE"}
+    for step_index, states in enumerate(steps):
+        for player, state in enumerate(states):
+            status = str(getattr(state, "status", "UNKNOWN")).upper()
+            if status not in allowed:
+                return step_index, player, status
+    return None
+
+
 def _run_game(spec: GameSpec) -> GameResult:
     project_root = Path(spec.project_root)
     niits_src = str((project_root / NIITS_ROOT / "src").resolve())
@@ -132,6 +143,12 @@ def _run_game(spec: GameSpec) -> GameResult:
             else [spec.opponent, candidate_agent]
         )
         env.run(agents)
+        abnormal = _first_abnormal_status(env.steps)
+        if abnormal is not None:
+            step_index, player, status = abnormal
+            raise RuntimeError(
+                f"framework agent failure at step={step_index}, player={player}, status={status}"
+            )
         final = env.steps[-1]
         candidate_state = final[spec.seat]
         opponent_state = final[1 - spec.seat]

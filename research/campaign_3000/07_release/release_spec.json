@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "evidence_cutoff_utc": "2026-08-08T18:53:47Z",
+  "competition": "kaggriculture",
+  "license": {
+    "spdx": "Apache-2.0",
+    "source_path": "research/campaign_3000/07_release/LICENSE",
+    "source_sha256": "1EB85FC97224598DAD1852B5D6483BBCF0AA8608790DCC657A5A2A761AE9C8C6",
+    "url": "http://www.apache.org/licenses/LICENSE-2.0"
+  },
+  "tetsu_ip_verdict": {
+    "path": "research/campaign_3000/07_release/TETSU_IP_VERDICT.md",
+    "sha256": "DA8764985D0EFCFC63867DB673E242D82B9D72CFE7495BFCB932A2DD6F0DF721",
+    "verdict": "CONDITIONAL_PASS_PRIVATE_SAVERUN_ONLY"
+  },
+  "evidence_receipt": {
+    "path": "research/campaign_3000/07_release/evidence/official_capture_receipts.json",
+    "sha256": "83C1E27A39B9B7582022CC5AB7F5F337BCF5F06CCD770538AD6513F861A19558"
+  },
+  "source_snapshot_receipt": {
+    "path": "research/campaign_3000/07_release/source/SNAPSHOT_RECEIPT.json",
+    "sha256": "A07E93F0FB1BD93BD2F248924D9DFD6F7F2DB5F908776E732743E7B72EB8981C"
+  },
+  "raw_source_archive": {
+    "path": "research/campaign_3000/07_release/evidence/raw/RECEIPT.json",
+    "sha256": "B3F54DDD8C888665C8755B806F10094F999C63E3409130587FD94C2982759772",
+    "status": "PASS_EXACT_CURRENT_VERSION_SOURCE_ARCHIVED"
+  },
+  "candidate_evaluation_prerequisites": {
+    "candidate_plan": {
+      "path": "research/campaign_3000/06_candidates/candidate_plan.json",
+      "sha256": "7167430237ACFF5846C8DFD6F948DC846BC5DB3BCBFCE973505DF3E86A0D33C8"
+    },
+    "candidate_gate": {
+      "path": "research/campaign_3000/06_candidates/gate_config.json",
+      "sha256": "F9E82C8F1EE992FB2F82B3EB8DE476410A0695E05C06C35AD951A21AAE8750DB"
+    },
+    "candidate_manifest": {
+      "path": "research/campaign_3000/06_candidates/manifest.json",
+      "sha256": "FBF560F617788022552B2115023639F81CB49E01E67B90AACE2291DA72DECE69"
+    },
+    "development_result": {
+      "required": true,
+      "scope": "EACH_CANDIDATE_EXACT_DEVELOPMENT_PHASE",
+      "required_verdict": "PASS",
+      "status": "PENDING"
+    },
+    "independent_auditor_exact_private_saverun_release": {
+      "required": true,
+      "scope": "EXACT_PRIVATE_SAVERUN_RELEASE",
+      "required_verdict": "PASS",
+      "auditor_task_id": "019fb8b8-7758-7860-9304-39eb4f06c65c",
+      "status": "PENDING"
+    }
+  },
+  "candidates": [
+    {
+      "sequence": "Kag_01",
+      "description": "Tetsu v16 Exact",
+      "artifact_name": "Kag_01 - Tetsu v16 Exact.tar.gz",
+      "kernel_id": "yw8837/kag-01-tetsu-v16-exact",
+      "title": "Kag_01 - Tetsu v16 Exact",
+      "source_path": "research/campaign_3000/07_release/source/tetsu_v16_main.py",
+      "extraction_origin_path": "dist/campaign_3000_public_agents/tetsutani__adaptive-farming-strategy-for-kaggriculture.py",
+      "source_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+      "attribution_path": "research/campaign_3000/07_release/ATTRIBUTION_TETSU.md",
+      "attribution_sha256": "3685283A43DF0B5352041EA24BC1E531CE706D0F722C22BB1D07DC71F362101F",
+      "notebook_ref": "tetsutani/adaptive-farming-strategy-for-kaggriculture",
+      "notebook_url": "https://www.kaggle.com/code/tetsutani/adaptive-farming-strategy-for-kaggriculture",
+      "notebook_id": 129434690,
+      "notebook_version": 16,
+      "notebook_source_sha256": "81DA966E92F9889836E22142FD7A60CEBEAEE81CB3C52661AA286AC8C727BAF9",
+      "license_status": "VERIFIED_PAGE_PLUS_EXACT_SOURCE_MAPPING_INFERENCE",
+      "page_capture_sha256": "56128BD9BBD09F0F4D48A19E3304690570F23776045A045665124F351432D55F",
+      "page_capture_bytes": 5128,
+      "score_claim": "NO_SCORE_CLAIM_FOR_V16; 2703.1 belongs to V15"
+    },
+    {
+      "sequence": "Kag_02",
+      "description": "Kaito v22 Price Impact",
+      "artifact_name": "Kag_02 - Kaito v22 Price Impact.tar.gz",
+      "kernel_id": "yw8837/kag-02-kaito-v22-price-impact",
+      "title": "Kag_02 - Kaito v22 Price Impact",
+      "source_path": "research/campaign_3000/07_release/source/kaito_v22_main.py",
+      "extraction_origin_path": "dist/campaign_3000_public_agents/kaitofukami__44-46-strict-future-top-30-v22-price-impact.py",
+      "source_sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+      "attribution_path": "research/campaign_3000/07_release/ATTRIBUTION_KAITO.md",
+      "attribution_sha256": "A13EDD083A33082DD781B7A1EDD75306C868C743E12082CF4623F5B4BF970BD9",
+      "notebook_ref": "kaitofukami/44-46-strict-future-top-30-v22-price-impact",
+      "notebook_url": "https://www.kaggle.com/code/kaitofukami/44-46-strict-future-top-30-v22-price-impact",
+      "notebook_id": 129916747,
+      "notebook_version": 2,
+      "notebook_source_sha256": "BE57F757AAAAFA37A1AAB1EB5FE827925144EC7F3825A6236053329C15F2E859",
+      "license_status": "VERIFIED_APACHE_2_0_PAGE_AND_EXACT_OUTPUT",
+      "page_capture_sha256": "44280B0DDB720522B8B97BA124C00A3C7D443520CF78BAF0973AD60621965073",
+      "page_capture_bytes": 4673,
+      "score_claim": "CAPTURED_REMOTE_PUBLIC_SCORE_2957.6_V2_NOT_LOCAL_PROMOTION"
+    }
+  ],
+  "fallback": {
+    "alias": "ray_c45_exact",
+    "source_path": "research/campaign_3000/06_candidates/snapshots/ray_c45_exact.py",
+    "source_sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73",
+    "notebook_url": "https://www.kaggle.com/code/raykkretzschmar/kaggriculture-rank-your-agent",
+    "notebook_version": 10,
+    "license": "Apache-2.0",
+    "reason_not_selected": "Retained as a hash-pinned fallback and evaluation opponent after the conditional Tetsu IP pass."
+  }
+}

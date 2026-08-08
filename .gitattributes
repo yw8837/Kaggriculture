@@ -1,3 +1,20 @@
+/.gitattributes text eol=lf
+/.gitignore text eol=lf
+/CAMPAIGN_DIRECTIVE.md text eol=lf
+/WORKFLOW.md text eol=lf
+# Default textual sources and evidence to LF; byte-frozen exceptions below win.
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+*.toml text eol=lf
+*.lock text eol=lf
+*.txt text eol=lf
+*.sha256 text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.ipynb text eol=lf
+.gitignore text eol=lf
 # Byte-hashed frozen evidence must survive Windows checkouts unchanged.
 artifacts/candidates/**/*.py text eol=lf
 artifacts/opponents/public_kaggle/*.py binary
@@ -23,3 +40,70 @@ tests/test_fa04_top_trace_boundary.py text eol=lf
 tests/test_seed_registry.py -text
 configs/fa04_top_trace_*.json text eol=lf
 third_party/fa04_frontier_lab/* text eol=lf
+configs/fa05_*.json text eol=lf
+src/kaggriculture_lab/evaluation/fa05_*.py text eol=lf
+src/kaggriculture_lab/research/fa05_*.py text eol=lf
+src/kaggriculture_lab/research/wool_glut_buffer.py text eol=lf
+tests/test_fa05_*.py text eol=lf
+third_party/fa05_*/* text eol=lf
+docs/assumptions.md text eol=lf
+docs/source_manifest.md text eol=lf
+pyproject.toml text eol=lf
+uv.lock text eol=lf
+tests/test_engine_parity.py text eol=lf
+tests/test_runner.py text eol=lf
+tests/test_next_boundary.py text eol=lf
+# Campaign evidence and exact public-source snapshots must checkout with the
+# same bytes on Windows and POSIX.  Binary competition downloads stay binary.
+research/campaign_3000/**/*.py text eol=lf
+research/campaign_3000/**/*.json text eol=lf
+research/campaign_3000/**/*.jsonl text eol=lf
+research/campaign_3000/**/*.md text eol=lf
+research/campaign_3000/**/*.txt text eol=lf
+research/campaign_3000/**/*.sha256 text eol=lf
+research/campaign_3000/**/*.ipynb text eol=lf
+research/campaign_3000/**/.gitignore text eol=lf
+research/campaign_3000/**/LICENSE text eol=lf
+research/campaign_3000/**/SHA256SUMS text eol=lf
+research/campaign_3000/**/*.zip binary
+.claude/**/*.md text eol=lf
+.claude/**/*.md -whitespace
+.omc/**/*.md text eol=lf
+.omc/**/*.json text eol=lf
+.serena/**/*.md text eol=lf
+.serena/**/*.md -whitespace
+.serena/**/*.yml text eol=lf
+config/**/*.json text eol=lf
+tests/test_campaign_3000_*.py text eol=lf
+# Minimal official 1.32.6 simulator/test snapshot is force-tracked from the
+# otherwise ignored reference checkout so clean clones can reproduce parity.
+references/ke1326/kaggle_environments/envs/kaggriculture/kaggriculture.py text eol=lf
+references/ke1326/tests/envs/kaggriculture/test_kaggriculture.py text eol=lf
+references/ke1326/LICENSE -text -eol
+# The private release intentionally pins the upstream CRLF Apache text byte-for-byte.
+research/campaign_3000/07_release/LICENSE -text -eol
+# Upstream exact-byte payloads and immutable prose captures retain their source whitespace.
+research/campaign_3000/06_candidates/snapshots/*.py -whitespace
+research/campaign_3000/07_release/source/*.py -whitespace
+research/campaign_3000/07_release/LICENSE -whitespace
+research/campaign_3000/07_release/ATTRIBUTION_KAITO.md -whitespace
+research/campaign_3000/07_release/ATTRIBUTION_TETSU.md -whitespace
+research/campaign_3000/07_release/TETSU_IP_VERDICT.md -whitespace
+research/campaign_3000/07_release/evidence/raw/*_page_*.md -whitespace
+research/campaign_3000/08_public_release/discussion_draft.md -whitespace
+research/campaign_3000/08_public_release/NOTICE.md -whitespace
+research/campaign_3000/08_public_release/titles.json -whitespace
+# Pre-freeze research data is independently SHA-pinned in manifests; keep raw bytes.
+research/campaign_3000/01_internal/*.json binary
+research/campaign_3000/01_internal/*.jsonl binary
+research/campaign_3000/02_public_meta/*.json binary
+research/campaign_3000/02_public_meta/*.jsonl binary
+research/campaign_3000/04_synthesis/*.json binary
+research/campaign_3000/08_public_release/evidence/*.json binary
+# Engine-screen evidence was generated as CRLF and is hash-pinned byte-for-byte.
+research/campaign_3000/05_engine_screen/*.json binary
+research/campaign_3000/05_engine_screen/**/*.json binary
+research/campaign_3000/05_engine_screen/*.sha256 binary
+research/campaign_3000/05_engine_screen_ray_c45_addendum/*.json binary
+research/campaign_3000/05_engine_screen_ray_c45_addendum/**/*.json binary
+research/campaign_3000/05_engine_screen_ray_c45_addendum/*.sha256 binary

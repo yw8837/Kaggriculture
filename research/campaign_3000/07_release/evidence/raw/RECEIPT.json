@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "status": "PASS_EXACT_CURRENT_VERSION_SOURCE_ARCHIVED",
+  "retrieval_boundary": {
+    "client": "official Kaggle CLI/API",
+    "client_version": "2.2.4",
+    "api_operation": "KernelsApiService/GetKernel",
+    "external_mutation_performed": false,
+    "kaggle_push": "NOT_RUN_NOT_AUTHORIZED",
+    "save_run": "NOT_RUN_NOT_AUTHORIZED",
+    "submission": "NOT_RUN_NOT_AUTHORIZED",
+    "publication": "NOT_RUN_NOT_AUTHORIZED"
+  },
+  "version_binding": {
+    "status": "PASS_CURRENT_VERSION_AND_SOURCE_IN_SAME_OFFICIAL_API_RESPONSE",
+    "response_envelope_archive_status": "PASS_TRACKED_SDK_SERIALIZED_GETKERNEL_RESPONSES",
+    "explicit_version_pull_attempt": {
+      "status": "HTTP_403_FORBIDDEN",
+      "refs": [
+        "tetsutani/adaptive-farming-strategy-for-kaggriculture/16",
+        "kaitofukami/44-46-strict-future-top-30-v22-price-impact/2"
+      ]
+    },
+    "accepted_basis": "Each tracked official Kaggle SDK ApiGetKernelResponse envelope binds metadata.ref/id/currentVersionNumber/isPrivate/competitionDataSources and blob.source. The verifier requires each blob.source to be byte-identical to the tracked raw notebook."
+  },
+  "notebooks": [
+    {
+      "ref": "tetsutani/adaptive-farming-strategy-for-kaggriculture",
+      "source_url": "https://www.kaggle.com/code/tetsutani/adaptive-farming-strategy-for-kaggriculture",
+      "kernel_id": 129434690,
+      "current_version_number": 16,
+      "raw_pull_utc": "2026-08-08T19:32:56.1586748Z",
+      "api_reverified_utc": "2026-08-08T19:36:02.370489Z",
+      "getkernel_response": {
+        "path": "research/campaign_3000/07_release/evidence/raw/tetsutani_adaptive-farming-strategy-for-kaggriculture_v16_getkernel.json",
+        "captured_utc": "2026-08-08T20:34:40.736207Z",
+        "serialization": "official Kaggle SDK 2.2.4 ApiGetKernelResponse.to_json UTF-8",
+        "bytes": 170731,
+        "sha256": "70ADF63DCDEB41504A63C6056258CA77C9D09F86FB8101A2EE00A82C1D4434FB"
+      },
+      "path": "research/campaign_3000/07_release/evidence/raw/tetsutani_adaptive-farming-strategy-for-kaggriculture_v16.ipynb",
+      "bytes": 158263,
+      "sha256": "81DA966E92F9889836E22142FD7A60CEBEAEE81CB3C52661AA286AC8C727BAF9",
+      "extraction": {
+        "cell_index_zero_based": 14,
+        "method": "join source when list; require first line exactly %%writefile main.py; take UTF-8 bytes after the first LF",
+        "main_path": "research/campaign_3000/07_release/source/tetsu_v16_main.py",
+        "main_bytes": 27244,
+        "main_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+      }
+    },
+    {
+      "ref": "kaitofukami/44-46-strict-future-top-30-v22-price-impact",
+      "source_url": "https://www.kaggle.com/code/kaitofukami/44-46-strict-future-top-30-v22-price-impact",
+      "kernel_id": 129916747,
+      "current_version_number": 2,
+      "raw_pull_utc": "2026-08-08T19:32:58.7602334Z",
+      "api_reverified_utc": "2026-08-08T19:36:03.048097Z",
+      "getkernel_response": {
+        "path": "research/campaign_3000/07_release/evidence/raw/kaitofukami_44-46-strict-future-top-30-v22-price-impact_v2_getkernel.json",
+        "captured_utc": "2026-08-08T20:34:41.953228Z",
+        "serialization": "official Kaggle SDK 2.2.4 ApiGetKernelResponse.to_json UTF-8",
+        "bytes": 35262,
+        "sha256": "8C782EE8D07629523F0675341AE876FBE5680CD145ED3315E0CCFEE23E5391CC"
+      },
+      "path": "research/campaign_3000/07_release/evidence/raw/kaitofukami_44-46-strict-future-top-30-v22-price-impact_v2.ipynb",
+      "bytes": 33211,
+      "sha256": "BE57F757AAAAFA37A1AAB1EB5FE827925144EC7F3825A6236053329C15F2E859",
+      "extraction": {
+        "cell_index_zero_based": 11,
+        "method": "AST-literal-evaluate _AGENT_B85_PARTS; concatenate ASCII; base64.b85decode; zlib.decompress",
+        "main_path": "research/campaign_3000/07_release/source/kaito_v22_main.py",
+        "main_bytes": 18609,
+        "main_sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A"
+      }
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "code_mechanism_counts": {
+    "adaptive_or_opponent_aware": 104,
+    "animals_or_fertilizer": 126,
+    "crop_portfolio": 132,
+    "engine_or_balance": 83,
+    "fixed_trace_or_schedule": 65,
+    "holdout_or_evaluation": 139,
+    "market_timing_or_impact": 141,
+    "optimization_or_search": 75,
+    "replay_mining_or_cloning": 96,
+    "rl_or_learning": 110,
+    "routing_or_task_allocation": 138
+  },
+  "counts": {
+    "code_failed": 0,
+    "code_rows": 155,
+    "discussion_failed": 0,
+    "discussion_rows": 57,
+    "github_rows": 256,
+    "model_rows": 1
+  },
+  "discussion_mechanism_counts": {
+    "adaptive_or_opponent_aware": 11,
+    "animals_or_fertilizer": 11,
+    "crop_portfolio": 13,
+    "engine_or_balance": 7,
+    "fixed_trace_or_schedule": 4,
+    "holdout_or_evaluation": 17,
+    "market_timing_or_impact": 24,
+    "optimization_or_search": 8,
+    "replay_mining_or_cloning": 14,
+    "rl_or_learning": 18,
+    "routing_or_task_allocation": 9
+  },
+  "finished_at_utc": "2026-08-08T18:08:30.741109Z",
+  "github_mechanism_counts": {
+    "adaptive_or_opponent_aware": 68,
+    "animals_or_fertilizer": 60,
+    "crop_portfolio": 81,
+    "engine_or_balance": 59,
+    "fixed_trace_or_schedule": 47,
+    "holdout_or_evaluation": 104,
+    "market_timing_or_impact": 126,
+    "optimization_or_search": 31,
+    "replay_mining_or_cloning": 67,
+    "rl_or_learning": 81,
+    "routing_or_task_allocation": 74
+  },
+  "started_at_utc": "2026-08-08T18:03:31.941559Z"
+}

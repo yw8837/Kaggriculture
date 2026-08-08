@@ -1,0 +1,2887 @@
+{
+  "created_at_utc": "2026-08-08T18:27:07.442673Z",
+  "leaderboard_observed_at_utc": "2026-08-08T17:50:15.385Z",
+  "limitations": [
+    "Rank and score are a time-bounded API snapshot and can change after observation.",
+    "Exactly two public replay requests per team were selected; shared matches reduce 50 requests to 45 unique raw episodes.",
+    "Private source is unavailable. Public Code/Discussion/Model fields remain UNVERIFIED until the separate public inventory is joined."
+  ],
+  "population": "First 25 rows returned by official Kaggle leaderboard API page_size=200.",
+  "rows": [
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 119,
+        "leaderboard_score": 3204.4,
+        "losses": 12,
+        "mean_margin": 17872.361344537814,
+        "mean_reward": 103890.73109243698,
+        "p10_margin": 128.60000000000014,
+        "rank": 1,
+        "seat0_win_rate": 0.9180327868852459,
+        "seat1_win_rate": 0.8793103448275862,
+        "submission_id": 55299100,
+        "submission_public_score": 3204.4,
+        "team_id": 16630516,
+        "team_name": "Seb (allegedly)",
+        "unique_opponents": 81,
+        "win_rate": 0.8991596638655462,
+        "wins": 107
+      },
+      "leaderboard_score": 3204.4,
+      "leaderboard_submission_date": "2026-08-07T11:38:45.223Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-07T11:38:45.223Z",
+          "episode_count": 113,
+          "id": 55323652,
+          "latest_public_episode_ids": [
+            91071131,
+            91067410,
+            91065084,
+            91057902,
+            91042803,
+            91042999,
+            91031112,
+            91021088,
+            91009972,
+            91003364
+          ],
+          "publicScore": "2425.8",
+          "public_completed_episode_count": 112,
+          "seat_counts": {
+            "0": 57,
+            "1": 55
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-06T13:13:47.387Z",
+          "episode_count": 120,
+          "id": 55299100,
+          "latest_public_episode_ids": [
+            91057328,
+            91036259,
+            91016957,
+            90997714,
+            90977718,
+            90976060,
+            90957697,
+            90957709,
+            90953506,
+            90945322
+          ],
+          "publicScore": "3204.4",
+          "public_completed_episode_count": 119,
+          "seat_counts": {
+            "0": 61,
+            "1": 58
+          }
+        }
+      ],
+      "rank": 1,
+      "sampled_public_replays": [
+        {
+          "bytes": 30756666,
+          "episode_id": 91057328,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91057328-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:21.524Z",
+          "seed": 938214861,
+          "sha256": "CB371523BF2B16C809A024E291A3603B423877D5129CD95FEFBC8162AC374860",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91057328",
+          "target_seat": 0
+        },
+        {
+          "bytes": 29521326,
+          "episode_id": 91016957,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91016957-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:17.091Z",
+          "seed": 423318285,
+          "sha256": "8231A82090D4992CECC1ECBC0CEAF50BA282A3A3624590B54D7847BF17D84078",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91016957",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16630516,
+      "team_name": "Seb (allegedly)"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 77,
+        "leaderboard_score": 3138.4,
+        "losses": 3,
+        "mean_margin": 7552.597402597403,
+        "mean_reward": 84797.05194805194,
+        "p10_margin": 920.6,
+        "rank": 2,
+        "seat0_win_rate": 0.9565217391304348,
+        "seat1_win_rate": 0.967741935483871,
+        "submission_id": 55345236,
+        "submission_public_score": 3138.4,
+        "team_id": 16676321,
+        "team_name": "tao wu11",
+        "unique_opponents": 64,
+        "win_rate": 0.961038961038961,
+        "wins": 74
+      },
+      "leaderboard_score": 3138.4,
+      "leaderboard_submission_date": "2026-08-08T16:10:47.103Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T16:10:47.103Z",
+          "episode_count": 29,
+          "id": 55355122,
+          "latest_public_episode_ids": [
+            91072717,
+            91071833,
+            91071913,
+            91070961,
+            91070079,
+            91069185,
+            91068303,
+            91067417,
+            91066536,
+            91065657
+          ],
+          "publicScore": "2529.7",
+          "public_completed_episode_count": 28,
+          "seat_counts": {
+            "0": 10,
+            "1": 18
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T08:22:16.960Z",
+          "episode_count": 78,
+          "id": 55345236,
+          "latest_public_episode_ids": [
+            91072969,
+            91053943,
+            91038777,
+            91031978,
+            91028593,
+            91023534,
+            91012744,
+            91011082,
+            91009445,
+            91007691
+          ],
+          "publicScore": "3138.4",
+          "public_completed_episode_count": 77,
+          "seat_counts": {
+            "0": 46,
+            "1": 31
+          }
+        }
+      ],
+      "rank": 2,
+      "sampled_public_replays": [
+        {
+          "bytes": 31951240,
+          "episode_id": 91072969,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91072969-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:38.841Z",
+          "seed": 1045145075,
+          "sha256": "D21300A1328370241FDD1DFFEA986A7CC33A8D5899D79B572EC97BAA24BD3DE9",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91072969",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31954655,
+          "episode_id": 91031978,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91031978-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:17.578Z",
+          "seed": 966944403,
+          "sha256": "72D4FCC8D6F871650F344DC55F401211158CD88BCB64ADA2C8BB85119F7ADD16",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91031978",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16676321,
+      "team_name": "tao wu11"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 85,
+        "leaderboard_score": 3136.6,
+        "losses": 6,
+        "mean_margin": 13837.30588235294,
+        "mean_reward": 92685.30588235294,
+        "p10_margin": 2975.2000000000003,
+        "rank": 3,
+        "seat0_win_rate": 0.9069767441860465,
+        "seat1_win_rate": 0.9523809523809523,
+        "submission_id": 55341106,
+        "submission_public_score": 3136.6,
+        "team_id": 16672202,
+        "team_name": "HealthStone",
+        "unique_opponents": 73,
+        "win_rate": 0.9294117647058824,
+        "wins": 79
+      },
+      "leaderboard_score": 3136.6,
+      "leaderboard_submission_date": "2026-08-08T06:14:19.830Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T06:14:19.830Z",
+          "episode_count": 85,
+          "id": 55342943,
+          "latest_public_episode_ids": [
+            91060538,
+            91040483,
+            91033644,
+            91028562,
+            91022657,
+            91021829,
+            91018472,
+            91010114,
+            91005054,
+            90996903
+          ],
+          "publicScore": "2865.0",
+          "public_completed_episode_count": 84,
+          "seat_counts": {
+            "0": 42,
+            "1": 42
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T04:43:48.607Z",
+          "episode_count": 86,
+          "id": 55341106,
+          "latest_public_episode_ids": [
+            91054779,
+            91043818,
+            91036216,
+            91035389,
+            91016957,
+            91014384,
+            91001027,
+            91000183,
+            90995244,
+            90978557
+          ],
+          "publicScore": "3136.6",
+          "public_completed_episode_count": 85,
+          "seat_counts": {
+            "0": 43,
+            "1": 42
+          }
+        }
+      ],
+      "rank": 3,
+      "sampled_public_replays": [
+        {
+          "bytes": 31258451,
+          "episode_id": 91054779,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91054779-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:19.565Z",
+          "seed": 1458005904,
+          "sha256": "137967C64CCE295B2DAC749DD42E033BBB534BCFDA5C2C40153DBB830D80BBC7",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91054779",
+          "target_seat": 0
+        },
+        {
+          "bytes": 30964763,
+          "episode_id": 91043818,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91043818-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:18.557Z",
+          "seed": 102800224,
+          "sha256": "747FB2D6E4543E1C3C4C27BA016445CA03857DEE8444ABBAD8DF92760D2046DB",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91043818",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16672202,
+      "team_name": "HealthStone"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 82,
+        "leaderboard_score": 3128.1,
+        "losses": 1,
+        "mean_margin": 7598.158536585366,
+        "mean_reward": 90205.41463414633,
+        "p10_margin": 876.1,
+        "rank": 4,
+        "seat0_win_rate": 1.0,
+        "seat1_win_rate": 0.9761904761904762,
+        "submission_id": 55343482,
+        "submission_public_score": 3128.1,
+        "team_id": 16624979,
+        "team_name": "Mohamed abdelrazik",
+        "unique_opponents": 69,
+        "win_rate": 0.9878048780487805,
+        "wins": 81
+      },
+      "leaderboard_score": 3128.1,
+      "leaderboard_submission_date": "2026-08-08T06:44:00.350Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T06:44:00.350Z",
+          "episode_count": 83,
+          "id": 55343482,
+          "latest_public_episode_ids": [
+            91066795,
+            91057328,
+            91054801,
+            91033711,
+            91030358,
+            91029473,
+            91029500,
+            91023673,
+            91013536,
+            91005219
+          ],
+          "publicScore": "3128.1",
+          "public_completed_episode_count": 82,
+          "seat_counts": {
+            "0": 40,
+            "1": 42
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-07T21:08:36.520Z",
+          "episode_count": 110,
+          "id": 55333892,
+          "latest_public_episode_ids": [
+            91067491,
+            91049650,
+            91037873,
+            91027006,
+            91025191,
+            91024346,
+            91023511,
+            91019282,
+            91016738,
+            91009271
+          ],
+          "publicScore": "2765.2",
+          "public_completed_episode_count": 109,
+          "seat_counts": {
+            "0": 57,
+            "1": 52
+          }
+        }
+      ],
+      "rank": 4,
+      "sampled_public_replays": [
+        {
+          "bytes": 31956775,
+          "episode_id": 91066795,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91066795-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:30.931Z",
+          "seed": 1178212185,
+          "sha256": "12E63807DE74D5C9F85676ABE7B2AD42A47A0A8BF31EF8BB8283912F536B61BA",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91066795",
+          "target_seat": 0
+        },
+        {
+          "bytes": 30756666,
+          "episode_id": 91057328,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91057328-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:21.524Z",
+          "seed": 938214861,
+          "sha256": "CB371523BF2B16C809A024E291A3603B423877D5129CD95FEFBC8162AC374860",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91057328",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16624979,
+      "team_name": "Mohamed abdelrazik"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 71,
+        "leaderboard_score": 3113.2,
+        "losses": 4,
+        "mean_margin": 7098.887323943662,
+        "mean_reward": 82187.19718309859,
+        "p10_margin": 611.0,
+        "rank": 5,
+        "seat0_win_rate": 0.925,
+        "seat1_win_rate": 0.967741935483871,
+        "submission_id": 55349527,
+        "submission_public_score": 3113.2,
+        "team_id": 16626191,
+        "team_name": "kevin park",
+        "unique_opponents": 63,
+        "win_rate": 0.9436619718309859,
+        "wins": 67
+      },
+      "leaderboard_score": 3113.2,
+      "leaderboard_submission_date": "2026-08-08T11:53:46.923Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T11:53:46.923Z",
+          "episode_count": 72,
+          "id": 55349527,
+          "latest_public_episode_ids": [
+            91070323,
+            91063358,
+            91051379,
+            91049733,
+            91047173,
+            91046337,
+            91045511,
+            91044700,
+            91043818,
+            91042963
+          ],
+          "publicScore": "3113.2",
+          "public_completed_episode_count": 71,
+          "seat_counts": {
+            "0": 40,
+            "1": 31
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T08:31:48.097Z",
+          "episode_count": 76,
+          "id": 55345419,
+          "latest_public_episode_ids": [
+            91072791,
+            91066736,
+            91066781,
+            91048679,
+            91048025,
+            91030349,
+            91024454,
+            91021166,
+            91010179,
+            91006929
+          ],
+          "publicScore": "2525.1",
+          "public_completed_episode_count": 75,
+          "seat_counts": {
+            "0": 32,
+            "1": 43
+          }
+        }
+      ],
+      "rank": 5,
+      "sampled_public_replays": [
+        {
+          "bytes": 31939858,
+          "episode_id": 91063358,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91063358-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:26.968Z",
+          "seed": 569124700,
+          "sha256": "B71E7B22CF1FE6306C1B5F0F728EC359B5948FB774D0A9D9B4FB098EBB82245A",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91063358",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31965188,
+          "episode_id": 91070323,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91070323-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:36.390Z",
+          "seed": 983667240,
+          "sha256": "56F6BBA623A233B9DE6C551AFCA628139339411E4A2246C1365D3D6C70637596",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91070323",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16626191,
+      "team_name": "kevin park"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 74,
+        "leaderboard_score": 3111.0,
+        "losses": 10,
+        "mean_margin": 10449.554054054053,
+        "mean_reward": 91849.66216216216,
+        "p10_margin": -291.3999999999999,
+        "rank": 6,
+        "seat0_win_rate": 0.9444444444444444,
+        "seat1_win_rate": 0.7894736842105263,
+        "submission_id": 55348654,
+        "submission_public_score": 3111.0,
+        "team_id": 16662492,
+        "team_name": "Lester Leong",
+        "unique_opponents": 57,
+        "win_rate": 0.8648648648648649,
+        "wins": 64
+      },
+      "leaderboard_score": 3111.0,
+      "leaderboard_submission_date": "2026-08-08T11:10:17.483Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NO_EXACT_DISPLAY_NAME_MATCH;_ONE_UNVERIFIED_INFERENCE_RECORDED",
+        "unverified_inferences": [
+          {
+            "author": "fle3n",
+            "claim_status": "SOURCE_CAPTURED_PAGE_UNVERIFIED",
+            "id": 129873837,
+            "identity_status": "UNVERIFIED_INFERENCE_ONLY",
+            "license_name": "UNVERIFIED",
+            "license_url": null,
+            "reason": "Plausible name/strategy association, but public author display is fle3n rather than Lester Leong.",
+            "ref": "fleongg/kaggriculture-public-2830-4-v21-1-no-preemption",
+            "reproduction_status": "NOT_EXECUTED_UNTRUSTED_PUBLIC_CODE",
+            "retrieved_at_utc": "2026-08-08T18:04:41.003926Z",
+            "source_bytes": 27562,
+            "source_sha256": "83191773989FB698B942032DD9A2C5FE470D6EB50C78076ADC98CFFF45139386",
+            "title": "Kaggriculture Public 2830.4 | v21.1 No-Preemption",
+            "url": "https://www.kaggle.com/code/fleongg/kaggriculture-public-2830-4-v21-1-no-preemption",
+            "version": 1,
+            "votes": 4
+          }
+        ]
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T11:10:17.483Z",
+          "episode_count": 79,
+          "id": 55348656,
+          "latest_public_episode_ids": [
+            91064902,
+            91064010,
+            91063200,
+            91058048,
+            91057129,
+            91052265,
+            91051998,
+            91042876,
+            91039609,
+            91039544
+          ],
+          "publicScore": "1889.9",
+          "public_completed_episode_count": 78,
+          "seat_counts": {
+            "0": 39,
+            "1": 39
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T11:10:09.330Z",
+          "episode_count": 75,
+          "id": 55348654,
+          "latest_public_episode_ids": [
+            91069423,
+            91068552,
+            91063344,
+            91049723,
+            91039633,
+            91038777,
+            91037918,
+            91037081,
+            91036216,
+            91035374
+          ],
+          "publicScore": "3111.0",
+          "public_completed_episode_count": 74,
+          "seat_counts": {
+            "0": 36,
+            "1": 38
+          }
+        }
+      ],
+      "rank": 6,
+      "sampled_public_replays": [
+        {
+          "bytes": 31957623,
+          "episode_id": 91049723,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91049723-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:19.076Z",
+          "seed": 537785344,
+          "sha256": "C068708234D61FFF8EB751024A3068B674A86BED66D28D375238EAD6D3BFC653",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91049723",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31956193,
+          "episode_id": 91069423,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91069423-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:34.912Z",
+          "seed": 493320130,
+          "sha256": "03864AE78ED98B5E1F5426BAD27A1F40699DE70DE9746C63D4F7ED679C186D81",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91069423",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16662492,
+      "team_name": "Lester Leong"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 79,
+        "leaderboard_score": 3109.1,
+        "losses": 6,
+        "mean_margin": 10074.417721518987,
+        "mean_reward": 88760.86075949368,
+        "p10_margin": 353.4,
+        "rank": 7,
+        "seat0_win_rate": 1.0,
+        "seat1_win_rate": 0.88,
+        "submission_id": 55346836,
+        "submission_public_score": 3109.1,
+        "team_id": 16669148,
+        "team_name": "Syed Muhammad Gillani",
+        "unique_opponents": 68,
+        "win_rate": 0.9240506329113924,
+        "wins": 73
+      },
+      "leaderboard_score": 3109.1,
+      "leaderboard_submission_date": "2026-08-08T10:58:26.313Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T10:58:26.313Z",
+          "episode_count": 43,
+          "id": 55348407,
+          "latest_public_episode_ids": [
+            91070030,
+            91069465,
+            91060765,
+            91040371,
+            91027021,
+            91015274,
+            91014422,
+            91013570,
+            91012727,
+            91011906
+          ],
+          "publicScore": "1051.8",
+          "public_completed_episode_count": 42,
+          "seat_counts": {
+            "0": 21,
+            "1": 21
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T09:38:14.420Z",
+          "episode_count": 80,
+          "id": 55346836,
+          "latest_public_episode_ids": [
+            91068434,
+            91064174,
+            91063358,
+            91060652,
+            91058930,
+            91044685,
+            91030311,
+            91026059,
+            91023673,
+            91019456
+          ],
+          "publicScore": "3109.1",
+          "public_completed_episode_count": 79,
+          "seat_counts": {
+            "0": 29,
+            "1": 50
+          }
+        }
+      ],
+      "rank": 7,
+      "sampled_public_replays": [
+        {
+          "bytes": 31958313,
+          "episode_id": 91060652,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91060652-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:23.983Z",
+          "seed": 610795142,
+          "sha256": "0C0AD21141C20528A91B023CC20B0631373F9CD9CF4C6B5E409266DE3F42731D",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91060652",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31944086,
+          "episode_id": 91068434,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91068434-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:33.424Z",
+          "seed": 2002269621,
+          "sha256": "D8131A25C3BE4743D538BFA069666E759CA5C7B4919DCF9A3D2CC6A20A706A4A",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91068434",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16669148,
+      "team_name": "Syed Muhammad Gillani"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 92,
+        "leaderboard_score": 3102.0,
+        "losses": 17,
+        "mean_margin": 4191.20652173913,
+        "mean_reward": 82929.23913043478,
+        "p10_margin": -1759.9000000000003,
+        "rank": 8,
+        "seat0_win_rate": 0.8518518518518519,
+        "seat1_win_rate": 0.7631578947368421,
+        "submission_id": 55337518,
+        "submission_public_score": 3102.0,
+        "team_id": 16669403,
+        "team_name": "mrgrishninsb",
+        "unique_opponents": 66,
+        "win_rate": 0.8152173913043478,
+        "wins": 75
+      },
+      "leaderboard_score": 3102.0,
+      "leaderboard_submission_date": "2026-08-08T01:16:19.360Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T01:16:19.360Z",
+          "episode_count": 55,
+          "id": 55337642,
+          "latest_public_episode_ids": [
+            91065665,
+            91038623,
+            91027712,
+            91026718,
+            91025870,
+            90995764,
+            90988551,
+            90955792,
+            90949230,
+            90948586
+          ],
+          "publicScore": "1079.7",
+          "public_completed_episode_count": 54,
+          "seat_counts": {
+            "0": 28,
+            "1": 26
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T01:09:22.070Z",
+          "episode_count": 93,
+          "id": 55337518,
+          "latest_public_episode_ids": [
+            91062431,
+            91055542,
+            91054801,
+            91037072,
+            91027755,
+            91020223,
+            91004397,
+            90985176,
+            90977718,
+            90958532
+          ],
+          "publicScore": "3102.0",
+          "public_completed_episode_count": 92,
+          "seat_counts": {
+            "0": 54,
+            "1": 38
+          }
+        }
+      ],
+      "rank": 8,
+      "sampled_public_replays": [
+        {
+          "bytes": 31959009,
+          "episode_id": 91055542,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91055542-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:20.055Z",
+          "seed": 1604328284,
+          "sha256": "69B7EB741108B41A4F826AC20041852FDED1E46B98C1DB91411E087C9369A141",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91055542",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31966560,
+          "episode_id": 91062431,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91062431-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:25.500Z",
+          "seed": 1210938354,
+          "sha256": "6E2512EB8A81E8AAA1AC00BC7C6491EFCF49B46E75EB610A233FB52734AA739F",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91062431",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16669403,
+      "team_name": "mrgrishninsb"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 69,
+        "leaderboard_score": 3093.7,
+        "losses": 3,
+        "mean_margin": 8102.304347826087,
+        "mean_reward": 88904.73913043478,
+        "p10_margin": 372.0,
+        "rank": 9,
+        "seat0_win_rate": 0.9393939393939394,
+        "seat1_win_rate": 0.9722222222222222,
+        "submission_id": 55351460,
+        "submission_public_score": 3093.7,
+        "team_id": 16637546,
+        "team_name": "Forrest",
+        "unique_opponents": 60,
+        "win_rate": 0.9565217391304348,
+        "wins": 66
+      },
+      "leaderboard_score": 3093.7,
+      "leaderboard_submission_date": "2026-08-08T13:21:37.470Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T13:21:37.470Z",
+          "episode_count": 70,
+          "id": 55351460,
+          "latest_public_episode_ids": [
+            91065924,
+            91065964,
+            91064211,
+            91063333,
+            91062462,
+            91061589,
+            91060712,
+            91059832,
+            91058963,
+            91058118
+          ],
+          "publicScore": "3093.7",
+          "public_completed_episode_count": 69,
+          "seat_counts": {
+            "0": 33,
+            "1": 36
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T07:38:16.383Z",
+          "episode_count": 95,
+          "id": 55344471,
+          "latest_public_episode_ids": [
+            91067697,
+            91066716,
+            91065783,
+            91065051,
+            91065000,
+            91064047,
+            91064164,
+            91063334,
+            91059858,
+            91048778
+          ],
+          "publicScore": "2973.1",
+          "public_completed_episode_count": 94,
+          "seat_counts": {
+            "0": 47,
+            "1": 47
+          }
+        }
+      ],
+      "rank": 9,
+      "sampled_public_replays": [
+        {
+          "bytes": 31948003,
+          "episode_id": 91065924,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91065924-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:28.927Z",
+          "seed": 1383140355,
+          "sha256": "A3E2C8DEE8D1C48C03DA998F0A87AF6629E027F3166AC74E529D9C64162BB8B1",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91065924",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31957802,
+          "episode_id": 91060712,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91060712-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:25.013Z",
+          "seed": 759157311,
+          "sha256": "A1C4FA819A31C31520B75C1E0CF52F3F29D86BD8148433FEE11D0A829E20933C",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91060712",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16637546,
+      "team_name": "Forrest"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 67,
+        "leaderboard_score": 3092.3,
+        "losses": 4,
+        "mean_margin": 9294.76119402985,
+        "mean_reward": 91485.82089552238,
+        "p10_margin": 345.40000000000003,
+        "rank": 10,
+        "seat0_win_rate": 0.9459459459459459,
+        "seat1_win_rate": 0.9333333333333333,
+        "submission_id": 55351607,
+        "submission_public_score": 3092.3,
+        "team_id": 16641077,
+        "team_name": "lucaskna",
+        "unique_opponents": 60,
+        "win_rate": 0.9402985074626866,
+        "wins": 63
+      },
+      "leaderboard_score": 3092.3,
+      "leaderboard_submission_date": "2026-08-08T13:27:29.440Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T13:27:29.440Z",
+          "episode_count": 68,
+          "id": 55351607,
+          "latest_public_episode_ids": [
+            91070323,
+            91069423,
+            91068552,
+            91067675,
+            91066795,
+            91065924,
+            91065044,
+            91064178,
+            91063302,
+            91062431
+          ],
+          "publicScore": "3092.3",
+          "public_completed_episode_count": 67,
+          "seat_counts": {
+            "0": 37,
+            "1": 30
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T00:48:48.857Z",
+          "episode_count": 100,
+          "id": 55337209,
+          "latest_public_episode_ids": [
+            91071835,
+            91072061,
+            91071970,
+            91068494,
+            91051958,
+            91051386,
+            91039426,
+            91036258,
+            91016890,
+            91005863
+          ],
+          "publicScore": "2097.7",
+          "public_completed_episode_count": 99,
+          "seat_counts": {
+            "0": 44,
+            "1": 55
+          }
+        }
+      ],
+      "rank": 10,
+      "sampled_public_replays": [
+        {
+          "bytes": 31965188,
+          "episode_id": 91070323,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91070323-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:36.390Z",
+          "seed": 983667240,
+          "sha256": "56F6BBA623A233B9DE6C551AFCA628139339411E4A2246C1365D3D6C70637596",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91070323",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31956775,
+          "episode_id": 91066795,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91066795-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:30.931Z",
+          "seed": 1178212185,
+          "sha256": "12E63807DE74D5C9F85676ABE7B2AD42A47A0A8BF31EF8BB8283912F536B61BA",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91066795",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16641077,
+      "team_name": "lucaskna"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 76,
+        "leaderboard_score": 3083.3,
+        "losses": 2,
+        "mean_margin": 8294.421052631578,
+        "mean_reward": 85340.3947368421,
+        "p10_margin": 798.0,
+        "rank": 11,
+        "seat0_win_rate": 0.9767441860465116,
+        "seat1_win_rate": 0.9696969696969697,
+        "submission_id": 55348136,
+        "submission_public_score": 3086.5,
+        "team_id": 16666393,
+        "team_name": "saikyo",
+        "unique_opponents": 68,
+        "win_rate": 0.9736842105263158,
+        "wins": 74
+      },
+      "leaderboard_score": 3083.3,
+      "leaderboard_submission_date": "2026-08-08T14:55:56.163Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T14:55:56.163Z",
+          "episode_count": 46,
+          "id": 55353610,
+          "latest_public_episode_ids": [
+            91072863,
+            91072798,
+            91071922,
+            91071049,
+            91070171,
+            91069277,
+            91068402,
+            91067524,
+            91066646,
+            91065766
+          ],
+          "publicScore": "2876.7",
+          "public_completed_episode_count": 45,
+          "seat_counts": {
+            "0": 28,
+            "1": 17
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T10:43:49.497Z",
+          "episode_count": 77,
+          "id": 55348136,
+          "latest_public_episode_ids": [
+            91072927,
+            91066852,
+            91065082,
+            91050480,
+            91045531,
+            91035377,
+            91033716,
+            91032866,
+            91032019,
+            91031136
+          ],
+          "publicScore": "3086.5",
+          "public_completed_episode_count": 76,
+          "seat_counts": {
+            "0": 43,
+            "1": 33
+          }
+        }
+      ],
+      "rank": 11,
+      "sampled_public_replays": [
+        {
+          "bytes": 31949882,
+          "episode_id": 91072927,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91072927-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:37.881Z",
+          "seed": 540317050,
+          "sha256": "6B006F8586C9893625901A06F9B56DA836AFCEF90A02EE434D9A17BF9D611A91",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91072927",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31945996,
+          "episode_id": 91065082,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91065082-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:27.953Z",
+          "seed": 1740102227,
+          "sha256": "DEC9CF13B085A5798D4124662B8827E57BCACC3A6BF8215B8DDB8A4BFDE94DA8",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91065082",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16666393,
+      "team_name": "saikyo"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 78,
+        "leaderboard_score": 3082.1,
+        "losses": 7,
+        "mean_margin": 7017.346153846154,
+        "mean_reward": 87400.97435897436,
+        "p10_margin": 96.10000000000001,
+        "rank": 12,
+        "seat0_win_rate": 0.8888888888888888,
+        "seat1_win_rate": 0.9285714285714286,
+        "submission_id": 55345266,
+        "submission_public_score": 3082.1,
+        "team_id": 16632867,
+        "team_name": "Rayk Kretzschmar",
+        "unique_opponents": 65,
+        "win_rate": 0.9102564102564102,
+        "wins": 71
+      },
+      "leaderboard_score": 3082.1,
+      "leaderboard_submission_date": "2026-08-08T09:04:51.303Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [
+          {
+            "author": "Rayk Kretzschmar",
+            "claim_status": "SOURCE_CAPTURED_PAGE_UNVERIFIED",
+            "id": 129396610,
+            "license_name": "UNVERIFIED",
+            "license_url": null,
+            "ref": "raykkretzschmar/kaggriculture-findings-from-zero-to-top-meta",
+            "reproduction_status": "NOT_EXECUTED_UNTRUSTED_PUBLIC_CODE",
+            "retrieved_at_utc": "2026-08-08T18:05:54.998131Z",
+            "source_bytes": 509282,
+            "source_sha256": "CBE0CABAADC35B46FA77169D22C33CC93B22410C15E389CD779F4748815646F9",
+            "title": "Kaggriculture: Findings from Zero to Top Meta",
+            "url": "https://www.kaggle.com/code/raykkretzschmar/kaggriculture-findings-from-zero-to-top-meta",
+            "version": 15,
+            "votes": 33
+          },
+          {
+            "author": "Rayk Kretzschmar",
+            "claim_status": "SOURCE_AND_REMOTE_PAGE_CAPTURED",
+            "id": 129805908,
+            "license_name": "Apache 2.0",
+            "license_url": "http://www.apache.org/licenses/LICENSE-2.0",
+            "ref": "raykkretzschmar/kaggriculture-rank-your-agent",
+            "reproduction_status": "NOT_EXECUTED_UNTRUSTED_PUBLIC_CODE",
+            "retrieved_at_utc": "2026-08-08T18:05:55.692285Z",
+            "source_bytes": 65117,
+            "source_sha256": "C9D5EB18E836807577650255D514D645BEC3710C4265196FB667E6C197F5288C",
+            "title": "Kaggriculture Rank Your Agent",
+            "url": "https://www.kaggle.com/code/raykkretzschmar/kaggriculture-rank-your-agent",
+            "version": 10,
+            "votes": 9
+          }
+        ],
+        "status": "EXACT_DISPLAY_NAME_MATCH_OBSERVED_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T09:04:51.303Z",
+          "episode_count": 84,
+          "id": 55346096,
+          "latest_public_episode_ids": [
+            91071933,
+            91059815,
+            91059840,
+            91050421,
+            91047929,
+            91043733,
+            91039490,
+            91036172,
+            91031197,
+            91026960
+          ],
+          "publicScore": "2927.4",
+          "public_completed_episode_count": 83,
+          "seat_counts": {
+            "0": 42,
+            "1": 41
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T08:24:03.880Z",
+          "episode_count": 79,
+          "id": 55345266,
+          "latest_public_episode_ids": [
+            91062469,
+            91042878,
+            91040419,
+            91029478,
+            91017709,
+            91013550,
+            91006806,
+            91005219,
+            91004371,
+            91003491
+          ],
+          "publicScore": "3082.1",
+          "public_completed_episode_count": 78,
+          "seat_counts": {
+            "0": 36,
+            "1": 42
+          }
+        }
+      ],
+      "rank": 12,
+      "sampled_public_replays": [
+        {
+          "bytes": 31940676,
+          "episode_id": 91062469,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91062469-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:26.475Z",
+          "seed": 1558665475,
+          "sha256": "2B65F0C4E557271092A3AA9456946C66F7A71D007198AE43A6F35011B2F1F615",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91062469",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31947014,
+          "episode_id": 91040419,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91040419-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:18.070Z",
+          "seed": 1753436013,
+          "sha256": "6081F49F95163E0C8F03B62CA5B189BFCC1BAF9B996E1E071177F53775F2AB32",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91040419",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16632867,
+      "team_name": "Rayk Kretzschmar"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 108,
+        "leaderboard_score": 3078.8,
+        "losses": 30,
+        "mean_margin": 2270.537037037037,
+        "mean_reward": 82572.12037037036,
+        "p10_margin": -10163.6,
+        "rank": 13,
+        "seat0_win_rate": 0.6923076923076923,
+        "seat1_win_rate": 0.75,
+        "submission_id": 55334137,
+        "submission_public_score": 3078.8,
+        "team_id": 16663229,
+        "team_name": "kakuteki",
+        "unique_opponents": 69,
+        "win_rate": 0.7222222222222222,
+        "wins": 78
+      },
+      "leaderboard_score": 3078.8,
+      "leaderboard_submission_date": "2026-08-08T03:30:12.310Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T03:30:12.310Z",
+          "episode_count": 96,
+          "id": 55339804,
+          "latest_public_episode_ids": [
+            91069293,
+            91066829,
+            91046132,
+            91045402,
+            91039503,
+            91039509,
+            91038746,
+            91037854,
+            91021043,
+            91011056
+          ],
+          "publicScore": "2890.3",
+          "public_completed_episode_count": 95,
+          "seat_counts": {
+            "0": 51,
+            "1": 44
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-07T21:27:13.897Z",
+          "episode_count": 109,
+          "id": 55334137,
+          "latest_public_episode_ids": [
+            91065786,
+            91065044,
+            91064178,
+            91063344,
+            91058118,
+            91049723,
+            91045511,
+            91042120,
+            91034526,
+            91030358
+          ],
+          "publicScore": "3078.8",
+          "public_completed_episode_count": 108,
+          "seat_counts": {
+            "0": 52,
+            "1": 56
+          }
+        }
+      ],
+      "rank": 13,
+      "sampled_public_replays": [
+        {
+          "bytes": 31960726,
+          "episode_id": 91065044,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91065044-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:27.462Z",
+          "seed": 1781347889,
+          "sha256": "A5D2704CA5522755A61DEB134A0FA87F6CD4AB0E490EC7247760481A0CCF7860",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91065044",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31947036,
+          "episode_id": 91065786,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91065786-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:28.436Z",
+          "seed": 1506130820,
+          "sha256": "4A9E6230F17ED5BF96D2EA8F7027E869F33D9915073C060DB78B31802AA6C37D",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91065786",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16663229,
+      "team_name": "kakuteki"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 70,
+        "leaderboard_score": 3074.9,
+        "losses": 6,
+        "mean_margin": 8435.757142857143,
+        "mean_reward": 86502.82857142857,
+        "p10_margin": 133.1,
+        "rank": 14,
+        "seat0_win_rate": 0.9,
+        "seat1_win_rate": 0.925,
+        "submission_id": 55350305,
+        "submission_public_score": 3074.9,
+        "team_id": 16623805,
+        "team_name": "Howon Kang",
+        "unique_opponents": 66,
+        "win_rate": 0.9142857142857143,
+        "wins": 64
+      },
+      "leaderboard_score": 3074.9,
+      "leaderboard_submission_date": "2026-08-08T12:29:11.576Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T12:29:11.577Z",
+          "episode_count": 71,
+          "id": 55350305,
+          "latest_public_episode_ids": [
+            91066852,
+            91060588,
+            91056470,
+            91055634,
+            91054779,
+            91053943,
+            91053027,
+            91053089,
+            91052229,
+            91051379
+          ],
+          "publicScore": "3074.9",
+          "public_completed_episode_count": 70,
+          "seat_counts": {
+            "0": 30,
+            "1": 40
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T08:53:52.330Z",
+          "episode_count": 80,
+          "id": 55345866,
+          "latest_public_episode_ids": [
+            91072721,
+            91071997,
+            91070122,
+            91067485,
+            91065967,
+            91056381,
+            91043709,
+            91032011,
+            91026855,
+            91021152
+          ],
+          "publicScore": "2738.5",
+          "public_completed_episode_count": 79,
+          "seat_counts": {
+            "0": 40,
+            "1": 39
+          }
+        }
+      ],
+      "rank": 14,
+      "sampled_public_replays": [
+        {
+          "bytes": 31957259,
+          "episode_id": 91060588,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91060588-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:23.490Z",
+          "seed": 883231410,
+          "sha256": "BA164E92BEBEC375571A0C3C5849222AD8DFBACF3A60CD32F74EB55BA6C6E28B",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91060588",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31944762,
+          "episode_id": 91066852,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91066852-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:31.964Z",
+          "seed": 1362068392,
+          "sha256": "58212484D4A894EA54F34572E8A2EC82679A76811F9907088CBF6DD0334BBC39",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91066852",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16623805,
+      "team_name": "Howon Kang"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 72,
+        "leaderboard_score": 3047.7,
+        "losses": 8,
+        "mean_margin": 8737.138888888889,
+        "mean_reward": 89888.13888888889,
+        "p10_margin": -145.29999999999987,
+        "rank": 15,
+        "seat0_win_rate": 0.9117647058823529,
+        "seat1_win_rate": 0.868421052631579,
+        "submission_id": 55350869,
+        "submission_public_score": 3047.7,
+        "team_id": 16670032,
+        "team_name": "Kenjo1209",
+        "unique_opponents": 57,
+        "win_rate": 0.8888888888888888,
+        "wins": 64
+      },
+      "leaderboard_score": 3047.7,
+      "leaderboard_submission_date": "2026-08-08T12:53:17.270Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T12:53:17.270Z",
+          "episode_count": 73,
+          "id": 55350869,
+          "latest_public_episode_ids": [
+            91069464,
+            91067656,
+            91064211,
+            91058982,
+            91058944,
+            91057317,
+            91056389,
+            91056458,
+            91056470,
+            91055615
+          ],
+          "publicScore": "3047.7",
+          "public_completed_episode_count": 72,
+          "seat_counts": {
+            "0": 34,
+            "1": 38
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T09:52:58.977Z",
+          "episode_count": 89,
+          "id": 55347137,
+          "latest_public_episode_ids": [
+            91071949,
+            91064068,
+            91062432,
+            91060744,
+            91060712,
+            91055649,
+            91046368,
+            91038796,
+            91033716,
+            91033711
+          ],
+          "publicScore": "3010.4",
+          "public_completed_episode_count": 88,
+          "seat_counts": {
+            "0": 49,
+            "1": 39
+          }
+        }
+      ],
+      "rank": 15,
+      "sampled_public_replays": [
+        {
+          "bytes": 31956251,
+          "episode_id": 91058944,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91058944-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:22.017Z",
+          "seed": 751967988,
+          "sha256": "09790E7666FD94583E08E32A34CB16D0CCA35444D98379D595CF7E88320EAB05",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91058944",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31938147,
+          "episode_id": 91069464,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91069464-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:35.395Z",
+          "seed": 412867782,
+          "sha256": "C927F487F07D53D613B26FC0CF360079EC16CEB552B477819995094E31991AC5",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91069464",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16670032,
+      "team_name": "Kenjo1209"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 82,
+        "leaderboard_score": 3045.2,
+        "losses": 13,
+        "mean_margin": 5732.609756097561,
+        "mean_reward": 91715.96341463414,
+        "p10_margin": -530.2,
+        "rank": 16,
+        "seat0_win_rate": 0.8478260869565217,
+        "seat1_win_rate": 0.8333333333333334,
+        "submission_id": 55346092,
+        "submission_public_score": 3045.2,
+        "team_id": 16663252,
+        "team_name": "MD Concepcion",
+        "unique_opponents": 69,
+        "win_rate": 0.8414634146341463,
+        "wins": 69
+      },
+      "leaderboard_score": 3045.2,
+      "leaderboard_submission_date": "2026-08-08T09:04:38.230Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T09:04:38.230Z",
+          "episode_count": 83,
+          "id": 55346092,
+          "latest_public_episode_ids": [
+            91067615,
+            91065964,
+            91064207,
+            91059832,
+            91057252,
+            91047173,
+            91046339,
+            91042068,
+            91030338,
+            91021070
+          ],
+          "publicScore": "3045.2",
+          "public_completed_episode_count": 82,
+          "seat_counts": {
+            "0": 46,
+            "1": 36
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T09:04:25.530Z",
+          "episode_count": 84,
+          "id": 55346085,
+          "latest_public_episode_ids": [
+            91071930,
+            91072010,
+            91071986,
+            91060607,
+            91060647,
+            91057260,
+            91055408,
+            91042805,
+            91042881,
+            91032662
+          ],
+          "publicScore": "1811.5",
+          "public_completed_episode_count": 83,
+          "seat_counts": {
+            "0": 50,
+            "1": 33
+          }
+        }
+      ],
+      "rank": 16,
+      "sampled_public_replays": [
+        {
+          "bytes": 31964371,
+          "episode_id": 91067615,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91067615-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:32.449Z",
+          "seed": 2094207865,
+          "sha256": "3FC4055DC2ED2B8430BB7DC1BF645251742F7B25DDF498662661A80C241401E3",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91067615",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31954015,
+          "episode_id": 91065964,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91065964-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:29.413Z",
+          "seed": 1964219340,
+          "sha256": "9D3F6B86ABE0698EEA424980F05B2A95608557C6C069BB43A5BF0C73A96CCC74",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91065964",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16663252,
+      "team_name": "MD Concepcion"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 27,
+        "games": 100,
+        "leaderboard_score": 3040.0,
+        "losses": 12,
+        "mean_margin": 5917.74,
+        "mean_reward": 89010.5,
+        "p10_margin": -385.19999999999993,
+        "rank": 17,
+        "seat0_win_rate": 0.68,
+        "seat1_win_rate": 0.54,
+        "submission_id": 55347083,
+        "submission_public_score": 3040.0,
+        "team_id": 16682885,
+        "team_name": "风沙星辰",
+        "unique_opponents": 71,
+        "win_rate": 0.61,
+        "wins": 61
+      },
+      "leaderboard_score": 3040.0,
+      "leaderboard_submission_date": "2026-08-08T09:50:28.750Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T09:50:28.750Z",
+          "episode_count": 101,
+          "id": 55347083,
+          "latest_public_episode_ids": [
+            91071929,
+            91062462,
+            91053030,
+            91052163,
+            91050518,
+            91043009,
+            91042963,
+            91039633,
+            91039518,
+            91038786
+          ],
+          "publicScore": "3040.0",
+          "public_completed_episode_count": 100,
+          "seat_counts": {
+            "0": 50,
+            "1": 50
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T06:03:54.507Z",
+          "episode_count": 92,
+          "id": 55342749,
+          "latest_public_episode_ids": [
+            91067481,
+            91067556,
+            91062168,
+            91055640,
+            91051183,
+            91048605,
+            91048795,
+            91030980,
+            91029477,
+            91023675
+          ],
+          "publicScore": "1939.8",
+          "public_completed_episode_count": 91,
+          "seat_counts": {
+            "0": 63,
+            "1": 28
+          }
+        }
+      ],
+      "rank": 17,
+      "sampled_public_replays": [
+        {
+          "bytes": 31958070,
+          "episode_id": 91071929,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91071929-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:36.880Z",
+          "seed": 389856311,
+          "sha256": "E52B99C51C585B5A022C98043A0067FA574FC9586788B37B310C8D382DCCD438",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91071929",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31940465,
+          "episode_id": 91062462,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91062462-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:25.987Z",
+          "seed": 1843693182,
+          "sha256": "377D7B566933D48C6BFCAE1B1B072CB9B50AB71D4F9788ACBB38B3DE3683F14C",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91062462",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16682885,
+      "team_name": "风沙星辰"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 16,
+        "games": 84,
+        "leaderboard_score": 3039.6,
+        "losses": 7,
+        "mean_margin": 7140.607142857143,
+        "mean_reward": 93064.80952380953,
+        "p10_margin": 0.0,
+        "rank": 18,
+        "seat0_win_rate": 0.7727272727272727,
+        "seat1_win_rate": 0.675,
+        "submission_id": 55350603,
+        "submission_public_score": 3039.6,
+        "team_id": 16631536,
+        "team_name": "kglctf",
+        "unique_opponents": 67,
+        "win_rate": 0.7261904761904762,
+        "wins": 61
+      },
+      "leaderboard_score": 3039.6,
+      "leaderboard_submission_date": "2026-08-08T12:42:57.810Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T12:42:57.810Z",
+          "episode_count": 85,
+          "id": 55350603,
+          "latest_public_episode_ids": [
+            91072960,
+            91067697,
+            91065938,
+            91065080,
+            91064223,
+            91063334,
+            91062463,
+            91061590,
+            91060717,
+            91059840
+          ],
+          "publicScore": "3039.6",
+          "public_completed_episode_count": 84,
+          "seat_counts": {
+            "0": 44,
+            "1": 40
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T12:42:42.460Z",
+          "episode_count": 81,
+          "id": 55350595,
+          "latest_public_episode_ids": [
+            91071132,
+            91069453,
+            91068581,
+            91067702,
+            91067663,
+            91065948,
+            91065066,
+            91064925,
+            91064197,
+            91063337
+          ],
+          "publicScore": "2960.0",
+          "public_completed_episode_count": 80,
+          "seat_counts": {
+            "0": 39,
+            "1": 41
+          }
+        }
+      ],
+      "rank": 18,
+      "sampled_public_replays": [
+        {
+          "bytes": 31952954,
+          "episode_id": 91067697,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91067697-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:32.935Z",
+          "seed": 2082477013,
+          "sha256": "BC65C234C2702236A9876F368F22D91AAE82D2B17331DA29D4F15E7474F20015",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91067697",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31959000,
+          "episode_id": 91072960,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91072960-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:38.363Z",
+          "seed": 866773001,
+          "sha256": "2F1F8EA83A2149C71A37AB55D50A7EA47BBB97A2D916CA8A0ED92D100CA38DD3",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91072960",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16631536,
+      "team_name": "kglctf"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 17,
+        "games": 89,
+        "leaderboard_score": 3034.2,
+        "losses": 8,
+        "mean_margin": 6707.359550561798,
+        "mean_reward": 84271.85393258427,
+        "p10_margin": 0.0,
+        "rank": 19,
+        "seat0_win_rate": 0.72,
+        "seat1_win_rate": 0.717948717948718,
+        "submission_id": 55347742,
+        "submission_public_score": 3034.2,
+        "team_id": 16660220,
+        "team_name": "tomo11111",
+        "unique_opponents": 70,
+        "win_rate": 0.7191011235955056,
+        "wins": 64
+      },
+      "leaderboard_score": 3034.2,
+      "leaderboard_submission_date": "2026-08-08T10:23:19.730Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T10:23:19.730Z",
+          "episode_count": 90,
+          "id": 55347742,
+          "latest_public_episode_ids": [
+            91072969,
+            91061550,
+            91060680,
+            91055566,
+            91048817,
+            91040431,
+            91039643,
+            91034524,
+            91034558,
+            91033710
+          ],
+          "publicScore": "3034.2",
+          "public_completed_episode_count": 89,
+          "seat_counts": {
+            "0": 50,
+            "1": 39
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-07T00:03:50.137Z",
+          "episode_count": 143,
+          "id": 55309274,
+          "latest_public_episode_ids": [
+            91071099,
+            91068484,
+            91063270,
+            91047922,
+            91046203,
+            91038751,
+            91034581,
+            91015168,
+            91008382,
+            91001867
+          ],
+          "publicScore": "2743.6",
+          "public_completed_episode_count": 142,
+          "seat_counts": {
+            "0": 64,
+            "1": 78
+          }
+        }
+      ],
+      "rank": 19,
+      "sampled_public_replays": [
+        {
+          "bytes": 31963391,
+          "episode_id": 91060680,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91060680-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:24.478Z",
+          "seed": 1123401565,
+          "sha256": "E2BB492B48DC13358E62D2FF124117AE11EBF5C95B511385041F22F59CBCFFC2",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91060680",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31951240,
+          "episode_id": 91072969,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91072969-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:38.841Z",
+          "seed": 1045145075,
+          "sha256": "D21300A1328370241FDD1DFFEA986A7CC33A8D5899D79B572EC97BAA24BD3DE9",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91072969",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16660220,
+      "team_name": "tomo11111"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 16,
+        "games": 88,
+        "leaderboard_score": 3032.2,
+        "losses": 6,
+        "mean_margin": 7722.784090909091,
+        "mean_reward": 92929.125,
+        "p10_margin": 0.0,
+        "rank": 20,
+        "seat0_win_rate": 0.7111111111111111,
+        "seat1_win_rate": 0.7906976744186046,
+        "submission_id": 55346155,
+        "submission_public_score": 3032.2,
+        "team_id": 16623152,
+        "team_name": "Ibad Ur Rahman",
+        "unique_opponents": 67,
+        "win_rate": 0.75,
+        "wins": 66
+      },
+      "leaderboard_score": 3032.2,
+      "leaderboard_submission_date": "2026-08-08T09:06:49.710Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T09:06:49.710Z",
+          "episode_count": 89,
+          "id": 55346155,
+          "latest_public_episode_ids": [
+            91066789,
+            91057266,
+            91056388,
+            91053056,
+            91049682,
+            91046368,
+            91042968,
+            91038786,
+            91037941,
+            91032020
+          ],
+          "publicScore": "3032.2",
+          "public_completed_episode_count": 88,
+          "seat_counts": {
+            "0": 45,
+            "1": 43
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-07T21:15:56.887Z",
+          "episode_count": 115,
+          "id": 55333979,
+          "latest_public_episode_ids": [
+            91067571,
+            91061588,
+            91058797,
+            91056362,
+            91056279,
+            91046163,
+            91039617,
+            91021896,
+            91018546,
+            91011901
+          ],
+          "publicScore": "2888.1",
+          "public_completed_episode_count": 114,
+          "seat_counts": {
+            "0": 66,
+            "1": 48
+          }
+        }
+      ],
+      "rank": 20,
+      "sampled_public_replays": [
+        {
+          "bytes": 31958091,
+          "episode_id": 91057266,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91057266-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:20.548Z",
+          "seed": 1965678863,
+          "sha256": "7C146D0553C2F21995B76EA8EDFD17298ADE63F8A5623682F0324532A4AD1B3E",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91057266",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31950680,
+          "episode_id": 91066789,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91066789-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:30.411Z",
+          "seed": 745234161,
+          "sha256": "6E5271A1D06B56E0DBE1A2E938E40A9E10428DA79D4D4936A182EA48808265AE",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91066789",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16623152,
+      "team_name": "Ibad Ur Rahman"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 103,
+        "leaderboard_score": 3029.1,
+        "losses": 25,
+        "mean_margin": 5130.359223300971,
+        "mean_reward": 82992.05825242719,
+        "p10_margin": -1625.3999999999999,
+        "rank": 21,
+        "seat0_win_rate": 0.7608695652173914,
+        "seat1_win_rate": 0.7543859649122807,
+        "submission_id": 55339397,
+        "submission_public_score": 3029.1,
+        "team_id": 16660259,
+        "team_name": "Marcus",
+        "unique_opponents": 83,
+        "win_rate": 0.7572815533980582,
+        "wins": 78
+      },
+      "leaderboard_score": 3029.1,
+      "leaderboard_submission_date": "2026-08-08T17:23:34.153Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T17:23:34.153Z",
+          "episode_count": 8,
+          "id": 55356542,
+          "latest_public_episode_ids": [
+            91072647,
+            91071774,
+            91070916,
+            91070043,
+            91069163,
+            91069187,
+            91068306
+          ],
+          "publicScore": "1244.7",
+          "public_completed_episode_count": 7,
+          "seat_counts": {
+            "0": 4,
+            "1": 3
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T03:09:35.423Z",
+          "episode_count": 104,
+          "id": 55339397,
+          "latest_public_episode_ids": [
+            91072960,
+            91071976,
+            91065938,
+            91055590,
+            91049733,
+            91047190,
+            91040457,
+            91032866,
+            91032861,
+            91032052
+          ],
+          "publicScore": "3029.1",
+          "public_completed_episode_count": 103,
+          "seat_counts": {
+            "0": 46,
+            "1": 57
+          }
+        }
+      ],
+      "rank": 21,
+      "sampled_public_replays": [
+        {
+          "bytes": 31959000,
+          "episode_id": 91072960,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91072960-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:38.363Z",
+          "seed": 866773001,
+          "sha256": "2F1F8EA83A2149C71A37AB55D50A7EA47BBB97A2D916CA8A0ED92D100CA38DD3",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91072960",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31943360,
+          "episode_id": 91071976,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91071976-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:37.393Z",
+          "seed": 1543325296,
+          "sha256": "1DA93D5B9D3E81819C2EBE1E49599A099A53EB1DC7251CE605F0B778F25E3C38",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91071976",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16660259,
+      "team_name": "Marcus"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 70,
+        "leaderboard_score": 3028.2,
+        "losses": 2,
+        "mean_margin": 8433.214285714286,
+        "mean_reward": 84263.67142857143,
+        "p10_margin": 660.2,
+        "rank": 22,
+        "seat0_win_rate": 0.9722222222222222,
+        "seat1_win_rate": 0.9705882352941176,
+        "submission_id": 55350882,
+        "submission_public_score": 3028.2,
+        "team_id": 16668370,
+        "team_name": "Matthew Labrador",
+        "unique_opponents": 62,
+        "win_rate": 0.9714285714285714,
+        "wins": 68
+      },
+      "leaderboard_score": 3028.2,
+      "leaderboard_submission_date": "2026-08-08T12:53:49.803Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T12:53:49.803Z",
+          "episode_count": 71,
+          "id": 55350882,
+          "latest_public_episode_ids": [
+            91066823,
+            91060769,
+            91059858,
+            91058982,
+            91058963,
+            91058144,
+            91057295,
+            91056456,
+            91055560,
+            91055602
+          ],
+          "publicScore": "3028.2",
+          "public_completed_episode_count": 70,
+          "seat_counts": {
+            "0": 36,
+            "1": 34
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T12:24:05.507Z",
+          "episode_count": 70,
+          "id": 55350188,
+          "latest_public_episode_ids": [
+            91071114,
+            91070345,
+            91061476,
+            91061460,
+            91059016,
+            91053111,
+            91052250,
+            91051392,
+            91050536,
+            91049692
+          ],
+          "publicScore": "1899.8",
+          "public_completed_episode_count": 69,
+          "seat_counts": {
+            "0": 33,
+            "1": 36
+          }
+        }
+      ],
+      "rank": 22,
+      "sampled_public_replays": [
+        {
+          "bytes": 31957336,
+          "episode_id": 91058982,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91058982-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:22.505Z",
+          "seed": 1919391965,
+          "sha256": "7A55833A906A8CDC3C1B65B2F857E69C00D964614879C1069525F24866B9E9D4",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91058982",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31967086,
+          "episode_id": 91066823,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91066823-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:31.475Z",
+          "seed": 336345589,
+          "sha256": "CB047EA2DFA22917DF103E0C5D0B376C468B6C65E88310ED7D63BE7C82F5F227",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91066823",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16668370,
+      "team_name": "Matthew Labrador"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 16,
+        "games": 93,
+        "leaderboard_score": 3019.4,
+        "losses": 15,
+        "mean_margin": 6709.0,
+        "mean_reward": 83238.45161290323,
+        "p10_margin": -1026.6000000000001,
+        "rank": 23,
+        "seat0_win_rate": 0.5952380952380952,
+        "seat1_win_rate": 0.7254901960784313,
+        "submission_id": 55345819,
+        "submission_public_score": 3019.4,
+        "team_id": 16669256,
+        "team_name": "Shivam_2212",
+        "unique_opponents": 69,
+        "win_rate": 0.6666666666666666,
+        "wins": 62
+      },
+      "leaderboard_score": 3019.4,
+      "leaderboard_submission_date": "2026-08-08T14:35:51.093Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T14:35:51.093Z",
+          "episode_count": 49,
+          "id": 55353220,
+          "latest_public_episode_ids": [
+            91072838,
+            91071969,
+            91071101,
+            91070216,
+            91069323,
+            91068446,
+            91067552,
+            91066684,
+            91065803,
+            91064938
+          ],
+          "publicScore": "2520.7",
+          "public_completed_episode_count": 48,
+          "seat_counts": {
+            "0": 25,
+            "1": 23
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T08:51:21.023Z",
+          "episode_count": 94,
+          "id": 55345819,
+          "latest_public_episode_ids": [
+            91059769,
+            91057317,
+            91053817,
+            91047119,
+            91045531,
+            91043765,
+            91043009,
+            91042911,
+            91032844,
+            91032776
+          ],
+          "publicScore": "3019.4",
+          "public_completed_episode_count": 93,
+          "seat_counts": {
+            "0": 42,
+            "1": 51
+          }
+        }
+      ],
+      "rank": 23,
+      "sampled_public_replays": [
+        {
+          "bytes": 31943197,
+          "episode_id": 91059769,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91059769-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:22.999Z",
+          "seed": 1887819545,
+          "sha256": "9E35BA939F414561F2989A4A004786EB8C9C5B4F799C3B5506F6D0D47973F8F4",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91059769",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31961664,
+          "episode_id": 91057317,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91057317-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:21.040Z",
+          "seed": 1050590080,
+          "sha256": "8E8A89E0040D891E787D84A51DEE0EEA22BC4716DDC2595C8C0AA8B776369DD9",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91057317",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16669256,
+      "team_name": "Shivam_2212"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 21,
+        "games": 99,
+        "leaderboard_score": 3013.6,
+        "losses": 13,
+        "mean_margin": 6541.565656565656,
+        "mean_reward": 86217.55555555556,
+        "p10_margin": -866.4000000000001,
+        "rank": 24,
+        "seat0_win_rate": 0.7,
+        "seat1_win_rate": 0.6122448979591837,
+        "submission_id": 55347101,
+        "submission_public_score": 3013.6,
+        "team_id": 16629165,
+        "team_name": "lingyu07",
+        "unique_opponents": 82,
+        "win_rate": 0.6565656565656566,
+        "wins": 65
+      },
+      "leaderboard_score": 3013.6,
+      "leaderboard_submission_date": "2026-08-08T09:51:24.013Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T09:51:24.013Z",
+          "episode_count": 100,
+          "id": 55347101,
+          "latest_public_episode_ids": [
+            91068555,
+            91068527,
+            91066746,
+            91063337,
+            91061464,
+            91059801,
+            91058083,
+            91053881,
+            91053089,
+            91050509
+          ],
+          "publicScore": "3013.6",
+          "public_completed_episode_count": 99,
+          "seat_counts": {
+            "0": 50,
+            "1": 49
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-07T11:26:39.223Z",
+          "episode_count": 146,
+          "id": 55323394,
+          "latest_public_episode_ids": [
+            91071093,
+            91071213,
+            91060453,
+            91057297,
+            91053124,
+            91032895,
+            91025990,
+            91020151,
+            91004135,
+            91001050
+          ],
+          "publicScore": "2447.6",
+          "public_completed_episode_count": 145,
+          "seat_counts": {
+            "0": 73,
+            "1": 72
+          }
+        }
+      ],
+      "rank": 24,
+      "sampled_public_replays": [
+        {
+          "bytes": 31949362,
+          "episode_id": 91068555,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91068555-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:33.908Z",
+          "seed": 441689389,
+          "sha256": "B1DF3746B57E4319781CF8B582B42E89824A2ECD262B64701EA97DBA28CDF9B8",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91068555",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31948482,
+          "episode_id": 91066746,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91066746-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:29.916Z",
+          "seed": 802510635,
+          "sha256": "1B6C9758660F5190D0F17BC504F2EFC143C7D448A94F1B5352B83D02D7D5D82F",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91066746",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16629165,
+      "team_name": "lingyu07"
+    },
+    {
+      "episode_metadata_status": "OBSERVED",
+      "highest_scoring_submission_episode_performance": {
+        "draws": 0,
+        "games": 94,
+        "leaderboard_score": 3013.0,
+        "losses": 22,
+        "mean_margin": 6094.54255319149,
+        "mean_reward": 93096.0425531915,
+        "p10_margin": -1296.8999999999996,
+        "rank": 25,
+        "seat0_win_rate": 0.7,
+        "seat1_win_rate": 0.8409090909090909,
+        "submission_id": 55340360,
+        "submission_public_score": 3013.0,
+        "team_id": 16663928,
+        "team_name": "Auxileon",
+        "unique_opponents": 73,
+        "win_rate": 0.7659574468085106,
+        "wins": 72
+      },
+      "leaderboard_score": 3013.0,
+      "leaderboard_submission_date": "2026-08-08T04:06:20.066Z",
+      "public_code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "public_discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "public_models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T04:06:20.067Z",
+          "episode_count": 95,
+          "id": 55340360,
+          "latest_public_episode_ids": [
+            91070301,
+            91069360,
+            91069328,
+            91063302,
+            91063260,
+            91056428,
+            91050484,
+            91047940,
+            91044708,
+            91032859
+          ],
+          "publicScore": "3013.0",
+          "public_completed_episode_count": 94,
+          "seat_counts": {
+            "0": 50,
+            "1": 44
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T04:02:39.950Z",
+          "episode_count": 52,
+          "id": 55340294,
+          "latest_public_episode_ids": [
+            91072082,
+            91064799,
+            91057863,
+            91021132,
+            91007644,
+            90999385,
+            90967420,
+            90953395,
+            90944393,
+            90934174
+          ],
+          "publicScore": "976.7",
+          "public_completed_episode_count": 51,
+          "seat_counts": {
+            "0": 25,
+            "1": 26
+          }
+        }
+      ],
+      "rank": 25,
+      "sampled_public_replays": [
+        {
+          "bytes": 31953818,
+          "episode_id": 91070301,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91070301-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:35.905Z",
+          "seed": 2013163568,
+          "sha256": "F9B71CA05F48D108F9419FE8C937A5A0D2DC641A359C2C43FFB91F5311130B84",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91070301",
+          "target_seat": 0
+        },
+        {
+          "bytes": 31953802,
+          "episode_id": 91069328,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-91069328-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:34.391Z",
+          "seed": 883467669,
+          "sha256": "A60AF5586A7EAC2A661AE9E21769F329E120D6D0DC3C5701A0181A59E068C991",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91069328",
+          "target_seat": 1
+        }
+      ],
+      "team_id": 16663928,
+      "team_name": "Auxileon"
+    }
+  ],
+  "schema_version": 1
+}

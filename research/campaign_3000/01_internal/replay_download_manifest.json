@@ -1,0 +1,13 @@
+{
+  "cohort": "both",
+  "completed_at_utc": "2026-08-08T18:03:38.863Z",
+  "downloaded": 89,
+  "failed": 0,
+  "inventory_bytes": 135671,
+  "inventory_path": "C:/Users/최용우/Documents/Codex/2026-07-31/kaggriculture-3-github/work/campaign_3000/research/campaign_3000/01_internal/replay_inventory.jsonl",
+  "inventory_sha256": "B7BA7E3C3AEA87CF3542C2354EC855B0C4446D9AFEF00B7AFF1823E89DD98100",
+  "schema_version": 1,
+  "selection_requests": 94,
+  "started_at_utc": "2026-08-08T18:02:57.525Z",
+  "unique_episode_count": 89
+}

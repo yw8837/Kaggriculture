@@ -1,0 +1,661 @@
+{
+  "created_at_utc": "2026-08-08T18:27:07.397405Z",
+  "leaderboard_snapshot_observed_at_utc": "2026-08-08T17:50:15.385Z",
+  "lineage_note": {
+    "dominant_farm_hash": "FC37F8688680DA949DB44C9444DCB9541488B4E10D9F432CC42648D6423F1B26",
+    "evidence_status": "SHA_PINNED_LOCAL_UNCOMMITTED_AT_HANDOFF",
+    "negative_scan": {
+      "conclusion": "NO_EXACT_PUBLIC_LINEAGE_FOUND_IN_SCANNED_MATERIAL",
+      "current_source_literal_scan": {
+        "artifact_bytes": 38230,
+        "artifact_emitted_at_utc": "2026-08-08T18:16:41.929464Z",
+        "artifact_path": "research/campaign_3000/02_public_meta/tape_lineage.jsonl",
+        "artifact_sha256": "D95EA5E4AFF77025B4B8A8BEA71C1A8ECAE28208DB8845FF488C1F98D5AF0A5B",
+        "dominant_exact_matches": 0,
+        "literal_tapes_found": 15,
+        "population_refs": 155,
+        "source_requests_rate_limited_429": 94,
+        "source_requests_succeeded": 61
+      },
+      "dominant_replay_farm_sha256": "FC37F8688680DA949DB44C9444DCB9541488B4E10D9F432CC42648D6423F1B26",
+      "early_frontier_v12_crosscheck": {
+        "actions": 719,
+        "append_none_farm_sha256": "F1FE5D26931E11A8EA7EF8AC194BF06D7A36A8FB1973590DC11703481A82473E",
+        "dominant_exact_match": false,
+        "literal_farm_sha256": "D81E23727BFF120CDB3249C0DB5FE205ADA449BA6B7254421B138D3A5CDD812F",
+        "prepend_none_farm_sha256": "3744F57A9A1A6E7C72AEF63867B0B76C96C74C7D9AEDE0BEC3511A82822DADD2",
+        "source_lineage": "prvsiyan public Frontier Lab episode 89256171/player0"
+      },
+      "high_score_output_scan": {
+        "ast_main_files_passed": 18,
+        "dominant_exact_matches": 0,
+        "downloaded_bytes": 9533154,
+        "files": 89,
+        "literal_tapes_found": 20,
+        "manifest_bytes": 61163,
+        "manifest_path": "research/campaign_3000/02_public_meta/kernel_output_manifest.jsonl",
+        "manifest_sha256": "F72D9C5FECB8CA4213BBE07F76E5549C1FE1923C3655918E72C43C45CD5359AA",
+        "observed_at_utc_end": "2026-08-08T18:23:06.335683Z",
+        "observed_at_utc_start": "2026-08-08T18:21:53.249771Z",
+        "refs": 18,
+        "selection": "current public kernels with captured best_score >= 1900, plus fleongg/kaggriculture-public-2830-4-v21-1-no-preemption",
+        "static_analysis_bytes": 24427,
+        "static_analysis_path": "research/campaign_3000/02_public_meta/kernel_static_analysis.jsonl",
+        "static_analysis_sha256": "BD4AF58185A718F436756093F0C2713831A5632B30C7BAA8F3D9F627E39CE256",
+        "successful_downloads": 18
+      },
+      "limitation": "This is a negative scan, not proof of absence. Ninety-four current source calls were rate-limited, and compressed or generated schedules may evade literal AST extraction. The dominant FC37 lineage remains UNMAPPED. Public code was never executed."
+    },
+    "status": "UNMAPPED_TO_PUBLIC_CODE_INVENTORY"
+  },
+  "rows": [
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 1,
+      "team_id": 16630516,
+      "team_name": "Seb (allegedly)"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 2,
+      "team_id": 16676321,
+      "team_name": "tao wu11"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 3,
+      "team_id": 16672202,
+      "team_name": "HealthStone"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 4,
+      "team_id": 16624979,
+      "team_name": "Mohamed abdelrazik"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 5,
+      "team_id": 16626191,
+      "team_name": "kevin park"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NO_EXACT_DISPLAY_NAME_MATCH;_ONE_UNVERIFIED_INFERENCE_RECORDED",
+        "unverified_inferences": [
+          {
+            "author": "fle3n",
+            "claim_status": "SOURCE_CAPTURED_PAGE_UNVERIFIED",
+            "id": 129873837,
+            "identity_status": "UNVERIFIED_INFERENCE_ONLY",
+            "license_name": "UNVERIFIED",
+            "license_url": null,
+            "reason": "Plausible name/strategy association, but public author display is fle3n rather than Lester Leong.",
+            "ref": "fleongg/kaggriculture-public-2830-4-v21-1-no-preemption",
+            "reproduction_status": "NOT_EXECUTED_UNTRUSTED_PUBLIC_CODE",
+            "retrieved_at_utc": "2026-08-08T18:04:41.003926Z",
+            "source_bytes": 27562,
+            "source_sha256": "83191773989FB698B942032DD9A2C5FE470D6EB50C78076ADC98CFFF45139386",
+            "title": "Kaggriculture Public 2830.4 | v21.1 No-Preemption",
+            "url": "https://www.kaggle.com/code/fleongg/kaggriculture-public-2830-4-v21-1-no-preemption",
+            "version": 1,
+            "votes": 4
+          }
+        ]
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 6,
+      "team_id": 16662492,
+      "team_name": "Lester Leong"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 7,
+      "team_id": 16669148,
+      "team_name": "Syed Muhammad Gillani"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 8,
+      "team_id": 16669403,
+      "team_name": "mrgrishninsb"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 9,
+      "team_id": 16637546,
+      "team_name": "Forrest"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 10,
+      "team_id": 16641077,
+      "team_name": "lucaskna"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 11,
+      "team_id": 16666393,
+      "team_name": "saikyo"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [
+          {
+            "author": "Rayk Kretzschmar",
+            "claim_status": "SOURCE_CAPTURED_PAGE_UNVERIFIED",
+            "id": 129396610,
+            "license_name": "UNVERIFIED",
+            "license_url": null,
+            "ref": "raykkretzschmar/kaggriculture-findings-from-zero-to-top-meta",
+            "reproduction_status": "NOT_EXECUTED_UNTRUSTED_PUBLIC_CODE",
+            "retrieved_at_utc": "2026-08-08T18:05:54.998131Z",
+            "source_bytes": 509282,
+            "source_sha256": "CBE0CABAADC35B46FA77169D22C33CC93B22410C15E389CD779F4748815646F9",
+            "title": "Kaggriculture: Findings from Zero to Top Meta",
+            "url": "https://www.kaggle.com/code/raykkretzschmar/kaggriculture-findings-from-zero-to-top-meta",
+            "version": 15,
+            "votes": 33
+          },
+          {
+            "author": "Rayk Kretzschmar",
+            "claim_status": "SOURCE_AND_REMOTE_PAGE_CAPTURED",
+            "id": 129805908,
+            "license_name": "Apache 2.0",
+            "license_url": "http://www.apache.org/licenses/LICENSE-2.0",
+            "ref": "raykkretzschmar/kaggriculture-rank-your-agent",
+            "reproduction_status": "NOT_EXECUTED_UNTRUSTED_PUBLIC_CODE",
+            "retrieved_at_utc": "2026-08-08T18:05:55.692285Z",
+            "source_bytes": 65117,
+            "source_sha256": "C9D5EB18E836807577650255D514D645BEC3710C4265196FB667E6C197F5288C",
+            "title": "Kaggriculture Rank Your Agent",
+            "url": "https://www.kaggle.com/code/raykkretzschmar/kaggriculture-rank-your-agent",
+            "version": 10,
+            "votes": 9
+          }
+        ],
+        "status": "EXACT_DISPLAY_NAME_MATCH_OBSERVED_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 12,
+      "team_id": 16632867,
+      "team_name": "Rayk Kretzschmar"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 13,
+      "team_id": 16663229,
+      "team_name": "kakuteki"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 14,
+      "team_id": 16623805,
+      "team_name": "Howon Kang"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 15,
+      "team_id": 16670032,
+      "team_name": "Kenjo1209"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 16,
+      "team_id": 16663252,
+      "team_name": "MD Concepcion"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 17,
+      "team_id": 16682885,
+      "team_name": "风沙星辰"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 18,
+      "team_id": 16631536,
+      "team_name": "kglctf"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 19,
+      "team_id": 16660220,
+      "team_name": "tomo11111"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 20,
+      "team_id": 16623152,
+      "team_name": "Ibad Ur Rahman"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 21,
+      "team_id": 16660259,
+      "team_name": "Marcus"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 22,
+      "team_id": 16668370,
+      "team_name": "Matthew Labrador"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 23,
+      "team_id": 16669256,
+      "team_name": "Shivam_2212"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 24,
+      "team_id": 16629165,
+      "team_name": "lingyu07"
+    },
+    {
+      "code": {
+        "absence_scope": "No exact display-name/owner match in the frozen 155-ref current Code inventory; this is not proof that the team has no public code.",
+        "exact_display_name_matches": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_CURRENT_155_REF_INVENTORY",
+        "unverified_inferences": []
+      },
+      "discussion": {
+        "absence_scope": "Many discussion page authors were unverified; this is not proof of no authored discussion.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_57_ID_PARTIALLY_ATTRIBUTED_INVENTORY"
+      },
+      "models": {
+        "absence_scope": "The CLI has no competition filter and UI search returned none; this is not a zero-population claim.",
+        "refs": [],
+        "status": "NONE_OBSERVED_EXACT_DISPLAY_NAME_MATCH_IN_ONE_UNVERIFIED_RECORD"
+      },
+      "rank": 25,
+      "team_id": 16663928,
+      "team_name": "Auxileon"
+    }
+  ],
+  "schema_version": 1,
+  "source_evidence": {
+    "code_inventory.jsonl": {
+      "bytes": 328991,
+      "observed_at_utc": "2026-08-08T18:03:31Z/2026-08-08T18:08:30Z",
+      "path": "research/campaign_3000/02_public_meta/code_inventory.jsonl",
+      "population": "155 current public Kaggriculture code refs returned by official kernels_list pagination through the first empty page",
+      "sha256": "E510D00AB0AFB35E06B90EFD8EB8CC96DA08F29D8398DF682CDDDD060A7BEEC1"
+    },
+    "discussion_inventory.jsonl": {
+      "bytes": 43333,
+      "observed_at_utc": "2026-08-08T18:06:25.995844Z/2026-08-08T18:07:31.603370Z",
+      "path": "research/campaign_3000/02_public_meta/discussion_inventory.jsonl",
+      "population": "57 discussion IDs collected by the separate public-meta lane; some page authors remain unverified",
+      "sha256": "8A296AE0C70728883FA9A2506B263DA3A3907678F03FCAB5D2357DF6B348B767"
+    },
+    "lineage_summary.json": {
+      "bytes": 2311,
+      "observed_at_utc": "2026-08-08T18:16:41.929464Z/2026-08-08T18:23:06.335683Z",
+      "path": "research/campaign_3000/02_public_meta/lineage_summary.json",
+      "population": "18 high-score public kernel outputs plus a partial 61-of-155 current source literal-tape scan",
+      "sha256": "C93AB3BEEA82FD3D88A2A8167B12C68DB43D49EF2FB101DFD9948C225B0D6F06"
+    },
+    "model_inventory.jsonl": {
+      "bytes": 485,
+      "observed_at_utc": "2026-08-08T18:07:36.430544Z",
+      "path": "research/campaign_3000/02_public_meta/model_inventory.jsonl",
+      "population": "1 unverified model inventory record; official CLI lacks a competition filter and UI search observed no result",
+      "sha256": "6807E5AC0DB8B02EBE5BFF62AC764454A5CD208C3F6C8A2666934C61F8C8D60E"
+    }
+  }
+}

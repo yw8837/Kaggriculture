@@ -1,0 +1,161 @@
+{
+  "authorization": "LOCAL_BUILD_ONLY_EXTERNAL_ACTIONS_HOLD",
+  "candidate_evaluation_prerequisites": {
+    "candidate_gate": {
+      "path": "research/campaign_3000/06_candidates/gate_config.json",
+      "sha256": "F9E82C8F1EE992FB2F82B3EB8DE476410A0695E05C06C35AD951A21AAE8750DB"
+    },
+    "candidate_manifest": {
+      "path": "research/campaign_3000/06_candidates/manifest.json",
+      "sha256": "FBF560F617788022552B2115023639F81CB49E01E67B90AACE2291DA72DECE69"
+    },
+    "candidate_plan": {
+      "path": "research/campaign_3000/06_candidates/candidate_plan.json",
+      "sha256": "7167430237ACFF5846C8DFD6F948DC846BC5DB3BCBFCE973505DF3E86A0D33C8"
+    },
+    "development_result": {
+      "required": true,
+      "required_verdict": "PASS",
+      "scope": "EACH_CANDIDATE_EXACT_DEVELOPMENT_PHASE",
+      "status": "PENDING"
+    },
+    "independent_auditor_exact_private_saverun_release": {
+      "auditor_task_id": "019fb8b8-7758-7860-9304-39eb4f06c65c",
+      "required": true,
+      "required_verdict": "PASS",
+      "scope": "EXACT_PRIVATE_SAVERUN_RELEASE",
+      "status": "PENDING"
+    }
+  },
+  "candidates": [
+    {
+      "artifact": {
+        "bytes": 19099,
+        "path": "Kag_01 - Tetsu v16 Exact/Kag_01 - Tetsu v16 Exact.tar.gz",
+        "sha256": "184F687C474933A7215DB97E8C5A5F823AE79233EEA42D04B70EABC001BF9E16"
+      },
+      "attribution": {
+        "path": "research/campaign_3000/07_release/ATTRIBUTION_TETSU.md",
+        "sha256": "3685283A43DF0B5352041EA24BC1E531CE706D0F722C22BB1D07DC71F362101F"
+      },
+      "kernel_id": "yw8837/kag-01-tetsu-v16-exact",
+      "license_status": "VERIFIED_PAGE_PLUS_EXACT_SOURCE_MAPPING_INFERENCE",
+      "member_sha256": {
+        "ATTRIBUTION.md": "3685283A43DF0B5352041EA24BC1E531CE706D0F722C22BB1D07DC71F362101F",
+        "LICENSE": "1EB85FC97224598DAD1852B5D6483BBCF0AA8608790DCC657A5A2A761AE9C8C6",
+        "main.py": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+      },
+      "metadata": {
+        "path": "Kag_01 - Tetsu v16 Exact/kernel-metadata.json",
+        "sha256": "F58F72FDC99FB5FB828732EF93546F0285F02024643884D88EAFCAF768B98746"
+      },
+      "notebook": {
+        "path": "Kag_01 - Tetsu v16 Exact/Kag_01 - Tetsu v16 Exact.ipynb",
+        "sha256": "0C8D17DA3266804597EA753A401FDEAE8AAF4E04CDE305C2E7F9C6FF61CDF895"
+      },
+      "prepush": {
+        "path": "Kag_01 - Tetsu v16 Exact/prepush.json",
+        "sha256": "EA3E19D1F2C81639DBD67510C4DF768DCC08BB3D8E5D71285DF67D08FE39DF55"
+      },
+      "sequence": "Kag_01",
+      "source_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+      "status": "LOCAL_PACKAGE_BUILT_EXTERNAL_ACTIONS_HOLD"
+    },
+    {
+      "artifact": {
+        "bytes": 17360,
+        "path": "Kag_02 - Kaito v22 Price Impact/Kag_02 - Kaito v22 Price Impact.tar.gz",
+        "sha256": "37EA53D3046E3D1DA914F8A89C6F4BB02E240E1BB85857BDA149273FC4DD974C"
+      },
+      "attribution": {
+        "path": "research/campaign_3000/07_release/ATTRIBUTION_KAITO.md",
+        "sha256": "A13EDD083A33082DD781B7A1EDD75306C868C743E12082CF4623F5B4BF970BD9"
+      },
+      "kernel_id": "yw8837/kag-02-kaito-v22-price-impact",
+      "license_status": "VERIFIED_APACHE_2_0_PAGE_AND_EXACT_OUTPUT",
+      "member_sha256": {
+        "ATTRIBUTION.md": "A13EDD083A33082DD781B7A1EDD75306C868C743E12082CF4623F5B4BF970BD9",
+        "LICENSE": "1EB85FC97224598DAD1852B5D6483BBCF0AA8608790DCC657A5A2A761AE9C8C6",
+        "main.py": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A"
+      },
+      "metadata": {
+        "path": "Kag_02 - Kaito v22 Price Impact/kernel-metadata.json",
+        "sha256": "A32152D8D2DA2BE06D08C7F2C01C401BA84EA7B4BC8E69F189110FC54A3EDCFA"
+      },
+      "notebook": {
+        "path": "Kag_02 - Kaito v22 Price Impact/Kag_02 - Kaito v22 Price Impact.ipynb",
+        "sha256": "01003AADA83D0688DB40A01B19D4886871EE0A2317A5F8F897E82FB78130A431"
+      },
+      "prepush": {
+        "path": "Kag_02 - Kaito v22 Price Impact/prepush.json",
+        "sha256": "8B29E422AD10408FE7F226374971CF16B4D47EF4EAB83CEDBEFDCCC64EB27C27"
+      },
+      "sequence": "Kag_02",
+      "source_sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+      "status": "LOCAL_PACKAGE_BUILT_EXTERNAL_ACTIONS_HOLD"
+    }
+  ],
+  "competition_submission": "NOT_RUN_NOT_AUTHORIZED",
+  "evidence_cutoff_utc": "2026-08-08T18:53:47Z",
+  "evidence_receipt": {
+    "path": "research/campaign_3000/07_release/evidence/official_capture_receipts.json",
+    "sha256": "83C1E27A39B9B7582022CC5AB7F5F337BCF5F06CCD770538AD6513F861A19558"
+  },
+  "external_action_gate": {
+    "blocking_prerequisites": [
+      "development_result",
+      "independent_auditor_exact_private_saverun_release",
+      "final_git_freeze"
+    ],
+    "status": "HOLD"
+  },
+  "external_action_performed": false,
+  "fallback": {
+    "alias": "ray_c45_exact",
+    "license": "Apache-2.0",
+    "notebook_url": "https://www.kaggle.com/code/raykkretzschmar/kaggriculture-rank-your-agent",
+    "notebook_version": 10,
+    "reason_not_selected": "Retained as a hash-pinned fallback and evaluation opponent after the conditional Tetsu IP pass.",
+    "source_path": "research/campaign_3000/06_candidates/snapshots/ray_c45_exact.py",
+    "source_sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73"
+  },
+  "license": {
+    "source_path": "research/campaign_3000/07_release/LICENSE",
+    "source_sha256": "1EB85FC97224598DAD1852B5D6483BBCF0AA8608790DCC657A5A2A761AE9C8C6",
+    "spdx": "Apache-2.0",
+    "url": "http://www.apache.org/licenses/LICENSE-2.0"
+  },
+  "publication": "NOT_RUN_NOT_AUTHORIZED",
+  "raw_source_archive": {
+    "path": "research/campaign_3000/07_release/evidence/raw/RECEIPT.json",
+    "sha256": "B3F54DDD8C888665C8755B806F10094F999C63E3409130587FD94C2982759772",
+    "status": "PASS_EXACT_CURRENT_VERSION_SOURCE_ARCHIVED"
+  },
+  "schema_version": 1,
+  "source_snapshot_receipt": {
+    "path": "research/campaign_3000/07_release/source/SNAPSHOT_RECEIPT.json",
+    "sha256": "A07E93F0FB1BD93BD2F248924D9DFD6F7F2DB5F908776E732743E7B72EB8981C"
+  },
+  "status": "LOCAL_PACKAGE_BUILT_EXTERNAL_ACTIONS_HOLD",
+  "tetsu_ip_verdict": {
+    "path": "research/campaign_3000/07_release/TETSU_IP_VERDICT.md",
+    "sha256": "DA8764985D0EFCFC63867DB673E242D82B9D72CFE7495BFCB932A2DD6F0DF721",
+    "verdict": "CONDITIONAL_PASS_PRIVATE_SAVERUN_ONLY"
+  },
+  "worktree_binding": {
+    "binding": "WORKTREE_PINNED",
+    "builder": {
+      "path": "research/campaign_3000/07_release/build_release.py",
+      "sha256": "F31DAFF27A7EEF2FB4EE34E56F7DB060CFB549B0D42611717528C6832D8FC9DF"
+    },
+    "git_head": {
+      "claim": "BASE_HEAD_ONLY_NOT_COMMIT_CONTAINMENT",
+      "commit": "72b12208dd8faf78df267738b017ec3a049334ea"
+    },
+    "spec": {
+      "path": "research/campaign_3000/07_release/release_spec.json",
+      "sha256": "BBE3B7DA2C14B5C4DD752AE67C55FD1898E1B9DF613162DA7FCAEC32009680F4"
+    },
+    "status": "PENDING_FINAL_GIT_FREEZE"
+  }
+}

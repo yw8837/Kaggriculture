@@ -1,0 +1,52 @@
+{
+  "created_at_utc": "2026-08-08T20:46:31.334845Z",
+  "failures": [],
+  "inventory": {
+    "authoritative_path_contract": "campaign-worktree-relative POSIX path; no absolute path field",
+    "bytes": 118939,
+    "path": "research/campaign_3000/01_internal/replay_inventory.jsonl",
+    "rows": 89,
+    "sha256": "F700901DED687B63D1BA34DE897032B840544379C7571CA82BFD2C59F776A5E8"
+  },
+  "raw_replays": {
+    "failed": 0,
+    "status_counts_all_agent_steps": {
+      "ACTIVE": 127982,
+      "DONE": 178
+    },
+    "terminal_status_pairs": {
+      "DONE|DONE": 89
+    },
+    "total": 89,
+    "verified": 89
+  },
+  "schema_version": 1,
+  "selection": {
+    "requests_by_cohort": {
+      "leaderboard_top25": 50,
+      "our_submissions": 44
+    },
+    "status_counts_all_agents_by_unique_episode_cohort": {
+      "leaderboard_top25": {
+        "ACTIVE": 64710,
+        "DONE": 90
+      },
+      "our_submissions": {
+        "ACTIVE": 63272,
+        "DONE": 88
+      }
+    },
+    "terminal_status_pairs_by_unique_episode_cohort": {
+      "leaderboard_top25": {
+        "DONE|DONE": 45
+      },
+      "our_submissions": {
+        "DONE|DONE": 44
+      }
+    },
+    "unique_episodes_by_cohort": {
+      "leaderboard_top25": 45,
+      "our_submissions": 44
+    }
+  }
+}

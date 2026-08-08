@@ -217,8 +217,8 @@ objectively blocked.
 
 Only after explicit authorization:
 
-- Kaggriculture production candidates use `Fa_XX - Short Description.tar.gz`, starting at
-  `Fa_01`; the two unnumbered initial baseline submissions remain outside this sequence.
+- Kaggriculture production candidates use `Kag_XX - Short Description.tar.gz`, starting at
+  `Kag_01`; the earlier Fa/unnumbered historical artifacts remain outside this new sequence.
 - Default authority stops after a successful private Save & Run. A competition submission
   requires the user to say to submit it explicitly.
 - Keep the record repository private. Any later public notebook or Discussion must use a

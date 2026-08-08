@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-08-08T18:31:52.638402+00:00",
+  "git_head_at_start": "72b12208dd8faf78df267738b017ec3a049334ea",
+  "candidate": "dist/campaign_3000_public_agents/kaitofukami__44-46-strict-future-top-30-v22-price-impact.py",
+  "candidate_path": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\dist\\campaign_3000_public_agents\\kaitofukami__44-46-strict-future-top-30-v22-price-impact.py",
+  "candidate_sha256_at_start": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+  "opponents": [
+    "tetsu_adaptive"
+  ],
+  "opponent_paths": {
+    "tetsu_adaptive": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\dist\\campaign_3000_public_agents\\tetsutani__adaptive-farming-strategy-for-kaggriculture.py"
+  },
+  "opponent_sha256_at_start": {
+    "tetsu_adaptive": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+  },
+  "seeds": [
+    23000,
+    23001,
+    23002,
+    23003,
+    23004,
+    23005,
+    23006,
+    23007
+  ],
+  "seat_policy": "both seats",
+  "workers": 8,
+  "scenario_overrides": {
+    "default": {}
+  },
+  "effective_scenarios": {
+    "default": {
+      "episodeSteps": 720
+    }
+  },
+  "effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE"
+}

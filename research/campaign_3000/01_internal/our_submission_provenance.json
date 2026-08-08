@@ -1,0 +1,2194 @@
+{
+  "api_observed_at_utc": "2026-08-08T17:50:15.385Z",
+  "created_at_utc": "2026-08-08T18:27:07.442673Z",
+  "limitations": [
+    "Local source/archive matches are filename-and-current-byte candidates only; Kaggle does not expose the historical uploaded archive bytes.",
+    "Repeated filenames may represent distinct historical upload bytes despite matching the same current local archive.",
+    "Two sampled replays per submission are descriptive and selection-biased; use the full public episode metadata performance for W-D-L summaries."
+  ],
+  "naming_directive": {
+    "future": "Kag_XX - Short Description.tar.gz",
+    "historical_only_prefixes": [
+      "Fa_",
+      "Ge_",
+      "bot_"
+    ]
+  },
+  "rows": [
+    {
+      "episode_inventory": {
+        "public_complete": 108,
+        "seat_counts": {
+          "0": 53,
+          "1": 55
+        },
+        "total": 109,
+        "validation": 1
+      },
+      "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+      "local_source_mapping": {
+        "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_05 - Tetsuya Tape Shield.tar.gz",
+            "bytes": 13137,
+            "members": [
+              {
+                "bytes": 146492,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05/main.py",
+                    "bytes": 146492,
+                    "path": "artifacts/candidates/bot_05/main.py",
+                    "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                  },
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_h1/main.py",
+                    "bytes": 146492,
+                    "path": "artifacts/candidates/bot_05_h1/main.py",
+                    "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+              }
+            ],
+            "path": "dist/bot_05 - Tetsuya Tape Shield.tar.gz",
+            "sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+            "tar_status": "PARSED"
+          },
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/bot_05 - Tetsuya Tape Shield/output_v1/bot_05 - Tetsuya Tape Shield.tar.gz",
+            "bytes": 13137,
+            "members": [
+              {
+                "bytes": 146492,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05/main.py",
+                    "bytes": 146492,
+                    "path": "artifacts/candidates/bot_05/main.py",
+                    "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                  },
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_h1/main.py",
+                    "bytes": 146492,
+                    "path": "artifacts/candidates/bot_05_h1/main.py",
+                    "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+              }
+            ],
+            "path": "kaggle_runs/bot_05 - Tetsuya Tape Shield/output_v1/bot_05 - Tetsuya Tape Shield.tar.gz",
+            "sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "1128.8",
+        "submission_id": 55270999,
+        "submitted_at": "2026-08-05T13:17:49.343Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-05T13:17:49.343Z",
+        "draws": 0,
+        "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+        "games": 108,
+        "losses": 58,
+        "mean_margin": 3251.324074074074,
+        "mean_reward": 113583.69444444444,
+        "p10_margin": -17545.6,
+        "public_score_at_snapshot": 1128.8,
+        "seat0_win_rate": 0.5094339622641509,
+        "seat1_win_rate": 0.41818181818181815,
+        "submission_id": 55270999,
+        "unique_opponents": 93,
+        "win_rate": 0.46296296296296297,
+        "wins": 50
+      },
+      "public_score": 1128.8,
+      "sampled_public_replays": [
+        {
+          "bytes": 23300803,
+          "episode_id": 90182579,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-90182579-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:16.173Z",
+          "seed": 149880444,
+          "sha256": "76C13346F072AC181FE49E5F4D7103F6DD8B859D339B59841B54C9EB1B0C4BAD",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/90182579",
+          "target_seat": 0
+        },
+        {
+          "bytes": 20945722,
+          "episode_id": 90181883,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-90181883-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:15.742Z",
+          "seed": 1598522885,
+          "sha256": "A47CAF14E267090ACC50B4317AB1B731C64C85A3D8BCD44BF72BCCFE9F6E6E71",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/90181883",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55270999,
+      "submitted_at_utc": "2026-08-05T13:17:49.343Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 122,
+        "seat_counts": {
+          "0": 52,
+          "1": 70
+        },
+        "total": 123,
+        "validation": 1
+      },
+      "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+      "local_source_mapping": {
+        "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_05 - Tetsuya Tape Shield.tar.gz",
+            "bytes": 13137,
+            "members": [
+              {
+                "bytes": 146492,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05/main.py",
+                    "bytes": 146492,
+                    "path": "artifacts/candidates/bot_05/main.py",
+                    "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                  },
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_h1/main.py",
+                    "bytes": 146492,
+                    "path": "artifacts/candidates/bot_05_h1/main.py",
+                    "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+              }
+            ],
+            "path": "dist/bot_05 - Tetsuya Tape Shield.tar.gz",
+            "sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+            "tar_status": "PARSED"
+          },
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/bot_05 - Tetsuya Tape Shield/output_v1/bot_05 - Tetsuya Tape Shield.tar.gz",
+            "bytes": 13137,
+            "members": [
+              {
+                "bytes": 146492,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05/main.py",
+                    "bytes": 146492,
+                    "path": "artifacts/candidates/bot_05/main.py",
+                    "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                  },
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_h1/main.py",
+                    "bytes": 146492,
+                    "path": "artifacts/candidates/bot_05_h1/main.py",
+                    "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+              }
+            ],
+            "path": "kaggle_runs/bot_05 - Tetsuya Tape Shield/output_v1/bot_05 - Tetsuya Tape Shield.tar.gz",
+            "sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "1094.8",
+        "submission_id": 55270996,
+        "submitted_at": "2026-08-05T13:17:39.613Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-05T13:17:39.613Z",
+        "draws": 0,
+        "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+        "games": 122,
+        "losses": 71,
+        "mean_margin": 2585.688524590164,
+        "mean_reward": 113152.09836065574,
+        "p10_margin": -17747.4,
+        "public_score_at_snapshot": 1094.8,
+        "seat0_win_rate": 0.4230769230769231,
+        "seat1_win_rate": 0.4142857142857143,
+        "submission_id": 55270996,
+        "unique_opponents": 109,
+        "win_rate": 0.4180327868852459,
+        "wins": 51
+      },
+      "public_score": 1094.8,
+      "sampled_public_replays": [
+        {
+          "bytes": 27385157,
+          "episode_id": 90181882,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-90181882-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:15.318Z",
+          "seed": 1490460739,
+          "sha256": "B46E41E5B8F7EC515564DF7CE91C1DCE1D2A0181078503F489CB6F6CCE897176",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/90181882",
+          "target_seat": 0
+        },
+        {
+          "bytes": 24578183,
+          "episode_id": 90183257,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-90183257-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:16.611Z",
+          "seed": 1304463014,
+          "sha256": "9A0116C48A05E1513FEA4CD0A65D02BF121E30844C661221AA5B46C33694E070",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/90183257",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55270996,
+      "submitted_at_utc": "2026-08-05T13:17:39.613Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 56,
+        "seat_counts": {
+          "0": 26,
+          "1": 30
+        },
+        "total": 57,
+        "validation": 1
+      },
+      "file_name": "bot_12 - Live Market R2914.tar.gz",
+      "local_source_mapping": {
+        "file_name": "bot_12 - Live Market R2914.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_12 - Live Market R2914.tar.gz",
+            "bytes": 12779,
+            "members": [
+              {
+                "bytes": 143534,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_12/main.py",
+                    "bytes": 143534,
+                    "path": "artifacts/candidates/bot_12/main.py",
+                    "sha256": "8308D9AE0665F8F02DD33D11143F786FE856728FF41A315EA99B3DDE87D25D69"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "8308D9AE0665F8F02DD33D11143F786FE856728FF41A315EA99B3DDE87D25D69"
+              }
+            ],
+            "path": "dist/bot_12 - Live Market R2914.tar.gz",
+            "sha256": "8A15B0624C63D660DB272C0CA56E52094B3D9CF274412A157389E4689BE49313",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "1225.8",
+        "submission_id": 55244867,
+        "submitted_at": "2026-08-04T16:14:59.510Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-04T16:14:59.510Z",
+        "draws": 0,
+        "file_name": "bot_12 - Live Market R2914.tar.gz",
+        "games": 56,
+        "losses": 28,
+        "mean_margin": 7525.321428571428,
+        "mean_reward": 128095.625,
+        "p10_margin": -8649.5,
+        "public_score_at_snapshot": 1225.8,
+        "seat0_win_rate": 0.46153846153846156,
+        "seat1_win_rate": 0.5333333333333333,
+        "submission_id": 55244867,
+        "unique_opponents": 51,
+        "win_rate": 0.5,
+        "wins": 28
+      },
+      "public_score": 1225.8,
+      "sampled_public_replays": [
+        {
+          "bytes": 26004713,
+          "episode_id": 89970799,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89970799-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:14.857Z",
+          "seed": 626221080,
+          "sha256": "0B73D25DC8E242ADDBF0DC192E6472C1D8D94FFF2300989D5390AD00B7B30901",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89970799",
+          "target_seat": 0
+        },
+        {
+          "bytes": 22766162,
+          "episode_id": 89968898,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89968898-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:13.967Z",
+          "seed": 1208861215,
+          "sha256": "C8C543A8F260ADFBB06DE9AD7A9B7BB552789DD53D04F4831FA0B4A31590A0D8",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89968898",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55244867,
+      "submitted_at_utc": "2026-08-04T16:14:59.510Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 54,
+        "seat_counts": {
+          "0": 34,
+          "1": 20
+        },
+        "total": 55,
+        "validation": 1
+      },
+      "file_name": "bot_11 - Live Market R2921.tar.gz",
+      "local_source_mapping": {
+        "file_name": "bot_11 - Live Market R2921.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_11 - Live Market R2921.tar.gz",
+            "bytes": 12761,
+            "members": [
+              {
+                "bytes": 143135,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_11/main.py",
+                    "bytes": 143135,
+                    "path": "artifacts/candidates/bot_11/main.py",
+                    "sha256": "2A0EF2609ADD6AE2BBC2F465DEAB4C4AEC0439AA9160F5CDF777FC5554EBFE65"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "2A0EF2609ADD6AE2BBC2F465DEAB4C4AEC0439AA9160F5CDF777FC5554EBFE65"
+              }
+            ],
+            "path": "dist/bot_11 - Live Market R2921.tar.gz",
+            "sha256": "2D40888EB3584C075826ADB754888BA9177D5D145DD9A1A94C4BE2B1727045AF",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "1312.7",
+        "submission_id": 55244861,
+        "submitted_at": "2026-08-04T16:14:51.737Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-04T16:14:51.737Z",
+        "draws": 0,
+        "file_name": "bot_11 - Live Market R2921.tar.gz",
+        "games": 54,
+        "losses": 26,
+        "mean_margin": 7106.259259259259,
+        "mean_reward": 120054.5,
+        "p10_margin": -17813.199999999993,
+        "public_score_at_snapshot": 1312.7,
+        "seat0_win_rate": 0.5294117647058824,
+        "seat1_win_rate": 0.5,
+        "submission_id": 55244861,
+        "unique_opponents": 49,
+        "win_rate": 0.5185185185185185,
+        "wins": 28
+      },
+      "public_score": 1312.7,
+      "sampled_public_replays": [
+        {
+          "bytes": 19943995,
+          "episode_id": 89968896,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89968896-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:13.539Z",
+          "seed": 1279572676,
+          "sha256": "39262EF78440ECA16285E2605FAE34C70BD9BAE1427F3093BAF96F1194A3FC46",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89968896",
+          "target_seat": 0
+        },
+        {
+          "bytes": 24319292,
+          "episode_id": 89969522,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89969522-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:14.408Z",
+          "seed": 1591330707,
+          "sha256": "9E1059E9645640C33D6734771E34140A601EB8F17F82634AD4C3DACF0D90CA6D",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89969522",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55244861,
+      "submitted_at_utc": "2026-08-04T16:14:51.737Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 29,
+        "seat_counts": {
+          "0": 17,
+          "1": 12
+        },
+        "total": 30,
+        "validation": 1
+      },
+      "file_name": "bot_08 - Terminal Wheat Graft.tar.gz",
+      "local_source_mapping": {
+        "file_name": "bot_08 - Terminal Wheat Graft.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_08 - Terminal Wheat Graft.tar.gz",
+            "bytes": 15834,
+            "members": [
+              {
+                "bytes": 153691,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_08/main.py",
+                    "bytes": 153691,
+                    "path": "artifacts/candidates/bot_08/main.py",
+                    "sha256": "3B9B4CEE584CE5EE8054B1DE166672F17D6FF0F6F0B2F327021E9BCBF0ED1666"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "3B9B4CEE584CE5EE8054B1DE166672F17D6FF0F6F0B2F327021E9BCBF0ED1666"
+              }
+            ],
+            "path": "dist/bot_08 - Terminal Wheat Graft.tar.gz",
+            "sha256": "77D46BCCD01D1AB90CC437D8C7AE34134E211B1925CA065085DD4E56BDDFBF3E",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "1463.4",
+        "submission_id": 55239511,
+        "submitted_at": "2026-08-04T12:05:31.610Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-04T12:05:31.610Z",
+        "draws": 0,
+        "file_name": "bot_08 - Terminal Wheat Graft.tar.gz",
+        "games": 29,
+        "losses": 10,
+        "mean_margin": 17075.793103448275,
+        "mean_reward": 132195.44827586206,
+        "p10_margin": -16487.6,
+        "public_score_at_snapshot": 1463.4,
+        "seat0_win_rate": 0.5882352941176471,
+        "seat1_win_rate": 0.75,
+        "submission_id": 55239511,
+        "unique_opponents": 28,
+        "win_rate": 0.6551724137931034,
+        "wins": 19
+      },
+      "public_score": 1463.4,
+      "sampled_public_replays": [
+        {
+          "bytes": 29536174,
+          "episode_id": 89931209,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89931209-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:13.076Z",
+          "seed": 1333190483,
+          "sha256": "DC496CD1E8C73AE3678ED8A79DC65DFD7E53AF2B4723BEA4B7133E240E9EEA32",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89931209",
+          "target_seat": 0
+        },
+        {
+          "bytes": 24886695,
+          "episode_id": 89929344,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89929344-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:12.176Z",
+          "seed": 1862335031,
+          "sha256": "0EAF2B7FC2B0F4A4D32AB2F044073FF80C0751707303731C5720D02626BE3490",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89929344",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55239511,
+      "submitted_at_utc": "2026-08-04T12:05:31.610Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 33,
+        "seat_counts": {
+          "0": 17,
+          "1": 16
+        },
+        "total": 34,
+        "validation": 1
+      },
+      "file_name": "bot_07 - Meta Tape Shield.tar.gz",
+      "local_source_mapping": {
+        "file_name": "bot_07 - Meta Tape Shield.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_07 - Meta Tape Shield.tar.gz",
+            "bytes": 15928,
+            "members": [
+              {
+                "bytes": 152661,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_07/main.py",
+                    "bytes": 152661,
+                    "path": "artifacts/candidates/bot_07/main.py",
+                    "sha256": "EDB86D4A1CD7BB4BA9F0AE3DD3E8102798C961E385DA57D9C0C204D617D2D627"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "EDB86D4A1CD7BB4BA9F0AE3DD3E8102798C961E385DA57D9C0C204D617D2D627"
+              }
+            ],
+            "path": "dist/bot_07 - Meta Tape Shield.tar.gz",
+            "sha256": "AF68DEB6514C9857F28EB762150C15D86935AE73577466DAF01396D48098DD76",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "1749.4",
+        "submission_id": 55239508,
+        "submitted_at": "2026-08-04T12:05:25.223Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-04T12:05:25.223Z",
+        "draws": 0,
+        "file_name": "bot_07 - Meta Tape Shield.tar.gz",
+        "games": 33,
+        "losses": 9,
+        "mean_margin": 37287.42424242424,
+        "mean_reward": 138722.0909090909,
+        "p10_margin": -6247.200000000001,
+        "public_score_at_snapshot": 1749.4,
+        "seat0_win_rate": 0.7058823529411765,
+        "seat1_win_rate": 0.75,
+        "submission_id": 55239508,
+        "unique_opponents": 33,
+        "win_rate": 0.7272727272727273,
+        "wins": 24
+      },
+      "public_score": 1749.4,
+      "sampled_public_replays": [
+        {
+          "bytes": 22392225,
+          "episode_id": 89929960,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89929960-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:12.609Z",
+          "seed": 1120534908,
+          "sha256": "C38D8F7AE7666BA7961E07824459C7FE03BF6126AA85D91DB90C123A318A7B4E",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89929960",
+          "target_seat": 0
+        },
+        {
+          "bytes": 24597386,
+          "episode_id": 89929343,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89929343-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:11.730Z",
+          "seed": 2111044932,
+          "sha256": "40DCDD710566034892A43EF725777D1808FC3F89DEC8A508CE77D755E1ADAE78",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89929343",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55239508,
+      "submitted_at_utc": "2026-08-04T12:05:25.223Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 76,
+        "seat_counts": {
+          "0": 35,
+          "1": 41
+        },
+        "total": 77,
+        "validation": 1
+      },
+      "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+      "local_source_mapping": {
+        "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_05 - Tetsuya Tape Shield.tar.gz",
+            "bytes": 13137,
+            "members": [
+              {
+                "bytes": 146492,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05/main.py",
+                    "bytes": 146492,
+                    "path": "artifacts/candidates/bot_05/main.py",
+                    "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                  },
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_h1/main.py",
+                    "bytes": 146492,
+                    "path": "artifacts/candidates/bot_05_h1/main.py",
+                    "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+              }
+            ],
+            "path": "dist/bot_05 - Tetsuya Tape Shield.tar.gz",
+            "sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+            "tar_status": "PARSED"
+          },
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/bot_05 - Tetsuya Tape Shield/output_v1/bot_05 - Tetsuya Tape Shield.tar.gz",
+            "bytes": 13137,
+            "members": [
+              {
+                "bytes": 146492,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05/main.py",
+                    "bytes": 146492,
+                    "path": "artifacts/candidates/bot_05/main.py",
+                    "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                  },
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_h1/main.py",
+                    "bytes": 146492,
+                    "path": "artifacts/candidates/bot_05_h1/main.py",
+                    "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+              }
+            ],
+            "path": "kaggle_runs/bot_05 - Tetsuya Tape Shield/output_v1/bot_05 - Tetsuya Tape Shield.tar.gz",
+            "sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "2119.2",
+        "submission_id": 55206974,
+        "submitted_at": "2026-08-03T08:31:37.013Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-03T08:31:37.013Z",
+        "draws": 0,
+        "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+        "games": 76,
+        "losses": 44,
+        "mean_margin": -768.4078947368421,
+        "mean_reward": 126039.28947368421,
+        "p10_margin": -20427.0,
+        "public_score_at_snapshot": 2119.2,
+        "seat0_win_rate": 0.4,
+        "seat1_win_rate": 0.43902439024390244,
+        "submission_id": 55206974,
+        "unique_opponents": 62,
+        "win_rate": 0.42105263157894735,
+        "wins": 32
+      },
+      "public_score": 2119.2,
+      "sampled_public_replays": [
+        {
+          "bytes": 24303113,
+          "episode_id": 89685911,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89685911-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:10.798Z",
+          "seed": 475335419,
+          "sha256": "622E42A298484ADEB1DEA27D3E011FC1C3287474769D312D4CD3785A9E149C21",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89685911",
+          "target_seat": 0
+        },
+        {
+          "bytes": 27161421,
+          "episode_id": 89687034,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89687034-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:11.260Z",
+          "seed": 210964377,
+          "sha256": "837B405D6935A8F477E610993EDE7633096B3B86805400A345653E364B83FE3B",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89687034",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55206974,
+      "submitted_at_utc": "2026-08-03T08:31:37.013Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 101,
+        "seat_counts": {
+          "0": 45,
+          "1": 56
+        },
+        "total": 102,
+        "validation": 1
+      },
+      "file_name": "bot_03 - Terminal Flush Tape.tar.gz",
+      "local_source_mapping": {
+        "file_name": "bot_03 - Terminal Flush Tape.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_03 - Terminal Flush Tape.tar.gz",
+            "bytes": 11659,
+            "members": [
+              {
+                "bytes": 141894,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_03/main.py",
+                    "bytes": 141894,
+                    "path": "artifacts/candidates/bot_03/main.py",
+                    "sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+                  },
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/v_flush690/main.py",
+                    "bytes": 141894,
+                    "path": "artifacts/candidates/v_flush690/main.py",
+                    "sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+              }
+            ],
+            "path": "dist/bot_03 - Terminal Flush Tape.tar.gz",
+            "sha256": "D0D3EAF3F9FD3FD7720B3ACB41437A670AF96ED1D1E685B249927D83811845F5",
+            "tar_status": "PARSED"
+          },
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/bot_03 - Terminal Flush Tape/output_v1/bot_03 - Terminal Flush Tape.tar.gz",
+            "bytes": 11659,
+            "members": [
+              {
+                "bytes": 141894,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_03/main.py",
+                    "bytes": 141894,
+                    "path": "artifacts/candidates/bot_03/main.py",
+                    "sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+                  },
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/v_flush690/main.py",
+                    "bytes": 141894,
+                    "path": "artifacts/candidates/v_flush690/main.py",
+                    "sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+              }
+            ],
+            "path": "kaggle_runs/bot_03 - Terminal Flush Tape/output_v1/bot_03 - Terminal Flush Tape.tar.gz",
+            "sha256": "D0D3EAF3F9FD3FD7720B3ACB41437A670AF96ED1D1E685B249927D83811845F5",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "1678.0",
+        "submission_id": 55199616,
+        "submitted_at": "2026-08-03T01:55:53.983Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-03T01:55:53.983Z",
+        "draws": 0,
+        "file_name": "bot_03 - Terminal Flush Tape.tar.gz",
+        "games": 101,
+        "losses": 65,
+        "mean_margin": 681.7821782178218,
+        "mean_reward": 122912.40594059406,
+        "p10_margin": -21535.0,
+        "public_score_at_snapshot": 1678.0,
+        "seat0_win_rate": 0.4,
+        "seat1_win_rate": 0.32142857142857145,
+        "submission_id": 55199616,
+        "unique_opponents": 78,
+        "win_rate": 0.3564356435643564,
+        "wins": 36
+      },
+      "public_score": 1678.0,
+      "sampled_public_replays": [
+        {
+          "bytes": 26809494,
+          "episode_id": 89631227,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89631227-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:09.883Z",
+          "seed": 999429593,
+          "sha256": "F9001C7644F42ED2C6F670A74BA13FDF596CC529CF8E41D2AA92DA9CB74907B5",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89631227",
+          "target_seat": 0
+        },
+        {
+          "bytes": 19658131,
+          "episode_id": 89630116,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89630116-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:09.422Z",
+          "seed": 376105201,
+          "sha256": "87A9A3DD2385CCE1573DE117CAD7287B7401CECE8A80D216E99B0F6511384BCF",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89630116",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55199616,
+      "submitted_at_utc": "2026-08-03T01:55:53.983Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 47,
+        "seat_counts": {
+          "0": 18,
+          "1": 29
+        },
+        "total": 48,
+        "validation": 1
+      },
+      "file_name": "bot_02 - Zero-Waste Tape.tar.gz",
+      "local_source_mapping": {
+        "file_name": "bot_02 - Zero-Waste Tape.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_02 - Zero-Waste Tape.tar.gz",
+            "bytes": 11658,
+            "members": [
+              {
+                "bytes": 141896,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_02/main.py",
+                    "bytes": 141896,
+                    "path": "artifacts/candidates/bot_02/main.py",
+                    "sha256": "E73080954C8099A869D43416FBD8035856A29CD59BD04613E3D789A0CE695F50"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "E73080954C8099A869D43416FBD8035856A29CD59BD04613E3D789A0CE695F50"
+              }
+            ],
+            "path": "dist/bot_02 - Zero-Waste Tape.tar.gz",
+            "sha256": "8900914D04565BEA64C2474797B9A54E09873C873F17AA427264284598E7AF2B",
+            "tar_status": "PARSED"
+          },
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/bot_02 - Zero-Waste Tape/output_v1/bot_02 - Zero-Waste Tape.tar.gz",
+            "bytes": 11658,
+            "members": [
+              {
+                "bytes": 141896,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_02/main.py",
+                    "bytes": 141896,
+                    "path": "artifacts/candidates/bot_02/main.py",
+                    "sha256": "E73080954C8099A869D43416FBD8035856A29CD59BD04613E3D789A0CE695F50"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "E73080954C8099A869D43416FBD8035856A29CD59BD04613E3D789A0CE695F50"
+              }
+            ],
+            "path": "kaggle_runs/bot_02 - Zero-Waste Tape/output_v1/bot_02 - Zero-Waste Tape.tar.gz",
+            "sha256": "8900914D04565BEA64C2474797B9A54E09873C873F17AA427264284598E7AF2B",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "1878.5",
+        "submission_id": 55199612,
+        "submitted_at": "2026-08-03T01:55:47.273Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-03T01:55:47.273Z",
+        "draws": 3,
+        "file_name": "bot_02 - Zero-Waste Tape.tar.gz",
+        "games": 47,
+        "losses": 15,
+        "mean_margin": 9050.148936170213,
+        "mean_reward": 121641.87234042553,
+        "p10_margin": -1939.7999999999997,
+        "public_score_at_snapshot": 1878.5,
+        "seat0_win_rate": 0.6666666666666666,
+        "seat1_win_rate": 0.5862068965517241,
+        "submission_id": 55199612,
+        "unique_opponents": 38,
+        "win_rate": 0.6170212765957447,
+        "wins": 29
+      },
+      "public_score": 1878.5,
+      "sampled_public_replays": [
+        {
+          "bytes": 24241818,
+          "episode_id": 89630115,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89630115-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:09.005Z",
+          "seed": 951390958,
+          "sha256": "9B79FCEC51E81AD5989431934C094ADF57D52C02A0CB84AE8A5810C3FD82EB4D",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89630115",
+          "target_seat": 0
+        },
+        {
+          "bytes": 26424448,
+          "episode_id": 89631781,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89631781-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:10.346Z",
+          "seed": 664110607,
+          "sha256": "1E3F86E169986171C6E056038A6726BDEE7CE520AAB2E7C50D3DAA960302F138",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89631781",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55199612,
+      "submitted_at_utc": "2026-08-03T01:55:47.273Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 15,
+        "seat_counts": {
+          "0": 7,
+          "1": 8
+        },
+        "total": 16,
+        "validation": 1
+      },
+      "file_name": "Ge_04.tar.gz",
+      "local_source_mapping": {
+        "file_name": "Ge_04.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/Ge_04.tar.gz",
+            "bytes": 5847,
+            "members": [
+              {
+                "bytes": 19232,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_04/main.py",
+                    "bytes": 19232,
+                    "path": "artifacts/candidates/Ge_04/main.py",
+                    "sha256": "9D59F2DDDB8A4F10AB71A9E63A0CB21B81239E143AB2F5810486A5E939494720"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "9D59F2DDDB8A4F10AB71A9E63A0CB21B81239E143AB2F5810486A5E939494720"
+              }
+            ],
+            "path": "dist/Ge_04.tar.gz",
+            "sha256": "8CDF1C40EF977F63EDAAB4CA639DEE2A8E9872E64CD44920D5540F4EEC36968F",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "768.3",
+        "submission_id": 55198657,
+        "submitted_at": "2026-08-03T01:01:09.237Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-03T01:01:09.237Z",
+        "draws": 0,
+        "file_name": "Ge_04.tar.gz",
+        "games": 15,
+        "losses": 8,
+        "mean_margin": -5966.533333333334,
+        "mean_reward": 86205.0,
+        "p10_margin": -62428.99999999999,
+        "public_score_at_snapshot": 768.3,
+        "seat0_win_rate": 0.42857142857142855,
+        "seat1_win_rate": 0.5,
+        "submission_id": 55198657,
+        "unique_opponents": 14,
+        "win_rate": 0.4666666666666667,
+        "wins": 7
+      },
+      "public_score": 768.3,
+      "sampled_public_replays": [
+        {
+          "bytes": 20436583,
+          "episode_id": 89622882,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89622882-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:08.176Z",
+          "seed": 394869346,
+          "sha256": "4BE28222EAC8A2A44BC576AB4DDC31C16AAA0F35191F5A38235F15982B7DD23E",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89622882",
+          "target_seat": 0
+        },
+        {
+          "bytes": 18639788,
+          "episode_id": 89622336,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89622336-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:07.727Z",
+          "seed": 1875437818,
+          "sha256": "BDD526F8F94659BDD23B5281F3E0BC793AB4A611B5E4EC366B3DC43B4C92DCBC",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89622336",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55198657,
+      "submitted_at_utc": "2026-08-03T01:01:09.237Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 14,
+        "seat_counts": {
+          "0": 7,
+          "1": 7
+        },
+        "total": 15,
+        "validation": 1
+      },
+      "file_name": "Ge_03.tar.gz",
+      "local_source_mapping": {
+        "file_name": "Ge_03.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/Ge_03.tar.gz",
+            "bytes": 5877,
+            "members": [
+              {
+                "bytes": 19003,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_03/main.py",
+                    "bytes": 19003,
+                    "path": "artifacts/candidates/Ge_03/main.py",
+                    "sha256": "455ABA88CDF98FC970B68547B8A7046B894430788B91A4A50766D5499BC67690"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "455ABA88CDF98FC970B68547B8A7046B894430788B91A4A50766D5499BC67690"
+              }
+            ],
+            "path": "dist/Ge_03.tar.gz",
+            "sha256": "827C7B17EDC13DBB575466D44E3680E6F5BD0351F192CD52E042D58CDABD3A31",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "724.4",
+        "submission_id": 55198655,
+        "submitted_at": "2026-08-03T01:01:00.003Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-03T01:01:00.003Z",
+        "draws": 0,
+        "file_name": "Ge_03.tar.gz",
+        "games": 14,
+        "losses": 7,
+        "mean_margin": 6937.785714285715,
+        "mean_reward": 86594.57142857143,
+        "p10_margin": -5650.0,
+        "public_score_at_snapshot": 724.4,
+        "seat0_win_rate": 0.7142857142857143,
+        "seat1_win_rate": 0.2857142857142857,
+        "submission_id": 55198655,
+        "unique_opponents": 13,
+        "win_rate": 0.5,
+        "wins": 7
+      },
+      "public_score": 724.4,
+      "sampled_public_replays": [
+        {
+          "bytes": 17269868,
+          "episode_id": 89622334,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89622334-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:07.324Z",
+          "seed": 345276562,
+          "sha256": "2C18C9BB370E7B695B55ADA6729191EA981C70163898BF3D481C8300537D1DB9",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89622334",
+          "target_seat": 0
+        },
+        {
+          "bytes": 17084149,
+          "episode_id": 89622883,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89622883-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:08.568Z",
+          "seed": 381690555,
+          "sha256": "D2820D24449D9D5CAEDC3D0BB84C8012C0548774DDBB2F3ECAB90344C1E145BC",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89622883",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55198655,
+      "submitted_at_utc": "2026-08-03T01:01:00.003Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 25,
+        "seat_counts": {
+          "0": 12,
+          "1": 13
+        },
+        "total": 26,
+        "validation": 1
+      },
+      "file_name": "Ge_02.tar.gz",
+      "local_source_mapping": {
+        "file_name": "Ge_02.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/Ge_02.tar.gz",
+            "bytes": 6320,
+            "members": [
+              {
+                "bytes": 22232,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_02/main.py",
+                    "bytes": 22232,
+                    "path": "artifacts/candidates/Ge_02/main.py",
+                    "sha256": "2A6B3368AFEE87BE6E8AE04F0D21A5EADEFA825B7338D190448B0201AE33F5B7"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "2A6B3368AFEE87BE6E8AE04F0D21A5EADEFA825B7338D190448B0201AE33F5B7"
+              }
+            ],
+            "path": "dist/Ge_02.tar.gz",
+            "sha256": "63F3BC795F0CB35CE244B94562332AB0568F7474A20AA1BEB5E1FCEFFE23A112",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "774.5",
+        "submission_id": 55185695,
+        "submitted_at": "2026-08-02T12:27:05.997Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-02T12:27:05.997Z",
+        "draws": 0,
+        "file_name": "Ge_02.tar.gz",
+        "games": 25,
+        "losses": 13,
+        "mean_margin": -214.76,
+        "mean_reward": 85369.68,
+        "p10_margin": -53456.59999999999,
+        "public_score_at_snapshot": 774.5,
+        "seat0_win_rate": 0.4166666666666667,
+        "seat1_win_rate": 0.5384615384615384,
+        "submission_id": 55185695,
+        "unique_opponents": 24,
+        "win_rate": 0.48,
+        "wins": 12
+      },
+      "public_score": 774.5,
+      "sampled_public_replays": [
+        {
+          "bytes": 15319549,
+          "episode_id": 89519247,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89519247-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:06.501Z",
+          "seed": 1598877440,
+          "sha256": "2BC48BD2D8E832DE38C029D7C25453BA0587B865D36D611C0B9C0800C53C69E2",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89519247",
+          "target_seat": 0
+        },
+        {
+          "bytes": 16642420,
+          "episode_id": 89518704,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89518704-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:06.113Z",
+          "seed": 1890000235,
+          "sha256": "768DB43A5437FB1E764153E53AC5DCFA80F95EF73D16B94303D554D82FA3E076",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89518704",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55185695,
+      "submitted_at_utc": "2026-08-02T12:27:05.997Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 24,
+        "seat_counts": {
+          "0": 10,
+          "1": 14
+        },
+        "total": 25,
+        "validation": 1
+      },
+      "file_name": "Ge_01.tar.gz",
+      "local_source_mapping": {
+        "file_name": "Ge_01.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/Ge_01.tar.gz",
+            "bytes": 5746,
+            "members": [
+              {
+                "bytes": 19361,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_01/main.py",
+                    "bytes": 19361,
+                    "path": "artifacts/candidates/Ge_01/main.py",
+                    "sha256": "9ED86F667DE5A59CB1F880DB11C28DBBFD800A12A4DFAAC5BD3AE15AA03217BF"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "9ED86F667DE5A59CB1F880DB11C28DBBFD800A12A4DFAAC5BD3AE15AA03217BF"
+              }
+            ],
+            "path": "dist/Ge_01.tar.gz",
+            "sha256": "E020EAB0E5174EE8EEAA29A62ECC07B65CC5AF23EC7DCBAB78080038CF00788D",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "746.5",
+        "submission_id": 55185691,
+        "submitted_at": "2026-08-02T12:26:56.873Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-02T12:26:56.873Z",
+        "draws": 0,
+        "file_name": "Ge_01.tar.gz",
+        "games": 24,
+        "losses": 12,
+        "mean_margin": -1496.7916666666667,
+        "mean_reward": 79248.83333333333,
+        "p10_margin": -33049.0,
+        "public_score_at_snapshot": 746.5,
+        "seat0_win_rate": 0.7,
+        "seat1_win_rate": 0.35714285714285715,
+        "submission_id": 55185691,
+        "unique_opponents": 23,
+        "win_rate": 0.5,
+        "wins": 12
+      },
+      "public_score": 746.5,
+      "sampled_public_replays": [
+        {
+          "bytes": 25282597,
+          "episode_id": 89518702,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89518702-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:05.708Z",
+          "seed": 245919683,
+          "sha256": "D09778F526F5FEAA1B6A635568DCF3BF4AE389558D0EB3B85937D4ED94B8D70D",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89518702",
+          "target_seat": 0
+        },
+        {
+          "bytes": 20153783,
+          "episode_id": 89520334,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89520334-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:06.924Z",
+          "seed": 87158683,
+          "sha256": "BEE8C9A6F09F9C45EE11445BA83658D186B74E8D65F78C0BB6B3E798623A9E06",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89520334",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55185691,
+      "submitted_at_utc": "2026-08-02T12:26:56.873Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 3,
+        "seat_counts": {
+          "0": 1,
+          "1": 2
+        },
+        "total": 4,
+        "validation": 1
+      },
+      "file_name": "Ge_02.tar.gz",
+      "local_source_mapping": {
+        "file_name": "Ge_02.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/Ge_02.tar.gz",
+            "bytes": 6320,
+            "members": [
+              {
+                "bytes": 22232,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_02/main.py",
+                    "bytes": 22232,
+                    "path": "artifacts/candidates/Ge_02/main.py",
+                    "sha256": "2A6B3368AFEE87BE6E8AE04F0D21A5EADEFA825B7338D190448B0201AE33F5B7"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "2A6B3368AFEE87BE6E8AE04F0D21A5EADEFA825B7338D190448B0201AE33F5B7"
+              }
+            ],
+            "path": "dist/Ge_02.tar.gz",
+            "sha256": "63F3BC795F0CB35CE244B94562332AB0568F7474A20AA1BEB5E1FCEFFE23A112",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "757.0",
+        "submission_id": 55185510,
+        "submitted_at": "2026-08-02T12:18:09.847Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-02T12:18:09.847Z",
+        "draws": 0,
+        "file_name": "Ge_02.tar.gz",
+        "games": 3,
+        "losses": 1,
+        "mean_margin": 6931.666666666667,
+        "mean_reward": 94267.0,
+        "p10_margin": -17970.2,
+        "public_score_at_snapshot": 757.0,
+        "seat0_win_rate": 0.0,
+        "seat1_win_rate": 1.0,
+        "submission_id": 55185510,
+        "unique_opponents": 3,
+        "win_rate": 0.6666666666666666,
+        "wins": 2
+      },
+      "public_score": 757.0,
+      "sampled_public_replays": [
+        {
+          "bytes": 22442450,
+          "episode_id": 89517612,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89517612-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:04.415Z",
+          "seed": 1227933069,
+          "sha256": "1AAD8128E4AE0E56786BD3E55CEC5CCD6EF794AD97B2D36A6A183867B34EE275",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89517612",
+          "target_seat": 0
+        },
+        {
+          "bytes": 20488158,
+          "episode_id": 89517073,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89517073-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:03.978Z",
+          "seed": 1256552993,
+          "sha256": "21A4060FF8AB682959F320B8DBBD727124574E1F2E5561A813607E2AB31D768C",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89517073",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55185510,
+      "submitted_at_utc": "2026-08-02T12:18:09.847Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 2,
+        "seat_counts": {
+          "0": 1,
+          "1": 1
+        },
+        "total": 3,
+        "validation": 1
+      },
+      "file_name": "Ge_01.tar.gz",
+      "local_source_mapping": {
+        "file_name": "Ge_01.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/Ge_01.tar.gz",
+            "bytes": 5746,
+            "members": [
+              {
+                "bytes": 19361,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_01/main.py",
+                    "bytes": 19361,
+                    "path": "artifacts/candidates/Ge_01/main.py",
+                    "sha256": "9ED86F667DE5A59CB1F880DB11C28DBBFD800A12A4DFAAC5BD3AE15AA03217BF"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "9ED86F667DE5A59CB1F880DB11C28DBBFD800A12A4DFAAC5BD3AE15AA03217BF"
+              }
+            ],
+            "path": "dist/Ge_01.tar.gz",
+            "sha256": "E020EAB0E5174EE8EEAA29A62ECC07B65CC5AF23EC7DCBAB78080038CF00788D",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "810.5",
+        "submission_id": 55185505,
+        "submitted_at": "2026-08-02T12:18:00.703Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-02T12:18:00.703Z",
+        "draws": 0,
+        "file_name": "Ge_01.tar.gz",
+        "games": 2,
+        "losses": 0,
+        "mean_margin": 39867.5,
+        "mean_reward": 86421.5,
+        "p10_margin": 32031.9,
+        "public_score_at_snapshot": 810.5,
+        "seat0_win_rate": 1.0,
+        "seat1_win_rate": 1.0,
+        "submission_id": 55185505,
+        "unique_opponents": 2,
+        "win_rate": 1.0,
+        "wins": 2
+      },
+      "public_score": 810.5,
+      "sampled_public_replays": [
+        {
+          "bytes": 24021973,
+          "episode_id": 89517623,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89517623-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:04.868Z",
+          "seed": 1878008418,
+          "sha256": "1BFAC52C214FF30FAA9E1E8FACE2BE415B2CFD20129E85AC1FC834D2B49B1CD3",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89517623",
+          "target_seat": 0
+        },
+        {
+          "bytes": 15334442,
+          "episode_id": 89518157,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89518157-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:05.262Z",
+          "seed": 108016080,
+          "sha256": "808810CA9862072E6176ADF8F0DB143501A020D6BD2F953227BEE386978FDB47",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89518157",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55185505,
+      "submitted_at_utc": "2026-08-02T12:18:00.703Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 14,
+        "seat_counts": {
+          "0": 4,
+          "1": 10
+        },
+        "total": 15,
+        "validation": 1
+      },
+      "file_name": "bot_01 - Capacity Expansion.tar.gz",
+      "local_source_mapping": {
+        "file_name": "bot_01 - Capacity Expansion.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_01 - Capacity Expansion.tar.gz",
+            "bytes": 4893,
+            "members": [
+              {
+                "bytes": 17784,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_01/main.py",
+                    "bytes": 17784,
+                    "path": "artifacts/candidates/bot_01/main.py",
+                    "sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+                  },
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_v3_01_capacity/main.py",
+                    "bytes": 17784,
+                    "path": "artifacts/candidates/bot_v3_01_capacity/main.py",
+                    "sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+              }
+            ],
+            "path": "dist/bot_01 - Capacity Expansion.tar.gz",
+            "sha256": "F73CEDD6763FD51B39BC382AEA878875D37A5EB570E264FAFE3B363BDC04AED7",
+            "tar_status": "PARSED"
+          },
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/bot_01 - Capacity Expansion/output_v1/bot_01 - Capacity Expansion.tar.gz",
+            "bytes": 4893,
+            "members": [
+              {
+                "bytes": 17784,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_01/main.py",
+                    "bytes": 17784,
+                    "path": "artifacts/candidates/bot_01/main.py",
+                    "sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+                  },
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_v3_01_capacity/main.py",
+                    "bytes": 17784,
+                    "path": "artifacts/candidates/bot_v3_01_capacity/main.py",
+                    "sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+              }
+            ],
+            "path": "kaggle_runs/bot_01 - Capacity Expansion/output_v1/bot_01 - Capacity Expansion.tar.gz",
+            "sha256": "F73CEDD6763FD51B39BC382AEA878875D37A5EB570E264FAFE3B363BDC04AED7",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "815.7",
+        "submission_id": 55183485,
+        "submitted_at": "2026-08-02T10:32:37.280Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-02T10:32:37.280Z",
+        "draws": 0,
+        "file_name": "bot_01 - Capacity Expansion.tar.gz",
+        "games": 14,
+        "losses": 7,
+        "mean_margin": 9557.142857142857,
+        "mean_reward": 90587.07142857143,
+        "p10_margin": -16948.2,
+        "public_score_at_snapshot": 815.7,
+        "seat0_win_rate": 0.5,
+        "seat1_win_rate": 0.5,
+        "submission_id": 55183485,
+        "unique_opponents": 12,
+        "win_rate": 0.5,
+        "wins": 7
+      },
+      "public_score": 815.7,
+      "sampled_public_replays": [
+        {
+          "bytes": 20400006,
+          "episode_id": 89503426,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89503426-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:03.547Z",
+          "seed": 805451965,
+          "sha256": "6D57673355EE50EDC1B30D39F3661D5FADBC018EEDB4B467887AD1E3E0C67F6F",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89503426",
+          "target_seat": 0
+        },
+        {
+          "bytes": 18688338,
+          "episode_id": 89502894,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89502894-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:03.134Z",
+          "seed": 401019974,
+          "sha256": "3BAF9BC43655B5AF451030D6F0F63F0E957A348CC567B887B66B356459B27C6F",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89502894",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55183485,
+      "submitted_at_utc": "2026-08-02T10:32:37.280Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 65,
+        "seat_counts": {
+          "0": 32,
+          "1": 33
+        },
+        "total": 66,
+        "validation": 1
+      },
+      "file_name": "Fa_04 - Frontier Trace Guard.tar.gz",
+      "local_source_mapping": {
+        "file_name": "Fa_04 - Frontier Trace Guard.tar.gz",
+        "local_filename_matches": [],
+        "mapping_status": "UNVERIFIED_NO_LOCAL_FILENAME_MATCH",
+        "public_score_at_snapshot": "1317.1",
+        "submission_id": 55171193,
+        "submitted_at": "2026-08-01T21:30:44.400Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-01T21:30:44.400Z",
+        "draws": 2,
+        "file_name": "Fa_04 - Frontier Trace Guard.tar.gz",
+        "games": 65,
+        "losses": 30,
+        "mean_margin": 5790.046153846154,
+        "mean_reward": 117516.96923076923,
+        "p10_margin": -14871.400000000001,
+        "public_score_at_snapshot": 1317.1,
+        "seat0_win_rate": 0.53125,
+        "seat1_win_rate": 0.48484848484848486,
+        "submission_id": 55171193,
+        "unique_opponents": 46,
+        "win_rate": 0.5076923076923077,
+        "wins": 33
+      },
+      "public_score": 1317.1,
+      "sampled_public_replays": [
+        {
+          "bytes": 21684977,
+          "episode_id": 89398066,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89398066-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:02.207Z",
+          "seed": 2014085782,
+          "sha256": "71BD84ED485C93BF0D62E861168BF3089E2C64B3FAF8CCB31094E292AD6D67C1",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89398066",
+          "target_seat": 0
+        },
+        {
+          "bytes": 25942825,
+          "episode_id": 89399650,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89399650-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:02.670Z",
+          "seed": 637354680,
+          "sha256": "390364FD9942A7007E6B16FA7A25904E72A641509EC656B9B546DD118C58794B",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89399650",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55171193,
+      "submitted_at_utc": "2026-08-01T21:30:44.400Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 58,
+        "seat_counts": {
+          "0": 33,
+          "1": 25
+        },
+        "total": 59,
+        "validation": 1
+      },
+      "file_name": "Fa_03 - Meta Expansion.tar.gz",
+      "local_source_mapping": {
+        "file_name": "Fa_03 - Meta Expansion.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/Fa_03 - Meta Expansion/Fa_03 - Meta Expansion.tar.gz",
+            "bytes": 4385,
+            "members": [
+              {
+                "bytes": 16195,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa03_meta_expansion/M2.py",
+                    "bytes": 16195,
+                    "path": "experiments/source_snapshots/fa03_meta_expansion/M2.py",
+                    "sha256": "737DCC8BB014EF6915D6BC1F5020AA0330BB50D179A3A042B0813D3F11F6F7BA"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "737DCC8BB014EF6915D6BC1F5020AA0330BB50D179A3A042B0813D3F11F6F7BA"
+              }
+            ],
+            "path": "kaggle_runs/Fa_03 - Meta Expansion/Fa_03 - Meta Expansion.tar.gz",
+            "sha256": "B2D58348CCF221917390DE932BA2F2AF91FC8CC7F315E68EA72D1D352D6FBDDF",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "889.7",
+        "submission_id": 55154217,
+        "submitted_at": "2026-08-01T05:05:22.640Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-01T05:05:22.640Z",
+        "draws": 0,
+        "file_name": "Fa_03 - Meta Expansion.tar.gz",
+        "games": 58,
+        "losses": 34,
+        "mean_margin": -9009.965517241379,
+        "mean_reward": 88689.3448275862,
+        "p10_margin": -58375.1,
+        "public_score_at_snapshot": 889.7,
+        "seat0_win_rate": 0.36363636363636365,
+        "seat1_win_rate": 0.48,
+        "submission_id": 55154217,
+        "unique_opponents": 48,
+        "win_rate": 0.41379310344827586,
+        "wins": 24
+      },
+      "public_score": 889.7,
+      "sampled_public_replays": [
+        {
+          "bytes": 19859562,
+          "episode_id": 89268489,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89268489-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:01.783Z",
+          "seed": 813344108,
+          "sha256": "143827A6DED1EAE8BC3E704BC3A7A7AC84A169079EFD31F7766E063CB0C4B57E",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89268489",
+          "target_seat": 0
+        },
+        {
+          "bytes": 17108059,
+          "episode_id": 89267973,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89267973-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:00.977Z",
+          "seed": 488761916,
+          "sha256": "19AA5CACDBD0A9CBEDC8B941C51D61138C72BC02BF4763661DCD954EE0C8C853",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89267973",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55154217,
+      "submitted_at_utc": "2026-08-01T05:05:22.640Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 40,
+        "seat_counts": {
+          "0": 18,
+          "1": 22
+        },
+        "total": 41,
+        "validation": 1
+      },
+      "file_name": "Fa_02 - Last-Chance Tiebreak.tar.gz",
+      "local_source_mapping": {
+        "file_name": "Fa_02 - Last-Chance Tiebreak.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/Fa_02 - Last-Chance Tiebreak/Fa_02 - Last-Chance Tiebreak.tar.gz",
+            "bytes": 7029,
+            "members": [
+              {
+                "bytes": 29265,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+                    "bytes": 29265,
+                    "path": "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+                    "sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740"
+              }
+            ],
+            "path": "kaggle_runs/Fa_02 - Last-Chance Tiebreak/Fa_02 - Last-Chance Tiebreak.tar.gz",
+            "sha256": "E1DA47187E383023E1719479FEA82615FCEB17D217AB7855526A39767655FDEE",
+            "tar_status": "PARSED"
+          },
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/Fa_02 - Last-Chance Tiebreak/preflight/Fa_02 - Last-Chance Tiebreak.tar.gz",
+            "bytes": 7029,
+            "members": [
+              {
+                "bytes": 29265,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+                    "bytes": 29265,
+                    "path": "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+                    "sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740"
+              }
+            ],
+            "path": "kaggle_runs/Fa_02 - Last-Chance Tiebreak/preflight/Fa_02 - Last-Chance Tiebreak.tar.gz",
+            "sha256": "E1DA47187E383023E1719479FEA82615FCEB17D217AB7855526A39767655FDEE",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "913.0",
+        "submission_id": 55154212,
+        "submitted_at": "2026-08-01T05:05:15.230Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-08-01T05:05:15.230Z",
+        "draws": 0,
+        "file_name": "Fa_02 - Last-Chance Tiebreak.tar.gz",
+        "games": 40,
+        "losses": 23,
+        "mean_margin": -5548.825,
+        "mean_reward": 90987.75,
+        "p10_margin": -37531.200000000004,
+        "public_score_at_snapshot": 913.0,
+        "seat0_win_rate": 0.5,
+        "seat1_win_rate": 0.36363636363636365,
+        "submission_id": 55154212,
+        "unique_opponents": 34,
+        "win_rate": 0.425,
+        "wins": 17
+      },
+      "public_score": 913.0,
+      "sampled_public_replays": [
+        {
+          "bytes": 16747449,
+          "episode_id": 89268487,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89268487-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:01.370Z",
+          "seed": 1637482659,
+          "sha256": "20B71E18ACB8B95445AF52E433CF29446676738668E3C148E05973886117CF45",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89268487",
+          "target_seat": 0
+        },
+        {
+          "bytes": 16571684,
+          "episode_id": 89267972,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89267972-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:00.576Z",
+          "seed": 1604316626,
+          "sha256": "AFED2009BE37102DE587B0DE9ABAAC7D60A14ECB6F3942882AEE01C509E3F75A",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89267972",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55154212,
+      "submitted_at_utc": "2026-08-01T05:05:15.230Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 48,
+        "seat_counts": {
+          "0": 27,
+          "1": 21
+        },
+        "total": 49,
+        "validation": 1
+      },
+      "file_name": "Fa_01 - Overflow-Safe Inventory.tar.gz",
+      "local_source_mapping": {
+        "file_name": "Fa_01 - Overflow-Safe Inventory.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/Fa_01 - Overflow-Safe Inventory.tar.gz",
+            "bytes": 4894,
+            "members": [
+              {
+                "bytes": 17417,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/overflow_drop/main.py",
+                    "bytes": 17417,
+                    "path": "artifacts/candidates/overflow_drop/main.py",
+                    "sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+              }
+            ],
+            "path": "dist/Fa_01 - Overflow-Safe Inventory.tar.gz",
+            "sha256": "1B52522D0CD55536F1C45B73F5FC5A37A27CF924A218FA009D1D1786B72F53D1",
+            "tar_status": "PARSED"
+          },
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/Fa_01 - Overflow-Safe Inventory/output_v1/Fa_01 - Overflow-Safe Inventory.tar.gz",
+            "bytes": 4894,
+            "members": [
+              {
+                "bytes": 17417,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/overflow_drop/main.py",
+                    "bytes": 17417,
+                    "path": "artifacts/candidates/overflow_drop/main.py",
+                    "sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+              }
+            ],
+            "path": "kaggle_runs/Fa_01 - Overflow-Safe Inventory/output_v1/Fa_01 - Overflow-Safe Inventory.tar.gz",
+            "sha256": "1B52522D0CD55536F1C45B73F5FC5A37A27CF924A218FA009D1D1786B72F53D1",
+            "tar_status": "PARSED"
+          },
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/Fa_01 - Overflow-Safe Inventory/output_v2/Fa_01 - Overflow-Safe Inventory.tar.gz",
+            "bytes": 4894,
+            "members": [
+              {
+                "bytes": 17417,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/overflow_drop/main.py",
+                    "bytes": 17417,
+                    "path": "artifacts/candidates/overflow_drop/main.py",
+                    "sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+              }
+            ],
+            "path": "kaggle_runs/Fa_01 - Overflow-Safe Inventory/output_v2/Fa_01 - Overflow-Safe Inventory.tar.gz",
+            "sha256": "1B52522D0CD55536F1C45B73F5FC5A37A27CF924A218FA009D1D1786B72F53D1",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "1003.5",
+        "submission_id": 55142935,
+        "submitted_at": "2026-07-31T16:45:32.363Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-07-31T16:45:32.363Z",
+        "draws": 0,
+        "file_name": "Fa_01 - Overflow-Safe Inventory.tar.gz",
+        "games": 48,
+        "losses": 24,
+        "mean_margin": 3915.2083333333335,
+        "mean_reward": 90511.875,
+        "p10_margin": -18963.8,
+        "public_score_at_snapshot": 1003.5,
+        "seat0_win_rate": 0.4074074074074074,
+        "seat1_win_rate": 0.6190476190476191,
+        "submission_id": 55142935,
+        "unique_opponents": 41,
+        "win_rate": 0.5,
+        "wins": 24
+      },
+      "public_score": 1003.5,
+      "sampled_public_replays": [
+        {
+          "bytes": 19688457,
+          "episode_id": 89174686,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89174686-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:02:59.760Z",
+          "seed": 2060254494,
+          "sha256": "E5051CB000A2A6D1C7B2AA3897621DDD3111EEC0F87270472EA62970F04FE56E",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89174686",
+          "target_seat": 0
+        },
+        {
+          "bytes": 21421607,
+          "episode_id": 89175698,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89175698-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:03:00.183Z",
+          "seed": 891236649,
+          "sha256": "04F85C1A1BB697841612854B22C310BBEA214469F126F495DD557C509C49C00A",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89175698",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55142935,
+      "submitted_at_utc": "2026-07-31T16:45:32.363Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 43,
+        "seat_counts": {
+          "0": 26,
+          "1": 17
+        },
+        "total": 44,
+        "validation": 1
+      },
+      "file_name": "cow_tilt.tar.gz",
+      "local_source_mapping": {
+        "file_name": "cow_tilt.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/cow_tilt.tar.gz",
+            "bytes": 4311,
+            "members": [
+              {
+                "bytes": 15703,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/cow_tilt/main.py",
+                    "bytes": 15703,
+                    "path": "artifacts/candidates/cow_tilt/main.py",
+                    "sha256": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E"
+              }
+            ],
+            "path": "dist/cow_tilt.tar.gz",
+            "sha256": "73F15AECDD3CC786D755540C71D1E6035AD8D4435E813A02E56E923C8F791A86",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "991.4",
+        "submission_id": 55137248,
+        "submitted_at": "2026-07-31T12:38:37.067Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-07-31T12:38:37.067Z",
+        "draws": 0,
+        "file_name": "cow_tilt.tar.gz",
+        "games": 43,
+        "losses": 23,
+        "mean_margin": 2834.3953488372094,
+        "mean_reward": 87058.04651162791,
+        "p10_margin": -19408.8,
+        "public_score_at_snapshot": 991.4,
+        "seat0_win_rate": 0.5,
+        "seat1_win_rate": 0.4117647058823529,
+        "submission_id": 55137248,
+        "unique_opponents": 38,
+        "win_rate": 0.46511627906976744,
+        "wins": 20
+      },
+      "public_score": 991.4,
+      "sampled_public_replays": [
+        {
+          "bytes": 16696969,
+          "episode_id": 89143277,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89143277-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:02:58.077Z",
+          "seed": 2077623597,
+          "sha256": "1AA4495DBBC1439A2E5462245B4C6B725D89F9156A8F8C9ECFD4E29077D23285",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89143277",
+          "target_seat": 0
+        },
+        {
+          "bytes": 24608664,
+          "episode_id": 89144276,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89144276-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:02:59.336Z",
+          "seed": 1320162541,
+          "sha256": "38FB03443E6BA03118197D50A1642E7F4D8B2871D6F7401C118182C6AF1EDD42",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89144276",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55137248,
+      "submitted_at_utc": "2026-07-31T12:38:37.067Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "episode_inventory": {
+        "public_complete": 18,
+        "seat_counts": {
+          "0": 7,
+          "1": 11
+        },
+        "total": 19,
+        "validation": 1
+      },
+      "file_name": "fast_expansion.tar.gz",
+      "local_source_mapping": {
+        "file_name": "fast_expansion.tar.gz",
+        "local_filename_matches": [
+          {
+            "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/fast_expansion.tar.gz",
+            "bytes": 4314,
+            "members": [
+              {
+                "bytes": 15706,
+                "local_source_matches": [
+                  {
+                    "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/fast_expansion/main.py",
+                    "bytes": 15706,
+                    "path": "artifacts/candidates/fast_expansion/main.py",
+                    "sha256": "406BC82979637A42F2848382AD5E0248C403BBB346D09CF93859DC2D5761F25C"
+                  }
+                ],
+                "name": "main.py",
+                "sha256": "406BC82979637A42F2848382AD5E0248C403BBB346D09CF93859DC2D5761F25C"
+              }
+            ],
+            "path": "dist/fast_expansion.tar.gz",
+            "sha256": "2ECB98759CA02AB28C83C88832DB8DDFEEDDD7E2E4A7B80EA9BD0F1292251484",
+            "tar_status": "PARSED"
+          }
+        ],
+        "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+        "public_score_at_snapshot": "1068.0",
+        "submission_id": 55137246,
+        "submitted_at": "2026-07-31T12:38:28.387Z",
+        "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+      },
+      "public_episode_performance": {
+        "date": "2026-07-31T12:38:28.387Z",
+        "draws": 0,
+        "file_name": "fast_expansion.tar.gz",
+        "games": 18,
+        "losses": 6,
+        "mean_margin": 11272.166666666666,
+        "mean_reward": 88530.38888888889,
+        "p10_margin": -21125.799999999996,
+        "public_score_at_snapshot": 1068.0,
+        "seat0_win_rate": 0.5714285714285714,
+        "seat1_win_rate": 0.7272727272727273,
+        "submission_id": 55137246,
+        "unique_opponents": 16,
+        "win_rate": 0.6666666666666666,
+        "wins": 12
+      },
+      "public_score": 1068.0,
+      "sampled_public_replays": [
+        {
+          "bytes": 16064983,
+          "episode_id": 89143770,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89143770-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:02:58.899Z",
+          "seed": 1377026883,
+          "sha256": "F526C3F9D5972FE833FBB94B6BD9795AA866D4697C2C979915BF3742116843CD",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89143770",
+          "target_seat": 0
+        },
+        {
+          "bytes": 21799223,
+          "episode_id": 89143295,
+          "path": "research/campaign_3000/01_internal/replays_raw/episode-89143295-replay.json",
+          "retrieved_at_utc": "2026-08-08T18:02:58.501Z",
+          "seed": 439952204,
+          "sha256": "1C65304BCF443B4A8FC6CF8E0E23846A49CCF29180EBAC75BE9CE906719759CF",
+          "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89143295",
+          "target_seat": 1
+        }
+      ],
+      "status": "COMPLETE",
+      "submission_id": 55137246,
+      "submitted_at_utc": "2026-07-31T12:38:28.387Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    }
+  ],
+  "schema_version": 1,
+  "submission_count": 22,
+  "team_id": 16630689,
+  "team_name": "yw8837"
+}

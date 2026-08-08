@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "gate_id": "campaign_3000_private_saverun_gate_v1",
+  "status": "FROZEN_CLOSED",
+  "bootstrap": {
+    "cluster_unit": "seed",
+    "draws": 20000,
+    "random_seed": 20260809,
+    "confidence": 0.95,
+    "interval": "equal_tailed"
+  },
+  "hard_integrity": {
+    "exact_candidate_path_and_sha256": true,
+    "exact_opponent_paths_and_sha256": true,
+    "exact_runner_sha256": true,
+    "exact_engine_version_and_sha256": true,
+    "candidate_and_opponent_source_start_equals_end": true,
+    "environment_start_equals_end": true,
+    "plan_and_gate_config_start_equals_end": true,
+    "raw_start_and_completed_receipts_required": true,
+    "raw_game_rows_required": true,
+    "exact_cell_set_no_missing_extra_or_duplicates": true,
+    "both_seats_required": true,
+    "all_status_pairs": "DONE/DONE",
+    "all_numeric_inputs_and_derived_metrics_finite": true,
+    "failures": 0,
+    "hidden_abnormal_status_failures": 0,
+    "self_lane_cells": 0
+  },
+  "strict_performance_promotion_thresholds": {
+    "development": {
+      "minimum_match_score": 0.50,
+      "minimum_match_score_seed_cluster_bootstrap_95_lower": 0.35,
+      "minimum_mean_margin": 0.0,
+      "minimum_each_opponent_match_score": 0.10,
+      "maximum_game_runtime_p99_seconds": 25.0,
+      "maximum_game_runtime_seconds": 30.0
+    },
+    "confirmation": {
+      "minimum_match_score": 0.60,
+      "minimum_match_score_seed_cluster_bootstrap_95_lower": 0.50,
+      "minimum_mean_margin": 0.0,
+      "minimum_each_opponent_match_score": 0.25,
+      "maximum_game_runtime_p99_seconds": 25.0,
+      "maximum_game_runtime_seconds": 30.0
+    },
+    "robustness": {
+      "minimum_match_score": 0.55,
+      "minimum_match_score_seed_cluster_bootstrap_95_lower": 0.45,
+      "minimum_mean_margin": 0.0,
+      "minimum_margin_p10": -5000.0,
+      "minimum_each_opponent_match_score": 0.20,
+      "minimum_each_scenario_match_score": 0.45,
+      "maximum_game_runtime_p99_seconds": 25.0,
+      "maximum_game_runtime_seconds": 30.0
+    }
+  },
+  "exploratory_private_saverun_readiness": {
+    "classification": "NON_PROMOTION_DATA_GATHERING_ONLY",
+    "eligible_after_phase": "development",
+    "strict_aggregate_gate_required": false,
+    "required": {
+      "all_hard_integrity_checks": true,
+      "failures": 0,
+      "hidden_abnormal_status_failures": 0,
+      "all_numeric_inputs_and_derived_metrics_finite": true,
+      "maximum_game_runtime_p99_seconds": 25.0,
+      "maximum_game_runtime_seconds": 30.0,
+      "fa04_g1_minimum_match_score": 0.90,
+      "fa04_g1_minimum_mean_margin": 10000.0,
+      "exact_license_and_attribution_package_gate": true,
+      "final_independent_auditor_release_pass": true
+    },
+    "downstream_seed_policy": "confirmation and robustness remain CLOSED",
+    "g1_perspective": "Direct candidate perspective in candidate-vs-fa04_g1 rows.",
+    "claim_policy": "Must be reported as exploratory private SaveRun readiness, never promotion."
+  },
+  "verdict_policy": {
+    "any_hard_integrity_failure": "INVALID",
+    "all_hard_integrity_pass_but_any_threshold_failure": "NO_GO",
+    "all_strict_checks_pass": "STRICT_PROMOTION_PASS",
+    "exploratory_checks_pass": "EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION",
+    "missing_or_nonfinite_metric": "INVALID",
+    "no_averaging_away_opponent_or_scenario_regressions": true
+  }
+}

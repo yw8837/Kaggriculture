@@ -1,0 +1,1728 @@
+{
+  "created_at_utc": "2026-08-08T18:05:14.135729Z",
+  "inputs": {
+    "replay_count": 89,
+    "replay_inventory": "research\\campaign_3000\\01_internal\\replay_inventory.jsonl",
+    "replay_inventory_sha256": "B7BA7E3C3AEA87CF3542C2354EC855B0C4446D9AFEF00B7AFF1823E89DD98100"
+  },
+  "interpretation": "HYPOTHESIS_EVIDENCE_ONLY_NOT_PROMOTION",
+  "ours": [
+    {
+      "episodes": [
+        89143295,
+        89143770
+      ],
+      "farm_action_hash_counts": {
+        "4AC76E5A00729B96DAF48FF5D32CB7C86CAABBE761582B573F138062786D812D": 1,
+        "4F4046C1F9DCEB07490A97DC08F1425CC510A2D15B2F0D159FED85118959E773": 1
+      },
+      "file_name": "fast_expansion.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        94955,
+        87100
+      ],
+      "sample_count": 2,
+      "submission_id": 55137246
+    },
+    {
+      "episodes": [
+        89143277,
+        89144276
+      ],
+      "farm_action_hash_counts": {
+        "CC425532EB9CB6422E78C2F27123A9C15157D6CA977668349781F65B767BF0A9": 1,
+        "DAF8FC3C0B1C3094EB5123704B619C0182F9AE641FE67FF2B255F9DFDCC8C938": 1
+      },
+      "file_name": "cow_tilt.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        103330,
+        100913
+      ],
+      "sample_count": 2,
+      "submission_id": 55137248
+    },
+    {
+      "episodes": [
+        89174686,
+        89175698
+      ],
+      "farm_action_hash_counts": {
+        "4AB920B1EEC4A28C5C5438AD1484071EEA7EBBE8D6676A82A2B92CF3343876F7": 1,
+        "4E017A7EA5DECC264F716F2104168EFDF5C1090805B96F7C8EC0E8C54771CF00": 1
+      },
+      "file_name": "Fa_01 - Overflow-Safe Inventory.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        106395,
+        94813
+      ],
+      "sample_count": 2,
+      "submission_id": 55142935
+    },
+    {
+      "episodes": [
+        89267972,
+        89268487
+      ],
+      "farm_action_hash_counts": {
+        "7DF1AA5654725E5DB6D8F2C28AFC52DA57C17905D344DD7D82C1F8AA5C0402E5": 1,
+        "F4913DF4E656D88894676C0C5BE9126ECE6F3380647DA3FEF96CA00EBECE51DA": 1
+      },
+      "file_name": "Fa_02 - Last-Chance Tiebreak.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        94739,
+        91977
+      ],
+      "sample_count": 2,
+      "submission_id": 55154212
+    },
+    {
+      "episodes": [
+        89267973,
+        89268489
+      ],
+      "farm_action_hash_counts": {
+        "DC53973223D1AB450593175090AC597831922429CB47C1995507AED384994C96": 1,
+        "DE7861A296C437A7A43C6F2F8B4456063FDB735FFB02CA7E15B11C9C043DC9D1": 1
+      },
+      "file_name": "Fa_03 - Meta Expansion.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        100951,
+        91945
+      ],
+      "sample_count": 2,
+      "submission_id": 55154217
+    },
+    {
+      "episodes": [
+        89398066,
+        89399650
+      ],
+      "farm_action_hash_counts": {
+        "4EEDB53608302D835D3F203ECC86730A838BACDF97FB8FCDF49397A60B9FC1DE": 2
+      },
+      "file_name": "Fa_04 - Frontier Trace Guard.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        138456,
+        153911
+      ],
+      "sample_count": 2,
+      "submission_id": 55171193
+    },
+    {
+      "episodes": [
+        89502894,
+        89503426
+      ],
+      "farm_action_hash_counts": {
+        "4EBA205576C54ACC3E3C8272855EE28C4E4A37ADA9989C8440B7765922FCE485": 1,
+        "E460DE2C9E191A7E16D82DBC439F2A7664F91F742B4C526570789AA1256DAE43": 1
+      },
+      "file_name": "bot_01 - Capacity Expansion.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        94493,
+        86807
+      ],
+      "sample_count": 2,
+      "submission_id": 55183485
+    },
+    {
+      "episodes": [
+        89517623,
+        89518157
+      ],
+      "farm_action_hash_counts": {
+        "585CE561A105AC6306E0880587C8486792CE7633A908D139FCE5264AF50DA57E": 1,
+        "68D21F81DC429E0042059707C1F559E19B15231F5D417AE963539B89621EDDA8": 1
+      },
+      "file_name": "Ge_01.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        94940,
+        77903
+      ],
+      "sample_count": 2,
+      "submission_id": 55185505
+    },
+    {
+      "episodes": [
+        89517073,
+        89517612
+      ],
+      "farm_action_hash_counts": {
+        "140E391FEB46CC067E4F0E3FCA3A98A0FF97EEE1BAB483B638326D994EF9A4EA": 1,
+        "86A830F662E1A741941C60FB7B1876AA8B01C02A6BDBCA2969C09E31A0FDDF24": 1
+      },
+      "file_name": "Ge_02.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        97495,
+        89146
+      ],
+      "sample_count": 2,
+      "submission_id": 55185510
+    },
+    {
+      "episodes": [
+        89518702,
+        89520334
+      ],
+      "farm_action_hash_counts": {
+        "40CD056DD0DF0EA5F8BD70B828ADE90A00A1517D0BD7D3CD59C5283DCE549074": 1,
+        "C11E7F486AB759B2FE568D0A48EC1036887AD8C1A94B5B275E9DA9E620A4A7BE": 1
+      },
+      "file_name": "Ge_01.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        76871,
+        83880
+      ],
+      "sample_count": 2,
+      "submission_id": 55185691
+    },
+    {
+      "episodes": [
+        89518704,
+        89519247
+      ],
+      "farm_action_hash_counts": {
+        "9280371D2708F19A621ABDA0B808B29724C1F9E838AA88947AEC0188E68294D5": 1,
+        "D93BB81158E69A2F336E7BFA96CFA1990DFBD20CE4C2E085D60AF690D2357A4A": 1
+      },
+      "file_name": "Ge_02.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        103736,
+        89704
+      ],
+      "sample_count": 2,
+      "submission_id": 55185695
+    },
+    {
+      "episodes": [
+        89622334,
+        89622883
+      ],
+      "farm_action_hash_counts": {
+        "2A3C83A2C5A3913D807AF1814B4E5523B8DB47DE6BEB705FFBD2ED493DDB2251": 1,
+        "DB8CB0C3C55D1D2BDBDC61836FFAE2A94E10C3937C4F0C50802197FF8E250BD8": 1
+      },
+      "file_name": "Ge_03.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        76811,
+        84545
+      ],
+      "sample_count": 2,
+      "submission_id": 55198655
+    },
+    {
+      "episodes": [
+        89622336,
+        89622882
+      ],
+      "farm_action_hash_counts": {
+        "15A81E27F664183FA708EE8E0A18256B45BB9453F406FA6767128B193CDC315B": 1,
+        "8357D7FEC680D21FE9835A5DBC8B44EBCE371ECC548C2DA406455DDA87D23F92": 1
+      },
+      "file_name": "Ge_04.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        93459,
+        82897
+      ],
+      "sample_count": 2,
+      "submission_id": 55198657
+    },
+    {
+      "episodes": [
+        89630115,
+        89631781
+      ],
+      "farm_action_hash_counts": {
+        "EE7F2FD9BCE57C5B4C2B9FC6A055A925E5C30EFB22A1AA2A8FC55BA7F424723E": 2
+      },
+      "file_name": "bot_02 - Zero-Waste Tape.tar.gz",
+      "market_action_distinct": 1,
+      "rewards": [
+        163594,
+        131271
+      ],
+      "sample_count": 2,
+      "submission_id": 55199612
+    },
+    {
+      "episodes": [
+        89630116,
+        89631227
+      ],
+      "farm_action_hash_counts": {
+        "EE7F2FD9BCE57C5B4C2B9FC6A055A925E5C30EFB22A1AA2A8FC55BA7F424723E": 2
+      },
+      "file_name": "bot_03 - Terminal Flush Tape.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        174921,
+        148902
+      ],
+      "sample_count": 2,
+      "submission_id": 55199616
+    },
+    {
+      "episodes": [
+        89685911,
+        89687034
+      ],
+      "farm_action_hash_counts": {
+        "EE7F2FD9BCE57C5B4C2B9FC6A055A925E5C30EFB22A1AA2A8FC55BA7F424723E": 2
+      },
+      "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        167043,
+        96870
+      ],
+      "sample_count": 2,
+      "submission_id": 55206974
+    },
+    {
+      "episodes": [
+        89929343,
+        89929960
+      ],
+      "farm_action_hash_counts": {
+        "76B0031BAD0DD631D74B85B10E95446D29BFC5C8B77E3725BC5D964899892DCC": 2
+      },
+      "file_name": "bot_07 - Meta Tape Shield.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        184391,
+        188431
+      ],
+      "sample_count": 2,
+      "submission_id": 55239508
+    },
+    {
+      "episodes": [
+        89929344,
+        89931209
+      ],
+      "farm_action_hash_counts": {
+        "5C856F7DF54F63242CFB3533430906EF4474BAF918983FEA856DC8840EEBA585": 2
+      },
+      "file_name": "bot_08 - Terminal Wheat Graft.tar.gz",
+      "market_action_distinct": 2,
+      "rewards": [
+        177277,
+        157420
+      ],
+      "sample_count": 2,
+      "submission_id": 55239511
+    },
+    {
+      "episodes": [
+        89968896,
+        89969522
+      ],
+      "farm_action_hash_counts": {
+        "D55848099C8211C72C32A4E9EB7ED0C5CA6DE3A4C33B8994FCA650E0F238AA03": 2
+      },
+      "file_name": "bot_11 - Live Market R2921.tar.gz",
+      "market_action_distinct": 1,
+      "rewards": [
+        149575,
+        159276
+      ],
+      "sample_count": 2,
+      "submission_id": 55244861
+    },
+    {
+      "episodes": [
+        89968898,
+        89970799
+      ],
+      "farm_action_hash_counts": {
+        "CEFD9967B9935E5661EE28AAEB320C07E762907FE1B6BB9A7168408F3420A56D": 2
+      },
+      "file_name": "bot_12 - Live Market R2914.tar.gz",
+      "market_action_distinct": 1,
+      "rewards": [
+        172909,
+        162471
+      ],
+      "sample_count": 2,
+      "submission_id": 55244867
+    },
+    {
+      "episodes": [
+        90181882,
+        90183257
+      ],
+      "farm_action_hash_counts": {
+        "EE7F2FD9BCE57C5B4C2B9FC6A055A925E5C30EFB22A1AA2A8FC55BA7F424723E": 2
+      },
+      "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+      "market_action_distinct": 1,
+      "rewards": [
+        166990,
+        129663
+      ],
+      "sample_count": 2,
+      "submission_id": 55270996
+    },
+    {
+      "episodes": [
+        90181883,
+        90182579
+      ],
+      "farm_action_hash_counts": {
+        "EE7F2FD9BCE57C5B4C2B9FC6A055A925E5C30EFB22A1AA2A8FC55BA7F424723E": 2
+      },
+      "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+      "market_action_distinct": 1,
+      "rewards": [
+        145654,
+        161674
+      ],
+      "sample_count": 2,
+      "submission_id": 55270999
+    }
+  ],
+  "schema_version": 1,
+  "top25": {
+    "agent_samples": 100,
+    "distinct_farm_action_traces": 11,
+    "distinct_full_action_traces": 84,
+    "farm_clusters": [
+      {
+        "episodes": [
+          91031978,
+          91040419,
+          91049723,
+          91054779,
+          91055542,
+          91057266,
+          91057317,
+          91057328,
+          91058944,
+          91058982,
+          91059769,
+          91060588,
+          91060652,
+          91060680,
+          91060712,
+          91062431,
+          91062462,
+          91062469,
+          91065044,
+          91065082,
+          91065786,
+          91065924,
+          91065964,
+          91066746,
+          91066789,
+          91066795,
+          91066823,
+          91066852,
+          91067615,
+          91067697,
+          91068434,
+          91068555,
+          91069328,
+          91069423,
+          91069464,
+          91070301,
+          91070323,
+          91071929,
+          91071976,
+          91072927,
+          91072960,
+          91072969
+        ],
+        "reward_max": 145177,
+        "reward_min": 48617,
+        "sample_count": 78,
+        "sha256": "FC37F8688680DA949DB44C9444DCB9541488B4E10D9F432CC42648D6423F1B26",
+        "team_count": 30,
+        "teams": [
+          "Alexandre008",
+          "Auxileon",
+          "Bocen Li",
+          "Forrest",
+          "Howon Kang",
+          "Ibad Ur Rahman",
+          "Kenjo1209",
+          "Kronki",
+          "Lester Leong",
+          "MD Concepcion",
+          "Mathurin Ache",
+          "Matthew Labrador",
+          "Mohamed abdelrazik",
+          "Mohit Babel",
+          "Phi",
+          "Rayk Kretzschmar",
+          "Shivam_2212",
+          "StephenNedumpally",
+          "Ztr0",
+          "chunhu666",
+          "cmasch",
+          "eternitywinner",
+          "kakuteki",
+          "kglctf",
+          "lingyu07",
+          "lucaskna",
+          "mrgrishninsb",
+          "saikyo",
+          "tomo11111",
+          "\u98ce\u6c99\u661f\u8fb0"
+        ]
+      },
+      {
+        "episodes": [
+          91040419,
+          91043818,
+          91063358,
+          91070323
+        ],
+        "reward_max": 88426,
+        "reward_min": 56003,
+        "sample_count": 5,
+        "sha256": "C01824764F85E8AAAB270998C5B58F2BAF9702E3DE654EB53F8CEB0C5310A8B4",
+        "team_count": 1,
+        "teams": [
+          "kevin park"
+        ]
+      },
+      {
+        "episodes": [
+          91060652,
+          91062469,
+          91063358,
+          91068434
+        ],
+        "reward_max": 105391,
+        "reward_min": 57089,
+        "sample_count": 4,
+        "sha256": "2518E695F2B0FA1F9AB4A994FA76E1E324C5E5433A91419476D5951587BE00FC",
+        "team_count": 2,
+        "teams": [
+          "Syed Muhammad Gillani",
+          "tully_boss"
+        ]
+      },
+      {
+        "episodes": [
+          91031978,
+          91072969
+        ],
+        "reward_max": 102986,
+        "reward_min": 86288,
+        "sample_count": 3,
+        "sha256": "232C62383EB703136CD83CC977A8C4301A698B98BBED783BFB6BFC01420D5031",
+        "team_count": 1,
+        "teams": [
+          "tao wu11"
+        ]
+      },
+      {
+        "episodes": [
+          91071976,
+          91072960
+        ],
+        "reward_max": 109470,
+        "reward_min": 54679,
+        "sample_count": 3,
+        "sha256": "315A2807EE5C7743C9368C16FA2FB75473C1FFBE8E4DB92F051F0EF6096523EF",
+        "team_count": 1,
+        "teams": [
+          "Marcus"
+        ]
+      },
+      {
+        "episodes": [
+          91057328
+        ],
+        "reward_max": 75052,
+        "reward_min": 75052,
+        "sample_count": 2,
+        "sha256": "F3675F4EC195FD9DCDCCA1CE537555AB9F628366B257965A666FAC6009B21EA6",
+        "team_count": 1,
+        "teams": [
+          "Seb (allegedly)"
+        ]
+      },
+      {
+        "episodes": [
+          91016957
+        ],
+        "reward_max": 38817,
+        "reward_min": 38817,
+        "sample_count": 1,
+        "sha256": "4DCD20CC8E2E87E87950FAAD1AF1C241D808462A4E7D2AEC2E136DD3EBF51582",
+        "team_count": 1,
+        "teams": [
+          "Seb (allegedly)"
+        ]
+      },
+      {
+        "episodes": [
+          91016957
+        ],
+        "reward_max": 58336,
+        "reward_min": 58336,
+        "sample_count": 1,
+        "sha256": "65FD1A52DC6D309133A59974C02F1995DF98BDE894EBA070EDFF8623332A426F",
+        "team_count": 1,
+        "teams": [
+          "HealthStone"
+        ]
+      },
+      {
+        "episodes": [
+          91060680
+        ],
+        "reward_max": 124381,
+        "reward_min": 124381,
+        "sample_count": 1,
+        "sha256": "A4A4340273AE871E5E35C142C7D8CC9D17FF80ECA72745B6314F5D4F05203D7C",
+        "team_count": 1,
+        "teams": [
+          "lucaskna"
+        ]
+      },
+      {
+        "episodes": [
+          91043818
+        ],
+        "reward_max": 79145,
+        "reward_min": 79145,
+        "sample_count": 1,
+        "sha256": "BB0115DAC0136E60B333E26F76D4916548A33F2A995487F63659FC966F3EB26A",
+        "team_count": 1,
+        "teams": [
+          "HealthStone"
+        ]
+      },
+      {
+        "episodes": [
+          91054779
+        ],
+        "reward_max": 101325,
+        "reward_min": 101325,
+        "sample_count": 1,
+        "sha256": "CF738F799B7933F438576BBB9515C68446CA47D845EEE8E2BBBE1CEC7C120F9C",
+        "team_count": 1,
+        "teams": [
+          "HealthStone"
+        ]
+      }
+    ],
+    "full_action_clusters": [
+      {
+        "episodes": [
+          91070323
+        ],
+        "reward_max": 88149,
+        "reward_min": 88149,
+        "sample_count": 2,
+        "sha256": "27081A330FAA74B19DC2C0A55EF3E500F08926D9355861008DBB899FDC428204",
+        "team_count": 1,
+        "teams": [
+          "lucaskna"
+        ]
+      },
+      {
+        "episodes": [
+          91070323
+        ],
+        "reward_max": 88426,
+        "reward_min": 88426,
+        "sample_count": 2,
+        "sha256": "29D565E69B366CAB54F561F3DE5C4A84E04CEA249DAA9EE35B0474E09811563A",
+        "team_count": 1,
+        "teams": [
+          "kevin park"
+        ]
+      },
+      {
+        "episodes": [
+          91057328
+        ],
+        "reward_max": 75052,
+        "reward_min": 75052,
+        "sample_count": 2,
+        "sha256": "35DA8BF794F5966F2BD72B4910336F9750B12C46F4446E43CD3D2B34EDFF3CD3",
+        "team_count": 1,
+        "teams": [
+          "Seb (allegedly)"
+        ]
+      },
+      {
+        "episodes": [
+          91065964,
+          91067615
+        ],
+        "reward_max": 144836,
+        "reward_min": 74823,
+        "sample_count": 2,
+        "sha256": "36F9CA28A09B06083EF6D1B89C38971351B78719B0AEFC1E1E0CE8317E5AD189",
+        "team_count": 1,
+        "teams": [
+          "MD Concepcion"
+        ]
+      },
+      {
+        "episodes": [
+          91066789
+        ],
+        "reward_max": 77882,
+        "reward_min": 77882,
+        "sample_count": 2,
+        "sha256": "43C929C597A8D9EFBBD383B0E6F6BE50A457204A9C58AA4A057837C01D8CF263",
+        "team_count": 2,
+        "teams": [
+          "Ibad Ur Rahman",
+          "Kronki"
+        ]
+      },
+      {
+        "episodes": [
+          91066746
+        ],
+        "reward_max": 51284,
+        "reward_min": 51284,
+        "sample_count": 2,
+        "sha256": "7B7E292195BEB81EA4B827B91C5D959C1F75D155FF8C980B4A990BC2BE1FDC57",
+        "team_count": 2,
+        "teams": [
+          "Mohit Babel",
+          "lingyu07"
+        ]
+      },
+      {
+        "episodes": [
+          91059769
+        ],
+        "reward_max": 69274,
+        "reward_min": 69274,
+        "sample_count": 2,
+        "sha256": "7D2204B5CC5D896E75156317F3BE70F4B86CB09298CBAC6DADB76F58F54907DE",
+        "team_count": 2,
+        "teams": [
+          "Mohit Babel",
+          "Shivam_2212"
+        ]
+      },
+      {
+        "episodes": [
+          91068555
+        ],
+        "reward_max": 78410,
+        "reward_min": 78410,
+        "sample_count": 2,
+        "sha256": "85139B7A722B7108CCDE0A6986F5230E062A8AC5215DF8CBCC32F789A401A676",
+        "team_count": 2,
+        "teams": [
+          "Mathurin Ache",
+          "lingyu07"
+        ]
+      },
+      {
+        "episodes": [
+          91057328
+        ],
+        "reward_max": 73225,
+        "reward_min": 73225,
+        "sample_count": 2,
+        "sha256": "8F6F09519088F8FCA428379227A1D1068C491E414025E3096E948FE640723D6B",
+        "team_count": 1,
+        "teams": [
+          "Mohamed abdelrazik"
+        ]
+      },
+      {
+        "episodes": [
+          91071929
+        ],
+        "reward_max": 96763,
+        "reward_min": 96763,
+        "sample_count": 2,
+        "sha256": "936765BABDE0C5475A2F57809905F13AC3060A91D366977F9AFFFA28C8B3F5D7",
+        "team_count": 2,
+        "teams": [
+          "eternitywinner",
+          "\u98ce\u6c99\u661f\u8fb0"
+        ]
+      },
+      {
+        "episodes": [
+          91066795
+        ],
+        "reward_max": 82683,
+        "reward_min": 82683,
+        "sample_count": 2,
+        "sha256": "98A8B4533989D52A0EC95C8F368BB9FD6F8D30450FF5BD27D98135591859613F",
+        "team_count": 1,
+        "teams": [
+          "lucaskna"
+        ]
+      },
+      {
+        "episodes": [
+          91066795
+        ],
+        "reward_max": 83701,
+        "reward_min": 83701,
+        "sample_count": 2,
+        "sha256": "999DB97127A70282B5984D5BA1DA281C13A7C7FAC16EE25B6E4DAEA59248BE32",
+        "team_count": 1,
+        "teams": [
+          "Mohamed abdelrazik"
+        ]
+      },
+      {
+        "episodes": [
+          91072969
+        ],
+        "reward_max": 84380,
+        "reward_min": 84380,
+        "sample_count": 2,
+        "sha256": "ABF30FDBF45F36580291D2D969A49CB7E3444C3961CD0531361C72BC3FE1C2E6",
+        "team_count": 1,
+        "teams": [
+          "tomo11111"
+        ]
+      },
+      {
+        "episodes": [
+          91072960
+        ],
+        "reward_max": 110619,
+        "reward_min": 110619,
+        "sample_count": 2,
+        "sha256": "C490C0E6779CE906A9266357462AFDCFD2465BAA44EEA7CE8DD54E41D746E811",
+        "team_count": 1,
+        "teams": [
+          "kglctf"
+        ]
+      },
+      {
+        "episodes": [
+          91072969
+        ],
+        "reward_max": 86288,
+        "reward_min": 86288,
+        "sample_count": 2,
+        "sha256": "E1EE0640CCA36321A361EF9DB9ADDD908B341D21CD045FCE8527C59131330644",
+        "team_count": 1,
+        "teams": [
+          "tao wu11"
+        ]
+      },
+      {
+        "episodes": [
+          91072960
+        ],
+        "reward_max": 109470,
+        "reward_min": 109470,
+        "sample_count": 2,
+        "sha256": "ED0A02A13ADC10088449675DCD7C5A0ADE0F1CCA40292C0E95AF1CE9A7518757",
+        "team_count": 1,
+        "teams": [
+          "Marcus"
+        ]
+      },
+      {
+        "episodes": [
+          91060712
+        ],
+        "reward_max": 145177,
+        "reward_min": 145177,
+        "sample_count": 1,
+        "sha256": "01D98ABBC9397B3DCDB52E8364CF1615411EEFC11D3FF2D685A8DA790C8D1FF1",
+        "team_count": 1,
+        "teams": [
+          "Forrest"
+        ]
+      },
+      {
+        "episodes": [
+          91068434
+        ],
+        "reward_max": 58132,
+        "reward_min": 58132,
+        "sample_count": 1,
+        "sha256": "0A3D6BD6DED16710E0E44E73C5BF8F1D163B2A67E8FC67DB57F7D55A92F160A1",
+        "team_count": 1,
+        "teams": [
+          "Syed Muhammad Gillani"
+        ]
+      },
+      {
+        "episodes": [
+          91060652
+        ],
+        "reward_max": 105391,
+        "reward_min": 105391,
+        "sample_count": 1,
+        "sha256": "0B9F852B36ED861191F058A854DB2960F80FB1BC8BDBB20D47F6BB9879D3966A",
+        "team_count": 1,
+        "teams": [
+          "Syed Muhammad Gillani"
+        ]
+      },
+      {
+        "episodes": [
+          91067697
+        ],
+        "reward_max": 55483,
+        "reward_min": 55483,
+        "sample_count": 1,
+        "sha256": "0F4B21E9F43FABCEA4C9AEC1C09B13B3275B9E5372E941045776FBE822F8ABD8",
+        "team_count": 1,
+        "teams": [
+          "kglctf"
+        ]
+      },
+      {
+        "episodes": [
+          91031978
+        ],
+        "reward_max": 101767,
+        "reward_min": 101767,
+        "sample_count": 1,
+        "sha256": "1263BC1A4F0B0010986F10C7AEFAA0B583CA3E50D6F684B3FBF04C39F0666F93",
+        "team_count": 1,
+        "teams": [
+          "Lester Leong"
+        ]
+      },
+      {
+        "episodes": [
+          91057317
+        ],
+        "reward_max": 139733,
+        "reward_min": 139733,
+        "sample_count": 1,
+        "sha256": "1BCAA05E8AC258CEBE3572EC38556AADF29136F6C1D15E3E28789C63B8531579",
+        "team_count": 1,
+        "teams": [
+          "Kenjo1209"
+        ]
+      },
+      {
+        "episodes": [
+          91063358
+        ],
+        "reward_max": 58191,
+        "reward_min": 58191,
+        "sample_count": 1,
+        "sha256": "234B78EAD76811C666B44F157D4D6A0DAD0B0A6209C1D1245F18EF8255FE9373",
+        "team_count": 1,
+        "teams": [
+          "kevin park"
+        ]
+      },
+      {
+        "episodes": [
+          91040419
+        ],
+        "reward_max": 61699,
+        "reward_min": 61699,
+        "sample_count": 1,
+        "sha256": "2583C8870F8D9107576413CC7DCEFA16B2D0ED9F9DE741BD887BD47C1F696742",
+        "team_count": 1,
+        "teams": [
+          "kevin park"
+        ]
+      },
+      {
+        "episodes": [
+          91069464
+        ],
+        "reward_max": 57945,
+        "reward_min": 57945,
+        "sample_count": 1,
+        "sha256": "2EE6C10685A6FCA30977579FFCA2D96C531803F6AE9A8E02A2366DF01E558911",
+        "team_count": 1,
+        "teams": [
+          "Kenjo1209"
+        ]
+      },
+      {
+        "episodes": [
+          91068434
+        ],
+        "reward_max": 57072,
+        "reward_min": 57072,
+        "sample_count": 1,
+        "sha256": "2F7F805CC8391579933D425690C37823624A70C45BE6C9E6674C7D1051D26A99",
+        "team_count": 1,
+        "teams": [
+          "Ztr0"
+        ]
+      },
+      {
+        "episodes": [
+          91043818
+        ],
+        "reward_max": 79145,
+        "reward_min": 79145,
+        "sample_count": 1,
+        "sha256": "31F5EE1C64FE83B4B6B18BB1881A39D847DB3151C153C1BBC83C083ACD72E5E1",
+        "team_count": 1,
+        "teams": [
+          "HealthStone"
+        ]
+      },
+      {
+        "episodes": [
+          91043818
+        ],
+        "reward_max": 56003,
+        "reward_min": 56003,
+        "sample_count": 1,
+        "sha256": "36DD84AB92C569C4085CC234730BC45F1C10C0CF9490BA6D827C7064D1D59578",
+        "team_count": 1,
+        "teams": [
+          "kevin park"
+        ]
+      },
+      {
+        "episodes": [
+          91054779
+        ],
+        "reward_max": 93101,
+        "reward_min": 93101,
+        "sample_count": 1,
+        "sha256": "3841A02B98831A06E8D70B3265840F35275899CD04214609BEE774CEE032D4CE",
+        "team_count": 1,
+        "teams": [
+          "Howon Kang"
+        ]
+      },
+      {
+        "episodes": [
+          91069423
+        ],
+        "reward_max": 64139,
+        "reward_min": 64139,
+        "sample_count": 1,
+        "sha256": "398D2543F1F397538FE18821D11B2925F65A0C00EFC12B82432046ED966EB3C8",
+        "team_count": 1,
+        "teams": [
+          "Lester Leong"
+        ]
+      },
+      {
+        "episodes": [
+          91065082
+        ],
+        "reward_max": 67912,
+        "reward_min": 67912,
+        "sample_count": 1,
+        "sha256": "3B5822D5B4067EF9E7F3508A44439FC1825A96538BF85EF4C6A802220DFCF8DC",
+        "team_count": 1,
+        "teams": [
+          "Phi"
+        ]
+      },
+      {
+        "episodes": [
+          91049723
+        ],
+        "reward_max": 85429,
+        "reward_min": 85429,
+        "sample_count": 1,
+        "sha256": "43F71D99E3C23BD077DA7DE07B4D61254388C756F860B78432DDC6EE013BFEFA",
+        "team_count": 1,
+        "teams": [
+          "Lester Leong"
+        ]
+      },
+      {
+        "episodes": [
+          91069328
+        ],
+        "reward_max": 70991,
+        "reward_min": 70991,
+        "sample_count": 1,
+        "sha256": "4838284126463D52322B6E79FD53F331EBD8EA5F4E75E464843FD7811FB077E5",
+        "team_count": 1,
+        "teams": [
+          "Auxileon"
+        ]
+      },
+      {
+        "episodes": [
+          91055542
+        ],
+        "reward_max": 49944,
+        "reward_min": 49944,
+        "sample_count": 1,
+        "sha256": "48E40833F9D600AC15740D166673E57E203FDF900AE8F33694C368FA0AC743D7",
+        "team_count": 1,
+        "teams": [
+          "lucaskna"
+        ]
+      },
+      {
+        "episodes": [
+          91065082
+        ],
+        "reward_max": 69685,
+        "reward_min": 69685,
+        "sample_count": 1,
+        "sha256": "4BD7D2A5260495D732E907E0C6F13DC547B265FB47D21E74383D002CF1AB4197",
+        "team_count": 1,
+        "teams": [
+          "saikyo"
+        ]
+      },
+      {
+        "episodes": [
+          91060680
+        ],
+        "reward_max": 124381,
+        "reward_min": 124381,
+        "sample_count": 1,
+        "sha256": "4E568A7833D7AD508C885B6D78024596728B6205C05E7BC595E7BB8B19454B2A",
+        "team_count": 1,
+        "teams": [
+          "lucaskna"
+        ]
+      },
+      {
+        "episodes": [
+          91062431
+        ],
+        "reward_max": 122874,
+        "reward_min": 122874,
+        "sample_count": 1,
+        "sha256": "501F5C5DA599ED1523EF15E49C75BDC0447061A9816F95A059B7F538076B9F30",
+        "team_count": 1,
+        "teams": [
+          "lucaskna"
+        ]
+      },
+      {
+        "episodes": [
+          91063358
+        ],
+        "reward_max": 57089,
+        "reward_min": 57089,
+        "sample_count": 1,
+        "sha256": "529AA0029C85DBB903526554B83B7275236FB8241F9FA3ED80C33A1F8D1F6746",
+        "team_count": 1,
+        "teams": [
+          "Syed Muhammad Gillani"
+        ]
+      },
+      {
+        "episodes": [
+          91054779
+        ],
+        "reward_max": 101325,
+        "reward_min": 101325,
+        "sample_count": 1,
+        "sha256": "55CB1BCB0841F51019E764A29D6E2F12740721E49AF224EAA545E83872171ADA",
+        "team_count": 1,
+        "teams": [
+          "HealthStone"
+        ]
+      },
+      {
+        "episodes": [
+          91066852
+        ],
+        "reward_max": 53808,
+        "reward_min": 53808,
+        "sample_count": 1,
+        "sha256": "56C3BF3CD31E8A5DC33C766D4B72C2D05CDF72E49D2A9E8626E669720634B8EC",
+        "team_count": 1,
+        "teams": [
+          "saikyo"
+        ]
+      },
+      {
+        "episodes": [
+          91065924
+        ],
+        "reward_max": 60569,
+        "reward_min": 60569,
+        "sample_count": 1,
+        "sha256": "668AB314EB0A6A70CFAC09660F71502DF873085460ED27469221AA9CE666B064",
+        "team_count": 1,
+        "teams": [
+          "Forrest"
+        ]
+      },
+      {
+        "episodes": [
+          91058982
+        ],
+        "reward_max": 104899,
+        "reward_min": 104899,
+        "sample_count": 1,
+        "sha256": "668C428E99E43AE8226CCBBF4119D55C6083F2C70F9203542B421CD7C0C4EA59",
+        "team_count": 1,
+        "teams": [
+          "Kenjo1209"
+        ]
+      },
+      {
+        "episodes": [
+          91060588
+        ],
+        "reward_max": 92053,
+        "reward_min": 92053,
+        "sample_count": 1,
+        "sha256": "67419F65E1818CAEFA2C98062DC271BAC66D1AB828338878FFE1A32B8A033901",
+        "team_count": 1,
+        "teams": [
+          "Howon Kang"
+        ]
+      },
+      {
+        "episodes": [
+          91065786
+        ],
+        "reward_max": 86527,
+        "reward_min": 86527,
+        "sample_count": 1,
+        "sha256": "699FD9063A3F9B30AF7A24FB71B82F8FCCA9FB0DBC593029F25329F97B855833",
+        "team_count": 1,
+        "teams": [
+          "kakuteki"
+        ]
+      },
+      {
+        "episodes": [
+          91049723
+        ],
+        "reward_max": 81850,
+        "reward_min": 81850,
+        "sample_count": 1,
+        "sha256": "6B6B38F1DA5BD62C0C55BA4ED0FCC778D1072305BA3970F8A257A63F6C24CE5D",
+        "team_count": 1,
+        "teams": [
+          "kakuteki"
+        ]
+      },
+      {
+        "episodes": [
+          91066823
+        ],
+        "reward_max": 137070,
+        "reward_min": 137070,
+        "sample_count": 1,
+        "sha256": "6BC1F1C22A902D63C6ECC243C068D10CFCF71BF6A065EDA595DCA4095D356C5D",
+        "team_count": 1,
+        "teams": [
+          "chunhu666"
+        ]
+      },
+      {
+        "episodes": [
+          91057317
+        ],
+        "reward_max": 138705,
+        "reward_min": 138705,
+        "sample_count": 1,
+        "sha256": "74A78B16BBF581E92A83D7A30295D921E36565C0DE9C7D79E6C07C88C6DD0429",
+        "team_count": 1,
+        "teams": [
+          "Shivam_2212"
+        ]
+      },
+      {
+        "episodes": [
+          91058944
+        ],
+        "reward_max": 96664,
+        "reward_min": 96664,
+        "sample_count": 1,
+        "sha256": "76C40E3509168E9A699E84466F84AD932A83CD28F5E49FC6E1019778634993C1",
+        "team_count": 1,
+        "teams": [
+          "Kenjo1209"
+        ]
+      },
+      {
+        "episodes": [
+          91069423
+        ],
+        "reward_max": 64520,
+        "reward_min": 64520,
+        "sample_count": 1,
+        "sha256": "77D065338022FDF46EDA2296BB6F25E410AC4F1169CF93F66E8ADEB2CFCC7EC1",
+        "team_count": 1,
+        "teams": [
+          "lucaskna"
+        ]
+      },
+      {
+        "episodes": [
+          91072927
+        ],
+        "reward_max": 73173,
+        "reward_min": 73173,
+        "sample_count": 1,
+        "sha256": "7E4A2113CBE5E7268A87EF6B28793840F8C3BAD911DB49E303572285D93F6D9D",
+        "team_count": 1,
+        "teams": [
+          "saikyo"
+        ]
+      },
+      {
+        "episodes": [
+          91071976
+        ],
+        "reward_max": 55165,
+        "reward_min": 55165,
+        "sample_count": 1,
+        "sha256": "84D976D6B63789388378AAB93AC422AF894A9B3A4F204DFB8ADB538E34381886",
+        "team_count": 1,
+        "teams": [
+          "cmasch"
+        ]
+      },
+      {
+        "episodes": [
+          91060712
+        ],
+        "reward_max": 141740,
+        "reward_min": 141740,
+        "sample_count": 1,
+        "sha256": "8A5686ED974222E0AFC3292E7E30535D2F2867A3AF48E5268ED2F4D6E38AB7BF",
+        "team_count": 1,
+        "teams": [
+          "Kenjo1209"
+        ]
+      },
+      {
+        "episodes": [
+          91065924
+        ],
+        "reward_max": 60100,
+        "reward_min": 60100,
+        "sample_count": 1,
+        "sha256": "8BF17B443D92F14AFF0DDC98393F1EE546792A1E3ACC1EAC43D3B0C0849F576E",
+        "team_count": 1,
+        "teams": [
+          "lucaskna"
+        ]
+      },
+      {
+        "episodes": [
+          91058944
+        ],
+        "reward_max": 95690,
+        "reward_min": 95690,
+        "sample_count": 1,
+        "sha256": "8EECA5A5FFFD8DC1808B571210C291723155D9C0471BA44EEC6FD20CDE266B53",
+        "team_count": 1,
+        "teams": [
+          "StephenNedumpally"
+        ]
+      },
+      {
+        "episodes": [
+          91031978
+        ],
+        "reward_max": 102986,
+        "reward_min": 102986,
+        "sample_count": 1,
+        "sha256": "9FAB077506DA8E44AF346EE54B7F3037FCD3F872FD6E7262E62EF641CE657B63",
+        "team_count": 1,
+        "teams": [
+          "tao wu11"
+        ]
+      },
+      {
+        "episodes": [
+          91062462
+        ],
+        "reward_max": 62296,
+        "reward_min": 62296,
+        "sample_count": 1,
+        "sha256": "A18BEAFB7065620242C8DD9AF0AA862E329113F456E11AAA0587EEC4429B052C",
+        "team_count": 1,
+        "teams": [
+          "\u98ce\u6c99\u661f\u8fb0"
+        ]
+      },
+      {
+        "episodes": [
+          91069464
+        ],
+        "reward_max": 56966,
+        "reward_min": 56966,
+        "sample_count": 1,
+        "sha256": "A346AD88B5146FFE3A12555A51810289062254193C4445EC55E79C320E85F2AB",
+        "team_count": 1,
+        "teams": [
+          "Alexandre008"
+        ]
+      },
+      {
+        "episodes": [
+          91070301
+        ],
+        "reward_max": 92061,
+        "reward_min": 92061,
+        "sample_count": 1,
+        "sha256": "A76AA91492E6C837FF5B847A2C8CD7649F59A073830F346D6C9C777DAC39040C",
+        "team_count": 1,
+        "teams": [
+          "Kronki"
+        ]
+      },
+      {
+        "episodes": [
+          91067615
+        ],
+        "reward_max": 144149,
+        "reward_min": 144149,
+        "sample_count": 1,
+        "sha256": "AA4468DA72FFBFE7C3BBBCF8C082E26EF751AFBC4E2E1AF46EDDECFC914CB302",
+        "team_count": 1,
+        "teams": [
+          "Mohit Babel"
+        ]
+      },
+      {
+        "episodes": [
+          91062462
+        ],
+        "reward_max": 63488,
+        "reward_min": 63488,
+        "sample_count": 1,
+        "sha256": "B04F3C4128721CC31C4DF279DA114AD92D0ED580687F9E5A10D0B7DEF7A96F78",
+        "team_count": 1,
+        "teams": [
+          "Forrest"
+        ]
+      },
+      {
+        "episodes": [
+          91071976
+        ],
+        "reward_max": 54679,
+        "reward_min": 54679,
+        "sample_count": 1,
+        "sha256": "B3483DDAA54C5A50F7DE8032116BB14F20831C598141E5DBFCB6076C99789A46",
+        "team_count": 1,
+        "teams": [
+          "Marcus"
+        ]
+      },
+      {
+        "episodes": [
+          91057266
+        ],
+        "reward_max": 123932,
+        "reward_min": 123932,
+        "sample_count": 1,
+        "sha256": "B585E950FC867E8025B4506BFC13C6F5279A64323C5359A9043315FE7B2A360E",
+        "team_count": 1,
+        "teams": [
+          "Forrest"
+        ]
+      },
+      {
+        "episodes": [
+          91062469
+        ],
+        "reward_max": 92334,
+        "reward_min": 92334,
+        "sample_count": 1,
+        "sha256": "BF93FA21E1D8E50BEAA0B239CD67DD4E0247AA208554F7496572E241746A9981",
+        "team_count": 1,
+        "teams": [
+          "Rayk Kretzschmar"
+        ]
+      },
+      {
+        "episodes": [
+          91057266
+        ],
+        "reward_max": 120920,
+        "reward_min": 120920,
+        "sample_count": 1,
+        "sha256": "C2CD7BA5F46C16099554DD47C45A4D136D1BF1EA11A5AB83D7FC1379A90D5EB0",
+        "team_count": 1,
+        "teams": [
+          "Ibad Ur Rahman"
+        ]
+      },
+      {
+        "episodes": [
+          91055542
+        ],
+        "reward_max": 48617,
+        "reward_min": 48617,
+        "sample_count": 1,
+        "sha256": "C5052CBC781D52240BAF75A9879194806851C141B90EAE1AA48B52E061B242CE",
+        "team_count": 1,
+        "teams": [
+          "mrgrishninsb"
+        ]
+      },
+      {
+        "episodes": [
+          91060588
+        ],
+        "reward_max": 91918,
+        "reward_min": 91918,
+        "sample_count": 1,
+        "sha256": "C628099ADBB085421B54E6598A5B685AF56883FB4E43C67EBD1466322ACB369C",
+        "team_count": 1,
+        "teams": [
+          "Ztr0"
+        ]
+      },
+      {
+        "episodes": [
+          91065044
+        ],
+        "reward_max": 82524,
+        "reward_min": 82524,
+        "sample_count": 1,
+        "sha256": "C762EE6F21ABC5D214FC8CB6B1F3D0D1C6A70A438FF36CD4B6981F35981BDE58",
+        "team_count": 1,
+        "teams": [
+          "kakuteki"
+        ]
+      },
+      {
+        "episodes": [
+          91069328
+        ],
+        "reward_max": 71877,
+        "reward_min": 71877,
+        "sample_count": 1,
+        "sha256": "CAFAF28E91BF76A83021026F19593CDC1A47D67C42045141F2B4B479D4683D60",
+        "team_count": 1,
+        "teams": [
+          "cmasch"
+        ]
+      },
+      {
+        "episodes": [
+          91072927
+        ],
+        "reward_max": 71563,
+        "reward_min": 71563,
+        "sample_count": 1,
+        "sha256": "CB6E6340357C3A3ACAA7CBC8DAEB397F5ED5810E1D283B2EC110FB88E4EACFF8",
+        "team_count": 1,
+        "teams": [
+          "Kronki"
+        ]
+      },
+      {
+        "episodes": [
+          91040419
+        ],
+        "reward_max": 61623,
+        "reward_min": 61623,
+        "sample_count": 1,
+        "sha256": "CD755B3BF76B1E380C3BFC4199E0378C8774BEFF237B02E3225A6E3AAEF41272",
+        "team_count": 1,
+        "teams": [
+          "Rayk Kretzschmar"
+        ]
+      },
+      {
+        "episodes": [
+          91016957
+        ],
+        "reward_max": 58336,
+        "reward_min": 58336,
+        "sample_count": 1,
+        "sha256": "D0B5627538B79AC1867AF481EBA7F7F844C17ED82D642265939739853178C442",
+        "team_count": 1,
+        "teams": [
+          "HealthStone"
+        ]
+      },
+      {
+        "episodes": [
+          91058982
+        ],
+        "reward_max": 106524,
+        "reward_min": 106524,
+        "sample_count": 1,
+        "sha256": "D1A7429577F3389A4BB84FE11D7186954FA2E1E092677F6827AB83130F956116",
+        "team_count": 1,
+        "teams": [
+          "Matthew Labrador"
+        ]
+      },
+      {
+        "episodes": [
+          91062431
+        ],
+        "reward_max": 121013,
+        "reward_min": 121013,
+        "sample_count": 1,
+        "sha256": "D233BF7EA00D05395E869460C7A784952BEADA9EA8B6F2AED703344073B53986",
+        "team_count": 1,
+        "teams": [
+          "mrgrishninsb"
+        ]
+      },
+      {
+        "episodes": [
+          91066852
+        ],
+        "reward_max": 54027,
+        "reward_min": 54027,
+        "sample_count": 1,
+        "sha256": "D386C7AB41A4680DC192BE572F0EF239407969C562F5CD667FFD1DEE1DF02F45",
+        "team_count": 1,
+        "teams": [
+          "Howon Kang"
+        ]
+      },
+      {
+        "episodes": [
+          91060652
+        ],
+        "reward_max": 104934,
+        "reward_min": 104934,
+        "sample_count": 1,
+        "sha256": "DAC344FF701039822C12D5926B0FADC4D57A1F61752104096462C0DAE14455F8",
+        "team_count": 1,
+        "teams": [
+          "Mohit Babel"
+        ]
+      },
+      {
+        "episodes": [
+          91066823
+        ],
+        "reward_max": 137624,
+        "reward_min": 137624,
+        "sample_count": 1,
+        "sha256": "DE67ABEFCCE69E7936DB7DE271CE1797AD2304E54DCAEE4151B5C378C18E9A6E",
+        "team_count": 1,
+        "teams": [
+          "Matthew Labrador"
+        ]
+      },
+      {
+        "episodes": [
+          91065044
+        ],
+        "reward_max": 85276,
+        "reward_min": 85276,
+        "sample_count": 1,
+        "sha256": "E389393036EFE6B38AD4B9D0770EB80A3272559D4F16B9DE5903AB040D7A017E",
+        "team_count": 1,
+        "teams": [
+          "lucaskna"
+        ]
+      },
+      {
+        "episodes": [
+          91062469
+        ],
+        "reward_max": 92563,
+        "reward_min": 92563,
+        "sample_count": 1,
+        "sha256": "E4D14BB7A4CBA4D1EFB0CE54B6AC8DBC641374C441414858F45A2CA6D1A21B71",
+        "team_count": 1,
+        "teams": [
+          "tully_boss"
+        ]
+      },
+      {
+        "episodes": [
+          91067697
+        ],
+        "reward_max": 54284,
+        "reward_min": 54284,
+        "sample_count": 1,
+        "sha256": "E9199FFAF35B98A793F5B464657D2299EB95599898EF5A68228FAD99EC5919D5",
+        "team_count": 1,
+        "teams": [
+          "Forrest"
+        ]
+      },
+      {
+        "episodes": [
+          91065964
+        ],
+        "reward_max": 75386,
+        "reward_min": 75386,
+        "sample_count": 1,
+        "sha256": "F06C7D12DC60A8C34E8C9F39E8641446307625477D94322FB8E4F8B88C40BA97",
+        "team_count": 1,
+        "teams": [
+          "Forrest"
+        ]
+      },
+      {
+        "episodes": [
+          91016957
+        ],
+        "reward_max": 38817,
+        "reward_min": 38817,
+        "sample_count": 1,
+        "sha256": "F77C569F1B7DA1954B135C41109ED255E14DB12AEAB091E110195613E95D40F3",
+        "team_count": 1,
+        "teams": [
+          "Seb (allegedly)"
+        ]
+      },
+      {
+        "episodes": [
+          91070301
+        ],
+        "reward_max": 91133,
+        "reward_min": 91133,
+        "sample_count": 1,
+        "sha256": "F96123904A9409F3555D09B533C23D94E64320CEAF41E32423716F96F52E2241",
+        "team_count": 1,
+        "teams": [
+          "Auxileon"
+        ]
+      },
+      {
+        "episodes": [
+          91065786
+        ],
+        "reward_max": 87347,
+        "reward_min": 87347,
+        "sample_count": 1,
+        "sha256": "F9B5CC070D68443B37BCEE769B7450DD00AAC1014BED5CA7790F4BCF78BEECC7",
+        "team_count": 1,
+        "teams": [
+          "Bocen Li"
+        ]
+      },
+      {
+        "episodes": [
+          91060680
+        ],
+        "reward_max": 120265,
+        "reward_min": 120265,
+        "sample_count": 1,
+        "sha256": "FB0F2AC605024DA4639C714E87B133E5E892422E6F2C1A9D8F6155358A359FD3",
+        "team_count": 1,
+        "teams": [
+          "tomo11111"
+        ]
+      }
+    ],
+    "modal_farm_share": 0.78
+  }
+}

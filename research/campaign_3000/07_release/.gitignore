@@ -1,0 +1,3 @@
+local_build/
+.local_build.staging-*/
+.local_build.backup-*/

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "status": "DRAFT_ONLY_NOT_EXECUTED",
+  "execution_authorized": false,
+  "external_calls_performed": [],
+  "required_fresh_authority": "exact Code push and Discussion publication",
+  "strength_gate": {
+    "status": "PASS_LOCAL_SEPARATION_NON_PROMOTION",
+    "public_source_sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+    "Kag_01_source_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+    "Kag_02_source_sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+    "Kag_01_local_archive_sha256": "184F687C474933A7215DB97E8C5A5F823AE79233EEA42D04B70EABC001BF9E16",
+    "Kag_02_local_archive_sha256": "37EA53D3046E3D1DA914F8A89C6F4BB02E240E1BB85857BDA149273FC4DD974C",
+    "Kag_01_local_notebook_sha256": "0C8D17DA3266804597EA753A401FDEAE8AAF4E04CDE305C2E7F9C6FF61CDF895",
+    "Kag_02_local_notebook_sha256": "01003AADA83D0688DB40A01B19D4886871EE0A2317A5F8F897E82FB78130A431",
+    "Kag_01_prepush_sha256": "EA3E19D1F2C81639DBD67510C4DF768DCC08BB3D8E5D71285DF67D08FE39DF55",
+    "Kag_02_prepush_sha256": "8B29E422AD10408FE7F226374971CF16B4D47EF4EAB83CEDBEFDCCC64EB27C27",
+    "public_losses_vs_Kag_01": 16,
+    "public_losses_vs_Kag_02": 16,
+    "engine": "kaggle-environments==1.32.6",
+    "limitations": "consumed seeds 23000-23007; both seats; not a rating estimate"
+  },
+  "actions": [
+    {
+      "sequence": 1,
+      "kind": "kaggle_discussion_create",
+      "enabled": false,
+      "interface": "manual_or_separately_authorized_browser",
+      "competition": "kaggriculture",
+      "title": "Kaggriculture Strategy | Replay Agents, Sell Guards & Engine Drift",
+      "body": {
+        "path": "discussion_draft.md",
+        "bytes": 5934,
+        "sha256": "AB6065C7E501E6E6B97B478A55D15F880061793B4988382019722323A4030283"
+      },
+      "existing_public_baseline_url": "https://www.kaggle.com/code/yw8837/kaggriculture-strong-expansion-baseline",
+      "new_code_url": "https://www.kaggle.com/code/yw8837/kaggriculture-fixed-trace-safety-baseline",
+      "link_state_at_publication": "EXPECTED_SLUG_PUBLISHED_IN_SEQUENCE_2"
+    },
+    {
+      "sequence": 2,
+      "kind": "kaggle_code_push",
+      "enabled": false,
+      "command_argv": [
+        "kaggle",
+        "kernels",
+        "push",
+        "-p",
+        "research/campaign_3000/08_public_release/kaggle_code_draft"
+      ],
+      "kernel_id": "yw8837/kaggriculture-fixed-trace-safety-baseline",
+      "title": "Kaggriculture Agent | Fixed Trace + Safe Selling",
+      "visibility": "public",
+      "competition_submission": false,
+      "notebook": {
+        "path": "kaggle_code_draft/kaggriculture-fixed-trace-safety-baseline.ipynb",
+        "bytes": 317377,
+        "sha256": "F24F4939C8EC591D5794C650923E583658F0BE05E47FA7A6F049D53664F74153"
+      },
+      "metadata": {
+        "path": "kaggle_code_draft/kernel-metadata.json",
+        "bytes": 489,
+        "sha256": "A6550E25FE46FBB82E6722AA73D1458F1850D2B621ABCADC34F286EDAC0FFC7F"
+      },
+      "expected_code_url": "https://www.kaggle.com/code/yw8837/kaggriculture-fixed-trace-safety-baseline"
+    }
+  ],
+  "forbidden_actions": [
+    "kaggle competitions submit",
+    "competition Save & Run submission",
+    "credential creation or disclosure",
+    "publishing any source other than the exact allowlisted public SHA-256"
+  ],
+  "post_action_receipts_required": [
+    "returned kernel ref and version",
+    "remote visibility and COMPLETE status",
+    "downloaded notebook SHA-256",
+    "downloaded output archive SHA-256 and root main.py SHA-256",
+    "published Discussion URL and rendered-title/body check",
+    "explicit confirmation that no competition submission occurred"
+  ]
+}

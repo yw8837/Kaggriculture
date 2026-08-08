@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "FROZEN_DECISION_FROM_CONSUMED_NON_PROMOTION_EVIDENCE",
+  "evidence": {
+    "engine_screen_summary": {
+      "path": "research/campaign_3000/05_engine_screen/summary.json",
+      "sha256": "193FB33CA537681E510C74C9E6ED947CD1FB0D806911BB1C93AF95AC8C50D94F"
+    },
+    "ray_addendum_summary": {
+      "path": "research/campaign_3000/05_engine_screen_ray_c45_addendum/summary.json",
+      "sha256": "991FA149FE4ACBF38F82814A2D5FACA28F02188732CCFEEFEE565FB28018932A"
+    },
+    "public_code_inventory": {
+      "path": "research/campaign_3000/02_public_meta/code_inventory.jsonl",
+      "sha256": "E510D00AB0AFB35E06B90EFD8EB8CC96DA08F29D8398DF682CDDDD060A7BEEC1"
+    },
+    "tetsu_ip_verdict": {
+      "path": "research/campaign_3000/07_release/TETSU_IP_VERDICT.md",
+      "sha256": "DA8764985D0EFCFC63867DB673E242D82B9D72CFE7495BFCB932A2DD6F0DF721"
+    }
+  },
+  "consumed_screen_metrics": {
+    "tetsu_v16": {"games": 64, "match_score": 0.96875, "wins": 62, "ties": 0, "losses": 2, "mean_margin": 3314.28125, "failures": 0},
+    "kaito_v22": {"games": 64, "match_score": 0.21875, "wins": 14, "ties": 0, "losses": 50, "mean_margin": -3232.6875, "failures": 0},
+    "ray_c45": {"games": 64, "match_score": 0.46875, "wins": 30, "ties": 0, "losses": 34, "mean_margin": 7126.96875, "failures": 0},
+    "tetsu_v16_vs_fa04_g1": {"games": 16, "match_score": 1.0, "wins": 16, "ties": 0, "losses": 0, "mean_margin": 25621.375, "perspective": "tetsu_v16"},
+    "kaito_v22_vs_fa04_g1": {"games": 16, "match_score": 1.0, "wins": 16, "ties": 0, "losses": 0, "mean_margin": 24159.25, "perspective": "kaito_v22"},
+    "kaito_v22_vs_tetsu_v16": {"games": 16, "match_score": 0.125, "wins": 2, "ties": 0, "losses": 14, "mean_margin": -4332.875},
+    "ray_c45_vs_kaito_v22": {"games": 16, "match_score": 0.875, "wins": 14, "ties": 0, "losses": 2, "mean_margin": 4109.375}
+  },
+  "remote_context_not_local_promotion_evidence": {
+    "tetsu_v16": "No exact-v16 public score claim; live page linked 2703.1 V15 only.",
+    "kaito_v22": "Observed best 2957.6 at exact notebook version 2; Apache 2.0.",
+    "ray_c45": "Observed best 2927.4 at notebook version 9; extracted bytes came from version 10 and carry a C45/C64 identity-label mismatch."
+  },
+  "decision_history": [
+    {
+      "sequence": 1,
+      "decision": "PROVISIONAL_TETSU_PLUS_RAY",
+      "basis": "Tetsu led the 1.32.6 local screen; Ray beat Kaito 14-2 in the consumed addendum."
+    },
+    {
+      "sequence": 2,
+      "decision": "PROVISIONAL_KAITO_PLUS_RAY_TETSU_HELD",
+      "basis": "Tetsu exact-artifact license was then unverified; both alternatives had captured Apache-2.0 evidence."
+    },
+    {
+      "sequence": 3,
+      "decision": "FINAL_CLOSED_TETSU_PLUS_KAITO",
+      "basis": "Separate auditor conditional IP PASS restored exact Tetsu; Kaito was selected over Ray for exact remote score/version mapping and route-lineage diversity. Ray remains a strong opponent."
+    }
+  ],
+  "limitations": [
+    "All local comparison seeds were consumed screen seeds and are promotion-ineligible.",
+    "Kaito was materially weaker than Ray in the small local consumed screen; selection does not waive the fresh strict gate.",
+    "No fresh seed, SaveRun, submission, or external Kaggle action was authorized or performed."
+  ]
+}

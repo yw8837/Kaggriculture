@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "classification": "CRITICAL_HISTORICAL_LOCAL_EVALUATION_PROVENANCE_DEFECT",
+  "title": "Final-step DONE overwrite makes the legacy runner blind to earlier agent failure states",
+  "observed_external_worktree": "C:/Users/최용우/Desktop/Kaggriculture",
+  "evidence": {
+    "legacy_runner": {
+      "path": "src/kaggriculture_lab/evaluation/runner.py",
+      "sha256": "B0341417443D5B180BEA91082EFAB42A64D0AFB3329FD8D8C1134DB95DD960A7",
+      "relevant_lines": [
+        "env.run(agents); final = env.steps[-1]",
+        "candidate_status=str(candidate_state.status)",
+        "summarize() accepts a row when both final statuses equal DONE"
+      ]
+    },
+    "official_environment": {
+      "path": "references/kaggle-environments/kaggle_environments/envs/kaggriculture/kaggriculture.py",
+      "sha256": "B6DA1554674C03931EF03D3499D035D7E10894047FAECD3A8BCC471127734E5D",
+      "relevant_lines": [
+        "if step >= cfg.episodeSteps - 2",
+        "for s in state: s.status = DONE; s.reward = current money"
+      ]
+    },
+    "existing_reproduction_record": {
+      "path": "docs/BOT_DESIGN_SPEC.md",
+      "sha256": "93FF99DA450DEB74D5CD5DA232F46A1FFDF3E6BBD7936A003BD57CE8936DAE94",
+      "lines": "427-431",
+      "recorded_result": "agent raises RuntimeError at step 300; ERROR persists for 418 steps; final statuses become DONE/DONE; legacy runner reports valid 4 / failed 0"
+    },
+    "public_replay_sample_check": {
+      "path": "research/campaign_3000/01_internal/replay_integrity_report.json",
+      "sha256": "6BDC65484A6BFA2E8E2D416FD207FEBF30F538E8A6C1B07FF02B2981C15DF8F7",
+      "our_unique_sampled_episodes": 44,
+      "our_sample_all_agent_status_counts": {
+        "ACTIVE": 63272,
+        "DONE": 88
+      },
+      "our_sample_terminal_status_pairs": {
+        "DONE|DONE": 44
+      }
+    }
+  },
+  "impact": {
+    "invalidated_claims": [
+      "Legacy pre-fix reports that say failures=0 cannot establish that neither agent entered ERROR, TIMEOUT, or INVALID before the final step.",
+      "A branch wrapped in broad exception handling may silently fall back while the report still appears valid.",
+      "Any promotion gate that used only legacy runner final status is provenance-incomplete."
+    ],
+    "not_automatically_invalidated": [
+      "A replay that independently shows only ACTIVE before terminal DONE provides evidence for that replay only.",
+      "Final cash and W-D-L remain descriptive for games that actually ran normally, but the old runner alone cannot prove normal execution."
+    ],
+    "sample_boundary": "The 44-replay check is selection-biased and covers two sampled public episodes per submission, not all 1017 episode metadata rows and not historical local development grids."
+  },
+  "required_future_gate": [
+    "Scan every recorded step for non-ACTIVE/non-DONE states before accepting a game.",
+    "Record the first abnormal step/status and preserve it independently of final state.",
+    "Require failures=0 from the stepwise scan, not from env.steps[-1].",
+    "Keep candidate exception/fallback counters in per-game raw evidence."
+  ]
+}

@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import hashlib
+import json
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -15,14 +18,45 @@ def _zero_metrics() -> dict[str, int]:
     return {name: 0 for name in gate.EXPECTED_METRIC_KEYS}
 
 
-def test_closed_design_is_hash_bound_without_executing_seeds() -> None:
-    result = gate.validate_closed_design(ROOT, BOUNDARY)
-    assert result["status"] == "CLOSED_PENDING_INDEPENDENT_AUDIT"
-    assert result["seeds_executed"] == 0
-    assert [entry["identity"] for entry in result["opponents"]] == [
+def _git_blob(commit: str, path: str) -> bytes:
+    return subprocess.check_output(["git", "show", f"{commit}:{path}"], cwd=ROOT)
+
+
+def test_historical_closed_design_is_hash_bound_without_executing_seeds() -> None:
+    boundary = json.loads(BOUNDARY.read_text(encoding="utf-8"))
+    tracked_entries = [
+        boundary["scenario_config"],
+        boundary["candidate"],
+        boundary["control"],
+        *boundary["opponents"],
+        boundary["execution_freeze"]["third_party_license"],
+        boundary["execution_freeze"]["third_party_attribution"],
+    ]
+    for name in (
+        "generator",
+        "runner",
+        "paired_analyzer",
+        "runtime_generator",
+        "runtime_benchmark",
+        "gate_evaluator",
+    ):
+        tracked_entries.append(
+            {
+                "path": boundary["tooling"][name],
+                "sha256": boundary["tooling"][f"{name}_sha256"],
+            }
+        )
+    for entry in tracked_entries:
+        payload = _git_blob(boundary["implementation_commit"], entry["path"])
+        assert hashlib.sha256(payload).hexdigest().upper() == entry["sha256"]
+        if "bytes" in entry:
+            assert len(payload) == entry["bytes"]
+    assert [entry["identity"] for entry in boundary["opponents"]] == [
         "C135_chocolat", "R140_radiant", "R145_radiant",
         "R150_radiant", "R155_radiant", "formal_final_day_labor",
     ]
+    with pytest.raises(ValueError, match="hash mismatch"):
+        gate.validate_closed_design(ROOT, BOUNDARY)
 
 
 def test_closed_boundary_fails_before_any_seed_runner_can_start() -> None:

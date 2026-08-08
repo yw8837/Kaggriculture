@@ -1,0 +1,649 @@
+{
+  "schema_version": 1,
+  "run_id": "campaign_3000_ray_c45_addendum_v1",
+  "seed_status": "CONSUMED_SCREEN",
+  "promotion_eligible": false,
+  "cells": [
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23000|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23000,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23000|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23000,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23001|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23001,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23001|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23001,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23002|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23002,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23002|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23002,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23003|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23003,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23003|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23003,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23004|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23004,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23004|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23004,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23005|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23005,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23005|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23005,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23006|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23006,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23006|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23006,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23007|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23007,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=tetsu_adaptive|seed=23007|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "tetsu_adaptive",
+      "seed": 23007,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23000|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23000,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23000|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23000,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23001|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23001,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23001|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23001,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23002|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23002,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23002|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23002,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23003|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23003,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23003|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23003,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23004|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23004,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23004|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23004,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23005|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23005,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23005|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23005,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23006|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23006,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23006|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23006,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23007|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23007,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=kaito_v22_price_impact|seed=23007|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "kaito_v22_price_impact",
+      "seed": 23007,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23000|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23000,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23000|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23000,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23001|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23001,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23001|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23001,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23002|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23002,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23002|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23002,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23003|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23003,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23003|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23003,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23004|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23004,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23004|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23004,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23005|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23005,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23005|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23005,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23006|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23006,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23006|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23006,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23007|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23007,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=boatlee_v14|seed=23007|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "boatlee_v14",
+      "seed": 23007,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23000|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23000,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23000|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23000,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23001|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23001,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23001|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23001,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23002|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23002,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23002|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23002,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23003|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23003,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23003|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23003,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23004|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23004,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23004|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23004,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23005|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23005,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23005|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23005,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23006|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23006,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23006|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23006,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23007|candidate_seat=0|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23007,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 0,
+      "scenario": "default"
+    },
+    {
+      "exact_cell_key": "engine=1.32.6|candidate=ray_c45_exact|opponent=fa04_g1|seed=23007|candidate_seat=1|scenario=default",
+      "engine_version": "1.32.6",
+      "candidate": "ray_c45_exact",
+      "opponent": "fa04_g1",
+      "seed": 23007,
+      "seed_status": "CONSUMED_SCREEN",
+      "candidate_seat": 1,
+      "scenario": "default"
+    }
+  ],
+  "canonical_registry_sha256": "4CB794B41A0402603162F2D7E4F44E3AF922390C597C1F50C5643B4C9E56D6D5"
+}

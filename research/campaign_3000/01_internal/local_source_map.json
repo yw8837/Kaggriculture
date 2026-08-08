@@ -1,0 +1,1801 @@
+{
+  "desktop_repository": {
+    "mode": "READ_ONLY_DIRTY_EXTERNAL_WORKTREE",
+    "path": "C:/Users/최용우/Desktop/Kaggriculture",
+    "warning": "No files in this worktree were modified by this collector."
+  },
+  "observed_at_utc": "2026-08-08T18:08:02.956Z",
+  "provenance_files": [
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/OPERATING_ORDERS.md",
+      "bytes": 15739,
+      "path": "OPERATING_ORDERS.md",
+      "sha256": "D0996B8F99B861B9CD56469A7D49122C1258CD9B5FB9C5FF64940FD684CF2FA0"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/docs/BOT_DESIGN_SPEC.md",
+      "bytes": 26651,
+      "path": "docs/BOT_DESIGN_SPEC.md",
+      "sha256": "93FF99DA450DEB74D5CD5DA232F46A1FFDF3E6BBD7936A003BD57CE8936DAE94"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/docs/current_state_2026-08-02.md",
+      "bytes": 5488,
+      "path": "docs/current_state_2026-08-02.md",
+      "sha256": "28DB73DCFDE0DAD5D5506310B5AEA7688E5B5FA4ACD63FEACDA696EE5EBB486A"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/docs/current_state_2026-08-02_night.md",
+      "bytes": 2279,
+      "path": "docs/current_state_2026-08-02_night.md",
+      "sha256": "919E87BD70A5BEBEE371FA1BC73427BDEFF8218796FE52254841FF0B4E47D47E"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/ledger.jsonl",
+      "bytes": 27314,
+      "path": "experiments/ledger.jsonl",
+      "sha256": "315609EB83FBEFB4577D97D3BAAFE072D6B7A16B4A0E37D59AC3343A094C2135"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/submissions/ledger.jsonl",
+      "bytes": 14832,
+      "path": "submissions/ledger.jsonl",
+      "sha256": "07E645248743B6CAE87B498CC90F263419E87A3038F7FC6E9DE402FC3C4DC11B"
+    }
+  ],
+  "schema_version": 1,
+  "source_index": [
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/_bot_04_patched_legacy/main.py",
+      "bytes": 23501,
+      "path": "artifacts/candidates/_bot_04_patched_legacy/main.py",
+      "sha256": "F245A91CAD901CFCB3AF96F98C7159101530EE66056DB8A7B00211D143E0D548"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/_gd_bot07_sf/main.py",
+      "bytes": 152855,
+      "path": "artifacts/candidates/_gd_bot07_sf/main.py",
+      "sha256": "167C87F75A0ED43CFEC6A909612D26ACFF2D4028BAF910DF45F7BFE3E442537B"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/_gd_bot07_sf_t12/main.py",
+      "bytes": 152855,
+      "path": "artifacts/candidates/_gd_bot07_sf_t12/main.py",
+      "sha256": "4BA24BEB2A8F955E9941E20785ABDB9A21614726F5DB823BC207D4022FA6F7F0"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/_tmp_tape/main.py",
+      "bytes": 203632,
+      "path": "artifacts/candidates/_tmp_tape/main.py",
+      "sha256": "FBC66C81EADA9808915FB758130F086E318C354A07EBD48622019A39DAA5B02D"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/abl_a_sheep4/main.py",
+      "bytes": 16659,
+      "path": "artifacts/candidates/abl_a_sheep4/main.py",
+      "sha256": "9306F041FA4D0D4974078363C4026CE6BA1D03381864094588BD44EAFA0328E3"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/abl_b_hands12/main.py",
+      "bytes": 16653,
+      "path": "artifacts/candidates/abl_b_hands12/main.py",
+      "sha256": "73AFA74DE35632C50301628FBA0F0031CE5F2BAF1A3CD7A7C04B4CAE3F3817D6"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/abl_c_hirefirst/main.py",
+      "bytes": 16655,
+      "path": "artifacts/candidates/abl_c_hirefirst/main.py",
+      "sha256": "62615F6532CA3E8F53168AF26DA81042CEE0E92A8287FE973A0CD85E75A01DCF"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/abl_d_fertilize/main.py",
+      "bytes": 17016,
+      "path": "artifacts/candidates/abl_d_fertilize/main.py",
+      "sha256": "FAA74539560EFD5E7887932A3FD7A9382172675E326997E7E444345378DFEE79"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/anti_meta/main.py",
+      "bytes": 16275,
+      "path": "artifacts/candidates/anti_meta/main.py",
+      "sha256": "204D9B26BC702C10469557AE130BFFCE750515CB8B1415612B99F71901AB1E17"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_01/main.py",
+      "bytes": 17784,
+      "path": "artifacts/candidates/bot_01/main.py",
+      "sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_01_capacity/main.py",
+      "bytes": 18282,
+      "path": "artifacts/candidates/bot_01_capacity/main.py",
+      "sha256": "D074162A2C959CBEA1482FA094FDB0CADAB82A702DE30DA7D285E78176CB2F21"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_01_v2a_seedorder/main.py",
+      "bytes": 18357,
+      "path": "artifacts/candidates/bot_01_v2a_seedorder/main.py",
+      "sha256": "094BD657707E3CF51AC59F369E0F8321781859B2A1D6DBBDAF18C46E133B3A51"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_01_v2b_seedorder_slots/main.py",
+      "bytes": 17826,
+      "path": "artifacts/candidates/bot_01_v2b_seedorder_slots/main.py",
+      "sha256": "09E7B20ED387FAE81C16FAEF3805DC4455C69F884FE87BDA76F998D633E268D1"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_02/main.py",
+      "bytes": 141896,
+      "path": "artifacts/candidates/bot_02/main.py",
+      "sha256": "E73080954C8099A869D43416FBD8035856A29CD59BD04613E3D789A0CE695F50"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_02_dynamic/main.py",
+      "bytes": 22569,
+      "path": "artifacts/candidates/bot_02_dynamic/main.py",
+      "sha256": "E5D0BAFC9B3E22D43E36F41D83D9BDD2156763CF06C2CD7189A7AA718BF5A6F0"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_03/main.py",
+      "bytes": 141894,
+      "path": "artifacts/candidates/bot_03/main.py",
+      "sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_04/main.py",
+      "bytes": 27400,
+      "path": "artifacts/candidates/bot_04/main.py",
+      "sha256": "DFA2A4612980819391F17EC6A025F8A4B7DE542318DE972F399EC758D2F008BE"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05/main.py",
+      "bytes": 146492,
+      "path": "artifacts/candidates/bot_05/main.py",
+      "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_h1/main.py",
+      "bytes": 146492,
+      "path": "artifacts/candidates/bot_05_h1/main.py",
+      "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_h2/main.py",
+      "bytes": 146492,
+      "path": "artifacts/candidates/bot_05_h2/main.py",
+      "sha256": "355828CF125757B9A01C797C6047D24A20F8B36AB2AE335E6FE491C8AF2D0144"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_repair/main.py",
+      "bytes": 152875,
+      "path": "artifacts/candidates/bot_05_repair/main.py",
+      "sha256": "5AC0C03293B235CCEA25E2E405DE103ADEB270BB161E94E67E1D71809F0CAFA3"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_tw/main.py",
+      "bytes": 152876,
+      "path": "artifacts/candidates/bot_05_tw/main.py",
+      "sha256": "43EABCE2E51209A902B9E4D174987304C0D86884708BE5B795C4F87B655C76D5"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_06_r2552/main.py",
+      "bytes": 153385,
+      "path": "artifacts/candidates/bot_06_r2552/main.py",
+      "sha256": "F19076074F049FECAC66DF15461094DD5881204F044C22C10B163C145577ACB0"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_06_r2592/main.py",
+      "bytes": 152715,
+      "path": "artifacts/candidates/bot_06_r2592/main.py",
+      "sha256": "67678B63483A66702A6766E846E8EA0AB131ACD1A433ACD46CA965B2C303DC48"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_07/main.py",
+      "bytes": 152661,
+      "path": "artifacts/candidates/bot_07/main.py",
+      "sha256": "EDB86D4A1CD7BB4BA9F0AE3DD3E8102798C961E385DA57D9C0C204D617D2D627"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_08/main.py",
+      "bytes": 153691,
+      "path": "artifacts/candidates/bot_08/main.py",
+      "sha256": "3B9B4CEE584CE5EE8054B1DE166672F17D6FF0F6F0B2F327021E9BCBF0ED1666"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_08_tape/main.py",
+      "bytes": 139246,
+      "path": "artifacts/candidates/bot_08_tape/main.py",
+      "sha256": "0228BB0C8F8DD3BA3283934250218448EB6FE26D357ACD3944DDD238C39ADD5F"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_09_fronly/main.py",
+      "bytes": 152660,
+      "path": "artifacts/candidates/bot_09_fronly/main.py",
+      "sha256": "19CA2B26E43EB28BB77A645F2E083AEDC7C807242A46BB3ACEDE2691CBBA5616"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_09_notreasfr/main.py",
+      "bytes": 152663,
+      "path": "artifacts/candidates/bot_09_notreasfr/main.py",
+      "sha256": "8A73B921D74FBEE842AA78DEC35971EB9C0DDEC6B4F34582271DDE9FB488F594"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_10_sf/main.py",
+      "bytes": 140403,
+      "path": "artifacts/candidates/bot_10_sf/main.py",
+      "sha256": "2AF15CFD71CC93EC89C6DCD676947FCE11F66464806C18890C36666C2FFD1D40"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_11/main.py",
+      "bytes": 143135,
+      "path": "artifacts/candidates/bot_11/main.py",
+      "sha256": "2A0EF2609ADD6AE2BBC2F465DEAB4C4AEC0439AA9160F5CDF777FC5554EBFE65"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_12/main.py",
+      "bytes": 143534,
+      "path": "artifacts/candidates/bot_12/main.py",
+      "sha256": "8308D9AE0665F8F02DD33D11143F786FE856728FF41A315EA99B3DDE87D25D69"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_v3_01_capacity/main.py",
+      "bytes": 17784,
+      "path": "artifacts/candidates/bot_v3_01_capacity/main.py",
+      "sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_v3_02_dynamic/main.py",
+      "bytes": 22170,
+      "path": "artifacts/candidates/bot_v3_02_dynamic/main.py",
+      "sha256": "7699555AC6E5B25F0E9EA79934F997769D5B1F69E7F7048A5E30889D42C980DF"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/carrier_drop/main.py",
+      "bytes": 16672,
+      "path": "artifacts/candidates/carrier_drop/main.py",
+      "sha256": "BACC1C0986803E852AC4D08179BEBF91EC6E326ED00E2742632CBA4C389ADF9E"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/cow_compounder/main.py",
+      "bytes": 16786,
+      "path": "artifacts/candidates/cow_compounder/main.py",
+      "sha256": "66C76CED6B443B33569D4F97226AE5BAFCF2F1B4C75912B22F38C1DAE7895AD7"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/cow_tilt/main.py",
+      "bytes": 15703,
+      "path": "artifacts/candidates/cow_tilt/main.py",
+      "sha256": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/daily_labor_11/main.py",
+      "bytes": 17375,
+      "path": "artifacts/candidates/daily_labor_11/main.py",
+      "sha256": "1730EB5CDA8D7122A6373EA8AF57E73E597236E84EEC081646CA542FBD0878EA"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/daily_labor_12/main.py",
+      "bytes": 17375,
+      "path": "artifacts/candidates/daily_labor_12/main.py",
+      "sha256": "203DD3F97F248CC22A4676637BBE4660F61389B9B0F67DAE5548984006D009E7"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/daily_labor_13/main.py",
+      "bytes": 17375,
+      "path": "artifacts/candidates/daily_labor_13/main.py",
+      "sha256": "13E373749958721ACFBE7E95DCDF4D5C83900F4F08FDD7808B2322CCB25925DC"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/fast_expansion/main.py",
+      "bytes": 15706,
+      "path": "artifacts/candidates/fast_expansion/main.py",
+      "sha256": "406BC82979637A42F2848382AD5E0248C403BBB346D09CF93859DC2D5761F25C"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/final_day_labor/main.py",
+      "bytes": 16195,
+      "path": "artifacts/candidates/final_day_labor/main.py",
+      "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/final_day_labor_12/main.py",
+      "bytes": 16195,
+      "path": "artifacts/candidates/final_day_labor_12/main.py",
+      "sha256": "40F3288CA4133506DA49B210749ED0B500D92CF0E638BA7B8F50B9C9592FA374"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/final_day_labor_13/main.py",
+      "bytes": 16195,
+      "path": "artifacts/candidates/final_day_labor_13/main.py",
+      "sha256": "8C04F42BF8DDA421D083E09B76DC7009743A26CB5322545DB8C1E411DB87A383"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_01/main.py",
+      "bytes": 19361,
+      "path": "artifacts/candidates/Ge_01/main.py",
+      "sha256": "9ED86F667DE5A59CB1F880DB11C28DBBFD800A12A4DFAAC5BD3AE15AA03217BF"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_02/main.py",
+      "bytes": 22232,
+      "path": "artifacts/candidates/Ge_02/main.py",
+      "sha256": "2A6B3368AFEE87BE6E8AE04F0D21A5EADEFA825B7338D190448B0201AE33F5B7"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_03/main.py",
+      "bytes": 19003,
+      "path": "artifacts/candidates/Ge_03/main.py",
+      "sha256": "455ABA88CDF98FC970B68547B8A7046B894430788B91A4A50766D5499BC67690"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_04/main.py",
+      "bytes": 19232,
+      "path": "artifacts/candidates/Ge_04/main.py",
+      "sha256": "9D59F2DDDB8A4F10AB71A9E63A0CB21B81239E143AB2F5810486A5E939494720"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/horizon_crop_rotation/main.py",
+      "bytes": 19038,
+      "path": "artifacts/candidates/horizon_crop_rotation/main.py",
+      "sha256": "F1CA36F2D43083379D6F5E89E7D15A935D6512E86ED4CFBEFEF0F5D59A1BCBF7"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/horizon_crop_rotation_cap1/main.py",
+      "bytes": 19038,
+      "path": "artifacts/candidates/horizon_crop_rotation_cap1/main.py",
+      "sha256": "F6F1AFDB5763F16D1BCD55A0FCA61AA44E1096A87906F26036CB792362FF5262"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/horizon_crop_rotation_cap2/main.py",
+      "bytes": 19038,
+      "path": "artifacts/candidates/horizon_crop_rotation_cap2/main.py",
+      "sha256": "F1CA36F2D43083379D6F5E89E7D15A935D6512E86ED4CFBEFEF0F5D59A1BCBF7"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/horizon_crop_rotation_cap4/main.py",
+      "bytes": 19038,
+      "path": "artifacts/candidates/horizon_crop_rotation_cap4/main.py",
+      "sha256": "DE38A124C35A3700A3EDC50E98AE2A051F01ACE1177DFE43F8661B0A9965BD68"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/horizon_crop_rotation_cap8/main.py",
+      "bytes": 19038,
+      "path": "artifacts/candidates/horizon_crop_rotation_cap8/main.py",
+      "sha256": "F1682D7F7084CA51AB43E899AD980D11699DB608DF57954E8184088F3C63341E"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/labor_rush/main.py",
+      "bytes": 15706,
+      "path": "artifacts/candidates/labor_rush/main.py",
+      "sha256": "F4DC4D4C4002C7D4088C9B0EE14F412AE3920087C29023AC3A9D43404AB993DA"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/meta_carrot_all/main.py",
+      "bytes": 26464,
+      "path": "artifacts/candidates/meta_carrot_all/main.py",
+      "sha256": "B88B0F979A872F5767433EBEC7483508ED9809EBFE282A0B650E9746F5BDA7B1"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/meta_carrot_half/main.py",
+      "bytes": 26646,
+      "path": "artifacts/candidates/meta_carrot_half/main.py",
+      "sha256": "EA53E9884D0821CD964173D79DC1E973322B342C4F29ADC75D4C113C6F40A1AB"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/meta_melon16/main.py",
+      "bytes": 26480,
+      "path": "artifacts/candidates/meta_melon16/main.py",
+      "sha256": "061341AD034EDF291A68E9FA0D9B54419C51FBA0E6621634586F0D3B07348796"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/meta_melon22/main.py",
+      "bytes": 26480,
+      "path": "artifacts/candidates/meta_melon22/main.py",
+      "sha256": "2F678CCBE4169D8880C79982B7905C7C14471D0B9117A00A15338DF71B695DC4"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/meta_melon30/main.py",
+      "bytes": 26480,
+      "path": "artifacts/candidates/meta_melon30/main.py",
+      "sha256": "DDBA72DE84344AC95524A227BC656DA9F8EC39D031664AEF41310DECEF3F7EFE"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/overflow_drop/main.py",
+      "bytes": 17417,
+      "path": "artifacts/candidates/overflow_drop/main.py",
+      "sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/public_expansion_baseline/main.py",
+      "bytes": 16365,
+      "path": "artifacts/candidates/public_expansion_baseline/main.py",
+      "sha256": "BD32AEFDC00B1F0A41746EBACC4FCBF0AFF32AC061363179F15371B9ACE9A5C0"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/sheep_tilt/main.py",
+      "bytes": 15709,
+      "path": "artifacts/candidates/sheep_tilt/main.py",
+      "sha256": "153609258D51CDE38D8B2EDCF39539189D36165E3C96850022D5DA140773BA39"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/staged_herd/main.py",
+      "bytes": 15897,
+      "path": "artifacts/candidates/staged_herd/main.py",
+      "sha256": "8C4E59BF4BD92AB626C4D3DD294536CA8EB6D6724DF04349E2BE2199756B8A38"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/staged_herd_final/main.py",
+      "bytes": 16389,
+      "path": "artifacts/candidates/staged_herd_final/main.py",
+      "sha256": "C7EEF55749492E7BCAEF4605F3406D93BC2B8653449258BC6EC4D1109904DC90"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/straw_early/main.py",
+      "bytes": 27402,
+      "path": "artifacts/candidates/straw_early/main.py",
+      "sha256": "B3CD5A8C32060FE44FBE4577F30793D9152FFE0CFFEF7BF2A0BE1D8393B2A17B"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/straw_vearly/main.py",
+      "bytes": 27403,
+      "path": "artifacts/candidates/straw_vearly/main.py",
+      "sha256": "08CEDBD54D7120B19BAAD9FAC174E779EA438B76A8E52256CFC022751C1F54C2"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/tape_2502/main.py",
+      "bytes": 204325,
+      "path": "artifacts/candidates/tape_2502/main.py",
+      "sha256": "C10EE17CEAEDF62A29FD3B910258DE99A4A5319D4664A5045462CB62AE8C17D9"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/tape_r2552/main.py",
+      "bytes": 203778,
+      "path": "artifacts/candidates/tape_r2552/main.py",
+      "sha256": "BC272BEE56ED9F4A9D0C7F14CB2CC43181EBAD7B664F6CCFA385D374D6AF3DD0"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/tape_r2592/main.py",
+      "bytes": 202922,
+      "path": "artifacts/candidates/tape_r2592/main.py",
+      "sha256": "6EDD3643FAB885355DDDF30B2A71E6B4DD3D5E10365280C32866B73E934C8B78"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/tape_zerowaste/main.py",
+      "bytes": 203343,
+      "path": "artifacts/candidates/tape_zerowaste/main.py",
+      "sha256": "E80EB6A24E6EE51D420A5D521E09AE4490D737FEC9BFC483D3D113546CDD7B13"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/terminal_carry_24/main.py",
+      "bytes": 18002,
+      "path": "artifacts/candidates/terminal_carry_24/main.py",
+      "sha256": "96A5FD163A8691892A3AB8AB2EAB8BF571EE9F4E723C0AA4471287395E232B80"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/terminal_carry_36/main.py",
+      "bytes": 18002,
+      "path": "artifacts/candidates/terminal_carry_36/main.py",
+      "sha256": "178746C7AEF505D18E4887BD9DB063CE4CFA77F8D3B9058FC1547C8844E30961"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/terminal_carry_48/main.py",
+      "bytes": 18002,
+      "path": "artifacts/candidates/terminal_carry_48/main.py",
+      "sha256": "4EC3651ABDA213F0D8D7FBB3AC64E97CBD919AA70F823BF9DDDF0D7D771370B6"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/v_flush690/main.py",
+      "bytes": 141894,
+      "path": "artifacts/candidates/v_flush690/main.py",
+      "sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/v_flush700/main.py",
+      "bytes": 141894,
+      "path": "artifacts/candidates/v_flush700/main.py",
+      "sha256": "84F40604C7C453561C9D26A2595AB1608CAD7846A72ED2B81DFDD4098484241D"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/v_flush710/main.py",
+      "bytes": 141894,
+      "path": "artifacts/candidates/v_flush710/main.py",
+      "sha256": "9476B969C0961AAF5733932D1C9FB21BA006A6CD5E3C880A83125908288B29CE"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/v_shield/main.py",
+      "bytes": 145858,
+      "path": "artifacts/candidates/v_shield/main.py",
+      "sha256": "E1B7C67C119A813DA011EA1866ABE8BAF8219E80CC971BCA8F13E53F91C2BB16"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/v_shield_h2/main.py",
+      "bytes": 145858,
+      "path": "artifacts/candidates/v_shield_h2/main.py",
+      "sha256": "ED82F81E6CFAFC3E15F5E7EC0A1CB7204A4C9E3105FFE9BE1B4CC4B4D419ED4F"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/v_shield_only/main.py",
+      "bytes": 145857,
+      "path": "artifacts/candidates/v_shield_only/main.py",
+      "sha256": "E464524446781DA7036AF4348E020EEBAE8877E4FB5216BA3FF011F255C43A48"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/v_shield_prem/main.py",
+      "bytes": 145889,
+      "path": "artifacts/candidates/v_shield_prem/main.py",
+      "sha256": "041CDCDD428669A070B7318EA866762A137BD1978A62FD8D39C181C6AE2C8425"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/v_treasury/main.py",
+      "bytes": 145860,
+      "path": "artifacts/candidates/v_treasury/main.py",
+      "sha256": "A1BA90553105C6542CE52B167293C5E147F8B21F694C96C535F26147C8F070CC"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/wsweep_w1/main.py",
+      "bytes": 25666,
+      "path": "artifacts/candidates/wsweep_w1/main.py",
+      "sha256": "E1F1F5C4B08C71D00D0E0A5109853192243EC2874828E0FE063AA8EA766BE306"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/wsweep_w15/main.py",
+      "bytes": 25673,
+      "path": "artifacts/candidates/wsweep_w15/main.py",
+      "sha256": "EF7E8C45702D2C134BB1D3933992712C7B4B35E85987E292FA53E8B94C6C82A6"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/wsweep_w2/main.py",
+      "bytes": 25666,
+      "path": "artifacts/candidates/wsweep_w2/main.py",
+      "sha256": "36482870DBFC4ABF310CAC48DC576AE72C0761201FB3D61861F7E97948B21EFE"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/wsweep_w3/main.py",
+      "bytes": 25670,
+      "path": "artifacts/candidates/wsweep_w3/main.py",
+      "sha256": "189D77FFCF1FDEDFCCBD2EE662FBA8876530E79928DAD815EF872794EFD535A4"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/wsweep_w4/main.py",
+      "bytes": 25666,
+      "path": "artifacts/candidates/wsweep_w4/main.py",
+      "sha256": "36D8E3EBCC4FE845ED2E340B9B792C494DFCC2A795DAF755F5D495203CC29023"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/wsweep_w5/main.py",
+      "bytes": 25666,
+      "path": "artifacts/candidates/wsweep_w5/main.py",
+      "sha256": "27029CAC4E8CE87AA82F4120118EE4146570438A50DD41BC9A6CE20FFC321D40"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/wsweep_w6/main.py",
+      "bytes": 25666,
+      "path": "artifacts/candidates/wsweep_w6/main.py",
+      "sha256": "4DFD7AF311341E5F52049214F5867BB1F59192F58A5F2F353C6BB564039425F8"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa01_daily_labor/daily_labor_11.py",
+      "bytes": 17375,
+      "path": "experiments/source_snapshots/fa01_daily_labor/daily_labor_11.py",
+      "sha256": "1730EB5CDA8D7122A6373EA8AF57E73E597236E84EEC081646CA542FBD0878EA"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa01_daily_labor/daily_labor_12.py",
+      "bytes": 17375,
+      "path": "experiments/source_snapshots/fa01_daily_labor/daily_labor_12.py",
+      "sha256": "203DD3F97F248CC22A4676637BBE4660F61389B9B0F67DAE5548984006D009E7"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa01_daily_labor/daily_labor_13.py",
+      "bytes": 17375,
+      "path": "experiments/source_snapshots/fa01_daily_labor/daily_labor_13.py",
+      "sha256": "13E373749958721ACFBE7E95DCDF4D5C83900F4F08FDD7808B2322CCB25925DC"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa01_market_mpc/A0.py",
+      "bytes": 16195,
+      "path": "experiments/source_snapshots/fa01_market_mpc/A0.py",
+      "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa01_market_mpc/A1.py",
+      "bytes": 22950,
+      "path": "experiments/source_snapshots/fa01_market_mpc/A1.py",
+      "sha256": "8C43E03ABE9951262FD1A48099AE6AF3897D6058A112BEE37BCBF9C1F66F7F4B"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa01_market_mpc/A2.py",
+      "bytes": 29610,
+      "path": "experiments/source_snapshots/fa01_market_mpc/A2.py",
+      "sha256": "C6E77C50FF4E69FD4B969443C94085484EB80D04434DA62529AFF197DAFD71D0"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa01_market_mpc/A4.py",
+      "bytes": 29669,
+      "path": "experiments/source_snapshots/fa01_market_mpc/A4.py",
+      "sha256": "0279382DD0487F881B4B0D338D34F247E4C4038892AA856C191EC6A3B65F8115"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+      "bytes": 29265,
+      "path": "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+      "sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa02_rescue_greedy/BG1.py",
+      "bytes": 25849,
+      "path": "experiments/source_snapshots/fa02_rescue_greedy/BG1.py",
+      "sha256": "801B2FA6621673379D23EBE7E7738077EAF5B43181913BDBFE28D800CEC9063F"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa02_task_bundle/B0.py",
+      "bytes": 16195,
+      "path": "experiments/source_snapshots/fa02_task_bundle/B0.py",
+      "sha256": "112AF9EC28030B53CE852927CEE986834F18F0245F3A88FB2E06F423291C9F8B"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa02_task_bundle/B1.py",
+      "bytes": 27077,
+      "path": "experiments/source_snapshots/fa02_task_bundle/B1.py",
+      "sha256": "3F2A117ACE3D4EDBDE1FBBA1E7337BAB64C513C084D793447DCEEE78A69CE397"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa02_task_bundle/B2.py",
+      "bytes": 27077,
+      "path": "experiments/source_snapshots/fa02_task_bundle/B2.py",
+      "sha256": "933CAC158AB383E07D9634A076DC672C50968E194445E6D1C7C8000415EACA31"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa02_task_bundle/B4.py",
+      "bytes": 27077,
+      "path": "experiments/source_snapshots/fa02_task_bundle/B4.py",
+      "sha256": "60FEB42804B3FF24646B9FADDAA1A34C326103BB4FCAE1CCB2F7E01BB1E53D0D"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa03_meta_expansion/M1.py",
+      "bytes": 16232,
+      "path": "experiments/source_snapshots/fa03_meta_expansion/M1.py",
+      "sha256": "94673DBFAFD7AC1747DC83D3E502FF126D29ADDEE71307733796734DCCBC0266"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa03_meta_expansion/M2.py",
+      "bytes": 16195,
+      "path": "experiments/source_snapshots/fa03_meta_expansion/M2.py",
+      "sha256": "737DCC8BB014EF6915D6BC1F5020AA0330BB50D179A3A042B0813D3F11F6F7BA"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa03_meta_expansion/M3.py",
+      "bytes": 16232,
+      "path": "experiments/source_snapshots/fa03_meta_expansion/M3.py",
+      "sha256": "FFF0CF030842037678011C8324E9F16792F90C87FBE221FDD064D1EC3C8BF09B"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_c02_meta/A1.py",
+      "bytes": 57165,
+      "path": "experiments/source_snapshots/fa04_c02_meta/A1.py",
+      "sha256": "C7961DA5B29EFCD4781392DDF04A51A7C4904D8AB81E3135E39B27FC9234F4E2"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_c02_meta/B1.py",
+      "bytes": 58135,
+      "path": "experiments/source_snapshots/fa04_c02_meta/B1.py",
+      "sha256": "E3335812ED791AAC359A9F60E14CD97B989B11A01576BC17B7C6C6A8F121B973"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_c02_meta/C01_public.py",
+      "bytes": 56947,
+      "path": "experiments/source_snapshots/fa04_c02_meta/C01_public.py",
+      "sha256": "6B35F75BC7F5484CCC802C598FF2B4AF5ECD4478CD1C072CA76B0D38481920AA"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_c02_meta/C03_public.py",
+      "bytes": 57131,
+      "path": "experiments/source_snapshots/fa04_c02_meta/C03_public.py",
+      "sha256": "DCB065B71CF9CEEA1C2AD7280DCD0552B91679A644681025FA5209260CB17C6F"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_c02_meta/C1.py",
+      "bytes": 57165,
+      "path": "experiments/source_snapshots/fa04_c02_meta/C1.py",
+      "sha256": "B304E5CFCA962FFE0557D0347D6DAF5F1E8B29EECC8412976E0F262C1FB460D5"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_c02_meta/D1.py",
+      "bytes": 57227,
+      "path": "experiments/source_snapshots/fa04_c02_meta/D1.py",
+      "sha256": "BFECC34F97F22B5A928D7AA654815C1254CA5CECD4A763296158C9E3FD0C1A1A"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_c02_meta/D2.py",
+      "bytes": 57165,
+      "path": "experiments/source_snapshots/fa04_c02_meta/D2.py",
+      "sha256": "9090B36B0277B820D51452FE007B7BE3469FED4E75A53E9EF7098C0F0215A1A9"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_c02_meta/E1.py",
+      "bytes": 57285,
+      "path": "experiments/source_snapshots/fa04_c02_meta/E1.py",
+      "sha256": "121C9CF0BC659BF19FC1C909D4D810929A497055D4899D255BA1B068AFEB6A43"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_c02_meta/V0.py",
+      "bytes": 57165,
+      "path": "experiments/source_snapshots/fa04_c02_meta/V0.py",
+      "sha256": "C60147472E416CC1A9106FF2868023C69AB51220E8F959E05E861038CDC46E2E"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_top_trace/C135.py",
+      "bytes": 217913,
+      "path": "experiments/source_snapshots/fa04_top_trace/C135.py",
+      "sha256": "13C88E1D9232F66A219AF0B66A36A46D622C2466856D191E57A8FDC42BC7C1EE"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_top_trace/G0_fixed.py",
+      "bytes": 190855,
+      "path": "experiments/source_snapshots/fa04_top_trace/G0_fixed.py",
+      "sha256": "D44BBC1E290ED41D5A051D01DB5C708CEAB786475FAE3AF62FB2C2612671A036"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+      "bytes": 197081,
+      "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+      "sha256": "0343CF633CEB0054DB7C87F81CFDB370D28D66D91063A43ADB7AB51A07DADEF9"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_top_trace/R140.py",
+      "bytes": 196104,
+      "path": "experiments/source_snapshots/fa04_top_trace/R140.py",
+      "sha256": "E4BDEDB791FC129AA73941D96BEA2C20709D9431A8C9628AB526EA186B0F4870"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_top_trace/R145.py",
+      "bytes": 198710,
+      "path": "experiments/source_snapshots/fa04_top_trace/R145.py",
+      "sha256": "99CE3CABA350D03DC59B9649B9E6D0D28F3D896C5BE0783D355A3D8701476650"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_top_trace/R150.py",
+      "bytes": 188137,
+      "path": "experiments/source_snapshots/fa04_top_trace/R150.py",
+      "sha256": "80AB5C9E50540FE49D68DED3D170FF79C34603FAF19257BD01554A19E30DA599"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa04_top_trace/R155.py",
+      "bytes": 197609,
+      "path": "experiments/source_snapshots/fa04_top_trace/R155.py",
+      "sha256": "857A8F98425D06262E503D46C15FC9480358ADA7621BC5D6D30575B2B71A167C"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/v24_agents/000_anchor_v6.py",
+      "bytes": 137194,
+      "path": "v24_agents/000_anchor_v6.py",
+      "sha256": "DDEE534B0076CD215CEA0143E548879DDFEB9F813C4D1698995748D3FCD255D1"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/v24_agents/001_core_hand_schedule.py",
+      "bytes": 137196,
+      "path": "v24_agents/001_core_hand_schedule.py",
+      "sha256": "1264108A30C8E2BF704F248710FB0B09DA2CDB23E8EBCC0EF6093451597CF6B4"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/v24_agents/002_adaptive_triad.py",
+      "bytes": 150541,
+      "path": "v24_agents/002_adaptive_triad.py",
+      "sha256": "7D0E6721D0836FC5E004C8E1B4A9F828962E3A6A46AA48C6573D7641DD08E502"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/v24_agents/003_treasury_718.py",
+      "bytes": 150543,
+      "path": "v24_agents/003_treasury_718.py",
+      "sha256": "CE98DB86C81EDDED9CC1841CD7BDB1F4180BA866BB8AC3A0A55DD258A1C5D872"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/v24_agents/004_terminal_cash_work.py",
+      "bytes": 150544,
+      "path": "v24_agents/004_terminal_cash_work.py",
+      "sha256": "CFA24AE8D10EEF35197B48895C803907691F4D4D79CD006E4366A0E651261330"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/v24_agents/005_clone_quad_h1.py",
+      "bytes": 150578,
+      "path": "v24_agents/005_clone_quad_h1.py",
+      "sha256": "602FAB48D40A0A100B6C2E8287AFCC808700076B132EDEB86AA2B0AF086957F6"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/v24_agents/006_clone_premium_h1.py",
+      "bytes": 150609,
+      "path": "v24_agents/006_clone_premium_h1.py",
+      "sha256": "E118B587C2C9D6E49EE018057BF4BAA2C6BA0BAFDD8780B5C115DF6D1AA25666"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/v24_agents/007_v24_adaptive_cash.py",
+      "bytes": 150543,
+      "path": "v24_agents/007_v24_adaptive_cash.py",
+      "sha256": "59E18425395F3190A91AAE81C48BF358CE3060D6496E5FE714109FF78A22E3B8"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/v24_agents/008_v24_clone_cash_shield.py",
+      "bytes": 150579,
+      "path": "v24_agents/008_v24_clone_cash_shield.py",
+      "sha256": "6BC5EEDF8DB98CC8BC6874F69E80463F8FAF8311CDEBE50B0D6F16A2E4F557EA"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/v24_agents/009_v24_clone_cash_h2.py",
+      "bytes": 150579,
+      "path": "v24_agents/009_v24_clone_cash_h2.py",
+      "sha256": "BAE3692B680618A95C7D78F5F7F1A36529AB33B409BA607011F9A2A1F7EA4C2C"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/v24_agents/010_kaito_v21.py",
+      "bytes": 154311,
+      "path": "v24_agents/010_kaito_v21.py",
+      "sha256": "E8071312941D60C7EBD2A2B606AAF1FE6BB490440AFD36EE6398DA29552BDF3E"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/v24_agents/011_kaito_v20.py",
+      "bytes": 148181,
+      "path": "v24_agents/011_kaito_v20.py",
+      "sha256": "7880CE0ABDA9C97102E472CD799A577820CAD8A858B10F1FF10B281D9FAEDCB0"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/v24_agents/012_replay_shield_v15.py",
+      "bytes": 134266,
+      "path": "v24_agents/012_replay_shield_v15.py",
+      "sha256": "8AB41016F6AFB2816215771C54A683335B03CD37D50FD45D4595259C67AB3171"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/v24_agents/013_scenario_v14.py",
+      "bytes": 63884,
+      "path": "v24_agents/013_scenario_v14.py",
+      "sha256": "DF2884E6666B9B7B9F06230013043D7EF7754A11DA671F20015AB6342CA01C95"
+    },
+    {
+      "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/v24_agents/014_frontier_v12.py",
+      "bytes": 61994,
+      "path": "v24_agents/014_frontier_v12.py",
+      "sha256": "DD511BB77208F389851C89FF6468B48C9F01A1FBF0F952B61AE803F2BDD350DB"
+    }
+  ],
+  "source_index_count": 135,
+  "submissions": [
+    {
+      "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "bytes": 13137,
+          "members": [
+            {
+              "bytes": 146492,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05/main.py",
+                  "bytes": 146492,
+                  "path": "artifacts/candidates/bot_05/main.py",
+                  "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                },
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_h1/main.py",
+                  "bytes": 146492,
+                  "path": "artifacts/candidates/bot_05_h1/main.py",
+                  "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+            }
+          ],
+          "path": "dist/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+          "tar_status": "PARSED"
+        },
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/bot_05 - Tetsuya Tape Shield/output_v1/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "bytes": 13137,
+          "members": [
+            {
+              "bytes": 146492,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05/main.py",
+                  "bytes": 146492,
+                  "path": "artifacts/candidates/bot_05/main.py",
+                  "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                },
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_h1/main.py",
+                  "bytes": 146492,
+                  "path": "artifacts/candidates/bot_05_h1/main.py",
+                  "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+            }
+          ],
+          "path": "kaggle_runs/bot_05 - Tetsuya Tape Shield/output_v1/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "1128.8",
+      "submission_id": 55270999,
+      "submitted_at": "2026-08-05T13:17:49.343Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "bytes": 13137,
+          "members": [
+            {
+              "bytes": 146492,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05/main.py",
+                  "bytes": 146492,
+                  "path": "artifacts/candidates/bot_05/main.py",
+                  "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                },
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_h1/main.py",
+                  "bytes": 146492,
+                  "path": "artifacts/candidates/bot_05_h1/main.py",
+                  "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+            }
+          ],
+          "path": "dist/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+          "tar_status": "PARSED"
+        },
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/bot_05 - Tetsuya Tape Shield/output_v1/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "bytes": 13137,
+          "members": [
+            {
+              "bytes": 146492,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05/main.py",
+                  "bytes": 146492,
+                  "path": "artifacts/candidates/bot_05/main.py",
+                  "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                },
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_h1/main.py",
+                  "bytes": 146492,
+                  "path": "artifacts/candidates/bot_05_h1/main.py",
+                  "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+            }
+          ],
+          "path": "kaggle_runs/bot_05 - Tetsuya Tape Shield/output_v1/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "1094.8",
+      "submission_id": 55270996,
+      "submitted_at": "2026-08-05T13:17:39.613Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "bot_12 - Live Market R2914.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_12 - Live Market R2914.tar.gz",
+          "bytes": 12779,
+          "members": [
+            {
+              "bytes": 143534,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_12/main.py",
+                  "bytes": 143534,
+                  "path": "artifacts/candidates/bot_12/main.py",
+                  "sha256": "8308D9AE0665F8F02DD33D11143F786FE856728FF41A315EA99B3DDE87D25D69"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "8308D9AE0665F8F02DD33D11143F786FE856728FF41A315EA99B3DDE87D25D69"
+            }
+          ],
+          "path": "dist/bot_12 - Live Market R2914.tar.gz",
+          "sha256": "8A15B0624C63D660DB272C0CA56E52094B3D9CF274412A157389E4689BE49313",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "1225.8",
+      "submission_id": 55244867,
+      "submitted_at": "2026-08-04T16:14:59.510Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "bot_11 - Live Market R2921.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_11 - Live Market R2921.tar.gz",
+          "bytes": 12761,
+          "members": [
+            {
+              "bytes": 143135,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_11/main.py",
+                  "bytes": 143135,
+                  "path": "artifacts/candidates/bot_11/main.py",
+                  "sha256": "2A0EF2609ADD6AE2BBC2F465DEAB4C4AEC0439AA9160F5CDF777FC5554EBFE65"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "2A0EF2609ADD6AE2BBC2F465DEAB4C4AEC0439AA9160F5CDF777FC5554EBFE65"
+            }
+          ],
+          "path": "dist/bot_11 - Live Market R2921.tar.gz",
+          "sha256": "2D40888EB3584C075826ADB754888BA9177D5D145DD9A1A94C4BE2B1727045AF",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "1312.7",
+      "submission_id": 55244861,
+      "submitted_at": "2026-08-04T16:14:51.737Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "bot_08 - Terminal Wheat Graft.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_08 - Terminal Wheat Graft.tar.gz",
+          "bytes": 15834,
+          "members": [
+            {
+              "bytes": 153691,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_08/main.py",
+                  "bytes": 153691,
+                  "path": "artifacts/candidates/bot_08/main.py",
+                  "sha256": "3B9B4CEE584CE5EE8054B1DE166672F17D6FF0F6F0B2F327021E9BCBF0ED1666"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "3B9B4CEE584CE5EE8054B1DE166672F17D6FF0F6F0B2F327021E9BCBF0ED1666"
+            }
+          ],
+          "path": "dist/bot_08 - Terminal Wheat Graft.tar.gz",
+          "sha256": "77D46BCCD01D1AB90CC437D8C7AE34134E211B1925CA065085DD4E56BDDFBF3E",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "1463.4",
+      "submission_id": 55239511,
+      "submitted_at": "2026-08-04T12:05:31.610Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "bot_07 - Meta Tape Shield.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_07 - Meta Tape Shield.tar.gz",
+          "bytes": 15928,
+          "members": [
+            {
+              "bytes": 152661,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_07/main.py",
+                  "bytes": 152661,
+                  "path": "artifacts/candidates/bot_07/main.py",
+                  "sha256": "EDB86D4A1CD7BB4BA9F0AE3DD3E8102798C961E385DA57D9C0C204D617D2D627"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "EDB86D4A1CD7BB4BA9F0AE3DD3E8102798C961E385DA57D9C0C204D617D2D627"
+            }
+          ],
+          "path": "dist/bot_07 - Meta Tape Shield.tar.gz",
+          "sha256": "AF68DEB6514C9857F28EB762150C15D86935AE73577466DAF01396D48098DD76",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "1749.4",
+      "submission_id": 55239508,
+      "submitted_at": "2026-08-04T12:05:25.223Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "bytes": 13137,
+          "members": [
+            {
+              "bytes": 146492,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05/main.py",
+                  "bytes": 146492,
+                  "path": "artifacts/candidates/bot_05/main.py",
+                  "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                },
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_h1/main.py",
+                  "bytes": 146492,
+                  "path": "artifacts/candidates/bot_05_h1/main.py",
+                  "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+            }
+          ],
+          "path": "dist/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+          "tar_status": "PARSED"
+        },
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/bot_05 - Tetsuya Tape Shield/output_v1/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "bytes": 13137,
+          "members": [
+            {
+              "bytes": 146492,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05/main.py",
+                  "bytes": 146492,
+                  "path": "artifacts/candidates/bot_05/main.py",
+                  "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                },
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_05_h1/main.py",
+                  "bytes": 146492,
+                  "path": "artifacts/candidates/bot_05_h1/main.py",
+                  "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+            }
+          ],
+          "path": "kaggle_runs/bot_05 - Tetsuya Tape Shield/output_v1/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "2119.2",
+      "submission_id": 55206974,
+      "submitted_at": "2026-08-03T08:31:37.013Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "bot_03 - Terminal Flush Tape.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_03 - Terminal Flush Tape.tar.gz",
+          "bytes": 11659,
+          "members": [
+            {
+              "bytes": 141894,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_03/main.py",
+                  "bytes": 141894,
+                  "path": "artifacts/candidates/bot_03/main.py",
+                  "sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+                },
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/v_flush690/main.py",
+                  "bytes": 141894,
+                  "path": "artifacts/candidates/v_flush690/main.py",
+                  "sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+            }
+          ],
+          "path": "dist/bot_03 - Terminal Flush Tape.tar.gz",
+          "sha256": "D0D3EAF3F9FD3FD7720B3ACB41437A670AF96ED1D1E685B249927D83811845F5",
+          "tar_status": "PARSED"
+        },
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/bot_03 - Terminal Flush Tape/output_v1/bot_03 - Terminal Flush Tape.tar.gz",
+          "bytes": 11659,
+          "members": [
+            {
+              "bytes": 141894,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_03/main.py",
+                  "bytes": 141894,
+                  "path": "artifacts/candidates/bot_03/main.py",
+                  "sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+                },
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/v_flush690/main.py",
+                  "bytes": 141894,
+                  "path": "artifacts/candidates/v_flush690/main.py",
+                  "sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+            }
+          ],
+          "path": "kaggle_runs/bot_03 - Terminal Flush Tape/output_v1/bot_03 - Terminal Flush Tape.tar.gz",
+          "sha256": "D0D3EAF3F9FD3FD7720B3ACB41437A670AF96ED1D1E685B249927D83811845F5",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "1678.0",
+      "submission_id": 55199616,
+      "submitted_at": "2026-08-03T01:55:53.983Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "bot_02 - Zero-Waste Tape.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_02 - Zero-Waste Tape.tar.gz",
+          "bytes": 11658,
+          "members": [
+            {
+              "bytes": 141896,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_02/main.py",
+                  "bytes": 141896,
+                  "path": "artifacts/candidates/bot_02/main.py",
+                  "sha256": "E73080954C8099A869D43416FBD8035856A29CD59BD04613E3D789A0CE695F50"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "E73080954C8099A869D43416FBD8035856A29CD59BD04613E3D789A0CE695F50"
+            }
+          ],
+          "path": "dist/bot_02 - Zero-Waste Tape.tar.gz",
+          "sha256": "8900914D04565BEA64C2474797B9A54E09873C873F17AA427264284598E7AF2B",
+          "tar_status": "PARSED"
+        },
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/bot_02 - Zero-Waste Tape/output_v1/bot_02 - Zero-Waste Tape.tar.gz",
+          "bytes": 11658,
+          "members": [
+            {
+              "bytes": 141896,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_02/main.py",
+                  "bytes": 141896,
+                  "path": "artifacts/candidates/bot_02/main.py",
+                  "sha256": "E73080954C8099A869D43416FBD8035856A29CD59BD04613E3D789A0CE695F50"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "E73080954C8099A869D43416FBD8035856A29CD59BD04613E3D789A0CE695F50"
+            }
+          ],
+          "path": "kaggle_runs/bot_02 - Zero-Waste Tape/output_v1/bot_02 - Zero-Waste Tape.tar.gz",
+          "sha256": "8900914D04565BEA64C2474797B9A54E09873C873F17AA427264284598E7AF2B",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "1878.5",
+      "submission_id": 55199612,
+      "submitted_at": "2026-08-03T01:55:47.273Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "Ge_04.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/Ge_04.tar.gz",
+          "bytes": 5847,
+          "members": [
+            {
+              "bytes": 19232,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_04/main.py",
+                  "bytes": 19232,
+                  "path": "artifacts/candidates/Ge_04/main.py",
+                  "sha256": "9D59F2DDDB8A4F10AB71A9E63A0CB21B81239E143AB2F5810486A5E939494720"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "9D59F2DDDB8A4F10AB71A9E63A0CB21B81239E143AB2F5810486A5E939494720"
+            }
+          ],
+          "path": "dist/Ge_04.tar.gz",
+          "sha256": "8CDF1C40EF977F63EDAAB4CA639DEE2A8E9872E64CD44920D5540F4EEC36968F",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "768.3",
+      "submission_id": 55198657,
+      "submitted_at": "2026-08-03T01:01:09.237Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "Ge_03.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/Ge_03.tar.gz",
+          "bytes": 5877,
+          "members": [
+            {
+              "bytes": 19003,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_03/main.py",
+                  "bytes": 19003,
+                  "path": "artifacts/candidates/Ge_03/main.py",
+                  "sha256": "455ABA88CDF98FC970B68547B8A7046B894430788B91A4A50766D5499BC67690"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "455ABA88CDF98FC970B68547B8A7046B894430788B91A4A50766D5499BC67690"
+            }
+          ],
+          "path": "dist/Ge_03.tar.gz",
+          "sha256": "827C7B17EDC13DBB575466D44E3680E6F5BD0351F192CD52E042D58CDABD3A31",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "724.4",
+      "submission_id": 55198655,
+      "submitted_at": "2026-08-03T01:01:00.003Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "Ge_02.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/Ge_02.tar.gz",
+          "bytes": 6320,
+          "members": [
+            {
+              "bytes": 22232,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_02/main.py",
+                  "bytes": 22232,
+                  "path": "artifacts/candidates/Ge_02/main.py",
+                  "sha256": "2A6B3368AFEE87BE6E8AE04F0D21A5EADEFA825B7338D190448B0201AE33F5B7"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "2A6B3368AFEE87BE6E8AE04F0D21A5EADEFA825B7338D190448B0201AE33F5B7"
+            }
+          ],
+          "path": "dist/Ge_02.tar.gz",
+          "sha256": "63F3BC795F0CB35CE244B94562332AB0568F7474A20AA1BEB5E1FCEFFE23A112",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "774.5",
+      "submission_id": 55185695,
+      "submitted_at": "2026-08-02T12:27:05.997Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "Ge_01.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/Ge_01.tar.gz",
+          "bytes": 5746,
+          "members": [
+            {
+              "bytes": 19361,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_01/main.py",
+                  "bytes": 19361,
+                  "path": "artifacts/candidates/Ge_01/main.py",
+                  "sha256": "9ED86F667DE5A59CB1F880DB11C28DBBFD800A12A4DFAAC5BD3AE15AA03217BF"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "9ED86F667DE5A59CB1F880DB11C28DBBFD800A12A4DFAAC5BD3AE15AA03217BF"
+            }
+          ],
+          "path": "dist/Ge_01.tar.gz",
+          "sha256": "E020EAB0E5174EE8EEAA29A62ECC07B65CC5AF23EC7DCBAB78080038CF00788D",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "746.5",
+      "submission_id": 55185691,
+      "submitted_at": "2026-08-02T12:26:56.873Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "Ge_02.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/Ge_02.tar.gz",
+          "bytes": 6320,
+          "members": [
+            {
+              "bytes": 22232,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_02/main.py",
+                  "bytes": 22232,
+                  "path": "artifacts/candidates/Ge_02/main.py",
+                  "sha256": "2A6B3368AFEE87BE6E8AE04F0D21A5EADEFA825B7338D190448B0201AE33F5B7"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "2A6B3368AFEE87BE6E8AE04F0D21A5EADEFA825B7338D190448B0201AE33F5B7"
+            }
+          ],
+          "path": "dist/Ge_02.tar.gz",
+          "sha256": "63F3BC795F0CB35CE244B94562332AB0568F7474A20AA1BEB5E1FCEFFE23A112",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "757.0",
+      "submission_id": 55185510,
+      "submitted_at": "2026-08-02T12:18:09.847Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "Ge_01.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/Ge_01.tar.gz",
+          "bytes": 5746,
+          "members": [
+            {
+              "bytes": 19361,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/Ge_01/main.py",
+                  "bytes": 19361,
+                  "path": "artifacts/candidates/Ge_01/main.py",
+                  "sha256": "9ED86F667DE5A59CB1F880DB11C28DBBFD800A12A4DFAAC5BD3AE15AA03217BF"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "9ED86F667DE5A59CB1F880DB11C28DBBFD800A12A4DFAAC5BD3AE15AA03217BF"
+            }
+          ],
+          "path": "dist/Ge_01.tar.gz",
+          "sha256": "E020EAB0E5174EE8EEAA29A62ECC07B65CC5AF23EC7DCBAB78080038CF00788D",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "810.5",
+      "submission_id": 55185505,
+      "submitted_at": "2026-08-02T12:18:00.703Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "bot_01 - Capacity Expansion.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/bot_01 - Capacity Expansion.tar.gz",
+          "bytes": 4893,
+          "members": [
+            {
+              "bytes": 17784,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_01/main.py",
+                  "bytes": 17784,
+                  "path": "artifacts/candidates/bot_01/main.py",
+                  "sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+                },
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_v3_01_capacity/main.py",
+                  "bytes": 17784,
+                  "path": "artifacts/candidates/bot_v3_01_capacity/main.py",
+                  "sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+            }
+          ],
+          "path": "dist/bot_01 - Capacity Expansion.tar.gz",
+          "sha256": "F73CEDD6763FD51B39BC382AEA878875D37A5EB570E264FAFE3B363BDC04AED7",
+          "tar_status": "PARSED"
+        },
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/bot_01 - Capacity Expansion/output_v1/bot_01 - Capacity Expansion.tar.gz",
+          "bytes": 4893,
+          "members": [
+            {
+              "bytes": 17784,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_01/main.py",
+                  "bytes": 17784,
+                  "path": "artifacts/candidates/bot_01/main.py",
+                  "sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+                },
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/bot_v3_01_capacity/main.py",
+                  "bytes": 17784,
+                  "path": "artifacts/candidates/bot_v3_01_capacity/main.py",
+                  "sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+            }
+          ],
+          "path": "kaggle_runs/bot_01 - Capacity Expansion/output_v1/bot_01 - Capacity Expansion.tar.gz",
+          "sha256": "F73CEDD6763FD51B39BC382AEA878875D37A5EB570E264FAFE3B363BDC04AED7",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "815.7",
+      "submission_id": 55183485,
+      "submitted_at": "2026-08-02T10:32:37.280Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "Fa_04 - Frontier Trace Guard.tar.gz",
+      "local_filename_matches": [],
+      "mapping_status": "UNVERIFIED_NO_LOCAL_FILENAME_MATCH",
+      "public_score_at_snapshot": "1317.1",
+      "submission_id": 55171193,
+      "submitted_at": "2026-08-01T21:30:44.400Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "Fa_03 - Meta Expansion.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/Fa_03 - Meta Expansion/Fa_03 - Meta Expansion.tar.gz",
+          "bytes": 4385,
+          "members": [
+            {
+              "bytes": 16195,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa03_meta_expansion/M2.py",
+                  "bytes": 16195,
+                  "path": "experiments/source_snapshots/fa03_meta_expansion/M2.py",
+                  "sha256": "737DCC8BB014EF6915D6BC1F5020AA0330BB50D179A3A042B0813D3F11F6F7BA"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "737DCC8BB014EF6915D6BC1F5020AA0330BB50D179A3A042B0813D3F11F6F7BA"
+            }
+          ],
+          "path": "kaggle_runs/Fa_03 - Meta Expansion/Fa_03 - Meta Expansion.tar.gz",
+          "sha256": "B2D58348CCF221917390DE932BA2F2AF91FC8CC7F315E68EA72D1D352D6FBDDF",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "889.7",
+      "submission_id": 55154217,
+      "submitted_at": "2026-08-01T05:05:22.640Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "Fa_02 - Last-Chance Tiebreak.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/Fa_02 - Last-Chance Tiebreak/Fa_02 - Last-Chance Tiebreak.tar.gz",
+          "bytes": 7029,
+          "members": [
+            {
+              "bytes": 29265,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+                  "bytes": 29265,
+                  "path": "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+                  "sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740"
+            }
+          ],
+          "path": "kaggle_runs/Fa_02 - Last-Chance Tiebreak/Fa_02 - Last-Chance Tiebreak.tar.gz",
+          "sha256": "E1DA47187E383023E1719479FEA82615FCEB17D217AB7855526A39767655FDEE",
+          "tar_status": "PARSED"
+        },
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/Fa_02 - Last-Chance Tiebreak/preflight/Fa_02 - Last-Chance Tiebreak.tar.gz",
+          "bytes": 7029,
+          "members": [
+            {
+              "bytes": 29265,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+                  "bytes": 29265,
+                  "path": "experiments/source_snapshots/fa02_last_chance_tiebreak/BT1.py",
+                  "sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740"
+            }
+          ],
+          "path": "kaggle_runs/Fa_02 - Last-Chance Tiebreak/preflight/Fa_02 - Last-Chance Tiebreak.tar.gz",
+          "sha256": "E1DA47187E383023E1719479FEA82615FCEB17D217AB7855526A39767655FDEE",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "913.0",
+      "submission_id": 55154212,
+      "submitted_at": "2026-08-01T05:05:15.230Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "Fa_01 - Overflow-Safe Inventory.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/Fa_01 - Overflow-Safe Inventory.tar.gz",
+          "bytes": 4894,
+          "members": [
+            {
+              "bytes": 17417,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/overflow_drop/main.py",
+                  "bytes": 17417,
+                  "path": "artifacts/candidates/overflow_drop/main.py",
+                  "sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+            }
+          ],
+          "path": "dist/Fa_01 - Overflow-Safe Inventory.tar.gz",
+          "sha256": "1B52522D0CD55536F1C45B73F5FC5A37A27CF924A218FA009D1D1786B72F53D1",
+          "tar_status": "PARSED"
+        },
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/Fa_01 - Overflow-Safe Inventory/output_v1/Fa_01 - Overflow-Safe Inventory.tar.gz",
+          "bytes": 4894,
+          "members": [
+            {
+              "bytes": 17417,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/overflow_drop/main.py",
+                  "bytes": 17417,
+                  "path": "artifacts/candidates/overflow_drop/main.py",
+                  "sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+            }
+          ],
+          "path": "kaggle_runs/Fa_01 - Overflow-Safe Inventory/output_v1/Fa_01 - Overflow-Safe Inventory.tar.gz",
+          "sha256": "1B52522D0CD55536F1C45B73F5FC5A37A27CF924A218FA009D1D1786B72F53D1",
+          "tar_status": "PARSED"
+        },
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/kaggle_runs/Fa_01 - Overflow-Safe Inventory/output_v2/Fa_01 - Overflow-Safe Inventory.tar.gz",
+          "bytes": 4894,
+          "members": [
+            {
+              "bytes": 17417,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/overflow_drop/main.py",
+                  "bytes": 17417,
+                  "path": "artifacts/candidates/overflow_drop/main.py",
+                  "sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+            }
+          ],
+          "path": "kaggle_runs/Fa_01 - Overflow-Safe Inventory/output_v2/Fa_01 - Overflow-Safe Inventory.tar.gz",
+          "sha256": "1B52522D0CD55536F1C45B73F5FC5A37A27CF924A218FA009D1D1786B72F53D1",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "1003.5",
+      "submission_id": 55142935,
+      "submitted_at": "2026-07-31T16:45:32.363Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "cow_tilt.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/cow_tilt.tar.gz",
+          "bytes": 4311,
+          "members": [
+            {
+              "bytes": 15703,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/cow_tilt/main.py",
+                  "bytes": 15703,
+                  "path": "artifacts/candidates/cow_tilt/main.py",
+                  "sha256": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E"
+            }
+          ],
+          "path": "dist/cow_tilt.tar.gz",
+          "sha256": "73F15AECDD3CC786D755540C71D1E6035AD8D4435E813A02E56E923C8F791A86",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "991.4",
+      "submission_id": 55137248,
+      "submitted_at": "2026-07-31T12:38:37.067Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    },
+    {
+      "file_name": "fast_expansion.tar.gz",
+      "local_filename_matches": [
+        {
+          "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/dist/fast_expansion.tar.gz",
+          "bytes": 4314,
+          "members": [
+            {
+              "bytes": 15706,
+              "local_source_matches": [
+                {
+                  "absolute_path_utf8": "C:/Users/최용우/Desktop/Kaggriculture/artifacts/candidates/fast_expansion/main.py",
+                  "bytes": 15706,
+                  "path": "artifacts/candidates/fast_expansion/main.py",
+                  "sha256": "406BC82979637A42F2848382AD5E0248C403BBB346D09CF93859DC2D5761F25C"
+                }
+              ],
+              "name": "main.py",
+              "sha256": "406BC82979637A42F2848382AD5E0248C403BBB346D09CF93859DC2D5761F25C"
+            }
+          ],
+          "path": "dist/fast_expansion.tar.gz",
+          "sha256": "2ECB98759CA02AB28C83C88832DB8DDFEEDDD7E2E4A7B80EA9BD0F1292251484",
+          "tar_status": "PARSED"
+        }
+      ],
+      "mapping_status": "LOCAL_FILENAME_MATCH_ONLY_UPLOAD_BYTES_UNAVAILABLE",
+      "public_score_at_snapshot": "1068.0",
+      "submission_id": 55137246,
+      "submitted_at": "2026-07-31T12:38:28.387Z",
+      "warning": "Kaggle API does not expose uploaded artifact bytes. A local same-named archive, even with an exact source match, is not proof that the historical upload used those bytes. Reused filenames are ambiguous."
+    }
+  ]
+}

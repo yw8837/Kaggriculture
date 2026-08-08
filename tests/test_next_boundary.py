@@ -7,6 +7,8 @@ from pathlib import Path
 
 from kaggriculture_lab.evaluation.runner import _effective_configuration
 
+FROZEN_INPUT_COMMIT = "b61d111abdded451e1a5ec2a7dc00bdc4764e43f"
+
 
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest().upper()
@@ -21,6 +23,13 @@ def _effective_scenarios_sha256(names: list[str]) -> str:
     }
     canonical = json.dumps(effective, sort_keys=True, separators=(",", ":"))
     return hashlib.sha256(canonical.encode()).hexdigest().upper()
+
+
+def _git_blob(path: Path) -> bytes:
+    return subprocess.check_output(
+        ["git", "show", f"{FROZEN_INPUT_COMMIT}:{path.as_posix()}"],
+        cwd=Path(__file__).resolve().parents[1],
+    )
 
 
 def test_next_boundary_inputs_are_exact_tracked_and_all_pools_remain_closed() -> None:
@@ -40,13 +49,9 @@ def test_next_boundary_inputs_are_exact_tracked_and_all_pools_remain_closed() ->
         *manifest["tooling"].values(),
     ):
         path = Path(section["path"])
-        assert len(path.read_bytes()) == section["bytes"]
-        assert _sha256(path) == section["sha256"]
-        subprocess.run(
-            ["git", "ls-files", "--error-unmatch", path.as_posix()],
-            check=True,
-            capture_output=True,
-        )
+        payload = _git_blob(path)
+        assert len(payload) == section["bytes"]
+        assert hashlib.sha256(payload).hexdigest().upper() == section["sha256"]
 
     assert set(manifest["seed_state"].values()) == {"CLOSED"}
     assert config["A_formal_scenario_confirmation"]["pool"]["status"] == "CLOSED"
@@ -92,9 +97,11 @@ def test_b_greedy_gate_requires_runtime_and_causal_rescue_counters() -> None:
         assert greedy["scenario_policy"]["expected_effective_scenarios_sha256"][partition] == (
             _effective_scenarios_sha256(greedy["scenario_policy"][partition])
         )
-    assert greedy["counter_capture"]["runner_sha256"] == _sha256(
-        Path(greedy["counter_capture"]["runner"])
-    )
+    frozen_runner = Path(greedy["counter_capture"]["runner"])
+    assert greedy["counter_capture"]["runner_sha256"] == hashlib.sha256(
+        _git_blob(frozen_runner)
+    ).hexdigest().upper()
+    assert _sha256(frozen_runner) != greedy["counter_capture"]["runner_sha256"]
     assert greedy["paired_analysis"]["bootstrap_cluster_unit"] == "seed"
     assert greedy["runtime_precheck"]["gate_result"] == "PASS"
     assert greedy["runtime_precheck"]["p95_ms"] <= config["runtime_gate_ms"]["p95_max"]

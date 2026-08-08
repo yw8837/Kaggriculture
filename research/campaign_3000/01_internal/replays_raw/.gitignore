@@ -1,0 +1,4 @@
+# 89 downloaded public replays total ~2.38 GB. Keep them local and bind their
+# exact bytes through ../replay_inventory.jsonl + ../replay_integrity_report.json.
+*.json
+!.gitignore

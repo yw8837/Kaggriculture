@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "binding_protocol": "clean_two_stage_S_to_E_v1",
+  "implementation_commit": "PENDING",
+  "input_manifest": {
+    "path": "research/campaign_3000/06_candidates/manifest.json",
+    "bytes": 4376,
+    "sha256": "FBF560F617788022552B2115023639F81CB49E01E67B90AACE2291DA72DECE69"
+  },
+  "binding_path": "research/campaign_3000/06_candidates/execution_binding.json",
+  "binding_excluded_from_input_manifest": true,
+  "lifecycle_path": "research/campaign_3000/06_candidates/lifecycle.json",
+  "lifecycle_excluded_from_input_manifest": true,
+  "candidate_plan_path": "research/campaign_3000/06_candidates/candidate_plan.json",
+  "tracked_execution_inputs": [
+    "research/campaign_3000/06_candidates/README.md",
+    "research/campaign_3000/06_candidates/authorized_runner.py",
+    "research/campaign_3000/06_candidates/candidate_plan.json",
+    "research/campaign_3000/06_candidates/gate_config.json",
+    "research/campaign_3000/06_candidates/orchestrator.py",
+    "research/campaign_3000/06_candidates/seed_collision_scan.json",
+    "research/campaign_3000/06_candidates/selection_evidence.json",
+    "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
+    "research/campaign_3000/06_candidates/snapshots/kaito_v22.py",
+    "research/campaign_3000/06_candidates/snapshots/ray_c45_exact.py",
+    "research/campaign_3000/06_candidates/snapshots/boatlee_v14.py",
+    "research/campaign_3000/06_candidates/test_execution_binding.py",
+    "tests/test_campaign_3000_candidate_freeze.py",
+    "src/kaggriculture_lab/evaluation/runner.py",
+    "configs/fa_ab_scenarios.json",
+    "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+    "research/campaign_3000/07_release/TETSU_IP_VERDICT.md",
+    "research/campaign_3000/02_public_meta/code_inventory.jsonl",
+    "research/campaign_3000/05_engine_screen/summary.json",
+    "research/campaign_3000/05_engine_screen_ray_c45_addendum/summary.json"
+  ]
+}

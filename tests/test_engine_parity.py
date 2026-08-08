@@ -6,7 +6,7 @@ from pathlib import Path
 
 from kaggle_environments.envs.kaggriculture import kaggriculture as engine
 
-PINNED_NORMALIZED_SHA256 = "DCD33A832EA6EF1B7E527813DDCD45CEA314DC5CCE58B5BACA0D587CEF847A44"
+PINNED_NORMALIZED_SHA256 = "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF"
 
 
 def _normalized_sha256(path: Path) -> str:
@@ -17,7 +17,7 @@ def _normalized_sha256(path: Path) -> str:
 def test_installed_engine_matches_pinned_source_after_line_ending_normalization() -> None:
     installed = Path(inspect.getsourcefile(engine) or "")
     pinned = Path(
-        "references/kaggle-environments/kaggle_environments/envs/"
+        "references/ke1326/kaggle_environments/envs/"
         "kaggriculture/kaggriculture.py"
     )
     assert _normalized_sha256(installed) == PINNED_NORMALIZED_SHA256

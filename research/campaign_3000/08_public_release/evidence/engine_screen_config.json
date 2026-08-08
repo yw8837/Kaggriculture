@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "run_id": "campaign_3000_engine_public_screen_v1",
+  "authority": {
+    "scope": "local read-only agent evaluation and evidence generation",
+    "external_uploads": "FORBIDDEN",
+    "competition_submissions": "FORBIDDEN",
+    "publications": "FORBIDDEN",
+    "fresh_promotion_seed_opening": "FORBIDDEN"
+  },
+  "seed_policy": {
+    "status": "CONSUMED_SCREEN",
+    "seeds": [23000, 23001, 23002, 23003, 23004, 23005, 23006, 23007],
+    "comparison_seeds": [23000, 23001],
+    "historical_registry_path": "configs/fa_ab_seed_registry.json",
+    "historical_registry_sha256": "A443626FF1E6FE2B84C9036454263AA4E8349C3E4ADE3686A6E449C3BA699C61",
+    "historical_pool": "candidates.A.development",
+    "historical_pool_range": "23000-23015",
+    "historical_pool_state": "opened=true, consumed=true",
+    "promotion_eligible": false,
+    "rationale": "Reuse only already-consumed historical development seeds for engine/public-agent screening; no fresh confirmation, robustness, holdout, or promotion seed is opened."
+  },
+  "engines": {
+    "main": {
+      "version": "1.32.6",
+      "kaggriculture_py_sha256": "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF"
+    },
+    "comparison": {
+      "version": "1.32.2",
+      "kaggriculture_py_sha256": "DCD33A832EA6EF1B7E527813DDCD45CEA314DC5CCE58B5BACA0D587CEF847A44"
+    }
+  },
+  "execution": {
+    "workers": 8,
+    "scenario": "default",
+    "scenario_override": {},
+    "episode_steps": 720,
+    "seat_policy": "both seats"
+  },
+  "design": {
+    "main_fa04_cells": 80,
+    "main_public_round_robin_cells": 160,
+    "main_total_cells": 240,
+    "comparison_1_32_2_cells": 20,
+    "comparison_1_32_6_reused_cells": 20,
+    "registry_total_engine_specific_cells": 260,
+    "round_robin_pair_policy": "Each unordered public-agent pair is run once with the lexicographically earlier configured agent as runner candidate; both seats make the physical seat assignment symmetric."
+  },
+  "runner": {
+    "path": "src/kaggriculture_lab/evaluation/runner.py",
+    "sha256": "8F35F4D52870DB06FDFF60D03665E234F4994DD18D17BDB2E7FBC5D7F9F21A39",
+    "required_failure_guard": "_first_abnormal_status"
+  },
+  "fa04_g1": {
+    "alias": "fa04_g1",
+    "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+    "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+    "bytes": 197808
+  },
+  "public_manifest": {
+    "path": "dist/campaign_3000_public_agents/manifest.json",
+    "sha256": "E949AFA4EC6A0EEFC51DD2B3813EDC2D46BB8ABDC1D254C685E04A559B3DB281"
+  },
+  "public_agents": [
+    {
+      "alias": "boatlee_v14",
+      "path": "dist/campaign_3000_public_agents/boatlee__84-84-base-public-holdout-v14-clone-preemption.py",
+      "sha256": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B",
+      "bytes": 26304
+    },
+    {
+      "alias": "flex_adaptive",
+      "path": "dist/campaign_3000_public_agents/flexonafft__kaggriculture-adaptive-replay-agent.py",
+      "sha256": "3C41010DE37114C082D481E4A4C3E42CA5148E826A140E2AA02964ACA8636DD8",
+      "bytes": 25939
+    },
+    {
+      "alias": "indar_route_2948_9",
+      "path": "dist/campaign_3000_public_agents/indarkarhana__kaggriculture-verified-route-replay-2948-9.py",
+      "sha256": "18DD8CB938AE72CF6511F23189B8C128BE8092ED9EC3BAECDD3F9E75D6A7D03C",
+      "bytes": 14104
+    },
+    {
+      "alias": "kaito_v22_price_impact",
+      "path": "dist/campaign_3000_public_agents/kaitofukami__44-46-strict-future-top-30-v22-price-impact.py",
+      "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+      "bytes": 18609
+    },
+    {
+      "alias": "tetsu_adaptive",
+      "path": "dist/campaign_3000_public_agents/tetsutani__adaptive-farming-strategy-for-kaggriculture.py",
+      "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+      "bytes": 27244
+    }
+  ]
+}

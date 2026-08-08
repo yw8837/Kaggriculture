@@ -1,0 +1,286 @@
+{
+  "discussion_pages": [
+    {
+      "count": 20,
+      "declared_total_count": 57,
+      "ids": [
+        733431,
+        731587,
+        731215,
+        730708,
+        733868,
+        733774,
+        733738,
+        733658,
+        733535,
+        733496,
+        733473,
+        733436,
+        733392,
+        733383,
+        733333,
+        733272,
+        733173,
+        733161,
+        733155,
+        733055
+      ],
+      "ids_sha256": "B11B212C20379BB262F9D0D27A015ED029B97D6C75B53FF93381FBFCF6CFD93E",
+      "page": 1,
+      "retrieved_at_utc": "2026-08-08T18:06:23.108194Z"
+    },
+    {
+      "count": 20,
+      "declared_total_count": 57,
+      "ids": [
+        733047,
+        733041,
+        733002,
+        732996,
+        732957,
+        732931,
+        732909,
+        732902,
+        732886,
+        732878,
+        732856,
+        732855,
+        732820,
+        732779,
+        732762,
+        732728,
+        732708,
+        732682,
+        732676,
+        732663
+      ],
+      "ids_sha256": "2DBBDBB781EC574B80FFFEED24D6DD74DD93B7C63676D11205ACA5683E742262",
+      "page": 2,
+      "retrieved_at_utc": "2026-08-08T18:06:23.549003Z"
+    },
+    {
+      "count": 17,
+      "declared_total_count": 57,
+      "ids": [
+        732655,
+        732646,
+        732644,
+        732623,
+        732613,
+        732598,
+        732561,
+        732511,
+        732450,
+        732354,
+        732129,
+        732121,
+        732114,
+        731953,
+        731810,
+        731635,
+        731152
+      ],
+      "ids_sha256": "E1D787817109FEEC0FC89C33EA94B8F72EAB99968D1C2513EADFDB37500C4762",
+      "page": 3,
+      "retrieved_at_utc": "2026-08-08T18:06:23.980667Z"
+    },
+    {
+      "count": 0,
+      "declared_total_count": 57,
+      "ids": [],
+      "ids_sha256": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+      "page": 4,
+      "retrieved_at_utc": "2026-08-08T18:06:24.946225Z"
+    }
+  ],
+  "finished_at_utc": "2026-08-08T18:08:30.740192Z",
+  "github_queries": [
+    {
+      "accessible_cap": 1000,
+      "pages_fetched": 2,
+      "query": "kaggriculture in:name,description,readme",
+      "refs_sha256": "D5A9BBB725914DEF2E87B93AB7F4D68204DF5B097FFDE08449E4F783781E21BB",
+      "reported_total": 161,
+      "retrieved_at_utc": "2026-08-08T18:07:40.453128Z",
+      "rows_seen": 161,
+      "unique_refs_seen": 161
+    },
+    {
+      "accessible_cap": 1000,
+      "pages_fetched": 2,
+      "query": "kaggriculture agent in:name,description,readme",
+      "refs_sha256": "C403411F464B4D6FB0E07EB905C85BCA484F3218A4C1AF82E8C272FBE9BBFCAC",
+      "reported_total": 114,
+      "retrieved_at_utc": "2026-08-08T18:07:43.141638Z",
+      "rows_seen": 114,
+      "unique_refs_seen": 114
+    },
+    {
+      "accessible_cap": 1000,
+      "pages_fetched": 1,
+      "query": "kaggriculture replay in:name,description,readme",
+      "refs_sha256": "BEB9325830B11A6054D6675737FAECCB3B39DB36B827CD907B810D19EE5316B3",
+      "reported_total": 34,
+      "retrieved_at_utc": "2026-08-08T18:07:44.186349Z",
+      "rows_seen": 34,
+      "unique_refs_seen": 34
+    },
+    {
+      "accessible_cap": 100,
+      "query": "kaggriculture in:title,body (issues and PRs)",
+      "reported_total": 93,
+      "retrieved_at_utc": "2026-08-08T18:08:02.373387Z",
+      "rows_seen": 93
+    }
+  ],
+  "kernel_pages": [
+    {
+      "count": 100,
+      "first_ref": "anshu042006/kaggriculture",
+      "last_ref": "sidhaarthshree/the-complete-getting-started-guide",
+      "page": 1,
+      "refs_sha256": "7EC8778037B76CAB305FF28F3CA76B0A6CD5545C003EF6E7FE68B582CA97BFAB",
+      "retrieved_at_utc": "2026-08-08T18:03:33.493770Z"
+    },
+    {
+      "count": 55,
+      "first_ref": "sidhaarthshree/kaggriculture-the-scarcity-rancher",
+      "last_ref": "ektarr/diversified-scheduler-baseline-kaggriculture",
+      "page": 2,
+      "refs_sha256": "4B8242C2648E150681117A0888BDF92C6F4E92BFFB75C3695EF7C83DDA99DD39",
+      "retrieved_at_utc": "2026-08-08T18:03:34.001910Z"
+    },
+    {
+      "count": 0,
+      "first_ref": null,
+      "last_ref": null,
+      "page": 3,
+      "refs_sha256": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+      "retrieved_at_utc": "2026-08-08T18:03:34.389887Z"
+    }
+  ],
+  "population_definitions": {
+    "code": "All refs returned by Kaggle kernels_list competition=kaggriculture sort=dateRun page_size=200 through the first empty page; deduplicated by ref, current version fetched by get_kernel.",
+    "discussion": "All topics returned by Kaggle competition_list_topics sort=new through declared total and a terminal empty page; deduplicated by topic id; full message trees requested.",
+    "github": "Union of three saved GitHub repository query families through the API's 1000-result cap, plus issue/PR search and official kaggle-environments PR 1394.",
+    "models": "Official Kaggle CLI model text search plus the competition Models UI. No official CLI competition filter exists, so absence is UNVERIFIED rather than zero."
+  },
+  "schema_version": 1,
+  "started_at_utc": "2026-08-08T18:03:31.941559Z",
+  "tool_evidence": [
+    {
+      "command": [
+        "C:\\Users\\최용우\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+        "-m",
+        "agent_reach.cli",
+        "doctor",
+        "--json"
+      ],
+      "finished_at_utc": "2026-08-08T18:08:14.752185Z",
+      "returncode": 0,
+      "started_at_utc": "2026-08-08T18:08:02.974219Z",
+      "stderr_excerpt": "",
+      "stderr_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "stdout_excerpt": "{\n  \"github\": {\n    \"status\": \"ok\",\n    \"name\": \"GitHub 仓库和代码\",\n    \"message\": \"完整可用（读取、搜索、Fork、Issue、PR 等）\",\n    \"tier\": 0,\n    \"backends\": [\n      \"gh CLI\"\n    ],\n    \"active_backend\": \"gh CLI\"\n  },\n  \"twitter\": {\n    \"status\": \"warn\",\n    \"name\": \"Twitter/X 推文\",\n    \"message\": \"Twitter CLI 未安装。安装方式：\\n  pipx install twitter-cli\\n或：\\n  uv tool install twitter-cli\",\n    \"tier\": 1,\n    \"backends\": [\n      \"twitter-cli\",\n      \"OpenCLI\",\n      \"bird CLI (legacy)\"\n    ],\n    \"active_backend\": null\n  },\n  \"youtube\": {\n    \"status\": \"ok\",\n    \"name\": \"YouTube 视频和字幕\",\n    \"message\": \"可提取视频信息和字幕\",\n    \"tier\": 0,\n    \"backends\": [\n      \"yt-dlp\"\n    ],\n    \"active_backend\": \"yt-dlp\"\n  },\n  \"reddit\": {\n    \"status\": \"off\",\n    \"name\": \"Reddit 帖子和评论\",\n    \"message\": \"未安装任何 Reddit 后端。注意：Reddit 没有零配置路径（匿名 .json 已被封，官方 API 需人工审批），必须用登录态。推荐：\\n  桌面：agent-reach install --channels opencli\\n       （复用 Chrome 登录态，登录过 reddit.com 即可用）\\n  服务器/存量：pipx install 'git+https://github.com/public-clis/rdt-cli.git@5e4fb3720d5c174e976cd425ccc3b879d52cac66'\\n       然后 `rdt login` 或手动写入 Cookie（见 doctor 提示）\\n中国大陆访问 Reddit 需要代理\",\n    \"tier\": 1,\n    \"backends\": [\n      \"OpenCLI\",\n      \"rdt-cli\"\n    ],\n    \"active_backend\": null\n  },\n  \"facebook\": {\n    \"status\": \"off\",\n    \"name\": \"Facebook 帖子、主页和群组\",\n    \"message\": \"未安装 Facebook 帖子、主页和群组 后端。安装：\\n  agent-reach install --channels opencli\\n然后在 Chrome 里登录 facebook.com\",\n    \"tier\": 1,\n    \"backends\": [\n      \"OpenCLI\"\n    ],\n    \"active_backend\": null\n  },\n  \"instagram\": {\n    \"status\": \"off\",\n    \"name\": \"Instagram 用户、主页和指定用户帖子\",\n    \"message\": \"未安装 Instagram 用户、主页和指定用户帖子 后端。安装：\\n  agent-reach install --channels opencli\\n然后在 Chrome 里登录 instagram.com\",\n    \"tier\": 1,\n    \"backends\": [\n      \"OpenCLI\"\n    ],\n    \"active_backend\": null\n  },\n  \"bilibili\": {\n    \"status\": \"ok\",\n    \"name\": \"B站视频、字幕和搜索\",\n    \"message\": \"B站搜索 API 可达（仅搜索，curl 直连）。完整功能建议安装 bili-cli：pipx install bilibili-cli\",\n    \"tier\": 1,\n    \"backends\": [\n      \"bili-cli\",\n      \"OpenCLI\",\n      \"B站搜索 API\"\n    ],\n    \"active_backend\": \"B站搜索 API\"\n  },\n  \"xiaohongshu\": {\n    \"status\": \"off\",\n    \"name\": \"小红书笔记\",\n    \"message\": \"未安装任何小红书后端。推荐：\\n  桌面：agent-reach install --channels opencli\\n       （复用 Chrome 登录态，刷过小红书即零配置可用）\\n  服务器：xiaohongshu-mcp（自带无头浏览器+扫码登录）：https://github.com/xpzouying/xiaohongshu-mcp\",\n    \"tier\": 1,\n    \"backends\": [\n      \"OpenCLI\",\n      \"xiaohongshu-mcp\",\n      \"xhs-cli (xiaohongshu-cli)\"\n    ],\n    \"active_backend\": null\n  },\n  \"linkedin\": {\n    \"status\": \"off\",\n    \"name\": \"LinkedIn 职业社交\",\n    \"message\": \"mcporter 已装但 LinkedIn MCP 未配置。运行：\\n  pip install linkedin-scraper-mcp\\n  mcporter config add linkedin http://localhost:3000/mcp\",\n    \"tier\": 2,\n    \"backends\": [\n      \"linkedin-scraper-mcp\",\n      \"Jina Reader\"\n    ],\n    \"active_backend\": null\n  },\n  \"xiaoyuzhou\": {\n    \"status\": \"off\",\n    \"name\": \"小宇宙播客转文字\",\n    \"message\": \"需要 ffmpeg（音频转码和切片）。安装：\\n  Ubuntu/Debian: apt install -y ffmpeg\\n  macOS: brew install ffmpeg\",\n    \"tier\": 1,\n    \"backends\": [\n      \"groq-whisper\",\n      \"ffmpeg\"\n    ],\n    \"active_backend\": null\n  },\n  \"v2ex\": {\n    \"status\": \"ok\",\n    \"name\": \"V2EX 节点、主题与回复\",\n    \"message\": \"公开 API 可用（热门主题、节点浏览、主题详情、用户信息）\",\n    \"tier\": 0,\n    \"backends\": [\n      \"V2EX API (public)\"\n    ],\n    \"active_backend\": \"V2EX API (public)\"\n  },\n  \"xueqiu\": {\n    \"status\": \"warn\",\n    \"name\": \"雪球股票行情与社区动态\",\n    \"message\": \"Xueqiu API 连接失败：HTTP Error 400: 。请先登录雪球后运行：agent-reach configure --from-browser chrome\",\n    \"tier\": 1,\n    \"backends\": [\n      \"Xueqiu API (需要登录 Cookie)\"\n    ],\n    \"active_backend\": null\n  },\n  \"rss\": {\n    \"status\": \"ok\",\n    \"name\": \"RSS/Atom 订阅源\",\n    \"message\": \"可读取 RSS/Atom 源\",\n    \"tier\": 0,\n    \"backends\": [\n      \"feedparser\"\n    ],\n    \"active_backend\": \"feedparser\"\n  },\n  \"exa_search\": {\n    \"status\": \"ok\",\n    \"name\": \"全网语义搜索\",\n    \"message\": \"全网语义搜索可用（免费，无需 API Key）\",\n    \"tier\": 0,\n    \"backends\": [\n      \"Exa via mcporter\"\n    ],\n    \"active_backend\": \"Exa via mcporter\"\n  },\n  \"web\": {\n    \"status\": \"ok\",\n    \"name\": \"任意网页\",\n    \"message\": \"通过 Jina Reader 读取任意网页（curl https://r.jina.ai/URL）\",\n    \"tier\": 0,\n    \"backends\": [\n      \"Jina Reader\"\n    ],\n    \"active_backend\": \"Jina Reader\"\n  }\n}\n",
+      "stdout_sha256": "A7A03F2C1A28B05C3B58D1BF213E57DD454C5467BB505C4298DB6F0FE5046AAC"
+    },
+    {
+      "command": [
+        "mcporter",
+        "call",
+        "exa.web_search_exa",
+        "query=site:kaggle.com/code Kaggriculture agent strategy public score 2026",
+        "numResults=10"
+      ],
+      "finished_at_utc": "2026-08-08T18:08:17.617995Z",
+      "returncode": 0,
+      "started_at_utc": "2026-08-08T18:08:14.752227Z",
+      "stderr_excerpt": "",
+      "stderr_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "stdout_excerpt": "Title: Winning solutions of kaggle competitions\nURL: https://www.kaggle.com/code/sudalairajkumar/winning-solutions-of-kaggle-competitions\nPublished: 2026-07-24T00:00:00.000Z\nAuthor: N/A\nHighlights:\nWinning solutions of kaggle competitions\n\nKaggle uses cookies from Google to deliver and enhance the quality of its services and to analyze traffic.\n\nLearn more\n\nOK, Got it.\n\n###### Something went wrong and this page crashed!\n\nIf the issue persists, it's likely a problem on our side.\n\n```\nLoading CSS chunk 1019 failed.\\n(https://www.kaggle.com/static/assets/KernelViewer.21f94db0016b9074.css)keyboard_arrow_upcontent_copyError: Loading CSS chunk 1019 failed.\\n(https://www.kaggle.com/static/assets/KernelViewer.21f94db0016b9074.css)\n    at t.onerror.t.onload (https://www.kaggle.com/static/assets/runtime.js?v=6a2ae9323d12b51e:1:12205)\n```\n\nRefresh\n\n---\n\nTitle: Kaggle 5-Day Gen. AI: Day 3 - B. Agent w/LangGraph\nURL: https://www.kaggle.com/code/rubenvisionary/kaggle-5-day-gen-ai-day-3-b-agent-w-langgraph\nPublished: N/A\nAuthor: N/A\nHighlights:\nKaggle 5-Day Gen. AI: Day 3 - B. Agent w/LangGraph\n\n---\n\nTitle: Kaggle Notebooks\nURL: https://www.kaggle.com/code\nPublished: N/A\nAuthor: N/A\nHighlights:\n⚡🧿 JED Strategy Sentinelmore_vertUpdated 6 hours agoAI Agent Security - Multi-Step Tool Attacks\n\n---\n\nTitle: Experiment Navigator|Gemini ADK Agent|Tabular Data\nURL: https://www.kaggle.com/code/lilac07/experiment-navigator-gemini-adk-agent-tabular-data?scriptVersionId=283139707\nPublished: N/A\nAuthor: N/A\nHighlights:\nExperiment Navigator|Gemini ADK Agent|Tabular Data | Kaggle\n\n---\n\nTitle: Agent Tools - MCP & Human in the loop | Kaggle\nURL: https://www.kaggle.com/code/shivs404sheth/agent-tools-mcp-human-in-the-loop\nPublished: N/A\nAuthor: N/A\nHighlights:\nAgent Tools - MCP & Human in the loop | Kaggle\n\n---\n\nTitle: Agent Deployment | Kaggle\nURL: https://www.kaggle.com/code/raagbhutani/agent-deployment\nPublished: N/A\nAuthor: N/A\nHighlights:\nAgent Deployment | Kaggle\n\nKaggle uses cookies from Google to deliver and enhance the quality of its services and to analyze traffic.\n\nLearn more\n\nOK, Got it.\n\n###### Something went wrong and this page crashed!\n\nIf the issue persists, it's likely a problem on our side.\n\n```\nLoading CSS chunk 1019 failed.\\n(https://www.kaggle.com/static/assets/KernelViewer.21f94db0016b9074.css)keyboard_arrow_upcontent_copyError: Loading CSS chunk 1019 failed.\\n(https://www.kaggle.com/static/assets/KernelViewer.21f94db0016b9074.css)\n    at t.onerror.t.onload (https://www.kaggle.com/static/assets/runtime.js?v=564736c497c18ee7:1:10008)\n```\n\nRefresh\n\n---\n\nTitle: TF-Agent for HungryGoose | Kaggle\nURL: https://www.kaggle.com/code/evilmage93/tf-agent-for-hungrygoose\nPublished: N/A\nAuthor: N/A\nHighlights:\nTF-Agent for HungryGoose | Kaggle\n\nKaggle uses cookies from Google to deliver and enhance the quality of its services and to analyze traffic.\n\nLearn more\n\nOK, Got it.\n\n###### Something went wrong and this page crashed!\n\nIf the issue persists, it's likely a problem on our side.\n\n```\nLoading CSS chunk 1019 failed.\\n(https://www.kaggle.com/static/assets/KernelViewer.21f94db0016b9074.css)keyboard_arrow_upcontent_copyError: Loading CSS chunk 1019 failed.\\n(https://www.kaggle.com/static/assets/KernelViewer.21f94db0016b9074.css)\n    at t.onerror.t.onload (https://www.kaggle.com/static/assets/runtime.js?v=4ba3a325dae96ba2:1:10006)\n```\n\nRefresh\n\n---\n\nTitle: AIMO 3 | (42/50) - Stable LB | Possible 43+ (Luck) | Kaggle\nURL: https://www.kaggle.com/code/datasciencegrad/aimo-3-42-50-stable-lb-possible-43-luck?scriptVersionId=296084282\nPublished: N/A\nAuthor: N/A\nHighlights:\nAIMO 3 | (42/50) - Stable LB | Possible 43+ (Luck) | Kaggle\n...\nAIMO 3 | (42/50) - Stable LB | Possible 43+ (Luck) | Kaggle\n\n---\n\nTitle: Model validation in a competition dissect 2\nURL: https://www.kaggle.com/code/ivankomarov/model-validation-in-a-competition-dissect-2\nPublished: N/A\nAuthor: N/A\nHighlights:\n‹ß\u0010\u0000€ªªªêÿž\u0000q¸Kie´¹wÚæ\u001e¾DX„Edd¤GddEdF¥{.U‘\u0001Qbªâf\u001a®¦j©ªæî–\u0011î?n¯ò¡XK»·iqóáÊÈ+####î1k#‘ÈJä„‘Ýcª\u001e§mŒ Y\u00029¹÷jïÕÉ\u001fï?_,þ¹›Aåkuº÷êä?z P—9#ÍN7ªk+Bqº÷ àÄK¯èôÖ\bR°F%\u0005zi4H \bÜÔ y¹¨NF ¤sÄ= á\u0005þÂ²Tt’`Ð\u000eÙÉš<\u0002¯Ð:ò9ký2:d\u0010RqÇ5\u001akÊ™5…ñŽ\u00017Ú“ö9“ZÐ6„¥QÊl\u0018œñ8=T-Èq+\u001b^°\u0004}i¶m”±\u0004¨\u0005ØVÃù5p#\b6ÒWLškà“ñT\u0018³rð\u0002_Ô%\bô\bKkj¨[åe£hY×Î´–“cûÃf-iÓ\u0018ë9\u0018û\u001b)|• ZKNÑ‚z)\u0004©¥—¨\"ÇQQ>ˆÓ\u0010jÜÊº­— ‡JRQ\u0006qª\u0017l\u001cºç+ª)âF\u0019;ÆúÏ4=<wÁ¦å\u0013Áèk@\u001bÍ)g\u0003ðåââÚÒu³uýNJS|½Þä9\u0003ß5xÑÐÖ'O¸FPí _\u000f°‘Z˜Í=k°¤/ô«%çç\u001e­_ÈšØ\u0003ä0˜N\u0006éádt0š\u000e¹Ås@™i\u0001öXÆ“tÜ\u000795wXÒAAï®¯i\u0003ïÑS¯\u001f—Ä†J½>\u000e•N\u0012Î5Ÿò€}\u000eÿ;Rä¬t2âJ’ö œå9«¼o\\–$È¹iµwqiL©(æ¦NJ'\u0013\u0000ÛE×i\u000e‚–dOYøj>\u0015¯þ­ø¯ó««›ÙãÇ¯wÿ,f_nÎß=Þ/>@\u000e,q\u001e½ä :GÞ%OmÓy² ‹h=Z™8'9\u0011 ÓÉèàp„\u0005bqxDËØ¹‘Ø1w/(©W`Iå¬±ÄÖÄ=ƒÊÒòô7Ùl6\u00077×D¨Qu^r\u0017sS3àÖ8g¬,¥Î\u0019j£»Ú´~¡ø\u0004ù'éHg\\\\ÆÂ´…\"®$_Åš¼Ñb\u000f\u001cÅX,‰A#ØHÖÌ\u001e(\u001c\u0010—\u001a\u001d\b–L†A2Æ \"ÊýŒ¬±$—,q-¹Ñ±ä†ÉN·®2ÖóÖÃ;D\u0007r\u0010’l£uM¶ÕˆNc-y„ÄD‚Ë³Ö5j¹$§‚!R/OÎèdƒåx\u0005[Âï´Ž\"nIŽ(`ç­ yMà›\u001a–¥ÑŠ\u0000é#I®ÚGN. |^.Ñ-\u0002¸“¢\u0013(ùÅkÜ¹³%ÖRuùµöd³Qš†£4•á8MQd8IÓ\"Ãiš\u000e\u001cÉÿ é\u001a…]î6Ø0’`\u0010°®\u001bKÊ ð0Ô9s¾S$¼»\u001dxâ!S–¯ØU'ÞÌ»º0Êe—×77oÓ8\u001eð0”B\u0019¾bâ­Fäá‡…âä ®\"OA©IH”\u0013X\u0006,¡¹8Ä‘R4G\u001aBŠ\u00062û;cW\u001ey8\u0006\u001f´ò†ª¸ÑÎ\u0003#Šç\u0003õµpÃ½p>J!¼z,Cöp‰(\u0006Dwýxiì yÕ[¶šç\u0016¨¡'E\u001fžÍUw\u0000„ámMÚ_E™¢GäwÝµØˆ31 1[“ö7ÒyÒd{Ì¬U \u0001Ÿå\u001e²±\u0006ð•t±z\u0015…ýŒJ1¦Œ\u0000ì.8=?,Ã9Íôv\u0019S˜\u0007edÉQÅtËIÊƒƒD®Q¯LÖ¬“:•\u0003GãVERG\u0018‘£DÎp¤«aMÆ ;X$ûÌá&Ü9ºƒ-œ\\[æ<6MÌ;[ç8>X\u001e\u0007|<\u0018ðåáÐ· \u001d„~Ý?ÿÀ`\u001e_\u0011\"8MÙÛîY_Ã‹= ]Ø…:äa\u0015ÊP„Ô\u0016¹‹¹%ô¤2Ã½\u0003ifb¶4\u001dˆ\u0018›†´¸¨¤\u0012= {¸ ­ÿd\u0004õ\u0018ë÷]œ\u001fc½¹\u0016ýc‘‹X6jÖßõ\u0000]ÞÅ56½-ä§ b©\u001dYÿ¥UÔÛÂ\u001b`Ï`\u001aäÒw\u0019¤ð‡¬sH\u0014Ô\u001ev”\u0010ÅQ\u0000ªØ¥\\|ðÿ\u0004È¶ÇULZä2·©[zîŒvp\u0014e{\"D\u000f\"xÆÅŠté+8\u0003\u0011 Räé\u0015:½m\u001f2xÞõw\\U\u000fïõCþ\u0007\u0007//÷\u000fý¸’‚òêØ¥[ZLëÅ|+ýgÙëscjÝ*µ ù\u0012’—{UÊ9æ1ïú½M\"©8ô\u001cÛ†÷Aì¤§Hœ8&\u001bYBî\u001f\u001f5®ƒ‡0ÈÂqõ vdƒp˜¦iø\u001c\\-n£ñðæÓâh\u001edÞ¶´ë\u001fï8z^õhÛÞíY‘Zz\b o—L0€ÐäYå˜‰!A¾ü0¿¼À}Ø°4EE\u0014(=–Þ \u0006\u0014C\u001b7­«zhËp¡²ë\u001f\u0003·†&\u0007R\u0005O.\bA¹6õúÊŸøM§¹ÑKY\u0006!\u0004WÑbú÷‡ù$½\u0019ý\u001d„áèæ§£À4^Öò7=J\u0011d ¶)‡BÑqâà\u00026G—„¾µä\u0016èVA\u0006šÄæîâH‹Çì\u001füXå 2X¢r´óA(ÖêÇÒš¶\u0019p€¹´â`ÿƒãÖ‘}l¬iÈzI.È\u000eó€¦N LY’x”šìÇKYÎqò'L€á\u001eU\u001béÿ\" îx,kÔX’\u001dàD/¨“'w&E®’ ³\"`B³ i>°\u0011w®ü \u0007ït93eÖZÅ.0ø\"7æXi…•3\u001cµw\bßO¨»ª|I¿ê>^àÏ±ÿÕJ|-_ºœ–‡” \u0015ñ\u0006ž}¯\u0014šž‰Ç%òKè¨\u001a2‰¥z:¦!\u001d•\u0016›ªP°³É·É`<\u001dOŽ\u0006\u0007\u00145Ñ¢i“^ö\u001bé³e¼\u001fÑo\u0011Ì\u001c­8àxàÚºFÛ=*´%=rcæ¢hËv\"Óïh@‘Äß·¢È\u0013‹d¨\u001a;“wm+Å9*Àw·\"CÞŠ™\u0007 Ëo{lš”æ2'\u0002ÿv¹ûB\u0012WaÓ(É\u001b{*'J¼)9U>}foé©¼õ,s\u0005u\"K\u0012Ç+ª16¶LXÈÞzš:—±së%WÄB†­¯ŒeÙóû¡½#ëŒf!;\u000f„e,\u001b\u001d{,d\u000ek:w,»{ »¥\u0003\u0010%5^ì\u0018–RÈ\u0002*<«Ô»ÙðØ«YÈ\u0004zº5B.% –±a:\u001cDé(J\u0007‹Á8\u001b\u001cfé4N§“Éd2ý—Aèú®-”t\u0015",
+      "stdout_sha256": "FEB80B0B47B41509FD0FF285E5C75EAB066DC01011B52447C52B8FFC4572E73E"
+    },
+    {
+      "command": [
+        "mcporter",
+        "call",
+        "exa.web_search_exa",
+        "query=site:kaggle.com/discussions/kaggriculture balance strategy",
+        "numResults=10"
+      ],
+      "finished_at_utc": "2026-08-08T18:08:19.901336Z",
+      "returncode": 0,
+      "started_at_utc": "2026-08-08T18:08:17.618062Z",
+      "stderr_excerpt": "",
+      "stderr_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "stdout_excerpt": "No search results found. Please try a different query.\n",
+      "stdout_sha256": "18B16D40DAD7A0A388CE4DBD5C84990BD16B37A677E15FFC32938D9B5B1782C1"
+    },
+    {
+      "command": [
+        "mcporter",
+        "call",
+        "exa.web_search_exa",
+        "query=Kaggriculture GitHub agent market planning replay",
+        "numResults=10"
+      ],
+      "finished_at_utc": "2026-08-08T18:08:22.320725Z",
+      "returncode": 0,
+      "started_at_utc": "2026-08-08T18:08:19.901368Z",
+      "stderr_excerpt": "",
+      "stderr_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "stdout_excerpt": "Title: deliverables/submission_checklist.md\nURL: https://github.com/deepeshumrao/kaggriculture-agent/blob/main/deliverables/submission_checklist.md\nPublished: N/A\nAuthor: N/A\nHighlights:\n- Branch: main\n- Repository: deepeshumrao/kaggriculture-agent\n...\n> Deliverable hub. Work top to bottom before you submit on Kaggle.\n> Status legend: ✅ done · ⏳ needs the real competition env cells · ⬜ your action.\n...\n- [x] ✅ Identified the real game: spatial, 2-player, 30 days = 720 turns.\n- [x] ✅ Decoded the real obs/action contract (see `real-kaggriculture-api` memo\n + `deliverables/MECHANICS_CALIBRATION.md`).\n...\n- [ ] ⏳ Note the **exact submission deadline** from the live Kaggle page.\n- [ ] ⏳ Confirm the **env creation** call (e.g. `make(\" \")` / `kagglehub`)\n and **how agents are submitted** (function vs notebook).\n...\n- [ ] ⏳ Note the **scoring formula** and leaderboard mechanics.\n...\n## 1. Adapt to the real sim ✅ (built) / ⏳ (final wiring)\n...\n- [x] ✅ Real-protocol agent implemented: `src/kaggriculture_agent/real/`\n (`protocol`, `local_env`, `brain`, `submission`).\n- [x] ✅ Local simulator reproduces the real obs/action shapes for dev + tests.\n- [ ] ⏳ Set the real env name in `scripts/run_kaggle.py --env `.\n- [ ] ⏳ (Optional) Calibrate `local_env.Mechanics` from one real episode — see\n `MECHANICS_CALIBRATION.md`. *Does not affect leaderboard correctness.*\n...\n- [x] ✅ **Writeup** — `notebooks/kaggle_writeup.ipynb` (real agent; runs clean).\n- [x] ✅ **Rationale** — `deliverables/rationale.md` (real agent).\n- [x] ✅ **Video script** — `deliverables/video_script.md` (real agent).\n...\n- [ ] ⬜ **Video** — record from the script, upload, paste the link.\n- [ ] ⬜ **Code link** — repo or Kaggle notebook, public/accessible.\n- [ ] ⬜ Paste video + code links into the writeup header cell.\n...\n- [x] ✅ `python -m pytest -q` → 66 green.\n- [x] ✅ `python scripts/run_real.py --verbose` → full 720-turn game, prints score.\n- [x] ✅ `python scripts/run_kaggle.py` → runs the shipped submission (local\n fallback until `kaggle_environments` + real env are available).\n- [x] ✅ No secrets committed (`.env` is git-ignored).\n- [ ] ⬜ README quickstart works on a fresh clone.\n...\n- [ ] ⏳ Submit `deliverables/kaggriculture_submission.py` (top-level `agent(obs)`)\n per the competition's instructions (function or notebook).\n- [ ] ⬜ Writeup submitted with all links.\n- [ ] ⬜ Screenshot your leaderboard score for the writeup.\n...\n] ⬜ Confirm badge/certificate appears on Kaggle profile.\n- [ ] ⬜ Save final score + leaderboard\n...\nin `BUILD_JOURNAL.md`.\n...\n**Bottom line:** all code + written deliverables are ready. The only true blockers\nare the competition-only details (⏳): env name, submit format, deadline, scoring —\ngrab them from the joined competition page, then submit.\n\n---\n\nTitle: Kaggriculture | Kaggle\nURL: https://www.kaggle.com/competitions/kaggriculture\nPublished: N/A\nAuthor: N/A\nHighlights:\nKaggriculture | Kaggle\n\nKaggle uses cookies from Google to deliver and enhance the quality of its services and to analyze traffic.\n\nOK, Got it.\n\n###### Something went wrong and this page crashed!\n\nIf the issue persists, it's likely a problem on our side.\n\n```\nLoading chunk 5533 failed.\n(error: https://www.kaggle.com/static/assets/5533.46f7a874496ca8ad.js)keyboard_arrow_upcontent_copyChunkLoadError\n    at i.f.j (https://www.kaggle.com/static/assets/runtime.js?v=abec8867a26b588f:1:13386)\n    at https://www.kaggle.com/static/assets/runtime.js?v=abec8867a26b588f:1:898\n    at Array.reduce (<anonymous>)\n    at i.e (https://www.kaggle.com/static/assets/runtime.js?v=abec8867a26b588f:1:877)\n    at Object.requireAsync (https://www.kaggle.com/static/assets/app.js?v=68fef5ac62b335b3:1:2920142)\n    at v (https://www.kaggle.com/static/assets/app.js?v=68fef5ac62b335b3:1:4915837)\n    at r.resolveAsync (https://www.kaggle.com/static/assets/app.js?v=68fef5ac62b335b3:1:4918052)\n    at r.loadAsync (https://www.kaggle.com/static/assets/app.js?v=68fef5ac62b335b3:1:4917796)\n    at r.componentDidMount (https://www.kaggle.com/static/assets/app.js?v=68fef5ac62b335b3:1:4916911)\n    at sg (https://www.kaggle.com/static/assets/vendor.js?v=c9016ab40db98160:241:665270)\n```\n\nRefresh\n\n---\n\nTitle: Security - Overview · deepeshumrao/kaggriculture-agent - GitHub\nURL: https://github.com/deepeshumrao/kaggriculture-agent/security\nPublished: N/A\nAuthor: deepeshumrao\nHighlights:\nOverview · deepeshumrao/kaggriculture-agent · GitHub\n...\nThe Kaggriculture agent ships with a dedicated Security & Guardrail Monitor (`src/kaggriculture_agent/security/`) that defends against four threat classes. It is wired into the agent loop, the LLM policy, and the logging system, and is on by default (`Agent()` creates a`SecurityMonitor` automatically).\n...\nOn any detected threat it logs a`SECURITY VIOLATION` line, and either sanitizes the data (poisoning) or halts the action and returns the agent to a safe, neutral state (`WAIT`/ raised`SecurityViolation`).\n...\n- Hard caps enforced from`config.py`:\n- - `max_turns`(default 500) — halts runaway game loops.\n- `max_llm_calls`(default 200) — halts runaway API spend, counted before each call.\n- `max_llm_response_chars`(default 20 000) — rejects oversized responses.\n- Exceeding any cap raises`SecurityViolation(DENIAL_OF_WALLET)` and stops execution.\n...\nAll caps live in`src/kaggriculture_agent/config.py` under the SECURITY sections. Tune them there (or via env) for the real competition's limits.\n...\nDetection is pattern/heuristic based (appropriate for this sim). For a production, adversary-facing deployment you would add: allow-listed action schemas from the model, semantic injection classifiers, per-key spend metering via the provider dashboard, and signed/authenticated tool responses.\n\n---\n\nTitle: 👒 Kaggriculture, hosted by Google and Kaggle, is live! | Kaggle\nURL: https://www.linkedin.com/posts/kaggle_kaggriculture-activity-7490093215396601856-4HFh\nPublished: 2026-08-03T00:00:00.000Z\nAuthor: Kaggle\nHighlights:\n# Kaggle’s Post\n\n Kaggle \n\n 521,358 followers \n",
+      "stdout_sha256": "5BDF7C8F76E51F9ED06C367C833C0DEF3ECFE16212E489E63031075502BD4218"
+    },
+    {
+      "command": [
+        "mcporter",
+        "call",
+        "context7.resolve-library-id",
+        "query=Kaggle CLI kernel listing pagination metadata",
+        "libraryName=Kaggle API"
+      ],
+      "finished_at_utc": "2026-08-08T18:08:26.157279Z",
+      "returncode": 0,
+      "started_at_utc": "2026-08-08T18:08:22.320802Z",
+      "stderr_excerpt": "",
+      "stderr_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "stdout_excerpt": "Available Libraries:\n\n- Title: Kaggle CLI\n- Context7-compatible library ID: /kaggle/kaggle-cli\n- Description: The official command-line interface to interact with Kaggle, enabling users to manage competitions, datasets, models, and notebooks directly from the terminal.\n- Code Snippets: 580\n- Source Reputation: High\n- Benchmark Score: 77.06\n----------\n- Title: Kaggle\n- Context7-compatible library ID: /websites/kaggle\n- Description: Kaggle is a platform for data science competitions, datasets, and machine learning projects where users can collaborate and showcase their skills.\n- Code Snippets: 393\n- Source Reputation: High\n- Benchmark Score: 61.58\n[mcporter] stderr from npx\nContext7 Documentation MCP Server v4.0.0 running on stdio\n",
+      "stdout_sha256": "7F47DA6615567D731B4D1ED1C2BA3AF29BC7A2D4C20064C60F92166F4963074C"
+    },
+    {
+      "command": [
+        "mcporter",
+        "call",
+        "context7.query-docs",
+        "libraryId=/kaggle/kaggle-cli",
+        "query=List and paginate competition notebooks discussions and models with JSON metadata"
+      ],
+      "finished_at_utc": "2026-08-08T18:08:30.740108Z",
+      "returncode": 0,
+      "started_at_utc": "2026-08-08T18:08:26.157311Z",
+      "stderr_excerpt": "",
+      "stderr_sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "stdout_excerpt": "### kaggle competitions topics list\n\nSource: https://github.com/kaggle/kaggle-cli/blob/main/docs/competitions.md\n\nLists discussion topics for a specific competition, with support for sorting, searching, and pagination.\n\n```APIDOC\n## kaggle competitions topics list\n\n### Description\nLists discussion topics for a competition. This command lets you browse discussion topics for a specific competition.\n\n### Usage\n`kaggle competitions topics list [COMPETITION] [options]`\n\n### Arguments\n- **COMPETITION** (string) - Optional - Competition URL suffix (e.g., titanic). Optional if default competition is configured.\n\n### Options\n- **-s, --sort-by <SORT_BY>** - Optional - Sort order. Valid options: hot, top, new, recent, active, relevance.\n- **--search <SEARCH>** - Optional - Search query to filter topics.\n- **--page-size <PAGE_SIZE>** - Optional - Number of items to show on a page. Default is 20, max is 200.\n- **--page-token <PAGE_TOKEN>** - Optional - Page token for results paging.\n- **-v, --csv** - Optional - Print results in CSV format.\n- **-q, --quiet** - Optional - Suppress verbose output.\n```\n\n--------------------------------\n\n### List benchmark discussion topics\n\nSource: https://github.com/kaggle/kaggle-cli/blob/main/docs/benchmarks.md\n\nRetrieves discussion topics for a specific benchmark with support for sorting, searching, and pagination.\n\n```bash\nkaggle benchmarks topics list kaggle/chess\n```\n\n--------------------------------\n\n### kaggle models list\n\nSource: https://github.com/kaggle/kaggle-cli/blob/main/skills/references/models.md\n\nLists public models. Supports sorting, searching, filtering by owner, and pagination. Can output results in CSV format.\n\n```APIDOC\n## kaggle models list\n\n### Description\nLists public models. Supports sorting, searching, filtering by owner, and pagination. Can output results in CSV format.\n\n### Usage\n```bash\nkaggle models list [options]\n```\n\n### Options\n- `--sort-by <SORT>`: Sort order.\n- `-s, --search <TERM>`: Search text.\n- `--owner <OWNER>`: Models owned by a user or organization.\n- `--page-size <SIZE>`: Page size.\n- `--page-token <TOKEN>`: Page token.\n- `-v, --csv`: Print CSV.\n\n### Examples\n```bash\nkaggle models list\nkaggle models list --owner google --sort-by downloadCount\nkaggle m list -s gemma -v\n```\n\n### Purpose\nFind model handles in `<owner>/<model-name>` format.\n```\n\n--------------------------------\n\n### kernels files CLI — supports --format json via print_results\n\nSource: https://github.com/kaggle/kaggle-cli/blob/main/src/kaggle/api/kaggle_api_extended.py\n\nThe `kernels_list_files_cli` method (lines 5891-5920) shows the stdout format for `kaggle kernels files`. It calls `self.print_results(..., output_format=output_format)` which supports `--format json` (also `csv` and `table`). The CLI parser (cli.py:1213) adds `_add_output_format_args()` which provides `--format` and `--csv` flags. The output fields are `[\"name\", \"size\", \"creationDate\"]`. The same pattern (JSON support via `print_results`) applies to `kaggle competitions submissions` (competition_submissions_cli, lines 1996-2039), which uses fields `[\"ref\", \"fileName\", \"date\", \"description\", \"status\", \"publicScore\", \"privateScore\"]` and also has `_add_output_format_args()` in its parser (cli.py:272).\n\n```python\n    def kernels_list_files_cli(\n        self, kernel, kernel_opt=None, csv_display=False, page_token=None, page_size=20, output_format=None\n    ):\n        kernel = kernel or kernel_opt\n        result = self.kernels_list_files(kernel, page_token, page_size)\n\n        if result is None:\n            print(\"No files found\")\n            return\n\n        next_page_token = result.nextPageToken\n        if next_page_token:\n            print(\"Next Page Token = {}\".format(next_page_token))\n        fields = [\"name\", \"size\", \"creationDate\"]\n        self.print_results(\n            result.files,\n            fields,\n            csv_display=csv_display,\n            output_format=output_format,\n        )\n```\n\n--------------------------------\n\n### Competition metadata template\n\nSource: https://github.com/kaggle/kaggle-cli/blob/main/docs/competition_creation.md\n\nThe JSON structure required for defining competition settings.\n\n```json\n{\n  \"title\": \"INSERT_TITLE_HERE\",\n  \"slug\": \"INSERT_SLUG_HERE\",\n  \"briefDescription\": \"INSERT_BRIEF_DESCRIPTION_HERE\",\n  \"privacy\": \"PUBLIC\",\n  \"disableKernels\": false,\n  \"hackathon\": false,\n  \"cloneCompetitionId\": null,\n  \"cloneExcludeCompetitionData\": null,\n  \"clonePageNames\": null,\n  \"licenseId\": null,\n  \"organizationId\": null,\n  \"numPrizes\": null,\n  \"restrictLinkToEmailList\": null,\n  \"reward\": null\n}\n```\n[mcporter] stderr from npx\nContext7 Documentation MCP Server v4.0.0 running on stdio\n",
+      "stdout_sha256": "A51B8F6227985DE214C67F5E92E8404F8582EFB67B2E776767A71F7229669E96"
+    },
+    {
+      "evidence": "mcporter ad-hoc Serena server activated project campaign_3000; get_symbols_overview and find_symbol inspected src/kaggriculture_lab/research/kaggle_inventory.py::collect_inventory.",
+      "observed_symbols": [
+        "_utc_now",
+        "_run_json",
+        "collect_inventory",
+        "main"
+      ],
+      "retrieved_at_utc": "2026-08-08T18:08:30.740173Z",
+      "status": "USED",
+      "tool": "serena"
+    },
+    {
+      "reason": "No concrete Kaggle/GitHub URL remained blocked after official API and Jina Reader access; policy forbids gratuitous fallback use.",
+      "retrieved_at_utc": "2026-08-08T18:08:30.740177Z",
+      "status": "NOT_INVOKED",
+      "tool": "insane-search"
+    }
+  ]
+}

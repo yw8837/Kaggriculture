@@ -1,0 +1,624 @@
+{
+  "schema_version": 1,
+  "run_id": "campaign_3000_ray_c45_addendum_v1",
+  "created_at_utc": "2026-08-08T18:41:40.856605+00:00",
+  "verdict": "ADDENDUM_SCREEN_EXECUTED_NON_PROMOTION",
+  "relationship": {
+    "parent_evidence": "research/campaign_3000/05_engine_screen",
+    "parent_manifest_sha256": "A819E229B8FA101730B759AE30B224D692944129B55E7A3B1BEA44ACBDC70D48",
+    "policy": "Separate addendum. Do not edit or reinterpret the immutable five-agent evidence."
+  },
+  "authority": {
+    "scope": "local read-only agent evaluation and addendum evidence generation",
+    "external_actions": "FORBIDDEN",
+    "fresh_seed_opening": "FORBIDDEN",
+    "promotion_eligible": false
+  },
+  "seed_policy": {
+    "status": "CONSUMED_SCREEN",
+    "seeds": [
+      23000,
+      23001,
+      23002,
+      23003,
+      23004,
+      23005,
+      23006,
+      23007
+    ],
+    "historical_registry_path": "configs/fa_ab_seed_registry.json",
+    "historical_registry_sha256": "A443626FF1E6FE2B84C9036454263AA4E8349C3E4ADE3686A6E449C3BA699C61",
+    "historical_pool": "candidates.A.development",
+    "historical_pool_range": "23000-23015",
+    "historical_pool_state": "opened=true, consumed=true"
+  },
+  "candidate": {
+    "alias": "ray_c45_exact",
+    "path": "dist/campaign_3000_public_agents/ray_c45.py",
+    "sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73",
+    "bytes": 26545,
+    "source_identity_note": "File docstring says C45; embedded __version__ says C64_HORIZON25. The path and SHA, not the label, define the evaluated bytes."
+  },
+  "notebook_provenance": {
+    "ref": "raykkretzschmar/kaggriculture-rank-your-agent",
+    "url": "https://www.kaggle.com/code/raykkretzschmar/kaggriculture-rank-your-agent",
+    "version": 10,
+    "author": "Rayk Kretzschmar",
+    "license_name": "Apache 2.0",
+    "observed_best_score": 2927.4,
+    "observed_best_score_version": 9,
+    "notebook_source_sha256": "C9D5EB18E836807577650255D514D645BEC3710C4265196FB667E6C197F5288C",
+    "notebook_source_bytes": 65117,
+    "metadata_sha256": "C460E555D576E18A9C2AC60AE8BB8BE6B0F4182B646124136F2937E538393368",
+    "page_reader_sha256": "530E9EC60B5BB1213F4834A981585D710B534A5519ABFF221BDB4BD1C0294E99",
+    "retrieved_at_utc": "2026-08-08T18:05:55.692285Z",
+    "inventory_path": "research/campaign_3000/02_public_meta/code_inventory.jsonl",
+    "inventory_row_canonical_sha256": "E53C34030EF89CA00C643C50F4764C2DFD90B65501B771831A4C09E78CF7F090",
+    "mapping_basis": "Exact candidate path/SHA and notebook provenance were supplied in the parent handoff; the local inventory independently confirms notebook ref/version/license/score/source metadata."
+  },
+  "engine": {
+    "version": "1.32.6",
+    "kaggriculture_py_sha256": "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF",
+    "scenario_override": {},
+    "episode_steps": 720,
+    "workers": 8,
+    "seat_policy": "both seats"
+  },
+  "executed_cells": 64,
+  "overall": {
+    "raw_games": 64,
+    "valid_games": 64,
+    "failures": 0,
+    "hidden_abnormal_status_failures": 0,
+    "status_pairs": {
+      "DONE/DONE": 64
+    },
+    "wins": 30,
+    "ties": 0,
+    "losses": 34,
+    "match_score": 0.46875,
+    "candidate_money": {
+      "mean": 92619.53125,
+      "median": 85179.0,
+      "min": 52328.0,
+      "max": 144630.0
+    },
+    "margin": {
+      "mean": 7126.96875,
+      "median": -120.5,
+      "min": -2965.0,
+      "max": 33134.0
+    },
+    "game_runtime_seconds": {
+      "mean": 6.583189123437364,
+      "median": 6.410840749998897,
+      "p95": 7.632046885001182,
+      "p99": 7.714207112003569,
+      "max": 7.771170200001507,
+      "total": 421.3241038999913
+    },
+    "failure_examples": [],
+    "by_candidate_seat": {
+      "0": {
+        "raw_games": 32,
+        "valid_games": 32,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 32
+        },
+        "wins": 15,
+        "ties": 0,
+        "losses": 17,
+        "match_score": 0.46875,
+        "candidate_money": {
+          "mean": 92606.4375,
+          "median": 85179.0,
+          "min": 52328.0,
+          "max": 144630.0
+        },
+        "margin": {
+          "mean": 7129.84375,
+          "median": -120.5,
+          "min": -2965.0,
+          "max": 33134.0
+        },
+        "game_runtime_seconds": {
+          "mean": 6.605826393749794,
+          "median": 6.423875650001719,
+          "p95": 7.6803841550045036,
+          "p99": 7.743140744002522,
+          "max": 7.771170200001507,
+          "total": 211.3864445999934
+        },
+        "failure_examples": []
+      },
+      "1": {
+        "raw_games": 32,
+        "valid_games": 32,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 32
+        },
+        "wins": 15,
+        "ties": 0,
+        "losses": 17,
+        "match_score": 0.46875,
+        "candidate_money": {
+          "mean": 92632.625,
+          "median": 85184.0,
+          "min": 52328.0,
+          "max": 144630.0
+        },
+        "margin": {
+          "mean": 7124.09375,
+          "median": -120.5,
+          "min": -2965.0,
+          "max": 33134.0
+        },
+        "game_runtime_seconds": {
+          "mean": 6.5605518531249345,
+          "median": 6.410840749998897,
+          "p95": 7.411587714996494,
+          "p99": 7.581434989001209,
+          "max": 7.643524300001445,
+          "total": 209.9376592999979
+        },
+        "failure_examples": []
+      }
+    }
+  },
+  "by_opponent": {
+    "tetsu_adaptive": {
+      "raw_games": 16,
+      "valid_games": 16,
+      "failures": 0,
+      "hidden_abnormal_status_failures": 0,
+      "status_pairs": {
+        "DONE/DONE": 16
+      },
+      "wins": 0,
+      "ties": 0,
+      "losses": 16,
+      "match_score": 0.0,
+      "candidate_money": {
+        "mean": 97553.875,
+        "median": 101635.0,
+        "min": 52328.0,
+        "max": 143913.0
+      },
+      "margin": {
+        "mean": -643.375,
+        "median": -638.5,
+        "min": -1537.0,
+        "max": -119.0
+      },
+      "game_runtime_seconds": {
+        "mean": 6.850238781250027,
+        "median": 6.7603868000005605,
+        "p95": 7.703357000003962,
+        "p99": 7.757607560001998,
+        "max": 7.771170200001507,
+        "total": 109.60382050000044
+      },
+      "failure_examples": [],
+      "by_candidate_seat": {
+        "0": {
+          "raw_games": 8,
+          "valid_games": 8,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 8
+          },
+          "wins": 0,
+          "ties": 0,
+          "losses": 8,
+          "match_score": 0.0,
+          "candidate_money": {
+            "mean": 97553.875,
+            "median": 101635.0,
+            "min": 52328.0,
+            "max": 143913.0
+          },
+          "margin": {
+            "mean": -643.375,
+            "median": -638.5,
+            "min": -1537.0,
+            "max": -119.0
+          },
+          "game_runtime_seconds": {
+            "mean": 6.923101487500389,
+            "median": 6.910004350000236,
+            "p95": 7.739524040002652,
+            "p99": 7.764840968001735,
+            "max": 7.771170200001507,
+            "total": 55.384811900003115
+          },
+          "failure_examples": []
+        },
+        "1": {
+          "raw_games": 8,
+          "valid_games": 8,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 8
+          },
+          "wins": 0,
+          "ties": 0,
+          "losses": 8,
+          "match_score": 0.0,
+          "candidate_money": {
+            "mean": 97553.875,
+            "median": 101635.0,
+            "min": 52328.0,
+            "max": 143913.0
+          },
+          "margin": {
+            "mean": -643.375,
+            "median": -638.5,
+            "min": -1537.0,
+            "max": -119.0
+          },
+          "game_runtime_seconds": {
+            "mean": 6.777376074999665,
+            "median": 6.754331750002166,
+            "p95": 7.573423465001178,
+            "p99": 7.629504133001392,
+            "max": 7.643524300001445,
+            "total": 54.21900859999732
+          },
+          "failure_examples": []
+        }
+      }
+    },
+    "kaito_v22_price_impact": {
+      "raw_games": 16,
+      "valid_games": 16,
+      "failures": 0,
+      "hidden_abnormal_status_failures": 0,
+      "status_pairs": {
+        "DONE/DONE": 16
+      },
+      "wins": 14,
+      "ties": 0,
+      "losses": 2,
+      "match_score": 0.875,
+      "candidate_money": {
+        "mean": 87690.125,
+        "median": 83289.5,
+        "min": 55047.0,
+        "max": 144630.0
+      },
+      "margin": {
+        "mean": 4109.375,
+        "median": 4431.5,
+        "min": -2965.0,
+        "max": 8128.0
+      },
+      "game_runtime_seconds": {
+        "mean": 6.380759693750861,
+        "median": 6.3764179999998305,
+        "p95": 6.560348999999405,
+        "p99": 6.5835807600044065,
+        "max": 6.589388700005657,
+        "total": 102.09215510001377
+      },
+      "failure_examples": [],
+      "by_candidate_seat": {
+        "0": {
+          "raw_games": 8,
+          "valid_games": 8,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 8
+          },
+          "wins": 7,
+          "ties": 0,
+          "losses": 1,
+          "match_score": 0.875,
+          "candidate_money": {
+            "mean": 87689.5,
+            "median": 83289.5,
+            "min": 55047.0,
+            "max": 144630.0
+          },
+          "margin": {
+            "mean": 4107.0,
+            "median": 4431.5,
+            "min": -2965.0,
+            "max": 8128.0
+          },
+          "game_runtime_seconds": {
+            "mean": 6.400409462501557,
+            "median": 6.3764179999998305,
+            "p95": 6.540048780004872,
+            "p99": 6.579520716005499,
+            "max": 6.589388700005657,
+            "total": 51.203275700012455
+          },
+          "failure_examples": []
+        },
+        "1": {
+          "raw_games": 8,
+          "valid_games": 8,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 8
+          },
+          "wins": 7,
+          "ties": 0,
+          "losses": 1,
+          "match_score": 0.875,
+          "candidate_money": {
+            "mean": 87690.75,
+            "median": 83289.5,
+            "min": 55047.0,
+            "max": 144630.0
+          },
+          "margin": {
+            "mean": 4111.75,
+            "median": 4431.5,
+            "min": -2965.0,
+            "max": 8128.0
+          },
+          "game_runtime_seconds": {
+            "mean": 6.361109925000164,
+            "median": 6.359136350001791,
+            "p95": 6.500124339997637,
+            "p99": 6.540560147997384,
+            "max": 6.550669099997322,
+            "total": 50.888879400001315
+          },
+          "failure_examples": []
+        }
+      }
+    },
+    "boatlee_v14": {
+      "raw_games": 16,
+      "valid_games": 16,
+      "failures": 0,
+      "hidden_abnormal_status_failures": 0,
+      "status_pairs": {
+        "DONE/DONE": 16
+      },
+      "wins": 0,
+      "ties": 0,
+      "losses": 16,
+      "match_score": 0.0,
+      "candidate_money": {
+        "mean": 97775.75,
+        "median": 101960.5,
+        "min": 52365.0,
+        "max": 144002.0
+      },
+      "margin": {
+        "mean": -579.5,
+        "median": -470.0,
+        "min": -1500.0,
+        "max": -122.0
+      },
+      "game_runtime_seconds": {
+        "mean": 6.773791593749138,
+        "median": 6.781944750000548,
+        "p95": 6.88769337499798,
+        "p99": 6.950124274997142,
+        "max": 6.965731999996933,
+        "total": 108.38066549998621
+      },
+      "failure_examples": [],
+      "by_candidate_seat": {
+        "0": {
+          "raw_games": 8,
+          "valid_games": 8,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 8
+          },
+          "wins": 0,
+          "ties": 0,
+          "losses": 8,
+          "match_score": 0.0,
+          "candidate_money": {
+            "mean": 97775.75,
+            "median": 101960.5,
+            "min": 52365.0,
+            "max": 144002.0
+          },
+          "margin": {
+            "mean": -579.5,
+            "median": -470.0,
+            "min": -1500.0,
+            "max": -122.0
+          },
+          "game_runtime_seconds": {
+            "mean": 6.778870862498479,
+            "median": 6.781944750000548,
+            "p95": 6.845070969996595,
+            "p99": 6.8517668339975355,
+            "max": 6.85344079999777,
+            "total": 54.230966899987834
+          },
+          "failure_examples": []
+        },
+        "1": {
+          "raw_games": 8,
+          "valid_games": 8,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 8
+          },
+          "wins": 0,
+          "ties": 0,
+          "losses": 8,
+          "match_score": 0.0,
+          "candidate_money": {
+            "mean": 97775.75,
+            "median": 101960.5,
+            "min": 52365.0,
+            "max": 144002.0
+          },
+          "margin": {
+            "mean": -579.5,
+            "median": -470.0,
+            "min": -1500.0,
+            "max": -122.0
+          },
+          "game_runtime_seconds": {
+            "mean": 6.768712324999797,
+            "median": 6.793359650000639,
+            "p95": 6.929313974997422,
+            "p99": 6.958448394997031,
+            "max": 6.965731999996933,
+            "total": 54.14969859999837
+          },
+          "failure_examples": []
+        }
+      }
+    },
+    "fa04_g1": {
+      "raw_games": 16,
+      "valid_games": 16,
+      "failures": 0,
+      "hidden_abnormal_status_failures": 0,
+      "status_pairs": {
+        "DONE/DONE": 16
+      },
+      "wins": 16,
+      "ties": 0,
+      "losses": 0,
+      "match_score": 1.0,
+      "candidate_money": {
+        "mean": 87458.375,
+        "median": 81811.5,
+        "min": 74141.0,
+        "max": 106150.0
+      },
+      "margin": {
+        "mean": 25621.375,
+        "median": 24116.0,
+        "min": 22176.0,
+        "max": 33134.0
+      },
+      "game_runtime_seconds": {
+        "mean": 6.327966424999431,
+        "median": 6.3298928499971225,
+        "p95": 6.516141600002811,
+        "p99": 6.559542720001991,
+        "max": 6.570393000001786,
+        "total": 101.2474627999909
+      },
+      "failure_examples": [],
+      "by_candidate_seat": {
+        "0": {
+          "raw_games": 8,
+          "valid_games": 8,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 8
+          },
+          "wins": 8,
+          "ties": 0,
+          "losses": 0,
+          "match_score": 1.0,
+          "candidate_money": {
+            "mean": 87406.625,
+            "median": 81811.5,
+            "min": 74141.0,
+            "max": 106150.0
+          },
+          "margin": {
+            "mean": 25635.25,
+            "median": 24116.0,
+            "min": 22176.0,
+            "max": 33134.0
+          },
+          "game_runtime_seconds": {
+            "mean": 6.320923762498751,
+            "median": 6.2980165500011935,
+            "p95": 6.541244860001097,
+            "p99": 6.564563372001649,
+            "max": 6.570393000001786,
+            "total": 50.56739009999001
+          },
+          "failure_examples": []
+        },
+        "1": {
+          "raw_games": 8,
+          "valid_games": 8,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 8
+          },
+          "wins": 8,
+          "ties": 0,
+          "losses": 0,
+          "match_score": 1.0,
+          "candidate_money": {
+            "mean": 87510.125,
+            "median": 81811.5,
+            "min": 74141.0,
+            "max": 106150.0
+          },
+          "margin": {
+            "mean": 25607.5,
+            "median": 24116.0,
+            "min": 22176.0,
+            "max": 33134.0
+          },
+          "game_runtime_seconds": {
+            "mean": 6.3350090875001115,
+            "median": 6.369124349999765,
+            "p95": 6.474983735002389,
+            "p99": 6.493442987002999,
+            "max": 6.498057800003153,
+            "total": 50.68007270000089
+          },
+          "failure_examples": []
+        }
+      }
+    }
+  },
+  "provenance": {
+    "config": {
+      "path": "research/campaign_3000/05_engine_screen_ray_c45_addendum/screen_config.json",
+      "sha256": "F6AF82A81186A6F18CC80962ADA7E2E03A8FF0BE79727BC6B8A5B68F254362A6"
+    },
+    "cell_registry": {
+      "path": "research/campaign_3000/05_engine_screen_ray_c45_addendum/cell_registry.json",
+      "sha256": "B6F2A9D16345625B72FAB7DD05A1E886D6D085DA29B1B20F0F8C74BBE1E215FD"
+    },
+    "raw_report": {
+      "path": "research/campaign_3000/05_engine_screen_ray_c45_addendum/raw/ray_c45_exact.json",
+      "sha256": "39672F7A9E4A6C09C8A9FCF8ADC44B678FC8D3C17E200995A317D329C331AA3A"
+    },
+    "raw_games": {
+      "path": "research/campaign_3000/05_engine_screen_ray_c45_addendum/raw_games.json",
+      "sha256": "45A2E19913B4D2AD2001255B06962D29E975556CB7EAA317FF730E73C31998FF"
+    },
+    "completed_receipt": {
+      "path": "research/campaign_3000/05_engine_screen_ray_c45_addendum/receipts/engine_1.32.6.completed.json",
+      "sha256": "2E36DE392B8F0F7AEE751FE4DE6FE28D2A60E1E4FF4364E9CB32BF89E3B75C0D"
+    }
+  },
+  "definitions": {
+    "score": "Win=1, tie=0.5, loss=0 over valid games.",
+    "margin": "Ray candidate final reward minus opponent final reward.",
+    "runtime": "Whole-game wall time for engine plus both agents.",
+    "hidden_abnormal_status": "First env.steps status outside ACTIVE/INACTIVE/DONE caught by the hardened runner before a terminal DONE can hide it."
+  },
+  "limitations": [
+    "All seeds are consumed and promotion-ineligible.",
+    "Sixteen cells per opponent are a screen, not a confidence-qualified promotion set.",
+    "Notebook best score 2927.4 is remote inventory context, not this local agent result.",
+    "The candidate file's C45 docstring and C64_HORIZON25 version marker disagree."
+  ]
+}

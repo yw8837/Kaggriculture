@@ -1,0 +1,2675 @@
+{
+  "schema_version": 1,
+  "run_id": "campaign_3000_engine_public_screen_v1",
+  "created_at_utc": "2026-08-08T18:33:18.986450+00:00",
+  "verdict": "SCREEN_EXECUTED_NON_PROMOTION",
+  "seed_policy": {
+    "status": "CONSUMED_SCREEN",
+    "seeds": [
+      23000,
+      23001,
+      23002,
+      23003,
+      23004,
+      23005,
+      23006,
+      23007
+    ],
+    "comparison_seeds": [
+      23000,
+      23001
+    ],
+    "historical_registry_path": "configs/fa_ab_seed_registry.json",
+    "historical_registry_sha256": "A443626FF1E6FE2B84C9036454263AA4E8349C3E4ADE3686A6E449C3BA699C61",
+    "historical_pool": "candidates.A.development",
+    "historical_pool_range": "23000-23015",
+    "historical_pool_state": "opened=true, consumed=true",
+    "promotion_eligible": false,
+    "rationale": "Reuse only already-consumed historical development seeds for engine/public-agent screening; no fresh confirmation, robustness, holdout, or promotion seed is opened."
+  },
+  "authority": {
+    "scope": "local read-only agent evaluation and evidence generation",
+    "external_uploads": "FORBIDDEN",
+    "competition_submissions": "FORBIDDEN",
+    "publications": "FORBIDDEN",
+    "fresh_promotion_seed_opening": "FORBIDDEN"
+  },
+  "provenance": {
+    "config": {
+      "path": "research/campaign_3000/05_engine_screen/screen_config.json",
+      "sha256": "49AA865CF993DE29D22715C593FAA81134C2E97F3A5C25AE00589D3ACC311E72"
+    },
+    "cell_registry": {
+      "path": "research/campaign_3000/05_engine_screen/cell_registry.json",
+      "sha256": "CC328669C935ED4D60201CBF1C94F067BC884F725A94CCD8495B68F37C9DC4AE"
+    },
+    "raw_games": {
+      "path": "research/campaign_3000/05_engine_screen/raw_games.json",
+      "sha256": "1449F6AB335BC910B57995EE4711042C052FC4B2F1D823D0333B57DF813C42DA"
+    },
+    "engine_comparison": {
+      "path": "research/campaign_3000/05_engine_screen/engine_comparison.json",
+      "sha256": "7FBC90385D085932544E693836CA4B24EC28E9AAD7A28DB9AA442E22FB46B2F6"
+    },
+    "completed_receipts": {
+      "1.32.6": {
+        "path": "research/campaign_3000/05_engine_screen/receipts/engine_1.32.6.completed.json",
+        "sha256": "8C04811AFF8B0FF21AF3AF3858FFF863A71F8F07ABFB2FC8D57104C943933F85"
+      },
+      "1.32.2": {
+        "path": "research/campaign_3000/05_engine_screen/receipts/engine_1.32.2.completed.json",
+        "sha256": "C639A877E9DD1B3C7CEAE1528267A82E2D07F4A6BC5703ABE87AE91DFF5B977B"
+      }
+    }
+  },
+  "executed_cells": {
+    "engine_1.32.6": 240,
+    "engine_1.32.6_fa04_g1": 80,
+    "engine_1.32.6_public_round_robin": 160,
+    "engine_1.32.2_comparison": 20,
+    "engine_specific_total": 260
+  },
+  "engine_1.32.6_fa04_g1": {
+    "overall": {
+      "raw_games": 80,
+      "valid_games": 80,
+      "failures": 0,
+      "hidden_abnormal_status_failures": 0,
+      "status_pairs": {
+        "DONE/DONE": 80
+      },
+      "wins": 80,
+      "ties": 0,
+      "losses": 0,
+      "match_score": 1.0,
+      "candidate_money": {
+        "mean": 86396.85,
+        "median": 82749.0,
+        "min": 49206.0,
+        "max": 109388.0
+      },
+      "margin": {
+        "mean": 24744.775,
+        "median": 23637.0,
+        "min": 17450.0,
+        "max": 33134.0
+      },
+      "game_runtime_seconds": {
+        "mean": 6.491696322500411,
+        "median": 6.527217449998716,
+        "p95": 7.243752200003655,
+        "p99": 7.31901433000392,
+        "max": 7.336080699999002,
+        "total": 519.3357058000329
+      },
+      "failure_examples": [],
+      "by_candidate_seat": {
+        "0": {
+          "raw_games": 40,
+          "valid_games": 40,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 40
+          },
+          "wins": 40,
+          "ties": 0,
+          "losses": 0,
+          "match_score": 1.0,
+          "candidate_money": {
+            "mean": 86327.15,
+            "median": 82749.0,
+            "min": 49206.0,
+            "max": 109388.0
+          },
+          "margin": {
+            "mean": 24693.7,
+            "median": 23637.0,
+            "min": 17676.0,
+            "max": 33134.0
+          },
+          "game_runtime_seconds": {
+            "mean": 6.491746112500186,
+            "median": 6.527217449998716,
+            "p95": 7.234861635006382,
+            "p99": 7.256220040003246,
+            "max": 7.26490300000296,
+            "total": 259.66984450000746
+          },
+          "failure_examples": []
+        },
+        "1": {
+          "raw_games": 40,
+          "valid_games": 40,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 40
+          },
+          "wins": 40,
+          "ties": 0,
+          "losses": 0,
+          "match_score": 1.0,
+          "candidate_money": {
+            "mean": 86466.55,
+            "median": 82749.0,
+            "min": 49206.0,
+            "max": 109388.0
+          },
+          "margin": {
+            "mean": 24795.85,
+            "median": 23637.0,
+            "min": 17450.0,
+            "max": 33134.0
+          },
+          "game_runtime_seconds": {
+            "mean": 6.491646532500636,
+            "median": 6.577459649997763,
+            "p95": 7.290087590002804,
+            "p99": 7.327655530001429,
+            "max": 7.336080699999002,
+            "total": 259.6658613000254
+          },
+          "failure_examples": []
+        }
+      }
+    },
+    "by_public_agent": {
+      "boatlee_v14": {
+        "raw_games": 16,
+        "valid_games": 16,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 16
+        },
+        "wins": 16,
+        "ties": 0,
+        "losses": 0,
+        "match_score": 1.0,
+        "candidate_money": {
+          "mean": 87458.375,
+          "median": 81811.5,
+          "min": 74141.0,
+          "max": 106150.0
+        },
+        "margin": {
+          "mean": 25621.375,
+          "median": 24116.0,
+          "min": 22176.0,
+          "max": 33134.0
+        },
+        "game_runtime_seconds": {
+          "mean": 6.604678006250197,
+          "median": 6.582835749999504,
+          "p95": 7.295222350003314,
+          "p99": 7.310626630004845,
+          "max": 7.314477700005227,
+          "total": 105.67484810000315
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 8,
+            "ties": 0,
+            "losses": 0,
+            "match_score": 1.0,
+            "candidate_money": {
+              "mean": 87406.625,
+              "median": 81811.5,
+              "min": 74141.0,
+              "max": 106150.0
+            },
+            "margin": {
+              "mean": 25635.25,
+              "median": 24116.0,
+              "min": 22176.0,
+              "max": 33134.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.590804887499871,
+              "median": 6.582831750001787,
+              "p95": 7.250391545001912,
+              "p99": 7.26200070900275,
+              "max": 7.26490300000296,
+              "total": 52.72643909999897
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 8,
+            "ties": 0,
+            "losses": 0,
+            "match_score": 1.0,
+            "candidate_money": {
+              "mean": 87510.125,
+              "median": 81811.5,
+              "min": 74141.0,
+              "max": 106150.0
+            },
+            "margin": {
+              "mean": 25607.5,
+              "median": 24116.0,
+              "min": 22176.0,
+              "max": 33134.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.618551125000522,
+              "median": 6.592075099997601,
+              "p95": 7.305491870004334,
+              "p99": 7.3126805340050485,
+              "max": 7.314477700005227,
+              "total": 52.948409000004176
+            },
+            "failure_examples": []
+          }
+        }
+      },
+      "flex_adaptive": {
+        "raw_games": 16,
+        "valid_games": 16,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 16
+        },
+        "wins": 16,
+        "ties": 0,
+        "losses": 0,
+        "match_score": 1.0,
+        "candidate_money": {
+          "mean": 87458.375,
+          "median": 81811.5,
+          "min": 74141.0,
+          "max": 106150.0
+        },
+        "margin": {
+          "mean": 25621.375,
+          "median": 24116.0,
+          "min": 22176.0,
+          "max": 33134.0
+        },
+        "game_runtime_seconds": {
+          "mean": 6.454994656250619,
+          "median": 6.441780249999283,
+          "p95": 7.167582475000017,
+          "p99": 7.191480415000479,
+          "max": 7.197454900000594,
+          "total": 103.27991450000991
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 8,
+            "ties": 0,
+            "losses": 0,
+            "match_score": 1.0,
+            "candidate_money": {
+              "mean": 87406.625,
+              "median": 81811.5,
+              "min": 74141.0,
+              "max": 106150.0
+            },
+            "margin": {
+              "mean": 25635.25,
+              "median": 24116.0,
+              "min": 22176.0,
+              "max": 33134.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.443146112500472,
+              "median": 6.43082024999967,
+              "p95": 7.153450479999447,
+              "p99": 7.1567900959997495,
+              "max": 7.157624999999825,
+              "total": 51.54516890000377
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 8,
+            "ties": 0,
+            "losses": 0,
+            "match_score": 1.0,
+            "candidate_money": {
+              "mean": 87510.125,
+              "median": 81811.5,
+              "min": 74141.0,
+              "max": 106150.0
+            },
+            "margin": {
+              "mean": 25607.5,
+              "median": 24116.0,
+              "min": 22176.0,
+              "max": 33134.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.466843200000767,
+              "median": 6.441780249999283,
+              "p95": 7.148982035001245,
+              "p99": 7.187760327000724,
+              "max": 7.197454900000594,
+              "total": 51.734745600006136
+            },
+            "failure_examples": []
+          }
+        }
+      },
+      "indar_route_2948_9": {
+        "raw_games": 16,
+        "valid_games": 16,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 16
+        },
+        "wins": 16,
+        "ties": 0,
+        "losses": 0,
+        "match_score": 1.0,
+        "candidate_money": {
+          "mean": 84677.6875,
+          "median": 79056.5,
+          "min": 71350.0,
+          "max": 103005.0
+        },
+        "margin": {
+          "mean": 22700.5,
+          "median": 22245.0,
+          "min": 17450.0,
+          "max": 31306.0
+        },
+        "game_runtime_seconds": {
+          "mean": 6.306570506249045,
+          "median": 6.288524649997271,
+          "p95": 7.045693949999986,
+          "p99": 7.088273189996835,
+          "max": 7.098917999996047,
+          "total": 100.90512809998472
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 8,
+            "ties": 0,
+            "losses": 0,
+            "match_score": 1.0,
+            "candidate_money": {
+              "mean": 84628.25,
+              "median": 79056.5,
+              "min": 71350.0,
+              "max": 103005.0
+            },
+            "margin": {
+              "mean": 22735.875,
+              "median": 22245.0,
+              "min": 17676.0,
+              "max": 31306.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.28954204999809,
+              "median": 6.288524649997271,
+              "p95": 6.96502264000228,
+              "p99": 6.966586608001235,
+              "max": 6.966977600000973,
+              "total": 50.31633639998472
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 8,
+            "ties": 0,
+            "losses": 0,
+            "match_score": 1.0,
+            "candidate_money": {
+              "mean": 84727.125,
+              "median": 79056.5,
+              "min": 71350.0,
+              "max": 103005.0
+            },
+            "margin": {
+              "mean": 22665.125,
+              "median": 22245.0,
+              "min": 17450.0,
+              "max": 31306.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.3235989625,
+              "median": 6.345442400001048,
+              "p95": 7.074080109997885,
+              "p99": 7.093950421996414,
+              "max": 7.098917999996047,
+              "total": 50.5887917
+            },
+            "failure_examples": []
+          }
+        }
+      },
+      "kaito_v22_price_impact": {
+        "raw_games": 16,
+        "valid_games": 16,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 16
+        },
+        "wins": 16,
+        "ties": 0,
+        "losses": 0,
+        "match_score": 1.0,
+        "candidate_money": {
+          "mean": 84931.4375,
+          "median": 90921.0,
+          "min": 49206.0,
+          "max": 109388.0
+        },
+        "margin": {
+          "mean": 24159.25,
+          "median": 23202.5,
+          "min": 18348.0,
+          "max": 32425.0
+        },
+        "game_runtime_seconds": {
+          "mean": 6.37529166250124,
+          "median": 6.392297900001722,
+          "p95": 7.058252475002519,
+          "p99": 7.07249209499787,
+          "max": 7.076051999996707,
+          "total": 102.00466660001985
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 8,
+            "ties": 0,
+            "losses": 0,
+            "match_score": 1.0,
+            "candidate_money": {
+              "mean": 84787.625,
+              "median": 90921.0,
+              "min": 49206.0,
+              "max": 109388.0
+            },
+            "margin": {
+              "mean": 23826.875,
+              "median": 23202.5,
+              "min": 18348.0,
+              "max": 28318.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.392539075000968,
+              "median": 6.392297900001722,
+              "p95": 7.03759452499944,
+              "p99": 7.068360504997254,
+              "max": 7.076051999996707,
+              "total": 51.140312600007746
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 8,
+            "ties": 0,
+            "losses": 0,
+            "match_score": 1.0,
+            "candidate_money": {
+              "mean": 85075.25,
+              "median": 89543.0,
+              "min": 49206.0,
+              "max": 109388.0
+            },
+            "margin": {
+              "mean": 24491.625,
+              "median": 23202.5,
+              "min": 18348.0,
+              "max": 32425.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.358044250001512,
+              "median": 6.388415800000075,
+              "p95": 6.986541210002542,
+              "p99": 7.039163682004073,
+              "max": 7.052319300004456,
+              "total": 50.8643540000121
+            },
+            "failure_examples": []
+          }
+        }
+      },
+      "tetsu_adaptive": {
+        "raw_games": 16,
+        "valid_games": 16,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 16
+        },
+        "wins": 16,
+        "ties": 0,
+        "losses": 0,
+        "match_score": 1.0,
+        "candidate_money": {
+          "mean": 87458.375,
+          "median": 81811.5,
+          "min": 74141.0,
+          "max": 106150.0
+        },
+        "margin": {
+          "mean": 25621.375,
+          "median": 24116.0,
+          "min": 22176.0,
+          "max": 33134.0
+        },
+        "game_runtime_seconds": {
+          "mean": 6.716946781250954,
+          "median": 6.6414200000035635,
+          "p95": 7.265999425002519,
+          "p99": 7.322064444999706,
+          "max": 7.336080699999002,
+          "total": 107.47114850001526
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 8,
+            "ties": 0,
+            "losses": 0,
+            "match_score": 1.0,
+            "candidate_money": {
+              "mean": 87406.625,
+              "median": 81811.5,
+              "min": 74141.0,
+              "max": 106150.0
+            },
+            "margin": {
+              "mean": 25635.25,
+              "median": 24116.0,
+              "min": 22176.0,
+              "max": 33134.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.742698437501531,
+              "median": 6.709295849999762,
+              "p95": 7.239773655004683,
+              "p99": 7.24206593100389,
+              "max": 7.242639000003692,
+              "total": 53.94158750001225
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 8,
+            "ties": 0,
+            "losses": 0,
+            "match_score": 1.0,
+            "candidate_money": {
+              "mean": 87510.125,
+              "median": 81811.5,
+              "min": 74141.0,
+              "max": 106150.0
+            },
+            "margin": {
+              "mean": 25607.5,
+              "median": 24116.0,
+              "min": 22176.0,
+              "max": 33134.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.691195125000377,
+              "median": 6.629530700000032,
+              "p95": 7.290268219999053,
+              "p99": 7.3269182039990115,
+              "max": 7.336080699999002,
+              "total": 53.529561000003014
+            },
+            "failure_examples": []
+          }
+        }
+      }
+    },
+    "equal_result_vector_groups": [
+      {
+        "result_vector_sha256": "1663CD132ECB1150564441C5E7C9DEF3B3C8F6B7D45F92B55EC2E7CE674719F5",
+        "agents": [
+          "indar_route_2948_9"
+        ]
+      },
+      {
+        "result_vector_sha256": "2FE9C3032B5391DA31C9B0E33B1E0F3605C2D415AD85D54484D7C14CB5059ABB",
+        "agents": [
+          "boatlee_v14",
+          "flex_adaptive",
+          "tetsu_adaptive"
+        ]
+      },
+      {
+        "result_vector_sha256": "EA12F3508035EFC657B71EBB1A5E3E0C5EB24E48504E158A9DA549BF7F8CCFD0",
+        "agents": [
+          "kaito_v22_price_impact"
+        ]
+      }
+    ]
+  },
+  "engine_1.32.6_public_round_robin": {
+    "overall_runner_candidate_perspective": {
+      "raw_games": 160,
+      "valid_games": 160,
+      "failures": 0,
+      "hidden_abnormal_status_failures": 0,
+      "status_pairs": {
+        "DONE/DONE": 160
+      },
+      "wins": 70,
+      "ties": 16,
+      "losses": 74,
+      "match_score": 0.4875,
+      "candidate_money": {
+        "mean": 93002.875,
+        "median": 86270.0,
+        "min": 48280.0,
+        "max": 147422.0
+      },
+      "margin": {
+        "mean": 843.4,
+        "median": 0.0,
+        "min": -8673.0,
+        "max": 9104.0
+      },
+      "game_runtime_seconds": {
+        "mean": 7.638034068124989,
+        "median": 6.8907300000028044,
+        "p95": 8.983242840000628,
+        "p99": 20.015332490998844,
+        "max": 20.067546799997217,
+        "total": 1222.0854508999982
+      },
+      "failure_examples": [],
+      "by_candidate_seat": {
+        "0": {
+          "raw_games": 80,
+          "valid_games": 80,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 80
+          },
+          "wins": 35,
+          "ties": 8,
+          "losses": 37,
+          "match_score": 0.4875,
+          "candidate_money": {
+            "mean": 93002.875,
+            "median": 86270.0,
+            "min": 48280.0,
+            "max": 147422.0
+          },
+          "margin": {
+            "mean": 843.4,
+            "median": 0.0,
+            "min": -8673.0,
+            "max": 9104.0
+          },
+          "game_runtime_seconds": {
+            "mean": 7.646650917500028,
+            "median": 6.8906060500012245,
+            "p95": 8.984244435004042,
+            "p99": 20.014731470997503,
+            "max": 20.0171055000028,
+            "total": 611.7320734000023
+          },
+          "failure_examples": []
+        },
+        "1": {
+          "raw_games": 80,
+          "valid_games": 80,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 80
+          },
+          "wins": 35,
+          "ties": 8,
+          "losses": 37,
+          "match_score": 0.4875,
+          "candidate_money": {
+            "mean": 93002.875,
+            "median": 86270.0,
+            "min": 48280.0,
+            "max": 147422.0
+          },
+          "margin": {
+            "mean": 843.4,
+            "median": 0.0,
+            "min": -8673.0,
+            "max": 9104.0
+          },
+          "game_runtime_seconds": {
+            "mean": 7.62941721874995,
+            "median": 6.892868200000521,
+            "p95": 8.98324284000079,
+            "p99": 19.938458746000684,
+            "max": 20.067546799997217,
+            "total": 610.353377499996
+          },
+          "failure_examples": []
+        }
+      }
+    },
+    "pair_results": {
+      "boatlee_v14__vs__flex_adaptive": {
+        "raw_games": 16,
+        "valid_games": 16,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 16
+        },
+        "wins": 0,
+        "ties": 16,
+        "losses": 0,
+        "match_score": 0.5,
+        "candidate_money": {
+          "mean": 98462.625,
+          "median": 102674.5,
+          "min": 52814.0,
+          "max": 144777.0
+        },
+        "margin": {
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "game_runtime_seconds": {
+          "mean": 7.187076024998532,
+          "median": 7.254500749997533,
+          "p95": 8.13383419999991,
+          "p99": 8.166956359996039,
+          "max": 8.17523689999507,
+          "total": 114.99321639997652
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 0,
+            "ties": 8,
+            "losses": 0,
+            "match_score": 0.5,
+            "candidate_money": {
+              "mean": 98462.625,
+              "median": 102674.5,
+              "min": 52814.0,
+              "max": 144777.0
+            },
+            "margin": {
+              "mean": 0.0,
+              "median": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            "game_runtime_seconds": {
+              "mean": 7.2059961874983856,
+              "median": 7.254500749997533,
+              "p95": 8.155915639997328,
+              "p99": 8.171372647995522,
+              "max": 8.17523689999507,
+              "total": 57.647969499987084
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 0,
+            "ties": 8,
+            "losses": 0,
+            "match_score": 0.5,
+            "candidate_money": {
+              "mean": 98462.625,
+              "median": 102674.5,
+              "min": 52814.0,
+              "max": 144777.0
+            },
+            "margin": {
+              "mean": 0.0,
+              "median": 0.0,
+              "min": 0.0,
+              "max": 0.0
+            },
+            "game_runtime_seconds": {
+              "mean": 7.168155862498679,
+              "median": 7.210138899998128,
+              "p95": 8.084881874999336,
+              "p99": 8.097477814998491,
+              "max": 8.100626799998281,
+              "total": 57.345246899989434
+            },
+            "failure_examples": []
+          }
+        }
+      },
+      "boatlee_v14__vs__indar_route_2948_9": {
+        "raw_games": 16,
+        "valid_games": 16,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 16
+        },
+        "wins": 16,
+        "ties": 0,
+        "losses": 0,
+        "match_score": 1.0,
+        "candidate_money": {
+          "mean": 99769.25,
+          "median": 103218.0,
+          "min": 55373.0,
+          "max": 145324.0
+        },
+        "margin": {
+          "mean": 6546.625,
+          "median": 7052.5,
+          "min": 3344.0,
+          "max": 9104.0
+        },
+        "game_runtime_seconds": {
+          "mean": 6.327866562500731,
+          "median": 6.303377250002086,
+          "p95": 6.484001449998686,
+          "p99": 6.586936369996328,
+          "max": 6.612670099995739,
+          "total": 101.24586500001169
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 8,
+            "ties": 0,
+            "losses": 0,
+            "match_score": 1.0,
+            "candidate_money": {
+              "mean": 99769.25,
+              "median": 103218.0,
+              "min": 55373.0,
+              "max": 145324.0
+            },
+            "margin": {
+              "mean": 6546.625,
+              "median": 7052.5,
+              "min": 3344.0,
+              "max": 9104.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.331584725002358,
+              "median": 6.334109900002659,
+              "p95": 6.429443530001299,
+              "p99": 6.438778225999995,
+              "max": 6.441111899999669,
+              "total": 50.652677800018864
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 8,
+            "ties": 0,
+            "losses": 0,
+            "match_score": 1.0,
+            "candidate_money": {
+              "mean": 99769.25,
+              "median": 103218.0,
+              "min": 55373.0,
+              "max": 145324.0
+            },
+            "margin": {
+              "mean": 6546.625,
+              "median": 7052.5,
+              "min": 3344.0,
+              "max": 9104.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.324148399999103,
+              "median": 6.29243100000167,
+              "p95": 6.511144129998865,
+              "p99": 6.592364905996364,
+              "max": 6.612670099995739,
+              "total": 50.593187199992826
+            },
+            "failure_examples": []
+          }
+        }
+      },
+      "boatlee_v14__vs__kaito_v22_price_impact": {
+        "raw_games": 16,
+        "valid_games": 16,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 16
+        },
+        "wins": 14,
+        "ties": 0,
+        "losses": 2,
+        "match_score": 0.875,
+        "candidate_money": {
+          "mean": 87653.5,
+          "median": 82991.5,
+          "min": 55041.0,
+          "max": 144908.0
+        },
+        "margin": {
+          "mean": 4039.0,
+          "median": 4391.0,
+          "min": -2561.0,
+          "max": 7767.0
+        },
+        "game_runtime_seconds": {
+          "mean": 6.903194787499615,
+          "median": 6.885045150000224,
+          "p95": 7.037807974997122,
+          "p99": 7.067766875000234,
+          "max": 7.075256600001012,
+          "total": 110.45111659999384
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 7,
+            "ties": 0,
+            "losses": 1,
+            "match_score": 0.875,
+            "candidate_money": {
+              "mean": 87653.5,
+              "median": 82991.5,
+              "min": 55041.0,
+              "max": 144908.0
+            },
+            "margin": {
+              "mean": 4039.0,
+              "median": 4391.0,
+              "min": -2561.0,
+              "max": 7767.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.898980149998351,
+              "median": 6.885021549998783,
+              "p95": 7.016012719996434,
+              "p99": 7.023462623995947,
+              "max": 7.025325099995825,
+              "total": 55.19184119998681
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 7,
+            "ties": 0,
+            "losses": 1,
+            "match_score": 0.875,
+            "candidate_money": {
+              "mean": 87653.5,
+              "median": 82991.5,
+              "min": 55041.0,
+              "max": 144908.0
+            },
+            "margin": {
+              "mean": 4039.0,
+              "median": 4391.0,
+              "min": -2561.0,
+              "max": 7767.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.907409425000878,
+              "median": 6.90486945000157,
+              "p95": 7.04273068000075,
+              "p99": 7.06875141600096,
+              "max": 7.075256600001012,
+              "total": 55.25927540000703
+            },
+            "failure_examples": []
+          }
+        }
+      },
+      "boatlee_v14__vs__tetsu_adaptive": {
+        "raw_games": 16,
+        "valid_games": 16,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 16
+        },
+        "wins": 0,
+        "ties": 0,
+        "losses": 16,
+        "match_score": 0.0,
+        "candidate_money": {
+          "mean": 97533.5,
+          "median": 101538.0,
+          "min": 52438.0,
+          "max": 144481.0
+        },
+        "margin": {
+          "mean": -1341.125,
+          "median": -1480.0,
+          "min": -2374.0,
+          "max": -390.0
+        },
+        "game_runtime_seconds": {
+          "mean": 7.02172535624959,
+          "median": 7.013025699998252,
+          "p95": 7.217330149998816,
+          "p99": 7.274158669999088,
+          "max": 7.288365799999156,
+          "total": 112.34760569999344
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 0,
+            "ties": 0,
+            "losses": 8,
+            "match_score": 0.0,
+            "candidate_money": {
+              "mean": 97533.5,
+              "median": 101538.0,
+              "min": 52438.0,
+              "max": 144481.0
+            },
+            "margin": {
+              "mean": -1341.125,
+              "median": -1480.0,
+              "min": -2374.0,
+              "max": -390.0
+            },
+            "game_runtime_seconds": {
+              "mean": 7.045157087500229,
+              "median": 7.058607549999579,
+              "p95": 7.191723274999093,
+              "p99": 7.19326593499878,
+              "max": 7.193651599998702,
+              "total": 56.36125670000183
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 0,
+            "ties": 0,
+            "losses": 8,
+            "match_score": 0.0,
+            "candidate_money": {
+              "mean": 97533.5,
+              "median": 101538.0,
+              "min": 52438.0,
+              "max": 144481.0
+            },
+            "margin": {
+              "mean": -1341.125,
+              "median": -1480.0,
+              "min": -2374.0,
+              "max": -390.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.998293624998951,
+              "median": 6.96956069999942,
+              "p95": 7.252410790000795,
+              "p99": 7.281174797999483,
+              "max": 7.288365799999156,
+              "total": 55.986348999991606
+            },
+            "failure_examples": []
+          }
+        }
+      },
+      "flex_adaptive__vs__indar_route_2948_9": {
+        "raw_games": 16,
+        "valid_games": 16,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 16
+        },
+        "wins": 16,
+        "ties": 0,
+        "losses": 0,
+        "match_score": 1.0,
+        "candidate_money": {
+          "mean": 99769.25,
+          "median": 103218.0,
+          "min": 55373.0,
+          "max": 145324.0
+        },
+        "margin": {
+          "mean": 6546.625,
+          "median": 7052.5,
+          "min": 3344.0,
+          "max": 9104.0
+        },
+        "game_runtime_seconds": {
+          "mean": 7.6808441312509785,
+          "median": 7.638548750001064,
+          "p95": 7.949943249999706,
+          "p99": 7.974835209999219,
+          "max": 7.981058199999097,
+          "total": 122.89350610001566
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 8,
+            "ties": 0,
+            "losses": 0,
+            "match_score": 1.0,
+            "candidate_money": {
+              "mean": 99769.25,
+              "median": 103218.0,
+              "min": 55373.0,
+              "max": 145324.0
+            },
+            "margin": {
+              "mean": 6546.625,
+              "median": 7052.5,
+              "min": 3344.0,
+              "max": 9104.0
+            },
+            "game_runtime_seconds": {
+              "mean": 7.687340099999346,
+              "median": 7.621962950001034,
+              "p95": 7.9665378899993815,
+              "p99": 7.978154137999153,
+              "max": 7.981058199999097,
+              "total": 61.49872079999477
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 8,
+            "ties": 0,
+            "losses": 0,
+            "match_score": 1.0,
+            "candidate_money": {
+              "mean": 99769.25,
+              "median": 103218.0,
+              "min": 55373.0,
+              "max": 145324.0
+            },
+            "margin": {
+              "mean": 6546.625,
+              "median": 7052.5,
+              "min": 3344.0,
+              "max": 9104.0
+            },
+            "game_runtime_seconds": {
+              "mean": 7.674348162502611,
+              "median": 7.664599400002771,
+              "p95": 7.872980320003261,
+              "p99": 7.874731664002902,
+              "max": 7.875169500002812,
+              "total": 61.394785300020885
+            },
+            "failure_examples": []
+          }
+        }
+      },
+      "flex_adaptive__vs__kaito_v22_price_impact": {
+        "raw_games": 16,
+        "valid_games": 16,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 16
+        },
+        "wins": 14,
+        "ties": 0,
+        "losses": 2,
+        "match_score": 0.875,
+        "candidate_money": {
+          "mean": 87653.5,
+          "median": 82991.5,
+          "min": 55041.0,
+          "max": 144908.0
+        },
+        "margin": {
+          "mean": 4039.0,
+          "median": 4391.0,
+          "min": -2561.0,
+          "max": 7767.0
+        },
+        "game_runtime_seconds": {
+          "mean": 7.037397518749003,
+          "median": 7.0328730499968515,
+          "p95": 7.298726249999163,
+          "p99": 7.335805169997184,
+          "max": 7.345074899996689,
+          "total": 112.59836029998405
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 7,
+            "ties": 0,
+            "losses": 1,
+            "match_score": 0.875,
+            "candidate_money": {
+              "mean": 87653.5,
+              "median": 82991.5,
+              "min": 55041.0,
+              "max": 144908.0
+            },
+            "margin": {
+              "mean": 4039.0,
+              "median": 4391.0,
+              "min": -2561.0,
+              "max": 7767.0
+            },
+            "game_runtime_seconds": {
+              "mean": 7.05603494999923,
+              "median": 7.040160349999496,
+              "p95": 7.272971329998109,
+              "p99": 7.330654185996973,
+              "max": 7.345074899996689,
+              "total": 56.44827959999384
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 7,
+            "ties": 0,
+            "losses": 1,
+            "match_score": 0.875,
+            "candidate_money": {
+              "mean": 87653.5,
+              "median": 82991.5,
+              "min": 55041.0,
+              "max": 144908.0
+            },
+            "margin": {
+              "mean": 4039.0,
+              "median": 4391.0,
+              "min": -2561.0,
+              "max": 7767.0
+            },
+            "game_runtime_seconds": {
+              "mean": 7.018760087498777,
+              "median": 7.0328730499968515,
+              "p95": 7.231480339999326,
+              "p99": 7.272917427999856,
+              "max": 7.283276699999988,
+              "total": 56.15008069999021
+            },
+            "failure_examples": []
+          }
+        }
+      },
+      "flex_adaptive__vs__tetsu_adaptive": {
+        "raw_games": 16,
+        "valid_games": 16,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 16
+        },
+        "wins": 0,
+        "ties": 0,
+        "losses": 16,
+        "match_score": 0.0,
+        "candidate_money": {
+          "mean": 97533.5,
+          "median": 101538.0,
+          "min": 52438.0,
+          "max": 144481.0
+        },
+        "margin": {
+          "mean": -1341.125,
+          "median": -1480.0,
+          "min": -2374.0,
+          "max": -390.0
+        },
+        "game_runtime_seconds": {
+          "mean": 6.734153312500894,
+          "median": 6.763320750000275,
+          "p95": 6.8460115999987465,
+          "p99": 6.860984720000124,
+          "max": 6.8647280000004685,
+          "total": 107.7464530000143
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 0,
+            "ties": 0,
+            "losses": 8,
+            "match_score": 0.0,
+            "candidate_money": {
+              "mean": 97533.5,
+              "median": 101538.0,
+              "min": 52438.0,
+              "max": 144481.0
+            },
+            "margin": {
+              "mean": -1341.125,
+              "median": -1480.0,
+              "min": -2374.0,
+              "max": -390.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.741299450000952,
+              "median": 6.763320750000275,
+              "p95": 6.85221739000117,
+              "p99": 6.862225878000609,
+              "max": 6.8647280000004685,
+              "total": 53.930395600007614
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 0,
+            "ties": 0,
+            "losses": 8,
+            "match_score": 0.0,
+            "candidate_money": {
+              "mean": 97533.5,
+              "median": 101538.0,
+              "min": 52438.0,
+              "max": 144481.0
+            },
+            "margin": {
+              "mean": -1341.125,
+              "median": -1480.0,
+              "min": -2374.0,
+              "max": -390.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.727007175000836,
+              "median": 6.744436450000649,
+              "p95": 6.833343684999273,
+              "p99": 6.838486976998393,
+              "max": 6.839772799998173,
+              "total": 53.816057400006684
+            },
+            "failure_examples": []
+          }
+        }
+      },
+      "indar_route_2948_9__vs__kaito_v22_price_impact": {
+        "raw_games": 16,
+        "valid_games": 16,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 16
+        },
+        "wins": 8,
+        "ties": 0,
+        "losses": 8,
+        "match_score": 0.5,
+        "candidate_money": {
+          "mean": 85011.25,
+          "median": 79950.0,
+          "min": 52965.0,
+          "max": 143519.0
+        },
+        "margin": {
+          "mean": 519.875,
+          "median": 588.0,
+          "min": -3287.0,
+          "max": 3770.0
+        },
+        "game_runtime_seconds": {
+          "mean": 7.596713062500839,
+          "median": 7.607430649997696,
+          "p95": 8.41091897500337,
+          "p99": 8.41399115500135,
+          "max": 8.414759200000844,
+          "total": 121.54740900001343
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 4,
+            "ties": 0,
+            "losses": 4,
+            "match_score": 0.5,
+            "candidate_money": {
+              "mean": 85011.25,
+              "median": 79950.0,
+              "min": 52965.0,
+              "max": 143519.0
+            },
+            "margin": {
+              "mean": 519.875,
+              "median": 588.0,
+              "min": -3287.0,
+              "max": 3770.0
+            },
+            "game_runtime_seconds": {
+              "mean": 7.600289562502439,
+              "median": 7.562514350000129,
+              "p95": 8.400148440003614,
+              "p99": 8.40774080800409,
+              "max": 8.40963890000421,
+              "total": 60.802316500019515
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 4,
+            "ties": 0,
+            "losses": 4,
+            "match_score": 0.5,
+            "candidate_money": {
+              "mean": 85011.25,
+              "median": 79950.0,
+              "min": 52965.0,
+              "max": 143519.0
+            },
+            "margin": {
+              "mean": 519.875,
+              "median": 588.0,
+              "min": -3287.0,
+              "max": 3770.0
+            },
+            "game_runtime_seconds": {
+              "mean": 7.5931365624992395,
+              "median": 7.631650749997789,
+              "p95": 8.378064675001951,
+              "p99": 8.407420295001065,
+              "max": 8.414759200000844,
+              "total": 60.745092499993916
+            },
+            "failure_examples": []
+          }
+        }
+      },
+      "indar_route_2948_9__vs__tetsu_adaptive": {
+        "raw_games": 16,
+        "valid_games": 16,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 16
+        },
+        "wins": 0,
+        "ties": 0,
+        "losses": 16,
+        "match_score": 0.0,
+        "candidate_money": {
+          "mean": 93177.875,
+          "median": 95012.5,
+          "min": 48280.0,
+          "max": 141947.0
+        },
+        "margin": {
+          "mean": -6242.0,
+          "median": -6809.5,
+          "min": -8673.0,
+          "max": -3240.0
+        },
+        "game_runtime_seconds": {
+          "mean": 6.751456250000501,
+          "median": 6.76172910000605,
+          "p95": 6.8944409000032465,
+          "p99": 6.9032491400008436,
+          "max": 6.905451200000243,
+          "total": 108.02330000000802
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 0,
+            "ties": 0,
+            "losses": 8,
+            "match_score": 0.0,
+            "candidate_money": {
+              "mean": 93177.875,
+              "median": 95012.5,
+              "min": 48280.0,
+              "max": 141947.0
+            },
+            "margin": {
+              "mean": -6242.0,
+              "median": -6809.5,
+              "min": -8673.0,
+              "max": -3240.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.7453612624995,
+              "median": 6.739820200004033,
+              "p95": 6.854631394994795,
+              "p99": 6.860634118994349,
+              "max": 6.862134799994237,
+              "total": 53.962890099996
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 0,
+            "ties": 0,
+            "losses": 8,
+            "match_score": 0.0,
+            "candidate_money": {
+              "mean": 93177.875,
+              "median": 95012.5,
+              "min": 48280.0,
+              "max": 141947.0
+            },
+            "margin": {
+              "mean": -6242.0,
+              "median": -6809.5,
+              "min": -8673.0,
+              "max": -3240.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.757551237501502,
+              "median": 6.798250650001137,
+              "p95": 6.900313060001645,
+              "p99": 6.904423572000524,
+              "max": 6.905451200000243,
+              "total": 54.06040990001202
+            },
+            "failure_examples": []
+          }
+        }
+      },
+      "kaito_v22_price_impact__vs__tetsu_adaptive": {
+        "raw_games": 16,
+        "valid_games": 16,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 16
+        },
+        "wins": 2,
+        "ties": 0,
+        "losses": 14,
+        "match_score": 0.125,
+        "candidate_money": {
+          "mean": 83464.5,
+          "median": 77531.5,
+          "min": 49352.0,
+          "max": 147422.0
+        },
+        "margin": {
+          "mean": -4332.875,
+          "median": -4577.5,
+          "min": -8224.0,
+          "max": 2471.0
+        },
+        "game_runtime_seconds": {
+          "mean": 13.139913674999207,
+          "median": 13.09410100000241,
+          "p95": 20.029715825001404,
+          "p99": 20.059980604998056,
+          "max": 20.067546799997217,
+          "total": 210.2386187999873
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 1,
+            "ties": 0,
+            "losses": 7,
+            "match_score": 0.125,
+            "candidate_money": {
+              "mean": 83464.5,
+              "median": 77531.5,
+              "min": 49352.0,
+              "max": 147422.0
+            },
+            "margin": {
+              "mean": -4332.875,
+              "median": -4577.5,
+              "min": -8224.0,
+              "max": 2471.0
+            },
+            "game_runtime_seconds": {
+              "mean": 13.154465699999491,
+              "median": 13.131774699999369,
+              "p95": 20.016053715000453,
+              "p99": 20.01689514300233,
+              "max": 20.0171055000028,
+              "total": 105.23572559999593
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 8,
+            "valid_games": 8,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 8
+            },
+            "wins": 1,
+            "ties": 0,
+            "losses": 7,
+            "match_score": 0.125,
+            "candidate_money": {
+              "mean": 83464.5,
+              "median": 77531.5,
+              "min": 49352.0,
+              "max": 147422.0
+            },
+            "margin": {
+              "mean": -4332.875,
+              "median": -4577.5,
+              "min": -8224.0,
+              "max": 2471.0
+            },
+            "game_runtime_seconds": {
+              "mean": 13.125361649998922,
+              "median": 13.09410100000241,
+              "p95": 20.010355889998756,
+              "p99": 20.056108617997523,
+              "max": 20.067546799997217,
+              "total": 105.00289319999138
+            },
+            "failure_examples": []
+          }
+        }
+      }
+    },
+    "agent_standings": {
+      "boatlee_v14": {
+        "raw_games": 64,
+        "valid_games": 64,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 64
+        },
+        "wins": 30,
+        "ties": 16,
+        "losses": 18,
+        "match_score": 0.59375,
+        "candidate_money": {
+          "mean": 95854.71875,
+          "median": 96000.0,
+          "min": 52438.0,
+          "max": 145324.0
+        },
+        "margin": {
+          "mean": 2311.125,
+          "median": 0.0,
+          "min": -2561.0,
+          "max": 9104.0
+        },
+        "game_runtime_seconds": {
+          "mean": 6.859965682812117,
+          "median": 6.850299100002303,
+          "p95": 8.055090170001131,
+          "p99": 8.140458631999136,
+          "max": 8.17523689999507,
+          "total": 439.0378036999755
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 32,
+            "valid_games": 32,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 32
+            },
+            "wins": 15,
+            "ties": 8,
+            "losses": 9,
+            "match_score": 0.59375,
+            "candidate_money": {
+              "mean": 95854.71875,
+              "median": 96000.0,
+              "min": 52438.0,
+              "max": 145324.0
+            },
+            "margin": {
+              "mean": 2311.125,
+              "median": 0.0,
+              "min": -2561.0,
+              "max": 9104.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.870429537499831,
+              "median": 6.850299100002303,
+              "p95": 8.04378751500226,
+              "p99": 8.158123783997071,
+              "max": 8.17523689999507,
+              "total": 219.8537451999946
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 32,
+            "valid_games": 32,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 32
+            },
+            "wins": 15,
+            "ties": 8,
+            "losses": 9,
+            "match_score": 0.59375,
+            "candidate_money": {
+              "mean": 95854.71875,
+              "median": 96000.0,
+              "min": 52438.0,
+              "max": 145324.0
+            },
+            "margin": {
+              "mean": 2311.125,
+              "median": 0.0,
+              "min": -2561.0,
+              "max": 9104.0
+            },
+            "game_runtime_seconds": {
+              "mean": 6.849501828124403,
+              "median": 6.8543585000006715,
+              "p95": 8.053620490000686,
+              "p99": 8.086681294999217,
+              "max": 8.100626799998281,
+              "total": 219.1840584999809
+            },
+            "failure_examples": []
+          }
+        },
+        "attributed_hidden_abnormal_failures": 0
+      },
+      "flex_adaptive": {
+        "raw_games": 64,
+        "valid_games": 64,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 64
+        },
+        "wins": 30,
+        "ties": 16,
+        "losses": 18,
+        "match_score": 0.59375,
+        "candidate_money": {
+          "mean": 95854.71875,
+          "median": 96000.0,
+          "min": 52438.0,
+          "max": 145324.0
+        },
+        "margin": {
+          "mean": 2311.125,
+          "median": -0.0,
+          "min": -2561.0,
+          "max": 9104.0
+        },
+        "game_runtime_seconds": {
+          "mean": 7.159867746874852,
+          "median": 7.0328730499968515,
+          "p95": 8.055090170001131,
+          "p99": 8.140458631999136,
+          "max": 8.17523689999507,
+          "total": 458.2315357999905
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 32,
+            "valid_games": 32,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 32
+            },
+            "wins": 15,
+            "ties": 8,
+            "losses": 9,
+            "match_score": 0.59375,
+            "candidate_money": {
+              "mean": 95854.71875,
+              "median": 96000.0,
+              "min": 52438.0,
+              "max": 145324.0
+            },
+            "margin": {
+              "mean": 2311.125,
+              "median": -0.0,
+              "min": -2561.0,
+              "max": 9104.0
+            },
+            "game_runtime_seconds": {
+              "mean": 7.163207590624552,
+              "median": 7.040160349999496,
+              "p95": 8.053620490000686,
+              "p99": 8.086681294999217,
+              "max": 8.100626799998281,
+              "total": 229.22264289998566
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 32,
+            "valid_games": 32,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 32
+            },
+            "wins": 15,
+            "ties": 8,
+            "losses": 9,
+            "match_score": 0.59375,
+            "candidate_money": {
+              "mean": 95854.71875,
+              "median": 96000.0,
+              "min": 52438.0,
+              "max": 145324.0
+            },
+            "margin": {
+              "mean": 2311.125,
+              "median": -0.0,
+              "min": -2561.0,
+              "max": 9104.0
+            },
+            "game_runtime_seconds": {
+              "mean": 7.156527903125152,
+              "median": 7.0328730499968515,
+              "p95": 8.04378751500226,
+              "p99": 8.158123783997071,
+              "max": 8.17523689999507,
+              "total": 229.00889290000487
+            },
+            "failure_examples": []
+          }
+        },
+        "attributed_hidden_abnormal_failures": 0
+      },
+      "indar_route_2948_9": {
+        "raw_games": 64,
+        "valid_games": 64,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 64
+        },
+        "wins": 8,
+        "ties": 0,
+        "losses": 56,
+        "match_score": 0.125,
+        "candidate_money": {
+          "mean": 91158.59375,
+          "median": 91482.0,
+          "min": 48267.0,
+          "max": 143519.0
+        },
+        "margin": {
+          "mean": -4703.84375,
+          "median": -5902.0,
+          "min": -9104.0,
+          "max": 3770.0
+        },
+        "game_runtime_seconds": {
+          "mean": 7.0892200015632625,
+          "median": 6.871871799998189,
+          "p95": 8.370314110001708,
+          "p99": 8.411533411002965,
+          "max": 8.414759200000844,
+          "total": 453.7100801000488
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 32,
+            "valid_games": 32,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 32
+            },
+            "wins": 4,
+            "ties": 0,
+            "losses": 28,
+            "match_score": 0.125,
+            "candidate_money": {
+              "mean": 91158.59375,
+              "median": 91482.0,
+              "min": 48267.0,
+              "max": 143519.0
+            },
+            "margin": {
+              "mean": -4703.84375,
+              "median": -5902.0,
+              "min": -9104.0,
+              "max": 3770.0
+            },
+            "game_runtime_seconds": {
+              "mean": 7.086036846875913,
+              "median": 6.851415649995033,
+              "p95": 8.381670250001843,
+              "p99": 8.401233064003682,
+              "max": 8.40963890000421,
+              "total": 226.75317910002923
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 32,
+            "valid_games": 32,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 32
+            },
+            "wins": 4,
+            "ties": 0,
+            "losses": 28,
+            "match_score": 0.125,
+            "candidate_money": {
+              "mean": 91158.59375,
+              "median": 91482.0,
+              "min": 48267.0,
+              "max": 143519.0
+            },
+            "margin": {
+              "mean": -4703.84375,
+              "median": -5902.0,
+              "min": -9104.0,
+              "max": 3770.0
+            },
+            "game_runtime_seconds": {
+              "mean": 7.092403156250612,
+              "median": 6.886189800003194,
+              "p95": 8.305028750001657,
+              "p99": 8.382258335001826,
+              "max": 8.414759200000844,
+              "total": 226.95690100001957
+            },
+            "failure_examples": []
+          }
+        },
+        "attributed_hidden_abnormal_failures": 0
+      },
+      "kaito_v22_price_impact": {
+        "raw_games": 64,
+        "valid_games": 64,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 64
+        },
+        "wins": 14,
+        "ties": 0,
+        "losses": 50,
+        "match_score": 0.21875,
+        "candidate_money": {
+          "mean": 83796.21875,
+          "median": 78118.0,
+          "min": 49352.0,
+          "max": 147469.0
+        },
+        "margin": {
+          "mean": -3232.6875,
+          "median": -3195.5,
+          "min": -8224.0,
+          "max": 3287.0
+        },
+        "game_runtime_seconds": {
+          "mean": 8.669304760937166,
+          "median": 6.989580449997447,
+          "p95": 19.937516900000265,
+          "p99": 20.035768781000733,
+          "max": 20.067546799997217,
+          "total": 554.8355046999786
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 32,
+            "valid_games": 32,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 32
+            },
+            "wins": 7,
+            "ties": 0,
+            "losses": 25,
+            "match_score": 0.21875,
+            "candidate_money": {
+              "mean": 83796.21875,
+              "median": 78118.0,
+              "min": 49352.0,
+              "max": 147469.0
+            },
+            "margin": {
+              "mean": -3232.6875,
+              "median": -3195.5,
+              "min": -8224.0,
+              "max": 3287.0
+            },
+            "game_runtime_seconds": {
+              "mean": 8.668442943749596,
+              "median": 6.991821799998434,
+              "p95": 19.975218589998256,
+              "p99": 20.01617391900072,
+              "max": 20.0171055000028,
+              "total": 277.3901741999871
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 32,
+            "valid_games": 32,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 32
+            },
+            "wins": 7,
+            "ties": 0,
+            "losses": 25,
+            "match_score": 0.21875,
+            "candidate_money": {
+              "mean": 83796.21875,
+              "median": 78118.0,
+              "min": 49352.0,
+              "max": 147469.0
+            },
+            "margin": {
+              "mean": -3232.6875,
+              "median": -3195.5,
+              "min": -8224.0,
+              "max": 3287.0
+            },
+            "game_runtime_seconds": {
+              "mean": 8.670166578124736,
+              "median": 6.976178900000377,
+              "p95": 19.873720180000966,
+              "p99": 20.01689199399858,
+              "max": 20.067546799997217,
+              "total": 277.44533049999154
+            },
+            "failure_examples": []
+          }
+        },
+        "attributed_hidden_abnormal_failures": 0
+      },
+      "tetsu_adaptive": {
+        "raw_games": 64,
+        "valid_games": 64,
+        "failures": 0,
+        "hidden_abnormal_status_failures": 0,
+        "status_pairs": {
+          "DONE/DONE": 64
+        },
+        "wins": 62,
+        "ties": 0,
+        "losses": 2,
+        "match_score": 0.96875,
+        "candidate_money": {
+          "mean": 96241.625,
+          "median": 97009.0,
+          "min": 52983.0,
+          "max": 145187.0
+        },
+        "margin": {
+          "mean": 3314.28125,
+          "median": 2374.0,
+          "min": -2471.0,
+          "max": 8673.0
+        },
+        "game_runtime_seconds": {
+          "mean": 8.411812148437548,
+          "median": 6.825193650001893,
+          "p95": 19.937516900000265,
+          "p99": 20.035768781000733,
+          "max": 20.067546799997217,
+          "total": 538.3559775000031
+        },
+        "failure_examples": [],
+        "by_candidate_seat": {
+          "0": {
+            "raw_games": 32,
+            "valid_games": 32,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 32
+            },
+            "wins": 31,
+            "ties": 0,
+            "losses": 1,
+            "match_score": 0.96875,
+            "candidate_money": {
+              "mean": 96241.625,
+              "median": 97009.0,
+              "min": 52983.0,
+              "max": 145187.0
+            },
+            "margin": {
+              "mean": 3314.28125,
+              "median": 2374.0,
+              "min": -2471.0,
+              "max": 8673.0
+            },
+            "game_runtime_seconds": {
+              "mean": 8.402053421875053,
+              "median": 6.825425449998875,
+              "p95": 19.873720180000966,
+              "p99": 20.01689199399858,
+              "max": 20.067546799997217,
+              "total": 268.8657095000017
+            },
+            "failure_examples": []
+          },
+          "1": {
+            "raw_games": 32,
+            "valid_games": 32,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "status_pairs": {
+              "DONE/DONE": 32
+            },
+            "wins": 31,
+            "ties": 0,
+            "losses": 1,
+            "match_score": 0.96875,
+            "candidate_money": {
+              "mean": 96241.625,
+              "median": 97009.0,
+              "min": 52983.0,
+              "max": 145187.0
+            },
+            "margin": {
+              "mean": 3314.28125,
+              "median": 2374.0,
+              "min": -2471.0,
+              "max": 8673.0
+            },
+            "game_runtime_seconds": {
+              "mean": 8.421570875000043,
+              "median": 6.813516250003886,
+              "p95": 19.975218589998256,
+              "p99": 20.01617391900072,
+              "max": 20.0171055000028,
+              "total": 269.4902680000014
+            },
+            "failure_examples": []
+          }
+        },
+        "attributed_hidden_abnormal_failures": 0
+      }
+    }
+  },
+  "engine_comparison": {
+    "paired_logical_cells": 20,
+    "valid_under_both": 20,
+    "result_equal_excluding_runtime": 0,
+    "result_changed_excluding_runtime": 20,
+    "outcome_changed": 16,
+    "candidate_money_delta_1.32.6_minus_1.32.2": {
+      "mean": 10136.6,
+      "median": 9376.0,
+      "min": -76359.0,
+      "max": 38902.0
+    },
+    "opponent_money_delta_1.32.6_minus_1.32.2": {
+      "mean": -78340.85,
+      "median": -77632.0,
+      "min": -105921.0,
+      "max": -2061.0
+    },
+    "margin_delta_1.32.6_minus_1.32.2": {
+      "mean": 88477.45,
+      "median": 111649.0,
+      "min": -14048.0,
+      "max": 115297.0
+    },
+    "engine_1.32.2": {
+      "raw_games": 20,
+      "valid_games": 20,
+      "failures": 0,
+      "hidden_abnormal_status_failures": 0,
+      "status_pairs": {
+        "DONE/DONE": 20
+      },
+      "wins": 4,
+      "ties": 0,
+      "losses": 16,
+      "match_score": 0.2,
+      "candidate_money": {
+        "mean": 80274.7,
+        "median": 71255.5,
+        "min": 65354.0,
+        "max": 134592.0
+      },
+      "margin": {
+        "mean": -64468.05,
+        "median": -86631.0,
+        "min": -93215.0,
+        "max": 35506.0
+      },
+      "game_runtime_seconds": {
+        "mean": 4.771144095000272,
+        "median": 4.71568594999917,
+        "p95": 4.97390648500259,
+        "p99": 4.976826176999529,
+        "max": 4.977556099998765,
+        "total": 95.42288190000545
+      },
+      "failure_examples": [],
+      "by_candidate_seat": {
+        "0": {
+          "raw_games": 10,
+          "valid_games": 10,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 10
+          },
+          "wins": 2,
+          "ties": 0,
+          "losses": 8,
+          "match_score": 0.2,
+          "candidate_money": {
+            "mean": 80754.7,
+            "median": 71261.5,
+            "min": 67703.0,
+            "max": 134592.0
+          },
+          "margin": {
+            "mean": -65046.7,
+            "median": -86750.5,
+            "min": -92272.0,
+            "max": 35506.0
+          },
+          "game_runtime_seconds": {
+            "mean": 4.770091279999906,
+            "median": 4.71568594999917,
+            "p95": 4.960530799997651,
+            "p99": 4.974151039998542,
+            "max": 4.977556099998765,
+            "total": 47.70091279999906
+          },
+          "failure_examples": []
+        },
+        "1": {
+          "raw_games": 10,
+          "valid_games": 10,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 10
+          },
+          "wins": 2,
+          "ties": 0,
+          "losses": 8,
+          "match_score": 0.2,
+          "candidate_money": {
+            "mean": 79794.7,
+            "median": 71255.5,
+            "min": 65354.0,
+            "max": 134592.0
+          },
+          "margin": {
+            "mean": -63889.4,
+            "median": -82927.0,
+            "min": -93215.0,
+            "max": 35506.0
+          },
+          "game_runtime_seconds": {
+            "mean": 4.772196910000639,
+            "median": 4.712798650001787,
+            "p95": 4.956135960000392,
+            "p99": 4.970198712002311,
+            "max": 4.973714400002791,
+            "total": 47.72196910000639
+          },
+          "failure_examples": []
+        }
+      }
+    },
+    "engine_1.32.6": {
+      "raw_games": 20,
+      "valid_games": 20,
+      "failures": 0,
+      "hidden_abnormal_status_failures": 0,
+      "status_pairs": {
+        "DONE/DONE": 20
+      },
+      "wins": 20,
+      "ties": 0,
+      "losses": 0,
+      "match_score": 1.0,
+      "candidate_money": {
+        "mean": 90411.3,
+        "median": 91213.0,
+        "min": 58233.0,
+        "max": 109388.0
+      },
+      "margin": {
+        "mean": 24009.4,
+        "median": 23829.5,
+        "min": 17903.0,
+        "max": 27498.0
+      },
+      "game_runtime_seconds": {
+        "mean": 7.077433970000493,
+        "median": 7.128271499997936,
+        "p95": 7.315557850004915,
+        "p99": 7.331976130000184,
+        "max": 7.336080699999002,
+        "total": 141.54867940000986
+      },
+      "failure_examples": [],
+      "by_candidate_seat": {
+        "0": {
+          "raw_games": 10,
+          "valid_games": 10,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 10
+          },
+          "wins": 10,
+          "ties": 0,
+          "losses": 0,
+          "match_score": 1.0,
+          "candidate_money": {
+            "mean": 90411.3,
+            "median": 91213.0,
+            "min": 58233.0,
+            "max": 109388.0
+          },
+          "margin": {
+            "mean": 24009.4,
+            "median": 23829.5,
+            "min": 17903.0,
+            "max": 27498.0
+          },
+          "game_runtime_seconds": {
+            "mean": 7.054793770000833,
+            "median": 7.076542200000404,
+            "p95": 7.2512001850045635,
+            "p99": 7.26216243700328,
+            "max": 7.26490300000296,
+            "total": 70.54793770000833
+          },
+          "failure_examples": []
+        },
+        "1": {
+          "raw_games": 10,
+          "valid_games": 10,
+          "failures": 0,
+          "hidden_abnormal_status_failures": 0,
+          "status_pairs": {
+            "DONE/DONE": 10
+          },
+          "wins": 10,
+          "ties": 0,
+          "losses": 0,
+          "match_score": 1.0,
+          "candidate_money": {
+            "mean": 90411.3,
+            "median": 91213.0,
+            "min": 58233.0,
+            "max": 109388.0
+          },
+          "margin": {
+            "mean": 24009.4,
+            "median": 23829.5,
+            "min": 17903.0,
+            "max": 27498.0
+          },
+          "game_runtime_seconds": {
+            "mean": 7.100074170000153,
+            "median": 7.1286304499990365,
+            "p95": 7.326359350001804,
+            "p99": 7.334136429999562,
+            "max": 7.336080699999002,
+            "total": 71.00074170000153
+          },
+          "failure_examples": []
+        }
+      }
+    },
+    "by_agent": {
+      "boatlee_v14": {
+        "paired_cells": 4,
+        "result_equal_excluding_runtime": 0,
+        "outcome_changed": 4,
+        "margin_delta_mean_1.32.6_minus_1.32.2": 113500.0
+      },
+      "flex_adaptive": {
+        "paired_cells": 4,
+        "result_equal_excluding_runtime": 0,
+        "outcome_changed": 4,
+        "margin_delta_mean_1.32.6_minus_1.32.2": 113500.0
+      },
+      "indar_route_2948_9": {
+        "paired_cells": 4,
+        "result_equal_excluding_runtime": 0,
+        "outcome_changed": 4,
+        "margin_delta_mean_1.32.6_minus_1.32.2": 110472.75
+      },
+      "kaito_v22_price_impact": {
+        "paired_cells": 4,
+        "result_equal_excluding_runtime": 0,
+        "outcome_changed": 0,
+        "margin_delta_mean_1.32.6_minus_1.32.2": -8585.5
+      },
+      "tetsu_adaptive": {
+        "paired_cells": 4,
+        "result_equal_excluding_runtime": 0,
+        "outcome_changed": 4,
+        "margin_delta_mean_1.32.6_minus_1.32.2": 113500.0
+      }
+    }
+  },
+  "definitions": {
+    "failure": "A row is invalid if runner error is non-null, either terminal status is not DONE, or either reward is null.",
+    "hidden_abnormal_status": "The hardened runner scans all env.steps and records the first status outside ACTIVE/INACTIVE/DONE, even if the terminal interpreter later reports DONE.",
+    "score": "Win=1, tie=0.5, loss=0, calculated only for valid rows.",
+    "margin": "candidate final reward minus opponent final reward.",
+    "runtime": "Wall-clock seconds for the whole local game, not isolated per-agent compute."
+  },
+  "limitations": [
+    "All seeds are consumed development-screen seeds and are promotion-ineligible.",
+    "The 1.32.2/1.32.6 comparison has only 20 paired logical cells.",
+    "Local game wall time includes engine and both agents.",
+    "Equal result vectors do not prove source equivalence or action-trace equivalence."
+  ]
+}

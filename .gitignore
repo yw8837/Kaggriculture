@@ -18,3 +18,4 @@ work/
 references/
 competition_data/
 *.tar.gz
+.omc/state/

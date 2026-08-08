@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "plan_id": "campaign_3000_private_saverun_candidates_v1",
+  "frozen_at_utc": "2026-08-08T18:58:29Z",
+  "status": "CLOSED",
+  "authority": {
+    "local_seed_opening": "FORBIDDEN_UNTIL_INDEPENDENT_AUDITOR_EXACT_OPEN_PASS",
+    "fresh_seed_execution": "FORBIDDEN",
+    "kaggle_save_run_in_this_freeze": "FORBIDDEN",
+    "future_private_save_run": "USER_PREAUTHORIZED_ONLY_AFTER_INDEPENDENT_AUDITOR_EXACT_RELEASE_PASS",
+    "competition_submission": "FORBIDDEN",
+    "publication": "FORBIDDEN"
+  },
+  "engine": {
+    "package": "kaggle-environments",
+    "version": "1.32.6",
+    "environment": "kaggriculture",
+    "episode_steps": 720,
+    "kaggriculture_py_sha256": "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF"
+  },
+  "runner": {
+    "path": "src/kaggriculture_lab/evaluation/runner.py",
+    "sha256": "8F35F4D52870DB06FDFF60D03665E234F4994DD18D17BDB2E7FBC5D7F9F21A39",
+    "entrypoint": "kaggriculture_lab.evaluation.runner.run_batch",
+    "required_failure_guard": "_first_abnormal_status"
+  },
+  "execution": {
+    "workers": 8,
+    "seat_policy": "both seats",
+    "seats": [0, 1],
+    "bootstrap_cluster_unit": "seed",
+    "raw_report_policy": "one candidate, phase, and immutable source set per raw report",
+    "receipt_policy": [
+      "outer phase started receipt before runner invocation",
+      "runner .started.json receipt before games",
+      "raw report with every game row",
+      "outer completed receipt with source and environment start=end"
+    ]
+  },
+  "scenario_source": {
+    "path": "configs/fa_ab_scenarios.json",
+    "sha256": "3BCB18188C1618236EF90F92F09D6D20DDF7178ADE625DC47D1A48ADAB7A16F2",
+    "development": ["default"],
+    "confirmation": ["default"],
+    "robustness": ["default", "premium_glut", "wheat_scarcity", "low_town_demand"]
+  },
+  "opponent_catalog": {
+    "tetsu_v16": {
+      "path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
+      "bytes": 27244,
+      "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+    },
+    "kaito_v22": {
+      "path": "research/campaign_3000/06_candidates/snapshots/kaito_v22.py",
+      "bytes": 18609,
+      "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A"
+    },
+    "ray_c45_exact": {
+      "path": "research/campaign_3000/06_candidates/snapshots/ray_c45_exact.py",
+      "bytes": 26545,
+      "sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73"
+    },
+    "boatlee_v14": {
+      "path": "research/campaign_3000/06_candidates/snapshots/boatlee_v14.py",
+      "bytes": 26304,
+      "sha256": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B"
+    },
+    "fa04_g1": {
+      "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+      "bytes": 197808,
+      "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+    }
+  },
+  "candidates": [
+    {
+      "slot": "Kag_01",
+      "description": "Tetsu v16 Adaptive Farming",
+      "archive_name": "Kag_01 - Tetsu v16 Exact.tar.gz",
+      "status": "CLOSED",
+      "candidate_alias": "tetsu_v16",
+      "candidate_path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
+      "candidate_bytes": 27244,
+      "candidate_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+      "opponents": ["ray_c45_exact", "boatlee_v14", "kaito_v22", "fa04_g1"],
+      "license_gate": {
+        "verdict": "CONDITIONAL_PASS_PRIVATE_SAVERUN_ONLY",
+        "evidence_path": "research/campaign_3000/07_release/TETSU_IP_VERDICT.md",
+        "evidence_sha256": "DA8764985D0EFCFC63867DB673E242D82B9D72CFE7495BFCB932A2DD6F0DF721",
+        "auditor_task": "019fb8b8-7758-7860-9304-39eb4f06c65c",
+        "required_archive_members": ["main.py", "LICENSE", "ATTRIBUTION.md"],
+        "score_claim": "NONE_FOR_EXACT_V16"
+      },
+      "seed_pools": {
+        "development": {"start": 50000, "end_inclusive": 50015, "count": 16, "status": "CLOSED", "opened": false, "consumed": false, "evaluated_games": 0},
+        "confirmation": {"start": 51000, "end_inclusive": 51063, "count": 64, "status": "CLOSED", "opened": false, "consumed": false, "evaluated_games": 0},
+        "robustness": {"start": 52000, "end_inclusive": 52031, "count": 32, "status": "CLOSED", "opened": false, "consumed": false, "evaluated_games": 0}
+      },
+      "expected_cells": {"development": 128, "confirmation": 512, "robustness": 1024}
+    },
+    {
+      "slot": "Kag_02",
+      "description": "Kaito v22 Price Impact",
+      "archive_name": "Kag_02 - Kaito v22 Price Impact.tar.gz",
+      "status": "CLOSED",
+      "candidate_alias": "kaito_v22",
+      "candidate_path": "research/campaign_3000/06_candidates/snapshots/kaito_v22.py",
+      "candidate_bytes": 18609,
+      "candidate_sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+      "opponents": ["tetsu_v16", "ray_c45_exact", "boatlee_v14", "fa04_g1"],
+      "license_gate": {
+        "verdict": "APACHE_2_0_PAGE_AND_SOURCE_MAPPING_CAPTURED",
+        "inventory_path": "research/campaign_3000/02_public_meta/code_inventory.jsonl",
+        "inventory_row_canonical_sha256": "AECB7BDCFE1BAB98F087163F82EF7A6FB61C6FFD5F6699F2C51D230A6E83F2F6",
+        "notebook_ref": "kaitofukami/44-46-strict-future-top-30-v22-price-impact",
+        "notebook_version": 2,
+        "notebook_source_sha256": "BE57F757AAAAFA37A1AAB1EB5FE827925144EC7F3825A6236053329C15F2E859",
+        "required_archive_members": ["main.py", "LICENSE", "ATTRIBUTION.md"]
+      },
+      "seed_pools": {
+        "development": {"start": 53000, "end_inclusive": 53015, "count": 16, "status": "CLOSED", "opened": false, "consumed": false, "evaluated_games": 0},
+        "confirmation": {"start": 54000, "end_inclusive": 54063, "count": 64, "status": "CLOSED", "opened": false, "consumed": false, "evaluated_games": 0},
+        "robustness": {"start": 55000, "end_inclusive": 55031, "count": 32, "status": "CLOSED", "opened": false, "consumed": false, "evaluated_games": 0}
+      },
+      "expected_cells": {"development": 128, "confirmation": 512, "robustness": 1024}
+    }
+  ],
+  "lane_isolation": {
+    "candidate_hash_must_not_equal_any_opponent_hash": true,
+    "candidate_alias_must_not_appear_in_own_opponents": true,
+    "reports_must_not_mix_candidate_slots": true,
+    "round_robin_result_inversion_for_gate": "FORBIDDEN"
+  },
+  "phase_dependencies": {
+    "development": "independent auditor exact development OPEN/PASS",
+    "confirmation": "development PASS plus independent auditor exact confirmation OPEN/PASS",
+    "robustness": "confirmation PASS plus independent auditor exact robustness OPEN/PASS",
+    "strict_promotion": "all three strict performance gates PASS plus final independent audit",
+    "exploratory_private_save_run": "separate exploratory readiness PASS plus exact package/IP PASS plus final independent auditor release PASS; never label as promotion"
+  }
+}

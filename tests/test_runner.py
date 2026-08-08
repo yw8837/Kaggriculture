@@ -195,6 +195,44 @@ def test_run_game_passes_and_records_effective_environment_configuration(
     assert result.candidate_metrics is None
 
 
+def test_run_game_rejects_failure_hidden_by_terminal_done(tmp_path: Path, monkeypatch) -> None:
+    class FakeEnvironment:
+        def __init__(self) -> None:
+            self.configuration = {"episodeSteps": 720, "seed": 23000}
+            self.info = {"seed": 23000}
+            self.steps = [
+                [
+                    SimpleNamespace(reward=None, status="ACTIVE"),
+                    SimpleNamespace(reward=None, status="ACTIVE"),
+                ],
+                [
+                    SimpleNamespace(reward=None, status="ERROR"),
+                    SimpleNamespace(reward=None, status="ACTIVE"),
+                ],
+                [
+                    SimpleNamespace(reward=0.0, status="DONE"),
+                    SimpleNamespace(reward=100.0, status="DONE"),
+                ],
+            ]
+
+        def run(self, _agents) -> None:
+            return None
+
+    import kaggle_environments
+
+    monkeypatch.setattr(kaggle_environments, "make", lambda *_args, **_kwargs: FakeEnvironment())
+    result = runner._run_game(
+        runner.GameSpec(
+            "candidate.py", "opponent.py", "opponent", 23000, 0,
+            str(tmp_path), "default", {},
+        )
+    )
+
+    assert result.candidate_status == "EXCEPTION"
+    assert result.candidate_money is None
+    assert result.error == "RuntimeError: framework agent failure at step=1, player=0, status=ERROR"
+
+
 def test_run_game_records_and_summarizes_instrumented_candidate_counters(
     tmp_path: Path, monkeypatch,
 ) -> None:

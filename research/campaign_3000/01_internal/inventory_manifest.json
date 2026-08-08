@@ -1,0 +1,37 @@
+{
+  "command": "python research/campaign_3000/01_internal/collect_kaggle_inventory.py",
+  "created_at_utc": "2026-08-08T17:50:15.430Z",
+  "errors": 5,
+  "outputs": [
+    {
+      "bytes": 47546,
+      "path": "C:/Users/최용우/Documents/Codex/2026-07-31/kaggriculture-3-github/work/campaign_3000/research/campaign_3000/01_internal/leaderboard_top25.json",
+      "sha256": "8EC383CEEFC4034D733B06CF111CC462828569FF813A72889A16C2D47F5BEFD4"
+    },
+    {
+      "bytes": 2640152,
+      "path": "C:/Users/최용우/Documents/Codex/2026-07-31/kaggriculture-3-github/work/campaign_3000/research/campaign_3000/01_internal/top25_episode_inventory.jsonl",
+      "rows": 4166,
+      "sha256": "3F7448B9654E079B543DE17AECD6B8F6291075FE4BCFE294FF1D6B9A3DD7B962"
+    },
+    {
+      "bytes": 29126,
+      "path": "C:/Users/최용우/Documents/Codex/2026-07-31/kaggriculture-3-github/work/campaign_3000/research/campaign_3000/01_internal/our_submissions.json",
+      "sha256": "87A4EBF83EB8522EC6290B9021F1CE207C1354E9A59C77E826CDE7AF02848438"
+    },
+    {
+      "bytes": 458612,
+      "path": "C:/Users/최용우/Documents/Codex/2026-07-31/kaggriculture-3-github/work/campaign_3000/research/campaign_3000/01_internal/our_episode_inventory.jsonl",
+      "rows": 805,
+      "sha256": "E5E37BA85B80EC46B1E748194891E4EFDA79343AB84B79FC85F125EA350042A3"
+    },
+    {
+      "bytes": 1335,
+      "path": "C:/Users/최용우/Documents/Codex/2026-07-31/kaggriculture-3-github/work/campaign_3000/research/campaign_3000/01_internal/collection_errors.jsonl",
+      "rows": 5,
+      "sha256": "D1D4D5FEF71B647C27BA9951C7F738E5E2DC423BD0944F39887CAD1FDCC8BF94"
+    }
+  ],
+  "python": "3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+  "schema_version": 1
+}

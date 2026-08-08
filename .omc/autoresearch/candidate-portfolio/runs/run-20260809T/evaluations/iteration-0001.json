@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "pass": false,
+  "score": 0.0,
+  "portfolio": [
+    "tetsu_v16",
+    "kaito_v22"
+  ],
+  "candidate_rows": [
+    {
+      "source_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+      "license": "UNVERIFIED",
+      "public_score": null,
+      "g1_match_score": 1.0,
+      "status": "LICENSE_HOLD"
+    },
+    {
+      "source_sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+      "license": "Apache 2.0",
+      "public_score": 2957.6,
+      "g1_match_score": 1.0,
+      "status": "AUDIT_CANDIDATE"
+    }
+  ],
+  "failure_reasons": [
+    "tetsu_v16: exact artifact license is not verified Apache 2.0",
+    "tetsu_v16: no finite public score provenance"
+  ],
+  "claim_boundary": "This selects an immediately auditable private-SaveRun portfolio. It is not a local promotion verdict or a 3000-rating guarantee.",
+  "input_hashes": {
+    "public_inventory_sha256": "E510D00AB0AFB35E06B90EFD8EB8CC96DA08F29D8398DF682CDDDD060A7BEEC1",
+    "engine_summary_sha256": "193FB33CA537681E510C74C9E6ED947CD1FB0D806911BB1C93AF95AC8C50D94F",
+    "ray_addendum_summary_sha256": "991FA149FE4ACBF38F82814A2D5FACA28F02188732CCFEEFEE565FB28018932A"
+  },
+  "evaluated_at_utc": "2026-08-08T18:49:54.719840Z"
+}

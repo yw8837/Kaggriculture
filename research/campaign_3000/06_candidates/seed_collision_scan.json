@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "scan_id": "campaign_3000_candidate_seed_collision_scan_v1",
+  "frozen_at_utc": "2026-08-08T18:58:29Z",
+  "status": "NO_COLLISIONS_ALL_POOLS_CLOSED",
+  "scope": {
+    "enumerator": "rg --files from project root",
+    "text_suffixes": [".json", ".jsonl", ".md", ".py", ".toml", ".txt", ".xml", ".yaml", ".yml"],
+    "excluded_reservation_derived_prefixes": [
+      "research/campaign_3000/06_candidates/",
+      "research/campaign_3000/07_release/",
+      "research/campaign_3000/08_public_release/",
+      "research/campaign_3000/09_audit/"
+    ],
+    "excluded_generated_test": "tests/test_campaign_3000_candidate_freeze.py",
+    "reason_for_exclusions": "These lifecycle paths repeat the frozen reservations after selection and must not be mistaken for pre-reservation observations; all other repository prefixes remain scanned."
+  },
+  "extraction": {
+    "json": "Recursive seed-named fields plus inclusive start/end ranges in seed context.",
+    "jsonl": "Same extraction independently per nonblank row.",
+    "other_text": "Integers, inclusive hyphen ranges, and Python range literals only on lines containing the word seed or seeds.",
+    "range_cap": 100000
+  },
+  "scan": {
+    "enumerated_rg_files": 402,
+    "scanned_text_files": 382,
+    "seed_bearing_files": 199,
+    "seed_evidence_files_sha256": "5633FAAD4C55DE4C6233C89AAFD084AF7B7B7A44D53911D207BE9DE530603EE4",
+    "observed_seed_count": 1692,
+    "observed_seed_min": 0,
+    "observed_seed_max": 2111044932,
+    "observed_seed_values_sha256": "3A9183A27AC8484A5F45C055924B6A7778C9B7FEF8CC45C70F99AB82AB914CCC",
+    "last_observed_campaign_ranges_before_reservation": [
+      [43000, 43015],
+      [44000, 44063],
+      [45000, 45031],
+      [46000, 46015],
+      [47000, 47063],
+      [48000, 48031]
+    ],
+    "observed_values_in_50000_55031": []
+  },
+  "reservations": [
+    {"slot": "Kag_01", "phase": "development", "start": 50000, "end_inclusive": 50015, "count": 16, "status": "CLOSED"},
+    {"slot": "Kag_01", "phase": "confirmation", "start": 51000, "end_inclusive": 51063, "count": 64, "status": "CLOSED"},
+    {"slot": "Kag_01", "phase": "robustness", "start": 52000, "end_inclusive": 52031, "count": 32, "status": "CLOSED"},
+    {"slot": "Kag_02", "phase": "development", "start": 53000, "end_inclusive": 53015, "count": 16, "status": "CLOSED"},
+    {"slot": "Kag_02", "phase": "confirmation", "start": 54000, "end_inclusive": 54063, "count": 64, "status": "CLOSED"},
+    {"slot": "Kag_02", "phase": "robustness", "start": 55000, "end_inclusive": 55031, "count": 32, "status": "CLOSED"}
+  ],
+  "reservation_summary": {
+    "reserved_seed_count": 224,
+    "reserved_seed_values_sha256": "264F40BA4C09FF3157AF6F1B7DF61BE3E3DAFBFD812DC1306444393928F73A58",
+    "ranges_sha256": "3FE833648F9B129D6C3EE181DCBC4C6312CB08791926BAF28E2A09C78A1B373D",
+    "collisions": [],
+    "all_ranges_pairwise_disjoint": true,
+    "all_ranges_closed": true,
+    "fresh_games_executed": 0
+  }
+}

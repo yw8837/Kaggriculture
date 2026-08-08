@@ -1,0 +1,833 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "campaign_3000_independent_auditor_handoff_draft",
+  "created_at_utc": "2026-08-08T19:22:44.238664Z",
+  "handoff_author_role": "internal subordinate evidence packager; not the independent auditor",
+  "recipient": {
+    "role": "separate user-owned independent adversarial auditor",
+    "task_id": "019fb8b8-7758-7860-9304-39eb4f06c65c"
+  },
+  "status": "DRAFT_PENDING_FREEZE",
+  "verdict": "HOLD_PENDING_EXACT_FREEZE_AND_SEPARATE_AUDIT",
+  "freeze": {
+    "start_git_head": "PENDING_FREEZE",
+    "end_git_head": "PENDING_FREEZE",
+    "implementation_commit": "PENDING_FREEZE",
+    "execution_commit": "PENDING_FREEZE",
+    "remote_ref": "PENDING_FREEZE",
+    "tracked_status": "PENDING_FREEZE",
+    "final_contract": {
+      "start_git_head_equals_implementation_commit": true,
+      "end_git_head_equals_execution_commit": true,
+      "remote_ref_equals_execution_commit": true,
+      "current_head_equals_execution_commit": true,
+      "tracked_status_clean": true,
+      "execution_binding_input_manifest_matches": true,
+      "implementation_to_execution_changed_paths": [
+        "research/campaign_3000/06_candidates/execution_binding.json"
+      ]
+    }
+  },
+  "final_state_overlay": {
+    "tracked_template_remains_pending_at_execution_commit": true,
+    "default_path": "dist/campaign_3000/audit_handoff_final.json",
+    "must_be_git_ignored": true,
+    "required_with_final_mode": true,
+    "required_fields": {
+      "schema_version": 1,
+      "template_path": "research/campaign_3000/09_audit/audit_handoff.json",
+      "template_sha256": "64-hex hash of the unchanged tracked template",
+      "freeze": {
+        "start_git_head": "40-hex implementation commit S",
+        "end_git_head": "40-hex execution commit E",
+        "implementation_commit": "40-hex commit S",
+        "execution_commit": "40-hex commit E",
+        "remote_ref": "40-hex remote commit equal to E",
+        "tracked_status": "CLEAN"
+      },
+      "execution_binding": {
+        "path": "research/campaign_3000/06_candidates/execution_binding.json",
+        "sha256": "64-hex hash of the E binding",
+        "status": "FROZEN"
+      }
+    }
+  },
+  "scope": {
+    "evidence_lanes": [
+      "research/campaign_3000/01_internal",
+      "research/campaign_3000/02_public_meta",
+      "research/campaign_3000/03_external",
+      "research/campaign_3000/04_synthesis",
+      "research/campaign_3000/05_engine_screen",
+      "research/campaign_3000/05_engine_screen_ray_c45_addendum",
+      "research/campaign_3000/06_candidates",
+      "research/campaign_3000/07_release",
+      "research/campaign_3000/08_public_release"
+    ],
+    "handoff_claim": "Exact local evidence index and audit questions only; no independent verdict.",
+    "excluded_claims": [
+      "3000 rating guarantee",
+      "top-3 guarantee",
+      "fresh local promotion",
+      "Kaggle Save & Run success",
+      "competition submission",
+      "publication",
+      "legal advice"
+    ]
+  },
+  "authority": {
+    "external_actions_observed": 0,
+    "external_actions_authorized_by_this_handoff": false,
+    "browser_control_observed": 0,
+    "save_run_observed": 0,
+    "competition_submissions_observed": 0,
+    "publications_observed": 0,
+    "public_action_order": [
+      {
+        "sequence": 1,
+        "action": "kaggle_discussion_create",
+        "enabled": false
+      },
+      {
+        "sequence": 2,
+        "action": "kaggle_code_push",
+        "enabled": false
+      }
+    ],
+    "competition_submission": {
+      "status": "FORBIDDEN_ABSENT_EXACT_USER_PHRASE",
+      "exact_authorizing_user_phrase_observed": null,
+      "inference_or_paraphrase_is_authority": false,
+      "forbidden_command": "kaggle competitions submit"
+    }
+  },
+  "research_populations": [
+    {
+      "id": "our_submissions",
+      "definition": "Every Kaggriculture competition submission returned for the authenticated account at the snapshot, with observable episode metadata; missing historical upload bytes remain unverified.",
+      "observed_at_utc": "2026-08-08T17:50:15.385Z",
+      "submission_rows": 22,
+      "episode_metadata_rows": 1017,
+      "selected_replay_requests": 44,
+      "selected_unique_replays": 44,
+      "raw_replays_verified": 44,
+      "repair_status": "COMPLETE",
+      "claim_limit": "Historical Kaggle upload-byte identity is unavailable and is not inferred from a same-named local archive."
+    },
+    {
+      "id": "leaderboard_top25",
+      "definition": "First 25 rows returned by the official Kaggle leaderboard API with page_size=200 at one pinned snapshot.",
+      "observed_at_utc": "2026-08-08T17:50:15.385Z",
+      "leaderboard_rows": 25,
+      "episode_metadata_rows": 4166,
+      "selected_replay_requests": 50,
+      "selected_unique_replays": 45,
+      "raw_replays_verified": 45,
+      "claim_limit": "Time-bounded public snapshot; private strategy and inaccessible private fields are not inferred."
+    },
+    {
+      "id": "public_code",
+      "definition": "All refs returned by Kaggle kernels_list for competition=kaggriculture through the first empty page, deduplicated by ref, with current versions fetched.",
+      "pages": [100, 55, 0],
+      "rows": 155,
+      "failed_rows": 0,
+      "source_requests_succeeded": 61,
+      "source_requests_rate_limited_429": 94,
+      "claim_limit": "Public code was read or statically inspected; untrusted public notebooks were not executed."
+    },
+    {
+      "id": "discussion",
+      "definition": "All competition topics returned through the declared total and a terminal empty page, deduplicated by topic id.",
+      "pages": [20, 20, 17, 0],
+      "rows": 57,
+      "failed_rows": 0
+    },
+    {
+      "id": "github",
+      "definition": "Union of three saved GitHub repository query families, issue and pull-request search, and the official environment pull request cross-check.",
+      "rows": 256,
+      "claim_limit": "Saved query families are broad evidence, not literal exhaustive GitHub coverage."
+    },
+    {
+      "id": "models",
+      "definition": "Official Kaggle model text search plus the competition Models UI; no official CLI competition filter was available.",
+      "search_rows": 1,
+      "population_status": "UNVERIFIED_NOT_ZERO_CLAIM"
+    },
+    {
+      "id": "external_corpus",
+      "definition": "Saved English and Korean query families covering finished agent competitions, repositories, official documentation, primary papers, formulas, and local collision evidence.",
+      "query_events": 28,
+      "retained_sources": 35,
+      "source_status_counts": {
+        "VERIFIED": 31,
+        "VERIFIED_LIMITED": 1,
+        "VERIFIED_LOCAL": 3
+      },
+      "claim_limit": "Diminishing-return stop for the current decision, not exhaustive internet coverage; X, Reddit, and LinkedIn were unavailable, and Korean search retained no new primary source."
+    }
+  ],
+  "tool_and_skill_status": [
+    {
+      "name": "agent-reach",
+      "status": "EXECUTED_READ_ONLY_WITH_LIMITS",
+      "evidence": [
+        "research/campaign_3000/02_public_meta/query_log.json",
+        "research/campaign_3000/03_external/query_log.jsonl"
+      ],
+      "limits": "GitHub, Exa, generic web and YouTube were available; X and Reddit were unavailable. Exa later returned HTTP 429 and no post-429 success is implied."
+    },
+    {
+      "name": "insane-search",
+      "status": "EXECUTED_ONE_BLOCKED_URL_REPRO_FAILED",
+      "evidence": [
+        "research/campaign_3000/03_external/query_log.jsonl"
+      ],
+      "limits": "The Kore write-up route returned HTTP 200 but empty extracted text; it supplied no retained mechanism evidence. The public-meta lane independently recorded NOT_INVOKED because official/API routes sufficed there."
+    },
+    {
+      "name": "context7",
+      "status": "EXECUTED_READ_ONLY",
+      "evidence": [
+        "research/campaign_3000/02_public_meta/query_log.json",
+        "research/campaign_3000/03_external/query_log.jsonl"
+      ],
+      "uses": [
+        "official Kaggle CLI pagination/topics/models documentation",
+        "official SciPy linear_sum_assignment documentation"
+      ]
+    },
+    {
+      "name": "serena",
+      "status": "EXECUTED_READ_ONLY_WITH_STATE_LIMITATION",
+      "evidence": [
+        "research/campaign_3000/02_public_meta/query_log.json",
+        "research/campaign_3000/03_external/query_log.jsonl"
+      ],
+      "uses": [
+        "collector symbol inspection",
+        "market_mpc build_source collision inspection"
+      ],
+      "limits": "Initial activation state did not persist across the stdio wrapper; later explicit project calls succeeded."
+    },
+    {
+      "name": "oh-my-claudecode:autoresearch",
+      "status": "EXECUTED_SELECTION_ONLY_NON_PROMOTION",
+      "evidence": [
+        "research/campaign_3000/04_synthesis/autoresearch_portfolio_result.json"
+      ],
+      "result": "Selected Kaito v22 plus Ray C45 for immediate auditability before the later Tetsu conditional IP decision; score 2927.4 was remote context only."
+    },
+    {
+      "name": "oh-my-claudecode:self-improve",
+      "status": "NOT_EXECUTED_MANDATORY_TRUST_GATE",
+      "evidence": [
+        "research/campaign_3000/03_external/tool_and_coverage_evidence.md"
+      ],
+      "reason": "No autonomous self-modification result may be represented as evidence before the exact frozen state receives separate independent audit."
+    }
+  ],
+  "candidate_decisions": [
+    {
+      "slot": "Kag_01",
+      "alias": "tetsu_v16",
+      "status": "CLOSED_SELECTED_PENDING_FRESH_GATES",
+      "source_path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
+      "source_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+      "archive_name": "Kag_01 - Tetsu v16 Exact.tar.gz",
+      "rationale": [
+        "Led the consumed 1.32.6 five-agent screen with 62 wins and 2 losses in 64 games.",
+        "Beat the exact public Fa04 G1 source in 16 of 16 consumed-screen games with mean margin 25621.375.",
+        "A separate IP review supplied a conditional private-SaveRun-only path with exact-byte and attribution conditions."
+      ],
+      "consumed_screen": {
+        "games": 64,
+        "wins": 62,
+        "ties": 0,
+        "losses": 2,
+        "match_score": 0.96875,
+        "mean_margin": 3314.28125,
+        "failures": 0
+      },
+      "claim_limits": [
+        "All local comparison seeds were consumed and are promotion-ineligible.",
+        "The cutoff 2703.1 observation belongs to v15, not the exact v16 payload.",
+        "A later tracked live page displays 3097.4 for v16, but that evidence is pending independent-auditor confirmation and is not a local result, promotion result, or forecast.",
+        "The release specification makes no public score claim for exact v16.",
+        "The route is derivative lineage and must not be described as clean-room or independently authored.",
+        "IP verdict is conditional private Save & Run only, not legal advice or external-action authority."
+      ]
+    },
+    {
+      "slot": "Kag_02",
+      "alias": "kaito_v22",
+      "status": "CLOSED_SELECTED_PENDING_FRESH_GATES",
+      "source_path": "research/campaign_3000/06_candidates/snapshots/kaito_v22.py",
+      "source_sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+      "archive_name": "Kag_02 - Kaito v22 Price Impact.tar.gz",
+      "rationale": [
+        "Exact notebook version, source hash, Apache-2.0 page evidence, and remote score mapping were captured.",
+        "Selected over Ray for exact remote score/version mapping and route-lineage diversity after Tetsu's conditional IP path was restored.",
+        "Beat the exact public Fa04 G1 source in 16 of 16 consumed-screen games with mean margin 24159.25."
+      ],
+      "consumed_screen": {
+        "games": 64,
+        "wins": 14,
+        "ties": 0,
+        "losses": 50,
+        "match_score": 0.21875,
+        "mean_margin": -3232.6875,
+        "failures": 0
+      },
+      "adverse_evidence": "Ray C45 beat Kaito 14-2 in the 64-cell consumed addendum; Kaito selection is not a claim of stronger local screen performance.",
+      "claim_limits": [
+        "All local comparison seeds were consumed and are promotion-ineligible.",
+        "Captured remote score 2957.6 V2 is not a fresh local promotion result or future rating forecast.",
+        "The weak consumed local round-robin result remains disclosed and fresh gates decide readiness."
+      ]
+    },
+    {
+      "slot": "fallback_and_opponent",
+      "alias": "ray_c45_exact",
+      "status": "NOT_SELECTED_HASH_PINNED",
+      "source_sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73",
+      "consumed_screen": {
+        "games": 64,
+        "wins": 30,
+        "ties": 0,
+        "losses": 34,
+        "match_score": 0.46875,
+        "mean_margin": 7126.96875,
+        "failures": 0
+      },
+      "claim_limits": [
+        "Observed 2927.4 was notebook context, not this local result.",
+        "The extracted file's C45 docstring and C64_HORIZON25 version marker disagree."
+      ]
+    },
+    {
+      "slot": "public_release",
+      "alias": "fa04_g1_sell_guard",
+      "status": "LOCAL_DRAFT_ONLY",
+      "source_sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+      "separation": "Lost all 80 consumed-screen games in the five-agent screen and all 16 direct games against each designated private candidate.",
+      "claim_limits": [
+        "No score is claimed for the exact public source.",
+        "Expected public rating is unknown.",
+        "Historical submission 55171193 score 1317.1 is not mapped to these exact bytes because historical upload bytes are unavailable.",
+        "The draft excludes Tetsu, Kaito, and Ray source hashes."
+      ]
+    }
+  ],
+  "seed_freeze": {
+    "status": "NO_COLLISIONS_ALL_POOLS_CLOSED",
+    "fresh_games_executed": 0,
+    "reserved_seed_count": 224,
+    "reserved_seed_values_sha256": "264F40BA4C09FF3157AF6F1B7DF61BE3E3DAFBFD812DC1306444393928F73A58",
+    "ranges_sha256": "3FE833648F9B129D6C3EE181DCBC4C6312CB08791926BAF28E2A09C78A1B373D",
+    "pools": [
+      {
+        "slot": "Kag_01",
+        "phase": "development",
+        "start": 50000,
+        "end_inclusive": 50015,
+        "count": 16,
+        "status": "CLOSED",
+        "opened": false,
+        "consumed": false,
+        "evaluated_games": 0
+      },
+      {
+        "slot": "Kag_01",
+        "phase": "confirmation",
+        "start": 51000,
+        "end_inclusive": 51063,
+        "count": 64,
+        "status": "CLOSED",
+        "opened": false,
+        "consumed": false,
+        "evaluated_games": 0
+      },
+      {
+        "slot": "Kag_01",
+        "phase": "robustness",
+        "start": 52000,
+        "end_inclusive": 52031,
+        "count": 32,
+        "status": "CLOSED",
+        "opened": false,
+        "consumed": false,
+        "evaluated_games": 0
+      },
+      {
+        "slot": "Kag_02",
+        "phase": "development",
+        "start": 53000,
+        "end_inclusive": 53015,
+        "count": 16,
+        "status": "CLOSED",
+        "opened": false,
+        "consumed": false,
+        "evaluated_games": 0
+      },
+      {
+        "slot": "Kag_02",
+        "phase": "confirmation",
+        "start": 54000,
+        "end_inclusive": 54063,
+        "count": 64,
+        "status": "CLOSED",
+        "opened": false,
+        "consumed": false,
+        "evaluated_games": 0
+      },
+      {
+        "slot": "Kag_02",
+        "phase": "robustness",
+        "start": 55000,
+        "end_inclusive": 55031,
+        "count": 32,
+        "status": "CLOSED",
+        "opened": false,
+        "consumed": false,
+        "evaluated_games": 0
+      }
+    ],
+    "opening_policy": "No pool opens without the phase-specific exact independent-auditor OPEN/PASS; later phases also require the preceding strict gate.",
+    "lifecycle": {
+      "path": "research/campaign_3000/06_candidates/lifecycle.json",
+      "sha256": "839CD70EE519C7220697500747D0EFBD2D801580E0F3132F1E56A00D82E88E6A",
+      "state": "CLOSED",
+      "execution_commit": "PENDING",
+      "authority_receipt_path": "dist/campaign_3000/authority/auditor_development_open.json",
+      "authority_receipt_sha256": "PENDING",
+      "authority_receipt_exists": false,
+      "auditor_open_delivery_path": "dist/campaign_3000/authority/auditor_development_open.delivery.json",
+      "auditor_open_delivery_sha256": "PENDING",
+      "auditor_open_delivery_exists": false,
+      "post_o_review_delivery_path": "dist/campaign_3000/authority/auditor_authority_o_review.delivery.json",
+      "post_o_review_delivery_exists": false,
+      "open_protocol": "After exact S and E, only a lifecycle-only O commit that pins the exact authority receipt and raw auditor OPEN delivery may transition development; execution also requires a separate post-O auditor delivery.",
+      "trust_boundary": "Local validation rejects malformed or mismatched exports but cannot cryptographically prove a Codex read_thread export was not fabricated; acquisition from the user-owned auditor task and its post-O verdict remain an explicit human/host trust boundary.",
+      "development": {
+        "Kag_01": "CLOSED",
+        "Kag_02": "CLOSED"
+      },
+      "confirmation": {
+        "Kag_01": "HOLD",
+        "Kag_02": "HOLD"
+      },
+      "robustness": {
+        "Kag_01": "HOLD",
+        "Kag_02": "HOLD"
+      },
+      "external_actions": "HOLD",
+      "fresh_games_executed": 0
+    }
+  },
+  "tetsu_conditional_ip": {
+    "verdict": "CONDITIONAL_PASS_PRIVATE_SAVERUN_ONLY",
+    "not_legal_advice": true,
+    "main_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+    "notebook_version": 16,
+    "notebook_source_sha256": "81DA966E92F9889836E22142FD7A60CEBEAEE81CB3C52661AA286AC8C727BAF9",
+    "getkernel_response_sha256": "70ADF63DCDEB41504A63C6056258CA77C9D09F86FB8101A2EE00A82C1D4434FB",
+    "common_route_sha256": "EDC3163ED477B6F9EF70FA8F7A212A4F8179C4FA281008D400EDF6EE488906C2",
+    "license_mapping": "Page-level Apache-2.0 statement plus exact source/extraction mapping inference; no artifact-native SPDX claim.",
+    "page_evidence_boundary": {
+      "cutoff_capture_sha256": "56128BD9BBD09F0F4D48A19E3304690570F23776045A045665124F351432D55F",
+      "cutoff_body_archived": false,
+      "cutoff_status": "TIMESTAMPED_CAPTURE_ATTESTATION_BODY_NOT_ARCHIVED",
+      "tracked_live_capture_path": "research/campaign_3000/07_release/evidence/raw/tetsutani_adaptive-farming-strategy-for-kaggriculture_page_20260808T2036Z.md",
+      "tracked_live_capture_sha256": "7247E047A8CE43BE59DAB9886DED9A5B8832E3D14F69925A1894A3B5EEC5B19B",
+      "tracked_live_capture_displayed_license": "Apache-2.0",
+      "live_v16_remote_score": 3097.4,
+      "live_v16_score_claim_gate": "PENDING_INDEPENDENT_AUDITOR_CONFIRMATION",
+      "claim_limit": "The cutoff digest is an attestation without its archived body. The later tracked live page is hash-verifiable but does not turn a remote display into local or promotion evidence."
+    },
+    "blocking_conditions": [
+      {
+        "id": "IP-1",
+        "condition": "main.py remains byte-exact at the pinned hash; any edit reopens review."
+      },
+      {
+        "id": "IP-2",
+        "condition": "Archive contains the complete Apache-2.0 LICENSE text."
+      },
+      {
+        "id": "IP-3",
+        "condition": "ATTRIBUTION.md preserves Tetsu, Boatlee, Flex, Kakuteki, mrgrishninsb, public V23, frontier-cleanup, exact refs/hashes, and the common-route hash."
+      },
+      {
+        "id": "IP-4",
+        "condition": "Notebook metadata remains is_private=true and enable_internet=false."
+      },
+      {
+        "id": "IP-5",
+        "condition": "Wrapper only emits the prebuilt payload and cannot submit, publish, access the network, rebuild, or alter the agent."
+      },
+      {
+        "id": "IP-6",
+        "condition": "Pre-push verification confirms members and hashes, compiles main.py, proves deterministic rebuilds, and shows zero external actions."
+      },
+      {
+        "id": "IP-7",
+        "condition": "Any mismatch, missing notice, later license contradiction, or v15-as-v16 score claim changes the verdict to HOLD."
+      }
+    ]
+  },
+  "claim_limits": [
+    "The 05 screens used consumed seeds 23000-23007 and are non-promotion evidence.",
+    "The 1.32.2 versus 1.32.6 comparison had 20 paired cells; 20 reward tuples and 16 outcomes changed, so engine version is material.",
+    "The only resolved default configuration change was townCenterSellInterval 12 to 24.",
+    "No private Save & Run or downloaded output identity has been observed.",
+    "No external action is authorized by this handoff.",
+    "Only the separate user-owned auditor may issue the required independent verdict."
+  ],
+  "source_manifest_contract": {
+    "policy": "Every non-pending evidence file below is rehashed by verify_handoff.py; child hashes are also checked against their originating source manifest or sidecar where available.",
+    "manifest_anchors": [
+      "research/campaign_3000/01_internal/evidence_manifest.json",
+      "research/campaign_3000/02_public_meta/source_manifest.json",
+      "research/campaign_3000/03_external/manifest.json",
+      "research/campaign_3000/05_engine_screen/manifest.json",
+      "research/campaign_3000/05_engine_screen_ray_c45_addendum/manifest.json",
+      "research/campaign_3000/06_candidates/manifest.json",
+      "research/campaign_3000/07_release/release_spec.json",
+      "research/campaign_3000/08_public_release/release_manifest.json"
+    ]
+  },
+  "evidence_files": [
+    {
+      "path": "research/campaign_3000/01_internal/evidence_manifest.json",
+      "bytes": 43048,
+      "sha256": "4A07D2AFAC7EE2F99C223AC5B4D35C07CA325363C25441109976917E1D6AE6E6",
+      "declared_by": "direct rehash of manifest anchor"
+    },
+    {
+      "path": "research/campaign_3000/01_internal/our_submissions.json",
+      "bytes": 33083,
+      "sha256": "FB9CBA49FCFAED851377DCC803B20A2CADFFFFE0D78799909E75471D1FF67E55",
+      "declared_by": "research/campaign_3000/01_internal/evidence_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/01_internal/our_episode_inventory.jsonl",
+      "bytes": 579274,
+      "sha256": "70C4981A2808F450F95D9AAB1F0E4646F039A40016EBA64007955906425A319F",
+      "declared_by": "research/campaign_3000/01_internal/evidence_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/01_internal/leaderboard_top25.json",
+      "bytes": 47546,
+      "sha256": "8EC383CEEFC4034D733B06CF111CC462828569FF813A72889A16C2D47F5BEFD4",
+      "declared_by": "research/campaign_3000/01_internal/evidence_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/01_internal/leaderboard_top25_provenance.json",
+      "bytes": 101516,
+      "sha256": "F760257ED8416BDE87C2B56BDF0E8D6F400253D68CACD53FA711440604021447",
+      "declared_by": "research/campaign_3000/01_internal/evidence_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/01_internal/top25_episode_inventory.jsonl",
+      "bytes": 2640152,
+      "sha256": "3F7448B9654E079B543DE17AECD6B8F6291075FE4BCFE294FF1D6B9A3DD7B962",
+      "declared_by": "research/campaign_3000/01_internal/evidence_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/01_internal/replay_inventory.jsonl",
+      "bytes": 118939,
+      "sha256": "F700901DED687B63D1BA34DE897032B840544379C7571CA82BFD2C59F776A5E8",
+      "declared_by": "research/campaign_3000/01_internal/evidence_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/01_internal/replay_integrity_report.json",
+      "bytes": 1260,
+      "sha256": "BC2374A4279753ECF27088ECCA901BDA90AB4DDFFC403F16702EA3A9C8A8ED26",
+      "declared_by": "research/campaign_3000/01_internal/evidence_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/02_public_meta/source_manifest.json",
+      "bytes": 3947,
+      "sha256": "5A6EDF659C7F8C9B0C999535F42513BC7C55D7CC231FBF5543FF66888CF8EE1B",
+      "declared_by": "direct rehash of manifest anchor"
+    },
+    {
+      "path": "research/campaign_3000/02_public_meta/code_inventory.jsonl",
+      "bytes": 328991,
+      "sha256": "E510D00AB0AFB35E06B90EFD8EB8CC96DA08F29D8398DF682CDDDD060A7BEEC1",
+      "declared_by": "research/campaign_3000/02_public_meta/source_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/02_public_meta/discussion_inventory.jsonl",
+      "bytes": 43333,
+      "sha256": "8A296AE0C70728883FA9A2506B263DA3A3907678F03FCAB5D2357DF6B348B767",
+      "declared_by": "research/campaign_3000/02_public_meta/source_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/02_public_meta/github_inventory.jsonl",
+      "bytes": 196404,
+      "sha256": "F0C4FDE4978D196B02A94EBB9DDAA3D03C31C7A22B78928D9B417344FCB30D87",
+      "declared_by": "research/campaign_3000/02_public_meta/source_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/02_public_meta/model_inventory.jsonl",
+      "bytes": 485,
+      "sha256": "6807E5AC0DB8B02EBE5BFF62AC764454A5CD208C3F6C8A2666934C61F8C8D60E",
+      "declared_by": "research/campaign_3000/02_public_meta/source_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/02_public_meta/query_log.json",
+      "bytes": 35530,
+      "sha256": "EF4247B7915DBD544C21A68D3DEA18AAA7D60E63288B7C49E454B6287CF92AAF",
+      "declared_by": "research/campaign_3000/02_public_meta/source_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/02_public_meta/verification.json",
+      "bytes": 1591,
+      "sha256": "020FBC550A5DE6E393CC8101C1C723EB3E6D639FBBE95278602E401BC963B1B8",
+      "declared_by": "research/campaign_3000/02_public_meta/source_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/02_public_meta/tetsu_v16_provenance.json",
+      "bytes": 3572,
+      "sha256": "2DFAF0128B3E1DA60554B9D4D04BF5A5D7528BF0CD6A5DA2DE39F252309BE6AA",
+      "declared_by": "research/campaign_3000/02_public_meta/source_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/03_external/manifest.json",
+      "bytes": 2341,
+      "sha256": "1D2578AB7BCB44AEB9E740F874832F83CC96E4F97B758835DBC5967C17CBE893",
+      "declared_by": "direct rehash of manifest anchor; manifest intentionally does not self-hash"
+    },
+    {
+      "path": "research/campaign_3000/03_external/query_log.jsonl",
+      "bytes": 9313,
+      "sha256": "4CFA2FDD739D9DBF150F82D29261E4FDD315F47FBB15D909F73A7AA459E49D7B",
+      "declared_by": "research/campaign_3000/03_external/manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/03_external/source_inventory.jsonl",
+      "bytes": 36443,
+      "sha256": "EA486E092CB4961CE1BD3B4DDCA9365B2CD04AB10BBC873C2062340D074AA557",
+      "declared_by": "research/campaign_3000/03_external/manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/03_external/tool_and_coverage_evidence.md",
+      "bytes": 6803,
+      "sha256": "3203E54673C57ADF212AD51D9AFDBA800424AC86759DFC01C36285582C85C3D1",
+      "declared_by": "research/campaign_3000/03_external/manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/03_external/hypothesis_cards.json",
+      "bytes": 10058,
+      "sha256": "F26077725866746BAC99B10F1251A4864EA7591380AB0413E9EC34B8C147CAF6",
+      "declared_by": "research/campaign_3000/03_external/manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/04_synthesis/autoresearch_portfolio_result.json",
+      "bytes": 830,
+      "sha256": "4B289DF099A6BCAA6747B1DF3F2A3F83B587FD117C6EB7C979A60C1762A6C9C9",
+      "declared_by": "direct rehash of synthesis result"
+    },
+    {
+      "path": "research/campaign_3000/05_engine_screen/manifest.json",
+      "bytes": 10759,
+      "sha256": "A819E229B8FA101730B759AE30B224D692944129B55E7A3B1BEA44ACBDC70D48",
+      "declared_by": "research/campaign_3000/05_engine_screen/manifest.sha256"
+    },
+    {
+      "path": "research/campaign_3000/05_engine_screen/summary.json",
+      "bytes": 79363,
+      "sha256": "193FB33CA537681E510C74C9E6ED947CD1FB0D806911BB1C93AF95AC8C50D94F",
+      "declared_by": "research/campaign_3000/05_engine_screen/manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/05_engine_screen_ray_c45_addendum/manifest.json",
+      "bytes": 4697,
+      "sha256": "2449F4A771CA0F8716AE1EFCE05FB8842D310BD381895C14F162EF1DC9B812D9",
+      "declared_by": "research/campaign_3000/05_engine_screen_ray_c45_addendum/manifest.sha256"
+    },
+    {
+      "path": "research/campaign_3000/05_engine_screen_ray_c45_addendum/summary.json",
+      "bytes": 18921,
+      "sha256": "991FA149FE4ACBF38F82814A2D5FACA28F02188732CCFEEFEE565FB28018932A",
+      "declared_by": "research/campaign_3000/05_engine_screen_ray_c45_addendum/manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/06_candidates/manifest.json",
+      "bytes": 4376,
+      "sha256": "FBF560F617788022552B2115023639F81CB49E01E67B90AACE2291DA72DECE69",
+      "declared_by": "research/campaign_3000/06_candidates/manifest.sha256"
+    },
+    {
+      "path": "research/campaign_3000/06_candidates/candidate_plan.json",
+      "bytes": 6950,
+      "sha256": "7167430237ACFF5846C8DFD6F948DC846BC5DB3BCBFCE973505DF3E86A0D33C8",
+      "declared_by": "research/campaign_3000/06_candidates/manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/06_candidates/gate_config.json",
+      "bytes": 3347,
+      "sha256": "F9E82C8F1EE992FB2F82B3EB8DE476410A0695E05C06C35AD951A21AAE8750DB",
+      "declared_by": "research/campaign_3000/06_candidates/manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/06_candidates/seed_collision_scan.json",
+      "bytes": 2981,
+      "sha256": "B54201122781D71CE24868B46550309B262FD45F0CA2D25961FB87AB7451B416",
+      "declared_by": "research/campaign_3000/06_candidates/manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/06_candidates/lifecycle.json",
+      "bytes": 741,
+      "sha256": "839CD70EE519C7220697500747D0EFBD2D801580E0F3132F1E56A00D82E88E6A",
+      "declared_by": "direct rehash of protocol-excluded lifecycle file"
+    },
+    {
+      "path": "research/campaign_3000/06_candidates/selection_evidence.json",
+      "bytes": 3309,
+      "sha256": "D16F61AD119DDE74973BCE1BD638D47CC32F0F3C4B757892C15C680FD7FE5996",
+      "declared_by": "research/campaign_3000/06_candidates/manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/07_release/release_spec.json",
+      "bytes": 5527,
+      "sha256": "BBE3B7DA2C14B5C4DD752AE67C55FD1898E1B9DF613162DA7FCAEC32009680F4",
+      "declared_by": "direct rehash of release specification"
+    },
+    {
+      "path": "research/campaign_3000/07_release/TETSU_IP_VERDICT.md",
+      "bytes": 5413,
+      "sha256": "DA8764985D0EFCFC63867DB673E242D82B9D72CFE7495BFCB932A2DD6F0DF721",
+      "declared_by": "research/campaign_3000/07_release/release_spec.json"
+    },
+    {
+      "path": "research/campaign_3000/07_release/evidence/official_capture_receipts.json",
+      "bytes": 5486,
+      "sha256": "83C1E27A39B9B7582022CC5AB7F5F337BCF5F06CCD770538AD6513F861A19558",
+      "declared_by": "research/campaign_3000/07_release/release_spec.json"
+    },
+    {
+      "path": "research/campaign_3000/07_release/evidence/raw/tetsutani_adaptive-farming-strategy-for-kaggriculture_page_20260808T2036Z.md",
+      "bytes": 2921,
+      "sha256": "7247E047A8CE43BE59DAB9886DED9A5B8832E3D14F69925A1894A3B5EEC5B19B",
+      "declared_by": "research/campaign_3000/07_release/evidence/official_capture_receipts.json"
+    },
+    {
+      "path": "research/campaign_3000/07_release/evidence/raw/kaitofukami_44-46-strict-future-top-30-v22-price-impact_page_20260808T2036Z.md",
+      "bytes": 4673,
+      "sha256": "215183C1DF46AA58D6A4F2BD76644E1E16488DD7A513679493E2F282B36125C1",
+      "declared_by": "research/campaign_3000/07_release/evidence/official_capture_receipts.json"
+    },
+    {
+      "path": "research/campaign_3000/07_release/evidence/raw/RECEIPT.json",
+      "bytes": 4038,
+      "sha256": "B3F54DDD8C888665C8755B806F10094F999C63E3409130587FD94C2982759772",
+      "declared_by": "research/campaign_3000/07_release/release_spec.json"
+    },
+    {
+      "path": "research/campaign_3000/07_release/evidence/raw/tetsutani_adaptive-farming-strategy-for-kaggriculture_v16.ipynb",
+      "bytes": 158263,
+      "sha256": "81DA966E92F9889836E22142FD7A60CEBEAEE81CB3C52661AA286AC8C727BAF9",
+      "declared_by": "research/campaign_3000/07_release/evidence/raw/RECEIPT.json"
+    },
+    {
+      "path": "research/campaign_3000/07_release/evidence/raw/tetsutani_adaptive-farming-strategy-for-kaggriculture_v16_getkernel.json",
+      "bytes": 170731,
+      "sha256": "70ADF63DCDEB41504A63C6056258CA77C9D09F86FB8101A2EE00A82C1D4434FB",
+      "declared_by": "research/campaign_3000/07_release/evidence/raw/RECEIPT.json"
+    },
+    {
+      "path": "research/campaign_3000/07_release/evidence/raw/kaitofukami_44-46-strict-future-top-30-v22-price-impact_v2.ipynb",
+      "bytes": 33211,
+      "sha256": "BE57F757AAAAFA37A1AAB1EB5FE827925144EC7F3825A6236053329C15F2E859",
+      "declared_by": "research/campaign_3000/07_release/evidence/raw/RECEIPT.json"
+    },
+    {
+      "path": "research/campaign_3000/07_release/evidence/raw/kaitofukami_44-46-strict-future-top-30-v22-price-impact_v2_getkernel.json",
+      "bytes": 35262,
+      "sha256": "8C782EE8D07629523F0675341AE876FBE5680CD145ED3315E0CCFEE23E5391CC",
+      "declared_by": "research/campaign_3000/07_release/evidence/raw/RECEIPT.json"
+    },
+    {
+      "path": "research/campaign_3000/07_release/source/SNAPSHOT_RECEIPT.json",
+      "bytes": 940,
+      "sha256": "A07E93F0FB1BD93BD2F248924D9DFD6F7F2DB5F908776E732743E7B72EB8981C",
+      "declared_by": "research/campaign_3000/07_release/release_spec.json"
+    },
+    {
+      "path": "research/campaign_3000/07_release/local_build/release_manifest.json",
+      "bytes": 6998,
+      "sha256": "D2F7E361C2AD233A2528BD5C22CBED2A36EE35E24353176569D6DECFAD21DB72",
+      "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/07_release/verification/VERIFICATION.md",
+      "bytes": 6346,
+      "sha256": "E69C699C8CC32DBB549553DC0CD9D58909F06E335F42D21E2A5183E8F6A9EE46",
+      "declared_by": "direct rehash of local release verification report"
+    },
+    {
+      "path": "research/campaign_3000/08_public_release/SHA256SUMS",
+      "bytes": 1795,
+      "sha256": "7343FE263D5EDF1AD7E46F64D82D25E86A998F61CFC96D9F80E579827622D765",
+      "declared_by": "direct rehash of public-release checksum anchor"
+    },
+    {
+      "path": "research/campaign_3000/08_public_release/release_manifest.json",
+      "bytes": 7631,
+      "sha256": "62118CB021F9FDDC331439845E9659D32A3CC12ED40F2D68B0C02790711DF1BD",
+      "declared_by": "research/campaign_3000/08_public_release/SHA256SUMS"
+    },
+    {
+      "path": "research/campaign_3000/08_public_release/external_action_payload.json",
+      "bytes": 3721,
+      "sha256": "A33306A1463A47B7E87E228F5BA2DC1C161C11947F21F05033C2E371919B0F32",
+      "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/08_public_release/artifact/kaggriculture_fixed_trace_safety_baseline.tar.gz",
+      "bytes": 11972,
+      "sha256": "2730084026B6C0EA68D1D54FF469E1B80D9ABF9BEF43285B15366CF13CF8ACCB",
+      "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/08_public_release/public_source/main.py",
+      "bytes": 197808,
+      "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+      "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/08_public_release/discussion_draft.md",
+      "bytes": 5934,
+      "sha256": "AB6065C7E501E6E6B97B478A55D15F880061793B4988382019722323A4030283",
+      "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/08_public_release/kaggle_code_draft/kaggriculture-fixed-trace-safety-baseline.ipynb",
+      "bytes": 317377,
+      "sha256": "F24F4939C8EC591D5794C650923E583658F0BE05E47FA7A6F049D53664F74153",
+      "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
+    }
+  ],
+  "pending_bindings": [
+    {
+      "id": "candidate_execution_binding",
+      "path": "research/campaign_3000/06_candidates/execution_binding.json",
+      "sha256": "PENDING_FREEZE",
+      "status": "PENDING_FREEZE",
+      "required_in_final_mode": true,
+      "claim_limit": "The tracked template stays pending. Exact binding and commit values belong only in the ignored final-state overlay after E exists."
+    }
+  ],
+  "audit_requests": [
+    "Recompute every evidence hash from the frozen commit rather than trusting this handoff.",
+    "Recheck population definitions, pagination boundaries, unavailable platforms, and negative-scan limits.",
+    "Challenge the Tetsu page-license-to-exact-cell mapping inference, distinguish the body-unarchived cutoff attestation from the later tracked page, and recheck every required lineage notice.",
+    "Confirm all six fresh seed pools remain unopened and that execution_binding.json binds exact frozen commits before any phase OPEN.",
+    "Treat Kaito's adverse consumed-screen evidence and Ray's stronger local comparison as a required challenge to the selection rationale.",
+    "Inspect public release bytes for private-source leakage and enforce Discussion before Code.",
+    "Reject any competition submission without the recorded exact user phrase authorizing that action."
+  ]
+}

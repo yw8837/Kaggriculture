@@ -10,8 +10,8 @@ Access date: 2026-07-31 (Asia/Seoul).
 | Competition archive | `AC6A529D72D2D03387672286D22B1BEB7DE53312D136D4F5CAD5C2CEF9754A37` | Downloaded after user joined. Contains only official rules/interface documents. |
 | Official `AGENTS.md` | `6DC2CC96A99A14EAACE43E613121E327A14DC5A3CFFBD3C424FF480F76F2D352` | Agent contract and workflow. |
 | Official `README.md` | `C43A7DDFCD3FED022B5344E20DFF6789F36799FBFE94D0BDD2FF71517F35E252` | Full game mechanics and economics. |
-| `Kaggle/kaggle-environments` | commit `4f6e2763e2232605aacbade443715a9e2c9ef401`, package `1.32.2` | Exact Apache-2.0 simulator/tests; final reward is bank; action timeout 1 s. |
-| Official simulator test suite | 67/67 passed against the installed package | Installed and pinned source are text-identical after line-ending normalization, SHA-256 `DCD33A832EA6EF1B7E527813DDCD45CEA314DC5CCE58B5BACA0D587CEF847A44`. |
+| `Kaggle/kaggle-environments` | commit `bded87b0d7879078c726a93a4884d044f79c4eed`, package `1.32.6` (revalidated 2026-08-09) | Exact Apache-2.0 simulator/tests; includes the live town rebalance, locked-tile shed fixes, and shed-capacity fixes. Final reward is bank; action timeout 1 s. |
+| Official simulator test suite | 81/81 passed against the installed package | Installed and pinned source are text-identical after line-ending normalization, SHA-256 `FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF`. |
 | Official GitHub history | 23 environment-path commits; no open Kaggriculture PR/issues found | Important current rules came from PRs #1199, #1145, #1142, #1135, #1108, and #1107; stale pre-rebalance economics are rejected. |
 
 The extracted competition documents and the pinned repository copies produced no textual

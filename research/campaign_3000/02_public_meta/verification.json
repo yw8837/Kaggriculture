@@ -1,0 +1,32 @@
+{
+  "code_refs": 155,
+  "discussion_ids": 57,
+  "finished_at_utc": "2026-08-08T20:51:20.872922Z",
+  "github_kinds": {
+    "issue": 3,
+    "official_pull_request": 1,
+    "pull_request": 90,
+    "repository": 162
+  },
+  "high_score_output_files": 89,
+  "high_score_output_refs": 18,
+  "model_search_rows": 1,
+  "source_tape_scan_429": 94,
+  "source_tape_scan_success": 61,
+  "static_ast_pass": 18,
+  "status": "PASS",
+  "tetsu_v16_provenance": "PASS_STATIC_ONLY_LICENSE_HOLD",
+  "verified_input_sha256": {
+    "code_inventory.jsonl": "E510D00AB0AFB35E06B90EFD8EB8CC96DA08F29D8398DF682CDDDD060A7BEEC1",
+    "discussion_inventory.jsonl": "8A296AE0C70728883FA9A2506B263DA3A3907678F03FCAB5D2357DF6B348B767",
+    "github_inventory.jsonl": "F0C4FDE4978D196B02A94EBB9DDAA3D03C31C7A22B78928D9B417344FCB30D87",
+    "kernel_output_manifest.jsonl": "F72D9C5FECB8CA4213BBE07F76E5549C1FE1923C3655918E72C43C45CD5359AA",
+    "kernel_output_provenance.jsonl": "43B4DF2E2E36551373F04A78E8310C1311C82F94931C6FF16A25EE18414CC3B0",
+    "kernel_static_analysis.jsonl": "BD4AF58185A718F436756093F0C2713831A5632B30C7BAA8F3D9F627E39CE256",
+    "model_inventory.jsonl": "6807E5AC0DB8B02EBE5BFF62AC764454A5CD208C3F6C8A2666934C61F8C8D60E",
+    "query_log.json": "EF4247B7915DBD544C21A68D3DEA18AAA7D60E63288B7C49E454B6287CF92AAF",
+    "tape_lineage.jsonl": "D95EA5E4AFF77025B4B8A8BEA71C1A8ECAE28208DB8845FF488C1F98D5AF0A5B",
+    "tetsu_v16_provenance.json": "2DFAF0128B3E1DA60554B9D4D04BF5A5D7528BF0CD6A5DA2DE39F252309BE6AA"
+  },
+  "verifier_sha256": "2D12CDAAF7ECA4F9C7027F269A0CB87E00AD7F96E63053DD617A902EFAB596D7"
+}

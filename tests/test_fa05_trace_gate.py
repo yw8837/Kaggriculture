@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import inspect
 import json
+import subprocess
 from copy import deepcopy
 from pathlib import Path
 
@@ -18,6 +19,10 @@ REGISTRY = ROOT / "configs" / "fa_ab_seed_registry.json"
 
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest().upper()
+
+
+def _git_blob(commit: str, path: str) -> bytes:
+    return subprocess.check_output(["git", "show", f"{commit}:{path}"], cwd=ROOT)
 
 
 def _load(path: Path) -> dict:
@@ -173,14 +178,13 @@ def test_fa05_player_one_runtime_exercises_exact_schedule_indices() -> None:
 
 def test_fa05_every_frozen_input_hash_matches_actual_bytes() -> None:
     boundary = _load(BOUNDARY)
-    entries = [
+    tracked_entries = [
         boundary["scenario_config"],
         boundary["candidate"],
         boundary["control"],
         *boundary["opponents"],
         boundary["execution_freeze"]["third_party_license"],
         boundary["execution_freeze"]["third_party_attribution"],
-        boundary["execution_freeze"]["runtime_replay"],
     ]
     tooling = boundary["tooling"]
     for name in (
@@ -191,14 +195,18 @@ def test_fa05_every_frozen_input_hash_matches_actual_bytes() -> None:
         "runtime_benchmark",
         "gate_evaluator",
     ):
-        entries.append(
+        tracked_entries.append(
             {"path": tooling[name], "sha256": tooling[f"{name}_sha256"]}
         )
-    for entry in entries:
-        path = ROOT / entry["path"]
-        assert _sha256(path) == entry["sha256"]
+    for entry in tracked_entries:
+        payload = _git_blob(boundary["implementation_commit"], entry["path"])
+        assert hashlib.sha256(payload).hexdigest().upper() == entry["sha256"]
         if "bytes" in entry:
-            assert path.stat().st_size == entry["bytes"]
+            assert len(payload) == entry["bytes"]
+    runtime_replay = boundary["execution_freeze"]["runtime_replay"]
+    replay_path = ROOT / runtime_replay["path"]
+    assert _sha256(replay_path) == runtime_replay["sha256"]
+    assert replay_path.stat().st_size == runtime_replay["bytes"]
     assert _sha256(REGISTRY) == boundary["seed_registry_sha256"]
 
 

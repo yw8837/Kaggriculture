@@ -1,0 +1,1810 @@
+{
+  "competition": "kaggriculture",
+  "observed_at_utc": "2026-08-08T17:50:15.385Z",
+  "population": "First 25 rows returned by official Kaggle leaderboard API page_size=200.",
+  "query_started_at_utc": "2026-08-08T17:49:13.001Z",
+  "rows": [
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-07T11:38:45.223Z",
+          "episode_count": 113,
+          "id": 55323652,
+          "latest_public_episode_ids": [
+            91071131,
+            91067410,
+            91065084,
+            91057902,
+            91042803,
+            91042999,
+            91031112,
+            91021088,
+            91009972,
+            91003364
+          ],
+          "publicScore": "2425.8",
+          "public_completed_episode_count": 112,
+          "seat_counts": {
+            "0": 57,
+            "1": 55
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-06T13:13:47.387Z",
+          "episode_count": 120,
+          "id": 55299100,
+          "latest_public_episode_ids": [
+            91057328,
+            91036259,
+            91016957,
+            90997714,
+            90977718,
+            90976060,
+            90957697,
+            90957709,
+            90953506,
+            90945322
+          ],
+          "publicScore": "3204.4",
+          "public_completed_episode_count": 119,
+          "seat_counts": {
+            "0": 61,
+            "1": 58
+          }
+        }
+      ],
+      "rank": 1,
+      "score": 3204.4,
+      "submission_date": "2026-08-07T11:38:45.223Z",
+      "team_id": 16630516,
+      "team_name": "Seb (allegedly)"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T16:10:47.103Z",
+          "episode_count": 29,
+          "id": 55355122,
+          "latest_public_episode_ids": [
+            91072717,
+            91071833,
+            91071913,
+            91070961,
+            91070079,
+            91069185,
+            91068303,
+            91067417,
+            91066536,
+            91065657
+          ],
+          "publicScore": "2529.7",
+          "public_completed_episode_count": 28,
+          "seat_counts": {
+            "0": 10,
+            "1": 18
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T08:22:16.960Z",
+          "episode_count": 78,
+          "id": 55345236,
+          "latest_public_episode_ids": [
+            91072969,
+            91053943,
+            91038777,
+            91031978,
+            91028593,
+            91023534,
+            91012744,
+            91011082,
+            91009445,
+            91007691
+          ],
+          "publicScore": "3138.4",
+          "public_completed_episode_count": 77,
+          "seat_counts": {
+            "0": 46,
+            "1": 31
+          }
+        }
+      ],
+      "rank": 2,
+      "score": 3138.4,
+      "submission_date": "2026-08-08T16:10:47.103Z",
+      "team_id": 16676321,
+      "team_name": "tao wu11"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T06:14:19.830Z",
+          "episode_count": 85,
+          "id": 55342943,
+          "latest_public_episode_ids": [
+            91060538,
+            91040483,
+            91033644,
+            91028562,
+            91022657,
+            91021829,
+            91018472,
+            91010114,
+            91005054,
+            90996903
+          ],
+          "publicScore": "2865.0",
+          "public_completed_episode_count": 84,
+          "seat_counts": {
+            "0": 42,
+            "1": 42
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T04:43:48.607Z",
+          "episode_count": 86,
+          "id": 55341106,
+          "latest_public_episode_ids": [
+            91054779,
+            91043818,
+            91036216,
+            91035389,
+            91016957,
+            91014384,
+            91001027,
+            91000183,
+            90995244,
+            90978557
+          ],
+          "publicScore": "3136.6",
+          "public_completed_episode_count": 85,
+          "seat_counts": {
+            "0": 43,
+            "1": 42
+          }
+        }
+      ],
+      "rank": 3,
+      "score": 3136.6,
+      "submission_date": "2026-08-08T06:14:19.830Z",
+      "team_id": 16672202,
+      "team_name": "HealthStone"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T06:44:00.350Z",
+          "episode_count": 83,
+          "id": 55343482,
+          "latest_public_episode_ids": [
+            91066795,
+            91057328,
+            91054801,
+            91033711,
+            91030358,
+            91029473,
+            91029500,
+            91023673,
+            91013536,
+            91005219
+          ],
+          "publicScore": "3128.1",
+          "public_completed_episode_count": 82,
+          "seat_counts": {
+            "0": 40,
+            "1": 42
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-07T21:08:36.520Z",
+          "episode_count": 110,
+          "id": 55333892,
+          "latest_public_episode_ids": [
+            91067491,
+            91049650,
+            91037873,
+            91027006,
+            91025191,
+            91024346,
+            91023511,
+            91019282,
+            91016738,
+            91009271
+          ],
+          "publicScore": "2765.2",
+          "public_completed_episode_count": 109,
+          "seat_counts": {
+            "0": 57,
+            "1": 52
+          }
+        }
+      ],
+      "rank": 4,
+      "score": 3128.1,
+      "submission_date": "2026-08-08T06:44:00.350Z",
+      "team_id": 16624979,
+      "team_name": "Mohamed abdelrazik"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T11:53:46.923Z",
+          "episode_count": 72,
+          "id": 55349527,
+          "latest_public_episode_ids": [
+            91070323,
+            91063358,
+            91051379,
+            91049733,
+            91047173,
+            91046337,
+            91045511,
+            91044700,
+            91043818,
+            91042963
+          ],
+          "publicScore": "3113.2",
+          "public_completed_episode_count": 71,
+          "seat_counts": {
+            "0": 40,
+            "1": 31
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T08:31:48.097Z",
+          "episode_count": 76,
+          "id": 55345419,
+          "latest_public_episode_ids": [
+            91072791,
+            91066736,
+            91066781,
+            91048679,
+            91048025,
+            91030349,
+            91024454,
+            91021166,
+            91010179,
+            91006929
+          ],
+          "publicScore": "2525.1",
+          "public_completed_episode_count": 75,
+          "seat_counts": {
+            "0": 32,
+            "1": 43
+          }
+        }
+      ],
+      "rank": 5,
+      "score": 3113.2,
+      "submission_date": "2026-08-08T11:53:46.923Z",
+      "team_id": 16626191,
+      "team_name": "kevin park"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T11:10:17.483Z",
+          "episode_count": 79,
+          "id": 55348656,
+          "latest_public_episode_ids": [
+            91064902,
+            91064010,
+            91063200,
+            91058048,
+            91057129,
+            91052265,
+            91051998,
+            91042876,
+            91039609,
+            91039544
+          ],
+          "publicScore": "1889.9",
+          "public_completed_episode_count": 78,
+          "seat_counts": {
+            "0": 39,
+            "1": 39
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T11:10:09.330Z",
+          "episode_count": 75,
+          "id": 55348654,
+          "latest_public_episode_ids": [
+            91069423,
+            91068552,
+            91063344,
+            91049723,
+            91039633,
+            91038777,
+            91037918,
+            91037081,
+            91036216,
+            91035374
+          ],
+          "publicScore": "3111.0",
+          "public_completed_episode_count": 74,
+          "seat_counts": {
+            "0": 36,
+            "1": 38
+          }
+        }
+      ],
+      "rank": 6,
+      "score": 3111.0,
+      "submission_date": "2026-08-08T11:10:17.483Z",
+      "team_id": 16662492,
+      "team_name": "Lester Leong"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T10:58:26.313Z",
+          "episode_count": 43,
+          "id": 55348407,
+          "latest_public_episode_ids": [
+            91070030,
+            91069465,
+            91060765,
+            91040371,
+            91027021,
+            91015274,
+            91014422,
+            91013570,
+            91012727,
+            91011906
+          ],
+          "publicScore": "1051.8",
+          "public_completed_episode_count": 42,
+          "seat_counts": {
+            "0": 21,
+            "1": 21
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T09:38:14.420Z",
+          "episode_count": 80,
+          "id": 55346836,
+          "latest_public_episode_ids": [
+            91068434,
+            91064174,
+            91063358,
+            91060652,
+            91058930,
+            91044685,
+            91030311,
+            91026059,
+            91023673,
+            91019456
+          ],
+          "publicScore": "3109.1",
+          "public_completed_episode_count": 79,
+          "seat_counts": {
+            "0": 29,
+            "1": 50
+          }
+        }
+      ],
+      "rank": 7,
+      "score": 3109.1,
+      "submission_date": "2026-08-08T10:58:26.313Z",
+      "team_id": 16669148,
+      "team_name": "Syed Muhammad Gillani"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T01:16:19.360Z",
+          "episode_count": 55,
+          "id": 55337642,
+          "latest_public_episode_ids": [
+            91065665,
+            91038623,
+            91027712,
+            91026718,
+            91025870,
+            90995764,
+            90988551,
+            90955792,
+            90949230,
+            90948586
+          ],
+          "publicScore": "1079.7",
+          "public_completed_episode_count": 54,
+          "seat_counts": {
+            "0": 28,
+            "1": 26
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T01:09:22.070Z",
+          "episode_count": 93,
+          "id": 55337518,
+          "latest_public_episode_ids": [
+            91062431,
+            91055542,
+            91054801,
+            91037072,
+            91027755,
+            91020223,
+            91004397,
+            90985176,
+            90977718,
+            90958532
+          ],
+          "publicScore": "3102.0",
+          "public_completed_episode_count": 92,
+          "seat_counts": {
+            "0": 54,
+            "1": 38
+          }
+        }
+      ],
+      "rank": 8,
+      "score": 3102.0,
+      "submission_date": "2026-08-08T01:16:19.360Z",
+      "team_id": 16669403,
+      "team_name": "mrgrishninsb"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T13:21:37.470Z",
+          "episode_count": 70,
+          "id": 55351460,
+          "latest_public_episode_ids": [
+            91065924,
+            91065964,
+            91064211,
+            91063333,
+            91062462,
+            91061589,
+            91060712,
+            91059832,
+            91058963,
+            91058118
+          ],
+          "publicScore": "3093.7",
+          "public_completed_episode_count": 69,
+          "seat_counts": {
+            "0": 33,
+            "1": 36
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T07:38:16.383Z",
+          "episode_count": 95,
+          "id": 55344471,
+          "latest_public_episode_ids": [
+            91067697,
+            91066716,
+            91065783,
+            91065051,
+            91065000,
+            91064047,
+            91064164,
+            91063334,
+            91059858,
+            91048778
+          ],
+          "publicScore": "2973.1",
+          "public_completed_episode_count": 94,
+          "seat_counts": {
+            "0": 47,
+            "1": 47
+          }
+        }
+      ],
+      "rank": 9,
+      "score": 3093.7,
+      "submission_date": "2026-08-08T13:21:37.470Z",
+      "team_id": 16637546,
+      "team_name": "Forrest"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T13:27:29.440Z",
+          "episode_count": 68,
+          "id": 55351607,
+          "latest_public_episode_ids": [
+            91070323,
+            91069423,
+            91068552,
+            91067675,
+            91066795,
+            91065924,
+            91065044,
+            91064178,
+            91063302,
+            91062431
+          ],
+          "publicScore": "3092.3",
+          "public_completed_episode_count": 67,
+          "seat_counts": {
+            "0": 37,
+            "1": 30
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T00:48:48.857Z",
+          "episode_count": 100,
+          "id": 55337209,
+          "latest_public_episode_ids": [
+            91071835,
+            91072061,
+            91071970,
+            91068494,
+            91051958,
+            91051386,
+            91039426,
+            91036258,
+            91016890,
+            91005863
+          ],
+          "publicScore": "2097.7",
+          "public_completed_episode_count": 99,
+          "seat_counts": {
+            "0": 44,
+            "1": 55
+          }
+        }
+      ],
+      "rank": 10,
+      "score": 3092.3,
+      "submission_date": "2026-08-08T13:27:29.440Z",
+      "team_id": 16641077,
+      "team_name": "lucaskna"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T14:55:56.163Z",
+          "episode_count": 46,
+          "id": 55353610,
+          "latest_public_episode_ids": [
+            91072863,
+            91072798,
+            91071922,
+            91071049,
+            91070171,
+            91069277,
+            91068402,
+            91067524,
+            91066646,
+            91065766
+          ],
+          "publicScore": "2876.7",
+          "public_completed_episode_count": 45,
+          "seat_counts": {
+            "0": 28,
+            "1": 17
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T10:43:49.497Z",
+          "episode_count": 77,
+          "id": 55348136,
+          "latest_public_episode_ids": [
+            91072927,
+            91066852,
+            91065082,
+            91050480,
+            91045531,
+            91035377,
+            91033716,
+            91032866,
+            91032019,
+            91031136
+          ],
+          "publicScore": "3086.5",
+          "public_completed_episode_count": 76,
+          "seat_counts": {
+            "0": 43,
+            "1": 33
+          }
+        }
+      ],
+      "rank": 11,
+      "score": 3083.3,
+      "submission_date": "2026-08-08T14:55:56.163Z",
+      "team_id": 16666393,
+      "team_name": "saikyo"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T09:04:51.303Z",
+          "episode_count": 84,
+          "id": 55346096,
+          "latest_public_episode_ids": [
+            91071933,
+            91059815,
+            91059840,
+            91050421,
+            91047929,
+            91043733,
+            91039490,
+            91036172,
+            91031197,
+            91026960
+          ],
+          "publicScore": "2927.4",
+          "public_completed_episode_count": 83,
+          "seat_counts": {
+            "0": 42,
+            "1": 41
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T08:24:03.880Z",
+          "episode_count": 79,
+          "id": 55345266,
+          "latest_public_episode_ids": [
+            91062469,
+            91042878,
+            91040419,
+            91029478,
+            91017709,
+            91013550,
+            91006806,
+            91005219,
+            91004371,
+            91003491
+          ],
+          "publicScore": "3082.1",
+          "public_completed_episode_count": 78,
+          "seat_counts": {
+            "0": 36,
+            "1": 42
+          }
+        }
+      ],
+      "rank": 12,
+      "score": 3082.1,
+      "submission_date": "2026-08-08T09:04:51.303Z",
+      "team_id": 16632867,
+      "team_name": "Rayk Kretzschmar"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T03:30:12.310Z",
+          "episode_count": 96,
+          "id": 55339804,
+          "latest_public_episode_ids": [
+            91069293,
+            91066829,
+            91046132,
+            91045402,
+            91039503,
+            91039509,
+            91038746,
+            91037854,
+            91021043,
+            91011056
+          ],
+          "publicScore": "2890.3",
+          "public_completed_episode_count": 95,
+          "seat_counts": {
+            "0": 51,
+            "1": 44
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-07T21:27:13.897Z",
+          "episode_count": 109,
+          "id": 55334137,
+          "latest_public_episode_ids": [
+            91065786,
+            91065044,
+            91064178,
+            91063344,
+            91058118,
+            91049723,
+            91045511,
+            91042120,
+            91034526,
+            91030358
+          ],
+          "publicScore": "3078.8",
+          "public_completed_episode_count": 108,
+          "seat_counts": {
+            "0": 52,
+            "1": 56
+          }
+        }
+      ],
+      "rank": 13,
+      "score": 3078.8,
+      "submission_date": "2026-08-08T03:30:12.310Z",
+      "team_id": 16663229,
+      "team_name": "kakuteki"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T12:29:11.577Z",
+          "episode_count": 71,
+          "id": 55350305,
+          "latest_public_episode_ids": [
+            91066852,
+            91060588,
+            91056470,
+            91055634,
+            91054779,
+            91053943,
+            91053027,
+            91053089,
+            91052229,
+            91051379
+          ],
+          "publicScore": "3074.9",
+          "public_completed_episode_count": 70,
+          "seat_counts": {
+            "0": 30,
+            "1": 40
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T08:53:52.330Z",
+          "episode_count": 80,
+          "id": 55345866,
+          "latest_public_episode_ids": [
+            91072721,
+            91071997,
+            91070122,
+            91067485,
+            91065967,
+            91056381,
+            91043709,
+            91032011,
+            91026855,
+            91021152
+          ],
+          "publicScore": "2738.5",
+          "public_completed_episode_count": 79,
+          "seat_counts": {
+            "0": 40,
+            "1": 39
+          }
+        }
+      ],
+      "rank": 14,
+      "score": 3074.9,
+      "submission_date": "2026-08-08T12:29:11.576Z",
+      "team_id": 16623805,
+      "team_name": "Howon Kang"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T12:53:17.270Z",
+          "episode_count": 73,
+          "id": 55350869,
+          "latest_public_episode_ids": [
+            91069464,
+            91067656,
+            91064211,
+            91058982,
+            91058944,
+            91057317,
+            91056389,
+            91056458,
+            91056470,
+            91055615
+          ],
+          "publicScore": "3047.7",
+          "public_completed_episode_count": 72,
+          "seat_counts": {
+            "0": 34,
+            "1": 38
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T09:52:58.977Z",
+          "episode_count": 89,
+          "id": 55347137,
+          "latest_public_episode_ids": [
+            91071949,
+            91064068,
+            91062432,
+            91060744,
+            91060712,
+            91055649,
+            91046368,
+            91038796,
+            91033716,
+            91033711
+          ],
+          "publicScore": "3010.4",
+          "public_completed_episode_count": 88,
+          "seat_counts": {
+            "0": 49,
+            "1": 39
+          }
+        }
+      ],
+      "rank": 15,
+      "score": 3047.7,
+      "submission_date": "2026-08-08T12:53:17.270Z",
+      "team_id": 16670032,
+      "team_name": "Kenjo1209"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T09:04:38.230Z",
+          "episode_count": 83,
+          "id": 55346092,
+          "latest_public_episode_ids": [
+            91067615,
+            91065964,
+            91064207,
+            91059832,
+            91057252,
+            91047173,
+            91046339,
+            91042068,
+            91030338,
+            91021070
+          ],
+          "publicScore": "3045.2",
+          "public_completed_episode_count": 82,
+          "seat_counts": {
+            "0": 46,
+            "1": 36
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T09:04:25.530Z",
+          "episode_count": 84,
+          "id": 55346085,
+          "latest_public_episode_ids": [
+            91071930,
+            91072010,
+            91071986,
+            91060607,
+            91060647,
+            91057260,
+            91055408,
+            91042805,
+            91042881,
+            91032662
+          ],
+          "publicScore": "1811.5",
+          "public_completed_episode_count": 83,
+          "seat_counts": {
+            "0": 50,
+            "1": 33
+          }
+        }
+      ],
+      "rank": 16,
+      "score": 3045.2,
+      "submission_date": "2026-08-08T09:04:38.230Z",
+      "team_id": 16663252,
+      "team_name": "MD Concepcion"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T09:50:28.750Z",
+          "episode_count": 101,
+          "id": 55347083,
+          "latest_public_episode_ids": [
+            91071929,
+            91062462,
+            91053030,
+            91052163,
+            91050518,
+            91043009,
+            91042963,
+            91039633,
+            91039518,
+            91038786
+          ],
+          "publicScore": "3040.0",
+          "public_completed_episode_count": 100,
+          "seat_counts": {
+            "0": 50,
+            "1": 50
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T06:03:54.507Z",
+          "episode_count": 92,
+          "id": 55342749,
+          "latest_public_episode_ids": [
+            91067481,
+            91067556,
+            91062168,
+            91055640,
+            91051183,
+            91048605,
+            91048795,
+            91030980,
+            91029477,
+            91023675
+          ],
+          "publicScore": "1939.8",
+          "public_completed_episode_count": 91,
+          "seat_counts": {
+            "0": 63,
+            "1": 28
+          }
+        }
+      ],
+      "rank": 17,
+      "score": 3040.0,
+      "submission_date": "2026-08-08T09:50:28.750Z",
+      "team_id": 16682885,
+      "team_name": "风沙星辰"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T12:42:57.810Z",
+          "episode_count": 85,
+          "id": 55350603,
+          "latest_public_episode_ids": [
+            91072960,
+            91067697,
+            91065938,
+            91065080,
+            91064223,
+            91063334,
+            91062463,
+            91061590,
+            91060717,
+            91059840
+          ],
+          "publicScore": "3039.6",
+          "public_completed_episode_count": 84,
+          "seat_counts": {
+            "0": 44,
+            "1": 40
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T12:42:42.460Z",
+          "episode_count": 81,
+          "id": 55350595,
+          "latest_public_episode_ids": [
+            91071132,
+            91069453,
+            91068581,
+            91067702,
+            91067663,
+            91065948,
+            91065066,
+            91064925,
+            91064197,
+            91063337
+          ],
+          "publicScore": "2960.0",
+          "public_completed_episode_count": 80,
+          "seat_counts": {
+            "0": 39,
+            "1": 41
+          }
+        }
+      ],
+      "rank": 18,
+      "score": 3039.6,
+      "submission_date": "2026-08-08T12:42:57.810Z",
+      "team_id": 16631536,
+      "team_name": "kglctf"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T10:23:19.730Z",
+          "episode_count": 90,
+          "id": 55347742,
+          "latest_public_episode_ids": [
+            91072969,
+            91061550,
+            91060680,
+            91055566,
+            91048817,
+            91040431,
+            91039643,
+            91034524,
+            91034558,
+            91033710
+          ],
+          "publicScore": "3034.2",
+          "public_completed_episode_count": 89,
+          "seat_counts": {
+            "0": 50,
+            "1": 39
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-07T00:03:50.137Z",
+          "episode_count": 143,
+          "id": 55309274,
+          "latest_public_episode_ids": [
+            91071099,
+            91068484,
+            91063270,
+            91047922,
+            91046203,
+            91038751,
+            91034581,
+            91015168,
+            91008382,
+            91001867
+          ],
+          "publicScore": "2743.6",
+          "public_completed_episode_count": 142,
+          "seat_counts": {
+            "0": 64,
+            "1": 78
+          }
+        }
+      ],
+      "rank": 19,
+      "score": 3034.2,
+      "submission_date": "2026-08-08T10:23:19.730Z",
+      "team_id": 16660220,
+      "team_name": "tomo11111"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T09:06:49.710Z",
+          "episode_count": 89,
+          "id": 55346155,
+          "latest_public_episode_ids": [
+            91066789,
+            91057266,
+            91056388,
+            91053056,
+            91049682,
+            91046368,
+            91042968,
+            91038786,
+            91037941,
+            91032020
+          ],
+          "publicScore": "3032.2",
+          "public_completed_episode_count": 88,
+          "seat_counts": {
+            "0": 45,
+            "1": 43
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-07T21:15:56.887Z",
+          "episode_count": 115,
+          "id": 55333979,
+          "latest_public_episode_ids": [
+            91067571,
+            91061588,
+            91058797,
+            91056362,
+            91056279,
+            91046163,
+            91039617,
+            91021896,
+            91018546,
+            91011901
+          ],
+          "publicScore": "2888.1",
+          "public_completed_episode_count": 114,
+          "seat_counts": {
+            "0": 66,
+            "1": 48
+          }
+        }
+      ],
+      "rank": 20,
+      "score": 3032.2,
+      "submission_date": "2026-08-08T09:06:49.710Z",
+      "team_id": 16623152,
+      "team_name": "Ibad Ur Rahman"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T17:23:34.153Z",
+          "episode_count": 8,
+          "id": 55356542,
+          "latest_public_episode_ids": [
+            91072647,
+            91071774,
+            91070916,
+            91070043,
+            91069163,
+            91069187,
+            91068306
+          ],
+          "publicScore": "1244.7",
+          "public_completed_episode_count": 7,
+          "seat_counts": {
+            "0": 4,
+            "1": 3
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T03:09:35.423Z",
+          "episode_count": 104,
+          "id": 55339397,
+          "latest_public_episode_ids": [
+            91072960,
+            91071976,
+            91065938,
+            91055590,
+            91049733,
+            91047190,
+            91040457,
+            91032866,
+            91032861,
+            91032052
+          ],
+          "publicScore": "3029.1",
+          "public_completed_episode_count": 103,
+          "seat_counts": {
+            "0": 46,
+            "1": 57
+          }
+        }
+      ],
+      "rank": 21,
+      "score": 3029.1,
+      "submission_date": "2026-08-08T17:23:34.153Z",
+      "team_id": 16660259,
+      "team_name": "Marcus"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T12:53:49.803Z",
+          "episode_count": 71,
+          "id": 55350882,
+          "latest_public_episode_ids": [
+            91066823,
+            91060769,
+            91059858,
+            91058982,
+            91058963,
+            91058144,
+            91057295,
+            91056456,
+            91055560,
+            91055602
+          ],
+          "publicScore": "3028.2",
+          "public_completed_episode_count": 70,
+          "seat_counts": {
+            "0": 36,
+            "1": 34
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T12:24:05.507Z",
+          "episode_count": 70,
+          "id": 55350188,
+          "latest_public_episode_ids": [
+            91071114,
+            91070345,
+            91061476,
+            91061460,
+            91059016,
+            91053111,
+            91052250,
+            91051392,
+            91050536,
+            91049692
+          ],
+          "publicScore": "1899.8",
+          "public_completed_episode_count": 69,
+          "seat_counts": {
+            "0": 33,
+            "1": 36
+          }
+        }
+      ],
+      "rank": 22,
+      "score": 3028.2,
+      "submission_date": "2026-08-08T12:53:49.803Z",
+      "team_id": 16668370,
+      "team_name": "Matthew Labrador"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T14:35:51.093Z",
+          "episode_count": 49,
+          "id": 55353220,
+          "latest_public_episode_ids": [
+            91072838,
+            91071969,
+            91071101,
+            91070216,
+            91069323,
+            91068446,
+            91067552,
+            91066684,
+            91065803,
+            91064938
+          ],
+          "publicScore": "2520.7",
+          "public_completed_episode_count": 48,
+          "seat_counts": {
+            "0": 25,
+            "1": 23
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T08:51:21.023Z",
+          "episode_count": 94,
+          "id": 55345819,
+          "latest_public_episode_ids": [
+            91059769,
+            91057317,
+            91053817,
+            91047119,
+            91045531,
+            91043765,
+            91043009,
+            91042911,
+            91032844,
+            91032776
+          ],
+          "publicScore": "3019.4",
+          "public_completed_episode_count": 93,
+          "seat_counts": {
+            "0": 42,
+            "1": 51
+          }
+        }
+      ],
+      "rank": 23,
+      "score": 3019.4,
+      "submission_date": "2026-08-08T14:35:51.093Z",
+      "team_id": 16669256,
+      "team_name": "Shivam_2212"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T09:51:24.013Z",
+          "episode_count": 100,
+          "id": 55347101,
+          "latest_public_episode_ids": [
+            91068555,
+            91068527,
+            91066746,
+            91063337,
+            91061464,
+            91059801,
+            91058083,
+            91053881,
+            91053089,
+            91050509
+          ],
+          "publicScore": "3013.6",
+          "public_completed_episode_count": 99,
+          "seat_counts": {
+            "0": 50,
+            "1": 49
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-07T11:26:39.223Z",
+          "episode_count": 146,
+          "id": 55323394,
+          "latest_public_episode_ids": [
+            91071093,
+            91071213,
+            91060453,
+            91057297,
+            91053124,
+            91032895,
+            91025990,
+            91020151,
+            91004135,
+            91001050
+          ],
+          "publicScore": "2447.6",
+          "public_completed_episode_count": 145,
+          "seat_counts": {
+            "0": 73,
+            "1": 72
+          }
+        }
+      ],
+      "rank": 24,
+      "score": 3013.6,
+      "submission_date": "2026-08-08T09:51:24.013Z",
+      "team_id": 16629165,
+      "team_name": "lingyu07"
+    },
+    {
+      "episode_availability": {
+        "metadata": "OBSERVED",
+        "replay_download": "AVAILABLE_ENDPOINT_NOT_YET_DOWNLOADED"
+      },
+      "public_code": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_discussion": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_models": {
+        "refs": [],
+        "status": "UNVERIFIED_PENDING_PUBLIC_INVENTORY_JOIN"
+      },
+      "public_submission_inventory_status": "OBSERVED",
+      "public_submissions": [
+        {
+          "dateSubmitted": "2026-08-08T04:06:20.067Z",
+          "episode_count": 95,
+          "id": 55340360,
+          "latest_public_episode_ids": [
+            91070301,
+            91069360,
+            91069328,
+            91063302,
+            91063260,
+            91056428,
+            91050484,
+            91047940,
+            91044708,
+            91032859
+          ],
+          "publicScore": "3013.0",
+          "public_completed_episode_count": 94,
+          "seat_counts": {
+            "0": 50,
+            "1": 44
+          }
+        },
+        {
+          "dateSubmitted": "2026-08-08T04:02:39.950Z",
+          "episode_count": 52,
+          "id": 55340294,
+          "latest_public_episode_ids": [
+            91072082,
+            91064799,
+            91057863,
+            91021132,
+            91007644,
+            90999385,
+            90967420,
+            90953395,
+            90944393,
+            90934174
+          ],
+          "publicScore": "976.7",
+          "public_completed_episode_count": 51,
+          "seat_counts": {
+            "0": 25,
+            "1": 26
+          }
+        }
+      ],
+      "rank": 25,
+      "score": 3013.0,
+      "submission_date": "2026-08-08T04:06:20.066Z",
+      "team_id": 16663928,
+      "team_name": "Auxileon"
+    }
+  ],
+  "schema_version": 1,
+  "source": {
+    "sdk_method": "KaggleApi.competition_leaderboard_view('kaggriculture', page_size=200)",
+    "url": "https://www.kaggle.com/competitions/kaggriculture/leaderboard"
+  }
+}

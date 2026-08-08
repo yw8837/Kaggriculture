@@ -10,8 +10,8 @@
 
 ## Measured facts
 
-- Local runtime resolves Python 3.12.13 and `kaggle-environments==1.32.2`.
-- The historical project checkpoint passed 7/7 and the official simulator suite passed 67/67.
+- Local runtime resolves Python 3.12.13 and `kaggle-environments==1.32.6`.
+- The historical project checkpoint passed 7/7; the current official simulator suite passes 81/81.
   Those counts are not a current-suite claim. A frozen handoff must include an immutable test log
   with SHA-256 or a remote CI run; prose-only pass counts are unverified evidence.
 - The public replay snapshot is Apache-2.0 and locally hash-pinned.

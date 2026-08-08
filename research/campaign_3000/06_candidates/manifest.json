@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "status": "CLOSED_FREEZE_NO_FRESH_GAMES",
+  "plan_sha256": "7167430237ACFF5846C8DFD6F948DC846BC5DB3BCBFCE973505DF3E86A0D33C8",
+  "gate_sha256": "F9E82C8F1EE992FB2F82B3EB8DE476410A0695E05C06C35AD951A21AAE8750DB",
+  "protocol_exclusions": [
+    {
+      "path": "research/campaign_3000/06_candidates/execution_binding.json",
+      "intentional": true,
+      "reason": "E changes only implementation_commit from PENDING to parent S; manifest inclusion would be self-referential."
+    },
+    {
+      "path": "research/campaign_3000/06_candidates/lifecycle.json",
+      "intentional": true,
+      "reason": "Lifecycle is exact CLOSED at S/E and only a receipt-bound lifecycle-only O commit may transition it."
+    }
+  ],
+  "files": [
+    {"path": "research/campaign_3000/06_candidates/README.md", "bytes": 8901, "sha256": "0BCF3AB6454556E6EB54138476B34803AD38840786727936164CF7AF6B4526B4"},
+    {"path": "research/campaign_3000/06_candidates/authorized_runner.py", "bytes": 503, "sha256": "E3C21D1EE45B55E9767D40F87FE7EC0983866CA8F58FE9F39FAAFE640F7594E8"},
+    {"path": "research/campaign_3000/06_candidates/candidate_plan.json", "bytes": 6950, "sha256": "7167430237ACFF5846C8DFD6F948DC846BC5DB3BCBFCE973505DF3E86A0D33C8"},
+    {"path": "research/campaign_3000/06_candidates/gate_config.json", "bytes": 3347, "sha256": "F9E82C8F1EE992FB2F82B3EB8DE476410A0695E05C06C35AD951A21AAE8750DB"},
+    {"path": "research/campaign_3000/06_candidates/orchestrator.py", "bytes": 77187, "sha256": "75E53A2CF523370267DF18DBAE53C4652C85A163DC14F48C2949284734AA813F"},
+    {"path": "research/campaign_3000/06_candidates/seed_collision_scan.json", "bytes": 2981, "sha256": "B54201122781D71CE24868B46550309B262FD45F0CA2D25961FB87AB7451B416"},
+    {"path": "research/campaign_3000/06_candidates/selection_evidence.json", "bytes": 3309, "sha256": "D16F61AD119DDE74973BCE1BD638D47CC32F0F3C4B757892C15C680FD7FE5996"},
+    {"path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py", "bytes": 27244, "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"},
+    {"path": "research/campaign_3000/06_candidates/snapshots/kaito_v22.py", "bytes": 18609, "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A"},
+    {"path": "research/campaign_3000/06_candidates/snapshots/ray_c45_exact.py", "bytes": 26545, "sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73"},
+    {"path": "research/campaign_3000/06_candidates/snapshots/boatlee_v14.py", "bytes": 26304, "sha256": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B"},
+    {"path": "research/campaign_3000/06_candidates/test_execution_binding.py", "bytes": 22393, "sha256": "53E58B2E8ED4E88F69026E8B68BADEBD25BC9705A47262C362A70F327199DCF7"},
+    {"path": "tests/test_campaign_3000_candidate_freeze.py", "bytes": 14459, "sha256": "98A6651666BE0702C7F1AD1E2AE494F3336A775A81A6EFEA6AF908A8DBD8C63E"},
+    {"path": "src/kaggriculture_lab/evaluation/runner.py", "bytes": 20458, "sha256": "8F35F4D52870DB06FDFF60D03665E234F4994DD18D17BDB2E7FBC5D7F9F21A39"},
+    {"path": "configs/fa_ab_scenarios.json", "bytes": 603, "sha256": "3BCB18188C1618236EF90F92F09D6D20DDF7178ADE625DC47D1A48ADAB7A16F2"},
+    {"path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py", "bytes": 197808, "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"},
+    {"path": "research/campaign_3000/07_release/TETSU_IP_VERDICT.md", "bytes": 5413, "sha256": "DA8764985D0EFCFC63867DB673E242D82B9D72CFE7495BFCB932A2DD6F0DF721"},
+    {"path": "research/campaign_3000/02_public_meta/code_inventory.jsonl", "bytes": 328991, "sha256": "E510D00AB0AFB35E06B90EFD8EB8CC96DA08F29D8398DF682CDDDD060A7BEEC1"},
+    {"path": "research/campaign_3000/05_engine_screen/summary.json", "bytes": 79363, "sha256": "193FB33CA537681E510C74C9E6ED947CD1FB0D806911BB1C93AF95AC8C50D94F"},
+    {"path": "research/campaign_3000/05_engine_screen_ray_c45_addendum/summary.json", "bytes": 18921, "sha256": "991FA149FE4ACBF38F82814A2D5FACA28F02188732CCFEEFEE565FB28018932A"}
+  ],
+  "verification": {
+    "ruff": "All checks passed!",
+    "pytest": "31 passed",
+    "binding": "VALID_IMPLEMENTATION_FREEZE_PENDING",
+    "lifecycle": "CLOSED",
+    "closed_plan": "VALID_CLOSED_PLAN",
+    "planned_cells": 3328,
+    "fresh_games_executed": 0,
+    "kaggle_actions": 0
+  }
+}

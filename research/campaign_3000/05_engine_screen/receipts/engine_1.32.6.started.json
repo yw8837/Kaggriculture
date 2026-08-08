@@ -1,0 +1,325 @@
+{
+  "schema_version": 1,
+  "run_id": "campaign_3000_engine_public_screen_v1",
+  "engine_version": "1.32.6",
+  "started_at_utc": "2026-08-08T18:28:33.302462+00:00",
+  "git_head_at_start": "72b12208dd8faf78df267738b017ec3a049334ea",
+  "authority": {
+    "scope": "local read-only agent evaluation and evidence generation",
+    "external_uploads": "FORBIDDEN",
+    "competition_submissions": "FORBIDDEN",
+    "publications": "FORBIDDEN",
+    "fresh_promotion_seed_opening": "FORBIDDEN"
+  },
+  "seed_policy": {
+    "status": "CONSUMED_SCREEN",
+    "seeds": [
+      23000,
+      23001,
+      23002,
+      23003,
+      23004,
+      23005,
+      23006,
+      23007
+    ],
+    "comparison_seeds": [
+      23000,
+      23001
+    ],
+    "historical_registry_path": "configs/fa_ab_seed_registry.json",
+    "historical_registry_sha256": "A443626FF1E6FE2B84C9036454263AA4E8349C3E4ADE3686A6E449C3BA699C61",
+    "historical_pool": "candidates.A.development",
+    "historical_pool_range": "23000-23015",
+    "historical_pool_state": "opened=true, consumed=true",
+    "promotion_eligible": false,
+    "rationale": "Reuse only already-consumed historical development seeds for engine/public-agent screening; no fresh confirmation, robustness, holdout, or promotion seed is opened."
+  },
+  "workers": 8,
+  "seat_policy": "both seats",
+  "scenario_override": {},
+  "cell_registry_path": "research/campaign_3000/05_engine_screen/cell_registry.json",
+  "cell_registry_sha256_at_start": "CC328669C935ED4D60201CBF1C94F067BC884F725A94CCD8495B68F37C9DC4AE",
+  "planned_reports": [
+    {
+      "lane": "fa04_g1",
+      "candidate": "boatlee_v14",
+      "opponents": [
+        "fa04_g1"
+      ],
+      "seeds": [
+        23000,
+        23001,
+        23002,
+        23003,
+        23004,
+        23005,
+        23006,
+        23007
+      ],
+      "path": "research/campaign_3000/05_engine_screen/raw/engine_1.32.6/fa04_g1/boatlee_v14.json"
+    },
+    {
+      "lane": "fa04_g1",
+      "candidate": "flex_adaptive",
+      "opponents": [
+        "fa04_g1"
+      ],
+      "seeds": [
+        23000,
+        23001,
+        23002,
+        23003,
+        23004,
+        23005,
+        23006,
+        23007
+      ],
+      "path": "research/campaign_3000/05_engine_screen/raw/engine_1.32.6/fa04_g1/flex_adaptive.json"
+    },
+    {
+      "lane": "fa04_g1",
+      "candidate": "indar_route_2948_9",
+      "opponents": [
+        "fa04_g1"
+      ],
+      "seeds": [
+        23000,
+        23001,
+        23002,
+        23003,
+        23004,
+        23005,
+        23006,
+        23007
+      ],
+      "path": "research/campaign_3000/05_engine_screen/raw/engine_1.32.6/fa04_g1/indar_route_2948_9.json"
+    },
+    {
+      "lane": "fa04_g1",
+      "candidate": "kaito_v22_price_impact",
+      "opponents": [
+        "fa04_g1"
+      ],
+      "seeds": [
+        23000,
+        23001,
+        23002,
+        23003,
+        23004,
+        23005,
+        23006,
+        23007
+      ],
+      "path": "research/campaign_3000/05_engine_screen/raw/engine_1.32.6/fa04_g1/kaito_v22_price_impact.json"
+    },
+    {
+      "lane": "fa04_g1",
+      "candidate": "tetsu_adaptive",
+      "opponents": [
+        "fa04_g1"
+      ],
+      "seeds": [
+        23000,
+        23001,
+        23002,
+        23003,
+        23004,
+        23005,
+        23006,
+        23007
+      ],
+      "path": "research/campaign_3000/05_engine_screen/raw/engine_1.32.6/fa04_g1/tetsu_adaptive.json"
+    },
+    {
+      "lane": "public_round_robin",
+      "candidate": "boatlee_v14",
+      "opponents": [
+        "flex_adaptive",
+        "indar_route_2948_9",
+        "kaito_v22_price_impact",
+        "tetsu_adaptive"
+      ],
+      "seeds": [
+        23000,
+        23001,
+        23002,
+        23003,
+        23004,
+        23005,
+        23006,
+        23007
+      ],
+      "path": "research/campaign_3000/05_engine_screen/raw/engine_1.32.6/public_round_robin/boatlee_v14.json"
+    },
+    {
+      "lane": "public_round_robin",
+      "candidate": "flex_adaptive",
+      "opponents": [
+        "indar_route_2948_9",
+        "kaito_v22_price_impact",
+        "tetsu_adaptive"
+      ],
+      "seeds": [
+        23000,
+        23001,
+        23002,
+        23003,
+        23004,
+        23005,
+        23006,
+        23007
+      ],
+      "path": "research/campaign_3000/05_engine_screen/raw/engine_1.32.6/public_round_robin/flex_adaptive.json"
+    },
+    {
+      "lane": "public_round_robin",
+      "candidate": "indar_route_2948_9",
+      "opponents": [
+        "kaito_v22_price_impact",
+        "tetsu_adaptive"
+      ],
+      "seeds": [
+        23000,
+        23001,
+        23002,
+        23003,
+        23004,
+        23005,
+        23006,
+        23007
+      ],
+      "path": "research/campaign_3000/05_engine_screen/raw/engine_1.32.6/public_round_robin/indar_route_2948_9.json"
+    },
+    {
+      "lane": "public_round_robin",
+      "candidate": "kaito_v22_price_impact",
+      "opponents": [
+        "tetsu_adaptive"
+      ],
+      "seeds": [
+        23000,
+        23001,
+        23002,
+        23003,
+        23004,
+        23005,
+        23006,
+        23007
+      ],
+      "path": "research/campaign_3000/05_engine_screen/raw/engine_1.32.6/public_round_robin/kaito_v22_price_impact.json"
+    }
+  ],
+  "planned_cells": 240,
+  "sources_at_start": {
+    "files": {
+      "configs/fa_ab_seed_registry.json": {
+        "bytes": 14721,
+        "sha256": "A443626FF1E6FE2B84C9036454263AA4E8349C3E4ADE3686A6E449C3BA699C61"
+      },
+      "dist/campaign_3000_public_agents/boatlee__84-84-base-public-holdout-v14-clone-preemption.py": {
+        "bytes": 26304,
+        "sha256": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B"
+      },
+      "dist/campaign_3000_public_agents/flexonafft__kaggriculture-adaptive-replay-agent.py": {
+        "bytes": 25939,
+        "sha256": "3C41010DE37114C082D481E4A4C3E42CA5148E826A140E2AA02964ACA8636DD8"
+      },
+      "dist/campaign_3000_public_agents/indarkarhana__kaggriculture-verified-route-replay-2948-9.py": {
+        "bytes": 14104,
+        "sha256": "18DD8CB938AE72CF6511F23189B8C128BE8092ED9EC3BAECDD3F9E75D6A7D03C"
+      },
+      "dist/campaign_3000_public_agents/kaitofukami__44-46-strict-future-top-30-v22-price-impact.py": {
+        "bytes": 18609,
+        "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A"
+      },
+      "dist/campaign_3000_public_agents/manifest.json": {
+        "bytes": 2954,
+        "sha256": "E949AFA4EC6A0EEFC51DD2B3813EDC2D46BB8ABDC1D254C685E04A559B3DB281"
+      },
+      "dist/campaign_3000_public_agents/tetsutani__adaptive-farming-strategy-for-kaggriculture.py": {
+        "bytes": 27244,
+        "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+      },
+      "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py": {
+        "bytes": 197808,
+        "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+      },
+      "pyproject.toml": {
+        "bytes": 1308,
+        "sha256": "240B46D7630966BA7FA748C98C9DE607FB9A8CFFE307E98F1E27B7A4EF8D79B0"
+      },
+      "research/campaign_3000/05_engine_screen/run_screen.py": {
+        "bytes": 46714,
+        "sha256": "D8600EE2D849813261AE3F93B7D6F2DBD4BB002B35527E6A2E46A2881BEF3C3C"
+      },
+      "research/campaign_3000/05_engine_screen/screen_config.json": {
+        "bytes": 3903,
+        "sha256": "49AA865CF993DE29D22715C593FAA81134C2E97F3A5C25AE00589D3ACC311E72"
+      },
+      "src/kaggriculture_lab/evaluation/runner.py": {
+        "bytes": 20458,
+        "sha256": "8F35F4D52870DB06FDFF60D03665E234F4994DD18D17BDB2E7FBC5D7F9F21A39"
+      },
+      "uv.lock": {
+        "bytes": 241084,
+        "sha256": "95E41B0F6DE9FC78797B2B7CB7A3284659B64F5C6C6C6D59163BA163750FCED2"
+      }
+    },
+    "snapshot_sha256": "1A5D0CA103B0BA8F173360C6FFDC82DC72120D31CBA372D0A7341ADE3BD39B8A"
+  },
+  "environment_at_start": {
+    "kaggle_environments_version": "1.32.6",
+    "python_version": "3.12.13",
+    "python_executable": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\.venv\\Scripts\\python.exe",
+    "engine_directory": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\.venv\\Lib\\site-packages\\kaggle_environments\\envs\\kaggriculture",
+    "engine_files": {
+      "AGENTS.md": {
+        "bytes": 13708,
+        "sha256": "E1A80501A7B02A212EAAC9370ADA4129A64E0EE6CB3CBC790F3D77D22863FE22"
+      },
+      "kaggriculture.json": {
+        "bytes": 5877,
+        "sha256": "7F196F4AAF9B4E482FBD61BA4BF19F5CEC4DA0F81938ECE756954035A65C0BB5"
+      },
+      "kaggriculture.py": {
+        "bytes": 39801,
+        "sha256": "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF"
+      },
+      "README.md": {
+        "bytes": 25724,
+        "sha256": "63D0497CA655EA1857A96A3226BED6664A2FA98506D76D1FA14CE9101C5F1D34"
+      }
+    },
+    "engine_files_sha256": "6930C780E3E0B9EA0AC8DE6DFDE6821C2276E3E2E4CEA423B7093F3FAE806594",
+    "distribution_metadata_files": {
+      "kaggle_environments-1.32.6.dist-info/METADATA": {
+        "bytes": 871,
+        "sha256": "77C1E06239D293E0F7D630C4B152DAFE2CFD90F06409D0ABF33E30E58D92CF8E"
+      },
+      "kaggle_environments-1.32.6.dist-info/WHEEL": {
+        "bytes": 81,
+        "sha256": "FF23073DA055FACE9F40CC14A28F3735275308CDDCF315D6157461A9A7CDFBB6"
+      }
+    },
+    "default_environment_configuration": {
+      "actTimeout": 1,
+      "boardSize": 10,
+      "episodeSteps": 720,
+      "farmHandCostMult": 1,
+      "marketParams": {},
+      "maxMarketOrdersPerTurn": 10,
+      "runTimeout": 1200,
+      "seed": null,
+      "shedCapacity": 100,
+      "startingMoney": 3000,
+      "townCenterSellInterval": 24,
+      "townShopSellInterval": 4,
+      "townShopUnlockInterval": 3,
+      "turnsPerDay": 24,
+      "weedSpawnChance": 0.005
+    },
+    "default_environment_configuration_sha256": "1A9006518CCBE403A70E107BB041CC2489E38DA637AE0E3872500010963C46F3",
+    "snapshot_sha256": "478DB80084F0BFF072467AA5CBE5A049DE19C93822DCDE389C58B9EB742BD170"
+  }
+}

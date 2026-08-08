@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "run_id": "campaign_3000_ray_c45_addendum_v1",
+  "relationship": {
+    "parent_evidence": "research/campaign_3000/05_engine_screen",
+    "parent_manifest_sha256": "A819E229B8FA101730B759AE30B224D692944129B55E7A3B1BEA44ACBDC70D48",
+    "policy": "Separate addendum. Do not edit or reinterpret the immutable five-agent evidence."
+  },
+  "authority": {
+    "scope": "local read-only agent evaluation and addendum evidence generation",
+    "external_actions": "FORBIDDEN",
+    "fresh_seed_opening": "FORBIDDEN",
+    "promotion_eligible": false
+  },
+  "seed_policy": {
+    "status": "CONSUMED_SCREEN",
+    "seeds": [23000, 23001, 23002, 23003, 23004, 23005, 23006, 23007],
+    "historical_registry_path": "configs/fa_ab_seed_registry.json",
+    "historical_registry_sha256": "A443626FF1E6FE2B84C9036454263AA4E8349C3E4ADE3686A6E449C3BA699C61",
+    "historical_pool": "candidates.A.development",
+    "historical_pool_range": "23000-23015",
+    "historical_pool_state": "opened=true, consumed=true"
+  },
+  "engine": {
+    "version": "1.32.6",
+    "kaggriculture_py_sha256": "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF",
+    "scenario_override": {},
+    "episode_steps": 720,
+    "workers": 8,
+    "seat_policy": "both seats"
+  },
+  "runner": {
+    "path": "src/kaggriculture_lab/evaluation/runner.py",
+    "sha256": "8F35F4D52870DB06FDFF60D03665E234F4994DD18D17BDB2E7FBC5D7F9F21A39",
+    "required_failure_guard": "_first_abnormal_status"
+  },
+  "candidate": {
+    "alias": "ray_c45_exact",
+    "path": "dist/campaign_3000_public_agents/ray_c45.py",
+    "sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73",
+    "bytes": 26545,
+    "source_identity_note": "File docstring says C45; embedded __version__ says C64_HORIZON25. The path and SHA, not the label, define the evaluated bytes."
+  },
+  "notebook_provenance": {
+    "ref": "raykkretzschmar/kaggriculture-rank-your-agent",
+    "url": "https://www.kaggle.com/code/raykkretzschmar/kaggriculture-rank-your-agent",
+    "version": 10,
+    "author": "Rayk Kretzschmar",
+    "license_name": "Apache 2.0",
+    "observed_best_score": 2927.4,
+    "observed_best_score_version": 9,
+    "notebook_source_sha256": "C9D5EB18E836807577650255D514D645BEC3710C4265196FB667E6C197F5288C",
+    "notebook_source_bytes": 65117,
+    "metadata_sha256": "C460E555D576E18A9C2AC60AE8BB8BE6B0F4182B646124136F2937E538393368",
+    "page_reader_sha256": "530E9EC60B5BB1213F4834A981585D710B534A5519ABFF221BDB4BD1C0294E99",
+    "retrieved_at_utc": "2026-08-08T18:05:55.692285Z",
+    "inventory_path": "research/campaign_3000/02_public_meta/code_inventory.jsonl",
+    "inventory_row_canonical_sha256": "E53C34030EF89CA00C643C50F4764C2DFD90B65501B771831A4C09E78CF7F090",
+    "mapping_basis": "Exact candidate path/SHA and notebook provenance were supplied in the parent handoff; the local inventory independently confirms notebook ref/version/license/score/source metadata."
+  },
+  "opponents": [
+    {
+      "alias": "tetsu_adaptive",
+      "path": "dist/campaign_3000_public_agents/tetsutani__adaptive-farming-strategy-for-kaggriculture.py",
+      "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+      "bytes": 27244
+    },
+    {
+      "alias": "kaito_v22_price_impact",
+      "path": "dist/campaign_3000_public_agents/kaitofukami__44-46-strict-future-top-30-v22-price-impact.py",
+      "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+      "bytes": 18609
+    },
+    {
+      "alias": "boatlee_v14",
+      "path": "dist/campaign_3000_public_agents/boatlee__84-84-base-public-holdout-v14-clone-preemption.py",
+      "sha256": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B",
+      "bytes": 26304
+    },
+    {
+      "alias": "fa04_g1",
+      "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+      "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+      "bytes": 197808
+    }
+  ],
+  "design": {
+    "opponents": 4,
+    "seeds": 8,
+    "seats": 2,
+    "exact_cells": 64,
+    "raw_report": "research/campaign_3000/05_engine_screen_ray_c45_addendum/raw/ray_c45_exact.json"
+  }
+}

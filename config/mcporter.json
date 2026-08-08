@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "serena_campaign": {
+      "command": "serena",
+      "args": [
+        "start-mcp-server",
+        "--context",
+        "claude-code",
+        "--project",
+        "campaign_3000",
+        "--enable-web-dashboard",
+        "false",
+        "--log-level",
+        "ERROR"
+      ],
+      "description": "Serena pinned to Kaggriculture campaign_3000 worktree"
+    }
+  }
+}

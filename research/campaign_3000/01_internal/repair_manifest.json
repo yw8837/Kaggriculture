@@ -1,0 +1,31 @@
+{
+  "errors": [],
+  "our_episode_inventory_bytes": 579274,
+  "our_episode_inventory_rows": 1017,
+  "our_episode_inventory_sha256": "70C4981A2808F450F95D9AAB1F0E4646F039A40016EBA64007955906425A319F",
+  "our_submissions_bytes": 33083,
+  "our_submissions_sha256": "FB9CBA49FCFAED851377DCC803B20A2CADFFFFE0D78799909E75471D1FF67E55",
+  "repaired": [
+    {
+      "episodes": 59,
+      "submission_id": 55154217
+    },
+    {
+      "episodes": 41,
+      "submission_id": 55154212
+    },
+    {
+      "episodes": 49,
+      "submission_id": 55142935
+    },
+    {
+      "episodes": 44,
+      "submission_id": 55137248
+    },
+    {
+      "episodes": 19,
+      "submission_id": 55137246
+    }
+  ],
+  "repaired_at_utc": "2026-08-08T17:52:49.621Z"
+}

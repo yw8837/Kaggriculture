@@ -1,0 +1,9 @@
+COMMAND
+.\.venv\Scripts\pytest.exe -q research/campaign_3000/05_engine_screen/test_run_screen.py tests/test_runner.py tests/test_engine_parity.py
+
+EXIT_CODE
+0
+
+STDOUT
+..................                                                       [100%]
+18 passed in 1.07s

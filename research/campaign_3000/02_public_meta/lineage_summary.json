@@ -1,0 +1,42 @@
+{
+  "dominant_replay_farm_sha256": "FC37F8688680DA949DB44C9444DCB9541488B4E10D9F432CC42648D6423F1B26",
+  "high_score_output_scan": {
+    "selection": "current public kernels with captured best_score >= 1900, plus fleongg/kaggriculture-public-2830-4-v21-1-no-preemption",
+    "observed_at_utc_start": "2026-08-08T18:21:53.249771Z",
+    "observed_at_utc_end": "2026-08-08T18:23:06.335683Z",
+    "refs": 18,
+    "successful_downloads": 18,
+    "files": 89,
+    "downloaded_bytes": 9533154,
+    "ast_main_files_passed": 18,
+    "literal_tapes_found": 20,
+    "dominant_exact_matches": 0,
+    "manifest_path": "research/campaign_3000/02_public_meta/kernel_output_manifest.jsonl",
+    "manifest_sha256": "F72D9C5FECB8CA4213BBE07F76E5549C1FE1923C3655918E72C43C45CD5359AA",
+    "manifest_bytes": 61163,
+    "static_analysis_path": "research/campaign_3000/02_public_meta/kernel_static_analysis.jsonl",
+    "static_analysis_sha256": "BD4AF58185A718F436756093F0C2713831A5632B30C7BAA8F3D9F627E39CE256",
+    "static_analysis_bytes": 24427
+  },
+  "current_source_literal_scan": {
+    "population_refs": 155,
+    "artifact_emitted_at_utc": "2026-08-08T18:16:41.929464Z",
+    "source_requests_succeeded": 61,
+    "source_requests_rate_limited_429": 94,
+    "literal_tapes_found": 15,
+    "dominant_exact_matches": 0,
+    "artifact_path": "research/campaign_3000/02_public_meta/tape_lineage.jsonl",
+    "artifact_sha256": "D95EA5E4AFF77025B4B8A8BEA71C1A8ECAE28208DB8845FF488C1F98D5AF0A5B",
+    "artifact_bytes": 38230
+  },
+  "early_frontier_v12_crosscheck": {
+    "source_lineage": "prvsiyan public Frontier Lab episode 89256171/player0",
+    "actions": 719,
+    "literal_farm_sha256": "D81E23727BFF120CDB3249C0DB5FE205ADA449BA6B7254421B138D3A5CDD812F",
+    "prepend_none_farm_sha256": "3744F57A9A1A6E7C72AEF63867B0B76C96C74C7D9AEDE0BEC3511A82822DADD2",
+    "append_none_farm_sha256": "F1FE5D26931E11A8EA7EF8AC194BF06D7A36A8FB1973590DC11703481A82473E",
+    "dominant_exact_match": false
+  },
+  "conclusion": "NO_EXACT_PUBLIC_LINEAGE_FOUND_IN_SCANNED_MATERIAL",
+  "limitation": "This is a negative scan, not proof of absence. Ninety-four current source calls were rate-limited, and compressed or generated schedules may evade literal AST extraction. The dominant FC37 lineage remains UNMAPPED. Public code was never executed."
+}

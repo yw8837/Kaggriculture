@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "status": "LOCAL_PUBLIC_RELEASE_DRAFT_NO_EXTERNAL_ACTION",
+  "selected_titles": {
+    "kaggle_code": "Kaggriculture Agent | Fixed Trace + Safe Selling",
+    "discussion": "Kaggriculture Strategy | Replay Agents, Sell Guards & Engine Drift"
+  },
+  "public_source": {
+    "path": "public_source/main.py",
+    "bytes": 197808,
+    "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+    "canonical_sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+    "compile": "PASS",
+    "recorded_actions": 719,
+    "episode_steps": 720,
+    "mode": "sell_guard"
+  },
+  "provenance": {
+    "upstream_title": "Kaggriculture Frontier Lab | High-Score + Visuals",
+    "upstream_author": "PRVSIYAN",
+    "upstream_url": "https://www.kaggle.com/code/prvsiyan/kaggriculture-frontier-lab-high-score-visuals",
+    "upstream_license": "Apache-2.0",
+    "license": {
+      "path": "LICENSE",
+      "bytes": 11357,
+      "sha256": "C71D239DF91726FC519C6EB72D318EC65820627232B2F796219E87DCF35D0AB4"
+    },
+    "teacher_episode_id": 89256171,
+    "teacher_team": "radiant-allomancer",
+    "teacher_player": 0,
+    "teacher_replay_sha256": "ADADDE60EEFB93B56DBE9922B51D5D1970803F89DDF0EEEE67B9890024090405",
+    "modifications": [
+      "independent schedule regeneration from the attributed public replay",
+      "observation-based hand normalization",
+      "impossible-SELL drift guards"
+    ]
+  },
+  "strength_separation": {
+    "status": "PASS_EXACT_LOCAL_HEAD_TO_HEAD_NON_PROMOTION",
+    "engine": "kaggle-environments==1.32.6",
+    "seeds": [
+      23000,
+      23001,
+      23002,
+      23003,
+      23004,
+      23005,
+      23006,
+      23007
+    ],
+    "seed_status": "CONSUMED_SCREEN",
+    "seats": [
+      0,
+      1
+    ],
+    "Kag_01": {
+      "designated_source_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+      "local_archive_sha256": "184F687C474933A7215DB97E8C5A5F823AE79233EEA42D04B70EABC001BF9E16",
+      "local_archive_bytes": 19099,
+      "local_notebook_sha256": "0C8D17DA3266804597EA753A401FDEAE8AAF4E04CDE305C2E7F9C6FF61CDF895",
+      "local_prepush_sha256": "EA3E19D1F2C81639DBD67510C4DF768DCC08BB3D8E5D71285DF67D08FE39DF55",
+      "local_metadata_sha256": "F58F72FDC99FB5FB828732EF93546F0285F02024643884D88EAFCAF768B98746",
+      "package_status": "LOCAL_PACKAGE_BUILT_EXTERNAL_ACTIONS_HOLD",
+      "games_vs_public": 16,
+      "wins_vs_public": 16,
+      "public_losses": 16
+    },
+    "Kag_02": {
+      "designated_source_sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+      "local_archive_sha256": "37EA53D3046E3D1DA914F8A89C6F4BB02E240E1BB85857BDA149273FC4DD974C",
+      "local_archive_bytes": 17360,
+      "local_notebook_sha256": "01003AADA83D0688DB40A01B19D4886871EE0A2317A5F8F897E82FB78130A431",
+      "local_prepush_sha256": "8B29E422AD10408FE7F226374971CF16B4D47EF4EAB83CEDBEFDCCC64EB27C27",
+      "local_metadata_sha256": "A32152D8D2DA2BE06D08C7F2C01C401BA84EA7B4BC8E69F189110FC54A3EDCFA",
+      "package_status": "LOCAL_PACKAGE_BUILT_EXTERNAL_ACTIONS_HOLD",
+      "games_vs_public": 16,
+      "wins_vs_public": 16,
+      "public_losses": 16
+    },
+    "five_public_agent_screen": {
+      "games": 80,
+      "public_source_wins": 0,
+      "public_source_ties": 0,
+      "public_source_losses": 80,
+      "failures": 0
+    },
+    "evidence": {
+      "summary_path": "evidence/engine_screen_summary.json",
+      "summary_sha256": "193FB33CA537681E510C74C9E6ED947CD1FB0D806911BB1C93AF95AC8C50D94F",
+      "engine_comparison_path": "evidence/engine_comparison.json",
+      "engine_comparison_sha256": "7FBC90385D085932544E693836CA4B24EC28E9AAD7A28DB9AA442E22FB46B2F6",
+      "screen_config_path": "evidence/engine_screen_config.json",
+      "screen_config_sha256": "49AA865CF993DE29D22715C593FAA81134C2E97F3A5C25AE00589D3ACC311E72",
+      "private_release_manifest_path": "evidence/private_release_manifest.json",
+      "private_release_manifest_sha256": "D2F7E361C2AD233A2528BD5C22CBED2A36EE35E24353176569D6DECFAD21DB72",
+      "private_release_spec_path": "evidence/private_release_spec.json",
+      "private_release_spec_sha256": "BBE3B7DA2C14B5C4DD752AE67C55FD1898E1B9DF613162DA7FCAEC32009680F4",
+      "origin_directory": "research/campaign_3000/05_engine_screen"
+    },
+    "interpretation_limit": "Exact local separation on consumed seeds; not promotion evidence, a hidden strength estimate, or a Kaggle rating forecast."
+  },
+  "score_claim_contract": {
+    "score_claim_for_exact_public_source": null,
+    "expected_public_rating": "UNKNOWN",
+    "historical_remote_evidence": {
+      "submission_id": 55171193,
+      "file_name": "Fa_04 - Frontier Trace Guard.tar.gz",
+      "api_snapshot_score": 1317.1,
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE",
+      "may_be_claimed_for_this_release": false,
+      "included_in_public_title_or_copy": false
+    }
+  },
+  "engine_1_32_6_lesson": {
+    "same_cells": 20,
+    "reward_tuples_changed": 20,
+    "outcomes_changed": 16,
+    "resolved_default_change": "townCenterSellInterval: 12 -> 24",
+    "interpretation": "engine sensitivity only; consumed seeds; non-promotion"
+  },
+  "code_exclusion": {
+    "allowlisted_agent_source_sha256": [
+      "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+    ],
+    "explicitly_not_copied_source_sha256": [
+      "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+      "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+      "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73"
+    ],
+    "basis": "release main.py is byte-identical to the audited G1 canonical source"
+  },
+  "artifacts": {
+    "archive": {
+      "path": "artifact/kaggriculture_fixed_trace_safety_baseline.tar.gz",
+      "bytes": 11972,
+      "sha256": "2730084026B6C0EA68D1D54FF469E1B80D9ABF9BEF43285B15366CF13CF8ACCB",
+      "members": [
+        "main.py"
+      ],
+      "payload_sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+      "deterministic_metadata": true
+    },
+    "notebook": {
+      "path": "kaggle_code_draft/kaggriculture-fixed-trace-safety-baseline.ipynb",
+      "bytes": 317377,
+      "sha256": "F24F4939C8EC591D5794C650923E583658F0BE05E47FA7A6F049D53664F74153"
+    },
+    "kernel_metadata": {
+      "path": "kaggle_code_draft/kernel-metadata.json",
+      "bytes": 489,
+      "sha256": "A6550E25FE46FBB82E6722AA73D1458F1850D2B621ABCADC34F286EDAC0FFC7F",
+      "draft_visibility": "public",
+      "is_private": false,
+      "external_push_performed": false
+    },
+    "discussion": {
+      "path": "discussion_draft.md",
+      "bytes": 5934,
+      "sha256": "AB6065C7E501E6E6B97B478A55D15F880061793B4988382019722323A4030283"
+    },
+    "titles": {
+      "path": "titles.json",
+      "bytes": 3091,
+      "sha256": "F3CE7C106B2FA506B787EBA079B04F75D6B9336732AA64EE1C354D3BA0E1B87F"
+    },
+    "external_action_payload": {
+      "path": "external_action_payload.json",
+      "bytes": 3721,
+      "sha256": "A33306A1463A47B7E87E228F5BA2DC1C161C11947F21F05033C2E371919B0F32"
+    }
+  },
+  "authority": {
+    "external_publish_authorized": false,
+    "publication_order": [
+      "discussion",
+      "kaggle_code"
+    ],
+    "kaggle_code_push_performed": false,
+    "discussion_publish_performed": false,
+    "competition_submission_performed": false,
+    "browser_control_performed": false
+  },
+  "release_gate": {
+    "local_draft": "PASS",
+    "exact_source_separation": "PASS",
+    "external_publication": "HOLD_FOR_EXPLICIT_USER_AUTHORIZATION_AND_FRESH_AUDIT"
+  }
+}

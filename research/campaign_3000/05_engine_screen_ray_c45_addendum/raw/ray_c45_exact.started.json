@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-08-08T18:40:36.100429+00:00",
+  "git_head_at_start": "72b12208dd8faf78df267738b017ec3a049334ea",
+  "candidate": "dist/campaign_3000_public_agents/ray_c45.py",
+  "candidate_path": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\dist\\campaign_3000_public_agents\\ray_c45.py",
+  "candidate_sha256_at_start": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73",
+  "opponents": [
+    "tetsu_adaptive",
+    "kaito_v22_price_impact",
+    "boatlee_v14",
+    "fa04_g1"
+  ],
+  "opponent_paths": {
+    "tetsu_adaptive": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\dist\\campaign_3000_public_agents\\tetsutani__adaptive-farming-strategy-for-kaggriculture.py",
+    "kaito_v22_price_impact": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\dist\\campaign_3000_public_agents\\kaitofukami__44-46-strict-future-top-30-v22-price-impact.py",
+    "boatlee_v14": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\dist\\campaign_3000_public_agents\\boatlee__84-84-base-public-holdout-v14-clone-preemption.py",
+    "fa04_g1": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\experiments\\source_snapshots\\fa04_top_trace\\G1_sell_guard.py"
+  },
+  "opponent_sha256_at_start": {
+    "tetsu_adaptive": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+    "kaito_v22_price_impact": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+    "boatlee_v14": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B",
+    "fa04_g1": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+  },
+  "seeds": [
+    23000,
+    23001,
+    23002,
+    23003,
+    23004,
+    23005,
+    23006,
+    23007
+  ],
+  "seat_policy": "both seats",
+  "workers": 8,
+  "scenario_overrides": {
+    "default": {}
+  },
+  "effective_scenarios": {
+    "default": {
+      "episodeSteps": 720
+    }
+  },
+  "effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE"
+}

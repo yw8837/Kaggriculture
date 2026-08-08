@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-08-08T18:29:28.561599+00:00",
+  "git_head_at_start": "72b12208dd8faf78df267738b017ec3a049334ea",
+  "candidate": "dist/campaign_3000_public_agents/tetsutani__adaptive-farming-strategy-for-kaggriculture.py",
+  "candidate_path": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\dist\\campaign_3000_public_agents\\tetsutani__adaptive-farming-strategy-for-kaggriculture.py",
+  "candidate_sha256_at_start": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+  "opponents": [
+    "fa04_g1"
+  ],
+  "opponent_paths": {
+    "fa04_g1": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\experiments\\source_snapshots\\fa04_top_trace\\G1_sell_guard.py"
+  },
+  "opponent_sha256_at_start": {
+    "fa04_g1": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+  },
+  "seeds": [
+    23000,
+    23001,
+    23002,
+    23003,
+    23004,
+    23005,
+    23006,
+    23007
+  ],
+  "seat_policy": "both seats",
+  "workers": 8,
+  "scenario_overrides": {
+    "default": {}
+  },
+  "effective_scenarios": {
+    "default": {
+      "episodeSteps": 720
+    }
+  },
+  "effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE"
+}

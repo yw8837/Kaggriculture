@@ -1,0 +1,924 @@
+{
+  "artifact_status_overrides": {
+    "research/campaign_3000/01_internal/collection_errors.jsonl": "APPEND_ONLY_INITIAL_429_ERRORS",
+    "research/campaign_3000/01_internal/inventory_manifest.json": "HISTORICAL_INITIAL_PARTIAL_BEFORE_429_REPAIR",
+    "research/campaign_3000/01_internal/our_episode_inventory.jsonl": "AUTHORITATIVE_CURRENT_1017_EPISODE_METADATA_ROWS",
+    "research/campaign_3000/01_internal/our_submissions.json": "AUTHORITATIVE_CURRENT_22_SUBMISSION_INVENTORY",
+    "research/campaign_3000/01_internal/repair_manifest.json": "AUTHORITATIVE_REPAIR_STATUS_FOR_FIVE_INITIAL_FAILURES"
+  },
+  "created_at_utc": "2026-08-08T20:50:21.933533Z",
+  "external_read_only_sources": [
+    {
+      "index": "research/campaign_3000/01_internal/local_source_map.json",
+      "path": "C:/Users/최용우/Desktop/Kaggriculture",
+      "status": "DIRTY_EXTERNAL_WORKTREE_READ_ONLY"
+    },
+    {
+      "join": "research/campaign_3000/01_internal/leaderboard_public_join.json",
+      "path": "research/campaign_3000/02_public_meta",
+      "status": "SEPARATE_PUBLIC_META_LANE_READ_ONLY_JOIN"
+    }
+  ],
+  "file_count": 35,
+  "files": [
+    {
+      "bytes": 23600,
+      "path": "research/campaign_3000/01_internal/analyze_replays.py",
+      "sha256": "02ACBB5D03409FCBC49095871390F5D14E713AFD8C129B76342044C351EB5505"
+    },
+    {
+      "bytes": 4739,
+      "path": "research/campaign_3000/01_internal/build_evidence_manifest.py",
+      "sha256": "98B4AACA2ABCBE369F3D3FAA7B72F01D81BCDA3FAAB58E2958F10294B2127195"
+    },
+    {
+      "bytes": 6994,
+      "path": "research/campaign_3000/01_internal/build_internal_join.py",
+      "sha256": "C5DAD234B64456D95EFD6DBC054FFF33C3929316DBC87CF14FA844D1188E8E1C"
+    },
+    {
+      "bytes": 6549,
+      "path": "research/campaign_3000/01_internal/build_leaderboard_public_join.py",
+      "sha256": "E2548EAD918F40F2EA2BA3834FEF270AA621DF5E575DBE29A54387F8E173ADEA"
+    },
+    {
+      "bytes": 8843,
+      "path": "research/campaign_3000/01_internal/build_policy_source_map.py",
+      "sha256": "7DF0258BECDBC38D53781EEE0E3FF2D080B9D4B4F08236E051D4185DF5BDBC1C"
+    },
+    {
+      "bytes": 10524,
+      "path": "research/campaign_3000/01_internal/collect_kaggle_inventory.py",
+      "sha256": "0188F82840A7B92E9D26CB4343C91A8F17AC856BE818F7AAD5BEE3B2BBCC065D"
+    },
+    {
+      "bytes": 1335,
+      "path": "research/campaign_3000/01_internal/collection_errors.jsonl",
+      "sha256": "D1D4D5FEF71B647C27BA9951C7F738E5E2DC423BD0944F39887CAD1FDCC8BF94"
+    },
+    {
+      "bytes": 637940,
+      "path": "research/campaign_3000/01_internal/comparative_metrics.json",
+      "sha256": "8976778D82CE97E1B5A5D96A3A01CEFBF1FC0D95C28492323A5C136420EF8F5F"
+    },
+    {
+      "bytes": 8107,
+      "path": "research/campaign_3000/01_internal/download_selected_replays.py",
+      "sha256": "EAEC28D4079598C0FC62CB89AC39452A17F5413A9E2DD02ED2C98FCE8225B5FA"
+    },
+    {
+      "bytes": 18561,
+      "path": "research/campaign_3000/01_internal/findings.md",
+      "sha256": "1381AEEE5C8EB896EFE58509D3E723CCCDB440470AD1AF9F52F9310EDD1AAB91"
+    },
+    {
+      "bytes": 1766,
+      "path": "research/campaign_3000/01_internal/inventory_manifest.json",
+      "sha256": "74F6EF2922529A131EA9C064D43D0E86449F0CAC5ACDACEEA3A2F649CA977081"
+    },
+    {
+      "bytes": 100391,
+      "path": "research/campaign_3000/01_internal/kaggriculture.zip",
+      "sha256": "0AC0BCBFB782758E87D09F9B5FA3729AEA7B01B63D37F1E1E5A58F9265F5692F"
+    },
+    {
+      "bytes": 7277,
+      "path": "research/campaign_3000/01_internal/leaderboard_full_snapshot.json",
+      "sha256": "F3300582DAA84FF504F4FEBE6ADDB6A17277EFB61D98C29F015B75D79E1CE1A4"
+    },
+    {
+      "bytes": 31491,
+      "path": "research/campaign_3000/01_internal/leaderboard_public_join.json",
+      "sha256": "D58AE0614932248E53F09DB4A223859B6271311559F9CEFF9012B5A357FFF605"
+    },
+    {
+      "bytes": 47546,
+      "path": "research/campaign_3000/01_internal/leaderboard_top25.json",
+      "sha256": "8EC383CEEFC4034D733B06CF111CC462828569FF813A72889A16C2D47F5BEFD4"
+    },
+    {
+      "bytes": 101516,
+      "path": "research/campaign_3000/01_internal/leaderboard_top25_provenance.json",
+      "sha256": "F760257ED8416BDE87C2B56BDF0E8D6F400253D68CACD53FA711440604021447"
+    },
+    {
+      "bytes": 88925,
+      "path": "research/campaign_3000/01_internal/local_source_map.json",
+      "sha256": "1F31847682A7015EFCD9D846008C0067EFD385BA04DE8F3AD74A74812AB76618"
+    },
+    {
+      "bytes": 5425,
+      "path": "research/campaign_3000/01_internal/map_local_submission_sources.py",
+      "sha256": "2452E1759B3D6139540B26A4FFB3561F6DD7A8E2CB12F524E33E39CC59A4EFF2"
+    },
+    {
+      "bytes": 579274,
+      "path": "research/campaign_3000/01_internal/our_episode_inventory.jsonl",
+      "sha256": "70C4981A2808F450F95D9AAB1F0E4646F039A40016EBA64007955906425A319F"
+    },
+    {
+      "bytes": 93454,
+      "path": "research/campaign_3000/01_internal/our_submission_provenance.json",
+      "sha256": "817D0FDC0E6E1E7EC942B801AC1F5F84002FB9FD5C92B2916D53F9D87D6D42EB"
+    },
+    {
+      "bytes": 33083,
+      "path": "research/campaign_3000/01_internal/our_submissions.json",
+      "sha256": "FB9CBA49FCFAED851377DCC803B20A2CADFFFFE0D78799909E75471D1FF67E55"
+    },
+    {
+      "bytes": 22122,
+      "path": "research/campaign_3000/01_internal/render_findings.py",
+      "sha256": "C105BCB145AFBB3026DA8EB6C91C497FD151897196122D2154DD451B0FDFF48E"
+    },
+    {
+      "bytes": 0,
+      "path": "research/campaign_3000/01_internal/repair_errors.jsonl",
+      "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "bytes": 765,
+      "path": "research/campaign_3000/01_internal/repair_manifest.json",
+      "sha256": "5BA0CBCD1051F6210A2D67318F40FD8309C09FD2F11E3FBEC2AAE5F40C786CEA"
+    },
+    {
+      "bytes": 4408,
+      "path": "research/campaign_3000/01_internal/repair_our_inventory.py",
+      "sha256": "25BD18577A36596C191F8E1B4DAB737C051B87D791A04BC6A8D89CD50A4FD339"
+    },
+    {
+      "bytes": 538,
+      "path": "research/campaign_3000/01_internal/replay_download_manifest.json",
+      "sha256": "02421D7000561B3FB0080852B967DF0B5CE7A6D603A377E332C31FDA6E709DFE"
+    },
+    {
+      "bytes": 32685192,
+      "path": "research/campaign_3000/01_internal/replay_feature_report.json",
+      "sha256": "752DDBDABF70574F38D3B65B76636F3B9C6965E4C9BA689F13D56F97AADFDF66"
+    },
+    {
+      "bytes": 1260,
+      "path": "research/campaign_3000/01_internal/replay_integrity_report.json",
+      "sha256": "BC2374A4279753ECF27088ECCA901BDA90AB4DDFFC403F16702EA3A9C8A8ED26"
+    },
+    {
+      "bytes": 118939,
+      "path": "research/campaign_3000/01_internal/replay_inventory.jsonl",
+      "sha256": "F700901DED687B63D1BA34DE897032B840544379C7571CA82BFD2C59F776A5E8"
+    },
+    {
+      "bytes": 3122,
+      "path": "research/campaign_3000/01_internal/runner_done_overwrite_defect.json",
+      "sha256": "9BE2CDF8421D310E018CB79FCBCC6E3902BA90C2B1AF13EDF87727B296F96485"
+    },
+    {
+      "bytes": 1955,
+      "path": "research/campaign_3000/01_internal/snapshot_full_leaderboard.py",
+      "sha256": "D5235968D0468887C8AF0384B14B58150B1CB4B876E0F90D69F8F062CFF61302"
+    },
+    {
+      "bytes": 23582,
+      "path": "research/campaign_3000/01_internal/submission_policy_source_map.json",
+      "sha256": "9AEDA29F1CC81B0E1B8C4B65C75B3AF1940BC02616B21F02BEB48DE8EB7B3B8F"
+    },
+    {
+      "bytes": 2640152,
+      "path": "research/campaign_3000/01_internal/top25_episode_inventory.jsonl",
+      "sha256": "3F7448B9654E079B543DE17AECD6B8F6291075FE4BCFE294FF1D6B9A3DD7B962"
+    },
+    {
+      "bytes": 6309,
+      "path": "research/campaign_3000/01_internal/verify_replay_evidence.py",
+      "sha256": "1324A04A19030FC7FAAE06B6F5E2CF19DA6C6F9CF843F598F8762758112EC7CC"
+    },
+    {
+      "bytes": 180,
+      "path": "research/campaign_3000/01_internal/replays_raw/.gitignore",
+      "sha256": "4A26958E6AF39668790B5C7AEE9889D4FF9D7A00359571911E04AA5F5263373E"
+    }
+  ],
+  "raw_replay_bytes": 2382236899,
+  "raw_replay_count": 89,
+  "raw_replay_hash_verification": {
+    "failed": 0,
+    "inventory_sha256": "F700901DED687B63D1BA34DE897032B840544379C7571CA82BFD2C59F776A5E8",
+    "report_path": "research/campaign_3000/01_internal/replay_integrity_report.json",
+    "verified": 89
+  },
+  "raw_replays": [
+    {
+      "bytes": 16696969,
+      "episode_id": 89143277,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89143277-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:02:58.077Z",
+      "sha256": "1AA4495DBBC1439A2E5462245B4C6B725D89F9156A8F8C9ECFD4E29077D23285",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89143277"
+    },
+    {
+      "bytes": 21799223,
+      "episode_id": 89143295,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89143295-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:02:58.501Z",
+      "sha256": "1C65304BCF443B4A8FC6CF8E0E23846A49CCF29180EBAC75BE9CE906719759CF",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89143295"
+    },
+    {
+      "bytes": 16064983,
+      "episode_id": 89143770,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89143770-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:02:58.899Z",
+      "sha256": "F526C3F9D5972FE833FBB94B6BD9795AA866D4697C2C979915BF3742116843CD",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89143770"
+    },
+    {
+      "bytes": 24608664,
+      "episode_id": 89144276,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89144276-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:02:59.336Z",
+      "sha256": "38FB03443E6BA03118197D50A1642E7F4D8B2871D6F7401C118182C6AF1EDD42",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89144276"
+    },
+    {
+      "bytes": 19688457,
+      "episode_id": 89174686,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89174686-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:02:59.760Z",
+      "sha256": "E5051CB000A2A6D1C7B2AA3897621DDD3111EEC0F87270472EA62970F04FE56E",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89174686"
+    },
+    {
+      "bytes": 21421607,
+      "episode_id": 89175698,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89175698-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:00.183Z",
+      "sha256": "04F85C1A1BB697841612854B22C310BBEA214469F126F495DD557C509C49C00A",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89175698"
+    },
+    {
+      "bytes": 16571684,
+      "episode_id": 89267972,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89267972-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:00.576Z",
+      "sha256": "AFED2009BE37102DE587B0DE9ABAAC7D60A14ECB6F3942882AEE01C509E3F75A",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89267972"
+    },
+    {
+      "bytes": 17108059,
+      "episode_id": 89267973,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89267973-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:00.977Z",
+      "sha256": "19AA5CACDBD0A9CBEDC8B941C51D61138C72BC02BF4763661DCD954EE0C8C853",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89267973"
+    },
+    {
+      "bytes": 16747449,
+      "episode_id": 89268487,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89268487-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:01.370Z",
+      "sha256": "20B71E18ACB8B95445AF52E433CF29446676738668E3C148E05973886117CF45",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89268487"
+    },
+    {
+      "bytes": 19859562,
+      "episode_id": 89268489,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89268489-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:01.783Z",
+      "sha256": "143827A6DED1EAE8BC3E704BC3A7A7AC84A169079EFD31F7766E063CB0C4B57E",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89268489"
+    },
+    {
+      "bytes": 21684977,
+      "episode_id": 89398066,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89398066-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:02.207Z",
+      "sha256": "71BD84ED485C93BF0D62E861168BF3089E2C64B3FAF8CCB31094E292AD6D67C1",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89398066"
+    },
+    {
+      "bytes": 25942825,
+      "episode_id": 89399650,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89399650-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:02.670Z",
+      "sha256": "390364FD9942A7007E6B16FA7A25904E72A641509EC656B9B546DD118C58794B",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89399650"
+    },
+    {
+      "bytes": 18688338,
+      "episode_id": 89502894,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89502894-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:03.134Z",
+      "sha256": "3BAF9BC43655B5AF451030D6F0F63F0E957A348CC567B887B66B356459B27C6F",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89502894"
+    },
+    {
+      "bytes": 20400006,
+      "episode_id": 89503426,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89503426-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:03.547Z",
+      "sha256": "6D57673355EE50EDC1B30D39F3661D5FADBC018EEDB4B467887AD1E3E0C67F6F",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89503426"
+    },
+    {
+      "bytes": 20488158,
+      "episode_id": 89517073,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89517073-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:03.978Z",
+      "sha256": "21A4060FF8AB682959F320B8DBBD727124574E1F2E5561A813607E2AB31D768C",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89517073"
+    },
+    {
+      "bytes": 22442450,
+      "episode_id": 89517612,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89517612-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:04.415Z",
+      "sha256": "1AAD8128E4AE0E56786BD3E55CEC5CCD6EF794AD97B2D36A6A183867B34EE275",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89517612"
+    },
+    {
+      "bytes": 24021973,
+      "episode_id": 89517623,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89517623-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:04.868Z",
+      "sha256": "1BFAC52C214FF30FAA9E1E8FACE2BE415B2CFD20129E85AC1FC834D2B49B1CD3",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89517623"
+    },
+    {
+      "bytes": 15334442,
+      "episode_id": 89518157,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89518157-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:05.262Z",
+      "sha256": "808810CA9862072E6176ADF8F0DB143501A020D6BD2F953227BEE386978FDB47",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89518157"
+    },
+    {
+      "bytes": 25282597,
+      "episode_id": 89518702,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89518702-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:05.708Z",
+      "sha256": "D09778F526F5FEAA1B6A635568DCF3BF4AE389558D0EB3B85937D4ED94B8D70D",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89518702"
+    },
+    {
+      "bytes": 16642420,
+      "episode_id": 89518704,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89518704-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:06.113Z",
+      "sha256": "768DB43A5437FB1E764153E53AC5DCFA80F95EF73D16B94303D554D82FA3E076",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89518704"
+    },
+    {
+      "bytes": 15319549,
+      "episode_id": 89519247,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89519247-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:06.501Z",
+      "sha256": "2BC48BD2D8E832DE38C029D7C25453BA0587B865D36D611C0B9C0800C53C69E2",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89519247"
+    },
+    {
+      "bytes": 20153783,
+      "episode_id": 89520334,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89520334-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:06.924Z",
+      "sha256": "BEE8C9A6F09F9C45EE11445BA83658D186B74E8D65F78C0BB6B3E798623A9E06",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89520334"
+    },
+    {
+      "bytes": 17269868,
+      "episode_id": 89622334,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89622334-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:07.324Z",
+      "sha256": "2C18C9BB370E7B695B55ADA6729191EA981C70163898BF3D481C8300537D1DB9",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89622334"
+    },
+    {
+      "bytes": 18639788,
+      "episode_id": 89622336,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89622336-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:07.727Z",
+      "sha256": "BDD526F8F94659BDD23B5281F3E0BC793AB4A611B5E4EC366B3DC43B4C92DCBC",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89622336"
+    },
+    {
+      "bytes": 20436583,
+      "episode_id": 89622882,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89622882-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:08.176Z",
+      "sha256": "4BE28222EAC8A2A44BC576AB4DDC31C16AAA0F35191F5A38235F15982B7DD23E",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89622882"
+    },
+    {
+      "bytes": 17084149,
+      "episode_id": 89622883,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89622883-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:08.568Z",
+      "sha256": "D2820D24449D9D5CAEDC3D0BB84C8012C0548774DDBB2F3ECAB90344C1E145BC",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89622883"
+    },
+    {
+      "bytes": 24241818,
+      "episode_id": 89630115,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89630115-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:09.005Z",
+      "sha256": "9B79FCEC51E81AD5989431934C094ADF57D52C02A0CB84AE8A5810C3FD82EB4D",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89630115"
+    },
+    {
+      "bytes": 19658131,
+      "episode_id": 89630116,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89630116-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:09.422Z",
+      "sha256": "87A9A3DD2385CCE1573DE117CAD7287B7401CECE8A80D216E99B0F6511384BCF",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89630116"
+    },
+    {
+      "bytes": 26809494,
+      "episode_id": 89631227,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89631227-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:09.883Z",
+      "sha256": "F9001C7644F42ED2C6F670A74BA13FDF596CC529CF8E41D2AA92DA9CB74907B5",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89631227"
+    },
+    {
+      "bytes": 26424448,
+      "episode_id": 89631781,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89631781-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:10.346Z",
+      "sha256": "1E3F86E169986171C6E056038A6726BDEE7CE520AAB2E7C50D3DAA960302F138",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89631781"
+    },
+    {
+      "bytes": 24303113,
+      "episode_id": 89685911,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89685911-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:10.798Z",
+      "sha256": "622E42A298484ADEB1DEA27D3E011FC1C3287474769D312D4CD3785A9E149C21",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89685911"
+    },
+    {
+      "bytes": 27161421,
+      "episode_id": 89687034,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89687034-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:11.260Z",
+      "sha256": "837B405D6935A8F477E610993EDE7633096B3B86805400A345653E364B83FE3B",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89687034"
+    },
+    {
+      "bytes": 24597386,
+      "episode_id": 89929343,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89929343-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:11.730Z",
+      "sha256": "40DCDD710566034892A43EF725777D1808FC3F89DEC8A508CE77D755E1ADAE78",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89929343"
+    },
+    {
+      "bytes": 24886695,
+      "episode_id": 89929344,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89929344-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:12.176Z",
+      "sha256": "0EAF2B7FC2B0F4A4D32AB2F044073FF80C0751707303731C5720D02626BE3490",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89929344"
+    },
+    {
+      "bytes": 22392225,
+      "episode_id": 89929960,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89929960-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:12.609Z",
+      "sha256": "C38D8F7AE7666BA7961E07824459C7FE03BF6126AA85D91DB90C123A318A7B4E",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89929960"
+    },
+    {
+      "bytes": 29536174,
+      "episode_id": 89931209,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89931209-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:13.076Z",
+      "sha256": "DC496CD1E8C73AE3678ED8A79DC65DFD7E53AF2B4723BEA4B7133E240E9EEA32",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89931209"
+    },
+    {
+      "bytes": 19943995,
+      "episode_id": 89968896,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89968896-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:13.539Z",
+      "sha256": "39262EF78440ECA16285E2605FAE34C70BD9BAE1427F3093BAF96F1194A3FC46",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89968896"
+    },
+    {
+      "bytes": 22766162,
+      "episode_id": 89968898,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89968898-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:13.967Z",
+      "sha256": "C8C543A8F260ADFBB06DE9AD7A9B7BB552789DD53D04F4831FA0B4A31590A0D8",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89968898"
+    },
+    {
+      "bytes": 24319292,
+      "episode_id": 89969522,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89969522-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:14.408Z",
+      "sha256": "9E1059E9645640C33D6734771E34140A601EB8F17F82634AD4C3DACF0D90CA6D",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89969522"
+    },
+    {
+      "bytes": 26004713,
+      "episode_id": 89970799,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-89970799-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:14.857Z",
+      "sha256": "0B73D25DC8E242ADDBF0DC192E6472C1D8D94FFF2300989D5390AD00B7B30901",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/89970799"
+    },
+    {
+      "bytes": 27385157,
+      "episode_id": 90181882,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-90181882-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:15.318Z",
+      "sha256": "B46E41E5B8F7EC515564DF7CE91C1DCE1D2A0181078503F489CB6F6CCE897176",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/90181882"
+    },
+    {
+      "bytes": 20945722,
+      "episode_id": 90181883,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-90181883-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:15.742Z",
+      "sha256": "A47CAF14E267090ACC50B4317AB1B731C64C85A3D8BCD44BF72BCCFE9F6E6E71",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/90181883"
+    },
+    {
+      "bytes": 23300803,
+      "episode_id": 90182579,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-90182579-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:16.173Z",
+      "sha256": "76C13346F072AC181FE49E5F4D7103F6DD8B859D339B59841B54C9EB1B0C4BAD",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/90182579"
+    },
+    {
+      "bytes": 24578183,
+      "episode_id": 90183257,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-90183257-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:16.611Z",
+      "sha256": "9A0116C48A05E1513FEA4CD0A65D02BF121E30844C661221AA5B46C33694E070",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/90183257"
+    },
+    {
+      "bytes": 29521326,
+      "episode_id": 91016957,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91016957-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:17.091Z",
+      "sha256": "8231A82090D4992CECC1ECBC0CEAF50BA282A3A3624590B54D7847BF17D84078",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91016957"
+    },
+    {
+      "bytes": 31954655,
+      "episode_id": 91031978,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91031978-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:17.578Z",
+      "sha256": "72D4FCC8D6F871650F344DC55F401211158CD88BCB64ADA2C8BB85119F7ADD16",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91031978"
+    },
+    {
+      "bytes": 31947014,
+      "episode_id": 91040419,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91040419-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:18.070Z",
+      "sha256": "6081F49F95163E0C8F03B62CA5B189BFCC1BAF9B996E1E071177F53775F2AB32",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91040419"
+    },
+    {
+      "bytes": 30964763,
+      "episode_id": 91043818,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91043818-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:18.557Z",
+      "sha256": "747FB2D6E4543E1C3C4C27BA016445CA03857DEE8444ABBAD8DF92760D2046DB",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91043818"
+    },
+    {
+      "bytes": 31957623,
+      "episode_id": 91049723,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91049723-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:19.076Z",
+      "sha256": "C068708234D61FFF8EB751024A3068B674A86BED66D28D375238EAD6D3BFC653",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91049723"
+    },
+    {
+      "bytes": 31258451,
+      "episode_id": 91054779,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91054779-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:19.565Z",
+      "sha256": "137967C64CCE295B2DAC749DD42E033BBB534BCFDA5C2C40153DBB830D80BBC7",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91054779"
+    },
+    {
+      "bytes": 31959009,
+      "episode_id": 91055542,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91055542-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:20.055Z",
+      "sha256": "69B7EB741108B41A4F826AC20041852FDED1E46B98C1DB91411E087C9369A141",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91055542"
+    },
+    {
+      "bytes": 31958091,
+      "episode_id": 91057266,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91057266-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:20.548Z",
+      "sha256": "7C146D0553C2F21995B76EA8EDFD17298ADE63F8A5623682F0324532A4AD1B3E",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91057266"
+    },
+    {
+      "bytes": 31961664,
+      "episode_id": 91057317,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91057317-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:21.040Z",
+      "sha256": "8E8A89E0040D891E787D84A51DEE0EEA22BC4716DDC2595C8C0AA8B776369DD9",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91057317"
+    },
+    {
+      "bytes": 30756666,
+      "episode_id": 91057328,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91057328-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:21.524Z",
+      "sha256": "CB371523BF2B16C809A024E291A3603B423877D5129CD95FEFBC8162AC374860",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91057328"
+    },
+    {
+      "bytes": 31956251,
+      "episode_id": 91058944,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91058944-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:22.017Z",
+      "sha256": "09790E7666FD94583E08E32A34CB16D0CCA35444D98379D595CF7E88320EAB05",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91058944"
+    },
+    {
+      "bytes": 31957336,
+      "episode_id": 91058982,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91058982-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:22.505Z",
+      "sha256": "7A55833A906A8CDC3C1B65B2F857E69C00D964614879C1069525F24866B9E9D4",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91058982"
+    },
+    {
+      "bytes": 31943197,
+      "episode_id": 91059769,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91059769-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:22.999Z",
+      "sha256": "9E35BA939F414561F2989A4A004786EB8C9C5B4F799C3B5506F6D0D47973F8F4",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91059769"
+    },
+    {
+      "bytes": 31957259,
+      "episode_id": 91060588,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91060588-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:23.490Z",
+      "sha256": "BA164E92BEBEC375571A0C3C5849222AD8DFBACF3A60CD32F74EB55BA6C6E28B",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91060588"
+    },
+    {
+      "bytes": 31958313,
+      "episode_id": 91060652,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91060652-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:23.983Z",
+      "sha256": "0C0AD21141C20528A91B023CC20B0631373F9CD9CF4C6B5E409266DE3F42731D",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91060652"
+    },
+    {
+      "bytes": 31963391,
+      "episode_id": 91060680,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91060680-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:24.478Z",
+      "sha256": "E2BB492B48DC13358E62D2FF124117AE11EBF5C95B511385041F22F59CBCFFC2",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91060680"
+    },
+    {
+      "bytes": 31957802,
+      "episode_id": 91060712,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91060712-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:25.013Z",
+      "sha256": "A1C4FA819A31C31520B75C1E0CF52F3F29D86BD8148433FEE11D0A829E20933C",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91060712"
+    },
+    {
+      "bytes": 31966560,
+      "episode_id": 91062431,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91062431-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:25.500Z",
+      "sha256": "6E2512EB8A81E8AAA1AC00BC7C6491EFCF49B46E75EB610A233FB52734AA739F",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91062431"
+    },
+    {
+      "bytes": 31940465,
+      "episode_id": 91062462,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91062462-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:25.987Z",
+      "sha256": "377D7B566933D48C6BFCAE1B1B072CB9B50AB71D4F9788ACBB38B3DE3683F14C",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91062462"
+    },
+    {
+      "bytes": 31940676,
+      "episode_id": 91062469,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91062469-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:26.475Z",
+      "sha256": "2B65F0C4E557271092A3AA9456946C66F7A71D007198AE43A6F35011B2F1F615",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91062469"
+    },
+    {
+      "bytes": 31939858,
+      "episode_id": 91063358,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91063358-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:26.968Z",
+      "sha256": "B71E7B22CF1FE6306C1B5F0F728EC359B5948FB774D0A9D9B4FB098EBB82245A",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91063358"
+    },
+    {
+      "bytes": 31960726,
+      "episode_id": 91065044,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91065044-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:27.462Z",
+      "sha256": "A5D2704CA5522755A61DEB134A0FA87F6CD4AB0E490EC7247760481A0CCF7860",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91065044"
+    },
+    {
+      "bytes": 31945996,
+      "episode_id": 91065082,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91065082-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:27.953Z",
+      "sha256": "DEC9CF13B085A5798D4124662B8827E57BCACC3A6BF8215B8DDB8A4BFDE94DA8",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91065082"
+    },
+    {
+      "bytes": 31947036,
+      "episode_id": 91065786,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91065786-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:28.436Z",
+      "sha256": "4A9E6230F17ED5BF96D2EA8F7027E869F33D9915073C060DB78B31802AA6C37D",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91065786"
+    },
+    {
+      "bytes": 31948003,
+      "episode_id": 91065924,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91065924-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:28.927Z",
+      "sha256": "A3E2C8DEE8D1C48C03DA998F0A87AF6629E027F3166AC74E529D9C64162BB8B1",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91065924"
+    },
+    {
+      "bytes": 31954015,
+      "episode_id": 91065964,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91065964-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:29.413Z",
+      "sha256": "9D3F6B86ABE0698EEA424980F05B2A95608557C6C069BB43A5BF0C73A96CCC74",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91065964"
+    },
+    {
+      "bytes": 31948482,
+      "episode_id": 91066746,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91066746-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:29.916Z",
+      "sha256": "1B6C9758660F5190D0F17BC504F2EFC143C7D448A94F1B5352B83D02D7D5D82F",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91066746"
+    },
+    {
+      "bytes": 31950680,
+      "episode_id": 91066789,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91066789-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:30.411Z",
+      "sha256": "6E5271A1D06B56E0DBE1A2E938E40A9E10428DA79D4D4936A182EA48808265AE",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91066789"
+    },
+    {
+      "bytes": 31956775,
+      "episode_id": 91066795,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91066795-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:30.931Z",
+      "sha256": "12E63807DE74D5C9F85676ABE7B2AD42A47A0A8BF31EF8BB8283912F536B61BA",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91066795"
+    },
+    {
+      "bytes": 31967086,
+      "episode_id": 91066823,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91066823-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:31.475Z",
+      "sha256": "CB047EA2DFA22917DF103E0C5D0B376C468B6C65E88310ED7D63BE7C82F5F227",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91066823"
+    },
+    {
+      "bytes": 31944762,
+      "episode_id": 91066852,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91066852-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:31.964Z",
+      "sha256": "58212484D4A894EA54F34572E8A2EC82679A76811F9907088CBF6DD0334BBC39",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91066852"
+    },
+    {
+      "bytes": 31964371,
+      "episode_id": 91067615,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91067615-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:32.449Z",
+      "sha256": "3FC4055DC2ED2B8430BB7DC1BF645251742F7B25DDF498662661A80C241401E3",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91067615"
+    },
+    {
+      "bytes": 31952954,
+      "episode_id": 91067697,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91067697-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:32.935Z",
+      "sha256": "BC65C234C2702236A9876F368F22D91AAE82D2B17331DA29D4F15E7474F20015",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91067697"
+    },
+    {
+      "bytes": 31944086,
+      "episode_id": 91068434,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91068434-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:33.424Z",
+      "sha256": "D8131A25C3BE4743D538BFA069666E759CA5C7B4919DCF9A3D2CC6A20A706A4A",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91068434"
+    },
+    {
+      "bytes": 31949362,
+      "episode_id": 91068555,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91068555-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:33.908Z",
+      "sha256": "B1DF3746B57E4319781CF8B582B42E89824A2ECD262B64701EA97DBA28CDF9B8",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91068555"
+    },
+    {
+      "bytes": 31953802,
+      "episode_id": 91069328,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91069328-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:34.391Z",
+      "sha256": "A60AF5586A7EAC2A661AE9E21769F329E120D6D0DC3C5701A0181A59E068C991",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91069328"
+    },
+    {
+      "bytes": 31956193,
+      "episode_id": 91069423,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91069423-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:34.912Z",
+      "sha256": "03864AE78ED98B5E1F5426BAD27A1F40699DE70DE9746C63D4F7ED679C186D81",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91069423"
+    },
+    {
+      "bytes": 31938147,
+      "episode_id": 91069464,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91069464-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:35.395Z",
+      "sha256": "C927F487F07D53D613B26FC0CF360079EC16CEB552B477819995094E31991AC5",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91069464"
+    },
+    {
+      "bytes": 31953818,
+      "episode_id": 91070301,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91070301-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:35.905Z",
+      "sha256": "F9B71CA05F48D108F9419FE8C937A5A0D2DC641A359C2C43FFB91F5311130B84",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91070301"
+    },
+    {
+      "bytes": 31965188,
+      "episode_id": 91070323,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91070323-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:36.390Z",
+      "sha256": "56F6BBA623A233B9DE6C551AFCA628139339411E4A2246C1365D3D6C70637596",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91070323"
+    },
+    {
+      "bytes": 31958070,
+      "episode_id": 91071929,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91071929-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:36.880Z",
+      "sha256": "E52B99C51C585B5A022C98043A0067FA574FC9586788B37B310C8D382DCCD438",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91071929"
+    },
+    {
+      "bytes": 31943360,
+      "episode_id": 91071976,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91071976-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:37.393Z",
+      "sha256": "1DA93D5B9D3E81819C2EBE1E49599A099A53EB1DC7251CE605F0B778F25E3C38",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91071976"
+    },
+    {
+      "bytes": 31949882,
+      "episode_id": 91072927,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91072927-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:37.881Z",
+      "sha256": "6B006F8586C9893625901A06F9B56DA836AFCEF90A02EE434D9A17BF9D611A91",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91072927"
+    },
+    {
+      "bytes": 31959000,
+      "episode_id": 91072960,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91072960-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:38.363Z",
+      "sha256": "2F1F8EA83A2149C71A37AB55D50A7EA47BBB97A2D916CA8A0ED92D100CA38DD3",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91072960"
+    },
+    {
+      "bytes": 31951240,
+      "episode_id": 91072969,
+      "path": "research/campaign_3000/01_internal/replays_raw/episode-91072969-replay.json",
+      "retrieved_at_utc": "2026-08-08T18:03:38.841Z",
+      "sha256": "D21300A1328370241FDD1DFFEA986A7CC33A8D5899D79B572EC97BAA24BD3DE9",
+      "source_url": "https://www.kaggle.com/competitions/kaggriculture/episodes/91072969"
+    }
+  ],
+  "schema_version": 1,
+  "scope": "Kaggriculture campaign_3000 internal submission/LB/replay evidence"
+}

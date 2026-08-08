@@ -1,0 +1,513 @@
+{
+  "created_at_utc": "2026-08-08T18:28:58.017266Z",
+  "external_desktop_worktree": {
+    "document_sources": {
+      "bot_design_spec": {
+        "path": "docs/BOT_DESIGN_SPEC.md",
+        "sha256": "93FF99DA450DEB74D5CD5DA232F46A1FFDF3E6BBD7936A003BD57CE8936DAE94"
+      },
+      "experiment_ledger": {
+        "path": "experiments/ledger.jsonl",
+        "sha256": "315609EB83FBEFB4577D97D3BAAFE072D6B7A16B4A0E37D59AC3343A094C2135"
+      },
+      "ge_current_state": {
+        "path": "docs/current_state_2026-08-02_night.md",
+        "sha256": "919E87BD70A5BEBEE371FA1BC73427BDEFF8218796FE52254841FF0B4E47D47E"
+      },
+      "submission_ledger": {
+        "path": "submissions/ledger.jsonl",
+        "sha256": "07E645248743B6CAE87B498CC90F263419E87A3038F7FC6E9DE402FC3C4DC11B"
+      }
+    },
+    "mode": "READ_ONLY_DIRTY_EXTERNAL_WORKTREE",
+    "path": "C:/Users/최용우/Desktop/Kaggriculture"
+  },
+  "limitations": [
+    "Policy descriptions are provenance joins from filename, frozen local candidate bytes, and the cited historical ledgers/docs.",
+    "Kaggle does not expose historical submitted archive bytes, so no local candidate is asserted byte-equal to a competition submission.",
+    "Documents themselves contain stale or later-retracted evaluation conclusions; this map uses them for implementation lineage, not for promotion claims."
+  ],
+  "rows": [
+    {
+      "claim_basis": "BOT_DESIGN_SPEC;_EXACT_VERSION_PER_SUBMISSION_UNVERIFIED",
+      "description": "Tetsuya-cluster tape with front-run/treasury-era shield branches; repeated filename across three submissions.",
+      "family": "public_replay_fixed_tape_with_market_overlay",
+      "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 13137,
+          "archive_path": "dist/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "archive_sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+          "main_bytes": 146492,
+          "main_sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+        },
+        {
+          "archive_bytes": 13137,
+          "archive_path": "kaggle_runs/bot_05 - Tetsuya Tape Shield/output_v1/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "archive_sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+          "main_bytes": 146492,
+          "main_sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+        }
+      ],
+      "public_score": 1128.8,
+      "submission_id": 55270999,
+      "submitted_at_utc": "2026-08-05T13:17:49.343Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "BOT_DESIGN_SPEC;_EXACT_VERSION_PER_SUBMISSION_UNVERIFIED",
+      "description": "Tetsuya-cluster tape with front-run/treasury-era shield branches; repeated filename across three submissions.",
+      "family": "public_replay_fixed_tape_with_market_overlay",
+      "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 13137,
+          "archive_path": "dist/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "archive_sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+          "main_bytes": 146492,
+          "main_sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+        },
+        {
+          "archive_bytes": 13137,
+          "archive_path": "kaggle_runs/bot_05 - Tetsuya Tape Shield/output_v1/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "archive_sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+          "main_bytes": 146492,
+          "main_sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+        }
+      ],
+      "public_score": 1094.8,
+      "submission_id": 55270996,
+      "submitted_at_utc": "2026-08-05T13:17:39.613Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "BOT_DESIGN_SPEC",
+      "description": "r2914 farm tape plus state-reactive live-market overlay.",
+      "family": "public_replay_fixed_farm_with_live_market",
+      "file_name": "bot_12 - Live Market R2914.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 12779,
+          "archive_path": "dist/bot_12 - Live Market R2914.tar.gz",
+          "archive_sha256": "8A15B0624C63D660DB272C0CA56E52094B3D9CF274412A157389E4689BE49313",
+          "main_bytes": 143534,
+          "main_sha256": "8308D9AE0665F8F02DD33D11143F786FE856728FF41A315EA99B3DDE87D25D69"
+        }
+      ],
+      "public_score": 1225.8,
+      "submission_id": 55244867,
+      "submitted_at_utc": "2026-08-04T16:14:59.510Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "BOT_DESIGN_SPEC",
+      "description": "r2921 farm tape plus state-reactive live-market overlay.",
+      "family": "public_replay_fixed_farm_with_live_market",
+      "file_name": "bot_11 - Live Market R2921.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 12761,
+          "archive_path": "dist/bot_11 - Live Market R2921.tar.gz",
+          "archive_sha256": "2D40888EB3584C075826ADB754888BA9177D5D145DD9A1A94C4BE2B1727045AF",
+          "main_bytes": 143135,
+          "main_sha256": "2A0EF2609ADD6AE2BBC2F465DEAB4C4AEC0439AA9160F5CDF777FC5554EBFE65"
+        }
+      ],
+      "public_score": 1312.7,
+      "submission_id": 55244861,
+      "submitted_at_utc": "2026-08-04T16:14:51.737Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "BOT_DESIGN_SPEC",
+      "description": "bot_05 base with day26–29 terminal wheat-blitz block grafted in.",
+      "family": "public_replay_fixed_tape_graft",
+      "file_name": "bot_08 - Terminal Wheat Graft.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 15834,
+          "archive_path": "dist/bot_08 - Terminal Wheat Graft.tar.gz",
+          "archive_sha256": "77D46BCCD01D1AB90CC437D8C7AE34134E211B1925CA065085DD4E56BDDFBF3E",
+          "main_bytes": 153691,
+          "main_sha256": "3B9B4CEE584CE5EE8054B1DE166672F17D6FF0F6F0B2F327021E9BCBF0ED1666"
+        }
+      ],
+      "public_score": 1463.4,
+      "submission_id": 55239511,
+      "submitted_at_utc": "2026-08-04T12:05:31.610Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "BOT_DESIGN_SPEC",
+      "description": "r2897 morning-meta tape plus front_run and treasury branches.",
+      "family": "public_replay_fixed_tape_with_market_overlay",
+      "file_name": "bot_07 - Meta Tape Shield.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 15928,
+          "archive_path": "dist/bot_07 - Meta Tape Shield.tar.gz",
+          "archive_sha256": "AF68DEB6514C9857F28EB762150C15D86935AE73577466DAF01396D48098DD76",
+          "main_bytes": 152661,
+          "main_sha256": "EDB86D4A1CD7BB4BA9F0AE3DD3E8102798C961E385DA57D9C0C204D617D2D627"
+        }
+      ],
+      "public_score": 1749.4,
+      "submission_id": 55239508,
+      "submitted_at_utc": "2026-08-04T12:05:25.223Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "BOT_DESIGN_SPEC;_EXACT_VERSION_PER_SUBMISSION_UNVERIFIED",
+      "description": "Tetsuya-cluster tape with front-run/treasury-era shield branches; repeated filename across three submissions.",
+      "family": "public_replay_fixed_tape_with_market_overlay",
+      "file_name": "bot_05 - Tetsuya Tape Shield.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 13137,
+          "archive_path": "dist/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "archive_sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+          "main_bytes": 146492,
+          "main_sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+        },
+        {
+          "archive_bytes": 13137,
+          "archive_path": "kaggle_runs/bot_05 - Tetsuya Tape Shield/output_v1/bot_05 - Tetsuya Tape Shield.tar.gz",
+          "archive_sha256": "DE1ABBFC0D1DA98429BEC7475464F7FF10BE0CF906D53A65BF626A6A7FDD66FC",
+          "main_bytes": 146492,
+          "main_sha256": "1EB472AEF98AA9CC50730D120991746395CF233BE874F7E1EF4772AF554D97A0"
+        }
+      ],
+      "public_score": 2119.2,
+      "submission_id": 55206974,
+      "submitted_at_utc": "2026-08-03T08:31:37.013Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "EXPERIMENT_LEDGER_E014",
+      "description": "E014 zero-waste tape plus small terminal-flush branch.",
+      "family": "public_replay_fixed_tape",
+      "file_name": "bot_03 - Terminal Flush Tape.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 11659,
+          "archive_path": "dist/bot_03 - Terminal Flush Tape.tar.gz",
+          "archive_sha256": "D0D3EAF3F9FD3FD7720B3ACB41437A670AF96ED1D1E685B249927D83811845F5",
+          "main_bytes": 141894,
+          "main_sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+        },
+        {
+          "archive_bytes": 11659,
+          "archive_path": "kaggle_runs/bot_03 - Terminal Flush Tape/output_v1/bot_03 - Terminal Flush Tape.tar.gz",
+          "archive_sha256": "D0D3EAF3F9FD3FD7720B3ACB41437A670AF96ED1D1E685B249927D83811845F5",
+          "main_bytes": 141894,
+          "main_sha256": "61BB757C5502794720E1463B450084F0150C786245BB4661577E2386C3AEE481"
+        }
+      ],
+      "public_score": 1678.0,
+      "submission_id": 55199616,
+      "submitted_at_utc": "2026-08-03T01:55:53.983Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "EXPERIMENT_LEDGER_E014",
+      "description": "E014 fixed tape re-extracted from public episode 89549522 seat 1 (zero waste), without terminal flush.",
+      "family": "public_replay_fixed_tape",
+      "file_name": "bot_02 - Zero-Waste Tape.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 11658,
+          "archive_path": "dist/bot_02 - Zero-Waste Tape.tar.gz",
+          "archive_sha256": "8900914D04565BEA64C2474797B9A54E09873C873F17AA427264284598E7AF2B",
+          "main_bytes": 141896,
+          "main_sha256": "E73080954C8099A869D43416FBD8035856A29CD59BD04613E3D789A0CE695F50"
+        },
+        {
+          "archive_bytes": 11658,
+          "archive_path": "kaggle_runs/bot_02 - Zero-Waste Tape/output_v1/bot_02 - Zero-Waste Tape.tar.gz",
+          "archive_sha256": "8900914D04565BEA64C2474797B9A54E09873C873F17AA427264284598E7AF2B",
+          "main_bytes": 141896,
+          "main_sha256": "E73080954C8099A869D43416FBD8035856A29CD59BD04613E3D789A0CE695F50"
+        }
+      ],
+      "public_score": 1878.5,
+      "submission_id": 55199612,
+      "submitted_at_utc": "2026-08-03T01:55:47.273Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "GE_CURRENT_STATE",
+      "description": "Ge_03 plus sheep5, pre-day24 milk hold, shed>=85 overflow sell, and aggressive melon dump.",
+      "family": "ge_policy_fixed_opening_market_hold",
+      "file_name": "Ge_04.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 5847,
+          "archive_path": "dist/Ge_04.tar.gz",
+          "archive_sha256": "8CDF1C40EF977F63EDAAB4CA639DEE2A8E9872E64CD44920D5540F4EEC36968F",
+          "main_bytes": 19232,
+          "main_sha256": "9D59F2DDDB8A4F10AB71A9E63A0CB21B81239E143AB2F5810486A5E939494720"
+        }
+      ],
+      "public_score": 768.3,
+      "submission_id": 55198657,
+      "submitted_at_utc": "2026-08-03T01:01:09.237Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "GE_CURRENT_STATE",
+      "description": "HIRE-first and staggered seed-buy fix; target herd cow7/sheep4; unrestricted milk selling.",
+      "family": "ge_policy_fixed_opening",
+      "file_name": "Ge_03.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 5877,
+          "archive_path": "dist/Ge_03.tar.gz",
+          "archive_sha256": "827C7B17EDC13DBB575466D44E3680E6F5BD0351F192CD52E042D58CDABD3A31",
+          "main_bytes": 19003,
+          "main_sha256": "455ABA88CDF98FC970B68547B8A7046B894430788B91A4A50766D5499BC67690"
+        }
+      ],
+      "public_score": 724.4,
+      "submission_id": 55198655,
+      "submitted_at_utc": "2026-08-03T01:01:00.003Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "GE_CURRENT_STATE",
+      "description": "Ge_02 second upload: same documented HIRE-slot displacement class.",
+      "family": "ge_policy_v2_hire_slot_displacement",
+      "file_name": "Ge_02.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 6320,
+          "archive_path": "dist/Ge_02.tar.gz",
+          "archive_sha256": "63F3BC795F0CB35CE244B94562332AB0568F7474A20AA1BEB5E1FCEFFE23A112",
+          "main_bytes": 22232,
+          "main_sha256": "2A6B3368AFEE87BE6E8AE04F0D21A5EADEFA825B7338D190448B0201AE33F5B7"
+        }
+      ],
+      "public_score": 774.5,
+      "submission_id": 55185695,
+      "submitted_at_utc": "2026-08-02T12:27:05.997Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "GE_CURRENT_STATE",
+      "description": "Ge_01 second upload: seed/animal orders occupied the 10 market slots before HIRE, leaving zero hands.",
+      "family": "ge_policy_v2_hire_slot_displacement",
+      "file_name": "Ge_01.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 5746,
+          "archive_path": "dist/Ge_01.tar.gz",
+          "archive_sha256": "E020EAB0E5174EE8EEAA29A62ECC07B65CC5AF23EC7DCBAB78080038CF00788D",
+          "main_bytes": 19361,
+          "main_sha256": "9ED86F667DE5A59CB1F880DB11C28DBBFD800A12A4DFAAC5BD3AE15AA03217BF"
+        }
+      ],
+      "public_score": 746.5,
+      "submission_id": 55185691,
+      "submitted_at_utc": "2026-08-02T12:26:56.873Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "GE_CURRENT_STATE",
+      "description": "Ge_02 first upload: same documented day-0 bankruptcy class.",
+      "family": "ge_policy_v1_day0_bankruptcy",
+      "file_name": "Ge_02.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 6320,
+          "archive_path": "dist/Ge_02.tar.gz",
+          "archive_sha256": "63F3BC795F0CB35CE244B94562332AB0568F7474A20AA1BEB5E1FCEFFE23A112",
+          "main_bytes": 22232,
+          "main_sha256": "2A6B3368AFEE87BE6E8AE04F0D21A5EADEFA825B7338D190448B0201AE33F5B7"
+        }
+      ],
+      "public_score": 757.0,
+      "submission_id": 55185510,
+      "submitted_at_utc": "2026-08-02T12:18:09.847Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "GE_CURRENT_STATE",
+      "description": "Ge_01 first upload: day-0 animals plus three seed types left about 34 money and blocked hiring.",
+      "family": "ge_policy_v1_day0_bankruptcy",
+      "file_name": "Ge_01.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 5746,
+          "archive_path": "dist/Ge_01.tar.gz",
+          "archive_sha256": "E020EAB0E5174EE8EEAA29A62ECC07B65CC5AF23EC7DCBAB78080038CF00788D",
+          "main_bytes": 19361,
+          "main_sha256": "9ED86F667DE5A59CB1F880DB11C28DBBFD800A12A4DFAAC5BD3AE15AA03217BF"
+        }
+      ],
+      "public_score": 810.5,
+      "submission_id": 55185505,
+      "submitted_at_utc": "2026-08-02T12:18:00.703Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "EXPERIMENT_LEDGER_E013",
+      "description": "E013: more animal slots, sheep 2→6, hands 10→12, and HIRE ordered before buys.",
+      "family": "policy_capacity_expansion",
+      "file_name": "bot_01 - Capacity Expansion.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 4893,
+          "archive_path": "dist/bot_01 - Capacity Expansion.tar.gz",
+          "archive_sha256": "F73CEDD6763FD51B39BC382AEA878875D37A5EB570E264FAFE3B363BDC04AED7",
+          "main_bytes": 17784,
+          "main_sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+        },
+        {
+          "archive_bytes": 4893,
+          "archive_path": "kaggle_runs/bot_01 - Capacity Expansion/output_v1/bot_01 - Capacity Expansion.tar.gz",
+          "archive_sha256": "F73CEDD6763FD51B39BC382AEA878875D37A5EB570E264FAFE3B363BDC04AED7",
+          "main_bytes": 17784,
+          "main_sha256": "B863259A8B116978F6ADC49D89BB74C14C677C06ED3DEC5EE7C93EC041BC834C"
+        }
+      ],
+      "public_score": 815.7,
+      "submission_id": 55183485,
+      "submitted_at_utc": "2026-08-02T10:32:37.280Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "TRACKED_G1_SOURCE_AND_PRIOR_AUDIT_HISTORY;_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE",
+      "description": "Frontier public-trace derivative with impossible-SELL guard; tracked G1 candidate source exists in the campaign worktree.",
+      "family": "public_replay_derived_tape",
+      "file_name": "Fa_04 - Frontier Trace Guard.tar.gz",
+      "local_source_candidates": [
+        {
+          "source_bytes": 197808,
+          "source_path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+          "source_sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+          "status": "TRACKED_HISTORICAL_CANDIDATE;_UPLOAD_BYTE_IDENTITY_UNVERIFIED"
+        }
+      ],
+      "public_score": 1317.1,
+      "submission_id": 55171193,
+      "submitted_at_utc": "2026-08-01T21:30:44.400Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "FILENAME_LOCAL_ARCHIVE_AND_PRIOR_AUDIT_HISTORY",
+      "description": "Meta-expansion policy candidate.",
+      "family": "fa_policy",
+      "file_name": "Fa_03 - Meta Expansion.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 4385,
+          "archive_path": "kaggle_runs/Fa_03 - Meta Expansion/Fa_03 - Meta Expansion.tar.gz",
+          "archive_sha256": "B2D58348CCF221917390DE932BA2F2AF91FC8CC7F315E68EA72D1D352D6FBDDF",
+          "main_bytes": 16195,
+          "main_sha256": "737DCC8BB014EF6915D6BC1F5020AA0330BB50D179A3A042B0813D3F11F6F7BA"
+        }
+      ],
+      "public_score": 889.7,
+      "submission_id": 55154217,
+      "submitted_at_utc": "2026-08-01T05:05:22.640Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "FILENAME_LOCAL_ARCHIVE_AND_PRIOR_AUDIT_HISTORY",
+      "description": "Last-chance task tiebreak policy candidate.",
+      "family": "fa_policy",
+      "file_name": "Fa_02 - Last-Chance Tiebreak.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 7029,
+          "archive_path": "kaggle_runs/Fa_02 - Last-Chance Tiebreak/Fa_02 - Last-Chance Tiebreak.tar.gz",
+          "archive_sha256": "E1DA47187E383023E1719479FEA82615FCEB17D217AB7855526A39767655FDEE",
+          "main_bytes": 29265,
+          "main_sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740"
+        },
+        {
+          "archive_bytes": 7029,
+          "archive_path": "kaggle_runs/Fa_02 - Last-Chance Tiebreak/preflight/Fa_02 - Last-Chance Tiebreak.tar.gz",
+          "archive_sha256": "E1DA47187E383023E1719479FEA82615FCEB17D217AB7855526A39767655FDEE",
+          "main_bytes": 29265,
+          "main_sha256": "C3AE4A705CBE843AE0DE4059EDA589B50AE7EF334270DAF9FD9EF8467577C740"
+        }
+      ],
+      "public_score": 913.0,
+      "submission_id": 55154212,
+      "submitted_at_utc": "2026-08-01T05:05:15.230Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "FILENAME_LOCAL_ARCHIVE_AND_PRIOR_AUDIT_HISTORY",
+      "description": "Overflow-safe inventory policy candidate.",
+      "family": "fa_policy",
+      "file_name": "Fa_01 - Overflow-Safe Inventory.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 4894,
+          "archive_path": "dist/Fa_01 - Overflow-Safe Inventory.tar.gz",
+          "archive_sha256": "1B52522D0CD55536F1C45B73F5FC5A37A27CF924A218FA009D1D1786B72F53D1",
+          "main_bytes": 17417,
+          "main_sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+        },
+        {
+          "archive_bytes": 4894,
+          "archive_path": "kaggle_runs/Fa_01 - Overflow-Safe Inventory/output_v1/Fa_01 - Overflow-Safe Inventory.tar.gz",
+          "archive_sha256": "1B52522D0CD55536F1C45B73F5FC5A37A27CF924A218FA009D1D1786B72F53D1",
+          "main_bytes": 17417,
+          "main_sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+        },
+        {
+          "archive_bytes": 4894,
+          "archive_path": "kaggle_runs/Fa_01 - Overflow-Safe Inventory/output_v2/Fa_01 - Overflow-Safe Inventory.tar.gz",
+          "archive_sha256": "1B52522D0CD55536F1C45B73F5FC5A37A27CF924A218FA009D1D1786B72F53D1",
+          "main_bytes": 17417,
+          "main_sha256": "0AF2CC152748DD8539A1190675CBBFA7D70A90EF55EA009642EB3BDF473DAE3C"
+        }
+      ],
+      "public_score": 1003.5,
+      "submission_id": 55142935,
+      "submitted_at_utc": "2026-07-31T16:45:32.363Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "FILENAME_AND_LOCAL_ARCHIVE_ONLY",
+      "description": "Initial cow-focused policy baseline.",
+      "family": "initial_policy_baseline",
+      "file_name": "cow_tilt.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 4311,
+          "archive_path": "dist/cow_tilt.tar.gz",
+          "archive_sha256": "73F15AECDD3CC786D755540C71D1E6035AD8D4435E813A02E56E923C8F791A86",
+          "main_bytes": 15703,
+          "main_sha256": "6CDE0002281620BAED323D0EDA5DBF48A6D0B7C4B8A3564BC951A757805E621E"
+        }
+      ],
+      "public_score": 991.4,
+      "submission_id": 55137248,
+      "submitted_at_utc": "2026-07-31T12:38:37.067Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    },
+    {
+      "claim_basis": "FILENAME_AND_LOCAL_ARCHIVE_ONLY",
+      "description": "Initial fast-expansion policy baseline.",
+      "family": "initial_policy_baseline",
+      "file_name": "fast_expansion.tar.gz",
+      "local_source_candidates": [
+        {
+          "archive_bytes": 4314,
+          "archive_path": "dist/fast_expansion.tar.gz",
+          "archive_sha256": "2ECB98759CA02AB28C83C88832DB8DDFEEDDD7E2E4A7B80EA9BD0F1292251484",
+          "main_bytes": 15706,
+          "main_sha256": "406BC82979637A42F2848382AD5E0248C403BBB346D09CF93859DC2D5761F25C"
+        }
+      ],
+      "public_score": 1068.0,
+      "submission_id": 55137246,
+      "submitted_at_utc": "2026-07-31T12:38:28.387Z",
+      "upload_byte_identity": "UNVERIFIED_KAGGLE_HISTORICAL_UPLOAD_BYTES_UNAVAILABLE"
+    }
+  ],
+  "schema_version": 1
+}

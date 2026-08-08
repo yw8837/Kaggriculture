@@ -1,0 +1,8 @@
+COMMAND
+.\.venv\Scripts\ruff.exe check research/campaign_3000/05_engine_screen/run_screen.py research/campaign_3000/05_engine_screen/test_run_screen.py src/kaggriculture_lab/evaluation/runner.py tests/test_runner.py tests/test_engine_parity.py
+
+EXIT_CODE
+0
+
+STDOUT
+All checks passed!

@@ -1,0 +1,255 @@
+{
+  "schema_version": 1,
+  "run_id": "campaign_3000_engine_public_screen_v1",
+  "created_at_utc": "2026-08-08T18:35:24.258986+00:00",
+  "git_head": "72b12208dd8faf78df267738b017ec3a049334ea",
+  "artifact_root": "research/campaign_3000/05_engine_screen",
+  "artifact_files": {
+    "cell_registry.json": {
+      "bytes": 188743,
+      "sha256": "CC328669C935ED4D60201CBF1C94F067BC884F725A94CCD8495B68F37C9DC4AE"
+    },
+    "engine_comparison.json": {
+      "bytes": 36399,
+      "sha256": "7FBC90385D085932544E693836CA4B24EC28E9AAD7A28DB9AA442E22FB46B2F6"
+    },
+    "raw/engine_1.32.2/fa04_g1/boatlee_v14.json": {
+      "bytes": 8271,
+      "sha256": "AE7852817176A0955F886964C7ADE4DDEFBA582C735A7023052BB9A464102C45"
+    },
+    "raw/engine_1.32.2/fa04_g1/boatlee_v14.started.json": {
+      "bytes": 1298,
+      "sha256": "3ED71A89DD1F7476D48BB89E8823CB53C0686EF55DEB8AC7335FC2DC5E2A6A54"
+    },
+    "raw/engine_1.32.2/fa04_g1/flex_adaptive.json": {
+      "bytes": 8256,
+      "sha256": "F5495C9CB64741440EF3414E3C0DE6875075531FB9A7C6254E8FCA120181B255"
+    },
+    "raw/engine_1.32.2/fa04_g1/flex_adaptive.started.json": {
+      "bytes": 1282,
+      "sha256": "7E57591544DF862005E4388CA6229BFD1EA693B38BD52822061B406E312AF8BB"
+    },
+    "raw/engine_1.32.2/fa04_g1/indar_route_2948_9.json": {
+      "bytes": 8280,
+      "sha256": "E932555EE95F5DE6837F854515CB08E5329A75B0F9A7714A4FA639F80D7325C7"
+    },
+    "raw/engine_1.32.2/fa04_g1/indar_route_2948_9.started.json": {
+      "bytes": 1300,
+      "sha256": "FDC6D3EDCEF1703AA4985AA7559DCF201C0AD9C71C2F380BE1F0C5713E8E3BC9"
+    },
+    "raw/engine_1.32.2/fa04_g1/kaito_v22_price_impact.json": {
+      "bytes": 7777,
+      "sha256": "6A2C107E008332F473E5096B98C5CCA929FC74FA6CD8D3D4CDC1F6D6542494A6"
+    },
+    "raw/engine_1.32.2/fa04_g1/kaito_v22_price_impact.started.json": {
+      "bytes": 1300,
+      "sha256": "FCDD98CB1F27D09AE6495DA883DC5DBBCC190226AEB0333F21021B89F4C15112"
+    },
+    "raw/engine_1.32.2/fa04_g1/tetsu_adaptive.json": {
+      "bytes": 8271,
+      "sha256": "FAAD8B0BB7E6C47216CA3C86C14D1E23670823C571616D7FEA1FC16AA8733EFC"
+    },
+    "raw/engine_1.32.2/fa04_g1/tetsu_adaptive.started.json": {
+      "bytes": 1296,
+      "sha256": "5802375698928D3C0C61BDA5300B531C84088B7C7109F7580BFBAE4065A3C381"
+    },
+    "raw/engine_1.32.6/fa04_g1/boatlee_v14.json": {
+      "bytes": 22900,
+      "sha256": "757301FF46141873BCE5514F5861BCCF4BDDD2EB1FF2AB15891CF7043131DC3F"
+    },
+    "raw/engine_1.32.6/fa04_g1/boatlee_v14.started.json": {
+      "bytes": 1370,
+      "sha256": "BD773FDD1AB8DC4EF54E8CE51C35B2D035886EF6E983A462725DF81CD6F5B28D"
+    },
+    "raw/engine_1.32.6/fa04_g1/flex_adaptive.json": {
+      "bytes": 22887,
+      "sha256": "869022E73355B9645BBBCC0EB9FB0EE62E77035CA1CA815681EA1DB6BC845E9D"
+    },
+    "raw/engine_1.32.6/fa04_g1/flex_adaptive.started.json": {
+      "bytes": 1354,
+      "sha256": "63B3728AC931DD85C58E5DCA84A37E0057530F360EEAA5F0139C0AD6D40014E9"
+    },
+    "raw/engine_1.32.6/fa04_g1/indar_route_2948_9.json": {
+      "bytes": 22910,
+      "sha256": "8ED9FD47ED4BF1A07F63A483769DC0CC4EFCED087B5FA21FFA0C40FBCB277CEF"
+    },
+    "raw/engine_1.32.6/fa04_g1/indar_route_2948_9.started.json": {
+      "bytes": 1372,
+      "sha256": "7B66C0EAD213F418003B46E151FE9F202696C1DC65852F5722841549D8D53F6E"
+    },
+    "raw/engine_1.32.6/fa04_g1/kaito_v22_price_impact.json": {
+      "bytes": 23165,
+      "sha256": "67E8AAABE80F784653769996716DA87F705DE7DC1514EBA4DE8F386A4FCEE77D"
+    },
+    "raw/engine_1.32.6/fa04_g1/kaito_v22_price_impact.started.json": {
+      "bytes": 1372,
+      "sha256": "47FA6E992E4634A995861F7BFAE5B3CE3CFA175A02DC382F78E69A00A7D7D9C5"
+    },
+    "raw/engine_1.32.6/fa04_g1/tetsu_adaptive.json": {
+      "bytes": 22902,
+      "sha256": "8BC15ED3478F25EAF86729D844BDAA915C46DC7F52F2F3120A90FF1C6D4C9931"
+    },
+    "raw/engine_1.32.6/fa04_g1/tetsu_adaptive.started.json": {
+      "bytes": 1368,
+      "sha256": "19E791013CDC92031353C3B23E372E1731B28E1B274F4F4E8A72979226C87027"
+    },
+    "raw/engine_1.32.6/public_round_robin/boatlee_v14.json": {
+      "bytes": 83269,
+      "sha256": "F56DEC66118AEAE7E7402BC7E47B88F7A8111B32D49FA8D950C8CB64FFDE7DF4"
+    },
+    "raw/engine_1.32.6/public_round_robin/boatlee_v14.started.json": {
+      "bytes": 2467,
+      "sha256": "6D2BD78D4946B2759E7B0F7A57B33BB761A42D873895D47A629301C91D71BFEF"
+    },
+    "raw/engine_1.32.6/public_round_robin/flex_adaptive.json": {
+      "bytes": 63254,
+      "sha256": "CCF96269C7143166A2B6C41771AD19470B5B7EF41B5E28C61F776F97B5156EDF"
+    },
+    "raw/engine_1.32.6/public_round_robin/flex_adaptive.started.json": {
+      "bytes": 2122,
+      "sha256": "88C2E72B22797634FA69ED6D73D98E41C3482E3DFDE17DC5EAF44DD593F3C7C1"
+    },
+    "raw/engine_1.32.6/public_round_robin/indar_route_2948_9.json": {
+      "bytes": 43062,
+      "sha256": "E814F4629F3698AC225330DA98A595B469D708D8A5A258EA84A1B4C278C9764C"
+    },
+    "raw/engine_1.32.6/public_round_robin/indar_route_2948_9.started.json": {
+      "bytes": 1787,
+      "sha256": "98F2128060F67A3A91594AA6A72F599B00F3C63210FFB8C5694902A4AD50680E"
+    },
+    "raw/engine_1.32.6/public_round_robin/kaito_v22_price_impact.json": {
+      "bytes": 22833,
+      "sha256": "3FECD7BA5EA96E76BC5198B3CB9F586B16440B4F6216CC3A79CF522FF63E3B41"
+    },
+    "raw/engine_1.32.6/public_round_robin/kaito_v22_price_impact.started.json": {
+      "bytes": 1422,
+      "sha256": "597814EC7D2F8FE917530EDF4F852FEC4842D8549C0C13C6926FA19F5A31DCB7"
+    },
+    "raw_games.json": {
+      "bytes": 374893,
+      "sha256": "1449F6AB335BC910B57995EE4711042C052FC4B2F1D823D0333B57DF813C42DA"
+    },
+    "README.md": {
+      "bytes": 5283,
+      "sha256": "CEFF030D5EF620AA7691252EEF00AAB8EACF80FB30FDA36618321DCD51FFCF4A"
+    },
+    "receipts/engine_1.32.2.completed.json": {
+      "bytes": 7343,
+      "sha256": "C639A877E9DD1B3C7CEAE1528267A82E2D07F4A6BC5703ABE87AE91DFF5B977B"
+    },
+    "receipts/engine_1.32.2.started.json": {
+      "bytes": 7982,
+      "sha256": "CB1E24FF2C285FC9A53043B797B546CBCA517C7B1A97DA3C9DE8AC03448448BC"
+    },
+    "receipts/engine_1.32.6.completed.json": {
+      "bytes": 8833,
+      "sha256": "8C04811AFF8B0FF21AF3AF3858FFF863A71F8F07ABFB2FC8D57104C943933F85"
+    },
+    "receipts/engine_1.32.6.started.json": {
+      "bytes": 10397,
+      "sha256": "66370570977C06248339393E2DE5511E5502D701C6443CC6D100AB3882FA1AFD"
+    },
+    "run_screen.py": {
+      "bytes": 46714,
+      "sha256": "D8600EE2D849813261AE3F93B7D6F2DBD4BB002B35527E6A2E46A2881BEF3C3C"
+    },
+    "screen_config.json": {
+      "bytes": 3903,
+      "sha256": "49AA865CF993DE29D22715C593FAA81134C2E97F3A5C25AE00589D3ACC311E72"
+    },
+    "summary.json": {
+      "bytes": 79363,
+      "sha256": "193FB33CA537681E510C74C9E6ED947CD1FB0D806911BB1C93AF95AC8C50D94F"
+    },
+    "test_run_screen.py": {
+      "bytes": 2264,
+      "sha256": "8A85EAAE83268A05EDEADB4F4C73F0297D330444C4F6245B54B15BA78627295E"
+    },
+    "verification/pytest.txt": {
+      "bytes": 266,
+      "sha256": "0BCAEDA8373A07E172FD7FA2DC8A9DF25C9CC40154131508A74A1A39B4D04E75"
+    },
+    "verification/ruff.txt": {
+      "bytes": 284,
+      "sha256": "673B2F8BFB31C1237911E0E2525A9FDAC12D5F342DF6B7658C067DE8D22E2ABA"
+    }
+  },
+  "artifact_files_canonical_sha256": "71B0C1454B3FB5DE43ACC4FD8BE0E3FC89AFB3E191BD42092B0B1E2362D2B96E",
+  "external_frozen_sources_at_manifest": {
+    "files": {
+      "configs/fa_ab_seed_registry.json": {
+        "bytes": 14721,
+        "sha256": "A443626FF1E6FE2B84C9036454263AA4E8349C3E4ADE3686A6E449C3BA699C61"
+      },
+      "dist/campaign_3000_public_agents/boatlee__84-84-base-public-holdout-v14-clone-preemption.py": {
+        "bytes": 26304,
+        "sha256": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B"
+      },
+      "dist/campaign_3000_public_agents/flexonafft__kaggriculture-adaptive-replay-agent.py": {
+        "bytes": 25939,
+        "sha256": "3C41010DE37114C082D481E4A4C3E42CA5148E826A140E2AA02964ACA8636DD8"
+      },
+      "dist/campaign_3000_public_agents/indarkarhana__kaggriculture-verified-route-replay-2948-9.py": {
+        "bytes": 14104,
+        "sha256": "18DD8CB938AE72CF6511F23189B8C128BE8092ED9EC3BAECDD3F9E75D6A7D03C"
+      },
+      "dist/campaign_3000_public_agents/kaitofukami__44-46-strict-future-top-30-v22-price-impact.py": {
+        "bytes": 18609,
+        "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A"
+      },
+      "dist/campaign_3000_public_agents/manifest.json": {
+        "bytes": 2954,
+        "sha256": "E949AFA4EC6A0EEFC51DD2B3813EDC2D46BB8ABDC1D254C685E04A559B3DB281"
+      },
+      "dist/campaign_3000_public_agents/tetsutani__adaptive-farming-strategy-for-kaggriculture.py": {
+        "bytes": 27244,
+        "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+      },
+      "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py": {
+        "bytes": 197808,
+        "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+      },
+      "pyproject.toml": {
+        "bytes": 1308,
+        "sha256": "240B46D7630966BA7FA748C98C9DE607FB9A8CFFE307E98F1E27B7A4EF8D79B0"
+      },
+      "research/campaign_3000/05_engine_screen/run_screen.py": {
+        "bytes": 46714,
+        "sha256": "D8600EE2D849813261AE3F93B7D6F2DBD4BB002B35527E6A2E46A2881BEF3C3C"
+      },
+      "research/campaign_3000/05_engine_screen/screen_config.json": {
+        "bytes": 3903,
+        "sha256": "49AA865CF993DE29D22715C593FAA81134C2E97F3A5C25AE00589D3ACC311E72"
+      },
+      "src/kaggriculture_lab/evaluation/runner.py": {
+        "bytes": 20458,
+        "sha256": "8F35F4D52870DB06FDFF60D03665E234F4994DD18D17BDB2E7FBC5D7F9F21A39"
+      },
+      "uv.lock": {
+        "bytes": 241084,
+        "sha256": "95E41B0F6DE9FC78797B2B7CB7A3284659B64F5C6C6C6D59163BA163750FCED2"
+      }
+    },
+    "snapshot_sha256": "1A5D0CA103B0BA8F173360C6FFDC82DC72120D31CBA372D0A7341ADE3BD39B8A"
+  },
+  "phase_integrity": {
+    "1.32.6": {
+      "sources_unchanged_during_phase": true,
+      "environment_unchanged_during_phase": true,
+      "config_unchanged_during_phase": true,
+      "cell_registry_unchanged_during_phase": true
+    },
+    "1.32.2": {
+      "sources_unchanged_during_phase": true,
+      "environment_unchanged_during_phase": true,
+      "config_unchanged_during_phase": true,
+      "cell_registry_unchanged_during_phase": true
+    }
+  },
+  "manifest_exclusions": [
+    "manifest.json (self)",
+    "manifest.sha256 (manifest sidecar)",
+    "__pycache__/**",
+    "*.pyc"
+  ]
+}
