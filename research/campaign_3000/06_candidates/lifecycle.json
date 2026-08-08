@@ -1,30 +1,50 @@
 {
-  "schema_version": 1,
-  "lifecycle_protocol": "auditor_exact_development_open_v1",
-  "state": "DEVELOPMENT_OPEN",
+  "schema_version": 2,
+  "lifecycle_protocol": "auditor_exact_development_close_v1",
+  "state": "DEVELOPMENT_CLOSED",
+  "execution_authority_commit": "ebdd5b58c66a1c816525bb60b403eabbd7b2892d",
   "execution_commit": "cf04be5ad93f31bc8677e383a2b414e9561841d3",
-  "authority_receipt": {
-    "path": "dist/campaign_3000/authority/auditor_development_open.json",
-    "bytes": 3770,
-    "sha256": "5D5EA60A20E07B5130F94CB5B56F2E82FB9A9766AF57CD5124FB294136D65BE4"
-  },
-  "auditor_open_delivery": {
-    "path": "dist/campaign_3000/authority/auditor_development_open.delivery.json",
-    "bytes": 20487,
-    "sha256": "E83493F74F2D778B672A042AC8499AE1A79DB7E90F3CDFF91D2BF53B530FA3B5"
-  },
-  "phases": {
+  "open_lifecycle_sha256": "750693C6DCE541542A62293E633FD548814B4BB4E1B4F45F2DD0CEBE076A5BF0",
+  "slots": {
     "Kag_01": {
-      "development": "OPEN",
-      "confirmation": "HOLD",
-      "robustness": "HOLD"
+      "development": {
+        "seed_start": 50000,
+        "seed_end_inclusive": 50015,
+        "evaluated_games": 128,
+        "status": "CONSUMED_PASS",
+        "strict_verdict": "PASS",
+        "evidence_manifest_path": "research/campaign_3000/10_results/kag_01_development/evidence_manifest.json",
+        "evidence_manifest_sha256": "712DEBADB1BAE4247687B788A1986AB2B90DF32A52F390AB2BBD5213A5A2B09A"
+      },
+      "confirmation": {
+        "authorization": "HOLD",
+        "status": "CLOSED"
+      },
+      "robustness": {
+        "authorization": "HOLD",
+        "status": "CLOSED"
+      }
     },
     "Kag_02": {
-      "development": "OPEN",
-      "confirmation": "HOLD",
-      "robustness": "HOLD"
+      "development": {
+        "seed_start": 53000,
+        "seed_end_inclusive": 53015,
+        "evaluated_games": 128,
+        "status": "CONSUMED_NO_GO",
+        "strict_verdict": "NO_GO",
+        "evidence_manifest_path": "research/campaign_3000/10_results/kag_02_development/evidence_manifest.json",
+        "evidence_manifest_sha256": "F9E9C7629B6EA95D989712D1F8ED685835DC8120D31292FD51B33E414F82FD7D"
+      },
+      "confirmation": {
+        "authorization": "HOLD",
+        "status": "RETIRED_UNUSED"
+      },
+      "robustness": {
+        "authorization": "HOLD",
+        "status": "RETIRED_UNUSED"
+      }
     }
   },
-  "external_actions": "HOLD",
-  "fresh_games_executed": 0
+  "fresh_games_executed": 256,
+  "external_actions": "HOLD"
 }

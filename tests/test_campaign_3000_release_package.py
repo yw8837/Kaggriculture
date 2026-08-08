@@ -150,6 +150,54 @@ def test_local_build_is_independent_of_observed_git_head(
         )
 
 
+def test_final_freeze_binding_requires_exact_clean_head_and_commit_bytes(
+    builder: ModuleType,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    commit = "a" * 40
+    spec_path = RELEASE_ROOT / "release_spec.json"
+    frozen_inputs = (BUILDER_PATH, spec_path)
+    monkeypatch.setattr(builder, "_release_input_paths", lambda *_: frozen_inputs)
+    state = {"head": commit, "status": ""}
+
+    def fake_git(
+        project_root: Path,
+        *arguments: str,
+        text: bool = True,
+    ) -> subprocess.CompletedProcess:
+        assert project_root == PROJECT_ROOT
+        if arguments == ("rev-parse", "HEAD"):
+            return subprocess.CompletedProcess(arguments, 0, stdout=f"{state['head']}\n", stderr="")
+        if arguments == ("status", "--short", "--untracked-files=no"):
+            return subprocess.CompletedProcess(arguments, 0, stdout=state["status"], stderr="")
+        if arguments[0] == "show":
+            relative = arguments[1].split(":", 1)[1]
+            payload = (PROJECT_ROOT / relative).read_bytes()
+            return subprocess.CompletedProcess(arguments, 0, stdout=payload, stderr=b"")
+        raise AssertionError(arguments)
+
+    monkeypatch.setattr(builder, "_git", fake_git)
+    binding = builder._worktree_binding(PROJECT_ROOT, spec_path, commit)
+    assert binding["binding"] == "FINAL_GIT_FREEZE_PINNED"
+    assert binding["status"] == "PASS_FINAL_GIT_FREEZE"
+    assert binding["git_head"] == {
+        "commit": commit,
+        "claim": "ALL_TRACKED_RELEASE_INPUTS_BYTE_EXACT_AT_COMMIT",
+    }
+    assert binding["tracked_status"] == "CLEAN"
+    assert [record["path"] for record in binding["inputs"]] == [
+        path.relative_to(PROJECT_ROOT).as_posix() for path in frozen_inputs
+    ]
+
+    state["head"] = "b" * 40
+    with pytest.raises(ValueError, match="final freeze commit is stale"):
+        builder._worktree_binding(PROJECT_ROOT, spec_path, commit)
+    state["head"] = commit
+    state["status"] = " M tracked.py\n"
+    with pytest.raises(ValueError, match="tracked worktree must be clean"):
+        builder._worktree_binding(PROJECT_ROOT, spec_path, commit)
+
+
 def test_archives_are_exact_licensed_and_attributed(
     builder: ModuleType, tmp_path: Path
 ) -> None:
@@ -187,6 +235,12 @@ def test_private_wrapper_is_payload_only(builder: ModuleType, tmp_path: Path) ->
     output_root = tmp_path / "build"
     result = builder.build_all(PROJECT_ROOT, output_root)
 
+    expected_readiness = {
+        "Kag_01": "STRICT_DEVELOPMENT_PASS",
+        "Kag_02": (
+            "EXPLORATORY_PACKAGE_GATE_PASS_NON_PROMOTION_AUDITOR_RELEASE_PENDING"
+        ),
+    }
     for candidate in result["candidates"]:
         artifact_path = output_root / candidate["artifact"]["path"]
         notebook_path = output_root / candidate["notebook"]["path"]
@@ -218,8 +272,32 @@ def test_private_wrapper_is_payload_only(builder: ModuleType, tmp_path: Path) ->
         assert prepush["checks"]["source_snapshot_commit_contained"] == (
             "PENDING_FINAL_GIT_FREEZE"
         )
+        assert prepush["checks"]["targeted_private_material_scan"] == "PASS"
+        assert prepush["development_result"]["package_readiness"] == (
+            expected_readiness[candidate["sequence"]]
+        )
+        assert prepush["package_readiness"] == expected_readiness[candidate["sequence"]]
         assert prepush["worktree_binding"]["binding"] == "WORKTREE_PINNED"
         assert prepush["worktree_binding"]["status"] == "PENDING_FINAL_GIT_FREEZE"
+        assert "development_result" not in prepush["external_action_gate"][
+            "blocking_prerequisites"
+        ]
+
+        if candidate["sequence"] == "Kag_02":
+            assert prepush["development_result"]["observed_strict_verdict"] == "NO_GO"
+            assert prepush["non_promotion_boundary"]["label"] == (
+                "EXPLORATORY_PACKAGE_GATE_PASS_NON_PROMOTION_AUDITOR_RELEASE_PENDING"
+            )
+            assert prepush["non_promotion_boundary"]["observed_exploratory_verdict"] == (
+                "NOT_READY"
+            )
+            assert prepush["non_promotion_boundary"]["required_future_release_label"] == (
+                "EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION"
+            )
+            assert "PROMOTION" in prepush["non_promotion_boundary"]["prohibited_claims"]
+        else:
+            assert prepush["development_result"]["observed_strict_verdict"] == "PASS"
+            assert "non_promotion_boundary" not in prepush
 
     assert result["external_action_gate"]["status"] == "HOLD"
     assert result["status"] == "LOCAL_PACKAGE_BUILT_EXTERNAL_ACTIONS_HOLD"
@@ -249,6 +327,78 @@ def test_worktree_inputs_and_receipts_are_pinned() -> None:
     for receipt_key in ("evidence_receipt", "source_snapshot_receipt"):
         receipt = spec[receipt_key]
         assert sha256((PROJECT_ROOT / receipt["path"]).read_bytes()) == receipt["sha256"]
+
+    for key in ("builder", "tests"):
+        tooling = spec["release_tooling"][key]
+        payload = (PROJECT_ROOT / tooling["path"]).read_bytes()
+        assert len(payload) == tooling["bytes"]
+        assert sha256(payload) == tooling["sha256"]
+
+
+def test_tracked_postrun_evidence_is_slot_specific_and_lifecycle_closed(
+    builder: ModuleType,
+) -> None:
+    spec = json.loads((RELEASE_ROOT / "release_spec.json").read_text(encoding="utf-8"))
+    prerequisites = builder._validate_candidate_prerequisites(PROJECT_ROOT, spec)
+    development = prerequisites["development_results"]
+    lifecycle_pin = development["lifecycle"]
+    lifecycle = json.loads((PROJECT_ROOT / lifecycle_pin["path"]).read_bytes())
+
+    assert lifecycle["state"] == "DEVELOPMENT_CLOSED"
+    assert lifecycle["fresh_games_executed"] == 256
+    assert lifecycle["external_actions"] == "HOLD"
+    assert development["slots"]["Kag_01"]["observed_strict_verdict"] == "PASS"
+    assert development["slots"]["Kag_01"]["package_readiness"] == (
+        "STRICT_DEVELOPMENT_PASS"
+    )
+    assert development["slots"]["Kag_02"]["observed_strict_verdict"] == "NO_GO"
+    assert development["slots"]["Kag_02"]["package_readiness"] == (
+        "EXPLORATORY_PACKAGE_GATE_PASS_NON_PROMOTION_AUDITOR_RELEASE_PENDING"
+    )
+    assert development["slots"]["Kag_02"]["required_future_release_label"] == (
+        "EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION"
+    )
+    assert lifecycle["slots"]["Kag_02"]["confirmation"] == {
+        "authorization": "HOLD",
+        "status": "RETIRED_UNUSED",
+    }
+    assert lifecycle["slots"]["Kag_02"]["robustness"] == {
+        "authorization": "HOLD",
+        "status": "RETIRED_UNUSED",
+    }
+
+
+def test_private_path_and_credential_markers_are_rejected(builder: ModuleType) -> None:
+    for payload in (
+        b"C:\\Users\\someone\\secret.json",
+        b'{"path":"C:\\\\Users\\\\someone\\\\secret.json"}',
+        b"C:/Users/someone/.kaggle/kaggle.json",
+        "owner=최용우".encode(),
+        b'{"owner":"\\ucd5c\\uc6a9\\uc6b0"}',
+        b"KAGGLE_KEY=secret",
+        b"api_token=secret",
+    ):
+        with pytest.raises(ValueError, match="private path, username, or credential marker"):
+            builder._reject_private_payload_markers(payload, "test payload")
+
+
+def test_built_payloads_exclude_local_postrun_material(
+    builder: ModuleType,
+    tmp_path: Path,
+) -> None:
+    output_root = tmp_path / "build"
+    result = builder.build_all(PROJECT_ROOT, output_root)
+    forbidden = tuple(marker.lower() for marker in builder.FORBIDDEN_PRIVATE_PAYLOAD_MARKERS)
+    for candidate in result["candidates"]:
+        for key in ("notebook", "metadata", "prepush"):
+            payload = (output_root / candidate[key]["path"]).read_bytes().lower()
+            assert all(marker not in payload for marker in forbidden)
+        with tarfile.open(output_root / candidate["artifact"]["path"], mode="r:gz") as archive:
+            for member in archive.getmembers():
+                extracted = archive.extractfile(member)
+                assert extracted is not None
+                payload = extracted.read().lower()
+                assert all(marker not in payload for marker in forbidden)
 
 
 def test_raw_notebook_cells_extract_to_exact_main(builder: ModuleType) -> None:
@@ -330,7 +480,7 @@ def test_tracked_candidate_pages_bind_license_and_score_boundaries() -> None:
     ("missing_key", "expected_error"),
     (
         ("candidate_gate", "missing candidate prerequisite: candidate_gate"),
-        ("development_result", "missing candidate prerequisite: development_result"),
+        ("development_results", "missing candidate prerequisite: development_results"),
         (
             "independent_auditor_exact_private_saverun_release",
             "missing candidate prerequisite: independent_auditor_exact_private_saverun_release",
@@ -356,6 +506,99 @@ def test_required_candidate_gate_and_audit_omission_are_rejected(
         builder.build_all(PROJECT_ROOT, output_root, spec_path)
 
     assert file_map(output_root) == before
+
+
+@pytest.mark.parametrize(
+    ("mutation", "expected_error"),
+    (
+        ("kag02_requires_pass", "Kag_02 required strict verdict policy mismatch"),
+        ("swap_kag02_manifest", "Kag_02 development evidence manifest slot mismatch"),
+        ("lifecycle_hash", "development lifecycle SHA-256 mismatch"),
+        (
+            "auditor_slot_missing",
+            "invalid candidate prerequisite independent_auditor_exact_private_saverun_release.slots",
+        ),
+    ),
+)
+def test_slot_result_lifecycle_and_auditor_contract_attacks_are_rejected(
+    builder: ModuleType,
+    tmp_path: Path,
+    mutation: str,
+    expected_error: str,
+) -> None:
+    spec = json.loads((RELEASE_ROOT / "release_spec.json").read_text(encoding="utf-8"))
+    prerequisites = spec["candidate_evaluation_prerequisites"]
+    if mutation == "kag02_requires_pass":
+        prerequisites["development_results"]["slots"]["Kag_02"][
+            "required_strict_verdict"
+        ] = "PASS"
+    elif mutation == "swap_kag02_manifest":
+        prerequisites["development_results"]["slots"]["Kag_02"][
+            "evidence_manifest"
+        ] = prerequisites["development_results"]["slots"]["Kag_01"][
+            "evidence_manifest"
+        ]
+    elif mutation == "lifecycle_hash":
+        prerequisites["development_results"]["lifecycle"]["sha256"] = "0" * 64
+    elif mutation == "auditor_slot_missing":
+        prerequisites["independent_auditor_exact_private_saverun_release"]["slots"].pop(
+            "Kag_02"
+        )
+    else:
+        raise AssertionError(mutation)
+    spec_path = tmp_path / f"{mutation}.json"
+    write_spec(builder, spec_path, spec)
+
+    with pytest.raises((TypeError, ValueError), match=expected_error):
+        builder.build_all(PROJECT_ROOT, tmp_path / "output", spec_path)
+
+
+def test_self_consistent_raw_manifest_lifecycle_rewrite_fails_production_revalidation(
+    builder: ModuleType,
+    tmp_path: Path,
+) -> None:
+    spec = json.loads((RELEASE_ROOT / "release_spec.json").read_text(encoding="utf-8"))
+    development = spec["candidate_evaluation_prerequisites"]["development_results"]
+    kag01_pin = development["slots"]["Kag_01"]["evidence_manifest"]
+    manifest = json.loads((PROJECT_ROOT / kag01_pin["path"]).read_bytes())
+    raw_record = next(record for record in manifest["files"] if record["role"] == "raw_report")
+    raw_payload = (PROJECT_ROOT / raw_record["path"]).read_bytes() + b"\n"
+    rewritten_raw = tmp_path / "rewritten-raw.json"
+    rewritten_raw.write_bytes(raw_payload)
+    raw_record.update(
+        {
+            "path": rewritten_raw.as_posix(),
+            "bytes": len(raw_payload),
+            "sha256": sha256(raw_payload),
+        }
+    )
+    rewritten_manifest = tmp_path / "rewritten-manifest.json"
+    rewritten_manifest.write_bytes(builder.canonical_json(manifest))
+    rewritten_manifest_pin = {
+        "path": rewritten_manifest.as_posix(),
+        "sha256": sha256(rewritten_manifest.read_bytes()),
+    }
+    development["slots"]["Kag_01"]["evidence_manifest"] = rewritten_manifest_pin
+
+    lifecycle_pin = development["lifecycle"]
+    lifecycle = json.loads((PROJECT_ROOT / lifecycle_pin["path"]).read_bytes())
+    lifecycle["slots"]["Kag_01"]["development"].update(
+        {
+            "evidence_manifest_path": rewritten_manifest_pin["path"],
+            "evidence_manifest_sha256": rewritten_manifest_pin["sha256"],
+        }
+    )
+    rewritten_lifecycle = tmp_path / "rewritten-lifecycle.json"
+    rewritten_lifecycle.write_bytes(builder.canonical_json(lifecycle))
+    development["lifecycle"] = {
+        "path": rewritten_lifecycle.as_posix(),
+        "sha256": sha256(rewritten_lifecycle.read_bytes()),
+    }
+    spec_path = tmp_path / "rewritten-spec.json"
+    write_spec(builder, spec_path, spec)
+
+    with pytest.raises(ValueError, match="postrun production validator"):
+        builder.build_all(PROJECT_ROOT, tmp_path / "output", spec_path)
 
 
 def test_attribution_hash_mismatch_is_rejected(
@@ -487,7 +730,10 @@ def test_nonowned_project_and_git_outputs_are_rejected_before_write(
 ) -> None:
     sentinel = sentinel_path.read_bytes()
 
-    with pytest.raises(ValueError, match="inside project|Git metadata"):
+    with pytest.raises(
+        ValueError,
+        match="inside project|Git metadata|contains frozen release input",
+    ):
         builder.build_all(PROJECT_ROOT, dangerous_root)
 
     assert sentinel_path.read_bytes() == sentinel
@@ -652,3 +898,52 @@ def test_successful_build_replaces_existing_output_atomically(
     )
     assert not list(tmp_path.glob(f".{output_root.name}.staging-*"))
     assert not list(tmp_path.glob(f".{output_root.name}.backup-*"))
+
+
+def test_final_verifier_rebuilds_and_rejects_self_consistent_output_tampering(
+    builder: ModuleType,
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    commit = "a" * 40
+    binding = {
+        "binding": "FINAL_GIT_FREEZE_PINNED",
+        "status": "PASS_FINAL_GIT_FREEZE",
+        "git_head": {
+            "commit": commit,
+            "claim": "ALL_TRACKED_RELEASE_INPUTS_BYTE_EXACT_AT_COMMIT",
+        },
+        "tracked_status": "CLEAN",
+        "inputs": [],
+        "builder": {"path": "builder.py", "sha256": "1" * 64},
+        "spec": {"path": "release_spec.json", "sha256": "2" * 64},
+    }
+    monkeypatch.setattr(builder, "_worktree_binding", lambda *_args, **_kwargs: binding)
+    output_root = tmp_path / "release"
+    builder.build_all(PROJECT_ROOT, output_root, final_freeze_commit=commit)
+    with pytest.raises(
+        ValueError,
+        match="cannot overwrite a final-freeze release with a pending build",
+    ):
+        builder.build_all(PROJECT_ROOT, output_root)
+
+    manifest_path = output_root / "release_manifest.json"
+    manifest = json.loads(manifest_path.read_bytes())
+    candidate = manifest["candidates"][0]
+    artifact_path = output_root / candidate["artifact"]["path"]
+    tampered_artifact = artifact_path.read_bytes() + b"self-consistent attacker payload"
+    artifact_path.write_bytes(tampered_artifact)
+    candidate["artifact"]["bytes"] = len(tampered_artifact)
+    candidate["artifact"]["sha256"] = sha256(tampered_artifact)
+
+    prepush_path = output_root / candidate["prepush"]["path"]
+    prepush = json.loads(prepush_path.read_bytes())
+    prepush["artifact"]["bytes"] = len(tampered_artifact)
+    prepush["artifact"]["sha256"] = sha256(tampered_artifact)
+    prepush_payload = builder.canonical_json(prepush)
+    prepush_path.write_bytes(prepush_payload)
+    candidate["prepush"]["sha256"] = sha256(prepush_payload)
+    manifest_path.write_bytes(builder.canonical_json(manifest))
+
+    with pytest.raises(ValueError, match="differs from deterministic rebuild"):
+        builder.verify_release_build(PROJECT_ROOT, output_root, commit)

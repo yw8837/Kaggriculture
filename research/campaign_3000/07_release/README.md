@@ -20,13 +20,27 @@ Both exact `main.py` inputs, the complete Apache-2.0 `LICENSE`, source snapshot
 receipt, tracked official GetKernel response envelopes, raw official notebook
 sources, and later candidate-page license captures are hash-pinned in this
 worktree. The earlier cutoff page hashes remain timestamped attestations because
-their bodies were not archived. Commit containment remains
-`PENDING_FINAL_GIT_FREEZE`; a separate post-freeze receipt must prove it. The
-builder does not depend on ignored `dist/` or `references/` inputs.
+their bodies were not archived. The tracked post-run bundles are never copied
+into the Kaggle payload. The builder reruns the pinned production result
+validator over their receipts/raw rows and rejects local paths, usernames, or
+credential markers in every payload member and generated release file.
 
-Every generated local receipt has `external_action_gate.status=HOLD`. Exact
-development PASS results, an independent-auditor exact private SaveRun release
-PASS, and the final Git freeze are mandatory before any external action.
+The default build honestly records `PENDING_FINAL_GIT_FREEZE`. After a clean
+tracked commit exists, rebuild with `--final-freeze-commit <exact HEAD>` and
+then run `--verify-only --final-freeze-commit <exact HEAD>`. Final mode requires
+the exact clean HEAD, proves every tracked release input byte-exact at that
+commit, and deterministically rebuilds the complete output before accepting a
+receipt. A later HEAD or altered output is rejected as stale.
+
+Every generated local receipt has `external_action_gate.status=HOLD`.
+`Kag_01` has a tracked strict development `PASS`. `Kag_02` has a tracked strict
+`NO_GO`; only its performance-screen/package boundary may be described as
+`EXPLORATORY_PACKAGE_GATE_PASS_NON_PROMOTION_AUDITOR_RELEASE_PENDING`.
+It is not promotion, champion, confirmation, robustness, or competition-submit
+evidence. An independent-auditor exact per-slot private SaveRun release and the
+final Git freeze remain mandatory before any external action. Only a later
+separate auditor release may use
+`EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION` for `Kag_02`.
 
 Before any separately authorized external action, inspect
 `IP_RULES_PROVENANCE.md`, `AUDIT_READY_CLAIMS.md`, the pinned

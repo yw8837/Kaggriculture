@@ -364,7 +364,7 @@ def test_exploratory_saverun_is_explicitly_not_strict_promotion() -> None:
         "by_scenario_mean_margin": {"default": -100.0},
     }
     strict = orchestrator.evaluate_thresholds(summary, "development")
-    exploratory = orchestrator.evaluate_exploratory_readiness(summary, True, True)
+    exploratory = orchestrator.evaluate_exploratory_readiness(summary, True, True, True)
 
     assert strict["verdict"] == "NO_GO"
     assert exploratory == {
@@ -375,7 +375,8 @@ def test_exploratory_saverun_is_explicitly_not_strict_promotion() -> None:
             "runtime_max": True,
             "fa04_g1_match_score": True,
             "fa04_g1_mean_margin": True,
-            "package_and_final_audit": True,
+            "package_gate_pass": True,
+            "independent_auditor_release_pass": True,
         },
         "strict_promotion_claim": False,
     }

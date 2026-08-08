@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "campaign_3000_authorized_development_run_v1",
+  "created_at_utc": "2026-08-09T07:45:24.186531+09:00",
+  "status": "AUTHORIZED_NOT_STARTED",
+  "slot": "Kag_01",
+  "phase": "development",
+  "plan_sha256": "F57E076D11A91B2E344056EC74ECCA430F80EF3922D07A9001479B96DDEE5D1C",
+  "gate_sha256": "9D88AA8DEE2021F458896D681FB0958B6F26772F03ABB4507EC888C80970307D",
+  "selection_sha256": "D16F61AD119DDE74973BCE1BD638D47CC32F0F3C4B757892C15C680FD7FE5996",
+  "runner_sha256": "51E7BF197223BECE8F2BA7D002BE213630C56EFB289C6A132AB91C02A563F713",
+  "engine": {
+    "package": "kaggle-environments",
+    "version": "1.32.6",
+    "environment": "kaggriculture",
+    "episode_steps": 720,
+    "kaggriculture_py_sha256": "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF"
+  },
+  "actual_environment_at_receipt_creation": {
+    "version": "1.32.6",
+    "kaggriculture_py_sha256": "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF",
+    "runtime_dependencies": {
+      "kaggle_environments/__init__.py": {
+        "bytes": 4713,
+        "sha256": "05304FFE18CB783E24CB825B441047A9CBC45B201BE11E7B83507A035BC33A19"
+      },
+      "kaggle_environments/core.py": {
+        "bytes": 30284,
+        "sha256": "0922C4599A1B6E0D8C3DADF06AE5297F98138D859D686F00DAEE6F36E6D45D0E"
+      },
+      "kaggle_environments/utils.py": {
+        "bytes": 8634,
+        "sha256": "537B627B11784D424147EF57EBB0369B039BF83C9F891E81F10486B1F552334B"
+      },
+      "kaggle_environments/agent.py": {
+        "bytes": 8090,
+        "sha256": "9B7682CE9921C8F34080A8BE0F7B41598CC12AC7EB14D24E4B707883F25213B6"
+      },
+      "kaggle_environments/envs/kaggriculture/kaggriculture.py": {
+        "bytes": 39801,
+        "sha256": "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF"
+      },
+      "kaggle_environments/envs/kaggriculture/kaggriculture.json": {
+        "bytes": 5877,
+        "sha256": "7F196F4AAF9B4E482FBD61BA4BF19F5CEC4DA0F81938ECE756954035A65C0BB5"
+      }
+    },
+    "runtime_dependencies_sha256": "8924D43B9D9B95F53447298DF0B7504E525BEEDF341EAB0BDFCEC5A10EEB4280",
+    "import_paths_match_distribution": true,
+    "make_callable": {
+      "package_make_is_core_make": true,
+      "function_type": true,
+      "globals_is_core_module": true,
+      "module": "kaggle_environments.core",
+      "qualname": "make",
+      "source_path_matches_core": true,
+      "compiled_make_count": 1,
+      "ast_make_count": 1,
+      "ast_function_sha256": "7A9BCC66212C822AF494904756ECC915F6EC5DEEAF316EDB417648787E09E340",
+      "function_source_sha256": "3090CF7871CCF6C046138987B22B47956DE1B3C2B7CFF9FC3D5ED617AFEDFEB7",
+      "code_equals_compiled_source": true,
+      "startup_environment": {
+        "PYTHONPATH": null,
+        "PYTHONHOME": null,
+        "PYTHONSTARTUP": null,
+        "PYTHONINSPECT": null,
+        "PYTHONUSERBASE": null
+      },
+      "defaults_sha256": "310DDDF0453ADA7D5A566EF2CDC450C58912C9FC466C552322FA9A0D27D0371C"
+    },
+    "startup_environment": {
+      "PYTHONPATH": null,
+      "PYTHONHOME": null,
+      "PYTHONSTARTUP": null,
+      "PYTHONINSPECT": null,
+      "PYTHONUSERBASE": null
+    }
+  },
+  "execution_inputs_at_receipt_creation": {
+    "candidate_plan": "F57E076D11A91B2E344056EC74ECCA430F80EF3922D07A9001479B96DDEE5D1C",
+    "gate_config": "9D88AA8DEE2021F458896D681FB0958B6F26772F03ABB4507EC888C80970307D",
+    "selection_evidence": "D16F61AD119DDE74973BCE1BD638D47CC32F0F3C4B757892C15C680FD7FE5996",
+    "scenario_source": "3BCB18188C1618236EF90F92F09D6D20DDF7178ADE625DC47D1A48ADAB7A16F2",
+    "runner": "51E7BF197223BECE8F2BA7D002BE213630C56EFB289C6A132AB91C02A563F713",
+    "orchestrator": "305B63371ECC7AB72134B095C6B00F9FE4D8C079BFF493538136BBCC3F11CB8B",
+    "authorized_runner": "E3C21D1EE45B55E9767D40F87FE7EC0983866CA8F58FE9F39FAAFE640F7594E8"
+  },
+  "sources_at_receipt_creation": {
+    "tetsu_v16": {
+      "path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
+      "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+    },
+    "ray_c45_exact": {
+      "path": "research/campaign_3000/06_candidates/snapshots/ray_c45_exact.py",
+      "sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73"
+    },
+    "boatlee_v14": {
+      "path": "research/campaign_3000/06_candidates/snapshots/boatlee_v14.py",
+      "sha256": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B"
+    },
+    "kaito_v22": {
+      "path": "research/campaign_3000/06_candidates/snapshots/kaito_v22.py",
+      "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A"
+    },
+    "fa04_g1": {
+      "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+      "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+    }
+  },
+  "authority": {
+    "authority_commit": "ebdd5b58c66a1c816525bb60b403eabbd7b2892d",
+    "execution_commit": "cf04be5ad93f31bc8677e383a2b414e9561841d3",
+    "auditor_task_id": "019fb8b8-7758-7860-9304-39eb4f06c65c",
+    "auditor_open_delivery_sha256": "E83493F74F2D778B672A042AC8499AE1A79DB7E90F3CDFF91D2BF53B530FA3B5",
+    "o_review_delivery_sha256": "D679D5C54EC266D902FD04DBEAEE17FD5905E738A822CDBB061B951A650717B2"
+  },
+  "authority_receipt_sha256": "5D5EA60A20E07B5130F94CB5B56F2E82FB9A9766AF57CD5124FB294136D65BE4",
+  "lifecycle_sha256": "750693C6DCE541542A62293E633FD548814B4BB4E1B4F45F2DD0CEBE076A5BF0",
+  "contract": {
+    "slot": "Kag_01",
+    "phase": "development",
+    "candidate": "tetsu_v16",
+    "candidate_path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
+    "candidate_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+    "opponents": [
+      "ray_c45_exact",
+      "boatlee_v14",
+      "kaito_v22",
+      "fa04_g1"
+    ],
+    "opponent_sha256": {
+      "ray_c45_exact": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73",
+      "boatlee_v14": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B",
+      "kaito_v22": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+      "fa04_g1": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+    },
+    "seeds": [
+      50000,
+      50001,
+      50002,
+      50003,
+      50004,
+      50005,
+      50006,
+      50007,
+      50008,
+      50009,
+      50010,
+      50011,
+      50012,
+      50013,
+      50014,
+      50015
+    ],
+    "scenarios": {
+      "default": {}
+    },
+    "sources": {
+      "tetsu_v16": {
+        "path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
+        "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+      },
+      "ray_c45_exact": {
+        "path": "research/campaign_3000/06_candidates/snapshots/ray_c45_exact.py",
+        "sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73"
+      },
+      "boatlee_v14": {
+        "path": "research/campaign_3000/06_candidates/snapshots/boatlee_v14.py",
+        "sha256": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B"
+      },
+      "kaito_v22": {
+        "path": "research/campaign_3000/06_candidates/snapshots/kaito_v22.py",
+        "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A"
+      },
+      "fa04_g1": {
+        "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+        "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+      }
+    },
+    "grid_sha256": "914134F7415BB9BC445B75960AB8C24BC3017FCCDC409025A7FC43B5E493E5D7",
+    "expected_cells": 128
+  },
+  "outputs": {
+    "authorized_run_receipt": "dist/campaign_3000/runs/kag_01_development/authorized_run.json",
+    "raw_report": "dist/campaign_3000/runs/kag_01_development/raw_report.json",
+    "runner_started": "dist/campaign_3000/runs/kag_01_development/raw_report.started.json",
+    "outer_started": "dist/campaign_3000/runs/kag_01_development/outer.started.json",
+    "outer_completed": "dist/campaign_3000/runs/kag_01_development/outer.completed.json"
+  },
+  "runner_argv": [
+    "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\.venv\\Scripts\\python.exe",
+    "research/campaign_3000/06_candidates/authorized_runner.py",
+    "--run-receipt",
+    "dist/campaign_3000/runs/kag_01_development/authorized_run.json"
+  ],
+  "fresh_games_executed_before_start": 0,
+  "external_actions": "HOLD"
+}

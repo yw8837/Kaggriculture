@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "campaign_3000_tracked_development_evidence_v1",
+  "slot": "Kag_01",
+  "phase": "development",
+  "execution_authority_commit": "ebdd5b58c66a1c816525bb60b403eabbd7b2892d",
+  "execution_commit": "cf04be5ad93f31bc8677e383a2b414e9561841d3",
+  "open_lifecycle_sha256": "750693C6DCE541542A62293E633FD548814B4BB4E1B4F45F2DD0CEBE076A5BF0",
+  "privacy_limitation": "The byte-exact local receipts/reports contain the Windows workspace path and username. This evidence is restricted to the private GitHub repository and is forbidden from every Kaggle archive, notebook, Discussion, public Code payload, or other publication.",
+  "files": [
+    {
+      "role": "authorized_run",
+      "path": "research/campaign_3000/10_results/kag_01_development/authorized_run.json",
+      "bytes": 8659,
+      "sha256": "78D1E712DE4280A8B29AFCC3CF3A3B29B83B174A73343EEA82816DBE64A07002"
+    },
+    {
+      "role": "runner_started",
+      "path": "research/campaign_3000/10_results/kag_01_development/raw_report.started.json",
+      "bytes": 2313,
+      "sha256": "B47470D77D567E504F1647B8F8A01580E1A3C1CF64A6AC3E842E9281007C83B2"
+    },
+    {
+      "role": "raw_report",
+      "path": "research/campaign_3000/10_results/kag_01_development/raw_report.json",
+      "bytes": 282533,
+      "sha256": "16021BBAD2107C42FDBD56CD9E7E2D7DFCCAFA67BA8AFBC30B43682F3AA826EF"
+    },
+    {
+      "role": "outer_started",
+      "path": "research/campaign_3000/10_results/kag_01_development/outer.started.json",
+      "bytes": 8072,
+      "sha256": "2AD7FA393ADF834797353C0261BB69F9EFCD1F5FFFAFAD578554412BE1D53285"
+    },
+    {
+      "role": "outer_completed",
+      "path": "research/campaign_3000/10_results/kag_01_development/outer.completed.json",
+      "bytes": 7672,
+      "sha256": "930CE24448B577D4AB357091E54538E50AA391F968BE41545CAA5DAA6067ED30"
+    },
+    {
+      "role": "gate",
+      "path": "research/campaign_3000/10_results/kag_01_development/gate.json",
+      "bytes": 1424,
+      "sha256": "58355B4186E184AAD571AB3A189215392ECF184D4A3A784F2E713F8F9D06DF0C"
+    }
+  ],
+  "stderr_capture": {
+    "captured": false,
+    "bytes": null,
+    "sha256": null,
+    "limitation": "The exact subprocess stderr byte stream was not saved. Observed OpenSpiel startup noise was benign, but this tracked bundle makes no immutable zero-stderr claim and the 256 fresh games were not rerun."
+  }
+}

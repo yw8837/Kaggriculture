@@ -107,3 +107,5 @@ research/campaign_3000/05_engine_screen/*.sha256 binary
 research/campaign_3000/05_engine_screen_ray_c45_addendum/*.json binary
 research/campaign_3000/05_engine_screen_ray_c45_addendum/**/*.json binary
 research/campaign_3000/05_engine_screen_ray_c45_addendum/*.sha256 binary
+# Post-run evidence preserves the original receipts/reports byte-for-byte.
+research/campaign_3000/10_results/**/*.json binary

@@ -94,12 +94,12 @@ by the user-owned task from the actual thread; the second auditor verdict is an 
 human/host trust boundary, not a claimed local signature. The validator still hard-rejects a
 synthetic wrapper, wrong thread/turn/item, altered message, or missing second verdict.
 
-`orchestrator.py run` is the only accepted reserved-seed runner. It first calls the full authority
+`orchestrator.py run` was the only accepted reserved-seed runner. It first called the full authority
 gate, emits an immutable ignored run receipt containing the exact grid, cells, sources, authority
 hashes, and child-runner argv, then invokes `authorized_runner.py`. The report gate requires that
 run receipt and its SHA in both outer receipts; raw/synthetic runner output from any other path is
-rejected. No current receipt, O, post-O verdict, or run receipt exists, so state remains CLOSED and
-seed execution remains zero.
+rejected. Exact O `ebdd5b58...` authorized only the two development pools, which are now consumed
+and closed in the schema-v2 lifecycle described below.
 
 Immediately before and after the child run, the outer receipts measure the actually imported
 `kaggle-environments` distribution and its package/core/utils/agent/Kaggriculture Python+JSON
@@ -131,6 +131,28 @@ the mandatory summary counters. Strict promotion also applies nonnegative mean-m
 every opponent in every phase and to every scenario in robustness, so aggregate gains cannot
 average away a catastrophic lane.
 
+## Tracked development close
+
+`research/campaign_3000/10_results/` contains byte-exact copies of the six original evidence files
+for each slot. Each per-slot manifest fixes their path, bytes, and SHA-256. The `results` command
+revalidates all receipt/source/config/environment/cell contracts, recomputes the gate from the
+tracked raw rows, and requires typed JSON equality with the tracked historical `gate.json`.
+
+The schema-v2 `DEVELOPMENT_CLOSED` lifecycle consumes 128 games per slot: Kag_01 is
+`CONSUMED_PASS`, while Kag_02 is `CONSUMED_NO_GO`. Kag_01 later pools remain `CLOSED`; Kag_02 later
+pools are `RETIRED_UNUSED`. All external actions remain `HOLD`. This close is evidence for the
+separate auditor, not a Save & Run or publication release.
+
+The historical gate used one combined false `package_and_final_audit` check. It is reproduced only
+to verify the immutable old gate bytes. Current exploratory readiness exposes separate
+`package_gate_pass` and `independent_auditor_release_pass` checks; both are independently required.
+The CLI never self-asserts the auditor-release check.
+
+Exact stderr bytes were not retained. Observed OpenSpiel startup text was benign, but there is no
+immutable zero-stderr claim and no rerun. The exact tracked reports also contain local absolute
+paths and the username, so they are restricted to the private repository and hard-excluded from
+Kaggle/public payloads.
+
 ## Read-only checks
 
 ```powershell
@@ -143,6 +165,7 @@ average away a catastrophic lane.
 .\.venv\Scripts\python.exe research\campaign_3000\06_candidates\orchestrator.py run --slot Kag_01 --phase development
 .\.venv\Scripts\python.exe research\campaign_3000\06_candidates\orchestrator.py grid --slot Kag_01 --phase development
 .\.venv\Scripts\python.exe research\campaign_3000\06_candidates\orchestrator.py grid --slot Kag_02 --phase development
+.\.venv\Scripts\python.exe research\campaign_3000\06_candidates\orchestrator.py results
 .\.venv\Scripts\ruff.exe check research\campaign_3000\06_candidates\orchestrator.py research\campaign_3000\06_candidates\test_execution_binding.py tests\test_campaign_3000_candidate_freeze.py
 .\.venv\Scripts\python.exe -m pytest -q research\campaign_3000\06_candidates\test_execution_binding.py tests\test_campaign_3000_candidate_freeze.py
 ```

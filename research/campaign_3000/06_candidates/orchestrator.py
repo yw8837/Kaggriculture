@@ -29,7 +29,22 @@ SELECTION_PATH = HERE / "selection_evidence.json"
 MANIFEST_PATH = HERE / "manifest.json"
 BINDING_PATH = HERE / "execution_binding.json"
 LIFECYCLE_PATH = HERE / "lifecycle.json"
+RESULTS_ROOT = PROJECT_ROOT / "research/campaign_3000/10_results"
 AUDITOR_TASK_ID = "019fb8b8-7758-7860-9304-39eb4f06c65c"
+EXECUTION_AUTHORITY_COMMIT = "ebdd5b58c66a1c816525bb60b403eabbd7b2892d"
+EXECUTION_COMMIT = "cf04be5ad93f31bc8677e383a2b414e9561841d3"
+OPEN_LIFECYCLE_SHA256 = (
+    "750693C6DCE541542A62293E633FD548814B4BB4E1B4F45F2DD0CEBE076A5BF0"
+)
+AUTHORITY_RECEIPT_SHA256 = (
+    "5D5EA60A20E07B5130F94CB5B56F2E82FB9A9766AF57CD5124FB294136D65BE4"
+)
+AUDITOR_OPEN_DELIVERY_SHA256 = (
+    "E83493F74F2D778B672A042AC8499AE1A79DB7E90F3CDFF91D2BF53B530FA3B5"
+)
+AUDITOR_O_REVIEW_SHA256 = (
+    "D679D5C54EC266D902FD04DBEAEE17FD5905E738A822CDBB061B951A650717B2"
+)
 AUTHORITY_RECEIPT_RELATIVE = (
     "dist/campaign_3000/authority/auditor_development_open.json"
 )
@@ -51,6 +66,34 @@ EXPECTED_SEED_RANGES = {
         "robustness": (55000, 55031),
     },
 }
+RESULT_MANIFESTS = {
+    "Kag_01": {
+        "path": (
+            "research/campaign_3000/10_results/kag_01_development/"
+            "evidence_manifest.json"
+        ),
+        "sha256": "712DEBADB1BAE4247687B788A1986AB2B90DF32A52F390AB2BBD5213A5A2B09A",
+        "status": "CONSUMED_PASS",
+        "strict_verdict": "PASS",
+    },
+    "Kag_02": {
+        "path": (
+            "research/campaign_3000/10_results/kag_02_development/"
+            "evidence_manifest.json"
+        ),
+        "sha256": "F9E9C7629B6EA95D989712D1F8ED685835DC8120D31292FD51B33E414F82FD7D",
+        "status": "CONSUMED_NO_GO",
+        "strict_verdict": "NO_GO",
+    },
+}
+RESULT_FILE_NAMES = {
+    "authorized_run": "authorized_run.json",
+    "runner_started": "raw_report.started.json",
+    "raw_report": "raw_report.json",
+    "outer_started": "outer.started.json",
+    "outer_completed": "outer.completed.json",
+    "gate": "gate.json",
+}
 
 TEXT_SUFFIXES = {".json", ".jsonl", ".md", ".py", ".toml", ".txt", ".xml", ".yaml", ".yml"}
 SCAN_EXCLUDES = {
@@ -61,6 +104,7 @@ SCAN_EXCLUDED_PREFIXES = (
     "research/campaign_3000/07_release/",
     "research/campaign_3000/08_public_release/",
     "research/campaign_3000/09_audit/",
+    "research/campaign_3000/10_results/",
 )
 PHASES = ("development", "confirmation", "robustness")
 PYTHON_STARTUP_ENV_NAMES = (
@@ -625,6 +669,41 @@ def _closed_lifecycle(plan: Mapping[str, Any]) -> dict[str, Any]:
         },
         "external_actions": "HOLD",
         "fresh_games_executed": 0,
+    }
+
+
+def _development_closed_lifecycle(plan: Mapping[str, Any]) -> dict[str, Any]:
+    slots = [candidate["slot"] for candidate in plan["candidates"]]
+    if slots != ["Kag_01", "Kag_02"]:
+        raise ValueError("development-close lifecycle requires exact Kag_01/Kag_02 slots")
+    result_slots: dict[str, Any] = {}
+    for slot in slots:
+        start, end = EXPECTED_SEED_RANGES[slot]["development"]
+        record = RESULT_MANIFESTS[slot]
+        later_status = "CLOSED" if slot == "Kag_01" else "RETIRED_UNUSED"
+        result_slots[slot] = {
+            "development": {
+                "seed_start": start,
+                "seed_end_inclusive": end,
+                "evaluated_games": 128,
+                "status": record["status"],
+                "strict_verdict": record["strict_verdict"],
+                "evidence_manifest_path": record["path"],
+                "evidence_manifest_sha256": record["sha256"],
+            },
+            "confirmation": {"authorization": "HOLD", "status": later_status},
+            "robustness": {"authorization": "HOLD", "status": later_status},
+        }
+    return {
+        "schema_version": 2,
+        "lifecycle_protocol": "auditor_exact_development_close_v1",
+        "state": "DEVELOPMENT_CLOSED",
+        "execution_authority_commit": EXECUTION_AUTHORITY_COMMIT,
+        "execution_commit": EXECUTION_COMMIT,
+        "open_lifecycle_sha256": OPEN_LIFECYCLE_SHA256,
+        "slots": result_slots,
+        "fresh_games_executed": 256,
+        "external_actions": "HOLD",
     }
 
 
@@ -1197,6 +1276,16 @@ def validate_development_authority(
             "robustness": "HOLD",
             "fresh_games_executed": 0,
         }
+    if lifecycle.get("state") == "DEVELOPMENT_CLOSED":
+        validated = validate_development_close()
+        return {
+            "status": "DEVELOPMENT_CLOSED",
+            "development": "CONSUMED",
+            "confirmation": "HOLD",
+            "robustness": "HOLD",
+            "fresh_games_executed": validated["fresh_games_executed"],
+            "external_actions": "HOLD",
+        }
     if lifecycle.get("state") != "DEVELOPMENT_OPEN":
         raise ValueError("unknown lifecycle state")
 
@@ -1729,6 +1818,28 @@ def validate_report_files(
     for key, path in expected_outputs.items():
         if path.resolve() != _repo_path(PROJECT_ROOT, authorized_run["outputs"][key]):
             raise ValueError(f"authorized run output path mismatch: {key}")
+    return _validate_report_evidence_files(
+        slot,
+        phase,
+        raw_report_path,
+        runner_started_path,
+        outer_started_path,
+        outer_completed_path,
+        authorized_run_receipt_path,
+        authorized_run,
+    )
+
+
+def _validate_report_evidence_files(
+    slot: str,
+    phase: str,
+    raw_report_path: Path,
+    runner_started_path: Path,
+    outer_started_path: Path,
+    outer_completed_path: Path,
+    authorized_run_receipt_path: Path,
+    authorized_run: Mapping[str, Any],
+) -> list[dict[str, Any]]:
     for label, path in (
         ("authorized run receipt", authorized_run_receipt_path),
         ("raw report", raw_report_path),
@@ -2038,6 +2149,285 @@ def validate_report_files(
     return games
 
 
+def _execution_commit_input_snapshot(plan: Mapping[str, Any]) -> dict[str, str]:
+    paths = {
+        "candidate_plan": PLAN_PATH,
+        "gate_config": GATE_PATH,
+        "selection_evidence": SELECTION_PATH,
+        "scenario_source": PROJECT_ROOT / plan["scenario_source"]["path"],
+        "runner": PROJECT_ROOT / plan["runner"]["path"],
+        "orchestrator": Path(__file__),
+        "authorized_runner": HERE / "authorized_runner.py",
+    }
+    return {
+        name: _sha256_bytes(
+            _git_blob(
+                PROJECT_ROOT,
+                EXECUTION_COMMIT,
+                path.relative_to(PROJECT_ROOT).as_posix(),
+            )
+        )
+        for name, path in paths.items()
+    }
+
+
+def _validate_tracked_authorized_run(
+    run: Mapping[str, Any], slot: str, plan: Mapping[str, Any]
+) -> None:
+    if run.get("schema_version") != 1 or run.get("artifact_kind") != (
+        "campaign_3000_authorized_development_run_v1"
+    ):
+        raise ValueError("tracked authorized-run schema mismatch")
+    if run.get("status") != "AUTHORIZED_NOT_STARTED":
+        raise ValueError("tracked authorized-run status mismatch")
+    if run.get("slot") != slot or run.get("phase") != "development":
+        raise ValueError("tracked authorized-run scope mismatch")
+    created_at = run.get("created_at_utc")
+    try:
+        parsed_created_at = datetime.fromisoformat(created_at)
+    except (TypeError, ValueError) as exc:
+        raise ValueError("tracked authorized-run time is invalid") from exc
+    if parsed_created_at.tzinfo is None:
+        raise ValueError("tracked authorized-run time lacks timezone")
+    _require_equal(run.get("plan_sha256"), _sha256(PLAN_PATH), "tracked plan SHA")
+    _require_equal(run.get("gate_sha256"), _sha256(GATE_PATH), "tracked gate SHA")
+    _require_equal(
+        run.get("selection_sha256"), _sha256(SELECTION_PATH), "tracked selection SHA"
+    )
+    _require_equal(run.get("runner_sha256"), plan["runner"]["sha256"], "tracked runner SHA")
+    _require_typed_json_equal(run.get("engine"), plan["engine"], "tracked planned engine")
+    _require_typed_json_equal(
+        run.get("actual_environment_at_receipt_creation"),
+        _expected_environment_snapshot(plan),
+        "tracked actual environment",
+    )
+    _require_typed_json_equal(
+        run.get("execution_inputs_at_receipt_creation"),
+        _execution_commit_input_snapshot(plan),
+        "tracked execution-commit inputs",
+    )
+    contract = run_contract(plan, slot, "development")
+    _require_typed_json_equal(
+        run.get("sources_at_receipt_creation"), contract["sources"], "tracked sources"
+    )
+    _require_typed_json_equal(run.get("contract"), contract, "tracked run contract")
+    authority = run.get("authority")
+    expected_authority = {
+        "authority_commit": EXECUTION_AUTHORITY_COMMIT,
+        "execution_commit": EXECUTION_COMMIT,
+        "auditor_task_id": AUDITOR_TASK_ID,
+        "auditor_open_delivery_sha256": AUDITOR_OPEN_DELIVERY_SHA256,
+        "o_review_delivery_sha256": AUDITOR_O_REVIEW_SHA256,
+    }
+    _require_typed_json_equal(authority, expected_authority, "tracked execution authority")
+    _require_equal(
+        run.get("authority_receipt_sha256"),
+        AUTHORITY_RECEIPT_SHA256,
+        "tracked authority receipt SHA",
+    )
+    _require_equal(
+        run.get("lifecycle_sha256"), OPEN_LIFECYCLE_SHA256, "tracked open lifecycle SHA"
+    )
+    outputs = _authorized_run_paths(PROJECT_ROOT, slot)
+    _require_typed_json_equal(run.get("outputs"), outputs, "tracked output paths")
+    argv = run.get("runner_argv")
+    if (
+        not isinstance(argv, list)
+        or len(argv) != 4
+        or not isinstance(argv[0], str)
+        or argv[1:] != [
+            "research/campaign_3000/06_candidates/authorized_runner.py",
+            "--run-receipt",
+            outputs["authorized_run_receipt"],
+        ]
+    ):
+        raise ValueError("tracked runner argv mismatch")
+    if run.get("fresh_games_executed_before_start") != 0:
+        raise ValueError("tracked run was not fresh at start")
+    if run.get("external_actions") != "HOLD":
+        raise ValueError("tracked run permits external actions")
+
+
+def _validate_result_manifest(slot: str) -> tuple[dict[str, Path], dict[str, Any]]:
+    record = RESULT_MANIFESTS[slot]
+    manifest_path = _repo_path(PROJECT_ROOT, record["path"])
+    if not manifest_path.is_file():
+        raise ValueError(f"missing tracked evidence manifest: {slot}")
+    _require_equal(_sha256(manifest_path), record["sha256"], f"{slot} manifest SHA")
+    manifest = _load(manifest_path)
+    if manifest.get("schema_version") != 1 or manifest.get("artifact_kind") != (
+        "campaign_3000_tracked_development_evidence_v1"
+    ):
+        raise ValueError(f"{slot} evidence manifest schema mismatch")
+    expected_header = {
+        "slot": slot,
+        "phase": "development",
+        "execution_authority_commit": EXECUTION_AUTHORITY_COMMIT,
+        "execution_commit": EXECUTION_COMMIT,
+        "open_lifecycle_sha256": OPEN_LIFECYCLE_SHA256,
+    }
+    for key, value in expected_header.items():
+        _require_equal(manifest.get(key), value, f"{slot} manifest {key}")
+    expected_stderr = {
+        "captured": False,
+        "bytes": None,
+        "sha256": None,
+        "limitation": (
+            "The exact subprocess stderr byte stream was not saved. Observed OpenSpiel "
+            "startup noise was benign, but this tracked bundle makes no immutable "
+            "zero-stderr claim and the 256 fresh games were not rerun."
+        ),
+    }
+    _require_typed_json_equal(
+        manifest.get("stderr_capture"), expected_stderr, f"{slot} stderr limitation"
+    )
+    _require_equal(
+        manifest.get("privacy_limitation"),
+        (
+            "The byte-exact local receipts/reports contain the Windows workspace path and "
+            "username. This evidence is restricted to the private GitHub repository and is "
+            "forbidden from every Kaggle archive, notebook, Discussion, public Code payload, "
+            "or other publication."
+        ),
+        f"{slot} privacy limitation",
+    )
+    files = manifest.get("files")
+    if not isinstance(files, list) or len(files) != len(RESULT_FILE_NAMES):
+        raise ValueError(f"{slot} manifest file count mismatch")
+    result_paths: dict[str, Path] = {}
+    base = Path(record["path"]).parent.as_posix()
+    for item, (role, name) in zip(files, RESULT_FILE_NAMES.items(), strict=True):
+        expected_path = f"{base}/{name}"
+        if not isinstance(item, dict) or item.get("role") != role:
+            raise ValueError(f"{slot} evidence role/order mismatch: {role}")
+        if item.get("path") != expected_path:
+            raise ValueError(f"{slot} evidence path mismatch: {role}")
+        path = _repo_path(PROJECT_ROOT, expected_path)
+        if not path.is_file():
+            raise ValueError(f"{slot} evidence file missing: {role}")
+        payload = path.read_bytes()
+        if item.get("bytes") != len(payload) or item.get("sha256") != _sha256_bytes(payload):
+            raise ValueError(f"{slot} evidence bytes/SHA mismatch: {role}")
+        result_paths[role] = path
+    return result_paths, manifest
+
+
+def _evaluate_exploratory_readiness_v1(
+    summary: Mapping[str, Any], hard_integrity_pass: bool, package_and_final_audit: bool
+) -> dict[str, Any]:
+    """Reproduce the immutable gate schema written by the authorized development run."""
+    required = _load(GATE_PATH)["exploratory_private_saverun_readiness"]["required"]
+    g1_score = summary["by_opponent_match_score"].get("fa04_g1")
+    g1_margin = summary["by_opponent_mean_margin"].get("fa04_g1")
+    checks = {
+        "hard_integrity": hard_integrity_pass,
+        "runtime_p99": summary["game_runtime_p99_seconds"]
+        <= required["maximum_game_runtime_p99_seconds"],
+        "runtime_max": summary["game_runtime_max_seconds"]
+        <= required["maximum_game_runtime_seconds"],
+        "fa04_g1_match_score": _finite_number(g1_score)
+        and g1_score >= required["fa04_g1_minimum_match_score"],
+        "fa04_g1_mean_margin": _finite_number(g1_margin)
+        and g1_margin >= required["fa04_g1_minimum_mean_margin"],
+        "package_and_final_audit": package_and_final_audit,
+    }
+    return {
+        "verdict": (
+            "EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION"
+            if all(checks.values())
+            else "NOT_READY"
+        ),
+        "checks": checks,
+        "strict_promotion_claim": False,
+    }
+
+
+def validate_tracked_development_evidence(slot: str) -> dict[str, Any]:
+    if slot not in RESULT_MANIFESTS:
+        raise ValueError(f"unknown result slot: {slot}")
+    paths, manifest = _validate_result_manifest(slot)
+    plan = _load(PLAN_PATH)
+    authorized_run = _load(paths["authorized_run"])
+    _validate_tracked_authorized_run(authorized_run, slot, plan)
+    rows = _validate_report_evidence_files(
+        slot,
+        "development",
+        paths["raw_report"],
+        paths["runner_started"],
+        paths["outer_started"],
+        paths["outer_completed"],
+        paths["authorized_run"],
+        authorized_run,
+    )
+    summary = summarize_rows(rows, _load(GATE_PATH)["bootstrap"])
+    recomputed = {
+        "integrity": "PASS",
+        "summary": summary,
+        "strict": evaluate_thresholds(summary, "development"),
+        "exploratory": _evaluate_exploratory_readiness_v1(summary, True, False),
+    }
+    stored_gate = _load(paths["gate"])
+    _require_typed_json_equal(stored_gate, recomputed, f"{slot} exact recomputed gate")
+    _require_equal(
+        recomputed["strict"]["verdict"],
+        RESULT_MANIFESTS[slot]["strict_verdict"],
+        f"{slot} strict lifecycle verdict",
+    )
+    return {
+        "slot": slot,
+        "evidence_manifest_sha256": RESULT_MANIFESTS[slot]["sha256"],
+        "valid_games": len(rows),
+        "strict_verdict": recomputed["strict"]["verdict"],
+        "strict_gate_sha256": _sha256(paths["gate"]),
+        "stderr_captured": manifest["stderr_capture"]["captured"],
+    }
+
+
+def _validate_historic_open_authority_lineage() -> None:
+    parent_line = _git_text(
+        PROJECT_ROOT, "rev-list", "--parents", "-n", "1", EXECUTION_AUTHORITY_COMMIT
+    ).split()
+    if parent_line != [EXECUTION_AUTHORITY_COMMIT, EXECUTION_COMMIT]:
+        raise ValueError("historic authority O must have exact sole parent E")
+    lifecycle_relative = LIFECYCLE_PATH.relative_to(PROJECT_ROOT).as_posix()
+    changed = _git_text(
+        PROJECT_ROOT,
+        "diff-tree",
+        "--no-commit-id",
+        "--name-only",
+        "-r",
+        EXECUTION_COMMIT,
+        EXECUTION_AUTHORITY_COMMIT,
+    ).splitlines()
+    if changed != [lifecycle_relative]:
+        raise ValueError("historic E to O must change only lifecycle.json")
+    open_lifecycle = _git_blob(
+        PROJECT_ROOT, EXECUTION_AUTHORITY_COMMIT, lifecycle_relative
+    )
+    if _sha256_bytes(open_lifecycle) != OPEN_LIFECYCLE_SHA256:
+        raise ValueError("historic O lifecycle blob SHA mismatch")
+
+
+def validate_development_close() -> dict[str, Any]:
+    plan = _load(PLAN_PATH)
+    lifecycle = _load(LIFECYCLE_PATH)
+    expected = _development_closed_lifecycle(plan)
+    _require_typed_json_equal(lifecycle, expected, "exact development-close lifecycle")
+    _validate_historic_open_authority_lineage()
+    results = [validate_tracked_development_evidence(slot) for slot in RESULT_MANIFESTS]
+    if sum(result["valid_games"] for result in results) != lifecycle["fresh_games_executed"]:
+        raise ValueError("closed lifecycle evaluated-game total mismatch")
+    return {
+        "status": "DEVELOPMENT_CLOSED_VALIDATED",
+        "execution_authority_commit": EXECUTION_AUTHORITY_COMMIT,
+        "execution_commit": EXECUTION_COMMIT,
+        "lifecycle_sha256": _sha256(LIFECYCLE_PATH),
+        "fresh_games_executed": 256,
+        "external_actions": "HOLD",
+        "results": results,
+    }
+
+
 def _finite_number(value: Any) -> bool:
     return isinstance(value, (int, float)) and not isinstance(value, bool) and math.isfinite(value)
 
@@ -2155,7 +2545,10 @@ def evaluate_thresholds(summary: Mapping[str, Any], phase: str) -> dict[str, Any
 
 
 def evaluate_exploratory_readiness(
-    summary: Mapping[str, Any], hard_integrity_pass: bool, package_gate_pass: bool
+    summary: Mapping[str, Any],
+    hard_integrity_pass: bool,
+    package_gate_pass: bool,
+    independent_auditor_release_pass: bool,
 ) -> dict[str, Any]:
     required = _load(GATE_PATH)["exploratory_private_saverun_readiness"]["required"]
     g1_score = summary["by_opponent_match_score"].get("fa04_g1")
@@ -2170,7 +2563,8 @@ def evaluate_exploratory_readiness(
         and g1_score >= required["fa04_g1_minimum_match_score"],
         "fa04_g1_mean_margin": _finite_number(g1_margin)
         and g1_margin >= required["fa04_g1_minimum_mean_margin"],
-        "package_and_final_audit": package_gate_pass,
+        "package_gate_pass": package_gate_pass,
+        "independent_auditor_release_pass": independent_auditor_release_pass,
     }
     return {
         "verdict": (
@@ -2187,7 +2581,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Strict CLOSED Kag_01/Kag_02 candidate freeze")
     parser.add_argument(
         "command",
-        choices=("scan", "validate", "binding", "grid", "gate", "open", "run"),
+        choices=("scan", "validate", "binding", "grid", "gate", "open", "run", "results"),
     )
     parser.add_argument(
         "--binding-mode", choices=("implementation-freeze", "execution")
@@ -2212,6 +2606,8 @@ def main() -> None:
         if args.binding_mode is None:
             parser.error("binding requires --binding-mode")
         print(json.dumps(validate_execution_binding(args.binding_mode), indent=2))
+    elif args.command == "results":
+        print(json.dumps(validate_development_close(), indent=2))
     elif args.command == "open":
         if any(
             value is None
@@ -2276,7 +2672,7 @@ def main() -> None:
         }
         if args.phase == "development":
             result["exploratory"] = evaluate_exploratory_readiness(
-                summary, True, args.package_gate_pass
+                summary, True, args.package_gate_pass, False
             )
         print(json.dumps(result, indent=2))
     else:

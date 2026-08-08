@@ -8,8 +8,10 @@ import hashlib
 import io
 import json
 import os
+import re
 import shutil
 import subprocess
+import sys
 import tarfile
 import tempfile
 import warnings
@@ -26,6 +28,23 @@ ALLOWED_WRAPPER_IMPORTS = {
     "pathlib",
     "tarfile",
 }
+FINAL_FREEZE_PENDING = "PENDING_FINAL_GIT_FREEZE"
+FINAL_FREEZE_PASS = "PASS_FINAL_GIT_FREEZE"
+FULL_SHA256 = re.compile(r"[0-9A-F]{64}")
+FULL_GIT_COMMIT = re.compile(r"[0-9a-f]{40}")
+FORBIDDEN_PRIVATE_PAYLOAD_MARKERS = (
+    b"c:\\users\\",
+    b"c:\\\\users\\\\",
+    b"c:/users/",
+    "최용우".encode(),
+    b"\\ucd5c\\uc6a9\\uc6b0",
+    b"\\\\ucd5c\\\\uc6a9\\\\uc6b0",
+    b"kaggle_key",
+    b"kaggle_username",
+    b"api_token",
+    b".kaggle/",
+    b".kaggle\\",
+)
 
 
 def sha256(payload: bytes) -> str:
@@ -36,6 +55,17 @@ def canonical_json(payload: Any) -> bytes:
     return (
         json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
     ).encode("utf-8")
+
+
+def _reject_private_payload_markers(payload: bytes, label: str) -> None:
+    lowered = payload.lower()
+    matches = [
+        marker.decode("utf-8", errors="replace")
+        for marker in FORBIDDEN_PRIVATE_PAYLOAD_MARKERS
+        if marker.lower() in lowered
+    ]
+    if matches:
+        raise ValueError(f"private path, username, or credential marker in {label}: {matches}")
 
 
 def load_spec(spec_path: Path) -> dict[str, Any]:
@@ -97,6 +127,7 @@ def inspect_archive(payload: bytes, expected: dict[str, bytes]) -> dict[str, str
             content = extracted.read()
             if content != expected[member.name]:
                 raise ValueError(f"archive payload mismatch for {member.name}")
+            _reject_private_payload_markers(content, f"archive member {member.name}")
             member_hashes[member.name] = sha256(content)
     return member_hashes
 
@@ -278,6 +309,35 @@ def _load_pinned_json(
     return parsed
 
 
+def _validate_release_tooling(
+    project_root: Path,
+    spec: dict[str, Any],
+) -> dict[str, Any]:
+    tooling = spec.get("release_tooling")
+    if not isinstance(tooling, dict):
+        raise TypeError("missing release_tooling")
+    expected_paths = {
+        "builder": "research/campaign_3000/07_release/build_release.py",
+        "tests": "tests/test_campaign_3000_release_package.py",
+        "postrun_validator": "research/campaign_3000/06_candidates/orchestrator.py",
+    }
+    validated: dict[str, Any] = {}
+    for key, expected_path in expected_paths.items():
+        pin = tooling.get(key)
+        if not isinstance(pin, dict):
+            raise TypeError(f"missing release tooling pin: {key}")
+        if pin.get("path") != expected_path:
+            raise ValueError(f"release tooling path mismatch: {key}")
+        expected_sha = pin.get("sha256")
+        if not isinstance(expected_sha, str) or not FULL_SHA256.fullmatch(expected_sha):
+            raise ValueError(f"release tooling SHA-256 is invalid: {key}")
+        payload = _read_pinned(project_root / expected_path, expected_sha, f"release {key}")
+        if pin.get("bytes") != len(payload):
+            raise ValueError(f"release tooling byte count mismatch: {key}")
+        validated[key] = dict(pin)
+    return validated
+
+
 def _require_prerequisite(
     prerequisites: dict[str, Any],
     key: str,
@@ -292,6 +352,232 @@ def _require_prerequisite(
     return value
 
 
+def _load_development_evidence_manifest(
+    project_root: Path,
+    pin: dict[str, Any],
+    slot: str,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    manifest = _load_pinned_json(project_root, pin, f"{slot} development evidence manifest")
+    expected_header = {
+        "schema_version": 1,
+        "artifact_kind": "campaign_3000_tracked_development_evidence_v1",
+        "slot": slot,
+        "phase": "development",
+    }
+    for field, expected in expected_header.items():
+        if manifest.get(field) != expected:
+            raise ValueError(f"{slot} development evidence manifest {field} mismatch")
+    records = manifest.get("files")
+    if not isinstance(records, list):
+        raise TypeError(f"{slot} development evidence file records are absent")
+    expected_roles = (
+        "authorized_run",
+        "runner_started",
+        "raw_report",
+        "outer_started",
+        "outer_completed",
+        "gate",
+    )
+    if tuple(record.get("role") for record in records if isinstance(record, dict)) != (
+        expected_roles
+    ):
+        raise ValueError(f"{slot} development evidence roles changed")
+    payloads: dict[str, bytes] = {}
+    for record in records:
+        if not isinstance(record, dict):
+            raise TypeError(f"{slot} development evidence record is invalid")
+        role = record["role"]
+        expected_sha = record.get("sha256")
+        if not isinstance(expected_sha, str) or not FULL_SHA256.fullmatch(expected_sha):
+            raise ValueError(f"{slot} development evidence SHA-256 is invalid: {role}")
+        payload = _read_pinned(
+            project_root / record["path"],
+            expected_sha,
+            f"{slot} development {role}",
+        )
+        if len(payload) != record.get("bytes"):
+            raise ValueError(f"{slot} development evidence byte count mismatch: {role}")
+        payloads[role] = payload
+    stderr_capture = manifest.get("stderr_capture")
+    if not isinstance(stderr_capture, dict) or stderr_capture.get("captured") is not False:
+        raise ValueError(f"{slot} stderr evidence boundary changed")
+    gate = json.loads(payloads["gate"])
+    if not isinstance(gate, dict) or gate.get("integrity") != "PASS":
+        raise ValueError(f"{slot} development gate integrity is not PASS")
+    return manifest, gate
+
+
+def _validate_development_results(
+    project_root: Path,
+    prerequisites: dict[str, Any],
+    postrun_validator: dict[str, Any],
+) -> dict[str, Any]:
+    development = prerequisites.get("development_results")
+    if not isinstance(development, dict):
+        raise TypeError("missing candidate prerequisite: development_results")
+    lifecycle_pin = development.get("lifecycle")
+    if not isinstance(lifecycle_pin, dict):
+        raise TypeError("development lifecycle pin is absent")
+    lifecycle = _load_pinned_json(project_root, lifecycle_pin, "development lifecycle")
+    if (
+        lifecycle.get("schema_version") != 2
+        or lifecycle.get("lifecycle_protocol") != "auditor_exact_development_close_v1"
+        or lifecycle.get("state") != "DEVELOPMENT_CLOSED"
+        or lifecycle.get("fresh_games_executed") != 256
+        or lifecycle.get("external_actions") != "HOLD"
+    ):
+        raise ValueError("development lifecycle close contract mismatch")
+    lifecycle_slots = lifecycle.get("slots")
+    if not isinstance(lifecycle_slots, dict):
+        raise TypeError("development lifecycle slots are absent")
+    slots = development.get("slots")
+    if not isinstance(slots, dict) or set(slots) != {"Kag_01", "Kag_02"}:
+        raise ValueError("development result slots must be exactly Kag_01 and Kag_02")
+    validated_slots: dict[str, Any] = {}
+    gate_hashes: dict[str, str] = {}
+    for slot in ("Kag_01", "Kag_02"):
+        record = slots[slot]
+        if not isinstance(record, dict):
+            raise TypeError(f"development result record is invalid: {slot}")
+        pin = record.get("evidence_manifest")
+        if not isinstance(pin, dict):
+            raise TypeError(f"development evidence manifest pin is absent: {slot}")
+        manifest, gate = _load_development_evidence_manifest(project_root, pin, slot)
+        gate_record = next(record for record in manifest["files"] if record["role"] == "gate")
+        gate_hashes[slot] = gate_record["sha256"]
+        required_strict = "PASS" if slot == "Kag_01" else "NO_GO"
+        strict = gate.get("strict")
+        if not isinstance(strict, dict) or strict.get("verdict") != required_strict:
+            raise ValueError(f"{slot} strict development verdict mismatch")
+        if record.get("required_strict_verdict") != required_strict:
+            raise ValueError(f"{slot} required strict verdict policy mismatch")
+        if slot == "Kag_01":
+            required_readiness = "STRICT_DEVELOPMENT_PASS"
+        else:
+            required_readiness = (
+                "EXPLORATORY_PACKAGE_GATE_PASS_NON_PROMOTION_AUDITOR_RELEASE_PENDING"
+            )
+            exploratory = gate.get("exploratory")
+            if not isinstance(exploratory, dict):
+                raise TypeError("Kag_02 exploratory development gate is absent")
+            checks = exploratory.get("checks")
+            if not isinstance(checks, dict):
+                raise TypeError("Kag_02 exploratory checks are absent")
+            evidence_checks = {
+                key: value
+                for key, value in checks.items()
+                if key not in {"package_gate", "package_and_final_audit", "independent_auditor_release"}
+            }
+            if not evidence_checks or any(value is not True for value in evidence_checks.values()):
+                raise ValueError("Kag_02 exploratory evidence checks are not all PASS")
+            if exploratory.get("strict_promotion_claim") is not False:
+                raise ValueError("Kag_02 exploratory result permits a promotion claim")
+        if record.get("package_readiness") != required_readiness:
+            raise ValueError(f"{slot} package readiness policy mismatch")
+        if slot == "Kag_02" and record.get("required_future_release_label") != (
+            "EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION"
+        ):
+            raise ValueError("Kag_02 future auditor-release label policy mismatch")
+        lifecycle_slot = lifecycle_slots.get(slot)
+        if not isinstance(lifecycle_slot, dict):
+            raise TypeError(f"development lifecycle slot is absent: {slot}")
+        lifecycle_development = lifecycle_slot.get("development")
+        if not isinstance(lifecycle_development, dict):
+            raise TypeError(f"development lifecycle phase is absent: {slot}")
+        expected_lifecycle = (
+            {
+                "seed_start": 50000,
+                "seed_end_inclusive": 50015,
+                "evaluated_games": 128,
+                "status": "CONSUMED_PASS",
+                "strict_verdict": "PASS",
+            }
+            if slot == "Kag_01"
+            else {
+                "seed_start": 53000,
+                "seed_end_inclusive": 53015,
+                "evaluated_games": 128,
+                "status": "CONSUMED_NO_GO",
+                "strict_verdict": "NO_GO",
+            }
+        )
+        for field, expected in expected_lifecycle.items():
+            if lifecycle_development.get(field) != expected:
+                raise ValueError(f"{slot} development lifecycle {field} mismatch")
+        if (
+            lifecycle_development.get("evidence_manifest_path") != pin.get("path")
+            or lifecycle_development.get("evidence_manifest_sha256") != pin.get("sha256")
+        ):
+            raise ValueError(f"{slot} lifecycle evidence-manifest binding mismatch")
+        expected_later = (
+            {"authorization": "HOLD", "status": "CLOSED"}
+            if slot == "Kag_01"
+            else {"authorization": "HOLD", "status": "RETIRED_UNUSED"}
+        )
+        for phase in ("confirmation", "robustness"):
+            if lifecycle_slot.get(phase) != expected_later:
+                raise ValueError(f"{slot} {phase} lifecycle HOLD mismatch")
+        for field in ("execution_authority_commit", "execution_commit", "open_lifecycle_sha256"):
+            if manifest.get(field) != lifecycle.get(field):
+                raise ValueError(f"{slot} evidence/lifecycle {field} mismatch")
+        validated_slots[slot] = {
+            **record,
+            "execution_authority_commit": manifest.get("execution_authority_commit"),
+            "execution_commit": manifest.get("execution_commit"),
+            "gate_integrity": gate["integrity"],
+            "observed_strict_verdict": strict["verdict"],
+        }
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(project_root / postrun_validator["path"]),
+            "results",
+        ],
+        cwd=project_root,
+        check=True,
+        capture_output=True,
+        encoding="utf-8",
+        text=True,
+    )
+    try:
+        production_validation = json.loads(completed.stdout)
+    except json.JSONDecodeError as exc:
+        raise ValueError("postrun production validator output is not exact JSON") from exc
+    expected_production_header = {
+        "status": "DEVELOPMENT_CLOSED_VALIDATED",
+        "execution_authority_commit": lifecycle["execution_authority_commit"],
+        "execution_commit": lifecycle["execution_commit"],
+        "lifecycle_sha256": lifecycle_pin["sha256"],
+        "fresh_games_executed": 256,
+        "external_actions": "HOLD",
+    }
+    for field, expected in expected_production_header.items():
+        if production_validation.get(field) != expected:
+            raise ValueError(f"postrun production validator {field} mismatch")
+    production_results = production_validation.get("results")
+    if not isinstance(production_results, list) or [
+        result.get("slot") for result in production_results if isinstance(result, dict)
+    ] != ["Kag_01", "Kag_02"]:
+        raise ValueError("postrun production validator slot set mismatch")
+    for result in production_results:
+        slot = result["slot"]
+        expected_result = {
+            "slot": slot,
+            "evidence_manifest_sha256": slots[slot]["evidence_manifest"]["sha256"],
+            "valid_games": 128,
+            "strict_verdict": "PASS" if slot == "Kag_01" else "NO_GO",
+            "strict_gate_sha256": gate_hashes[slot],
+            "stderr_captured": False,
+        }
+        if result != expected_result:
+            raise ValueError(f"postrun production validator result mismatch: {slot}")
+    return {
+        **development,
+        "production_validator_result": production_validation,
+        "slots": validated_slots,
+    }
+
+
 def _validate_candidate_prerequisites(
     project_root: Path,
     spec: dict[str, Any],
@@ -301,23 +587,13 @@ def _validate_candidate_prerequisites(
         raise TypeError("missing candidate_evaluation_prerequisites")
     _require_prerequisite(
         prerequisites,
-        "development_result",
-        {
-            "required": True,
-            "scope": "EACH_CANDIDATE_EXACT_DEVELOPMENT_PHASE",
-            "required_verdict": "PASS",
-            "status": "PENDING",
-        },
-    )
-    _require_prerequisite(
-        prerequisites,
         "independent_auditor_exact_private_saverun_release",
         {
             "required": True,
-            "scope": "EXACT_PRIVATE_SAVERUN_RELEASE",
+            "scope": "EACH_EXACT_SLOT_PRIVATE_SAVERUN_RELEASE",
             "required_verdict": "PASS",
             "auditor_task_id": "019fb8b8-7758-7860-9304-39eb4f06c65c",
-            "status": "PENDING",
+            "slots": {"Kag_01": "PENDING", "Kag_02": "PENDING"},
         },
     )
 
@@ -396,7 +672,16 @@ def _validate_candidate_prerequisites(
         else:
             raise ValueError(f"unsupported candidate sequence: {candidate['sequence']}")
 
-    return prerequisites
+    release_tooling = _validate_release_tooling(project_root, spec)
+    return {
+        **prerequisites,
+        "development_results": _validate_development_results(
+            project_root,
+            prerequisites,
+            release_tooling["postrun_validator"],
+        ),
+        "release_tooling": release_tooling,
+    }
 
 
 def _cell_source(notebook: dict[str, Any], index: int) -> str:
@@ -626,16 +911,92 @@ def _relative_or_absolute(path: Path, project_root: Path) -> str:
         return resolved.as_posix()
 
 
+def _git(
+    project_root: Path,
+    *arguments: str,
+    text: bool = True,
+) -> subprocess.CompletedProcess[Any]:
+    return subprocess.run(
+        ["git", "-C", str(project_root), *arguments],
+        check=True,
+        capture_output=True,
+        encoding="utf-8" if text else None,
+        text=text,
+    )
+
+
+def _final_freeze_input_records(
+    project_root: Path,
+    spec_path: Path,
+    commit: str,
+) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    for path in _release_input_paths(project_root, spec_path):
+        try:
+            relative = path.resolve().relative_to(project_root.resolve()).as_posix()
+        except ValueError as exc:
+            raise ValueError(f"final freeze input is outside the repository: {path}") from exc
+        payload = path.read_bytes()
+        try:
+            blob = _git(project_root, "show", f"{commit}:{relative}", text=False).stdout
+        except subprocess.CalledProcessError as exc:
+            raise ValueError(f"final freeze input is absent from commit: {relative}") from exc
+        if blob != payload:
+            raise ValueError(f"final freeze input differs from commit: {relative}")
+        records.append(
+            {
+                "bytes": len(payload),
+                "path": relative,
+                "sha256": sha256(payload),
+            }
+        )
+    return records
+
+
 def _worktree_binding(
     project_root: Path,
     spec_path: Path,
+    final_freeze_commit: str | None = None,
 ) -> dict[str, Any]:
     builder_path = Path(__file__).resolve()
+    if final_freeze_commit is not None:
+        if not FULL_GIT_COMMIT.fullmatch(final_freeze_commit):
+            raise ValueError("final freeze commit must be exact lowercase 40-hex")
+        head = _git(project_root, "rev-parse", "HEAD").stdout.strip()
+        if head != final_freeze_commit:
+            raise ValueError(f"final freeze commit is stale: {final_freeze_commit} != {head}")
+        tracked_status = _git(
+            project_root,
+            "status",
+            "--short",
+            "--untracked-files=no",
+        ).stdout
+        if tracked_status:
+            raise ValueError("tracked worktree must be clean for final freeze")
+        inputs = _final_freeze_input_records(project_root, spec_path, final_freeze_commit)
+        return {
+            "binding": "FINAL_GIT_FREEZE_PINNED",
+            "status": FINAL_FREEZE_PASS,
+            "git_head": {
+                "commit": final_freeze_commit,
+                "claim": "ALL_TRACKED_RELEASE_INPUTS_BYTE_EXACT_AT_COMMIT",
+            },
+            "tracked_status": "CLEAN",
+            "inputs": inputs,
+            "builder": {
+                "path": _relative_or_absolute(builder_path, project_root),
+                "sha256": sha256(builder_path.read_bytes()),
+            },
+            "spec": {
+                "path": _relative_or_absolute(spec_path, project_root),
+                "sha256": sha256(spec_path.read_bytes()),
+            },
+        }
     return {
         "binding": "WORKTREE_PINNED",
-        "status": "PENDING_FINAL_GIT_FREEZE",
+        "status": FINAL_FREEZE_PENDING,
         "git_head": {
-            "commit": "PENDING_FINAL_GIT_FREEZE",
+            "commit": FINAL_FREEZE_PENDING,
             "claim": "NO_COMMIT_CONTAINMENT_CLAIM_LOCAL_BUILD_ONLY",
         },
         "builder": {
@@ -680,6 +1041,37 @@ def _release_input_paths(project_root: Path, spec_path: Path) -> tuple[Path, ...
     if isinstance(prerequisites, dict):
         for key in ("candidate_plan", "candidate_gate", "candidate_manifest"):
             pin = prerequisites.get(key)
+            if isinstance(pin, dict):
+                add_project_path(pin.get("path"))
+        development = prerequisites.get("development_results")
+        if isinstance(development, dict):
+            lifecycle_pin = development.get("lifecycle")
+            if isinstance(lifecycle_pin, dict):
+                add_project_path(lifecycle_pin.get("path"))
+            slots = development.get("slots")
+            if isinstance(slots, dict):
+                for slot in slots.values():
+                    if not isinstance(slot, dict):
+                        continue
+                    manifest_pin = slot.get("evidence_manifest")
+                    if not isinstance(manifest_pin, dict):
+                        continue
+                    add_project_path(manifest_pin.get("path"))
+                    manifest = _load_pinned_json(
+                        project_root,
+                        manifest_pin,
+                        "development evidence manifest",
+                    )
+                    files = manifest.get("files")
+                    if isinstance(files, list):
+                        for record in files:
+                            if isinstance(record, dict):
+                                add_project_path(record.get("path"))
+
+    release_tooling = spec.get("release_tooling")
+    if isinstance(release_tooling, dict):
+        for key in ("builder", "tests", "postrun_validator"):
+            pin = release_tooling.get(key)
             if isinstance(pin, dict):
                 add_project_path(pin.get("path"))
 
@@ -764,6 +1156,7 @@ def _validate_output_root(project_root: Path, output_root: Path, spec_path: Path
 def _validate_existing_output_ownership(
     output_root: Path,
     spec: dict[str, Any],
+    final_freeze_commit: str | None,
 ) -> None:
     if not output_root.exists():
         return
@@ -805,6 +1198,13 @@ def _validate_existing_output_ownership(
         for candidate in candidates
     ] != expected:
         raise ValueError("existing release ownership candidate set mismatch")
+    binding = manifest.get("worktree_binding")
+    if isinstance(binding, dict) and binding.get("status") == FINAL_FREEZE_PASS:
+        existing_commit = binding.get("git_head", {}).get("commit")
+        if final_freeze_commit is None:
+            raise ValueError("cannot overwrite a final-freeze release with a pending build")
+        if existing_commit != final_freeze_commit:
+            raise ValueError("existing final-freeze release belongs to a different commit")
 
 
 def build_candidate(
@@ -831,6 +1231,9 @@ def build_candidate(
     missing = [marker for marker in _attribution_markers(candidate) if marker not in attribution_text]
     if missing:
         raise ValueError(f"missing attribution markers for {candidate['sequence']}: {missing}")
+    _reject_private_payload_markers(source, f"{candidate['sequence']} main.py")
+    _reject_private_payload_markers(license_payload, f"{candidate['sequence']} LICENSE")
+    _reject_private_payload_markers(attribution, f"{candidate['sequence']} ATTRIBUTION")
 
     members = {
         "main.py": source,
@@ -865,6 +1268,12 @@ def build_candidate(
     metadata_payload = canonical_json(metadata)
     metadata_path.write_bytes(metadata_payload)
 
+    slot_result = candidate_prerequisites["development_results"]["slots"][
+        candidate["sequence"]
+    ]
+    package_readiness = slot_result["package_readiness"]
+
+    final_freeze_pass = worktree_binding["status"] == FINAL_FREEZE_PASS
     checks = {
         "archive_deterministic_two_builds": "PASS",
         "archive_members_exact": "PASS",
@@ -877,8 +1286,11 @@ def build_candidate(
         "notebook_no_network_push_submit_code": "PASS",
         "notebook_payload_matches_archive": "PASS",
         "raw_notebook_extraction_matches_main": "PASS",
-        "source_snapshot_commit_contained": "PENDING_FINAL_GIT_FREEZE",
+        "source_snapshot_commit_contained": (
+            "PASS" if final_freeze_pass else FINAL_FREEZE_PENDING
+        ),
         "source_snapshot_worktree_hash_pinned": "PASS",
+        "targeted_private_material_scan": "PASS",
     }
     prepush = {
         "artifact": {
@@ -891,14 +1303,18 @@ def build_candidate(
         "authorization": "LOCAL_BUILD_ONLY_EXTERNAL_ACTIONS_HOLD",
         "candidate": candidate,
         "candidate_evaluation_prerequisites": candidate_prerequisites,
+        "development_result": {
+            "evidence_manifest": slot_result["evidence_manifest"],
+            "observed_strict_verdict": slot_result["observed_strict_verdict"],
+            "package_readiness": package_readiness,
+        },
         "checks": checks,
         "competition_submission": "NOT_RUN_NOT_AUTHORIZED",
         "external_action_gate": {
             "status": "HOLD",
             "blocking_prerequisites": [
-                "development_result",
                 "independent_auditor_exact_private_saverun_release",
-                "final_git_freeze",
+                *([] if final_freeze_pass else ["final_git_freeze"]),
             ],
         },
         "external_action_performed": False,
@@ -911,10 +1327,16 @@ def build_candidate(
             "path": notebook_path.name,
             "sha256": sha256(notebook_payload),
         },
+        "package_readiness": package_readiness,
         "pending_external_checks": [
-            "obtain exact per-candidate development PASS result",
-            "obtain independent-auditor exact private SaveRun release PASS",
-            "freeze final Git commit and issue a separate post-freeze prepush receipt",
+            "obtain independent-auditor exact per-slot private SaveRun release PASS",
+            *(
+                []
+                if final_freeze_pass
+                else [
+                    "freeze final Git commit and rebuild this prepush receipt against that exact HEAD"
+                ]
+            ),
             "confirm kernel slug is still unused immediately before any authorized push",
             "after an authorized private Save & Run, download and compare the output archive hash",
         ],
@@ -924,8 +1346,27 @@ def build_candidate(
         "status": "LOCAL_PACKAGE_BUILT_EXTERNAL_ACTIONS_HOLD",
         "worktree_binding": worktree_binding,
     }
+    if candidate["sequence"] == "Kag_02":
+        prepush["non_promotion_boundary"] = {
+            "label": (
+                "EXPLORATORY_PACKAGE_GATE_PASS_NON_PROMOTION_AUDITOR_RELEASE_PENDING"
+            ),
+            "observed_exploratory_verdict": "NOT_READY",
+            "required_future_release_label": (
+                "EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION"
+            ),
+            "strict_development_verdict": "NO_GO",
+            "prohibited_claims": slot_result["prohibited_claims"],
+        }
     prepush_path = release_dir / "prepush.json"
     prepush_payload = canonical_json(prepush)
+    for label, payload in (
+        ("archive", first),
+        ("notebook", notebook_payload),
+        ("metadata", metadata_payload),
+        ("prepush", prepush_payload),
+    ):
+        _reject_private_payload_markers(payload, f"{candidate['sequence']} {label}")
     prepush_path.write_bytes(prepush_payload)
 
     return {
@@ -955,6 +1396,7 @@ def build_candidate(
         },
         "sequence": candidate["sequence"],
         "source_sha256": candidate["source_sha256"],
+        "package_readiness": package_readiness,
         "status": "LOCAL_PACKAGE_BUILT_EXTERNAL_ACTIONS_HOLD",
     }
 
@@ -963,12 +1405,13 @@ def _build_all_into(
     project_root: Path,
     output_root: Path,
     spec_path: Path,
+    final_freeze_commit: str | None = None,
 ) -> dict[str, Any]:
     spec = load_spec(spec_path)
     candidate_prerequisites = _validate_candidate_prerequisites(project_root, spec)
     raw_source_archive = _validate_raw_source_archive(project_root, spec)
     evidence_receipt = _validate_official_capture_receipt(project_root, spec)
-    worktree_binding = _worktree_binding(project_root, spec_path)
+    worktree_binding = _worktree_binding(project_root, spec_path, final_freeze_commit)
     license_spec = spec["license"]
     license_payload = _read_pinned(
         project_root / license_spec["source_path"],
@@ -1011,9 +1454,12 @@ def _build_all_into(
         "external_action_gate": {
             "status": "HOLD",
             "blocking_prerequisites": [
-                "development_result",
                 "independent_auditor_exact_private_saverun_release",
-                "final_git_freeze",
+                *(
+                    []
+                    if worktree_binding["status"] == FINAL_FREEZE_PASS
+                    else ["final_git_freeze"]
+                ),
             ],
         },
         "external_action_performed": False,
@@ -1031,6 +1477,7 @@ def _build_all_into(
     manifest_path = output_root / "release_manifest.json"
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest_payload = canonical_json(manifest)
+    _reject_private_payload_markers(manifest_payload, "release manifest")
     manifest_path.write_bytes(manifest_payload)
     result = {
         **manifest,
@@ -1126,7 +1573,12 @@ def _publish_staged_output(staging_root: Path, output_root: Path) -> None:
             )
 
 
-def build_all(project_root: Path, output_root: Path, spec_path: Path | None = None) -> dict[str, Any]:
+def build_all(
+    project_root: Path,
+    output_root: Path,
+    spec_path: Path | None = None,
+    final_freeze_commit: str | None = None,
+) -> dict[str, Any]:
     project_root = project_root.resolve()
     requested_output_root = Path(os.path.abspath(output_root))
     if requested_output_root.is_symlink():
@@ -1136,16 +1588,84 @@ def build_all(project_root: Path, output_root: Path, spec_path: Path | None = No
     if not output_root.name:
         raise ValueError("output root must have a directory name")
     _validate_output_root(project_root, output_root, spec_path)
-    _validate_existing_output_ownership(output_root, load_spec(spec_path))
+    _validate_existing_output_ownership(
+        output_root,
+        load_spec(spec_path),
+        final_freeze_commit,
+    )
     output_root.parent.mkdir(parents=True, exist_ok=True)
     staging_root = _transaction_directory(output_root, "staging")
     try:
-        result = _build_all_into(project_root, staging_root, spec_path)
+        result = _build_all_into(
+            project_root,
+            staging_root,
+            spec_path,
+            final_freeze_commit,
+        )
         _publish_staged_output(staging_root, output_root)
     except BaseException:
         if staging_root.exists() or staging_root.is_symlink():
             _remove_transaction_path(staging_root, output_root)
         raise
+    return result
+
+
+def verify_release_build(
+    project_root: Path,
+    output_root: Path,
+    final_freeze_commit: str,
+    spec_path: Path | None = None,
+) -> dict[str, Any]:
+    project_root = project_root.resolve()
+    output_root = output_root.resolve()
+    spec_path = (spec_path or Path(__file__).with_name("release_spec.json")).resolve()
+    manifest_path = output_root / "release_manifest.json"
+    manifest_payload = manifest_path.read_bytes()
+    manifest = json.loads(manifest_payload)
+    if canonical_json(manifest) != manifest_payload:
+        raise ValueError("release manifest is not canonical")
+    expected_binding = _worktree_binding(project_root, spec_path, final_freeze_commit)
+    if manifest.get("worktree_binding") != expected_binding:
+        raise ValueError("release manifest final freeze binding is stale")
+    result = {
+        **manifest,
+        "release_manifest": {
+            "path": "release_manifest.json",
+            "sha256": sha256(manifest_payload),
+        },
+    }
+    _validate_staged_output(output_root, result)
+    for candidate in manifest["candidates"]:
+        prepush_path = output_root / candidate["prepush"]["path"]
+        prepush = json.loads(prepush_path.read_bytes())
+        if prepush.get("worktree_binding") != expected_binding:
+            raise ValueError(
+                f"candidate prepush final freeze binding is stale: {candidate['sequence']}"
+            )
+    with tempfile.TemporaryDirectory(
+        prefix=".campaign-3000-release-verify-",
+        dir=output_root.parent,
+    ) as temporary:
+        rebuilt_root = Path(temporary)
+        rebuilt_result = _build_all_into(
+            project_root,
+            rebuilt_root,
+            spec_path,
+            final_freeze_commit,
+        )
+        _validate_staged_output(rebuilt_root, rebuilt_result)
+        actual_files = {
+            path.relative_to(output_root).as_posix(): path.read_bytes()
+            for path in sorted(output_root.rglob("*"))
+            if path.is_file()
+        }
+        rebuilt_files = {
+            path.relative_to(rebuilt_root).as_posix(): path.read_bytes()
+            for path in sorted(rebuilt_root.rglob("*"))
+            if path.is_file()
+        }
+        if actual_files != rebuilt_files:
+            raise ValueError("release build differs from deterministic rebuild")
     return result
 
 
@@ -1162,9 +1682,26 @@ def main() -> None:
         type=Path,
         default=Path(__file__).with_name("release_spec.json"),
     )
+    parser.add_argument("--final-freeze-commit")
+    parser.add_argument("--verify-only", action="store_true")
     args = parser.parse_args()
     output_root = args.output_root.resolve()
-    result = build_all(project_root, output_root, args.spec.resolve())
+    if args.verify_only:
+        if args.final_freeze_commit is None:
+            parser.error("--verify-only requires --final-freeze-commit")
+        result = verify_release_build(
+            project_root,
+            output_root,
+            args.final_freeze_commit,
+            args.spec.resolve(),
+        )
+    else:
+        result = build_all(
+            project_root,
+            output_root,
+            args.spec.resolve(),
+            args.final_freeze_commit,
+        )
     print(json.dumps(result, ensure_ascii=False, sort_keys=True))
 
 

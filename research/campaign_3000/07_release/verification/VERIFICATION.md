@@ -12,9 +12,9 @@ Local manifests do not observe live Git HEAD: they record the fixed
 ## Commands and raw outcomes
 
 ```text
-> .\.venv\Scripts\python.exe -m pytest -q -p no:cacheprovider tests\test_campaign_3000_release_package.py
-............................                                             [100%]
-28 passed in 2.94s
+> .\.venv\Scripts\python.exe -m pytest -q tests\test_campaign_3000_release_package.py
+......................................                                   [100%]
+38 passed in 21.60s
 
 > .\.venv\Scripts\python.exe -m ruff check research\campaign_3000\07_release\build_release.py tests\test_campaign_3000_release_package.py
 All checks passed!
@@ -31,18 +31,23 @@ archive names/members/metadata/hashes, complete pinned LICENSE identity,
 exact attribution hashes plus markers, archived official notebook extraction,
 tracked GetKernel envelope-to-raw-source identity, tracked live page license and
 score boundaries, explicit `RuntimeError` wrapper guards, private/no-internet
-metadata, exact 06 plan semantics and mandatory development/auditor
-prerequisites, and external-action HOLD. Safety tests reject project
+metadata, exact 06 plan semantics, tracked post-run manifests/lifecycle,
+production recomputation of raw receipts/rows/gates, slot-specific
+Kag_01-PASS/Kag_02-NO_GO policy, and the mandatory per-slot auditor HOLD.
+The package rejects local path/username/credential markers, including JSON
+escape forms, from archive members and every generated release file. Safety
+tests reject project
 root/ancestor, `src`, `tests`, Git metadata, frozen-input ancestors, symlink,
 and non-owned nonempty output roots before mutation. Atomicity tests preserve an
 old output byte-for-byte after both an injected second-candidate build failure
 and an injected staging-to-output `os.replace` failure. A commit-independence
-regression supplies two different mocked HEAD values, proves the builder never
-queries either value, compares every output byte, and rejects any 40-hex local
-commit claim. A first PowerShell hash-map attempt used an unavailable framework
-method and produced no valid comparison; the compatible rerun above is the
-reported evidence. Earlier provisional 06 pins were discarded; the final 06
-manifest is re-pinned below.
+regression supplies two different mocked HEAD values, proves the default builder
+never queries either value, compares every output byte, and rejects any 40-hex
+local commit claim. Separate final-freeze regressions require the exact clean
+HEAD and its byte-exact tracked inputs. `--verify-only` performs a fresh isolated
+deterministic rebuild and rejects a self-consistently rewritten artifact,
+prepush, and manifest. Earlier provisional pins were discarded; the final
+post-run validator and evidence pins are listed below.
 
 ## Generated local-only outputs
 
@@ -51,12 +56,12 @@ manifest is re-pinned below.
 | `Kag_01 - Tetsu v16 Exact.tar.gz` | 19,099 | `184F687C474933A7215DB97E8C5A5F823AE79233EEA42D04B70EABC001BF9E16` |
 | `Kag_01 - Tetsu v16 Exact.ipynb` | 33,912 | `0C8D17DA3266804597EA753A401FDEAE8AAF4E04CDE305C2E7F9C6FF61CDF895` |
 | Kag_01 `kernel-metadata.json` | 428 | `F58F72FDC99FB5FB828732EF93546F0285F02024643884D88EAFCAF768B98746` |
-| Kag_01 `prepush.json` | 5,551 | `BFF4273DD74F91DE810AA246863E09FFD37EB184892B262F246B17B3980FDE73` |
+| Kag_01 `prepush.json` | 9,462 | `7A5FCF8B91AD7EE170BD0F8674078C6F1EEF81E2F1658683492E7E103065D458` |
 | `Kag_02 - Kaito v22 Price Impact.tar.gz` | 17,360 | `37EA53D3046E3D1DA914F8A89C6F4BB02E240E1BB85857BDA149273FC4DD974C` |
 | `Kag_02 - Kaito v22 Price Impact.ipynb` | 31,126 | `01003AADA83D0688DB40A01B19D4886871EE0A2317A5F8F897E82FB78130A431` |
 | Kag_02 `kernel-metadata.json` | 449 | `A32152D8D2DA2BE06D08C7F2C01C401BA84EA7B4BC8E69F189110FC54A3EDCFA` |
-| Kag_02 `prepush.json` | 5,603 | `5E567845C871230C717983F907A06DE7B9D976FF4B9249F97D070C8570DD09B3` |
-| `release_manifest.json` | 6,989 | `A5846B67ADFA76875434CAFE3CD9B915F20FFEB6648F207F9695B3B05708C129` |
+| Kag_02 `prepush.json` | 10,072 | `8FBF931DEACE6C907A64E7F756030A63D6E1ACD9FEA482E033DD4F127AF6A9AF` |
+| `release_manifest.json` | 10,666 | `AC7D51A03420954D3D9585435B593D1A847A6554D8AFD340E1D5AF62F2B69B36` |
 
 ## Archive members
 
@@ -77,8 +82,8 @@ names. Gzip mtime and embedded filename are also fixed to zero/empty.
 
 | Input | SHA-256 |
 |---|---|
-| `build_release.py` | `13FFCD70149E84774E8033C8496BC86F4502C091DE7A4FF11E1DA789067AB867` |
-| `release_spec.json` | `516CB6A5FFC73467062708EA0E7228B406FA7EE58F21D953E91C772F49F3EBBB` |
+| `build_release.py` | `DB684D877B14B2D60568FA0977E83C3732F262C832D048E71AFC992E8F3CABF7` |
+| `release_spec.json` | `662937F95BF52BB3E765C14F14A36681FC82AE1D7A49EBF58280550B7C0DCC2D` |
 | `source/tetsu_v16_main.py` | `997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6` |
 | `source/kaito_v22_main.py` | `62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A` |
 | `LICENSE` | `1EB85FC97224598DAD1852B5D6483BBCF0AA8608790DCC657A5A2A761AE9C8C6` |
@@ -95,7 +100,11 @@ names. Gzip mtime and embedded filename are also fixed to zero/empty.
 | `06_candidates/candidate_plan.json` | `F57E076D11A91B2E344056EC74ECCA430F80EF3922D07A9001479B96DDEE5D1C` |
 | `06_candidates/gate_config.json` | `9D88AA8DEE2021F458896D681FB0958B6F26772F03ABB4507EC888C80970307D` |
 | `06_candidates/manifest.json` | `1A2765982DB4FD3EC648BD9A68CC4F331761BF100E63950E02F57463BCCBCA9C` |
-| `tests/test_campaign_3000_release_package.py` | `7CC752C8077D378C402D3579D6E3DE53627A19435065DC24A89D1A9FC0DA5406` |
+| `tests/test_campaign_3000_release_package.py` | `25AAF8F37B6751C44B6DF3A97E1D46D506D6D4654E6CE6453C34104DBC77AA78` |
+| `06_candidates/orchestrator.py` post-run validator | `DF113FC40956811B186568B8A7BEC4680BA9CE716752AAC144BB26FCAFED9738` |
+| `06_candidates/lifecycle.json` | `3A535E485F1B14870E03380D3672F3CD899051A45F3EB4B9FB4D5094F7B2785D` |
+| Kag_01 post-run evidence manifest | `712DEBADB1BAE4247687B788A1986AB2B90DF32A52F390AB2BBD5213A5A2B09A` |
+| Kag_02 post-run evidence manifest | `F9E9C7629B6EA95D989712D1F8ED685835DC8120D31292FD51B33E414F82FD7D` |
 
 The immutable `TETSU_IP_VERDICT.md` retains its historical cutoff-era `dist/`
 path wording because the closed 06 plan pins its exact SHA-256. Clean-clone

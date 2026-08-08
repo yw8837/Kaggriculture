@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-08-08T22:47:17.424286+00:00",
+  "git_head_at_start": "ebdd5b58c66a1c816525bb60b403eabbd7b2892d",
+  "candidate": "research/campaign_3000/06_candidates/snapshots/kaito_v22.py",
+  "candidate_path": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\research\\campaign_3000\\06_candidates\\snapshots\\kaito_v22.py",
+  "candidate_sha256_at_start": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+  "opponents": [
+    "tetsu_v16",
+    "ray_c45_exact",
+    "boatlee_v14",
+    "fa04_g1"
+  ],
+  "opponent_paths": {
+    "tetsu_v16": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\research\\campaign_3000\\06_candidates\\snapshots\\tetsu_v16.py",
+    "ray_c45_exact": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\research\\campaign_3000\\06_candidates\\snapshots\\ray_c45_exact.py",
+    "boatlee_v14": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\research\\campaign_3000\\06_candidates\\snapshots\\boatlee_v14.py",
+    "fa04_g1": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\experiments\\source_snapshots\\fa04_top_trace\\G1_sell_guard.py"
+  },
+  "opponent_sha256_at_start": {
+    "tetsu_v16": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+    "ray_c45_exact": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73",
+    "boatlee_v14": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B",
+    "fa04_g1": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+  },
+  "seeds": [
+    53000,
+    53001,
+    53002,
+    53003,
+    53004,
+    53005,
+    53006,
+    53007,
+    53008,
+    53009,
+    53010,
+    53011,
+    53012,
+    53013,
+    53014,
+    53015
+  ],
+  "seat_policy": "both seats",
+  "workers": 8,
+  "scenario_overrides": {
+    "default": {}
+  },
+  "effective_scenarios": {
+    "default": {
+      "episodeSteps": 720
+    }
+  },
+  "effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE"
+}

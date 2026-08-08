@@ -1,0 +1,59 @@
+{
+  "integrity": "PASS",
+  "summary": {
+    "valid_games": 128,
+    "seed_cluster_count": 16,
+    "bootstrap_cluster_unit": "seed",
+    "match_score": 0.25,
+    "match_score_seed_cluster_bootstrap_95": [
+      0.25,
+      0.25
+    ],
+    "mean_margin": 2185.140625,
+    "margin_p10": -7880.0,
+    "game_runtime_p99_seconds": 7.248601590003745,
+    "game_runtime_max_seconds": 7.277315799998178,
+    "by_opponent_match_score": {
+      "boatlee_v14": 0.0,
+      "fa04_g1": 1.0,
+      "ray_c45_exact": 0.0,
+      "tetsu_v16": 0.0
+    },
+    "by_opponent_mean_margin": {
+      "boatlee_v14": -4846.625,
+      "fa04_g1": 23661.4375,
+      "ray_c45_exact": -4899.625,
+      "tetsu_v16": -5174.625
+    },
+    "by_scenario_match_score": {
+      "default": 0.25
+    },
+    "by_scenario_mean_margin": {
+      "default": 2185.140625
+    }
+  },
+  "strict": {
+    "verdict": "NO_GO",
+    "checks": {
+      "match_score": false,
+      "bootstrap_lower": false,
+      "mean_margin": true,
+      "each_opponent": false,
+      "each_opponent_mean_margin": false,
+      "runtime_p99": true,
+      "runtime_max": true
+    }
+  },
+  "exploratory": {
+    "verdict": "NOT_READY",
+    "checks": {
+      "hard_integrity": true,
+      "runtime_p99": true,
+      "runtime_max": true,
+      "fa04_g1_match_score": true,
+      "fa04_g1_mean_margin": true,
+      "package_and_final_audit": false
+    },
+    "strict_promotion_claim": false
+  }
+}
