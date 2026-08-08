@@ -1,26 +1,26 @@
 {
   "schema_version": 1,
   "lifecycle_protocol": "auditor_exact_development_open_v1",
-  "state": "CLOSED",
-  "execution_commit": "PENDING",
+  "state": "DEVELOPMENT_OPEN",
+  "execution_commit": "cf04be5ad93f31bc8677e383a2b414e9561841d3",
   "authority_receipt": {
     "path": "dist/campaign_3000/authority/auditor_development_open.json",
-    "bytes": 0,
-    "sha256": "PENDING"
+    "bytes": 3770,
+    "sha256": "5D5EA60A20E07B5130F94CB5B56F2E82FB9A9766AF57CD5124FB294136D65BE4"
   },
   "auditor_open_delivery": {
     "path": "dist/campaign_3000/authority/auditor_development_open.delivery.json",
-    "bytes": 0,
-    "sha256": "PENDING"
+    "bytes": 20487,
+    "sha256": "E83493F74F2D778B672A042AC8499AE1A79DB7E90F3CDFF91D2BF53B530FA3B5"
   },
   "phases": {
     "Kag_01": {
-      "development": "CLOSED",
+      "development": "OPEN",
       "confirmation": "HOLD",
       "robustness": "HOLD"
     },
     "Kag_02": {
-      "development": "CLOSED",
+      "development": "OPEN",
       "confirmation": "HOLD",
       "robustness": "HOLD"
     }
