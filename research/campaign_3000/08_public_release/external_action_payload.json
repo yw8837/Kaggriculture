@@ -54,8 +54,8 @@
       "competition_submission": false,
       "notebook": {
         "path": "kaggle_code_draft/kaggriculture-fixed-trace-safety-baseline.ipynb",
-        "bytes": 317377,
-        "sha256": "F24F4939C8EC591D5794C650923E583658F0BE05E47FA7A6F049D53664F74153"
+        "bytes": 331584,
+        "sha256": "802C785A6882E14574E6EB612ED9C5BE60412E9B51A14CA13A51ECCB8B7EC641"
       },
       "metadata": {
         "path": "kaggle_code_draft/kernel-metadata.json",
@@ -75,7 +75,7 @@
     "returned kernel ref and version",
     "remote visibility and COMPLETE status",
     "downloaded notebook SHA-256",
-    "downloaded output archive SHA-256 and root main.py SHA-256",
+    "downloaded output archive SHA-256, exact root member order main.py/LICENSE/NOTICE.md, member SHA-256 values, deterministic metadata, and main.py compile",
     "published Discussion URL and rendered-title/body check",
     "explicit confirmation that no competition submission occurred"
   ]

@@ -1,27 +1,49 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "state": "PRIVATE_SAVERUNS_COMPLETE_VERIFIED",
   "recorded_against_git_head": "b13eeb2f3b92fe51393fbce37ef21112b26af686",
+  "recorded_against_git_head_scope": "PRE_RUN_APPROVED_PACKAGE_FREEZE_ONLY_NOT_POSTRUN_LEDGER_COMMIT",
   "approved_package_binding": {
     "git_head": "b13eeb2f3b92fe51393fbce37ef21112b26af686",
     "release_manifest_path": "research/campaign_3000/08_public_release/evidence/private_release_manifest.json",
     "release_manifest_bytes": 18927,
     "release_manifest_sha256": "F99D31D750E1D4EAF26127308C720A6BD042E32CA3F05AFC16CDB6182925F224"
   },
+  "auditor_delivery_receipt": {
+    "path": "research/campaign_3000/11_saverun_results/auditor_deliveries.json",
+    "bytes": 8909,
+    "sha256": "E6DBF2F0656FF71FE63CDF050635896367D2C844F554A8EE4A37DCC6DFBED972"
+  },
   "independent_auditor_release": {
     "task_id": "019fb8b8-7758-7860-9304-39eb4f06c65c",
-    "verdict": "PASS",
+    "host_id": "local",
+    "verdict": "RELEASE",
     "scope": "EACH_EXACT_SLOT_PRIVATE_SAVERUN_RELEASE",
+    "delivery": {
+      "purpose": "private_saverun_release",
+      "turn_id": "019fe3bb-78c0-75f1-960b-85f8f837f913",
+      "item_id": "item-523",
+      "raw_message_utf8_bytes": 3430,
+      "raw_message_sha256": "4B37240CFF50B20473172709ABB28601200BDF317B94A19E3009361BDD49AF24"
+    },
     "slots": {
-      "Kag_01": "PASS",
-      "Kag_02": "PASS"
+      "Kag_01": "RELEASE",
+      "Kag_02": "RELEASE"
     }
   },
   "independent_auditor_postrun": {
     "task_id": "019fb8b8-7758-7860-9304-39eb4f06c65c",
+    "host_id": "local",
     "verdict": "COMPLETE_VERIFIED",
     "scope": "Kag_01 and Kag_02 private Save & Run version 1",
-    "method": "live read-only kernel metadata/status plus remote Output API bytes rehashed in memory"
+    "method": "live read-only kernel metadata/status plus remote Output API bytes rehashed in memory",
+    "delivery": {
+      "purpose": "private_saverun_postrun",
+      "turn_id": "019fe3c6-65de-7351-b35a-3fb15ba9d279",
+      "item_id": "item-530",
+      "raw_message_utf8_bytes": 1244,
+      "raw_message_sha256": "98ACB6BA5084F4377925DB29A86D7AA968E3EDEF6FC876A6D3A4D58104D873A2"
+    }
   },
   "additional_external_action_authority": "HOLD",
   "competition_submission": {
@@ -35,7 +57,12 @@
       "slot": "Kag_01",
       "kernel_ref": "yw8837/kag-01-tetsu-v16-exact",
       "version": 1,
-      "kaggle_last_run_time_utc": "2026-08-08T23:42:15.120000Z",
+      "locally_observed_push_or_complete_time_utc": "2026-08-08T23:42:15.120000Z",
+      "time_observation_provenance": {
+        "source": "main-agent local monitoring record during the authorized SaveRun",
+        "raw_kaggle_getkernel_envelope_retained": false,
+        "limitation": "This is not asserted as a stable live GetKernel lastRunTime; Kaggle returned a different mutable value on a later independent read."
+      },
       "worker_status": "KernelWorkerStatus.COMPLETE",
       "visibility": "private",
       "internet": false,
@@ -93,7 +120,12 @@
       "slot": "Kag_02",
       "kernel_ref": "yw8837/kag-02-kaito-v22-price-impact",
       "version": 1,
-      "kaggle_last_run_time_utc": "2026-08-08T23:45:30.623000Z",
+      "locally_observed_push_or_complete_time_utc": "2026-08-08T23:45:30.623000Z",
+      "time_observation_provenance": {
+        "source": "main-agent local monitoring record during the authorized SaveRun",
+        "raw_kaggle_getkernel_envelope_retained": false,
+        "limitation": "This is not asserted as a stable live GetKernel lastRunTime; Kaggle returned a different mutable value on a later independent read."
+      },
       "worker_status": "KernelWorkerStatus.COMPLETE",
       "visibility": "private",
       "internet": false,
@@ -150,8 +182,17 @@
     }
   ],
   "publication": {
+    "auditor_verdict": "HOLD",
+    "publication_authorized": false,
     "discussion": "HOLD",
     "public_code": "HOLD",
+    "delivery": {
+      "purpose": "publication_review",
+      "turn_id": "019fe3dd-fd97-7462-bed3-4b781297412e",
+      "item_id": "item-541",
+      "raw_message_utf8_bytes": 2207,
+      "raw_message_sha256": "9198BD647A0D08D383F0C529ABEE6B61D5B637ABC9BD9EB0FE83C4B78B805A7D"
+    },
     "required_order": [
       "discussion",
       "public_code"

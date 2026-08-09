@@ -25,6 +25,11 @@
       "bytes": 11357,
       "sha256": "C71D239DF91726FC519C6EB72D318EC65820627232B2F796219E87DCF35D0AB4"
     },
+    "notice": {
+      "path": "NOTICE.md",
+      "bytes": 990,
+      "sha256": "7C0E05B779269FA8DBEC2AFBAEF928D20223A2E16E3B1DB90DA279922E5471EF"
+    },
     "teacher_episode_id": 89256171,
     "teacher_team": "radiant-allomancer",
     "teacher_player": 0,
@@ -132,18 +137,25 @@
   "artifacts": {
     "archive": {
       "path": "artifact/kaggriculture_fixed_trace_safety_baseline.tar.gz",
-      "bytes": 11972,
-      "sha256": "2730084026B6C0EA68D1D54FF469E1B80D9ABF9BEF43285B15366CF13CF8ACCB",
+      "bytes": 16832,
+      "sha256": "5DBD64463878A52ED7C47C8D60BCA3AE9FAC7E29B775E7FADB08F0CC7670A8B6",
       "members": [
-        "main.py"
+        "main.py",
+        "LICENSE",
+        "NOTICE.md"
       ],
+      "member_sha256": {
+        "main.py": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
+        "LICENSE": "C71D239DF91726FC519C6EB72D318EC65820627232B2F796219E87DCF35D0AB4",
+        "NOTICE.md": "7C0E05B779269FA8DBEC2AFBAEF928D20223A2E16E3B1DB90DA279922E5471EF"
+      },
       "payload_sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
       "deterministic_metadata": true
     },
     "notebook": {
       "path": "kaggle_code_draft/kaggriculture-fixed-trace-safety-baseline.ipynb",
-      "bytes": 317377,
-      "sha256": "F24F4939C8EC591D5794C650923E583658F0BE05E47FA7A6F049D53664F74153"
+      "bytes": 331584,
+      "sha256": "802C785A6882E14574E6EB612ED9C5BE60412E9B51A14CA13A51ECCB8B7EC641"
     },
     "kernel_metadata": {
       "path": "kaggle_code_draft/kernel-metadata.json",
@@ -165,8 +177,8 @@
     },
     "external_action_payload": {
       "path": "external_action_payload.json",
-      "bytes": 3721,
-      "sha256": "18951EA710C788E050EA29600B2A97AD27ADEBBD0F4B4D1FC19152FD7837099D"
+      "bytes": 3815,
+      "sha256": "CA4ECDBB22ED0CB2DAE183A24DFDCF8D6362C3EE7DFCC8AB61CFE93E26F33D14"
     }
   },
   "authority": {

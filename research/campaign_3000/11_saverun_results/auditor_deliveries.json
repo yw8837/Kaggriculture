@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "campaign_3000_independent_auditor_final_message_text_receipts_v1",
+  "canonical_text_definition": "Exact final agentMessage text Unicode string encoded as UTF-8 without BOM and with no appended trailing newline; SHA-256 is uppercase hexadecimal over those bytes.",
+  "identity_source": "Main task read_thread observation of the separate user-owned auditor task; full read_thread envelopes were not retained in this tracked file.",
+  "auditor_task": {
+    "thread_id": "019fb8b8-7758-7860-9304-39eb4f06c65c",
+    "host_id": "local",
+    "role": "independent_auditor"
+  },
+  "deliveries": [
+    {
+      "purpose": "private_saverun_release",
+      "turn_id": "019fe3bb-78c0-75f1-960b-85f8f837f913",
+      "item_id": "item-523",
+      "phase": "final_answer",
+      "raw_message_text": "## 독립감사 최종 판정\n\n| 슬롯 | 판정 | 정확한 범위 |\n|---|---|---|\n| Kag_01 | **RELEASE** | one-time PRIVATE Save & Run |\n| Kag_02 | **RELEASE** | one-time PRIVATE Save & Run, `EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION` 전용 |\n\nKag_02는 strict `NO_GO` 상태 그대로다. 이 RELEASE는 packaging/remote-runtime 확인 목적이며 promotion·champion·confirmation·robustness·submission 증거가 아니다.\n\n### 감사 근거\n\n- HEAD/local/origin/remote: `b13eeb2f3b92fe51393fbce37ef21112b26af686`\n- production close: `DEVELOPMENT_CLOSED_VALIDATED`\n- fresh games: 256\n- Kag_01: 128게임, strict `PASS`\n- Kag_02: 128게임, strict `NO_GO`\n- 최종 package verify-only: PASS\n- 독립 archive/notebook 검사:\n  - 정확히 9파일\n  - USTAR metadata 고정\n  - `main.py`, `LICENSE`, `ATTRIBUTION.md` exact\n  - notebook embedded archive byte-exact\n  - private/internet-off\n  - 로컬 경로·사용자명·token 문자열 0\n- 전체 테스트: `489 passed`\n- Ruff: `All checks passed!`\n- 지정 slug authenticated `--mine`: 둘 다 `Not found`\n- 현재 competition submission: 22개, 최신 2026-08-05\n- 공식 81개 테스트는 이번 freeze에서 재실행되지 않았다는 설명을 수용하며 새 실행 주장으로 인정하지 않는다.\n\n### 허가된 정확한 명령\n\nKag_01:\n\n```powershell\nkaggle kernels push -p \"C:\\Users\\최용우\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\research\\campaign_3000\\07_release\\local_build\\Kag_01 - Tetsu v16 Exact\"\n```\n\nKag_02:\n\n```powershell\nkaggle kernels push -p \"C:\\Users\\최용우\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\research\\campaign_3000\\07_release\\local_build\\Kag_02 - Kaito v22 Price Impact\"\n```\n\n각 명령은 정확히 1회만 허가한다. 권장 순서는 Kag_01 COMPLETE 검증 후 Kag_02다.\n\n실행 직전 반드시 HEAD/clean 상태와 다음 archive SHA를 다시 확인해야 한다.\n\n- Kag_01: `184F687C474933A7215DB97E8C5A5F823AE79233EEA42D04B70EABC001BF9E16`\n- Kag_02: `37EA53D3046E3D1DA914F8A89C6F4BB02E240E1BB85857BDA149273FC4DD974C`\n\nKag_02 실행·ledger·postrun 보고의 분류는 반드시 정확히:\n\n`EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION`\n\n이어야 한다. Package bytes나 metadata를 수정해 라벨을 삽입하면 다른 payload가 되므로 이 RELEASE는 무효다.\n\n### Retry 경계\n\n- Kaggle 요청 전에 로컬 cache/권한/import 문제로 실패: 자동 재시도 금지. 원문 오류와 “Kaggle request/version 없음”을 보고하고 transport 재허가를 받아야 한다.\n- 성공 URL, version 번호 또는 Kaggle 응답이 한 번이라도 반환됨: RELEASE 소비 완료. 재push 금지.\n- 요청 여부가 불명확한 timeout/연결 오류: 먼저 slug/version을 읽기 전용 조회한다. 확인 전 재push 금지.\n- Kaggle이 version을 만들었지만 ERROR/CANCELLED: 로그만 회수하고 재push 금지.\n\n### Postrun 필수 검증\n\n각 슬롯마다:\n\n1. `KernelWorkerStatus.COMPLETE`\n2. version/URL/실행시각 기록\n3. remote output 다운로드\n4. archive 크기·SHA exact\n5. member 순서 `main.py`, `LICENSE`, `ATTRIBUTION.md`\n6. member SHA와 USTAR metadata exact\n7. `main.py` compile PASS\n8. 로그의 예상 밖 `Traceback|ERROR|Exception|Failed` 0\n9. mismatch/error 시 `HOLD`, 자동 재시도 없음\n\nconfirmation·robustness·competition submission·Discussion·public Code는 계속 **HOLD**다.",
+      "raw_message_utf8_bytes": 3430,
+      "raw_message_sha256": "4B37240CFF50B20473172709ABB28601200BDF317B94A19E3009361BDD49AF24",
+      "authorized_effect": "EXACT_ONE_TIME_PRIVATE_SAVERUN_RELEASE_ONLY"
+    },
+    {
+      "purpose": "private_saverun_postrun",
+      "turn_id": "019fe3c6-65de-7351-b35a-3fb15ba9d279",
+      "item_id": "item-530",
+      "phase": "final_answer",
+      "raw_message_text": "POSTRUN 판정: `COMPLETE_VERIFIED` — 두 Save & Run 모두 승인 범위와 정확히 일치해.\n\n- Kag_01: v1, `COMPLETE`, private, internet off, archive SHA `184F687C...9E16`, 멤버·메타데이터·컴파일·로그 검사 전부 PASS.\n- Kag_02: v1, `COMPLETE`, private, internet off, archive SHA `37EA53D3...974C`, 전부 PASS. 단 분류는 계속 `EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION`; strict verdict는 `NO_GO`.\n- Kaggle 원격 Output API를 메모리에서 직접 다시 받아 두 archive SHA를 확인했다. 로그도 Windows 줄바꿈 정규화 후 제시한 SHA와 정확히 일치했다.\n- `2026-08-08T23:51:25.917Z` 기준 competition submission은 기존 22개 그대로이며 최신 ref도 `55270999`; 새 제출 없음.\n- confirmation/robustness는 계속 HOLD. Discussion·Code 공개도 HOLD.\n\n단, `b13eeb2`는 실행 전 freeze라서 현재 lifecycle에 아직 `external_actions:\"HOLD\"`가 적혀 있다. 실행 자체는 승인대로 정상 완료됐지만, 다음 freeze에는 두 v1의 COMPLETE 상태·원격 archive/log SHA·실행 시각·non-promotion 분류를 추적 증거로 추가해야 해. 그 전에는 `b13eeb2`를 “postrun 상태까지 기록된 commit”이라고 주장하면 안 돼.",
+      "raw_message_utf8_bytes": 1244,
+      "raw_message_sha256": "98ACB6BA5084F4377925DB29A86D7AA968E3EDEF6FC876A6D3A4D58104D873A2",
+      "authorized_effect": "COMPLETE_VERIFIED_CLOSURE_NO_NEW_EXTERNAL_AUTHORITY"
+    },
+    {
+      "purpose": "publication_review",
+      "turn_id": "019fe3dd-fd97-7462-bed3-4b781297412e",
+      "item_id": "item-541",
+      "phase": "final_answer",
+      "raw_message_text": "판정: Discussion `HOLD`, public Code `HOLD`. 메인에도 같은 정정 요청을 직접 보냈어.\n\n차단점은 3개야.\n\n1. 공개 tar가 Apache 파생 코드인데 `main.py`만 포함한다. [build_release.py](<C:/Users/최용우/Documents/Codex/2026-07-31/kaggriculture-3-github/work/campaign_3000/research/campaign_3000/08_public_release/build_release.py:123>)가 이를 강제한다. Apache-2.0은 파생물 수령자에게 라이선스 사본을 제공하도록 요구하며, ASF 배포 지침도 tar에 `LICENSE`를 포함하라고 명시한다. [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0.html), [ASF 적용 지침](https://www.apache.org/legal/apply-license.html)\n\n2. [remote_receipts.json](<C:/Users/최용우/Documents/Codex/2026-07-31/kaggriculture-3-github/work/campaign_3000/research/campaign_3000/11_saverun_results/remote_receipts.json:11>)의 독립감사 승인 주장은 raw 감사 메시지 SHA·turn/item identity가 없다. [verify_handoff.py](<C:/Users/최용우/Documents/Codex/2026-07-31/kaggriculture-3-github/work/campaign_3000/research/campaign_3000/09_audit/verify_handoff.py:745>)는 메인이 작성한 같은 dict를 hardcode 비교할 뿐이라 순환 검증이다.\n\n3. `kaggle_last_run_time_utc`가 공식 GetKernel 원본과 불일치한다. 기록값은 8월 8일이지만 독립 조회값은 `2026-08-06T00:17:33Z`였고 조회할 때마다 바뀌었다. raw Kaggle envelope가 없다면 `locally_observed_*_time_utc`로 정정하고 출처를 명시해야 한다.\n\n그 외에는 PASS야.\n\n- `HEAD=origin=ls-remote=3ab6ed6`, clean.\n- Discussion UTF-8·본문 SHA 정상.\n- notebook 내 `main.py`는 정확히 G1 SHA `81159A18...6922`.\n- private 후보·경로·비밀값 혼입 0.\n- metadata public/internet-off.\n- 예정 Code slug 없음, 동일 제목 검색 결과 없음.\n- 제출은 22개, 최신 `55270999` 그대로.\n- `verify_handoff.py`는 `PASS_DRAFT_HANDOFF`지만 독립감사 provenance까지 증명하지는 못한다.\n\n수정은 tar를 `main.py + LICENSE + NOTICE.md`로 재생성하고, 감사 전달 원본 증거와 시간 필드를 고친 뒤 새 clean HEAD로 재동결하면 돼. 그전에는 Discussion도 게시 금지야.",
+      "raw_message_utf8_bytes": 2207,
+      "raw_message_sha256": "9198BD647A0D08D383F0C529ABEE6B61D5B637ABC9BD9EB0FE83C4B78B805A7D",
+      "authorized_effect": "DISCUSSION_HOLD_PUBLIC_CODE_HOLD_NO_PUBLICATION_AUTHORITY"
+    }
+  ]
+}

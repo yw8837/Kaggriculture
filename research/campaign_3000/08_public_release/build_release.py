@@ -31,6 +31,7 @@ CANONICAL_PRIVATE_RELEASE_SPEC = (
 )
 PUBLIC_SOURCE = RELEASE_ROOT / "public_source/main.py"
 PUBLIC_LICENSE = RELEASE_ROOT / "LICENSE"
+PUBLIC_NOTICE = RELEASE_ROOT / "NOTICE.md"
 LOCAL_ENGINE_SUMMARY = RELEASE_ROOT / "evidence/engine_screen_summary.json"
 LOCAL_ENGINE_COMPARISON = RELEASE_ROOT / "evidence/engine_comparison.json"
 LOCAL_ENGINE_CONFIG = RELEASE_ROOT / "evidence/engine_screen_config.json"
@@ -46,6 +47,7 @@ EXTERNAL_PAYLOAD_PATH = RELEASE_ROOT / "external_action_payload.json"
 
 EXPECTED_SOURCE_SHA256 = "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
 EXPECTED_LICENSE_SHA256 = "C71D239DF91726FC519C6EB72D318EC65820627232B2F796219E87DCF35D0AB4"
+EXPECTED_NOTICE_SHA256 = "7C0E05B779269FA8DBEC2AFBAEF928D20223A2E16E3B1DB90DA279922E5471EF"
 ENGINE_SUMMARY_SHA256 = "193FB33CA537681E510C74C9E6ED947CD1FB0D806911BB1C93AF95AC8C50D94F"
 ENGINE_COMPARISON_SHA256 = (
     "7FBC90385D085932544E693836CA4B24EC28E9AAD7A28DB9AA442E22FB46B2F6"
@@ -114,21 +116,30 @@ def bootstrap() -> None:
     LOCAL_PRIVATE_RELEASE_SPEC.write_bytes(private_spec)
 
 
-def deterministic_archive(payload: bytes) -> bytes:
+def deterministic_archive(
+    source_payload: bytes,
+    license_payload: bytes,
+    notice_payload: bytes,
+) -> bytes:
     compressed = io.BytesIO()
     with (
         gzip.GzipFile(filename="", mode="wb", fileobj=compressed, mtime=0) as gz,
         tarfile.open(fileobj=gz, mode="w") as archive,
     ):
-        info = tarfile.TarInfo("main.py")
-        info.size = len(payload)
-        info.mode = 0o644
-        info.mtime = 0
-        info.uid = 0
-        info.gid = 0
-        info.uname = ""
-        info.gname = ""
-        archive.addfile(info, io.BytesIO(payload))
+        for name, payload in (
+            ("main.py", source_payload),
+            ("LICENSE", license_payload),
+            ("NOTICE.md", notice_payload),
+        ):
+            info = tarfile.TarInfo(name)
+            info.size = len(payload)
+            info.mode = 0o644
+            info.mtime = 0
+            info.uid = 0
+            info.gid = 0
+            info.uname = ""
+            info.gname = ""
+            archive.addfile(info, io.BytesIO(payload))
     return compressed.getvalue()
 
 
@@ -159,6 +170,8 @@ def build_notebook(
     notice_text: str,
 ) -> dict[str, Any]:
     source_text = source.decode("utf-8")
+    license_payload = license_text.encode("utf-8")
+    notice_payload = notice_text.encode("utf-8")
     overview = f"""# {CODE_TITLE}
 
 This notebook releases a deterministic, readable Kaggriculture learning agent built around one
@@ -295,36 +308,60 @@ from pathlib import Path
 SOURCE_PATH = Path("main.py")
 OUTPUT_NAME = "{ARCHIVE_NAME}"
 EXPECTED_SOURCE_SHA256 = "{EXPECTED_SOURCE_SHA256}"
+EXPECTED_LICENSE_SHA256 = "{EXPECTED_LICENSE_SHA256}"
+EXPECTED_NOTICE_SHA256 = "{EXPECTED_NOTICE_SHA256}"
 EXPECTED_ARCHIVE_SHA256 = "{archive_sha256}"
 
-payload = SOURCE_PATH.read_bytes()
-actual_source_sha256 = hashlib.sha256(payload).hexdigest().upper()
+source_payload = SOURCE_PATH.read_bytes()
+license_payload = {license_payload!r}
+notice_payload = {notice_payload!r}
+Path("LICENSE").write_bytes(license_payload)
+Path("NOTICE.md").write_bytes(notice_payload)
+members = {{
+    "main.py": source_payload,
+    "LICENSE": license_payload,
+    "NOTICE.md": notice_payload,
+}}
+
+actual_source_sha256 = hashlib.sha256(source_payload).hexdigest().upper()
 assert actual_source_sha256 == EXPECTED_SOURCE_SHA256
+assert hashlib.sha256(license_payload).hexdigest().upper() == EXPECTED_LICENSE_SHA256
+assert hashlib.sha256(notice_payload).hexdigest().upper() == EXPECTED_NOTICE_SHA256
 
 compressed = io.BytesIO()
 with (
     gzip.GzipFile(filename="", mode="wb", fileobj=compressed, mtime=0) as gz,
     tarfile.open(fileobj=gz, mode="w") as archive,
 ):
-    info = tarfile.TarInfo("main.py")
-    info.size = len(payload)
-    info.mode = 0o644
-    info.mtime = 0
-    info.uid = info.gid = 0
-    info.uname = info.gname = ""
-    archive.addfile(info, io.BytesIO(payload))
+    for name, payload in members.items():
+        info = tarfile.TarInfo(name)
+        info.size = len(payload)
+        info.mode = 0o644
+        info.mtime = 0
+        info.uid = info.gid = 0
+        info.uname = info.gname = ""
+        archive.addfile(info, io.BytesIO(payload))
 
 output_path = Path("/kaggle/working") / OUTPUT_NAME
 output_path.write_bytes(compressed.getvalue())
 actual_archive_sha256 = hashlib.sha256(output_path.read_bytes()).hexdigest().upper()
 assert actual_archive_sha256 == EXPECTED_ARCHIVE_SHA256
 with tarfile.open(output_path, "r:gz") as archive:
-    assert archive.getnames() == ["main.py"]
-    assert archive.extractfile("main.py").read() == payload
+    assert archive.getnames() == list(members)
+    for member in archive.getmembers():
+        assert member.mode == 0o644
+        assert member.uid == member.gid == member.mtime == 0
+        assert member.uname == member.gname == ""
+        assert archive.extractfile(member).read() == members[member.name]
 
 print(json.dumps({{
     "artifact": OUTPUT_NAME,
     "source_sha256": actual_source_sha256,
+    "member_order": list(members),
+    "member_sha256": {{
+        name: hashlib.sha256(payload).hexdigest().upper()
+        for name, payload in members.items()
+    }},
     "archive_sha256": actual_archive_sha256,
     "archive_bytes": output_path.stat().st_size,
     "competition_submission_performed": False,
@@ -469,7 +506,11 @@ def build_external_payload(notebook_record: dict[str, Any], metadata_record: dic
             "returned kernel ref and version",
             "remote visibility and COMPLETE status",
             "downloaded notebook SHA-256",
-            "downloaded output archive SHA-256 and root main.py SHA-256",
+            (
+                "downloaded output archive SHA-256, exact root member order "
+                "main.py/LICENSE/NOTICE.md, member SHA-256 values, deterministic metadata, "
+                "and main.py compile"
+            ),
             "published Discussion URL and rendered-title/body check",
             "explicit confirmation that no competition submission occurred",
         ],
@@ -480,6 +521,7 @@ def build_external_payload(notebook_record: dict[str, Any], metadata_record: dic
 def build() -> dict[str, Any]:
     source = read_expected(PUBLIC_SOURCE, EXPECTED_SOURCE_SHA256)
     license_payload = read_expected(PUBLIC_LICENSE, EXPECTED_LICENSE_SHA256)
+    notice_payload = read_expected(PUBLIC_NOTICE, EXPECTED_NOTICE_SHA256)
     read_expected(LOCAL_ENGINE_SUMMARY, ENGINE_SUMMARY_SHA256)
     read_expected(LOCAL_ENGINE_COMPARISON, ENGINE_COMPARISON_SHA256)
     read_expected(LOCAL_ENGINE_CONFIG, ENGINE_CONFIG_SHA256)
@@ -487,7 +529,7 @@ def build() -> dict[str, Any]:
     read_expected(LOCAL_PRIVATE_RELEASE_SPEC, PRIVATE_RELEASE_SPEC_SHA256)
     compile(source, "main.py", "exec")
 
-    archive = deterministic_archive(source)
+    archive = deterministic_archive(source, license_payload, notice_payload)
     ARCHIVE_PATH.parent.mkdir(parents=True, exist_ok=True)
     ARCHIVE_PATH.write_bytes(archive)
     archive_record = file_record(ARCHIVE_PATH)
@@ -496,7 +538,7 @@ def build() -> dict[str, Any]:
         source,
         archive_record["sha256"],
         license_payload.decode("utf-8"),
-        (RELEASE_ROOT / "NOTICE.md").read_text(encoding="utf-8"),
+        notice_payload.decode("utf-8"),
     )
     metadata = {
         "id": KERNEL_ID,
@@ -545,6 +587,7 @@ def build() -> dict[str, Any]:
             ),
             "upstream_license": "Apache-2.0",
             "license": file_record(PUBLIC_LICENSE),
+            "notice": file_record(PUBLIC_NOTICE),
             "teacher_episode_id": 89256171,
             "teacher_team": "radiant-allomancer",
             "teacher_player": 0,
@@ -645,7 +688,12 @@ def build() -> dict[str, Any]:
         "artifacts": {
             "archive": {
                 **archive_record,
-                "members": ["main.py"],
+                "members": ["main.py", "LICENSE", "NOTICE.md"],
+                "member_sha256": {
+                    "main.py": EXPECTED_SOURCE_SHA256,
+                    "LICENSE": EXPECTED_LICENSE_SHA256,
+                    "NOTICE.md": EXPECTED_NOTICE_SHA256,
+                },
                 "payload_sha256": EXPECTED_SOURCE_SHA256,
                 "deterministic_metadata": True,
             },

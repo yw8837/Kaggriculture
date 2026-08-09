@@ -22,20 +22,28 @@ def test_public_source_is_exact_audited_g1_and_compiles() -> None:
     compile(public, "main.py", "exec")
 
 
-def test_archive_is_deterministic_root_main_only_and_exact() -> None:
+def test_archive_is_deterministic_three_member_root_bundle_and_exact() -> None:
     source = release.PUBLIC_SOURCE.read_bytes()
-    assert release.deterministic_archive(source) == release.deterministic_archive(source)
-    assert release.ARCHIVE_PATH.read_bytes() == release.deterministic_archive(source)
+    license_payload = release.PUBLIC_LICENSE.read_bytes()
+    notice_payload = release.PUBLIC_NOTICE.read_bytes()
+    expected_payloads = {
+        "main.py": source,
+        "LICENSE": license_payload,
+        "NOTICE.md": notice_payload,
+    }
+    rebuilt = release.deterministic_archive(source, license_payload, notice_payload)
+    assert rebuilt == release.deterministic_archive(source, license_payload, notice_payload)
+    assert release.ARCHIVE_PATH.read_bytes() == rebuilt
     with tarfile.open(release.ARCHIVE_PATH, "r:gz") as archive:
-        assert archive.getnames() == ["main.py"]
-        member = archive.getmember("main.py")
-        assert member.mtime == 0
-        assert member.mode == 0o644
-        assert member.uid == member.gid == 0
-        assert member.uname == member.gname == ""
-        extracted = archive.extractfile(member)
-        assert extracted is not None
-        assert extracted.read() == source
+        assert archive.getnames() == list(expected_payloads)
+        for member in archive.getmembers():
+            assert member.mtime == 0
+            assert member.mode == 0o644
+            assert member.uid == member.gid == 0
+            assert member.uname == member.gname == ""
+            extracted = archive.extractfile(member)
+            assert extracted is not None
+            assert extracted.read() == expected_payloads[member.name]
 
 
 def test_notebook_is_output_free_readable_and_byte_exact(monkeypatch, tmp_path: Path) -> None:
@@ -63,6 +71,16 @@ def test_notebook_is_output_free_readable_and_byte_exact(monkeypatch, tmp_path: 
     assert rendered.removeprefix("%%writefile main.py\n").encode() == release.PUBLIC_SOURCE.read_bytes()
     assert notebook["cells"][6]["cell_type"] == "code"
     assert "compile(payload, \"main.py\", \"exec\")" in "".join(notebook["cells"][6]["source"])
+    package_cell = "".join(notebook["cells"][9]["source"])
+    assert 'Path("LICENSE").write_bytes(license_payload)' in package_cell
+    assert 'Path("NOTICE.md").write_bytes(notice_payload)' in package_cell
+    assert '"main.py": source_payload' in package_cell
+    assert '"LICENSE": license_payload' in package_cell
+    assert '"NOTICE.md": notice_payload' in package_cell
+    assert "assert archive.getnames() == list(members)" in package_cell
+    assert "assert member.uid == member.gid == member.mtime == 0" in package_cell
+    assert release.EXPECTED_LICENSE_SHA256 in package_cell
+    assert release.EXPECTED_NOTICE_SHA256 in package_cell
     notebook_text = "\n".join("".join(cell["source"]) for cell in notebook["cells"])
     assert "kaggle-environments==1.32.6" in notebook_text
     assert "lost all 32 local games" in notebook_text
@@ -87,6 +105,15 @@ def test_notebook_is_output_free_readable_and_byte_exact(monkeypatch, tmp_path: 
     smoke_path.write_text("".join(notebook["cells"][6]["source"]), encoding="utf-8")
     monkeypatch.chdir(tmp_path)
     runpy.run_path(smoke_path)
+    package_path = tmp_path / "notebook_package.py"
+    package_path.write_text(
+        package_cell.replace('Path("/kaggle/working")', f"Path({str(tmp_path)!r})"),
+        encoding="utf-8",
+    )
+    runpy.run_path(package_path)
+    assert (tmp_path / "LICENSE").read_bytes() == release.PUBLIC_LICENSE.read_bytes()
+    assert (tmp_path / "NOTICE.md").read_bytes() == release.PUBLIC_NOTICE.read_bytes()
+    assert (tmp_path / release.ARCHIVE_NAME).read_bytes() == release.ARCHIVE_PATH.read_bytes()
 
 
 def test_default_build_is_self_contained(monkeypatch, tmp_path: Path) -> None:
@@ -116,6 +143,15 @@ def test_default_build_is_self_contained(monkeypatch, tmp_path: Path) -> None:
 
 def test_manifest_binds_exact_private_separation_without_score_claim() -> None:
     manifest = load_json(release.MANIFEST_PATH)
+    archive = manifest["artifacts"]["archive"]
+    assert archive["members"] == ["main.py", "LICENSE", "NOTICE.md"]
+    assert archive["member_sha256"] == {
+        "main.py": release.EXPECTED_SOURCE_SHA256,
+        "LICENSE": release.EXPECTED_LICENSE_SHA256,
+        "NOTICE.md": release.EXPECTED_NOTICE_SHA256,
+    }
+    assert manifest["provenance"]["license"]["sha256"] == release.EXPECTED_LICENSE_SHA256
+    assert manifest["provenance"]["notice"]["sha256"] == release.EXPECTED_NOTICE_SHA256
     separation = manifest["strength_separation"]
     assert separation["status"] == "PASS_EXACT_LOCAL_HEAD_TO_HEAD_NON_PROMOTION"
     assert separation["Kag_01"]["designated_source_sha256"] == release.KAG_01_SOURCE_SHA256

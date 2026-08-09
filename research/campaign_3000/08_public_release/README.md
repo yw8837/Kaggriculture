@@ -53,7 +53,8 @@ remote score.
 ## Release contents
 
 - `public_source/main.py`: exact allowlisted G1 source.
-- `artifact/kaggriculture_fixed_trace_safety_baseline.tar.gz`: deterministic root-`main.py` archive.
+- `artifact/kaggriculture_fixed_trace_safety_baseline.tar.gz`: deterministic root archive with
+  `main.py`, the full Apache-2.0 `LICENSE`, and exact `NOTICE.md`.
 - `kaggle_code_draft/*.ipynb`: deterministic, output-free public notebook.
 - `kaggle_code_draft/kernel-metadata.json`: public metadata draft; never pushed by the builder.
 - `discussion_draft.md`: publication-ready educational Discussion body.

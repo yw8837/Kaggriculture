@@ -104,7 +104,7 @@
     },
     "observed_action_receipt": {
       "path": "research/campaign_3000/11_saverun_results/remote_receipts.json",
-      "sha256": "6649794E4BDFA1C9A18A465A9106C211472EC8A4B5C6B865E2A89EDB2CF659AC",
+      "sha256": "B5D361741F193CB1AA72194090B9AFB3C6825278541E02C82874300EE2922871",
       "state": "PRIVATE_SAVERUNS_COMPLETE_VERIFIED",
       "classification": "TWO_PRIVATE_SAVERUNS_COMPLETE_VERIFIED"
     }
@@ -262,9 +262,9 @@
     "public_release_pytest": "10 passed",
     "ruff": "All checks passed!",
     "claim_boundary": "Pinned command-output claims from their stated freeze or focused lane; remote CI count remains zero and these strings are not a self-authenticating attestation.",
-    "saverun_receipt_pytest": "3 passed",
+    "saverun_receipt_pytest": "4 passed",
     "audit_handoff_verifier": "PASS_DRAFT_HANDOFF",
-    "postrun_publication_pytest": "492 passed"
+    "postrun_publication_pytest": "493 passed"
   },
   "candidate_decisions": [
     {
@@ -659,7 +659,8 @@
       "research/campaign_3000/08_public_release/release_manifest.json",
       "research/campaign_3000/10_results/kag_01_development/evidence_manifest.json",
       "research/campaign_3000/10_results/kag_02_development/evidence_manifest.json",
-      "research/campaign_3000/11_saverun_results/remote_receipts.json"
+      "research/campaign_3000/11_saverun_results/remote_receipts.json",
+      "research/campaign_3000/11_saverun_results/auditor_deliveries.json"
     ]
   },
   "evidence_files": [
@@ -936,25 +937,25 @@
     {
       "path": "research/campaign_3000/08_public_release/SHA256SUMS",
       "bytes": 1795,
-      "sha256": "540074A76A72A9DA97D70D8EB73BD9218B9E50D7C69547BB5349DB302FEF89A8",
+      "sha256": "D78D451382D9E6361C508805691B00B7070114572E4D7AD324C1E140D5A75B1E",
       "declared_by": "direct rehash of public-release checksum anchor"
     },
     {
       "path": "research/campaign_3000/08_public_release/release_manifest.json",
-      "bytes": 7631,
-      "sha256": "582357B41C64D5D03960FB9AC01FADA1C2444AA8B23EAAD71971AF480E955078",
+      "bytes": 8120,
+      "sha256": "855A4E297305AA2B3F6BB6B816DA7F1140AEEEB15903C80197576A52054EBA72",
       "declared_by": "research/campaign_3000/08_public_release/SHA256SUMS"
     },
     {
       "path": "research/campaign_3000/08_public_release/external_action_payload.json",
-      "bytes": 3721,
-      "sha256": "18951EA710C788E050EA29600B2A97AD27ADEBBD0F4B4D1FC19152FD7837099D",
+      "bytes": 3815,
+      "sha256": "CA4ECDBB22ED0CB2DAE183A24DFDCF8D6362C3EE7DFCC8AB61CFE93E26F33D14",
       "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
     },
     {
       "path": "research/campaign_3000/08_public_release/artifact/kaggriculture_fixed_trace_safety_baseline.tar.gz",
-      "bytes": 11972,
-      "sha256": "2730084026B6C0EA68D1D54FF469E1B80D9ABF9BEF43285B15366CF13CF8ACCB",
+      "bytes": 16832,
+      "sha256": "5DBD64463878A52ED7C47C8D60BCA3AE9FAC7E29B775E7FADB08F0CC7670A8B6",
       "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
     },
     {
@@ -971,8 +972,8 @@
     },
     {
       "path": "research/campaign_3000/08_public_release/kaggle_code_draft/kaggriculture-fixed-trace-safety-baseline.ipynb",
-      "bytes": 317377,
-      "sha256": "F24F4939C8EC591D5794C650923E583658F0BE05E47FA7A6F049D53664F74153",
+      "bytes": 331584,
+      "sha256": "802C785A6882E14574E6EB612ED9C5BE60412E9B51A14CA13A51ECCB8B7EC641",
       "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
     },
     {
@@ -989,15 +990,21 @@
     },
     {
       "path": "research/campaign_3000/11_saverun_results/remote_receipts.json",
-      "bytes": 5119,
-      "sha256": "6649794E4BDFA1C9A18A465A9106C211472EC8A4B5C6B865E2A89EDB2CF659AC",
+      "bytes": 7154,
+      "sha256": "B5D361741F193CB1AA72194090B9AFB3C6825278541E02C82874300EE2922871",
       "declared_by": "direct rehash of postrun remote receipt"
     },
     {
       "path": "research/campaign_3000/11_saverun_results/README.md",
-      "bytes": 1078,
-      "sha256": "B788B33BBDB117E0B5EFA994BA79602AC76713B57B85BB7F6CEDB178D3B7D55A",
+      "bytes": 1987,
+      "sha256": "11F2DDEC95039359559007072AE9A6BD63B38209D4B52AFD75C6DCDE061FBB76",
       "declared_by": "direct rehash of postrun receipt documentation"
+    },
+    {
+      "path": "research/campaign_3000/11_saverun_results/auditor_deliveries.json",
+      "bytes": 8909,
+      "sha256": "E6DBF2F0656FF71FE63CDF050635896367D2C844F554A8EE4A37DCC6DFBED972",
+      "declared_by": "direct rehash of separate auditor final-message text receipts"
     }
   ],
   "pending_bindings": [

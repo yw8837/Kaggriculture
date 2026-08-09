@@ -51,6 +51,9 @@ def refresh() -> dict[str, Any]:
     saverun_receipt_path = (
         "research/campaign_3000/11_saverun_results/remote_receipts.json"
     )
+    auditor_delivery_path = (
+        "research/campaign_3000/11_saverun_results/auditor_deliveries.json"
+    )
     saverun_readme_path = "research/campaign_3000/11_saverun_results/README.md"
 
     lifecycle = load(lifecycle_path)
@@ -101,12 +104,12 @@ def refresh() -> dict[str, Any]:
     qa.update(
         {
             "project_pytest": "489 passed at final private-package freeze",
-            "postrun_publication_pytest": "492 passed",
+            "postrun_publication_pytest": "493 passed",
             "official_environment_pytest": "81 passed",
             "candidate_focused_pytest": "91 passed before post-run close",
             "release_pytest": "38 passed",
             "public_release_pytest": "10 passed",
-            "saverun_receipt_pytest": "3 passed",
+            "saverun_receipt_pytest": "4 passed",
             "audit_handoff_verifier": "PASS_DRAFT_HANDOFF",
             "ruff": "All checks passed!",
             "claim_boundary": (
@@ -263,7 +266,12 @@ def refresh() -> dict[str, Any]:
     ]
 
     anchors = handoff["source_manifest_contract"]["manifest_anchors"]
-    for path in (k1_evidence_path, k2_evidence_path, saverun_receipt_path):
+    for path in (
+        k1_evidence_path,
+        k2_evidence_path,
+        saverun_receipt_path,
+        auditor_delivery_path,
+    ):
         if path not in anchors:
             anchors.append(path)
 
@@ -286,19 +294,34 @@ def refresh() -> dict[str, Any]:
         saverun_receipt_path: record(
             saverun_receipt_path, "direct rehash of postrun remote receipt"
         ),
+        auditor_delivery_path: record(
+            auditor_delivery_path,
+            "direct rehash of separate auditor final-message text receipts",
+        ),
         saverun_readme_path: record(
             saverun_readme_path, "direct rehash of postrun receipt documentation"
         ),
     }
     old_entries = handoff["evidence_files"]
-    handoff["evidence_files"] = [
-        replacements.get(entry["path"], entry) for entry in old_entries
-    ]
+    handoff["evidence_files"] = []
+    for entry in old_entries:
+        path = entry["path"]
+        if path in replacements:
+            refreshed = replacements[path]
+        elif path.startswith("research/campaign_3000/08_public_release/"):
+            refreshed = record(path, entry["declared_by"])
+        else:
+            refreshed = entry
+        handoff["evidence_files"].append(refreshed)
     existing = {entry["path"] for entry in handoff["evidence_files"]}
     additions = [
         record(k1_evidence_path, "direct rehash of tracked development evidence manifest"),
         record(k2_evidence_path, "direct rehash of tracked development evidence manifest"),
         record(saverun_receipt_path, "direct rehash of postrun remote receipt"),
+        record(
+            auditor_delivery_path,
+            "direct rehash of separate auditor final-message text receipts",
+        ),
         record(saverun_readme_path, "direct rehash of postrun receipt documentation"),
     ]
     handoff["evidence_files"].extend(

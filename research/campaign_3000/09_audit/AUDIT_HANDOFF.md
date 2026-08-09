@@ -162,7 +162,9 @@ Observed external actions: **2**, both private SaveRuns. Kag_01 and Kag_02 versi
 internet-disabled, and their remote archives equal the approved local bytes. Kag_02 remains
 exploratory/non-promotion. The read-only competition-submission snapshot remained exactly 22, so
 neither SaveRun created a competition submission. No publication or browser-control action was
-observed.
+observed. The separate auditor task's release, postrun, and publication-HOLD final messages are
+preserved with exact thread/host/turn/item identity and canonical UTF-8 text hashes in
+`11_saverun_results/auditor_deliveries.json`; the latest publication verdict remains `HOLD`.
 
 If later authorized and freshly audited, the fixed public action order is:
 
@@ -176,10 +178,10 @@ treated as competition-submission authority.
 
 ## Current QA claims
 
-Pinned command-output claims are 489 project tests at the final private-package freeze, 492
+Pinned command-output claims are 489 project tests at the final private-package freeze, 493
 project tests after the SaveRun/publication evidence update, 81 official-environment tests,
 91 candidate-freeze tests before post-run close, 38 private-release
-tests, 10 public-release tests, and 3 focused SaveRun-receipt tests, with scoped Ruff passing.
+tests, 10 public-release tests, and 4 focused SaveRun-receipt tests, with scoped Ruff passing.
 These strings are not a self-authenticating CI attestation; remote CI check count remains zero.
 
 ## Hash anchors
@@ -198,15 +200,16 @@ These strings are not a self-authenticating CI attestation; remote CI check coun
 | `07_release/evidence/raw/RECEIPT.json` | `B3F54DDD8C888665C8755B806F10094F999C63E3409130587FD94C2982759772` |
 | `07_release/local_build/release_manifest.json` | `F99D31D750E1D4EAF26127308C720A6BD042E32CA3F05AFC16CDB6182925F224` |
 | `07_release/verification/VERIFICATION.md` | `577F47A9E4C9276D2579C49F2FC3F934A82B2C08DBA620D91E33CCA2F332A39D` |
-| `08_public_release/SHA256SUMS` | `540074A76A72A9DA97D70D8EB73BD9218B9E50D7C69547BB5349DB302FEF89A8` |
-| `08_public_release/release_manifest.json` | `582357B41C64D5D03960FB9AC01FADA1C2444AA8B23EAAD71971AF480E955078` |
-| `08_public_release/artifact/kaggriculture_fixed_trace_safety_baseline.tar.gz` | `2730084026B6C0EA68D1D54FF469E1B80D9ABF9BEF43285B15366CF13CF8ACCB` |
+| `08_public_release/SHA256SUMS` | `D78D451382D9E6361C508805691B00B7070114572E4D7AD324C1E140D5A75B1E` |
+| `08_public_release/release_manifest.json` | `855A4E297305AA2B3F6BB6B816DA7F1140AEEEB15903C80197576A52054EBA72` |
+| `08_public_release/artifact/kaggriculture_fixed_trace_safety_baseline.tar.gz` | `5DBD64463878A52ED7C47C8D60BCA3AE9FAC7E29B775E7FADB08F0CC7670A8B6` |
 | `10_results/kag_01_development/evidence_manifest.json` | `712DEBADB1BAE4247687B788A1986AB2B90DF32A52F390AB2BBD5213A5A2B09A` |
 | `10_results/kag_02_development/evidence_manifest.json` | `F9E9C7629B6EA95D989712D1F8ED685835DC8120D31292FD51B33E414F82FD7D` |
-| `11_saverun_results/remote_receipts.json` | `6649794E4BDFA1C9A18A465A9106C211472EC8A4B5C6B865E2A89EDB2CF659AC` |
+| `11_saverun_results/auditor_deliveries.json` | `E6DBF2F0656FF71FE63CDF050635896367D2C844F554A8EE4A37DCC6DFBED972` |
+| `11_saverun_results/remote_receipts.json` | `B5D361741F193CB1AA72194090B9AFB3C6825278541E02C82874300EE2922871` |
 | `06_candidates/execution_binding.json` | `PENDING_FREEZE` |
 
-The machine handoff records 56 exact evidence files with byte counts and SHA-256 values. The
+The machine handoff records 57 exact evidence files with byte counts and SHA-256 values. The
 verifier rehashes each file and also checks child hashes against the 01/02/03/05/06 source
 manifests or sidecars and the 08 checksum list where available.
 

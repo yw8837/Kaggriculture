@@ -304,7 +304,7 @@ def verify_current_qa_claims(handoff: dict[str, Any]) -> None:
         qa["project_pytest"] == "489 passed at final private-package freeze",
         "project QA claim drift",
     )
-    require(qa["postrun_publication_pytest"] == "492 passed", "postrun QA claim drift")
+    require(qa["postrun_publication_pytest"] == "493 passed", "postrun QA claim drift")
     require(qa["official_environment_pytest"] == "81 passed", "official QA claim drift")
     require(
         qa["candidate_focused_pytest"] == "91 passed before post-run close",
@@ -312,7 +312,7 @@ def verify_current_qa_claims(handoff: dict[str, Any]) -> None:
     )
     require(qa["release_pytest"] == "38 passed", "release QA claim drift")
     require(qa["public_release_pytest"] == "10 passed", "public QA claim drift")
-    require(qa["saverun_receipt_pytest"] == "3 passed", "SaveRun QA claim drift")
+    require(qa["saverun_receipt_pytest"] == "4 passed", "SaveRun QA claim drift")
     require(
         qa["audit_handoff_verifier"] == "PASS_DRAFT_HANDOFF",
         "handoff verifier claim drift",
@@ -321,8 +321,8 @@ def verify_current_qa_claims(handoff: dict[str, Any]) -> None:
     require("not a self-authenticating attestation" in qa["claim_boundary"],
             "QA claim boundary weakened")
     print(
-        "PASS declared QA claims=489 package freeze, 492 postrun/publication, "
-        "38 release, 10 public, 3 SaveRun"
+        "PASS declared QA claims=489 package freeze, 493 postrun/publication, "
+        "38 release, 10 public, 4 SaveRun"
     )
 
 
@@ -742,21 +742,108 @@ def verify_authority(handoff: dict[str, Any]) -> None:
 
     require(saveruns["state"] == "PRIVATE_SAVERUNS_COMPLETE_VERIFIED",
             "SaveRun receipt state drift")
-    require(saveruns["independent_auditor_release"] == {
-        "task_id": "019fb8b8-7758-7860-9304-39eb4f06c65c",
-        "verdict": "PASS",
+    task_id = "019fb8b8-7758-7860-9304-39eb4f06c65c"
+    delivery_binding = saveruns["auditor_delivery_receipt"]
+    require(delivery_binding["path"]
+            == "research/campaign_3000/11_saverun_results/auditor_deliveries.json",
+            "auditor-delivery receipt path drift")
+    delivery_path = ROOT / delivery_binding["path"]
+    delivery_bytes = delivery_path.read_bytes()
+    require(delivery_binding["bytes"] == len(delivery_bytes),
+            "auditor-delivery receipt byte-count drift")
+    require(delivery_binding["sha256"]
+            == hashlib.sha256(delivery_bytes).hexdigest().upper(),
+            "auditor-delivery receipt hash drift")
+    delivery_receipt = load_json(delivery_path)
+    require(delivery_receipt["schema_version"] == 1,
+            "auditor-delivery schema drift")
+    require(delivery_receipt["auditor_task"] == {
+        "thread_id": task_id,
+        "host_id": "local",
+        "role": "independent_auditor",
+    }, "auditor task identity drift")
+    require(delivery_receipt["canonical_text_definition"] == (
+        "Exact final agentMessage text Unicode string encoded as UTF-8 without BOM and with no "
+        "appended trailing newline; SHA-256 is uppercase hexadecimal over those bytes."
+    ), "auditor-message canonicalization drift")
+    expected_delivery = {
+        "private_saverun_release": {
+            "turn_id": "019fe3bb-78c0-75f1-960b-85f8f837f913",
+            "item_id": "item-523",
+            "bytes": 3430,
+            "sha256": "4B37240CFF50B20473172709ABB28601200BDF317B94A19E3009361BDD49AF24",
+            "effect": "EXACT_ONE_TIME_PRIVATE_SAVERUN_RELEASE_ONLY",
+        },
+        "private_saverun_postrun": {
+            "turn_id": "019fe3c6-65de-7351-b35a-3fb15ba9d279",
+            "item_id": "item-530",
+            "bytes": 1244,
+            "sha256": "98ACB6BA5084F4377925DB29A86D7AA968E3EDEF6FC876A6D3A4D58104D873A2",
+            "effect": "COMPLETE_VERIFIED_CLOSURE_NO_NEW_EXTERNAL_AUTHORITY",
+        },
+        "publication_review": {
+            "turn_id": "019fe3dd-fd97-7462-bed3-4b781297412e",
+            "item_id": "item-541",
+            "bytes": 2207,
+            "sha256": "9198BD647A0D08D383F0C529ABEE6B61D5B637ABC9BD9EB0FE83C4B78B805A7D",
+            "effect": "DISCUSSION_HOLD_PUBLIC_CODE_HOLD_NO_PUBLICATION_AUTHORITY",
+        },
+    }
+    deliveries = {row["purpose"]: row for row in delivery_receipt["deliveries"]}
+    require(set(deliveries) == set(expected_delivery), "auditor-delivery purpose set drift")
+    for purpose, expected in expected_delivery.items():
+        row = deliveries[purpose]
+        raw = row["raw_message_text"].encode("utf-8")
+        require(not row["raw_message_text"].endswith(("\r", "\n")),
+                f"{purpose} has an appended newline")
+        require(row["phase"] == "final_answer", f"{purpose} phase drift")
+        require(row["turn_id"] == expected["turn_id"], f"{purpose} turn drift")
+        require(row["item_id"] == expected["item_id"], f"{purpose} item drift")
+        require(row["raw_message_utf8_bytes"] == expected["bytes"] == len(raw),
+                f"{purpose} byte-count drift")
+        require(row["raw_message_sha256"] == expected["sha256"]
+                == hashlib.sha256(raw).hexdigest().upper(),
+                f"{purpose} message hash drift")
+        require(row["authorized_effect"] == expected["effect"],
+                f"{purpose} effect drift")
+
+    def delivery_reference(purpose: str) -> dict[str, Any]:
+        row = deliveries[purpose]
+        return {
+            "purpose": purpose,
+            "turn_id": row["turn_id"],
+            "item_id": row["item_id"],
+            "raw_message_utf8_bytes": row["raw_message_utf8_bytes"],
+            "raw_message_sha256": row["raw_message_sha256"],
+        }
+
+    release_verdict = saveruns["independent_auditor_release"]
+    require(release_verdict == {
+        "task_id": task_id,
+        "host_id": "local",
+        "verdict": "RELEASE",
         "scope": "EACH_EXACT_SLOT_PRIVATE_SAVERUN_RELEASE",
-        "slots": {"Kag_01": "PASS", "Kag_02": "PASS"},
+        "delivery": delivery_reference("private_saverun_release"),
+        "slots": {"Kag_01": "RELEASE", "Kag_02": "RELEASE"},
     }, "SaveRun independent-auditor release drift")
-    require(saveruns["independent_auditor_postrun"] == {
-        "task_id": "019fb8b8-7758-7860-9304-39eb4f06c65c",
+    require("one-time PRIVATE Save & Run"
+            in deliveries["private_saverun_release"]["raw_message_text"],
+            "release delivery does not contain its exact scope")
+    postrun_verdict = saveruns["independent_auditor_postrun"]
+    require(postrun_verdict == {
+        "task_id": task_id,
+        "host_id": "local",
         "verdict": "COMPLETE_VERIFIED",
         "scope": "Kag_01 and Kag_02 private Save & Run version 1",
         "method": (
             "live read-only kernel metadata/status plus remote Output API bytes "
             "rehashed in memory"
         ),
+        "delivery": delivery_reference("private_saverun_postrun"),
     }, "SaveRun independent-auditor postrun drift")
+    require("COMPLETE_VERIFIED"
+            in deliveries["private_saverun_postrun"]["raw_message_text"],
+            "postrun delivery does not contain its verdict")
     require(saveruns["additional_external_action_authority"] == "HOLD",
             "SaveRun receipt grants additional authority")
     submission = saveruns["competition_submission"]
@@ -780,6 +867,16 @@ def verify_authority(handoff: dict[str, Any]) -> None:
         require(row["visibility"] == "private" and row["internet"] is False,
                 f"{slot} privacy/internet drift")
         require(row["second_push_authorized"] is False, f"{slot} second push enabled")
+        require("kaggle_last_run_time_utc" not in row,
+                f"{slot} retains unverified Kaggle lastRunTime")
+        require(isinstance(row.get("locally_observed_push_or_complete_time_utc"), str),
+                f"{slot} local observation time missing")
+        time_provenance = row.get("time_observation_provenance")
+        require(time_provenance["raw_kaggle_getkernel_envelope_retained"] is False,
+                f"{slot} falsely claims a retained GetKernel envelope")
+        require("not asserted as a stable live GetKernel lastRunTime"
+                in time_provenance["limitation"],
+                f"{slot} mutable-time limitation missing")
         require(row["archive"]["remote_equals_approved"] is True,
                 f"{slot} remote archive is not approved-exact")
         require(row["archive"]["sha256"] == package["artifact"]["sha256"],
@@ -797,10 +894,16 @@ def verify_authority(handoff: dict[str, Any]) -> None:
     require(slots["Kag_02"]["strict_development_verdict"] == "NO_GO",
             "Kag_02 NO_GO boundary drift")
     require(saveruns["publication"] == {
+        "auditor_verdict": "HOLD",
+        "publication_authorized": False,
         "discussion": "HOLD",
         "public_code": "HOLD",
+        "delivery": delivery_reference("publication_review"),
         "required_order": ["discussion", "public_code"],
     }, "SaveRun receipt publication HOLD/order drift")
+    require(deliveries["publication_review"]["raw_message_text"].startswith(
+        "판정: Discussion `HOLD`, public Code `HOLD`."
+    ), "publication HOLD delivery text drift")
     require(payload["status"] == "DRAFT_ONLY_NOT_EXECUTED", "public payload status drift")
     require(payload["execution_authorized"] is False, "public payload is enabled")
     require(payload["external_calls_performed"] == [], "public payload records external calls")
