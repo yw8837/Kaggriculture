@@ -13,18 +13,98 @@
       "path": "research/campaign_3000/06_candidates/candidate_plan.json",
       "sha256": "F57E076D11A91B2E344056EC74ECCA430F80EF3922D07A9001479B96DDEE5D1C"
     },
-    "development_result": {
-      "required": true,
-      "required_verdict": "PASS",
-      "scope": "EACH_CANDIDATE_EXACT_DEVELOPMENT_PHASE",
-      "status": "PENDING"
+    "development_results": {
+      "lifecycle": {
+        "path": "research/campaign_3000/06_candidates/lifecycle.json",
+        "sha256": "3A535E485F1B14870E03380D3672F3CD899051A45F3EB4B9FB4D5094F7B2785D"
+      },
+      "production_validator_result": {
+        "execution_authority_commit": "ebdd5b58c66a1c816525bb60b403eabbd7b2892d",
+        "execution_commit": "cf04be5ad93f31bc8677e383a2b414e9561841d3",
+        "external_actions": "HOLD",
+        "fresh_games_executed": 256,
+        "lifecycle_sha256": "3A535E485F1B14870E03380D3672F3CD899051A45F3EB4B9FB4D5094F7B2785D",
+        "results": [
+          {
+            "evidence_manifest_sha256": "712DEBADB1BAE4247687B788A1986AB2B90DF32A52F390AB2BBD5213A5A2B09A",
+            "slot": "Kag_01",
+            "stderr_captured": false,
+            "strict_gate_sha256": "58355B4186E184AAD571AB3A189215392ECF184D4A3A784F2E713F8F9D06DF0C",
+            "strict_verdict": "PASS",
+            "valid_games": 128
+          },
+          {
+            "evidence_manifest_sha256": "F9E9C7629B6EA95D989712D1F8ED685835DC8120D31292FD51B33E414F82FD7D",
+            "slot": "Kag_02",
+            "stderr_captured": false,
+            "strict_gate_sha256": "1444D13F28FDB4313495B9A1549C1EC567C3B0E2D6B7B18882123E8D3F6E1812",
+            "strict_verdict": "NO_GO",
+            "valid_games": 128
+          }
+        ],
+        "status": "DEVELOPMENT_CLOSED_VALIDATED"
+      },
+      "slots": {
+        "Kag_01": {
+          "evidence_manifest": {
+            "path": "research/campaign_3000/10_results/kag_01_development/evidence_manifest.json",
+            "sha256": "712DEBADB1BAE4247687B788A1986AB2B90DF32A52F390AB2BBD5213A5A2B09A"
+          },
+          "execution_authority_commit": "ebdd5b58c66a1c816525bb60b403eabbd7b2892d",
+          "execution_commit": "cf04be5ad93f31bc8677e383a2b414e9561841d3",
+          "gate_integrity": "PASS",
+          "observed_strict_verdict": "PASS",
+          "package_readiness": "STRICT_DEVELOPMENT_PASS",
+          "required_strict_verdict": "PASS"
+        },
+        "Kag_02": {
+          "evidence_manifest": {
+            "path": "research/campaign_3000/10_results/kag_02_development/evidence_manifest.json",
+            "sha256": "F9E9C7629B6EA95D989712D1F8ED685835DC8120D31292FD51B33E414F82FD7D"
+          },
+          "execution_authority_commit": "ebdd5b58c66a1c816525bb60b403eabbd7b2892d",
+          "execution_commit": "cf04be5ad93f31bc8677e383a2b414e9561841d3",
+          "gate_integrity": "PASS",
+          "observed_strict_verdict": "NO_GO",
+          "package_readiness": "EXPLORATORY_PACKAGE_GATE_PASS_NON_PROMOTION_AUDITOR_RELEASE_PENDING",
+          "prohibited_claims": [
+            "PROMOTION",
+            "CHAMPION",
+            "CONFIRMATION_EVIDENCE",
+            "ROBUSTNESS_EVIDENCE",
+            "COMPETITION_SUBMISSION_EVIDENCE"
+          ],
+          "required_future_release_label": "EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION",
+          "required_strict_verdict": "NO_GO"
+        }
+      }
     },
     "independent_auditor_exact_private_saverun_release": {
       "auditor_task_id": "019fb8b8-7758-7860-9304-39eb4f06c65c",
       "required": true,
       "required_verdict": "PASS",
-      "scope": "EXACT_PRIVATE_SAVERUN_RELEASE",
-      "status": "PENDING"
+      "scope": "EACH_EXACT_SLOT_PRIVATE_SAVERUN_RELEASE",
+      "slots": {
+        "Kag_01": "PENDING",
+        "Kag_02": "PENDING"
+      }
+    },
+    "release_tooling": {
+      "builder": {
+        "bytes": 69228,
+        "path": "research/campaign_3000/07_release/build_release.py",
+        "sha256": "DB684D877B14B2D60568FA0977E83C3732F262C832D048E71AFC992E8F3CABF7"
+      },
+      "postrun_validator": {
+        "bytes": 109441,
+        "path": "research/campaign_3000/06_candidates/orchestrator.py",
+        "sha256": "DF113FC40956811B186568B8A7BEC4680BA9CE716752AAC144BB26FCAFED9738"
+      },
+      "tests": {
+        "bytes": 38116,
+        "path": "tests/test_campaign_3000_release_package.py",
+        "sha256": "25AAF8F37B6751C44B6DF3A97E1D46D506D6D4654E6CE6453C34104DBC77AA78"
+      }
     }
   },
   "candidates": [
@@ -53,9 +133,10 @@
         "path": "Kag_01 - Tetsu v16 Exact/Kag_01 - Tetsu v16 Exact.ipynb",
         "sha256": "0C8D17DA3266804597EA753A401FDEAE8AAF4E04CDE305C2E7F9C6FF61CDF895"
       },
+      "package_readiness": "STRICT_DEVELOPMENT_PASS",
       "prepush": {
         "path": "Kag_01 - Tetsu v16 Exact/prepush.json",
-        "sha256": "BFF4273DD74F91DE810AA246863E09FFD37EB184892B262F246B17B3980FDE73"
+        "sha256": "15A034D50B9BBC417F91F185C61719100DB3F8D7D94672A9198032B78636B9DC"
       },
       "sequence": "Kag_01",
       "source_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
@@ -86,9 +167,10 @@
         "path": "Kag_02 - Kaito v22 Price Impact/Kag_02 - Kaito v22 Price Impact.ipynb",
         "sha256": "01003AADA83D0688DB40A01B19D4886871EE0A2317A5F8F897E82FB78130A431"
       },
+      "package_readiness": "EXPLORATORY_PACKAGE_GATE_PASS_NON_PROMOTION_AUDITOR_RELEASE_PENDING",
       "prepush": {
         "path": "Kag_02 - Kaito v22 Price Impact/prepush.json",
-        "sha256": "5E567845C871230C717983F907A06DE7B9D976FF4B9249F97D070C8570DD09B3"
+        "sha256": "86461AEB7709E3569D55A275E80E8B1969BBAB4B7D8F25BBD31B5E933AC050F9"
       },
       "sequence": "Kag_02",
       "source_sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
@@ -103,9 +185,7 @@
   },
   "external_action_gate": {
     "blocking_prerequisites": [
-      "development_result",
-      "independent_auditor_exact_private_saverun_release",
-      "final_git_freeze"
+      "independent_auditor_exact_private_saverun_release"
     ],
     "status": "HOLD"
   },
@@ -143,19 +223,212 @@
     "verdict": "CONDITIONAL_PASS_PRIVATE_SAVERUN_ONLY"
   },
   "worktree_binding": {
-    "binding": "WORKTREE_PINNED",
+    "binding": "FINAL_GIT_FREEZE_PINNED",
     "builder": {
       "path": "research/campaign_3000/07_release/build_release.py",
-      "sha256": "13FFCD70149E84774E8033C8496BC86F4502C091DE7A4FF11E1DA789067AB867"
+      "sha256": "DB684D877B14B2D60568FA0977E83C3732F262C832D048E71AFC992E8F3CABF7"
     },
     "git_head": {
-      "claim": "NO_COMMIT_CONTAINMENT_CLAIM_LOCAL_BUILD_ONLY",
-      "commit": "PENDING_FINAL_GIT_FREEZE"
+      "claim": "ALL_TRACKED_RELEASE_INPUTS_BYTE_EXACT_AT_COMMIT",
+      "commit": "b13eeb2f3b92fe51393fbce37ef21112b26af686"
     },
+    "inputs": [
+      {
+        "bytes": 6950,
+        "path": "research/campaign_3000/06_candidates/candidate_plan.json",
+        "sha256": "F57E076D11A91B2E344056EC74ECCA430F80EF3922D07A9001479B96DDEE5D1C"
+      },
+      {
+        "bytes": 5855,
+        "path": "research/campaign_3000/06_candidates/gate_config.json",
+        "sha256": "9D88AA8DEE2021F458896D681FB0958B6F26772F03ABB4507EC888C80970307D"
+      },
+      {
+        "bytes": 1696,
+        "path": "research/campaign_3000/06_candidates/lifecycle.json",
+        "sha256": "3A535E485F1B14870E03380D3672F3CD899051A45F3EB4B9FB4D5094F7B2785D"
+      },
+      {
+        "bytes": 4509,
+        "path": "research/campaign_3000/06_candidates/manifest.json",
+        "sha256": "1A2765982DB4FD3EC648BD9A68CC4F331761BF100E63950E02F57463BCCBCA9C"
+      },
+      {
+        "bytes": 109441,
+        "path": "research/campaign_3000/06_candidates/orchestrator.py",
+        "sha256": "DF113FC40956811B186568B8A7BEC4680BA9CE716752AAC144BB26FCAFED9738"
+      },
+      {
+        "bytes": 26545,
+        "path": "research/campaign_3000/06_candidates/snapshots/ray_c45_exact.py",
+        "sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73"
+      },
+      {
+        "bytes": 2814,
+        "path": "research/campaign_3000/07_release/ATTRIBUTION_KAITO.md",
+        "sha256": "A13EDD083A33082DD781B7A1EDD75306C868C743E12082CF4623F5B4BF970BD9"
+      },
+      {
+        "bytes": 2672,
+        "path": "research/campaign_3000/07_release/ATTRIBUTION_TETSU.md",
+        "sha256": "3685283A43DF0B5352041EA24BC1E531CE706D0F722C22BB1D07DC71F362101F"
+      },
+      {
+        "bytes": 11558,
+        "path": "research/campaign_3000/07_release/LICENSE",
+        "sha256": "1EB85FC97224598DAD1852B5D6483BBCF0AA8608790DCC657A5A2A761AE9C8C6"
+      },
+      {
+        "bytes": 5413,
+        "path": "research/campaign_3000/07_release/TETSU_IP_VERDICT.md",
+        "sha256": "DA8764985D0EFCFC63867DB673E242D82B9D72CFE7495BFCB932A2DD6F0DF721"
+      },
+      {
+        "bytes": 69228,
+        "path": "research/campaign_3000/07_release/build_release.py",
+        "sha256": "DB684D877B14B2D60568FA0977E83C3732F262C832D048E71AFC992E8F3CABF7"
+      },
+      {
+        "bytes": 5486,
+        "path": "research/campaign_3000/07_release/evidence/official_capture_receipts.json",
+        "sha256": "83C1E27A39B9B7582022CC5AB7F5F337BCF5F06CCD770538AD6513F861A19558"
+      },
+      {
+        "bytes": 4038,
+        "path": "research/campaign_3000/07_release/evidence/raw/RECEIPT.json",
+        "sha256": "B3F54DDD8C888665C8755B806F10094F999C63E3409130587FD94C2982759772"
+      },
+      {
+        "bytes": 4673,
+        "path": "research/campaign_3000/07_release/evidence/raw/kaitofukami_44-46-strict-future-top-30-v22-price-impact_page_20260808T2036Z.md",
+        "sha256": "215183C1DF46AA58D6A4F2BD76644E1E16488DD7A513679493E2F282B36125C1"
+      },
+      {
+        "bytes": 33211,
+        "path": "research/campaign_3000/07_release/evidence/raw/kaitofukami_44-46-strict-future-top-30-v22-price-impact_v2.ipynb",
+        "sha256": "BE57F757AAAAFA37A1AAB1EB5FE827925144EC7F3825A6236053329C15F2E859"
+      },
+      {
+        "bytes": 35262,
+        "path": "research/campaign_3000/07_release/evidence/raw/kaitofukami_44-46-strict-future-top-30-v22-price-impact_v2_getkernel.json",
+        "sha256": "8C782EE8D07629523F0675341AE876FBE5680CD145ED3315E0CCFEE23E5391CC"
+      },
+      {
+        "bytes": 2921,
+        "path": "research/campaign_3000/07_release/evidence/raw/tetsutani_adaptive-farming-strategy-for-kaggriculture_page_20260808T2036Z.md",
+        "sha256": "7247E047A8CE43BE59DAB9886DED9A5B8832E3D14F69925A1894A3B5EEC5B19B"
+      },
+      {
+        "bytes": 158263,
+        "path": "research/campaign_3000/07_release/evidence/raw/tetsutani_adaptive-farming-strategy-for-kaggriculture_v16.ipynb",
+        "sha256": "81DA966E92F9889836E22142FD7A60CEBEAEE81CB3C52661AA286AC8C727BAF9"
+      },
+      {
+        "bytes": 170731,
+        "path": "research/campaign_3000/07_release/evidence/raw/tetsutani_adaptive-farming-strategy-for-kaggriculture_v16_getkernel.json",
+        "sha256": "70ADF63DCDEB41504A63C6056258CA77C9D09F86FB8101A2EE00A82C1D4434FB"
+      },
+      {
+        "bytes": 7371,
+        "path": "research/campaign_3000/07_release/release_spec.json",
+        "sha256": "662937F95BF52BB3E765C14F14A36681FC82AE1D7A49EBF58280550B7C0DCC2D"
+      },
+      {
+        "bytes": 940,
+        "path": "research/campaign_3000/07_release/source/SNAPSHOT_RECEIPT.json",
+        "sha256": "A07E93F0FB1BD93BD2F248924D9DFD6F7F2DB5F908776E732743E7B72EB8981C"
+      },
+      {
+        "bytes": 18609,
+        "path": "research/campaign_3000/07_release/source/kaito_v22_main.py",
+        "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A"
+      },
+      {
+        "bytes": 27244,
+        "path": "research/campaign_3000/07_release/source/tetsu_v16_main.py",
+        "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+      },
+      {
+        "bytes": 8659,
+        "path": "research/campaign_3000/10_results/kag_01_development/authorized_run.json",
+        "sha256": "78D1E712DE4280A8B29AFCC3CF3A3B29B83B174A73343EEA82816DBE64A07002"
+      },
+      {
+        "bytes": 2400,
+        "path": "research/campaign_3000/10_results/kag_01_development/evidence_manifest.json",
+        "sha256": "712DEBADB1BAE4247687B788A1986AB2B90DF32A52F390AB2BBD5213A5A2B09A"
+      },
+      {
+        "bytes": 1424,
+        "path": "research/campaign_3000/10_results/kag_01_development/gate.json",
+        "sha256": "58355B4186E184AAD571AB3A189215392ECF184D4A3A784F2E713F8F9D06DF0C"
+      },
+      {
+        "bytes": 7672,
+        "path": "research/campaign_3000/10_results/kag_01_development/outer.completed.json",
+        "sha256": "930CE24448B577D4AB357091E54538E50AA391F968BE41545CAA5DAA6067ED30"
+      },
+      {
+        "bytes": 8072,
+        "path": "research/campaign_3000/10_results/kag_01_development/outer.started.json",
+        "sha256": "2AD7FA393ADF834797353C0261BB69F9EFCD1F5FFFAFAD578554412BE1D53285"
+      },
+      {
+        "bytes": 282533,
+        "path": "research/campaign_3000/10_results/kag_01_development/raw_report.json",
+        "sha256": "16021BBAD2107C42FDBD56CD9E7E2D7DFCCAFA67BA8AFBC30B43682F3AA826EF"
+      },
+      {
+        "bytes": 2313,
+        "path": "research/campaign_3000/10_results/kag_01_development/raw_report.started.json",
+        "sha256": "B47470D77D567E504F1647B8F8A01580E1A3C1CF64A6AC3E842E9281007C83B2"
+      },
+      {
+        "bytes": 8659,
+        "path": "research/campaign_3000/10_results/kag_02_development/authorized_run.json",
+        "sha256": "7C5CE150071F693EEAA00185EA54627C6511AF6EAA7F4987A273FB7AE7EBAE7D"
+      },
+      {
+        "bytes": 2400,
+        "path": "research/campaign_3000/10_results/kag_02_development/evidence_manifest.json",
+        "sha256": "F9E9C7629B6EA95D989712D1F8ED685835DC8120D31292FD51B33E414F82FD7D"
+      },
+      {
+        "bytes": 1415,
+        "path": "research/campaign_3000/10_results/kag_02_development/gate.json",
+        "sha256": "1444D13F28FDB4313495B9A1549C1EC567C3B0E2D6B7B18882123E8D3F6E1812"
+      },
+      {
+        "bytes": 7672,
+        "path": "research/campaign_3000/10_results/kag_02_development/outer.completed.json",
+        "sha256": "44E7DFD12B2772F37756C33CB37C048094FEF30D1702579D0BF28AA9AE393FA0"
+      },
+      {
+        "bytes": 8072,
+        "path": "research/campaign_3000/10_results/kag_02_development/outer.started.json",
+        "sha256": "1B8F8EA5B62A19DE7F40DA7CD5C1641E171883BE774509D9AD216A0FB4BCDF1D"
+      },
+      {
+        "bytes": 283504,
+        "path": "research/campaign_3000/10_results/kag_02_development/raw_report.json",
+        "sha256": "6993C43A328A25C4117A3192E0D19E257F8AA0EC6936E84A0DD7EDCB30083887"
+      },
+      {
+        "bytes": 2313,
+        "path": "research/campaign_3000/10_results/kag_02_development/raw_report.started.json",
+        "sha256": "5C410CFF902A596F54A0A3B10856BD25EB80E3A85E14486D33E62955C043D7E1"
+      },
+      {
+        "bytes": 38116,
+        "path": "tests/test_campaign_3000_release_package.py",
+        "sha256": "25AAF8F37B6751C44B6DF3A97E1D46D506D6D4654E6CE6453C34104DBC77AA78"
+      }
+    ],
     "spec": {
       "path": "research/campaign_3000/07_release/release_spec.json",
-      "sha256": "516CB6A5FFC73467062708EA0E7228B406FA7EE58F21D953E91C772F49F3EBBB"
+      "sha256": "662937F95BF52BB3E765C14F14A36681FC82AE1D7A49EBF58280550B7C0DCC2D"
     },
-    "status": "PENDING_FINAL_GIT_FREEZE"
+    "status": "PASS_FINAL_GIT_FREEZE",
+    "tracked_status": "CLEAN"
   }
 }

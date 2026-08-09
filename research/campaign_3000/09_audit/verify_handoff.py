@@ -113,7 +113,11 @@ def verify_declared_children(index: dict[str, dict[str, Any]]) -> None:
             )
 
     declared_total = 0
-    for declared in (declared_01, declared_02, declared_03, declared_06):
+    # The 06 manifest is the immutable preregistration/execution input anchor. Post-run
+    # lifecycle documentation intentionally changed outside that input manifest, so only
+    # handoff-listed immutable 06 children are compared above. The acquisition manifests
+    # remain current inventories and can still be checked exhaustively here.
+    for declared in (declared_01, declared_02, declared_03):
         for relative, entry in declared.items():
             path = ROOT / relative
             require(path.is_file(), f"source manifest points to missing file: {relative}")
@@ -149,6 +153,20 @@ def verify_declared_children(index: dict[str, dict[str, Any]]) -> None:
         "sha256": addendum_summary["sha256"],
     }, "05 addendum summary does not match its manifest")
 
+    development_children = 0
+    for slot in ("kag_01_development", "kag_02_development"):
+        manifest_relative = f"research/campaign_3000/10_results/{slot}/evidence_manifest.json"
+        require(manifest_relative in index, f"missing tracked development manifest: {slot}")
+        development_manifest = load_json(ROOT / manifest_relative)
+        for entry in development_manifest["files"]:
+            path = ROOT / entry["path"]
+            require(path.is_file(), f"missing development evidence: {entry['path']}")
+            require(path.stat().st_size == entry["bytes"],
+                    f"development evidence byte drift: {entry['path']}")
+            require(sha256(path) == entry["sha256"].upper(),
+                    f"development evidence hash drift: {entry['path']}")
+            development_children += 1
+
     sums_path = ROOT / "research/campaign_3000/08_public_release/SHA256SUMS"
     sums = {}
     for line in sums_path.read_text(encoding="utf-8").splitlines():
@@ -170,7 +188,10 @@ def verify_declared_children(index: dict[str, dict[str, Any]]) -> None:
         full = f"research/campaign_3000/08_public_release/{relative}"
         require(sums[relative] == index[full]["sha256"], f"08 SHA256SUMS drift: {relative}")
 
-    print("PASS source manifests, sidecars, and SHA256SUMS agree with handoff")
+    print(
+        "PASS source manifests, development children="
+        f"{development_children}, sidecars, and SHA256SUMS agree with handoff"
+    )
 
 
 def population_by_id(handoff: dict[str, Any], population_id: str) -> dict[str, Any]:
@@ -279,15 +300,30 @@ def verify_populations(handoff: dict[str, Any]) -> None:
 
 def verify_current_qa_claims(handoff: dict[str, Any]) -> None:
     qa = handoff["current_qa_claims"]
-    require(qa["project_pytest"] == "423 passed", "project QA claim drift")
+    require(
+        qa["project_pytest"] == "489 passed at final private-package freeze",
+        "project QA claim drift",
+    )
+    require(qa["postrun_publication_pytest"] == "492 passed", "postrun QA claim drift")
     require(qa["official_environment_pytest"] == "81 passed", "official QA claim drift")
-    require(qa["candidate_focused_pytest"] == "91 passed", "candidate QA claim drift")
-    require(qa["release_pytest"] == "28 passed", "release QA claim drift")
+    require(
+        qa["candidate_focused_pytest"] == "91 passed before post-run close",
+        "candidate QA claim drift",
+    )
+    require(qa["release_pytest"] == "38 passed", "release QA claim drift")
     require(qa["public_release_pytest"] == "10 passed", "public QA claim drift")
+    require(qa["saverun_receipt_pytest"] == "3 passed", "SaveRun QA claim drift")
+    require(
+        qa["audit_handoff_verifier"] == "PASS_DRAFT_HANDOFF",
+        "handoff verifier claim drift",
+    )
     require(qa["ruff"] == "All checks passed!", "Ruff QA claim drift")
     require("not a self-authenticating attestation" in qa["claim_boundary"],
             "QA claim boundary weakened")
-    print("PASS declared QA claims=423 project, 81 official, 91 candidate, 28 release, 10 public")
+    print(
+        "PASS declared QA claims=489 package freeze, 492 postrun/publication, "
+        "38 release, 10 public, 3 SaveRun"
+    )
 
 
 def verify_tools_and_skills(handoff: dict[str, Any]) -> None:
@@ -339,70 +375,43 @@ def verify_candidates_and_seeds(handoff: dict[str, Any]) -> None:
     selection = load_json(candidate_dir / "selection_evidence.json")
     scan = load_json(candidate_dir / "seed_collision_scan.json")
     lifecycle = load_json(candidate_dir / "lifecycle.json")
-    require(plan["status"] == "CLOSED", "candidate plan is not CLOSED")
+    require(plan["status"] == "CLOSED", "preregistered candidate plan is not CLOSED")
     require(plan["authority"]["fresh_seed_execution"] == "FORBIDDEN",
-            "candidate plan permits fresh seed execution")
+            "preregistered plan permits unapproved fresh seed execution")
     require(plan["authority"]["kaggle_save_run_in_this_freeze"] == "FORBIDDEN",
-            "candidate plan permits Save & Run")
+            "preregistered plan permits SaveRun without a later release")
     require(plan["authority"]["competition_submission"] == "FORBIDDEN",
             "candidate plan permits competition submission")
     require(plan["authority"]["publication"] == "FORBIDDEN",
             "candidate plan permits publication")
-    require(lifecycle["state"] == "CLOSED", "candidate lifecycle is not CLOSED")
-    require(lifecycle["execution_commit"] == "PENDING", "lifecycle execution commit is open")
-    require(lifecycle["fresh_games_executed"] == 0, "lifecycle reports fresh games")
-    require(lifecycle["external_actions"] == "HOLD", "lifecycle permits external actions")
+
+    require(lifecycle["schema_version"] == 2, "post-run lifecycle schema drift")
+    require(lifecycle["state"] == "DEVELOPMENT_CLOSED", "development is not closed")
+    require(lifecycle["fresh_games_executed"] == 256, "fresh-game total is not 256")
+    require(lifecycle["external_actions"] == "HOLD", "additional external actions not HOLD")
     require(
-        lifecycle["authority_receipt"]["sha256"] == "PENDING",
-        "lifecycle unexpectedly has an authority receipt",
+        lifecycle["execution_authority_commit"]
+        == "ebdd5b58c66a1c816525bb60b403eabbd7b2892d",
+        "execution-authority commit drift",
     )
     require(
-        lifecycle["auditor_open_delivery"]["sha256"] == "PENDING",
-        "lifecycle unexpectedly has an auditor OPEN delivery",
+        lifecycle["execution_commit"] == "cf04be5ad93f31bc8677e383a2b414e9561841d3",
+        "execution commit drift",
     )
-    for slot in ("Kag_01", "Kag_02"):
-        phases = lifecycle["phases"][slot]
-        require(phases == {
-            "development": "CLOSED",
-            "confirmation": "HOLD",
-            "robustness": "HOLD",
-        }, f"lifecycle phase drift: {slot}")
     recorded_lifecycle = handoff["seed_freeze"]["lifecycle"]
     require(recorded_lifecycle["sha256"] == sha256(candidate_dir / "lifecycle.json"),
             "handoff lifecycle SHA-256 drift")
     require(recorded_lifecycle["state"] == lifecycle["state"], "handoff lifecycle state drift")
-    require(recorded_lifecycle["execution_commit"] == lifecycle["execution_commit"],
-            "handoff lifecycle execution-commit drift")
-    require(recorded_lifecycle["authority_receipt_sha256"]
-            == lifecycle["authority_receipt"]["sha256"],
-            "handoff lifecycle receipt drift")
-    require(recorded_lifecycle["authority_receipt_path"]
-            == lifecycle["authority_receipt"]["path"],
-            "handoff lifecycle receipt path drift")
-    require(recorded_lifecycle["auditor_open_delivery_sha256"]
-            == lifecycle["auditor_open_delivery"]["sha256"],
-            "handoff lifecycle OPEN-delivery drift")
-    require(recorded_lifecycle["auditor_open_delivery_path"]
-            == lifecycle["auditor_open_delivery"]["path"],
-            "handoff lifecycle OPEN-delivery path drift")
-    for key in (
-        "authority_receipt",
-        "auditor_open_delivery",
-        "post_o_review_delivery",
-    ):
-        require(recorded_lifecycle[f"{key}_exists"] is False,
-                f"handoff records {key} as present")
-        require(not (ROOT / recorded_lifecycle[f"{key}_path"]).exists(),
-                f"unexpected authority artifact exists: {key}")
+    require(recorded_lifecycle["slots"] == lifecycle["slots"], "handoff slot lifecycle drift")
     require(recorded_lifecycle["external_actions"] == lifecycle["external_actions"],
             "handoff lifecycle external-action drift")
-    for slot in ("Kag_01", "Kag_02"):
-        for phase in ("development", "confirmation", "robustness"):
-            require(recorded_lifecycle[phase][slot] == lifecycle["phases"][slot][phase],
-                    f"handoff lifecycle phase drift: {slot}/{phase}")
+    require(recorded_lifecycle["fresh_games_executed"] == 256,
+            "handoff fresh-game count drift")
 
     handoff_candidates = {
-        item["alias"]: item for item in handoff["candidate_decisions"] if item["slot"] in {"Kag_01", "Kag_02"}
+        item["alias"]: item
+        for item in handoff["candidate_decisions"]
+        if item["slot"] in {"Kag_01", "Kag_02"}
     }
     plan_candidates = {item["candidate_alias"]: item for item in plan["candidates"]}
     for alias in ("tetsu_v16", "kaito_v22"):
@@ -433,30 +442,74 @@ def verify_candidates_and_seeds(handoff: dict[str, Any]) -> None:
     handoff_pools = {(pool["slot"], pool["phase"]): pool for pool in handoff["seed_freeze"]["pools"]}
     require(plan_pools.keys() == handoff_pools.keys(), "seed-pool identity drift")
     require(len(plan_pools) == 6, "expected exactly six seed pools")
+    expected_state = {
+        ("Kag_01", "development"): ("CONSUMED_PASS", True, True, 128),
+        ("Kag_01", "confirmation"): ("CLOSED", False, False, 0),
+        ("Kag_01", "robustness"): ("CLOSED", False, False, 0),
+        ("Kag_02", "development"): ("CONSUMED_NO_GO", True, True, 128),
+        ("Kag_02", "confirmation"): ("RETIRED_UNUSED", False, False, 0),
+        ("Kag_02", "robustness"): ("RETIRED_UNUSED", False, False, 0),
+    }
     for key, pool in plan_pools.items():
         recorded = handoff_pools[key]
-        for field in (
-            "start",
-            "end_inclusive",
-            "count",
-            "status",
-            "opened",
-            "consumed",
-            "evaluated_games",
-        ):
+        for field in ("start", "end_inclusive", "count"):
             require(pool[field] == recorded[field], f"seed-pool drift {key}: {field}")
-        require(pool["status"] == "CLOSED", f"seed pool is not CLOSED: {key}")
-        require(not pool["opened"] and not pool["consumed"], f"seed pool opened: {key}")
-        require(pool["evaluated_games"] == 0, f"fresh games recorded for {key}")
+        state = expected_state[key]
+        require(
+            (recorded["status"], recorded["opened"], recorded["consumed"],
+             recorded["evaluated_games"]) == state,
+            f"post-run seed-pool state drift: {key}",
+        )
 
     summary = scan["reservation_summary"]
     require(scan["status"] == "NO_COLLISIONS_ALL_POOLS_CLOSED", "collision scan status drift")
     require(summary["collisions"] == [], "reserved seed collision detected")
     require(summary["all_ranges_pairwise_disjoint"], "reserved pools overlap")
-    require(summary["all_ranges_closed"], "collision scan says a pool is open")
-    require(summary["fresh_games_executed"] == 0, "collision scan reports fresh games")
+    require(summary["all_ranges_closed"], "preregistered collision scan was not sealed CLOSED")
+    require(summary["fresh_games_executed"] == 0, "preregistered collision scan is not pre-run")
     require(sum(pool["count"] for pool in handoff_pools.values()) == 224, "reserved count drift")
-    print("PASS candidates exact; all six seed pools CLOSED; fresh_games=0")
+
+    expected_development = {
+        "Kag_01": ("PASS", "CONSUMED_PASS", 0.953125, 7623.484375),
+        "Kag_02": ("NO_GO", "CONSUMED_NO_GO", 0.25, 2185.140625),
+    }
+    for slot, (verdict, status, match_score, mean_margin) in expected_development.items():
+        relative = f"research/campaign_3000/10_results/{slot.lower()}_development"
+        evidence = load_json(ROOT / relative / "evidence_manifest.json")
+        gate = load_json(ROOT / relative / "gate.json")
+        lifecycle_entry = lifecycle["slots"][slot]["development"]
+        require(lifecycle_entry["status"] == status, f"{slot} lifecycle verdict drift")
+        require(lifecycle_entry["evaluated_games"] == 128, f"{slot} evaluated-game drift")
+        require(gate["integrity"] == "PASS", f"{slot} gate integrity drift")
+        require(gate["strict"]["verdict"] == verdict, f"{slot} strict verdict drift")
+        require(gate["summary"]["valid_games"] == 128, f"{slot} valid-game drift")
+        require(gate["summary"]["match_score"] == match_score, f"{slot} score drift")
+        require(gate["summary"]["mean_margin"] == mean_margin, f"{slot} margin drift")
+        require(
+            sha256(ROOT / relative / "evidence_manifest.json")
+            == lifecycle_entry["evidence_manifest_sha256"],
+            f"{slot} evidence-manifest lifecycle binding drift",
+        )
+        recorded = handoff_candidates["tetsu_v16" if slot == "Kag_01" else "kaito_v22"]
+        require(recorded["fresh_development"]["strict_verdict"] == verdict,
+                f"{slot} handoff verdict drift")
+        require(recorded["fresh_development"]["evidence_manifest_sha256"]
+                == lifecycle_entry["evidence_manifest_sha256"],
+                f"{slot} handoff evidence hash drift")
+        require(evidence["slot"] == slot and evidence["phase"] == "development",
+                f"{slot} evidence identity drift")
+
+    require(lifecycle["slots"]["Kag_01"]["confirmation"] == {
+        "authorization": "HOLD", "status": "CLOSED"
+    }, "Kag_01 confirmation drift")
+    require(lifecycle["slots"]["Kag_01"]["robustness"] == {
+        "authorization": "HOLD", "status": "CLOSED"
+    }, "Kag_01 robustness drift")
+    for phase in ("confirmation", "robustness"):
+        require(lifecycle["slots"]["Kag_02"][phase] == {
+            "authorization": "HOLD", "status": "RETIRED_UNUSED"
+        }, f"Kag_02 {phase} retirement drift")
+    print("PASS development=256 games; Kag_01 PASS; Kag_02 NO_GO; later pools HOLD/retired")
 
 
 def verify_tetsu_ip(handoff: dict[str, Any]) -> None:
@@ -484,11 +537,24 @@ def verify_tetsu_ip(handoff: dict[str, Any]) -> None:
         require(prerequisite["path"] == expected_path, f"release prerequisite path drift: {key}")
         require(sha256(ROOT / expected_path) == prerequisite["sha256"].upper(),
                 f"release prerequisite hash drift: {key}")
-    require(prerequisites["development_result"]["status"] == "PENDING",
-            "release spec bypasses fresh development")
+    development = prerequisites["development_results"]
+    require(
+        development["lifecycle"]["sha256"]
+        == sha256(ROOT / development["lifecycle"]["path"]),
+        "release-spec development lifecycle drift",
+    )
+    require(
+        development["slots"]["Kag_01"]["required_strict_verdict"] == "PASS"
+        and development["slots"]["Kag_02"]["required_strict_verdict"] == "NO_GO",
+        "release-spec development decisions drift",
+    )
     auditor_gate = prerequisites["independent_auditor_exact_private_saverun_release"]
-    require(auditor_gate["required"] is True and auditor_gate["status"] == "PENDING",
-            "release spec bypasses the final independent audit")
+    require(
+        auditor_gate["required"] is True
+        and auditor_gate["required_verdict"] == "PASS"
+        and auditor_gate["slots"] == {"Kag_01": "PENDING", "Kag_02": "PENDING"},
+        "historical package-time independent-audit gate drift",
+    )
 
     raw_receipt_ref = spec["raw_source_archive"]
     raw_receipt_path = ROOT / raw_receipt_ref["path"]
@@ -598,13 +664,33 @@ def verify_tetsu_ip(handoff: dict[str, Any]) -> None:
     require(sha256(ROOT / spec["license"]["source_path"]) == spec["license"]["source_sha256"],
             "pinned Apache license drift")
     require(local_manifest["external_action_performed"] is False, "07 external action recorded")
-    require(local_manifest["candidate_evaluation_prerequisites"] == prerequisites,
-            "07 local manifest prerequisite drift")
+    manifest_prerequisites = local_manifest["candidate_evaluation_prerequisites"]
+    for key in (
+        "candidate_plan",
+        "candidate_gate",
+        "candidate_manifest",
+        "independent_auditor_exact_private_saverun_release",
+    ):
+        require(manifest_prerequisites[key] == prerequisites[key],
+                f"07 local manifest prerequisite drift: {key}")
+    validator_result = manifest_prerequisites["development_results"][
+        "production_validator_result"
+    ]
+    require(
+        validator_result["status"] == "DEVELOPMENT_CLOSED_VALIDATED"
+        and validator_result["fresh_games_executed"] == 256,
+        "07 production validator result drift",
+    )
     require(local_manifest["external_action_gate"]["status"] == "HOLD",
             "07 external action gate is not HOLD")
     worktree_binding = local_manifest["worktree_binding"]
-    require(worktree_binding["status"] == "PENDING_FINAL_GIT_FREEZE",
-            "07 local build claims a final Git freeze")
+    require(worktree_binding["status"] == "PASS_FINAL_GIT_FREEZE",
+            "07 final Git freeze status drift")
+    require(
+        worktree_binding["git_head"]["commit"]
+        == "b13eeb2f3b92fe51393fbce37ef21112b26af686",
+        "07 final Git freeze commit drift",
+    )
     require(sha256(ROOT / worktree_binding["builder"]["path"])
             == worktree_binding["builder"]["sha256"].upper(),
             "07 builder hash drift")
@@ -634,12 +720,87 @@ def verify_authority(handoff: dict[str, Any]) -> None:
     public_dir = ROOT / "research/campaign_3000/08_public_release"
     release = load_json(public_dir / "release_manifest.json")
     payload = load_json(public_dir / "external_action_payload.json")
+    saverun_path = ROOT / "research/campaign_3000/11_saverun_results/remote_receipts.json"
+    saveruns = load_json(saverun_path)
+    private_release = load_json(
+        ROOT / "research/campaign_3000/07_release/local_build/release_manifest.json"
+    )
     authority = handoff["authority"]
 
     require(external_manifest["external_writes"] == 0, "03 external writes are nonzero")
-    require(authority["external_actions_observed"] == 0, "handoff external action count drift")
+    require(authority["external_actions_observed"] == 2, "handoff external action count drift")
+    require(authority["save_run_observed"] == 2, "handoff SaveRun count drift")
+    require(authority["competition_submissions_observed"] == 0,
+            "handoff competition-submission count drift")
+    require(authority["publications_observed"] == 0, "handoff publication count drift")
     require(authority["external_actions_authorized_by_this_handoff"] is False,
             "handoff claims external authority")
+    observed = authority["observed_action_receipt"]
+    require(observed["path"] == "research/campaign_3000/11_saverun_results/remote_receipts.json",
+            "SaveRun receipt path drift")
+    require(observed["sha256"] == sha256(saverun_path), "SaveRun receipt hash drift")
+
+    require(saveruns["state"] == "PRIVATE_SAVERUNS_COMPLETE_VERIFIED",
+            "SaveRun receipt state drift")
+    require(saveruns["independent_auditor_release"] == {
+        "task_id": "019fb8b8-7758-7860-9304-39eb4f06c65c",
+        "verdict": "PASS",
+        "scope": "EACH_EXACT_SLOT_PRIVATE_SAVERUN_RELEASE",
+        "slots": {"Kag_01": "PASS", "Kag_02": "PASS"},
+    }, "SaveRun independent-auditor release drift")
+    require(saveruns["independent_auditor_postrun"] == {
+        "task_id": "019fb8b8-7758-7860-9304-39eb4f06c65c",
+        "verdict": "COMPLETE_VERIFIED",
+        "scope": "Kag_01 and Kag_02 private Save & Run version 1",
+        "method": (
+            "live read-only kernel metadata/status plus remote Output API bytes "
+            "rehashed in memory"
+        ),
+    }, "SaveRun independent-auditor postrun drift")
+    require(saveruns["additional_external_action_authority"] == "HOLD",
+            "SaveRun receipt grants additional authority")
+    submission = saveruns["competition_submission"]
+    require(submission["performed_by_this_release"] is False,
+            "SaveRun receipt records a competition submission")
+    require(submission["exact_total"] == 22, "postrun submission total drift")
+    historical_submissions = load_json(
+        ROOT / "research/campaign_3000/01_internal/our_submissions.json"
+    )
+    require(historical_submissions["submission_count"] == submission["exact_total"],
+            "postrun submission count changed from the pinned inventory")
+
+    package_by_slot = {row["sequence"]: row for row in private_release["candidates"]}
+    slots = {row["slot"]: row for row in saveruns["slots"]}
+    require(set(slots) == {"Kag_01", "Kag_02"}, "SaveRun slot set drift")
+    for slot, row in slots.items():
+        package = package_by_slot[slot]
+        require(row["version"] == 1, f"{slot} version drift")
+        require(row["worker_status"] == "KernelWorkerStatus.COMPLETE",
+                f"{slot} worker is not COMPLETE")
+        require(row["visibility"] == "private" and row["internet"] is False,
+                f"{slot} privacy/internet drift")
+        require(row["second_push_authorized"] is False, f"{slot} second push enabled")
+        require(row["archive"]["remote_equals_approved"] is True,
+                f"{slot} remote archive is not approved-exact")
+        require(row["archive"]["sha256"] == package["artifact"]["sha256"],
+                f"{slot} archive hash drift")
+        require(row["member_order"] == ["main.py", "LICENSE", "ATTRIBUTION.md"],
+                f"{slot} member order drift")
+        require(row["log"]["error_pattern_hits"] == 0, f"{slot} log error hit")
+        require(row["main_compile"] == "PASS", f"{slot} compile drift")
+    require(slots["Kag_01"]["classification"]
+            == "STRICT_DEVELOPMENT_PASS_PRIVATE_SAVERUN",
+            "Kag_01 classification drift")
+    require(slots["Kag_02"]["classification"]
+            == "EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION",
+            "Kag_02 exploratory classification drift")
+    require(slots["Kag_02"]["strict_development_verdict"] == "NO_GO",
+            "Kag_02 NO_GO boundary drift")
+    require(saveruns["publication"] == {
+        "discussion": "HOLD",
+        "public_code": "HOLD",
+        "required_order": ["discussion", "public_code"],
+    }, "SaveRun receipt publication HOLD/order drift")
     require(payload["status"] == "DRAFT_ONLY_NOT_EXECUTED", "public payload status drift")
     require(payload["execution_authorized"] is False, "public payload is enabled")
     require(payload["external_calls_performed"] == [], "public payload records external calls")
@@ -691,7 +852,10 @@ def verify_authority(handoff: dict[str, Any]) -> None:
             "submission inference was enabled")
     require(submit["forbidden_command"] in payload["forbidden_actions"],
             "competition submit is not explicitly forbidden")
-    print("PASS external_actions=0; public order Discussion then Code; submit forbidden")
+    print(
+        "PASS external_actions=2 private SaveRuns COMPLETE_VERIFIED; "
+        "submissions=22 unchanged; public order Discussion then Code remains HOLD"
+    )
 
 
 def git_output(*args: str) -> str:

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "artifact_kind": "campaign_3000_independent_auditor_handoff_draft",
-  "created_at_utc": "2026-08-08T19:22:44.238664Z",
+  "artifact_kind": "campaign_3000_postrun_publication_audit_handoff_draft",
+  "created_at_utc": "2026-08-09T00:00:11Z",
   "handoff_author_role": "internal subordinate evidence packager; not the independent auditor",
   "recipient": {
     "role": "separate user-owned independent adversarial auditor",
@@ -62,24 +62,26 @@
       "research/campaign_3000/05_engine_screen_ray_c45_addendum",
       "research/campaign_3000/06_candidates",
       "research/campaign_3000/07_release",
-      "research/campaign_3000/08_public_release"
+      "research/campaign_3000/08_public_release",
+      "research/campaign_3000/10_results",
+      "research/campaign_3000/11_saverun_results"
     ],
-    "handoff_claim": "Exact local evidence index and audit questions only; no independent verdict.",
+    "handoff_claim": "Exact post-run evidence index and publication-audit questions only; no independent verdict or new external-action authority.",
     "excluded_claims": [
       "3000 rating guarantee",
       "top-3 guarantee",
-      "fresh local promotion",
-      "Kaggle Save & Run success",
+      "Kag_02 promotion",
       "competition submission",
-      "publication",
+      "Discussion or public Code publication",
+      "new external-action authority",
       "legal advice"
     ]
   },
   "authority": {
-    "external_actions_observed": 0,
+    "external_actions_observed": 2,
     "external_actions_authorized_by_this_handoff": false,
     "browser_control_observed": 0,
-    "save_run_observed": 0,
+    "save_run_observed": 2,
     "competition_submissions_observed": 0,
     "publications_observed": 0,
     "public_action_order": [
@@ -99,6 +101,12 @@
       "exact_authorizing_user_phrase_observed": null,
       "inference_or_paraphrase_is_authority": false,
       "forbidden_command": "kaggle competitions submit"
+    },
+    "observed_action_receipt": {
+      "path": "research/campaign_3000/11_saverun_results/remote_receipts.json",
+      "sha256": "6649794E4BDFA1C9A18A465A9106C211472EC8A4B5C6B865E2A89EDB2CF659AC",
+      "state": "PRIVATE_SAVERUNS_COMPLETE_VERIFIED",
+      "classification": "TWO_PRIVATE_SAVERUNS_COMPLETE_VERIFIED"
     }
   },
   "research_populations": [
@@ -128,7 +136,11 @@
     {
       "id": "public_code",
       "definition": "All refs returned by Kaggle kernels_list for competition=kaggriculture through the first empty page, deduplicated by ref, with current versions fetched.",
-      "pages": [100, 55, 0],
+      "pages": [
+        100,
+        55,
+        0
+      ],
       "rows": 155,
       "failed_rows": 0,
       "source_requests_succeeded": 61,
@@ -138,7 +150,12 @@
     {
       "id": "discussion",
       "definition": "All competition topics returned through the declared total and a terminal empty page, deduplicated by topic id.",
-      "pages": [20, 20, 17, 0],
+      "pages": [
+        20,
+        20,
+        17,
+        0
+      ],
       "rows": 57,
       "failed_rows": 0
     },
@@ -238,23 +255,28 @@
     }
   ],
   "current_qa_claims": {
-    "project_pytest": "423 passed",
+    "project_pytest": "489 passed at final private-package freeze",
     "official_environment_pytest": "81 passed",
-    "candidate_focused_pytest": "91 passed",
-    "release_pytest": "28 passed",
+    "candidate_focused_pytest": "91 passed before post-run close",
+    "release_pytest": "38 passed",
     "public_release_pytest": "10 passed",
     "ruff": "All checks passed!",
-    "claim_boundary": "Current command-output claims for this freeze; remote CI check count remains zero and these strings are not a self-authenticating attestation."
+    "claim_boundary": "Pinned command-output claims from their stated freeze or focused lane; remote CI count remains zero and these strings are not a self-authenticating attestation.",
+    "saverun_receipt_pytest": "3 passed",
+    "audit_handoff_verifier": "PASS_DRAFT_HANDOFF",
+    "postrun_publication_pytest": "492 passed"
   },
   "candidate_decisions": [
     {
       "slot": "Kag_01",
       "alias": "tetsu_v16",
-      "status": "CLOSED_SELECTED_PENDING_FRESH_GATES",
+      "status": "DEVELOPMENT_CONSUMED_PASS_PRIVATE_SAVERUN_COMPLETE_VERIFIED",
       "source_path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
       "source_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
       "archive_name": "Kag_01 - Tetsu v16 Exact.tar.gz",
       "rationale": [
+        "Fresh sealed development passed 122-6 across 128 valid games.",
+        "The exact private SaveRun version 1 completed and its remote archive matched.",
         "Led the consumed 1.32.6 five-agent screen with 62 wins and 2 losses in 64 games.",
         "Beat the exact public Fa04 G1 source in 16 of 16 consumed-screen games with mean margin 25621.375.",
         "A separate IP review supplied a conditional private-SaveRun-only path with exact-byte and attribution conditions."
@@ -269,22 +291,71 @@
         "failures": 0
       },
       "claim_limits": [
+        "Fresh development PASS is not a 3000/top-3 or leaderboard forecast.",
+        "The SaveRun is private and is not a competition submission.",
         "All local comparison seeds were consumed and are promotion-ineligible.",
         "The cutoff 2703.1 observation belongs to v15, not the exact v16 payload.",
-        "A later tracked live page displays 3097.4 for v16, but that evidence is pending independent-auditor confirmation and is not a local result, promotion result, or forecast.",
         "The release specification makes no public score claim for exact v16.",
         "The route is derivative lineage and must not be described as clean-room or independently authored.",
         "IP verdict is conditional private Save & Run only, not legal advice or external-action authority."
-      ]
+      ],
+      "fresh_development": {
+        "games": 128,
+        "strict_verdict": "PASS",
+        "summary": {
+          "valid_games": 128,
+          "seed_cluster_count": 16,
+          "bootstrap_cluster_unit": "seed",
+          "match_score": 0.953125,
+          "match_score_seed_cluster_bootstrap_95": [
+            0.90625,
+            1.0
+          ],
+          "mean_margin": 7623.484375,
+          "margin_p10": 273.0,
+          "game_runtime_p99_seconds": 7.032395949997444,
+          "game_runtime_max_seconds": 7.035965700000816,
+          "by_opponent_match_score": {
+            "boatlee_v14": 1.0,
+            "fa04_g1": 1.0,
+            "kaito_v22": 0.9375,
+            "ray_c45_exact": 0.875
+          },
+          "by_opponent_mean_margin": {
+            "boatlee_v14": 1018.4375,
+            "fa04_g1": 24520.28125,
+            "kaito_v22": 4429.78125,
+            "ray_c45_exact": 525.4375
+          },
+          "by_scenario_match_score": {
+            "default": 0.953125
+          },
+          "by_scenario_mean_margin": {
+            "default": 7623.484375
+          }
+        },
+        "gate_sha256": "58355B4186E184AAD571AB3A189215392ECF184D4A3A784F2E713F8F9D06DF0C",
+        "evidence_manifest_path": "research/campaign_3000/10_results/kag_01_development/evidence_manifest.json",
+        "evidence_manifest_sha256": "712DEBADB1BAE4247687B788A1986AB2B90DF32A52F390AB2BBD5213A5A2B09A"
+      },
+      "private_saverun": {
+        "state": "COMPLETE_VERIFIED",
+        "kernel_ref": "yw8837/kag-01-tetsu-v16-exact",
+        "version": 1,
+        "classification": "STRICT_DEVELOPMENT_PASS_PRIVATE_SAVERUN",
+        "archive_sha256": "184F687C474933A7215DB97E8C5A5F823AE79233EEA42D04B70EABC001BF9E16"
+      }
     },
     {
       "slot": "Kag_02",
       "alias": "kaito_v22",
-      "status": "CLOSED_SELECTED_PENDING_FRESH_GATES",
+      "status": "DEVELOPMENT_CONSUMED_NO_GO_EXPLORATORY_PRIVATE_SAVERUN_COMPLETE_VERIFIED",
       "source_path": "research/campaign_3000/06_candidates/snapshots/kaito_v22.py",
       "source_sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
       "archive_name": "Kag_02 - Kaito v22 Price Impact.tar.gz",
       "rationale": [
+        "Fresh sealed development returned strict NO_GO at 32-96 across 128 games.",
+        "Its exact version 1 SaveRun is private exploratory evidence only.",
         "Exact notebook version, source hash, Apache-2.0 page evidence, and remote score mapping were captured.",
         "Selected over Ray for exact remote score/version mapping and route-lineage diversity after Tetsu's conditional IP path was restored.",
         "Beat the exact public Fa04 G1 source in 16 of 16 consumed-screen games with mean margin 24159.25."
@@ -300,10 +371,58 @@
       },
       "adverse_evidence": "Ray C45 beat Kaito 14-2 in the 64-cell consumed addendum; Kaito selection is not a claim of stronger local screen performance.",
       "claim_limits": [
+        "Kag_02 is explicitly non-promotion after strict development NO_GO.",
+        "Its SaveRun is private exploratory data and is not a competition submission.",
         "All local comparison seeds were consumed and are promotion-ineligible.",
         "Captured remote score 2957.6 V2 is not a fresh local promotion result or future rating forecast.",
         "The weak consumed local round-robin result remains disclosed and fresh gates decide readiness."
-      ]
+      ],
+      "fresh_development": {
+        "games": 128,
+        "strict_verdict": "NO_GO",
+        "summary": {
+          "valid_games": 128,
+          "seed_cluster_count": 16,
+          "bootstrap_cluster_unit": "seed",
+          "match_score": 0.25,
+          "match_score_seed_cluster_bootstrap_95": [
+            0.25,
+            0.25
+          ],
+          "mean_margin": 2185.140625,
+          "margin_p10": -7880.0,
+          "game_runtime_p99_seconds": 7.248601590003745,
+          "game_runtime_max_seconds": 7.277315799998178,
+          "by_opponent_match_score": {
+            "boatlee_v14": 0.0,
+            "fa04_g1": 1.0,
+            "ray_c45_exact": 0.0,
+            "tetsu_v16": 0.0
+          },
+          "by_opponent_mean_margin": {
+            "boatlee_v14": -4846.625,
+            "fa04_g1": 23661.4375,
+            "ray_c45_exact": -4899.625,
+            "tetsu_v16": -5174.625
+          },
+          "by_scenario_match_score": {
+            "default": 0.25
+          },
+          "by_scenario_mean_margin": {
+            "default": 2185.140625
+          }
+        },
+        "gate_sha256": "1444D13F28FDB4313495B9A1549C1EC567C3B0E2D6B7B18882123E8D3F6E1812",
+        "evidence_manifest_path": "research/campaign_3000/10_results/kag_02_development/evidence_manifest.json",
+        "evidence_manifest_sha256": "F9E9C7629B6EA95D989712D1F8ED685835DC8120D31292FD51B33E414F82FD7D"
+      },
+      "private_saverun": {
+        "state": "COMPLETE_VERIFIED",
+        "kernel_ref": "yw8837/kag-02-kaito-v22-price-impact",
+        "version": 1,
+        "classification": "EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION",
+        "archive_sha256": "37EA53D3046E3D1DA914F8A89C6F4BB02E240E1BB85857BDA149273FC4DD974C"
+      }
     },
     {
       "slot": "fallback_and_opponent",
@@ -327,7 +446,7 @@
     {
       "slot": "public_release",
       "alias": "fa04_g1_sell_guard",
-      "status": "LOCAL_DRAFT_ONLY",
+      "status": "LOCAL_DRAFT_PUBLICATION_HOLD",
       "source_sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922",
       "separation": "Lost all 80 consumed-screen games in the five-agent screen and all 16 direct games against each designated private candidate.",
       "claim_limits": [
@@ -339,8 +458,8 @@
     }
   ],
   "seed_freeze": {
-    "status": "NO_COLLISIONS_ALL_POOLS_CLOSED",
-    "fresh_games_executed": 0,
+    "status": "DEVELOPMENT_CLOSED_256_GAMES_LATER_POOLS_HOLD_OR_RETIRED",
+    "fresh_games_executed": 256,
     "reserved_seed_count": 224,
     "reserved_seed_values_sha256": "264F40BA4C09FF3157AF6F1B7DF61BE3E3DAFBFD812DC1306444393928F73A58",
     "ranges_sha256": "3FE833648F9B129D6C3EE181DCBC4C6312CB08791926BAF28E2A09C78A1B373D",
@@ -351,10 +470,10 @@
         "start": 50000,
         "end_inclusive": 50015,
         "count": 16,
-        "status": "CLOSED",
-        "opened": false,
-        "consumed": false,
-        "evaluated_games": 0
+        "status": "CONSUMED_PASS",
+        "opened": true,
+        "consumed": true,
+        "evaluated_games": 128
       },
       {
         "slot": "Kag_01",
@@ -384,10 +503,10 @@
         "start": 53000,
         "end_inclusive": 53015,
         "count": 16,
-        "status": "CLOSED",
-        "opened": false,
-        "consumed": false,
-        "evaluated_games": 0
+        "status": "CONSUMED_NO_GO",
+        "opened": true,
+        "consumed": true,
+        "evaluated_games": 128
       },
       {
         "slot": "Kag_02",
@@ -395,7 +514,7 @@
         "start": 54000,
         "end_inclusive": 54063,
         "count": 64,
-        "status": "CLOSED",
+        "status": "RETIRED_UNUSED",
         "opened": false,
         "consumed": false,
         "evaluated_games": 0
@@ -406,42 +525,64 @@
         "start": 55000,
         "end_inclusive": 55031,
         "count": 32,
-        "status": "CLOSED",
+        "status": "RETIRED_UNUSED",
         "opened": false,
         "consumed": false,
         "evaluated_games": 0
       }
     ],
-    "opening_policy": "No pool opens without the phase-specific exact independent-auditor OPEN/PASS; later phases also require the preceding strict gate.",
+    "opening_policy": "Development is consumed. Kag_01 confirmation/robustness remain CLOSED/HOLD; Kag_02 later pools are RETIRED_UNUSED. No further seed opens without a new exact independent-auditor authority.",
     "lifecycle": {
       "path": "research/campaign_3000/06_candidates/lifecycle.json",
-      "sha256": "839CD70EE519C7220697500747D0EFBD2D801580E0F3132F1E56A00D82E88E6A",
-      "state": "CLOSED",
-      "execution_commit": "PENDING",
-      "authority_receipt_path": "dist/campaign_3000/authority/auditor_development_open.json",
-      "authority_receipt_sha256": "PENDING",
-      "authority_receipt_exists": false,
-      "auditor_open_delivery_path": "dist/campaign_3000/authority/auditor_development_open.delivery.json",
-      "auditor_open_delivery_sha256": "PENDING",
-      "auditor_open_delivery_exists": false,
-      "post_o_review_delivery_path": "dist/campaign_3000/authority/auditor_authority_o_review.delivery.json",
-      "post_o_review_delivery_exists": false,
-      "open_protocol": "After exact S and E, only a lifecycle-only O commit that pins the exact authority receipt and raw auditor OPEN delivery may transition development; execution also requires a separate post-O auditor delivery.",
-      "trust_boundary": "Local validation rejects malformed or mismatched exports but cannot cryptographically prove a Codex read_thread export was not fabricated; acquisition from the user-owned auditor task and its post-O verdict remain an explicit human/host trust boundary.",
-      "development": {
-        "Kag_01": "CLOSED",
-        "Kag_02": "CLOSED"
-      },
-      "confirmation": {
-        "Kag_01": "HOLD",
-        "Kag_02": "HOLD"
-      },
-      "robustness": {
-        "Kag_01": "HOLD",
-        "Kag_02": "HOLD"
+      "sha256": "3A535E485F1B14870E03380D3672F3CD899051A45F3EB4B9FB4D5094F7B2785D",
+      "schema_version": 2,
+      "state": "DEVELOPMENT_CLOSED",
+      "execution_authority_commit": "ebdd5b58c66a1c816525bb60b403eabbd7b2892d",
+      "execution_commit": "cf04be5ad93f31bc8677e383a2b414e9561841d3",
+      "open_lifecycle_sha256": "750693C6DCE541542A62293E633FD548814B4BB4E1B4F45F2DD0CEBE076A5BF0",
+      "slots": {
+        "Kag_01": {
+          "development": {
+            "seed_start": 50000,
+            "seed_end_inclusive": 50015,
+            "evaluated_games": 128,
+            "status": "CONSUMED_PASS",
+            "strict_verdict": "PASS",
+            "evidence_manifest_path": "research/campaign_3000/10_results/kag_01_development/evidence_manifest.json",
+            "evidence_manifest_sha256": "712DEBADB1BAE4247687B788A1986AB2B90DF32A52F390AB2BBD5213A5A2B09A"
+          },
+          "confirmation": {
+            "authorization": "HOLD",
+            "status": "CLOSED"
+          },
+          "robustness": {
+            "authorization": "HOLD",
+            "status": "CLOSED"
+          }
+        },
+        "Kag_02": {
+          "development": {
+            "seed_start": 53000,
+            "seed_end_inclusive": 53015,
+            "evaluated_games": 128,
+            "status": "CONSUMED_NO_GO",
+            "strict_verdict": "NO_GO",
+            "evidence_manifest_path": "research/campaign_3000/10_results/kag_02_development/evidence_manifest.json",
+            "evidence_manifest_sha256": "F9E9C7629B6EA95D989712D1F8ED685835DC8120D31292FD51B33E414F82FD7D"
+          },
+          "confirmation": {
+            "authorization": "HOLD",
+            "status": "RETIRED_UNUSED"
+          },
+          "robustness": {
+            "authorization": "HOLD",
+            "status": "RETIRED_UNUSED"
+          }
+        }
       },
       "external_actions": "HOLD",
-      "fresh_games_executed": 0
+      "external_actions_semantics": "HOLD means no additional authority; two separately authorized completed private SaveRuns are recorded in 11_saverun_results.",
+      "fresh_games_executed": 256
     }
   },
   "tetsu_conditional_ip": {
@@ -497,10 +638,12 @@
   },
   "claim_limits": [
     "The 05 screens used consumed seeds 23000-23007 and are non-promotion evidence.",
-    "The 1.32.2 versus 1.32.6 comparison had 20 paired cells; 20 reward tuples and 16 outcomes changed, so engine version is material.",
-    "The only resolved default configuration change was townCenterSellInterval 12 to 24.",
-    "No private Save & Run or downloaded output identity has been observed.",
-    "No external action is authorized by this handoff.",
+    "The sealed development phase executed 256 games: Kag_01 PASS and Kag_02 NO_GO.",
+    "Two private SaveRuns are COMPLETE_VERIFIED; neither is a competition submission.",
+    "The read-only postrun submission snapshot remained exactly 22.",
+    "Kag_02 remains exploratory/non-promotion and its later pools are retired unused.",
+    "Discussion and public Code remain unpublished and HOLD in Discussion-then-Code order.",
+    "No additional external action is authorized by this handoff.",
     "Only the separate user-owned auditor may issue the required independent verdict."
   ],
   "source_manifest_contract": {
@@ -513,7 +656,10 @@
       "research/campaign_3000/05_engine_screen_ray_c45_addendum/manifest.json",
       "research/campaign_3000/06_candidates/manifest.json",
       "research/campaign_3000/07_release/release_spec.json",
-      "research/campaign_3000/08_public_release/release_manifest.json"
+      "research/campaign_3000/08_public_release/release_manifest.json",
+      "research/campaign_3000/10_results/kag_01_development/evidence_manifest.json",
+      "research/campaign_3000/10_results/kag_02_development/evidence_manifest.json",
+      "research/campaign_3000/11_saverun_results/remote_receipts.json"
     ]
   },
   "evidence_files": [
@@ -699,9 +845,9 @@
     },
     {
       "path": "research/campaign_3000/06_candidates/lifecycle.json",
-      "bytes": 741,
-      "sha256": "839CD70EE519C7220697500747D0EFBD2D801580E0F3132F1E56A00D82E88E6A",
-      "declared_by": "direct rehash of protocol-excluded lifecycle file"
+      "bytes": 1696,
+      "sha256": "3A535E485F1B14870E03380D3672F3CD899051A45F3EB4B9FB4D5094F7B2785D",
+      "declared_by": "direct rehash of post-run lifecycle"
     },
     {
       "path": "research/campaign_3000/06_candidates/selection_evidence.json",
@@ -711,9 +857,9 @@
     },
     {
       "path": "research/campaign_3000/07_release/release_spec.json",
-      "bytes": 5527,
-      "sha256": "516CB6A5FFC73467062708EA0E7228B406FA7EE58F21D953E91C772F49F3EBBB",
-      "declared_by": "direct rehash of release specification"
+      "bytes": 7371,
+      "sha256": "662937F95BF52BB3E765C14F14A36681FC82AE1D7A49EBF58280550B7C0DCC2D",
+      "declared_by": "direct rehash of final release specification"
     },
     {
       "path": "research/campaign_3000/07_release/TETSU_IP_VERDICT.md",
@@ -777,32 +923,32 @@
     },
     {
       "path": "research/campaign_3000/07_release/local_build/release_manifest.json",
-      "bytes": 6989,
-      "sha256": "A5846B67ADFA76875434CAFE3CD9B915F20FFEB6648F207F9695B3B05708C129",
+      "bytes": 18927,
+      "sha256": "F99D31D750E1D4EAF26127308C720A6BD042E32CA3F05AFC16CDB6182925F224",
       "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
     },
     {
       "path": "research/campaign_3000/07_release/verification/VERIFICATION.md",
-      "bytes": 6695,
-      "sha256": "712DC52D346E981C2B5DD3A0E1B866F4046C68359C85DBBE9B00D01558C13BBE",
-      "declared_by": "direct rehash of local release verification report"
+      "bytes": 7474,
+      "sha256": "577F47A9E4C9276D2579C49F2FC3F934A82B2C08DBA620D91E33CCA2F332A39D",
+      "declared_by": "direct rehash of final local release verification report"
     },
     {
       "path": "research/campaign_3000/08_public_release/SHA256SUMS",
       "bytes": 1795,
-      "sha256": "DAA5EBB407FDFAEA990E9B847D7AEB6266E92CD0E148D188783DBF23FC9E56DD",
+      "sha256": "540074A76A72A9DA97D70D8EB73BD9218B9E50D7C69547BB5349DB302FEF89A8",
       "declared_by": "direct rehash of public-release checksum anchor"
     },
     {
       "path": "research/campaign_3000/08_public_release/release_manifest.json",
       "bytes": 7631,
-      "sha256": "6F415DB92D391F9D9D885A9B5A1BA6F7815CAE3CDD9413436B4759812599532D",
+      "sha256": "582357B41C64D5D03960FB9AC01FADA1C2444AA8B23EAAD71971AF480E955078",
       "declared_by": "research/campaign_3000/08_public_release/SHA256SUMS"
     },
     {
       "path": "research/campaign_3000/08_public_release/external_action_payload.json",
       "bytes": 3721,
-      "sha256": "3211EED27C575E58E3917FAD22DC9494A54E0CDA425459BC570071C6BE4E17A5",
+      "sha256": "18951EA710C788E050EA29600B2A97AD27ADEBBD0F4B4D1FC19152FD7837099D",
       "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
     },
     {
@@ -828,6 +974,30 @@
       "bytes": 317377,
       "sha256": "F24F4939C8EC591D5794C650923E583658F0BE05E47FA7A6F049D53664F74153",
       "declared_by": "research/campaign_3000/08_public_release/release_manifest.json"
+    },
+    {
+      "path": "research/campaign_3000/10_results/kag_01_development/evidence_manifest.json",
+      "bytes": 2400,
+      "sha256": "712DEBADB1BAE4247687B788A1986AB2B90DF32A52F390AB2BBD5213A5A2B09A",
+      "declared_by": "direct rehash of tracked development evidence manifest"
+    },
+    {
+      "path": "research/campaign_3000/10_results/kag_02_development/evidence_manifest.json",
+      "bytes": 2400,
+      "sha256": "F9E9C7629B6EA95D989712D1F8ED685835DC8120D31292FD51B33E414F82FD7D",
+      "declared_by": "direct rehash of tracked development evidence manifest"
+    },
+    {
+      "path": "research/campaign_3000/11_saverun_results/remote_receipts.json",
+      "bytes": 5119,
+      "sha256": "6649794E4BDFA1C9A18A465A9106C211472EC8A4B5C6B865E2A89EDB2CF659AC",
+      "declared_by": "direct rehash of postrun remote receipt"
+    },
+    {
+      "path": "research/campaign_3000/11_saverun_results/README.md",
+      "bytes": 1078,
+      "sha256": "B788B33BBDB117E0B5EFA994BA79602AC76713B57B85BB7F6CEDB178D3B7D55A",
+      "declared_by": "direct rehash of postrun receipt documentation"
     }
   ],
   "pending_bindings": [
@@ -841,12 +1011,13 @@
     }
   ],
   "audit_requests": [
-    "Recompute every evidence hash from the frozen commit rather than trusting this handoff.",
+    "Recompute every evidence hash from the next frozen commit rather than trusting this handoff.",
     "Recheck population definitions, pagination boundaries, unavailable platforms, and negative-scan limits.",
-    "Challenge the Tetsu page-license-to-exact-cell mapping inference, distinguish the body-unarchived cutoff attestation from the later tracked page, and recheck every required lineage notice.",
-    "Confirm all six fresh seed pools remain unopened and that execution_binding.json binds exact frozen commits before any phase OPEN.",
-    "Treat Kaito's adverse consumed-screen evidence and Ray's stronger local comparison as a required challenge to the selection rationale.",
+    "Recheck exact 256-game development evidence: Kag_01 PASS and Kag_02 NO_GO.",
+    "Recheck both private SaveRun COMPLETE receipts, remote archive identity, and unchanged submission count 22.",
+    "Confirm Kag_02 remains exploratory/non-promotion and later pools remain RETIRED_UNUSED.",
     "Inspect public release bytes for private-source leakage and enforce Discussion before Code.",
+    "Keep Discussion/public Code HOLD until a separate exact publication verdict.",
     "Reject any competition submission without the recorded exact user phrase authorizing that action."
   ]
 }

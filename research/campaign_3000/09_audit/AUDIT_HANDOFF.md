@@ -4,8 +4,9 @@ Verdict: `HOLD_PENDING_EXACT_FREEZE_AND_SEPARATE_AUDIT`.
 
 This package is an internal evidence handoff to the separate user-owned auditor task
 `019fb8b8-7758-7860-9304-39eb4f06c65c`. It is not an independent-auditor verdict. The author is
-an in-tree subordinate evidence packager and claims no authority to edit production code, open
-seeds, push, Save & Run, submit, or publish.
+an in-tree subordinate evidence packager and claims no authority to open further seeds, push a
+second SaveRun, submit, or publish. It records two already authorized private SaveRuns; it does
+not authorize any new external action.
 
 ## Freeze boundary
 
@@ -69,6 +70,10 @@ use. The exact status above preserves that trust boundary.
   `+3314.28125`, zero failures.
 - Against exact public Fa04 G1: 16/16 wins, mean margin `+25621.375`.
 - Rationale: strongest consumed five-agent screen plus a separate conditional IP path.
+- Fresh sealed development: 128 valid games, 122 wins and 6 losses, match score `0.953125`,
+  seed-cluster bootstrap 95% interval `[0.90625, 1.0]`, mean margin `+7623.484375`; strict `PASS`.
+- Private SaveRun version 1 is `COMPLETE_VERIFIED`; the downloaded remote archive is byte-exact
+  with approved SHA-256 `184F687C474933A7215DB97E8C5A5F823AE79233EEA42D04B70EABC001BF9E16`.
 
 Limits: these are consumed, promotion-ineligible seeds. The cutoff `2703.1` observation is v15,
 not exact v16. A later tracked live page displays `3097.4` for v16, but its claim gate is pending
@@ -84,6 +89,10 @@ lineage, not clean-room work.
   `-3232.6875`, zero failures.
 - Against exact public Fa04 G1: 16/16 wins, mean margin `+24159.25`.
 - Rationale: exact notebook/version/license/remote-score mapping and route-lineage diversity.
+- Fresh sealed development: 128 valid games, 32 wins and 96 losses, match score `0.25`, bootstrap
+  interval `[0.25, 0.25]`, mean margin `+2185.140625`; strict `NO_GO`.
+- Private SaveRun version 1 is `COMPLETE_VERIFIED` only as
+  `EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION`; it is not promotion evidence.
 
 Adverse evidence must stay visible: Ray beat Kaito 14-2 in the consumed addendum. Kaito was chosen
 for mapping quality and diversity, not because it had the stronger local screen. Remote `2957.6 V2`
@@ -103,29 +112,23 @@ private source. This proves only exact local separation on selected consumed see
 public source has no claimed or expected rating, and historical score `1317.1` is not mapped to
 these bytes.
 
-## All candidate seed pools are CLOSED
+## Post-run seed lifecycle
 
 | Slot | Phase | Range | Count | State |
 |---|---|---:|---:|---|
-| Kag_01 | development | 50000–50015 | 16 | `CLOSED`, unopened, unconsumed, 0 games |
+| Kag_01 | development | 50000–50015 | 16 | `CONSUMED_PASS`, 128 games |
 | Kag_01 | confirmation | 51000–51063 | 64 | `CLOSED`, unopened, unconsumed, 0 games |
 | Kag_01 | robustness | 52000–52031 | 32 | `CLOSED`, unopened, unconsumed, 0 games |
-| Kag_02 | development | 53000–53015 | 16 | `CLOSED`, unopened, unconsumed, 0 games |
-| Kag_02 | confirmation | 54000–54063 | 64 | `CLOSED`, unopened, unconsumed, 0 games |
-| Kag_02 | robustness | 55000–55031 | 32 | `CLOSED`, unopened, unconsumed, 0 games |
+| Kag_02 | development | 53000–53015 | 16 | `CONSUMED_NO_GO`, 128 games |
+| Kag_02 | confirmation | 54000–54063 | 64 | `RETIRED_UNUSED`, 0 games |
+| Kag_02 | robustness | 55000–55031 | 32 | `RETIRED_UNUSED`, 0 games |
 
-The collision scan reserved 224 seeds, found no collision, and recorded
-`fresh_games_executed=0`. No pool opens without that phase's exact independent-auditor OPEN/PASS;
-confirmation and robustness also require the preceding strict gate.
-
-The exact lifecycle is `CLOSED`/`PENDING` at
-`839CD70EE519C7220697500747D0EFBD2D801580E0F3132F1E56A00D82E88E6A`. The authority receipt,
-raw auditor OPEN delivery, and post-O auditor-review delivery are all absent. After exact S and E,
-only a lifecycle-only O commit may pin the first two files, and execution also requires the separate
-post-O review. Local checks can reject malformed or mismatched exports but cannot cryptographically
-prove a `read_thread` export was not fabricated; acquisition from the user-owned auditor task and
-the post-O verdict remain an explicit human/host trust boundary. No gate has opened and no reserved
-seed has run.
+The preregistration collision scan reserved 224 disjoint seeds while all pools were closed. The
+audited development opening then consumed exactly 256 games: 128 per candidate. The exact close
+lifecycle is `DEVELOPMENT_CLOSED` at
+`3A535E485F1B14870E03380D3672F3CD899051A45F3EB4B9FB4D5094F7B2785D`. Kag_01 later pools
+remain `CLOSED/HOLD`; Kag_02 later pools are `RETIRED_UNUSED/HOLD`. No further seed authority is
+created by this handoff.
 
 ## Tetsu conditional IP terms
 
@@ -154,8 +157,12 @@ body.
 
 ## External-action boundary
 
-Observed external actions: **0**. The local release and public-release receipts record no Kaggle
-push, Save & Run, submission, publication, or browser control.
+Observed external actions: **2**, both private SaveRuns. Kag_01 and Kag_02 version 1 are
+`COMPLETE_VERIFIED` in `11_saverun_results/remote_receipts.json`; both are private,
+internet-disabled, and their remote archives equal the approved local bytes. Kag_02 remains
+exploratory/non-promotion. The read-only competition-submission snapshot remained exactly 22, so
+neither SaveRun created a competition submission. No publication or browser-control action was
+observed.
 
 If later authorized and freshly audited, the fixed public action order is:
 
@@ -169,10 +176,11 @@ treated as competition-submission authority.
 
 ## Current QA claims
 
-The current command-output claims are 423 project tests, 81 official-environment tests, 91
-candidate-freeze tests, 28 private-release tests, and 10 public-release tests, with scoped Ruff
-passing. These strings are not a self-authenticating CI attestation; remote CI check count remains
-zero, so the auditor must rerun the relevant commands from the exact freeze.
+Pinned command-output claims are 489 project tests at the final private-package freeze, 492
+project tests after the SaveRun/publication evidence update, 81 official-environment tests,
+91 candidate-freeze tests before post-run close, 38 private-release
+tests, 10 public-release tests, and 3 focused SaveRun-receipt tests, with scoped Ruff passing.
+These strings are not a self-authenticating CI attestation; remote CI check count remains zero.
 
 ## Hash anchors
 
@@ -185,17 +193,20 @@ zero, so the auditor must rerun the relevant commands from the exact freeze.
 | `05_engine_screen/manifest.json` | `A819E229B8FA101730B759AE30B224D692944129B55E7A3B1BEA44ACBDC70D48` |
 | `05_engine_screen_ray_c45_addendum/manifest.json` | `2449F4A771CA0F8716AE1EFCE05FB8842D310BD381895C14F162EF1DC9B812D9` |
 | `06_candidates/manifest.json` | `1A2765982DB4FD3EC648BD9A68CC4F331761BF100E63950E02F57463BCCBCA9C` |
-| `06_candidates/lifecycle.json` | `839CD70EE519C7220697500747D0EFBD2D801580E0F3132F1E56A00D82E88E6A` |
-| `07_release/release_spec.json` | `516CB6A5FFC73467062708EA0E7228B406FA7EE58F21D953E91C772F49F3EBBB` |
+| `06_candidates/lifecycle.json` | `3A535E485F1B14870E03380D3672F3CD899051A45F3EB4B9FB4D5094F7B2785D` |
+| `07_release/release_spec.json` | `662937F95BF52BB3E765C14F14A36681FC82AE1D7A49EBF58280550B7C0DCC2D` |
 | `07_release/evidence/raw/RECEIPT.json` | `B3F54DDD8C888665C8755B806F10094F999C63E3409130587FD94C2982759772` |
-| `07_release/local_build/release_manifest.json` | `A5846B67ADFA76875434CAFE3CD9B915F20FFEB6648F207F9695B3B05708C129` |
-| `07_release/verification/VERIFICATION.md` | `712DC52D346E981C2B5DD3A0E1B866F4046C68359C85DBBE9B00D01558C13BBE` |
-| `08_public_release/SHA256SUMS` | `DAA5EBB407FDFAEA990E9B847D7AEB6266E92CD0E148D188783DBF23FC9E56DD` |
-| `08_public_release/release_manifest.json` | `6F415DB92D391F9D9D885A9B5A1BA6F7815CAE3CDD9413436B4759812599532D` |
+| `07_release/local_build/release_manifest.json` | `F99D31D750E1D4EAF26127308C720A6BD042E32CA3F05AFC16CDB6182925F224` |
+| `07_release/verification/VERIFICATION.md` | `577F47A9E4C9276D2579C49F2FC3F934A82B2C08DBA620D91E33CCA2F332A39D` |
+| `08_public_release/SHA256SUMS` | `540074A76A72A9DA97D70D8EB73BD9218B9E50D7C69547BB5349DB302FEF89A8` |
+| `08_public_release/release_manifest.json` | `582357B41C64D5D03960FB9AC01FADA1C2444AA8B23EAAD71971AF480E955078` |
 | `08_public_release/artifact/kaggriculture_fixed_trace_safety_baseline.tar.gz` | `2730084026B6C0EA68D1D54FF469E1B80D9ABF9BEF43285B15366CF13CF8ACCB` |
+| `10_results/kag_01_development/evidence_manifest.json` | `712DEBADB1BAE4247687B788A1986AB2B90DF32A52F390AB2BBD5213A5A2B09A` |
+| `10_results/kag_02_development/evidence_manifest.json` | `F9E9C7629B6EA95D989712D1F8ED685835DC8120D31292FD51B33E414F82FD7D` |
+| `11_saverun_results/remote_receipts.json` | `6649794E4BDFA1C9A18A465A9106C211472EC8A4B5C6B865E2A89EDB2CF659AC` |
 | `06_candidates/execution_binding.json` | `PENDING_FREEZE` |
 
-The machine handoff records 52 exact evidence files with byte counts and SHA-256 values. The
+The machine handoff records 56 exact evidence files with byte counts and SHA-256 values. The
 verifier rehashes each file and also checks child hashes against the 01/02/03/05/06 source
 manifests or sidecars and the 08 checksum list where available.
 
@@ -205,10 +216,11 @@ manifests or sidecars and the 08 checksum list where available.
 - Recheck API pagination, repair provenance, unavailable platforms, and negative-scan limits.
 - Challenge the Tetsu page-license-to-cell mapping, including the unarchived cutoff body versus the
   later tracked page, and every lineage notice.
-- Confirm all six pools are still unopened, all three authority artifacts are absent, and the final
-  execution binding is exact.
+- Recheck all 256 development games, both gate verdicts, and the closed/retired later pools.
+- Recheck both private SaveRun COMPLETE receipts, exact remote archives, and submission count 22.
 - Treat Kaito's weak screen and Ray's 14-2 result as material adverse evidence.
 - Scan public bytes for private-source leakage and enforce Discussion before Code.
+- Keep Discussion and public Code HOLD until a separate exact publication verdict.
 - Reject competition submission unless the exact authorizing user phrase is recorded.
 
 ## Verification commands

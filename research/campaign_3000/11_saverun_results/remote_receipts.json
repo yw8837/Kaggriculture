@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "state": "PRIVATE_SAVERUNS_COMPLETE_VERIFIED",
+  "recorded_against_git_head": "b13eeb2f3b92fe51393fbce37ef21112b26af686",
+  "approved_package_binding": {
+    "git_head": "b13eeb2f3b92fe51393fbce37ef21112b26af686",
+    "release_manifest_path": "research/campaign_3000/08_public_release/evidence/private_release_manifest.json",
+    "release_manifest_bytes": 18927,
+    "release_manifest_sha256": "F99D31D750E1D4EAF26127308C720A6BD042E32CA3F05AFC16CDB6182925F224"
+  },
+  "independent_auditor_release": {
+    "task_id": "019fb8b8-7758-7860-9304-39eb4f06c65c",
+    "verdict": "PASS",
+    "scope": "EACH_EXACT_SLOT_PRIVATE_SAVERUN_RELEASE",
+    "slots": {
+      "Kag_01": "PASS",
+      "Kag_02": "PASS"
+    }
+  },
+  "independent_auditor_postrun": {
+    "task_id": "019fb8b8-7758-7860-9304-39eb4f06c65c",
+    "verdict": "COMPLETE_VERIFIED",
+    "scope": "Kag_01 and Kag_02 private Save & Run version 1",
+    "method": "live read-only kernel metadata/status plus remote Output API bytes rehashed in memory"
+  },
+  "additional_external_action_authority": "HOLD",
+  "competition_submission": {
+    "performed_by_this_release": false,
+    "snapshot_at_utc": "2026-08-08T23:51:25.917Z",
+    "exact_total": 22,
+    "latest_ref": 55270999
+  },
+  "slots": [
+    {
+      "slot": "Kag_01",
+      "kernel_ref": "yw8837/kag-01-tetsu-v16-exact",
+      "version": 1,
+      "kaggle_last_run_time_utc": "2026-08-08T23:42:15.120000Z",
+      "worker_status": "KernelWorkerStatus.COMPLETE",
+      "visibility": "private",
+      "internet": false,
+      "classification": "STRICT_DEVELOPMENT_PASS_PRIVATE_SAVERUN",
+      "second_push_authorized": false,
+      "approved_prepush": {
+        "bytes": 17615,
+        "sha256": "15A034D50B9BBC417F91F185C61719100DB3F8D7D94672A9198032B78636B9DC"
+      },
+      "archive": {
+        "name": "Kag_01 - Tetsu v16 Exact.tar.gz",
+        "bytes": 19099,
+        "sha256": "184F687C474933A7215DB97E8C5A5F823AE79233EEA42D04B70EABC001BF9E16",
+        "remote_equals_approved": true
+      },
+      "log": {
+        "name": "kag-01-tetsu-v16-exact.log",
+        "bytes": 2671,
+        "sha256": "ECB36FAA9D0BF4971467D1A437A0F2AE545039459BED1BC40866AC3CFBBA2583",
+        "error_pattern_hits": 0
+      },
+      "members": [
+        {
+          "name": "main.py",
+          "bytes": 27244,
+          "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+        },
+        {
+          "name": "LICENSE",
+          "bytes": 11558,
+          "sha256": "1EB85FC97224598DAD1852B5D6483BBCF0AA8608790DCC657A5A2A761AE9C8C6"
+        },
+        {
+          "name": "ATTRIBUTION.md",
+          "bytes": 2672,
+          "sha256": "3685283A43DF0B5352041EA24BC1E531CE706D0F722C22BB1D07DC71F362101F"
+        }
+      ],
+      "member_order": [
+        "main.py",
+        "LICENSE",
+        "ATTRIBUTION.md"
+      ],
+      "deterministic_tar_metadata": {
+        "mode": "0644",
+        "uid": 0,
+        "gid": 0,
+        "mtime": 0,
+        "uname": "",
+        "gname": ""
+      },
+      "main_compile": "PASS"
+    },
+    {
+      "slot": "Kag_02",
+      "kernel_ref": "yw8837/kag-02-kaito-v22-price-impact",
+      "version": 1,
+      "kaggle_last_run_time_utc": "2026-08-08T23:45:30.623000Z",
+      "worker_status": "KernelWorkerStatus.COMPLETE",
+      "visibility": "private",
+      "internet": false,
+      "classification": "EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION",
+      "strict_development_verdict": "NO_GO",
+      "second_push_authorized": false,
+      "approved_prepush": {
+        "bytes": 18225,
+        "sha256": "86461AEB7709E3569D55A275E80E8B1969BBAB4B7D8F25BBD31B5E933AC050F9"
+      },
+      "archive": {
+        "name": "Kag_02 - Kaito v22 Price Impact.tar.gz",
+        "bytes": 17360,
+        "sha256": "37EA53D3046E3D1DA914F8A89C6F4BB02E240E1BB85857BDA149273FC4DD974C",
+        "remote_equals_approved": true
+      },
+      "log": {
+        "name": "kag-02-kaito-v22-price-impact.log",
+        "bytes": 2692,
+        "sha256": "40C18ADFA6FC3BFEFF66F0056CC6B9B436560265D63947A4484D286FE41840E9",
+        "error_pattern_hits": 0
+      },
+      "members": [
+        {
+          "name": "main.py",
+          "bytes": 18609,
+          "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A"
+        },
+        {
+          "name": "LICENSE",
+          "bytes": 11558,
+          "sha256": "1EB85FC97224598DAD1852B5D6483BBCF0AA8608790DCC657A5A2A761AE9C8C6"
+        },
+        {
+          "name": "ATTRIBUTION.md",
+          "bytes": 2814,
+          "sha256": "A13EDD083A33082DD781B7A1EDD75306C868C743E12082CF4623F5B4BF970BD9"
+        }
+      ],
+      "member_order": [
+        "main.py",
+        "LICENSE",
+        "ATTRIBUTION.md"
+      ],
+      "deterministic_tar_metadata": {
+        "mode": "0644",
+        "uid": 0,
+        "gid": 0,
+        "mtime": 0,
+        "uname": "",
+        "gname": ""
+      },
+      "main_compile": "PASS"
+    }
+  ],
+  "publication": {
+    "discussion": "HOLD",
+    "public_code": "HOLD",
+    "required_order": [
+      "discussion",
+      "public_code"
+    ]
+  },
+  "confirmation_and_robustness": "HOLD"
+}

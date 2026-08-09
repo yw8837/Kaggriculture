@@ -2,6 +2,23 @@
   "schema_version": 1,
   "evidence_cutoff_utc": "2026-08-08T18:53:47Z",
   "competition": "kaggriculture",
+  "release_tooling": {
+    "builder": {
+      "path": "research/campaign_3000/07_release/build_release.py",
+      "bytes": 69228,
+      "sha256": "DB684D877B14B2D60568FA0977E83C3732F262C832D048E71AFC992E8F3CABF7"
+    },
+    "tests": {
+      "path": "tests/test_campaign_3000_release_package.py",
+      "bytes": 38116,
+      "sha256": "25AAF8F37B6751C44B6DF3A97E1D46D506D6D4654E6CE6453C34104DBC77AA78"
+    },
+    "postrun_validator": {
+      "path": "research/campaign_3000/06_candidates/orchestrator.py",
+      "bytes": 109441,
+      "sha256": "DF113FC40956811B186568B8A7BEC4680BA9CE716752AAC144BB26FCAFED9738"
+    }
+  },
   "license": {
     "spdx": "Apache-2.0",
     "source_path": "research/campaign_3000/07_release/LICENSE",
@@ -39,18 +56,47 @@
       "path": "research/campaign_3000/06_candidates/manifest.json",
       "sha256": "1A2765982DB4FD3EC648BD9A68CC4F331761BF100E63950E02F57463BCCBCA9C"
     },
-    "development_result": {
-      "required": true,
-      "scope": "EACH_CANDIDATE_EXACT_DEVELOPMENT_PHASE",
-      "required_verdict": "PASS",
-      "status": "PENDING"
+    "development_results": {
+      "lifecycle": {
+        "path": "research/campaign_3000/06_candidates/lifecycle.json",
+        "sha256": "3A535E485F1B14870E03380D3672F3CD899051A45F3EB4B9FB4D5094F7B2785D"
+      },
+      "slots": {
+        "Kag_01": {
+          "evidence_manifest": {
+            "path": "research/campaign_3000/10_results/kag_01_development/evidence_manifest.json",
+            "sha256": "712DEBADB1BAE4247687B788A1986AB2B90DF32A52F390AB2BBD5213A5A2B09A"
+          },
+          "required_strict_verdict": "PASS",
+          "package_readiness": "STRICT_DEVELOPMENT_PASS"
+        },
+        "Kag_02": {
+          "evidence_manifest": {
+            "path": "research/campaign_3000/10_results/kag_02_development/evidence_manifest.json",
+            "sha256": "F9E9C7629B6EA95D989712D1F8ED685835DC8120D31292FD51B33E414F82FD7D"
+          },
+          "required_strict_verdict": "NO_GO",
+          "package_readiness": "EXPLORATORY_PACKAGE_GATE_PASS_NON_PROMOTION_AUDITOR_RELEASE_PENDING",
+          "required_future_release_label": "EXPLORATORY_PRIVATE_SAVERUN_READY_NON_PROMOTION",
+          "prohibited_claims": [
+            "PROMOTION",
+            "CHAMPION",
+            "CONFIRMATION_EVIDENCE",
+            "ROBUSTNESS_EVIDENCE",
+            "COMPETITION_SUBMISSION_EVIDENCE"
+          ]
+        }
+      }
     },
     "independent_auditor_exact_private_saverun_release": {
       "required": true,
-      "scope": "EXACT_PRIVATE_SAVERUN_RELEASE",
+      "scope": "EACH_EXACT_SLOT_PRIVATE_SAVERUN_RELEASE",
       "required_verdict": "PASS",
       "auditor_task_id": "019fb8b8-7758-7860-9304-39eb4f06c65c",
-      "status": "PENDING"
+      "slots": {
+        "Kag_01": "PENDING",
+        "Kag_02": "PENDING"
+      }
     }
   },
   "candidates": [
