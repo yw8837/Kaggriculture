@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "plan_id": "campaign_3000_kag_03_kag_04_development_v1",
+  "status": "CLOSED_DEVELOPMENT_ONLY",
+  "authority": {
+    "fresh_seed_execution": "FORBIDDEN_UNTIL_NEW_EXACT_S_E_FREEZE_AND_INDEPENDENT_AUDITOR_OPEN_PASS",
+    "save_run": "FORBIDDEN",
+    "competition_submission": "FORBIDDEN",
+    "publication": "FORBIDDEN"
+  },
+  "engine": {
+    "package": "kaggle-environments",
+    "version": "1.32.6",
+    "environment": "kaggriculture",
+    "episode_steps": 720,
+    "kaggriculture_py_sha256": "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF",
+    "environment_configuration": {
+      "actTimeout": 1,
+      "boardSize": 10,
+      "episodeSteps": 720,
+      "farmHandCostMult": 1,
+      "marketParams": {},
+      "maxMarketOrdersPerTurn": 10,
+      "runTimeout": 1200,
+      "seed": null,
+      "shedCapacity": 100,
+      "startingMoney": 3000,
+      "townCenterSellInterval": 24,
+      "townShopSellInterval": 4,
+      "townShopUnlockInterval": 3,
+      "turnsPerDay": 24,
+      "weedSpawnChance": 0.005
+    },
+    "environment_configuration_sha256": "1A9006518CCBE403A70E107BB041CC2489E38DA637AE0E3872500010963C46F3"
+  },
+  "catalog": "research/campaign_3000/12_next_candidates/candidate_catalog.json",
+  "runner": {
+    "module": "kaggriculture_lab.evaluation.runner",
+    "source": {
+      "path": "src/kaggriculture_lab/evaluation/runner.py",
+      "sha256": "51E7BF197223BECE8F2BA7D002BE213630C56EFB289C6A132AB91C02A563F713",
+      "bytes": 26229
+    },
+    "workers": 8,
+    "scenario_config": "research/campaign_3000/12_next_candidates/development_scenarios.json",
+    "scenario_names": ["default"],
+    "seats": [0, 1],
+    "opponents": [
+      {"alias": "tetsu_v16", "path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py", "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6", "bytes": 27244},
+      {"alias": "ray_c45_exact", "path": "research/campaign_3000/06_candidates/snapshots/ray_c45_exact.py", "sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73", "bytes": 26545},
+      {"alias": "boatlee_v14", "path": "research/campaign_3000/06_candidates/snapshots/boatlee_v14.py", "sha256": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B", "bytes": 26304},
+      {"alias": "kaito_v22", "path": "research/campaign_3000/06_candidates/snapshots/kaito_v22.py", "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A", "bytes": 18609},
+      {"alias": "fa04_g1", "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py", "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922", "bytes": 197808}
+    ]
+  },
+  "slots": {
+    "Kag_03": {
+      "candidate_path": "research/campaign_3000/12_next_candidates/kag_03/main.py",
+      "candidate_source_sha256": "9034026D6872109C9AF6BD5582F65446312F0D109654BE388A17D8F8A186FE36",
+      "candidate_source_bytes": 33206,
+      "candidate_status": "CLOSED_IMPLEMENTATION_FREEZE",
+      "seed_pool": "candidate_catalog.json#Kag_03/development",
+      "runner_cli": ".\\.venv\\Scripts\\python.exe -m kaggriculture_lab.evaluation.runner --agent research/campaign_3000/12_next_candidates/kag_03/main.py --opponents research/campaign_3000/06_candidates/snapshots/tetsu_v16.py,research/campaign_3000/06_candidates/snapshots/ray_c45_exact.py,research/campaign_3000/06_candidates/snapshots/boatlee_v14.py,research/campaign_3000/06_candidates/snapshots/kaito_v22.py,experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py --seeds 56000,56001,56002,56003,56004,56005,56006,56007,56008,56009,56010,56011,56012,56013,56014,56015 --scenario-config research/campaign_3000/12_next_candidates/development_scenarios.json --output research/campaign_3000/12_next_candidates/results/kag_03/development_raw_report.json --workers 8",
+      "raw_report": "research/campaign_3000/12_next_candidates/results/kag_03/development_raw_report.json",
+      "runner_started_receipt": "research/campaign_3000/12_next_candidates/results/kag_03/development_raw_report.started.json",
+      "gate_report": "research/campaign_3000/12_next_candidates/results/kag_03/development_gate.json",
+      "gate_cli": ".\\.venv\\Scripts\\python.exe research/campaign_3000/12_next_candidates/development_gate.py gate --slot Kag_03 --report research/campaign_3000/12_next_candidates/results/kag_03/development_raw_report.json --output research/campaign_3000/12_next_candidates/results/kag_03/development_gate.json"
+    },
+    "Kag_04": {
+      "candidate_path": "research/campaign_3000/12_next_candidates/kag_04/main.py",
+      "candidate_source_sha256": "797E2BFED6F17964CB08E3B1A77D72A978BDB8EE2C9EA9E7E552A454DA20F191",
+      "candidate_source_bytes": 31455,
+      "candidate_status": "CLOSED_IMPLEMENTATION_FREEZE",
+      "seed_pool": "candidate_catalog.json#Kag_04/development",
+      "runner_cli": ".\\.venv\\Scripts\\python.exe -m kaggriculture_lab.evaluation.runner --agent research/campaign_3000/12_next_candidates/kag_04/main.py --opponents research/campaign_3000/06_candidates/snapshots/tetsu_v16.py,research/campaign_3000/06_candidates/snapshots/ray_c45_exact.py,research/campaign_3000/06_candidates/snapshots/boatlee_v14.py,research/campaign_3000/06_candidates/snapshots/kaito_v22.py,experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py --seeds 59000,59001,59002,59003,59004,59005,59006,59007,59008,59009,59010,59011,59012,59013,59014,59015 --scenario-config research/campaign_3000/12_next_candidates/development_scenarios.json --output research/campaign_3000/12_next_candidates/results/kag_04/development_raw_report.json --workers 8",
+      "raw_report": "research/campaign_3000/12_next_candidates/results/kag_04/development_raw_report.json",
+      "runner_started_receipt": "research/campaign_3000/12_next_candidates/results/kag_04/development_raw_report.started.json",
+      "gate_report": "research/campaign_3000/12_next_candidates/results/kag_04/development_gate.json",
+      "gate_cli": ".\\.venv\\Scripts\\python.exe research/campaign_3000/12_next_candidates/development_gate.py gate --slot Kag_04 --report research/campaign_3000/12_next_candidates/results/kag_04/development_raw_report.json --output research/campaign_3000/12_next_candidates/results/kag_04/development_gate.json"
+    }
+  },
+  "development_gate": {
+    "integrity": {
+      "exact_complete_grid": true,
+      "both_seats_required": true,
+      "finite_money_and_runtime": true,
+      "failures": 0,
+      "hidden_abnormal_status_failures": 0,
+      "candidate_and_opponent_source_start_equals_end": true,
+      "resolved_environment_seed_matches_requested": true,
+      "default_scenario_only": true
+    },
+    "performance": {
+      "minimum_overall_match_score": 0.5,
+      "minimum_overall_mean_margin": 0.0,
+      "direct_tetsu_v16_control": {
+        "requirement": "must beat Kag_01/Tetsu v16; equality and non-inferiority do not pass",
+        "minimum_match_score_exclusive": 0.5,
+        "minimum_mean_margin_exclusive": 0.0
+      },
+      "per_opponent_catastrophic_regression": {
+        "minimum_match_score": 0.25,
+        "minimum_mean_margin": -10000.0
+      }
+    },
+    "pass_verdict": "DEVELOPMENT_PASS_NON_PROMOTION_NO_3000_GUARANTEE",
+    "nonpass_verdict": "DEVELOPMENT_NO_GO"
+  },
+  "future_phases": {
+    "confirmation": "CLOSED reservation only; no scenario suite, metric threshold, runner command, or opening authority is defined.",
+    "robustness": "CLOSED reservation only; no scenario suite, metric threshold, runner command, or opening authority is defined."
+  }
+}

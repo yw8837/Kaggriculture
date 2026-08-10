@@ -1,0 +1,53 @@
+{
+  "candidate": {
+    "bytes": 33206,
+    "path": "research/campaign_3000/12_next_candidates/kag_03/main.py",
+    "sha256": "9034026D6872109C9AF6BD5582F65446312F0D109654BE388A17D8F8A186FE36"
+  },
+  "compile": {
+    "filename": "<kag03_freeze>",
+    "ok": true
+  },
+  "control": {
+    "bytes": 27244,
+    "path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
+    "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+  },
+  "metrics_after_reset": {
+    "calls": 0,
+    "exception_fallback": 0,
+    "no_op": 0,
+    "rejected_ambiguous": 0,
+    "rejected_illegal": 0,
+    "rejected_malformed": 0,
+    "rejected_resize": 0,
+    "reordered": 0
+  },
+  "metrics_generic": {
+    "calls": 0,
+    "exception_fallback": 0,
+    "no_op": 0,
+    "rejected_ambiguous": 0,
+    "rejected_illegal": 0,
+    "rejected_malformed": 0,
+    "rejected_resize": 0,
+    "reordered": 0
+  },
+  "metrics_hooks": [
+    "kag03_metrics",
+    "get_metrics",
+    "rescue_metrics",
+    "reset_rescue_metrics"
+  ],
+  "metrics_initial": {
+    "calls": 0,
+    "exception_fallback": 0,
+    "no_op": 0,
+    "rejected_ambiguous": 0,
+    "rejected_illegal": 0,
+    "rejected_malformed": 0,
+    "rejected_resize": 0,
+    "reordered": 0
+  },
+  "schema": "kag03_terminal_market_freeze.v1"
+}

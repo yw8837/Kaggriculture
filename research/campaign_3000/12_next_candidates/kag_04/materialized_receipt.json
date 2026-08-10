@@ -1,0 +1,10 @@
+{
+  "artifact_kind": "kag_04_tetsu_v16_opening_sheep_materialization",
+  "base_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+  "delta": "COW 2 -> 1 and SHEEP 2 -> 3 only when the guarded opening shape is exact",
+  "license": "Apache-2.0 page-level mapping inference; preserve the Tetsu lineage attribution",
+  "output_bytes": 31455,
+  "output_sha256": "797E2BFED6F17964CB08E3B1A77D72A978BDB8EE2C9EA9E7E552A454DA20F191",
+  "schema_version": 1,
+  "status": "MATERIALIZED_NOT_EVALUATED"
+}

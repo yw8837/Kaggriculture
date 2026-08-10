@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "kag_03_kag_04_local_construction_verification",
+  "status": "PASS_LOCAL_CONSTRUCTION_SEEDS_STILL_CLOSED",
+  "focused_pytest": {
+    "command": "bundled-python -m pytest -q -p no:cacheprovider --basetemp dist/pytest-kag03-kag04-20260810-2 tests/test_kag03_terminal_market.py tests/test_kag04_sheep_first.py tests/test_next_candidate_catalog.py",
+    "result": "34 passed in 0.64s",
+    "exit_code": 0,
+    "runtime": "Codex bundled CPython 3.12.13 with existing .venv site-packages",
+    "note": "The project .venv uv trampoline was not escalated after its sandbox permission failure. A first bundled-Python attempt using the host temp directory exposed one stale catalog assertion and temp-directory permission errors; the assertion was corrected and the final run used a repo-local basetemp."
+  },
+  "ruff": {
+    "scope": [
+      "src/kaggriculture_lab/candidates/kag03_terminal_market.py",
+      "src/kaggriculture_lab/candidates/kag04_sheep_first.py",
+      "research/campaign_3000/12_next_candidates/development_gate.py",
+      "research/campaign_3000/12_next_candidates/seed_reservation.py",
+      "tests/test_kag03_terminal_market.py",
+      "tests/test_kag04_sheep_first.py",
+      "tests/test_next_candidate_catalog.py"
+    ],
+    "result": "All checks passed!",
+    "exit_code": 0
+  },
+  "static_validation": {
+    "json_and_python_files": 18,
+    "parse_compile": "PASS",
+    "development_plan": "VALID_CLOSED_DEVELOPMENT_PLAN",
+    "development_cells": {
+      "Kag_03": 160,
+      "Kag_04": 160
+    },
+    "seed_pools_collision_free": true,
+    "observed_seed_count": 1696,
+    "observed_seed_values_sha256": "B918500DE0FD53A5159F4EBA12C06589A392E7E66AC6DB2CCF49882D98446FD5"
+  },
+  "candidate_smoke": {
+    "Kag_03": {
+      "source_sha256": "9034026D6872109C9AF6BD5582F65446312F0D109654BE388A17D8F8A186FE36",
+      "bytes": 33206,
+      "compile": "PASS",
+      "focused_tests": "PASS_WITH_EXACT_SOURCE_AND_ENVIRONMENT_PIN_ATTACKS"
+    },
+    "Kag_04": {
+      "source_sha256": "797E2BFED6F17964CB08E3B1A77D72A978BDB8EE2C9EA9E7E552A454DA20F191",
+      "bytes": 31455,
+      "compile": "PASS",
+      "guarded_rewrite": "PASS",
+      "base_action_immutable": "PASS",
+      "runner_metrics_hook": "PASS"
+    }
+  },
+  "authority": {
+    "fresh_games_executed": 0,
+    "seed_pools": "CLOSED",
+    "save_run": "NOT_RUN",
+    "upload": "NOT_RUN",
+    "competition_submission": "NOT_RUN",
+    "publication": "NOT_RUN"
+  }
+}

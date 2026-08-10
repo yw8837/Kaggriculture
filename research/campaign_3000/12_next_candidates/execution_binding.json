@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "kag_03_kag_04_execution_freeze_binding",
+  "status": "PENDING_IMPLEMENTATION_FREEZE",
+  "base_head": "3a817948beb9f51af4966fcdbe5a93c36bc7840e",
+  "implementation_commit": "PENDING_IMPLEMENTATION_FREEZE",
+  "implementation_manifest": {
+    "path": "research/campaign_3000/12_next_candidates/freeze_manifest.json",
+    "sha256": "72C2FD821AA495D67D682ECFBC9BC21ECCC1EF18F8F397016249BCC0B413C916",
+    "bytes": 8707,
+    "input_count": 32
+  },
+  "expected_execution_freeze": {
+    "parent": "IMPLEMENTATION_COMMIT",
+    "allowed_diff": [
+      "research/campaign_3000/12_next_candidates/execution_binding.json"
+    ]
+  },
+  "candidates": {
+    "Kag_03": {
+      "sha256": "9034026D6872109C9AF6BD5582F65446312F0D109654BE388A17D8F8A186FE36",
+      "development_pool": [56000, 56015]
+    },
+    "Kag_04": {
+      "sha256": "797E2BFED6F17964CB08E3B1A77D72A978BDB8EE2C9EA9E7E552A454DA20F191",
+      "development_pool": [59000, 59015]
+    }
+  },
+  "lifecycle": {
+    "all_six_pools": "CLOSED",
+    "opened": false,
+    "consumed": false,
+    "fresh_games_executed": 0
+  },
+  "auditor_authority": {
+    "status": "PENDING_INDEPENDENT_AUDITOR_EXACT_OPEN",
+    "development_seed_execution": "FORBIDDEN"
+  },
+  "external_actions": {
+    "save_run": false,
+    "upload": false,
+    "competition_submission": false,
+    "publication": false
+  }
+}

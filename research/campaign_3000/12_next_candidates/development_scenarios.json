@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "CLOSED_DEFAULT_ONLY",
+  "authority": "SCENARIO_DEFINITION_ONLY_NO_SEED_AUTHORITY",
+  "scenarios": {
+    "default": {}
+  }
+}

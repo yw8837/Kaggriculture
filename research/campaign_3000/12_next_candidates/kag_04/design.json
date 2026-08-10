@@ -1,0 +1,125 @@
+{
+  "schema_version": 2,
+  "artifact_kind": "kag_04_tetsu_v16_derivative_design",
+  "design_id": "KAG_04_OPENING_SHEEP_BIAS",
+  "status": "MATERIALIZED_NOT_EVALUATED",
+  "evidence_commit": "3a817948beb9f51af4966fcdbe5a93c36bc7840e",
+  "scope": {
+    "slot": "Kag_04",
+    "working_title": "Tetsu v16 Opening Sheep Bias",
+    "base": "exact pinned Tetsu v16 only",
+    "materialized_candidate_present": true,
+    "evaluation_run_present": false,
+    "external_action_authority": "NONE"
+  },
+  "evidence": [
+    {
+      "id": "E01_tetsu_exact_base",
+      "path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
+      "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+      "fact": "This is the only accepted input source. Any byte mismatch is rejected before source construction."
+    },
+    {
+      "id": "E02_tetsu_license_lineage",
+      "path": "research/campaign_3000/07_release/TETSU_IP_VERDICT.md",
+      "sha256": "DA8764985D0EFCFC63867DB673E242D82B9D72CFE7495BFCB932A2DD6F0DF721",
+      "fact": "The Tetsu v16 notebook page displayed Apache-2.0 at the captured evidence cutoff. Mapping that page-level statement to the extracted exact artifact is an evidence-backed inference, not an embedded SPDX declaration; the Tetsu, Boatlee, Flex, Kakuteki, mrgrishninsb, public-V23, and frontier-cleanup lineage remains required attribution."
+    },
+    {
+      "id": "E03_kag02_retirement",
+      "path": "research/campaign_3000/10_results/kag_02_development/gate.json",
+      "sha256": "1444D13F28FDB4313495B9A1549C1EC567C3B0E2D6B7B18882123E8D3F6E1812",
+      "fact": "Kag_02 v22 price-impact candidate is strict NO_GO.",
+      "design_effect": "Kag_04 changes neither price-impact scoring, market forecast, SELL ordering, nor any Kag_03 mechanism."
+    }
+  ],
+  "derivative_provenance": {
+    "source_credit": "tetsu2131/tetsutani, adaptive-farming-strategy-for-kaggriculture, notebook version 16",
+    "license": "Apache-2.0 page-level mapping inference for the exact pinned artifact",
+    "attribution_required_before_any_package": [
+      "Tetsu v16 source and extraction hashes",
+      "Boatlee and Flex common-route lineage",
+      "Kakuteki, mrgrishninsb, public V23, and frontier-cleanup notices",
+      "Apache-2.0 LICENSE text and an attribution notice"
+    ],
+    "claim_boundary": "Kag_04 is a derivative of Tetsu v16. It does not claim clean-room authorship, a public score for v16, or any evaluated improvement."
+  },
+  "single_delta": {
+    "name": "opening_sheep_bias",
+    "preconditions": [
+      "observable own placed and shed animal count is exactly zero",
+      "base action market is a list",
+      "exactly one BUY_ANIMAL COW quantity 2 order",
+      "exactly one BUY_ANIMAL SHEEP quantity 2 order",
+      "no other BUY_ANIMAL order",
+      "every market order is a nonempty list whose operation is a string"
+    ],
+    "transformation": {
+      "from": ["BUY_ANIMAL", "COW", 2],
+      "to": ["BUY_ANIMAL", "COW", 1],
+      "and_from": ["BUY_ANIMAL", "SHEEP", 2],
+      "and_to": ["BUY_ANIMAL", "SHEEP", 3]
+    },
+    "invariants": [
+      "total animal purchase quantity remains 4",
+      "market list length and all other market orders remain unchanged",
+      "farmer and hands values remain unchanged",
+      "base action and input observation are never mutated"
+    ],
+    "fallback": "Return the exact base-action object for malformed observation/action, any existing own animal, missing/duplicate target order, or any other BUY_ANIMAL order."
+  },
+  "allowed_observable_inputs": [
+    "current observation player index used only to select the current farm",
+    "current public farm tiles for own placed-animal count",
+    "current private shed for own held-animal count",
+    "base action market structure"
+  ],
+  "prohibited_inputs": [
+    "step or day",
+    "seed",
+    "replay or episode data",
+    "team, opponent, submission, notebook, or leaderboard identity/context",
+    "price, price-impact, forecast, SELL ranking, or market-response data",
+    "Kag_03 code or behavior"
+  ],
+  "metrics_hooks": [
+    "calls",
+    "applied",
+    "fallback_malformed",
+    "fallback_ambiguous",
+    "fallback_owned_animals",
+    "get_metrics and rescue_metrics snapshot aliases",
+    "reset_rescue_metrics reset-and-snapshot alias"
+  ],
+  "hypothesis": {
+    "statement": "For the same exact Tetsu-v16 opening shape, moving one animal unit from COW to SHEEP can improve paired performance without changing total animal quantity, base logistics, or market-order count.",
+    "not_established": "Local construction smoke exists, but no fresh-seed evaluation, runtime matrix, or promotion evidence exists for this derivative."
+  },
+  "materialization_contract": {
+    "status": "MATERIALIZED_NOT_EVALUATED",
+    "expected_base_path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
+    "expected_output_path": "research/campaign_3000/12_next_candidates/kag_04/main.py",
+    "expected_receipt_path": "research/campaign_3000/12_next_candidates/kag_04/materialized_receipt.json",
+    "exact_command": "python -m kaggriculture_lab.candidates.kag04_sheep_first --base research/campaign_3000/06_candidates/snapshots/tetsu_v16.py --output research/campaign_3000/12_next_candidates/kag_04/main.py --receipt research/campaign_3000/12_next_candidates/kag_04/materialized_receipt.json",
+    "actual_output": {
+      "path": "research/campaign_3000/12_next_candidates/kag_04/main.py",
+      "sha256": "797E2BFED6F17964CB08E3B1A77D72A978BDB8EE2C9EA9E7E552A454DA20F191",
+      "bytes": 31455
+    },
+    "root_smoke_evidence": [
+      "compile PASS",
+      "guarded rewrite PASS",
+      "base action immutable PASS",
+      "rescue_metrics applied=1 PASS"
+    ],
+    "preconditions": [
+      "reconfirm base SHA-256",
+      "create Apache-2.0 LICENSE and complete lineage attribution for the derivative package",
+      "obtain a new evaluation authority and record its source/seed/opponent receipts"
+    ]
+  },
+  "hold": {
+    "verdict": "HOLD",
+    "reason": "The root task materialized the current builder output and reported a focused compile/rewrite/immutability/metrics smoke PASS. No seed, runtime matrix, evaluation, package, or external action evidence exists for promotion."
+  }
+}

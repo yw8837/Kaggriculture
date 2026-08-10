@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "pre_reservation_seed_collision_snapshot",
+  "status": "FINAL_SOURCE_MATERIALIZATION_ADAPTER_PASS_FREEZE_INPUT",
+  "method": {
+    "scanner": "research/campaign_3000/06_candidates/orchestrator.py::scan_observed_seeds",
+    "query": "Observed values intersected with each proposed inclusive range before candidate_catalog.json existed, then revalidated after final source materialization through the exact-exclusion adapter.",
+    "limits": "The historic scanner cannot validate Kag_03/Kag_04 after reservation artifacts exist because it does not exclude them. seed_reservation.py is the required current-state adapter."
+  },
+  "proposed_ranges": {
+    "Kag_03_development": [56000, 56015],
+    "Kag_03_confirmation": [57000, 57063],
+    "Kag_03_robustness": [58000, 58031],
+    "Kag_04_development": [59000, 59015],
+    "Kag_04_confirmation": [60000, 60063],
+    "Kag_04_robustness": [61000, 61031]
+  },
+  "observed_intersections_before_reservation": {
+    "Kag_03_development": [],
+    "Kag_03_confirmation": [],
+    "Kag_03_robustness": [],
+    "Kag_04_development": [],
+    "Kag_04_confirmation": [],
+    "Kag_04_robustness": []
+  },
+  "reservation_state": {
+    "all_ranges_pairwise_disjoint": true,
+    "all_pools_closed": true,
+    "fresh_games_executed": 0,
+    "current_adapter_revalidation": {
+      "all_pools_collision_free": true,
+      "observed_seed_count": 1696,
+      "observed_seed_values_sha256": "B918500DE0FD53A5159F4EBA12C06589A392E7E66AC6DB2CCF49882D98446FD5",
+      "seed_evidence_files_sha256": "62482780F6A46EB0C4B584692748BD12133CC0DF1405C79C305327A7A19F2A39",
+      "scanned_text_files": 397,
+      "seed_bearing_files": 202,
+      "enumerated_rg_files": 483
+    },
+    "next_required_check": "Repeat seed_reservation.py::validate only if a later freeze input changes; otherwise retain this final source-materialization pin."
+  }
+}
