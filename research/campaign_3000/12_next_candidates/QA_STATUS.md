@@ -19,17 +19,24 @@ Current state: local construction passes; all fresh pools remain CLOSED.
 - Exact candidate sources: Kag_03 `9910E333...145A0C` / 27,994 bytes; Kag_04
   `3B4E4D62...27A6708` / 28,040 bytes.
 - Candidate reconstruction from the pinned Tetsu control is byte-exact.
-- Focused suite final rerun: `58 passed in 2.67s`.
-- Scoped full project suite: `609 passed, 3 deselected in 94.12s`.
-  The three explicit exclusions are the pinned historical Kag_01/Kag_02 closed-plan test and
-  two historical child-process environment tests that require the project `.venv` interpreter
-  layout. They were not reported as passes; current runner/gate attack coverage is in the
-  focused suite.
+- Focused suite final rerun: `96 passed in 10.98s`.
+- The first broad run produced `646 passed, 1 failed, 3 deselected`; the single failure was
+  another historical Kag_01/Kag_02 child-process test that launches the bundled executable
+  after its bootstrap environment has been cleared. It was not reported as a pass.
+- Scoped full project rerun: `646 passed, 4 deselected in 153.90s`.
+  The four explicit exclusions are the pinned historical Kag_01/Kag_02 closed-plan test and
+  three historical child-process environment tests that require the project `.venv`
+  interpreter layout. Current runner/gate and launcher attack coverage is in the focused suite.
 - Ruff: `All checks passed!` for the runner, gate, freeze tooling, selected builders, and tests.
 - Closed plan: `VALID_CLOSED_DEVELOPMENT_PLAN`, exactly 160 cells per candidate.
-- The runner records the actual 1.32.6 engine, six dependency files, make-callable identity,
-  candidate/opponents, runner, and six execution inputs at start and end. The gate rejects
-  missing, drifted, bool-laundered, or self-consistently forged receipts.
+- The frozen PowerShell/Python launcher avoids the unusable local `.venv` uv trampoline and is
+  itself one of eight exact execution inputs.
+- The runner exclusively creates the actual started receipt, run-id source directory, and final
+  report; binds the clean S-to-E Git authority; executes immutable candidate/opponent payloads;
+  and records the actual 1.32.6 engine, six dependency files, make-callable identity, eight
+  execution inputs, and per-row execution-source hashes. The gate rereads and rehashes those
+  actual files and rejects missing, drifted, bool-laundered, shape-only, or self-consistently
+  forged evidence.
 - The final seed-collision values live only in `seed_collision_scan.json` to avoid a
   self-referential scanner receipt.
 

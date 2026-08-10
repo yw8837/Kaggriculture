@@ -32,10 +32,10 @@
       "derived_exclusions_count": 5,
       "observed_seed_count": 1727,
       "observed_seed_values_sha256": "BB7CDD7722D3D61D072674CE15E5DDE1E0E5DDB568051ABCDFBDFFAC9C4FD13C",
-      "seed_evidence_files_sha256": "A5F1CB5EA0A72232B462159A0125681D63D3867D056A0B3F93A33553EE833B0E",
-      "scanned_text_files": 492,
+      "seed_evidence_files_sha256": "58F80B80D5FFDF610BF68D493A269115FFAF653D744E3D66DF1871A2E1AC00B9",
+      "scanned_text_files": 494,
       "seed_bearing_files": 258,
-      "enumerated_rg_files": 580
+      "enumerated_rg_files": 583
     },
     "next_required_check": "Repeat seed_reservation.py::validate only if a later freeze input changes; otherwise retain this final source-materialization pin."
   }

@@ -14,4 +14,6 @@ The diagnostics reused historical seeds `50000–50015`; they are selection evid
 
 The development panel is exact Kag_01 plus Ray, Boatlee, Kag_02/Kaito, and Fa04 G1, both seats. The gate requires the exact 160 cells, exact frozen source/environment identity, zero failures/abnormal states, complete causal metrics, overall score/margin floors, a strict direct Kag_01 win, and only a catastrophic per-opponent guard. It does **not** claim full per-opponent noninferiority or a guaranteed 3000 rating.
 
+Every fresh run must use the pinned `run_frozen_python.ps1` and Python helper. The runner creates the started receipt and source copies exclusively, binds the clean S-to-E Git authority, and carries immutable source payloads into each game. The gate rereads the actual sibling receipt, source copies, Git boundary, eight execution inputs, and per-row source/runtime hashes; an in-memory or receipt-free synthetic report is invalid.
+
 Before any new seed runs, regenerate the reservation scan and clean two-stage S/E freeze, then obtain the independent auditor's exact OPEN verdict. Any source mutation invalidates this freeze and requires a full re-freeze.

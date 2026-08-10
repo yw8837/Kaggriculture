@@ -39,6 +39,11 @@
     "identity_episode_seed_fixed_step_branches": "FORBIDDEN",
     "candidate_source_start_equals_end": true,
     "opponent_source_start_equals_end": true,
+    "actual_started_receipt_required": true,
+    "git_execution_freeze_and_clean_boundaries_required": true,
+    "immutable_source_payload_and_per_row_execution_hashes_required": true,
+    "exclusive_run_artifacts_required": true,
+    "frozen_launcher_and_eight_execution_inputs_required": true,
     "fresh_holdout_required_before_any_release_claim": true,
     "causal_metrics_required": "Every development row must report calls, preemptions, and horizon4_preemptions; calls must equal 719 and both preemption totals must be positive over the exact grid.",
     "development_evaluation_plan": "research/campaign_3000/12_next_candidates/evaluation_plan.json",
@@ -79,7 +84,7 @@
       "development_gate": {
         "plan": "research/campaign_3000/12_next_candidates/evaluation_plan.json",
         "scope": "development only; confirmation and robustness have no evaluation framework yet",
-        "hard_integrity": "exact 160-cell five-opponent both-seat grid, finite values, no failures or abnormal statuses, source start=end, actual engine six-file/make contract start=end, and six execution inputs start=end",
+        "hard_integrity": "exact 160-cell five-opponent both-seat grid, finite values, no failures or abnormal statuses, actual sibling started receipt bytes/SHA/path, clean S-to-E Git boundaries, immutable source payload plus per-row execution hashes, actual engine six-file/make contract start=end, and eight execution inputs start=end",
         "aggregate": "match score >= 0.50 and mean margin >= 0",
         "direct_tetsu_v16": "must beat Kag_01/Tetsu v16: match score > 0.50 and mean margin > 0.0; equality/non-inferiority is NO-GO",
         "per_opponent": "block only a catastrophic lane: match score < 0.25 or mean margin < -10000",
@@ -121,7 +126,7 @@
       "development_gate": {
         "plan": "research/campaign_3000/12_next_candidates/evaluation_plan.json",
         "scope": "development only; confirmation and robustness have no evaluation framework yet",
-        "hard_integrity": "exact 160-cell five-opponent both-seat grid, finite values, no failures or abnormal statuses, source start=end, actual engine six-file/make contract start=end, and six execution inputs start=end",
+        "hard_integrity": "exact 160-cell five-opponent both-seat grid, finite values, no failures or abnormal statuses, actual sibling started receipt bytes/SHA/path, clean S-to-E Git boundaries, immutable source payload plus per-row execution hashes, actual engine six-file/make contract start=end, and eight execution inputs start=end",
         "aggregate": "match score >= 0.50 and mean margin >= 0",
         "direct_tetsu_v16": "must beat Kag_01/Tetsu v16: match score > 0.50 and mean margin > 0.0; equality/non-inferiority is NO-GO",
         "per_opponent": "block only a catastrophic lane: match score < 0.25 or mean margin < -10000",
@@ -136,10 +141,10 @@
     "result": "All six CLOSED pools are collision-free under the final source-materialization scan.",
     "observed_seed_count": 1727,
     "observed_seed_values_sha256": "BB7CDD7722D3D61D072674CE15E5DDE1E0E5DDB568051ABCDFBDFFAC9C4FD13C",
-    "seed_evidence_files_sha256": "A5F1CB5EA0A72232B462159A0125681D63D3867D056A0B3F93A33553EE833B0E",
-    "scanned_text_files": 492,
+    "seed_evidence_files_sha256": "58F80B80D5FFDF610BF68D493A269115FFAF653D744E3D66DF1871A2E1AC00B9",
+    "scanned_text_files": 494,
     "seed_bearing_files": 258,
-    "enumerated_rg_files": 580,
+    "enumerated_rg_files": 583,
     "fresh_games_executed": 0
   },
   "future_phase_policy": {

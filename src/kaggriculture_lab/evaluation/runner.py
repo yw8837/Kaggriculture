@@ -15,6 +15,7 @@ import subprocess
 import sys
 import time
 import types
+import uuid
 from dataclasses import asdict, dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
@@ -91,6 +92,12 @@ EXPECTED_MAKE_CALLABLE = {
     },
     "defaults_sha256": "310DDDF0453ADA7D5A566EF2CDC450C58912C9FC466C552322FA9A0D27D0371C",
 }
+EXECUTION_BINDING_RELATIVE_PATH = Path(
+    "research/campaign_3000/12_next_candidates/execution_binding.json"
+)
+IMPLEMENTATION_MANIFEST_RELATIVE_PATH = Path(
+    "research/campaign_3000/12_next_candidates/freeze_manifest.json"
+)
 
 
 @dataclass(frozen=True)
@@ -103,6 +110,10 @@ class GameSpec:
     project_root: str
     scenario: str = "default"
     configuration: dict[str, Any] = field(default_factory=dict)
+    candidate_source: str | None = None
+    candidate_source_sha256: str | None = None
+    opponent_source: str | None = None
+    opponent_source_sha256: str | None = None
 
 
 @dataclass(frozen=True)
@@ -125,6 +136,8 @@ class GameResult:
     candidate_metrics: dict[str, int] | None = None
     hidden_abnormal_status: dict[str, int | str] | None = None
     runtime_make_callable: dict[str, Any] = field(default_factory=dict)
+    candidate_execution_sha256: str | None = None
+    opponent_execution_sha256: str | None = None
 
 
 def _make_callable_snapshot() -> tuple[Any, dict[str, Any]]:
@@ -239,6 +252,35 @@ def _first_abnormal_status(steps: list[Any]) -> tuple[int, int, str] | None:
     return None
 
 
+def _agent_from_immutable_source(
+    reference: str,
+    source: str | None,
+    expected_sha256: str | None,
+) -> tuple[Any, str | None]:
+    """Compile the carried payload; the path is filename provenance, never input bytes."""
+    if source is None:
+        path = Path(reference)
+        if not path.is_file():
+            return reference, None
+        try:
+            payload = path.read_bytes()
+            source = payload.decode("utf-8")
+        except (OSError, UnicodeDecodeError) as exc:
+            raise ValueError(f"agent source is not exact UTF-8: {reference}") from exc
+    else:
+        if type(source) is not str:
+            raise TypeError("immutable agent source must be an exact str")
+        payload = source.encode("utf-8")
+        if type(expected_sha256) is not str:
+            raise ValueError("immutable agent source is missing its expected SHA256")
+    actual_sha256 = hashlib.sha256(payload).hexdigest().upper()
+    if expected_sha256 is not None and actual_sha256 != expected_sha256:
+        raise ValueError("immutable agent source SHA256 mismatch")
+    from kaggle_environments.agent import get_last_callable
+
+    return get_last_callable(source, path=reference), actual_sha256
+
+
 def _run_game(spec: GameSpec) -> GameResult:
     project_root = Path(spec.project_root)
     niits_src = str((project_root / NIITS_ROOT / "src").resolve())
@@ -248,6 +290,8 @@ def _run_game(spec: GameSpec) -> GameResult:
     started = time.perf_counter()
     hidden_abnormal_status: dict[str, int | str] | None = None
     runtime_make_callable: dict[str, Any] = {}
+    candidate_execution_sha256: str | None = None
+    opponent_execution_sha256: str | None = None
     try:
         make, runtime_make_callable = _validated_kaggle_make()
 
@@ -264,23 +308,32 @@ def _run_game(spec: GameSpec) -> GameResult:
         if type(raw_environment_seed) is not int or raw_environment_seed != spec.seed:
             raise ValueError("environment resolved seed is not the exact requested int")
         resolved_environment_seed = raw_environment_seed
-        candidate_agent: Any = spec.candidate
-        metrics_callable = None
-        candidate_path = Path(spec.candidate)
-        if candidate_path.is_file():
-            raw_candidate = candidate_path.read_text(encoding="utf-8")
-            if "def rescue_metrics(" in raw_candidate:
-                from kaggle_environments.agent import get_last_callable
-
-                candidate_agent = get_last_callable(raw_candidate, path=str(candidate_path))
-                metrics_callable = candidate_agent.__globals__.get("rescue_metrics")
-                reset_callable = candidate_agent.__globals__.get("reset_rescue_metrics")
-                if callable(reset_callable):
-                    reset_callable()
+        candidate_agent, candidate_execution_sha256 = _agent_from_immutable_source(
+            spec.candidate,
+            spec.candidate_source,
+            spec.candidate_source_sha256,
+        )
+        opponent_agent, opponent_execution_sha256 = _agent_from_immutable_source(
+            spec.opponent,
+            spec.opponent_source,
+            spec.opponent_source_sha256,
+        )
+        metrics_callable = (
+            candidate_agent.__globals__.get("rescue_metrics")
+            if callable(candidate_agent) and hasattr(candidate_agent, "__globals__")
+            else None
+        )
+        reset_callable = (
+            candidate_agent.__globals__.get("reset_rescue_metrics")
+            if callable(candidate_agent) and hasattr(candidate_agent, "__globals__")
+            else None
+        )
+        if callable(reset_callable):
+            reset_callable()
         agents = (
-            [candidate_agent, spec.opponent]
+            [candidate_agent, opponent_agent]
             if spec.seat == 0
-            else [spec.opponent, candidate_agent]
+            else [opponent_agent, candidate_agent]
         )
         env.run(agents)
         abnormal = _first_abnormal_status(env.steps)
@@ -332,6 +385,8 @@ def _run_game(spec: GameSpec) -> GameResult:
             candidate_metrics=candidate_metrics,
             hidden_abnormal_status=None,
             runtime_make_callable=runtime_make_callable,
+            candidate_execution_sha256=candidate_execution_sha256,
+            opponent_execution_sha256=opponent_execution_sha256,
         )
     except Exception as exc:  # noqa: BLE001 - batch failures must become auditable rows
         return GameResult(
@@ -351,6 +406,8 @@ def _run_game(spec: GameSpec) -> GameResult:
             ),
             hidden_abnormal_status=hidden_abnormal_status,
             runtime_make_callable=runtime_make_callable,
+            candidate_execution_sha256=candidate_execution_sha256,
+            opponent_execution_sha256=opponent_execution_sha256,
         )
 
 
@@ -478,6 +535,41 @@ def _json_sha256(value: Any) -> str:
     return hashlib.sha256(payload).hexdigest().upper()
 
 
+def _json_bytes(value: Any) -> bytes:
+    """Return the sole JSON serialization used for durable runner receipts."""
+    return (
+        json.dumps(
+            value,
+            indent=2,
+            sort_keys=True,
+            ensure_ascii=False,
+            allow_nan=False,
+        )
+        + "\n"
+    ).encode("utf-8")
+
+
+def _write_bytes_exclusive(path: Path, payload: bytes) -> None:
+    """Create one file exactly once without platform newline translation."""
+    with path.open("xb") as handle:
+        handle.write(payload)
+        handle.flush()
+        os.fsync(handle.fileno())
+
+
+def _write_json_exclusive(path: Path, value: Any) -> dict[str, Any]:
+    payload = _json_bytes(value)
+    _write_bytes_exclusive(path, payload)
+    on_disk = path.read_bytes()
+    if on_disk != payload:  # pragma: no cover - filesystem corruption evidence
+        raise OSError(f"exclusive JSON write did not persist exact bytes: {path}")
+    return {
+        "path": path.resolve().as_posix(),
+        "bytes": len(on_disk),
+        "sha256": hashlib.sha256(on_disk).hexdigest().upper(),
+    }
+
+
 def _file_snapshot(path: Path) -> dict[str, Any]:
     resolved = path.resolve()
     try:
@@ -492,6 +584,16 @@ def _file_snapshot(path: Path) -> dict[str, Any]:
         }
     return {
         "path": resolved.as_posix(),
+        "exists": True,
+        "bytes": len(payload),
+        "sha256": hashlib.sha256(payload).hexdigest().upper(),
+        "read_error": None,
+    }
+
+
+def _snapshot_from_payload(path: Path, payload: bytes) -> dict[str, Any]:
+    return {
+        "path": path.resolve().as_posix(),
         "exists": True,
         "bytes": len(payload),
         "sha256": hashlib.sha256(payload).hexdigest().upper(),
@@ -612,19 +714,207 @@ def _execution_input_snapshot(input_paths: list[Path]) -> dict[str, Any]:
     }
 
 
-def _git_head(project_root: Path) -> str | None:
+def _git_command(
+    project_root: Path, arguments: list[str], *, binary: bool = False,
+) -> str | bytes:
     try:
         result = subprocess.run(
-            ["git", "rev-parse", "HEAD"],
+            ["git", *arguments],
             cwd=project_root,
             check=True,
             capture_output=True,
-            text=True,
+            text=not binary,
             timeout=5,
         )
-    except (OSError, subprocess.SubprocessError):
+    except (OSError, subprocess.SubprocessError) as exc:
+        raise RuntimeError(
+            f"git {' '.join(arguments)} failed: {type(exc).__name__}: {exc}"
+        ) from exc
+    return result.stdout
+
+
+def _git_head(project_root: Path) -> str | None:
+    try:
+        stdout = _git_command(project_root, ["rev-parse", "HEAD"])
+    except RuntimeError:
         return None
-    return result.stdout.strip() or None
+    if not isinstance(stdout, str):  # pragma: no cover - internal contract
+        return None
+    return stdout.strip() or None
+
+
+def _git_parent_commits(project_root: Path, commit: str) -> list[str]:
+    stdout = _git_command(project_root, ["rev-list", "--parents", "-n", "1", commit])
+    if not isinstance(stdout, str):  # pragma: no cover - internal contract
+        raise TypeError("git parent output is not text")
+    fields = stdout.strip().split()
+    if not fields or fields[0].lower() != commit.lower():
+        raise RuntimeError("git parent query did not return the requested commit")
+    return fields[1:]
+
+
+def _git_changed_paths(
+    project_root: Path, base_commit: str, target_commit: str,
+) -> list[str]:
+    stdout = _git_command(
+        project_root,
+        ["diff", "--name-only", "--no-renames", base_commit, target_commit, "--"],
+    )
+    if not isinstance(stdout, str):  # pragma: no cover - internal contract
+        raise TypeError("git diff output is not text")
+    return [line.replace("\\", "/") for line in stdout.splitlines() if line]
+
+
+def _git_blob_bytes(project_root: Path, commit: str, relative_path: str) -> bytes:
+    stdout = _git_command(project_root, ["show", f"{commit}:{relative_path}"], binary=True)
+    if not isinstance(stdout, bytes):  # pragma: no cover - internal contract
+        raise TypeError("git blob output is not bytes")
+    return stdout
+
+
+def _tracked_worktree_snapshot(project_root: Path) -> dict[str, Any]:
+    try:
+        stdout = _git_command(
+            project_root,
+            ["status", "--porcelain=v1", "--untracked-files=no"],
+        )
+        if not isinstance(stdout, str):
+            raise TypeError("git status output is not text")
+        entries = stdout.splitlines()
+        return {
+            "schema_version": 1,
+            "clean": not entries,
+            "porcelain_v1": entries,
+            "error": None,
+        }
+    except Exception as exc:  # noqa: BLE001 - end receipt must preserve failure
+        return {
+            "schema_version": 1,
+            "clean": False,
+            "porcelain_v1": [],
+            "error": f"{type(exc).__name__}: {exc}",
+        }
+
+
+def _require_commit(value: Any, label: str) -> str:
+    if (
+        type(value) is not str
+        or len(value) != 40
+        or any(character not in "0123456789abcdefABCDEF" for character in value)
+    ):
+        raise PermissionError(f"{label} is not an exact Git commit")
+    return value.lower()
+
+
+def _capture_execution_authority(
+    project_root: Path, input_paths: list[Path],
+) -> dict[str, Any]:
+    """Validate and capture the exact CLOSED S->E execution boundary."""
+    binding_path = (project_root / EXECUTION_BINDING_RELATIVE_PATH).resolve()
+    if binding_path not in input_paths:
+        raise PermissionError("exact execution_binding.json is not an execution input pin")
+    try:
+        binding = json.loads(binding_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise PermissionError(f"execution binding is unreadable: {exc}") from exc
+    if type(binding) is not dict:
+        raise PermissionError("execution binding is not an exact object")
+    if binding.get("status") != "CLOSED_EXECUTION_FREEZE":
+        raise PermissionError("execution binding is not CLOSED_EXECUTION_FREEZE")
+
+    current_head = _require_commit(_git_head(project_root), "current HEAD")
+    implementation_commit = _require_commit(
+        binding.get("implementation_commit"), "implementation_commit"
+    )
+    parents = [parent.lower() for parent in _git_parent_commits(project_root, current_head)]
+    if parents != [implementation_commit]:
+        raise PermissionError("current execution-freeze HEAD is not the sole child of S")
+    binding_relative = EXECUTION_BINDING_RELATIVE_PATH.as_posix()
+    expected_freeze = {
+        "parent": "IMPLEMENTATION_COMMIT",
+        "allowed_diff": [binding_relative],
+    }
+    if binding.get("expected_execution_freeze") != expected_freeze:
+        raise PermissionError("execution binding does not declare the exact S->E diff")
+    changed_paths = _git_changed_paths(
+        project_root, implementation_commit, current_head
+    )
+    if changed_paths != [binding_relative]:
+        raise PermissionError("S->E changed paths are not exactly execution_binding.json")
+
+    binding_bytes = binding_path.read_bytes()
+    committed_binding = _git_blob_bytes(project_root, current_head, binding_relative)
+    if committed_binding != binding_bytes:
+        raise PermissionError("on-disk execution binding is not the exact E commit blob")
+    binding_snapshot = _snapshot_from_payload(binding_path, binding_bytes)
+
+    manifest_pin = binding.get("implementation_manifest")
+    if type(manifest_pin) is not dict:
+        raise PermissionError("implementation manifest pin is missing")
+    if set(manifest_pin) != {"path", "sha256", "bytes", "input_count"}:
+        raise PermissionError("implementation manifest pin fields are not exact")
+    manifest_reference = manifest_pin.get("path")
+    if manifest_reference != IMPLEMENTATION_MANIFEST_RELATIVE_PATH.as_posix():
+        raise PermissionError("implementation manifest path is not the exact freeze path")
+    manifest_path = (project_root / manifest_reference).resolve()
+    if manifest_path not in input_paths:
+        raise PermissionError("implementation manifest is not an execution input pin")
+    manifest_snapshot = _file_snapshot(manifest_path)
+    if (
+        manifest_snapshot["exists"] is not True
+        or manifest_snapshot["sha256"] != manifest_pin.get("sha256")
+        or manifest_snapshot["bytes"] != manifest_pin.get("bytes")
+        or type(manifest_pin.get("input_count")) is not int
+        or manifest_pin["input_count"] < 1
+    ):
+        raise PermissionError("implementation manifest bytes do not match the binding")
+    try:
+        manifest_payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise PermissionError(f"implementation manifest is unreadable: {exc}") from exc
+    if manifest_payload.get("input_count") != manifest_pin["input_count"]:
+        raise PermissionError("implementation manifest input_count does not match")
+
+    expected_lifecycle = {
+        "all_six_pools": "CLOSED",
+        "opened": False,
+        "consumed": False,
+        "fresh_games_executed": 0,
+    }
+    expected_auditor = {
+        "status": "PENDING_INDEPENDENT_AUDITOR_EXACT_OPEN",
+        "development_seed_execution": "FORBIDDEN",
+    }
+    expected_external = {
+        "save_run": False,
+        "upload": False,
+        "competition_submission": False,
+        "publication": False,
+    }
+    if binding.get("lifecycle") != expected_lifecycle:
+        raise PermissionError("execution binding lifecycle is not pristine CLOSED")
+    if binding.get("auditor_authority") != expected_auditor:
+        raise PermissionError("execution binding auditor authority is not exact PENDING")
+    if binding.get("external_actions") != expected_external:
+        raise PermissionError("execution binding external-action HOLD is not exact")
+
+    tracked = _tracked_worktree_snapshot(project_root)
+    if tracked.get("clean") is not True:
+        raise PermissionError("tracked worktree is not clean before execution")
+    return {
+        "schema_version": 1,
+        "git_head_at_start": current_head,
+        "tracked_worktree_at_start": tracked,
+        "execution_binding": binding_snapshot,
+        "execution_binding_status": binding["status"],
+        "execution_binding_auditor_authority": binding["auditor_authority"],
+        "execution_freeze_commit": current_head,
+        "implementation_commit": implementation_commit,
+        "execution_freeze_parent_commits": parents,
+        "execution_freeze_changed_paths": changed_paths,
+        "implementation_manifest": manifest_snapshot,
+        "implementation_manifest_input_count": manifest_pin["input_count"],
+    }
 
 
 def _file_hash_or_none(reference: str) -> str | None:
@@ -670,6 +960,110 @@ def _load_scenarios(path: Path) -> dict[str, dict[str, Any]]:
     return scenarios
 
 
+def _new_run_id() -> str:
+    return uuid.uuid4().hex.upper()
+
+
+def _copy_source_exclusive(
+    logical_reference: str, source: Path, destination: Path,
+) -> tuple[dict[str, Any], str]:
+    source = source.resolve()
+    try:
+        payload = source.read_bytes()
+        source_text = payload.decode("utf-8")
+    except (OSError, UnicodeDecodeError) as exc:
+        raise FileNotFoundError(f"source snapshot input is unreadable: {source}") from exc
+    original = _snapshot_from_payload(source, payload)
+    _write_bytes_exclusive(destination, payload)
+    snapshot = _file_snapshot(destination)
+    if (
+        snapshot["exists"] is not True
+        or snapshot["bytes"] != original["bytes"]
+        or snapshot["sha256"] != original["sha256"]
+    ):  # pragma: no cover - filesystem corruption evidence
+        raise OSError(f"source snapshot does not match original bytes: {source}")
+    return (
+        {
+            "logical_reference": logical_reference,
+            "original": original,
+            "snapshot": snapshot,
+        },
+        source_text,
+    )
+
+
+def _create_source_snapshots(
+    output: Path,
+    run_id: str,
+    candidate_ref: str,
+    candidate_path: str,
+    opponents: list[str],
+    opponent_paths: dict[str, str],
+) -> tuple[
+    dict[str, Any],
+    str,
+    dict[str, str],
+    str,
+    dict[str, str],
+]:
+    snapshot_directory = output.with_name(f"{output.stem}.sources.{run_id}").resolve()
+    snapshot_directory.mkdir(exist_ok=False)
+    candidate_source = Path(candidate_path)
+    candidate_suffix = candidate_source.suffix or ".source"
+    candidate_record, candidate_source = _copy_source_exclusive(
+        candidate_ref,
+        candidate_source,
+        snapshot_directory / f"candidate{candidate_suffix}",
+    )
+    opponent_records: dict[str, dict[str, Any]] = {}
+    executed_opponents: dict[str, str] = {}
+    opponent_sources: dict[str, str] = {}
+    for index, opponent_name in enumerate(opponents):
+        opponent_source = Path(opponent_paths[opponent_name])
+        opponent_suffix = opponent_source.suffix or ".source"
+        record, source_text = _copy_source_exclusive(
+            opponent_name,
+            opponent_source,
+            snapshot_directory / f"opponent_{index:03d}{opponent_suffix}",
+        )
+        opponent_records[opponent_name] = record
+        executed_opponents[opponent_name] = record["snapshot"]["path"]
+        opponent_sources[opponent_name] = source_text
+    source_snapshots = {
+        "schema_version": 1,
+        "run_id": run_id,
+        "snapshot_directory": snapshot_directory.as_posix(),
+        "candidate": candidate_record,
+        "opponents": opponent_records,
+    }
+    return (
+        source_snapshots,
+        candidate_record["snapshot"]["path"],
+        executed_opponents,
+        candidate_source,
+        opponent_sources,
+    )
+
+
+def _refresh_source_snapshots(start: dict[str, Any]) -> dict[str, Any]:
+    def refresh(record: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "logical_reference": record["logical_reference"],
+            "original": _file_snapshot(Path(record["original"]["path"])),
+            "snapshot": _file_snapshot(Path(record["snapshot"]["path"])),
+        }
+
+    return {
+        "schema_version": start["schema_version"],
+        "run_id": start["run_id"],
+        "snapshot_directory": start["snapshot_directory"],
+        "candidate": refresh(start["candidate"]),
+        "opponents": {
+            name: refresh(record) for name, record in start["opponents"].items()
+        },
+    }
+
+
 def run_batch(
     candidate_ref: str,
     opponents: list[str],
@@ -686,6 +1080,8 @@ def run_batch(
         raise TypeError("opponents must be a non-empty exact list")
     if any(type(opponent) is not str or not opponent for opponent in opponents):
         raise TypeError("opponents must contain only non-empty exact str values")
+    if len(set(opponents)) != len(opponents):
+        raise ValueError("opponents must be unique logical references")
     if type(seeds) is not list or not seeds:
         raise TypeError("seeds must be a non-empty exact list")
     if any(type(seed) is not int for seed in seeds):
@@ -694,7 +1090,12 @@ def run_batch(
         raise TypeError("workers must be a positive exact int")
     if not isinstance(project_root, Path):
         raise TypeError("project_root must be a Path")
+    if not isinstance(output, Path):
+        raise TypeError("output must be a Path")
     project_root = project_root.resolve()
+    if not output.is_absolute():
+        output = project_root / output
+    output = output.resolve()
     normalized_input_paths = _normalize_input_paths(project_root, input_paths)
     candidate = _resolve(candidate_ref, project_root)
     resolved_opponents = {name: _resolve(name, project_root) for name in opponents}
@@ -720,19 +1121,71 @@ def run_batch(
         for name, configuration in scenarios.items()
     }
     output.parent.mkdir(parents=True, exist_ok=True)
+    receipt_path = output.with_name(f"{output.stem}.started.json")
+    if output.exists():
+        raise FileExistsError(f"completed report target already exists: {output}")
+    if receipt_path.exists():
+        raise FileExistsError(f"started receipt target already exists: {receipt_path}")
+
+    run_id = _new_run_id()
+    if (
+        type(run_id) is not str
+        or len(run_id) != 32
+        or any(character not in "0123456789ABCDEF" for character in run_id)
+    ):
+        raise RuntimeError("run_id generator did not return exact uppercase UUID hex")
+    execution_authority_start = _capture_execution_authority(
+        project_root, normalized_input_paths
+    )
     started_at = datetime.now(UTC).isoformat()
-    git_head = _git_head(project_root)
+    git_head = execution_authority_start["git_head_at_start"]
     candidate_hash_start = _file_hash_or_none(candidate)
     opponent_hashes_start = {
         name: _file_hash_or_none(path) for name, path in resolved_opponents.items()
     }
     runtime_environment_start = _runtime_environment_snapshot()
     execution_inputs_start = _execution_input_snapshot(normalized_input_paths)
+    (
+        source_snapshots_start,
+        executed_candidate,
+        executed_opponents,
+        candidate_source,
+        opponent_sources,
+    ) = _create_source_snapshots(
+        output,
+        run_id,
+        candidate_ref,
+        candidate,
+        opponents,
+        resolved_opponents,
+    )
+    if source_snapshots_start["candidate"]["original"]["sha256"] != (
+        candidate_hash_start
+    ):
+        raise PermissionError("candidate changed while its immutable snapshot was created")
+    if any(
+        source_snapshots_start["opponents"][name]["original"]["sha256"]
+        != opponent_hashes_start[name]
+        for name in opponents
+    ):
+        raise PermissionError("an opponent changed while its immutable snapshot was created")
+    pre_receipt_head = _git_head(project_root)
+    pre_receipt_tracked = _tracked_worktree_snapshot(project_root)
+    if pre_receipt_head is None or pre_receipt_head.lower() != git_head:
+        raise PermissionError("Git HEAD drifted before the started receipt write")
+    if pre_receipt_tracked.get("clean") is not True:
+        raise PermissionError("tracked worktree became dirty before the started receipt write")
+    authority_start_sha256 = _json_sha256(execution_authority_start)
     start_receipt = {
-        "schema_version": 1,
-        "execution_context_schema_version": 1,
+        "schema_version": 2,
+        "execution_context_schema_version": 2,
+        "run_id": run_id,
+        "started_receipt_write_mode": "CREATE_NEW_EXCLUSIVE",
         "started_at_utc": started_at,
         "git_head_at_start": git_head,
+        "tracked_worktree_clean_at_start": True,
+        "execution_authority_at_start": execution_authority_start,
+        "execution_authority_at_start_sha256": authority_start_sha256,
         "candidate": candidate_ref,
         "candidate_path": candidate,
         "candidate_sha256_at_start": candidate_hash_start,
@@ -751,20 +1204,26 @@ def run_batch(
         ),
         "execution_inputs_at_start": execution_inputs_start,
         "execution_inputs_at_start_sha256": _json_sha256(execution_inputs_start),
+        "source_snapshots_at_start": source_snapshots_start,
+        "source_snapshots_at_start_sha256": _json_sha256(source_snapshots_start),
     }
-    receipt_path = output.with_name(f"{output.stem}.started.json")
-    receipt_path.write_text(json.dumps(start_receipt, indent=2) + "\n", encoding="utf-8")
-    receipt_sha256 = _sha256(receipt_path)
+    receipt_record = _write_json_exclusive(receipt_path, start_receipt)
     specs = [
         GameSpec(
-            candidate,
-            resolved_opponents[opponent_name],
+            executed_candidate,
+            executed_opponents[opponent_name],
             opponent_name,
             seed,
             seat,
             str(project_root),
             scenario_name,
             scenario_configuration,
+            candidate_source,
+            source_snapshots_start["candidate"]["snapshot"]["sha256"],
+            opponent_sources[opponent_name],
+            source_snapshots_start["opponents"][opponent_name]["snapshot"][
+                "sha256"
+            ],
         )
         for scenario_name, scenario_configuration in scenarios.items()
         for opponent_name in opponents
@@ -779,6 +1238,7 @@ def run_batch(
             results = list(pool.map(_run_game, specs))
     runtime_environment_end = _runtime_environment_snapshot()
     execution_inputs_end = _execution_input_snapshot(normalized_input_paths)
+    source_snapshots_end = _refresh_source_snapshots(source_snapshots_start)
     results.sort(key=lambda row: (row.scenario, row.opponent, row.seed, row.seat))
 
     completed_at = datetime.now(UTC).isoformat()
@@ -794,24 +1254,64 @@ def run_batch(
         runtime_environment_start == runtime_environment_end
     )
     execution_inputs_unchanged = execution_inputs_start == execution_inputs_end
+    source_snapshots_unchanged = source_snapshots_start == source_snapshots_end
+    git_head_end = _git_head(project_root)
+    tracked_worktree_end = _tracked_worktree_snapshot(project_root)
+    git_head_unchanged = (
+        type(git_head_end) is str and git_head_end.lower() == git_head
+    )
+    tracked_worktree_clean_at_end = tracked_worktree_end.get("clean") is True
+    tracked_worktree_clean_at_boundaries = tracked_worktree_clean_at_end
+    expected_row_make_callable = runtime_environment_start.get(
+        "make_callable_contract"
+    )
+    row_runtime_make_callable_matches_start = all(
+        row.runtime_make_callable == expected_row_make_callable for row in results
+    )
+    row_execution_sources_match_start = all(
+        row.candidate_execution_sha256
+        == source_snapshots_start["candidate"]["snapshot"]["sha256"]
+        and row.opponent in source_snapshots_start["opponents"]
+        and row.opponent_execution_sha256
+        == source_snapshots_start["opponents"][row.opponent]["snapshot"]["sha256"]
+        for row in results
+    )
     execution_context_unchanged = (
         sources_unchanged
         and runtime_environment_unchanged
         and execution_inputs_unchanged
+        and source_snapshots_unchanged
+        and git_head_unchanged
+        and tracked_worktree_clean_at_boundaries
+        and row_runtime_make_callable_matches_start
+        and row_execution_sources_match_start
     )
     report = {
-        "schema_version": 1,
-        "execution_context_schema_version": 1,
+        "schema_version": 2,
+        "execution_context_schema_version": 2,
+        "run_id": run_id,
+        "started_receipt_write_mode": "CREATE_NEW_EXCLUSIVE",
         "created_at_utc": completed_at,
         "started_at_utc": started_at,
         "completed_at_utc": completed_at,
         "git_head_at_start": git_head,
+        "git_head_at_end": git_head_end,
+        "git_head_unchanged_during_run": git_head_unchanged,
+        "tracked_worktree_clean_at_start": True,
+        "tracked_worktree_at_end": tracked_worktree_end,
+        "tracked_worktree_clean_at_end": tracked_worktree_clean_at_end,
+        "tracked_worktree_clean_at_boundaries": (
+            tracked_worktree_clean_at_boundaries
+        ),
+        "execution_authority_at_start": execution_authority_start,
+        "execution_authority_at_start_sha256": authority_start_sha256,
         "workers": workers,
         "scenario_overrides": scenarios,
         "effective_scenarios": effective_scenarios,
         "effective_scenarios_sha256": _json_sha256(effective_scenarios),
-        "start_receipt": receipt_path.as_posix(),
-        "start_receipt_sha256": receipt_sha256,
+        "start_receipt": receipt_record["path"],
+        "start_receipt_bytes": receipt_record["bytes"],
+        "start_receipt_sha256": receipt_record["sha256"],
         "runtime_environment_at_start": runtime_environment_start,
         "runtime_environment_at_start_sha256": _json_sha256(
             runtime_environment_start
@@ -824,8 +1324,21 @@ def run_batch(
         "execution_inputs_at_end": execution_inputs_end,
         "execution_inputs_at_end_sha256": _json_sha256(execution_inputs_end),
         "execution_inputs_unchanged_during_run": execution_inputs_unchanged,
+        "source_snapshots_at_start": source_snapshots_start,
+        "source_snapshots_at_start_sha256": _json_sha256(source_snapshots_start),
+        "source_snapshots_at_end": source_snapshots_end,
+        "source_snapshots_at_end_sha256": _json_sha256(source_snapshots_end),
+        "source_snapshots_unchanged_during_run": source_snapshots_unchanged,
+        "row_runtime_make_callable_matches_start": (
+            row_runtime_make_callable_matches_start
+        ),
+        "row_execution_sources_match_start": row_execution_sources_match_start,
         "execution_context_unchanged_during_run": execution_context_unchanged,
         "execution_gate_valid": execution_context_unchanged,
+        "execution_gate_status": (
+            "COMPLETED_VALID" if execution_context_unchanged
+            else "COMPLETED_CONTEXT_DRIFT"
+        ),
         "candidate": candidate_ref,
         "candidate_path": candidate,
         "candidate_sha256": candidate_hash_end,
@@ -840,9 +1353,7 @@ def run_batch(
         "summary": summarize(results),
         "games": [asdict(row) for row in results],
     }
-    output.write_text(
-        json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8"
-    )
+    _write_json_exclusive(output, report)
     return report
 
 

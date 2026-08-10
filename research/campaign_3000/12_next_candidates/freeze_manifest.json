@@ -33,6 +33,7 @@
   "development_contract": {
     "causal_metrics": {
       "actual_runtime_environment_start_equals_end_and_matches_plan": true,
+      "actual_started_receipt_required": true,
       "both_seats_required": true,
       "calls_per_game": 719,
       "candidate_and_opponent_source_start_equals_end": true,
@@ -44,14 +45,19 @@
       "candidate_metrics_required": true,
       "default_scenario_only": true,
       "exact_complete_grid": true,
+      "exclusive_run_artifacts_required": true,
       "execution_gate_valid": true,
       "execution_inputs_start_equals_end_and_match_frozen_files": true,
       "failures": 0,
       "finite_money_and_runtime": true,
+      "git_execution_freeze_and_clean_boundaries_required": true,
       "hidden_abnormal_status_failures": 0,
+      "immutable_source_payload_execution_required": true,
       "minimum_total_horizon4_preemptions_exclusive": 0,
       "minimum_total_preemptions_exclusive": 0,
-      "resolved_environment_seed_matches_requested": true
+      "resolved_environment_seed_matches_requested": true,
+      "row_execution_source_hashes_match_start": true,
+      "started_receipt_actual_bytes_sha_path_binding": true
     },
     "cells_per_candidate": 160,
     "minimum_to_remain_a_candidate": "Strict direct Kag_01/Tetsu v16 match score > 0.50 AND mean margin > 0.0; equality is NO_GO.",
@@ -148,13 +154,13 @@
     "version": "1.32.6"
   },
   "implementation_commit": "PENDING_S_COMMIT",
-  "input_count": 74,
+  "input_count": 77,
   "inputs": [
     {
-      "bytes": 5282,
+      "bytes": 5326,
       "path": ".gitattributes",
       "role": "eol_policy",
-      "sha256": "1DAF32CD89C427F0A77ACC5D009C4C8D7DC57FEB8CDBA2D3E9E5D33D632BE9CF"
+      "sha256": "FF3FBB2698454DB5113D438488FD293BADF98370F37E018E1995FB5D71663F31"
     },
     {
       "bytes": 1269,
@@ -343,28 +349,28 @@
       "sha256": "3B77AF21E4BAF2575057E2ADCB1444FD2606973C6975D0F6980492A4075DDF74"
     },
     {
-      "bytes": 1750,
+      "bytes": 2183,
       "path": "research/campaign_3000/12_next_candidates/README.md",
       "role": "campaign_readme",
-      "sha256": "A4EDE6AA1982A0839FC8AD868C8A1529C2EF38F8104AB26D568A32B13AA34832"
+      "sha256": "9F02E70DB7CEC740F669B56D7C08FB95955283A9CDEC675873BDE8B97F09E210"
     },
     {
-      "bytes": 2371,
+      "bytes": 2990,
       "path": "research/campaign_3000/12_next_candidates/QA_STATUS.md",
       "role": "qa_status",
-      "sha256": "5C079617DEC2CD4E04DA13AB1AD10A2022120BF1BA17213E963250E63C868419"
+      "sha256": "18E6252A561020527F65C5CE74FA15C6E1EF522B34BEFC44B62E68EADDB70149"
     },
     {
-      "bytes": 10157,
+      "bytes": 10685,
       "path": "research/campaign_3000/12_next_candidates/candidate_catalog.json",
       "role": "candidate_catalog",
-      "sha256": "40E1ED7C03CDB9DA04240E4EEFAD3306AB66EA0248BA231F1B79E35BC546871A"
+      "sha256": "0DC27B47C5491B80EA34E35725221EB7E980A3AE35282787C856A19E235456A9"
     },
     {
-      "bytes": 11538,
+      "bytes": 13045,
       "path": "research/campaign_3000/12_next_candidates/evaluation_plan.json",
       "role": "evaluation_plan",
-      "sha256": "3144388E81F6D7A056D67BD0D55697F2A10DF346089B1C9E2FA08A21A3EDEF4E"
+      "sha256": "6BFC83AC5D356CF30E5F99D52A4C224A8E4639727231749413F44B688FCA506D"
     },
     {
       "bytes": 162,
@@ -373,16 +379,28 @@
       "sha256": "6C507736A17415A7056BA515A1F3B98A0BCFC2D89BEA8BA9AD0E60E4805BE006"
     },
     {
-      "bytes": 42559,
+      "bytes": 67659,
       "path": "research/campaign_3000/12_next_candidates/development_gate.py",
       "role": "development_gate",
-      "sha256": "68ACBF8BB84103D2058A2D1EED4AB229D903E34A16CD640AACB350743F55D030"
+      "sha256": "4DA4D3EA5A63915F188546F6281B5A2C61584ABE935A1C76CF5F90EB4078D1E7"
     },
     {
-      "bytes": 11562,
+      "bytes": 1423,
+      "path": "research/campaign_3000/12_next_candidates/run_frozen_python.ps1",
+      "role": "frozen_powershell_launcher",
+      "sha256": "02BD0567AF36C5B38E4813D5BF02C0414F9CCC248E44581B32902E29F6C9BA51"
+    },
+    {
+      "bytes": 1291,
+      "path": "research/campaign_3000/12_next_candidates/run_frozen_python.py",
+      "role": "frozen_python_launcher",
+      "sha256": "5B6EB8B5DBC94AC1EAA73D5F64DD5CDA0C287C1B67AB72BF934EFFD1EEF8DE51"
+    },
+    {
+      "bytes": 11834,
       "path": "research/campaign_3000/12_next_candidates/build_freeze_manifest.py",
       "role": "freeze_builder",
-      "sha256": "28C9F2AA1A21F9B656CAC4B83C8D47E23714B3F235C9EE29845C3D8540935BA0"
+      "sha256": "F90C536C5AB7701CB3C7031761A3227D432A93389293901A70628B1C544B9DC3"
     },
     {
       "bytes": 13625,
@@ -400,13 +418,13 @@
       "bytes": 2021,
       "path": "research/campaign_3000/12_next_candidates/seed_collision_scan.json",
       "role": "seed_collision_receipt",
-      "sha256": "E3C31CC8F0C198BF052B629E4A87729939E713BBE238F3A47C8734A9F712CB98"
+      "sha256": "BDAE4A7B704552F2D8C5E24205E0622404D0FC403214AC2352AF4BC97BA63CAD"
     },
     {
-      "bytes": 4923,
+      "bytes": 5991,
       "path": "research/campaign_3000/12_next_candidates/verification.json",
       "role": "construction_verification",
-      "sha256": "F2E9870E7496489EBE1A0E2CC752E37DBB9E8B4D47DF28A27FEE53FF3F7A7FBC"
+      "sha256": "389D760EEF806C32967A85B638E1BF341EE03E60BC56A5A928D0EDB4C53CBB83"
     },
     {
       "bytes": 2021,
@@ -541,22 +559,28 @@
       "sha256": "2AB9A87D5AF288D6CB6715A40AC10F43D47251BD2CA890C4BB73E2CC4FE8F9BB"
     },
     {
-      "bytes": 24537,
+      "bytes": 44896,
       "path": "tests/test_next_candidate_catalog.py",
       "role": "shared_gate_tests",
-      "sha256": "0B99B532EE9C5A2A8387A94C0C6B8C017B634D34550B0B8D375A44630D30E8E4"
+      "sha256": "BFB49B57D6635C1EE016A7231783728801BB7C300964C0E0B69B2C6A023FDE5E"
     },
     {
-      "bytes": 36124,
+      "bytes": 57052,
       "path": "src/kaggriculture_lab/evaluation/runner.py",
       "role": "runner",
-      "sha256": "B90997A1D457779C7B76B329335B22CA38B5EE53A6086E9FDD6DB2088523A4A7"
+      "sha256": "036F6DA60BE312DBC9143E42ABCED77314061BC3E299FADB2E24ADD69859DF7C"
     },
     {
-      "bytes": 18676,
+      "bytes": 34754,
       "path": "tests/test_runner.py",
       "role": "runner_tests",
-      "sha256": "273C9A53415F5089C5A407505151B07C6503EF1CF7DB110220E44413C88B80F8"
+      "sha256": "8F766F214F504857583DB1EB693FD4B19B944662059AC5B9560161F9C1B072B3"
+    },
+    {
+      "bytes": 2298,
+      "path": "tests/test_frozen_python_launcher.py",
+      "role": "frozen_launcher_tests",
+      "sha256": "D233C5EDB544FE3AC6869E098C11DF5C4964B7FB1F1CD2CC28DA5FF39F03C4B8"
     },
     {
       "bytes": 27244,
@@ -601,10 +625,10 @@
     "closed_plan": "VALID_CLOSED_DEVELOPMENT_PLAN",
     "development_cells_per_candidate": 160,
     "external_actions": 0,
-    "focused_tests": "58 passed in 2.67s",
+    "focused_tests": "96 passed in 10.98s",
     "fresh_games_executed": 0,
     "ruff": "PASS",
-    "scoped_full_suite": "609 passed, 3 deselected in 94.12s"
+    "scoped_full_suite": "646 passed, 4 deselected in 153.90s"
   },
   "schema_version": 2,
   "seed_collision_evidence": {
@@ -612,7 +636,7 @@
     "fresh_games_executed": 0,
     "observed_seed_count": 1727,
     "observed_seed_values_sha256": "BB7CDD7722D3D61D072674CE15E5DDE1E0E5DDB568051ABCDFBDFFAC9C4FD13C",
-    "seed_evidence_files_sha256": "A5F1CB5EA0A72232B462159A0125681D63D3867D056A0B3F93A33553EE833B0E"
+    "seed_evidence_files_sha256": "58F80B80D5FFDF610BF68D493A269115FFAF653D744E3D66DF1871A2E1AC00B9"
   },
   "selection_boundary": {
     "Kag_03_reused_panel": {

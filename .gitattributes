@@ -56,6 +56,7 @@ tests/test_next_boundary.py text eol=lf
 # Campaign evidence and exact public-source snapshots must checkout with the
 # same bytes on Windows and POSIX.  Binary competition downloads stay binary.
 research/campaign_3000/**/*.py text eol=lf
+research/campaign_3000/**/*.ps1 text eol=lf
 research/campaign_3000/**/*.json text eol=lf
 research/campaign_3000/**/*.jsonl text eol=lf
 research/campaign_3000/**/*.md text eol=lf
