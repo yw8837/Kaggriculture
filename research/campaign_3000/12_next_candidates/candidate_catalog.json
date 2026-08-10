@@ -11,6 +11,9 @@
     "publication": "FORBIDDEN"
   },
   "analysis_inputs": {
+    "cycle_checklist": "research/campaign_3000/13_cycle_20260810/00_checklist/checklist.json",
+    "named_previous_submission_analysis": "research/campaign_3000/13_cycle_20260810/02_previous_submissions/README.md",
+    "current_live_snapshot": "research/campaign_3000/13_cycle_20260810/04_synthesis/live_browser_snapshot.json",
     "kag_01": {
       "source_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
       "development_verdict": "PASS",
@@ -37,6 +40,7 @@
     "candidate_source_start_equals_end": true,
     "opponent_source_start_equals_end": true,
     "fresh_holdout_required_before_any_release_claim": true,
+    "causal_metrics_required": "Every development row must report calls, preemptions, and horizon4_preemptions; calls must equal 719 and both preemption totals must be positive over the exact grid.",
     "development_evaluation_plan": "research/campaign_3000/12_next_candidates/evaluation_plan.json",
     "direct_tetsu_v16_requirement": "Each candidate must beat the direct Kag_01/Tetsu v16 lane: match score > 0.50 and mean margin > 0.0. Equality or non-inferiority is a NO-GO.",
     "score_claim_policy": "No local gate or SaveRun result guarantees a 3000 score."
@@ -47,19 +51,23 @@
       "status": "CLOSED_IMPLEMENTATION_FREEZE",
       "control": "Kag_01 exact Tetsu v16",
       "implementation": {
-        "builder_path": "src/kaggriculture_lab/candidates/kag03_terminal_market.py",
+        "candidate_path": "research/campaign_3000/12_next_candidates/kag_03/main.py",
+        "builder_path": "src/kaggriculture_lab/research/kag03_preempt_horizon.py",
+        "builder_sha256": "BF5AF8433CEBFBB2FCE9C1F86BCF250B5F52B212B8E86C38B0B517DEE6389CE9",
+        "builder_bytes": 5800,
         "control_path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
-        "candidate_source_sha256": "9034026D6872109C9AF6BD5582F65446312F0D109654BE388A17D8F8A186FE36",
-        "candidate_source_bytes": 33206,
+        "candidate_source_sha256": "9910E3332150698834AD792B6D9FAC66DE8AFE8DD905CB2FC672E9DAE9145A0C",
+        "candidate_source_bytes": 27994,
         "materialized_source": "MATERIALIZED_IMPLEMENTATION_FREEZE_INPUT"
       },
-      "single_hypothesis": "A market-only, observable reordering of the control's existing legal SELL slots can improve execution without changing the control farmer or hands routes.",
+      "single_hypothesis": "Extending the control's existing premium SELL preemption search from horizons (3,2,1) to (4,3,2,1) can capture one-day-earlier opportunities while preserving the exact route, repayment, and fallback logic.",
       "allowed_delta": [
-        "Reorder existing legal SELL orders only."
+        "Replace the sole preemption horizon tuple (3,2,1) with (4,3,2,1).",
+        "Expose action-neutral calls, preemptions, and horizon4_preemptions metrics hooks."
       ],
       "forbidden_delta": [
-        "Farmer or hands action changes.",
-        "BUY, order deletion, quantity resizing, or non-SELL market changes.",
+        "Any route, farmer, hands, repayment, liquidation, or fallback change beyond the tuple extension.",
+        "Any additional BUY/SELL creation, deletion, quantity resizing, or price/forecast model.",
         "Opponent identity, replay identity, seed, fixed step, or source-episode branches."
       ],
       "development_opponents": ["tetsu_v16", "ray_c45_exact", "boatlee_v14", "kaito_v22", "fa04_g1"],
@@ -71,11 +79,12 @@
       "development_gate": {
         "plan": "research/campaign_3000/12_next_candidates/evaluation_plan.json",
         "scope": "development only; confirmation and robustness have no evaluation framework yet",
-        "hard_integrity": "exact 160-cell five-opponent both-seat grid, finite values, no failures or abnormal statuses, and source start=end",
+        "hard_integrity": "exact 160-cell five-opponent both-seat grid, finite values, no failures or abnormal statuses, source start=end, actual engine six-file/make contract start=end, and six execution inputs start=end",
         "aggregate": "match score >= 0.50 and mean margin >= 0",
         "direct_tetsu_v16": "must beat Kag_01/Tetsu v16: match score > 0.50 and mean margin > 0.0; equality/non-inferiority is NO-GO",
         "per_opponent": "block only a catastrophic lane: match score < 0.25 or mean margin < -10000",
-        "delta_safety": "farmer/hands differences = 0; every market difference is a legal SELL reorder; fallback is exact control"
+        "causal_metrics": "all 160 rows require calls=719; aggregate preemptions and horizon4_preemptions must both be positive",
+        "delta_safety": "static reconstruction permits only the horizon tuple extension plus action-neutral metrics hooks; route, repayment, and fallback remain exact control"
       },
       "non_claims": ["No expected 3000 score.", "No live-LB causality claim.", "No upload or submission authority."]
     },
@@ -85,12 +94,24 @@
       "control": "Kag_01 exact Tetsu v16",
       "implementation": {
         "candidate_path": "research/campaign_3000/12_next_candidates/kag_04/main.py",
-        "candidate_source_sha256": "797E2BFED6F17964CB08E3B1A77D72A978BDB8EE2C9EA9E7E552A454DA20F191",
-        "candidate_source_bytes": 31455,
+        "builder_path": "src/kaggriculture_lab/research/kag04_seat0_horizon4.py",
+        "builder_sha256": "308A1F9FC6CD16530AFB36441C81E91630C6EB0BB51D1A2716181376287832FF",
+        "builder_bytes": 4865,
+        "control_path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
+        "candidate_source_sha256": "3B4E4D626D7F9062B5E1122198112FD4F23C2142B77962368362C4CB627A6708",
+        "candidate_source_bytes": 28040,
         "materialized_source": "MATERIALIZED_IMPLEMENTATION_FREEZE_INPUT",
-        "delta": "exact Tetsu COW2/SHEEP2 -> COW1/SHEEP3"
+        "delta": "seat 0 uses premium preemption horizons (4,3,2,1); seat 1 keeps exact control horizons (3,2,1); action-neutral metrics hooks only"
       },
-      "single_hypothesis": "The exact Tetsu COW2/SHEEP2 to COW1/SHEEP3 delta can improve the observable opening without accumulating a Kag_03 market overlay.",
+      "single_hypothesis": "Applying the one-day-earlier premium preemption only in seat 0 can retain the observed gain while keeping seat 1 as an exact control hedge.",
+      "allowed_delta": [
+        "Use horizons (4,3,2,1) only when own player index is 0; otherwise use exact control horizons (3,2,1).",
+        "Expose action-neutral calls, preemptions, and horizon4_preemptions metrics hooks."
+      ],
+      "forbidden_delta": [
+        "Opponent identity, replay identity, seed, episode, team, or external lookup branches.",
+        "Any route, repayment, liquidation, fallback, quantity, or unrelated market change."
+      ],
       "development_opponents": ["tetsu_v16", "ray_c45_exact", "boatlee_v14", "kaito_v22", "fa04_g1"],
       "seed_pools": {
         "development": {"start": 59000, "end_inclusive": 59015, "count": 16, "status": "CLOSED", "opened": false, "consumed": false, "evaluated_games": 0, "expected_cells": 160},
@@ -100,24 +121,25 @@
       "development_gate": {
         "plan": "research/campaign_3000/12_next_candidates/evaluation_plan.json",
         "scope": "development only; confirmation and robustness have no evaluation framework yet",
-        "hard_integrity": "exact 160-cell five-opponent both-seat grid, finite values, no failures or abnormal statuses, and source start=end",
+        "hard_integrity": "exact 160-cell five-opponent both-seat grid, finite values, no failures or abnormal statuses, source start=end, actual engine six-file/make contract start=end, and six execution inputs start=end",
         "aggregate": "match score >= 0.50 and mean margin >= 0",
         "direct_tetsu_v16": "must beat Kag_01/Tetsu v16: match score > 0.50 and mean margin > 0.0; equality/non-inferiority is NO-GO",
         "per_opponent": "block only a catastrophic lane: match score < 0.25 or mean margin < -10000",
+        "causal_metrics": "all 160 rows require calls=719; aggregate preemptions and horizon4_preemptions must both be positive",
         "lineage": "exact public source, derivative changes, license, and attribution must be frozen before any execution"
       },
       "non_claims": ["No seed-opening authority.", "No expected 3000 score."]
     }
   ],
   "reservation_check": {
-    "method": "Final source-materialization adapter scan using seed_reservation.py, which reuses the hardened 06_candidates extractor and excludes only the three reservation-derived artifacts.",
+    "method": "Final source-materialization adapter scan using seed_reservation.py, which reuses the hardened 06_candidates extractor and excludes only five exact reservation-derived artifacts; no directory prefix is excluded.",
     "result": "All six CLOSED pools are collision-free under the final source-materialization scan.",
-    "observed_seed_count": 1696,
-    "observed_seed_values_sha256": "B918500DE0FD53A5159F4EBA12C06589A392E7E66AC6DB2CCF49882D98446FD5",
-    "seed_evidence_files_sha256": "62482780F6A46EB0C4B584692748BD12133CC0DF1405C79C305327A7A19F2A39",
-    "scanned_text_files": 397,
-    "seed_bearing_files": 202,
-    "enumerated_rg_files": 483,
+    "observed_seed_count": 1727,
+    "observed_seed_values_sha256": "BB7CDD7722D3D61D072674CE15E5DDE1E0E5DDB568051ABCDFBDFFAC9C4FD13C",
+    "seed_evidence_files_sha256": "A5F1CB5EA0A72232B462159A0125681D63D3867D056A0B3F93A33553EE833B0E",
+    "scanned_text_files": 492,
+    "seed_bearing_files": 258,
+    "enumerated_rg_files": 580,
     "fresh_games_executed": 0
   },
   "future_phase_policy": {

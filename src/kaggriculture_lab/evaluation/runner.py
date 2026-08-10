@@ -49,6 +49,27 @@ PYTHON_STARTUP_ENV_NAMES = (
     "PYTHONINSPECT",
     "PYTHONUSERBASE",
 )
+RUNTIME_DEPENDENCY_RELATIVE_PATHS = {
+    "package_init": Path("kaggle_environments/__init__.py"),
+    "core": Path("kaggle_environments/core.py"),
+    "utils": Path("kaggle_environments/utils.py"),
+    "agent": Path("kaggle_environments/agent.py"),
+    "kaggriculture_py": Path(
+        "kaggle_environments/envs/kaggriculture/kaggriculture.py"
+    ),
+    "kaggriculture_json": Path(
+        "kaggle_environments/envs/kaggriculture/kaggriculture.json"
+    ),
+}
+RUNTIME_IMPORTED_MODULE_NAMES = {
+    "package_init": "kaggle_environments",
+    "core": "kaggle_environments.core",
+    "utils": "kaggle_environments.utils",
+    "agent": "kaggle_environments.agent",
+    "kaggriculture_py": (
+        "kaggle_environments.envs.kaggriculture.kaggriculture"
+    ),
+}
 EXPECTED_MAKE_CALLABLE = {
     "package_make_is_core_make": True,
     "function_type": True,
@@ -106,7 +127,7 @@ class GameResult:
     runtime_make_callable: dict[str, Any] = field(default_factory=dict)
 
 
-def _validated_kaggle_make() -> tuple[Any, dict[str, Any]]:
+def _make_callable_snapshot() -> tuple[Any, dict[str, Any]]:
     distribution = importlib.metadata.distribution("kaggle-environments")
     root = Path(distribution.locate_file("")).resolve()
     core_path = (root / "kaggle_environments/core.py").resolve()
@@ -173,6 +194,11 @@ def _validated_kaggle_make() -> tuple[Any, dict[str, Any]]:
         },
         "defaults_sha256": defaults_sha,
     }
+    return make_callable, snapshot
+
+
+def _validated_kaggle_make() -> tuple[Any, dict[str, Any]]:
+    make_callable, snapshot = _make_callable_snapshot()
     if snapshot != EXPECTED_MAKE_CALLABLE:
         raise RuntimeError("kaggle_environments.make callable identity mismatch")
     return make_callable, snapshot
@@ -452,6 +478,140 @@ def _json_sha256(value: Any) -> str:
     return hashlib.sha256(payload).hexdigest().upper()
 
 
+def _file_snapshot(path: Path) -> dict[str, Any]:
+    resolved = path.resolve()
+    try:
+        payload = resolved.read_bytes()
+    except OSError as exc:
+        return {
+            "path": resolved.as_posix(),
+            "exists": False,
+            "bytes": None,
+            "sha256": None,
+            "read_error": f"{type(exc).__name__}: {exc}",
+        }
+    return {
+        "path": resolved.as_posix(),
+        "exists": True,
+        "bytes": len(payload),
+        "sha256": hashlib.sha256(payload).hexdigest().upper(),
+        "read_error": None,
+    }
+
+
+def _module_source_path(module_name: str) -> dict[str, Any]:
+    try:
+        module = importlib.import_module(module_name)
+        raw_path = getattr(module, "__file__", None)
+        if type(raw_path) is not str or not raw_path:
+            raise TypeError("imported module does not expose an exact source path")
+        return {"path": Path(raw_path).resolve().as_posix(), "error": None}
+    except Exception as exc:  # noqa: BLE001  # pragma: no cover - drift evidence
+        return {"path": None, "error": f"{type(exc).__name__}: {exc}"}
+
+
+def _runtime_environment_snapshot() -> dict[str, Any]:
+    """Capture the actual in-process engine and its six execution dependencies."""
+    imported_module_paths = {
+        label: _module_source_path(module_name)
+        for label, module_name in RUNTIME_IMPORTED_MODULE_NAMES.items()
+    }
+    distribution_error = None
+    try:
+        distribution = importlib.metadata.distribution("kaggle-environments")
+        distribution_version = distribution.version
+        distribution_root = Path(distribution.locate_file("")).resolve()
+    except Exception as exc:  # noqa: BLE001  # pragma: no cover - drift evidence
+        distribution_error = f"{type(exc).__name__}: {exc}"
+        distribution_version = None
+        package_path = imported_module_paths["package_init"]["path"]
+        distribution_root = (
+            Path(package_path).resolve().parent.parent
+            if type(package_path) is str
+            else None
+        )
+
+    if distribution_root is None:  # pragma: no cover - defensive drift capture
+        dependency_files = {
+            label: {
+                "path": None,
+                "exists": False,
+                "bytes": None,
+                "sha256": None,
+                "read_error": "distribution root unavailable",
+            }
+            for label in RUNTIME_DEPENDENCY_RELATIVE_PATHS
+        }
+    else:
+        dependency_files = {
+            label: _file_snapshot(distribution_root / relative_path)
+            for label, relative_path in RUNTIME_DEPENDENCY_RELATIVE_PATHS.items()
+        }
+    try:
+        _, make_callable = _make_callable_snapshot()
+        make_callable_error = None
+    except Exception as exc:  # noqa: BLE001  # pragma: no cover - drift evidence
+        make_callable = None
+        make_callable_error = f"{type(exc).__name__}: {exc}"
+
+    return {
+        "schema_version": 1,
+        "distribution_name": "kaggle-environments",
+        "distribution_version": distribution_version,
+        "distribution_root": (
+            distribution_root.as_posix() if distribution_root is not None else None
+        ),
+        "distribution_error": distribution_error,
+        "python_executable": Path(sys.executable).resolve().as_posix(),
+        "imported_module_paths": imported_module_paths,
+        "runtime_dependency_files": dependency_files,
+        "make_callable_contract": make_callable,
+        "make_callable_contract_matches_expected": (
+            make_callable == EXPECTED_MAKE_CALLABLE
+        ),
+        "make_callable_error": make_callable_error,
+    }
+
+
+def _normalize_input_paths(
+    project_root: Path, input_paths: list[str | Path] | None,
+) -> list[Path]:
+    if input_paths is None:
+        return []
+    if type(input_paths) is not list:
+        raise TypeError("input_paths must be an exact list of str or Path values")
+    normalized: list[Path] = []
+    seen: set[str] = set()
+    for raw_path in input_paths:
+        if not isinstance(raw_path, (str, Path)) or isinstance(raw_path, bool):
+            raise TypeError("each input pin must be a str or Path")
+        if isinstance(raw_path, str) and not raw_path.strip():
+            raise ValueError("input pin paths must be non-empty")
+        path = Path(raw_path)
+        if not path.is_absolute():
+            path = project_root / path
+        path = path.resolve()
+        if not path.is_file():
+            raise FileNotFoundError(f"pinned execution input not found: {path}")
+        key = os.path.normcase(str(path))
+        if key not in seen:
+            normalized.append(path)
+            seen.add(key)
+    return normalized
+
+
+def _execution_input_snapshot(input_paths: list[Path]) -> dict[str, Any]:
+    runner_path = Path(__file__).resolve()
+    return {
+        "schema_version": 1,
+        "runner": _file_snapshot(runner_path),
+        "pinned_inputs": {
+            path.as_posix(): _file_snapshot(path)
+            for path in sorted(input_paths, key=lambda item: item.as_posix())
+        },
+    }
+
+
 def _git_head(project_root: Path) -> str | None:
     try:
         result = subprocess.run(
@@ -477,7 +637,17 @@ def _load_partition(path: Path, partition: str) -> tuple[list[int], list[str]]:
     section = config[partition]
     if "seeds" not in section or "opponents" not in section:
         raise ValueError(f"partition {partition} does not define seeds and opponents")
-    return [int(seed) for seed in section["seeds"]], list(section["opponents"])
+    seeds = section["seeds"]
+    opponents = section["opponents"]
+    if type(seeds) is not list or any(type(seed) is not int for seed in seeds):
+        raise TypeError("partition seeds must be an exact list of exact int values")
+    if type(opponents) is not list or any(
+        type(opponent) is not str or not opponent for opponent in opponents
+    ):
+        raise TypeError(
+            "partition opponents must be an exact list of non-empty exact str values"
+        )
+    return list(seeds), list(opponents)
 
 
 def _load_scenarios(path: Path) -> dict[str, dict[str, Any]]:
@@ -508,10 +678,30 @@ def run_batch(
     workers: int,
     project_root: Path,
     scenarios: dict[str, dict[str, Any]] | None = None,
+    input_paths: list[str | Path] | None = None,
 ) -> dict[str, Any]:
+    if type(candidate_ref) is not str or not candidate_ref:
+        raise TypeError("candidate_ref must be a non-empty exact str")
+    if type(opponents) is not list or not opponents:
+        raise TypeError("opponents must be a non-empty exact list")
+    if any(type(opponent) is not str or not opponent for opponent in opponents):
+        raise TypeError("opponents must contain only non-empty exact str values")
+    if type(seeds) is not list or not seeds:
+        raise TypeError("seeds must be a non-empty exact list")
+    if any(type(seed) is not int for seed in seeds):
+        raise TypeError("seeds must contain only exact int values")
+    if type(workers) is not int or workers < 1:
+        raise TypeError("workers must be a positive exact int")
+    if not isinstance(project_root, Path):
+        raise TypeError("project_root must be a Path")
+    project_root = project_root.resolve()
+    normalized_input_paths = _normalize_input_paths(project_root, input_paths)
     candidate = _resolve(candidate_ref, project_root)
     resolved_opponents = {name: _resolve(name, project_root) for name in opponents}
-    scenarios = scenarios or {"default": {}}
+    if scenarios is None:
+        scenarios = {"default": {}}
+    if type(scenarios) is not dict:
+        raise TypeError("scenarios must be an exact dict")
     if not scenarios:
         raise ValueError("at least one evaluation scenario is required")
     for name, configuration in scenarios.items():
@@ -536,8 +726,11 @@ def run_batch(
     opponent_hashes_start = {
         name: _file_hash_or_none(path) for name, path in resolved_opponents.items()
     }
+    runtime_environment_start = _runtime_environment_snapshot()
+    execution_inputs_start = _execution_input_snapshot(normalized_input_paths)
     start_receipt = {
         "schema_version": 1,
+        "execution_context_schema_version": 1,
         "started_at_utc": started_at,
         "git_head_at_start": git_head,
         "candidate": candidate_ref,
@@ -552,6 +745,12 @@ def run_batch(
         "scenario_overrides": scenarios,
         "effective_scenarios": effective_scenarios,
         "effective_scenarios_sha256": _json_sha256(effective_scenarios),
+        "runtime_environment_at_start": runtime_environment_start,
+        "runtime_environment_at_start_sha256": _json_sha256(
+            runtime_environment_start
+        ),
+        "execution_inputs_at_start": execution_inputs_start,
+        "execution_inputs_at_start_sha256": _json_sha256(execution_inputs_start),
     }
     receipt_path = output.with_name(f"{output.stem}.started.json")
     receipt_path.write_text(json.dumps(start_receipt, indent=2) + "\n", encoding="utf-8")
@@ -578,9 +777,10 @@ def run_batch(
     else:
         with concurrent.futures.ProcessPoolExecutor(max_workers=workers) as pool:
             results = list(pool.map(_run_game, specs))
+    runtime_environment_end = _runtime_environment_snapshot()
+    execution_inputs_end = _execution_input_snapshot(normalized_input_paths)
     results.sort(key=lambda row: (row.scenario, row.opponent, row.seed, row.seat))
 
-    candidate_path = Path(candidate)
     completed_at = datetime.now(UTC).isoformat()
     candidate_hash_end = _file_hash_or_none(candidate)
     opponent_hashes_end = {
@@ -590,8 +790,18 @@ def run_batch(
         candidate_hash_start == candidate_hash_end
         and opponent_hashes_start == opponent_hashes_end
     )
+    runtime_environment_unchanged = (
+        runtime_environment_start == runtime_environment_end
+    )
+    execution_inputs_unchanged = execution_inputs_start == execution_inputs_end
+    execution_context_unchanged = (
+        sources_unchanged
+        and runtime_environment_unchanged
+        and execution_inputs_unchanged
+    )
     report = {
         "schema_version": 1,
+        "execution_context_schema_version": 1,
         "created_at_utc": completed_at,
         "started_at_utc": started_at,
         "completed_at_utc": completed_at,
@@ -602,9 +812,23 @@ def run_batch(
         "effective_scenarios_sha256": _json_sha256(effective_scenarios),
         "start_receipt": receipt_path.as_posix(),
         "start_receipt_sha256": receipt_sha256,
+        "runtime_environment_at_start": runtime_environment_start,
+        "runtime_environment_at_start_sha256": _json_sha256(
+            runtime_environment_start
+        ),
+        "runtime_environment_at_end": runtime_environment_end,
+        "runtime_environment_at_end_sha256": _json_sha256(runtime_environment_end),
+        "runtime_environment_unchanged_during_run": runtime_environment_unchanged,
+        "execution_inputs_at_start": execution_inputs_start,
+        "execution_inputs_at_start_sha256": _json_sha256(execution_inputs_start),
+        "execution_inputs_at_end": execution_inputs_end,
+        "execution_inputs_at_end_sha256": _json_sha256(execution_inputs_end),
+        "execution_inputs_unchanged_during_run": execution_inputs_unchanged,
+        "execution_context_unchanged_during_run": execution_context_unchanged,
+        "execution_gate_valid": execution_context_unchanged,
         "candidate": candidate_ref,
         "candidate_path": candidate,
-        "candidate_sha256": _sha256(candidate_path),
+        "candidate_sha256": candidate_hash_end,
         "candidate_sha256_at_start": candidate_hash_start,
         "candidate_sha256_at_end": candidate_hash_end,
         "opponents": opponents,
@@ -636,12 +860,24 @@ def main() -> None:
         type=Path,
         help="JSON scenarios mapping with Kaggriculture configuration overrides",
     )
+    parser.add_argument(
+        "--input-pin",
+        action="append",
+        default=[],
+        type=Path,
+        help=(
+            "repeatable file path whose exact bytes must remain unchanged during "
+            "the batch"
+        ),
+    )
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--workers", type=int, default=min(4, os.cpu_count() or 1))
     args = parser.parse_args()
 
+    input_paths = list(args.input_pin)
     if args.partition:
         seeds, opponents = _load_partition(args.config, args.partition)
+        input_paths.append(args.config)
     elif args.opponents and args.seeds:
         opponents = [value.strip() for value in args.opponents.split(",") if value.strip()]
         seeds = [int(value) for value in args.seeds.split(",") if value.strip()]
@@ -651,6 +887,8 @@ def main() -> None:
         parser.error("--workers must be between 1 and 12")
 
     scenarios = _load_scenarios(args.scenario_config) if args.scenario_config else None
+    if args.scenario_config:
+        input_paths.append(args.scenario_config)
     report = run_batch(
         args.agent,
         opponents,
@@ -659,6 +897,7 @@ def main() -> None:
         args.workers,
         Path.cwd().resolve(),
         scenarios,
+        input_paths,
     )
     print(json.dumps(report["summary"], indent=2))
 

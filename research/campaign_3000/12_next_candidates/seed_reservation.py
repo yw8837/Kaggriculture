@@ -2,7 +2,7 @@
 
 The historic Kag_01/Kag_02 scanner correctly excludes its own derived files, but
 its exclusions are deliberately frozen to that campaign.  This adapter keeps the
-same extraction logic while adding only three exact Kag_03/Kag_04 derived paths.
+same extraction logic while adding only five exact Kag_03/Kag_04 reservation-derived paths.
 It must never exclude the whole `12_next_candidates` directory: future evidence
 there remains input evidence and must be scanned.
 """
@@ -22,6 +22,8 @@ DERIVED_EXCLUSIONS = {
     "research/campaign_3000/12_next_candidates/candidate_catalog.json",
     "research/campaign_3000/12_next_candidates/seed_collision_scan.json",
     "research/campaign_3000/12_next_candidates/evaluation_plan.json",
+    "research/campaign_3000/12_next_candidates/freeze_manifest.json",
+    "research/campaign_3000/12_next_candidates/execution_binding.json",
 }
 
 

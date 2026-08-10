@@ -1,11 +1,11 @@
 {
   "candidate": {
-    "bytes": 33206,
+    "bytes": 27994,
     "path": "research/campaign_3000/12_next_candidates/kag_03/main.py",
-    "sha256": "9034026D6872109C9AF6BD5582F65446312F0D109654BE388A17D8F8A186FE36"
+    "sha256": "9910E3332150698834AD792B6D9FAC66DE8AFE8DD905CB2FC672E9DAE9145A0C"
   },
   "compile": {
-    "filename": "<kag03_freeze>",
+    "filename": "<kag03_preempt_horizon_freeze>",
     "ok": true
   },
   "control": {
@@ -15,23 +15,13 @@
   },
   "metrics_after_reset": {
     "calls": 0,
-    "exception_fallback": 0,
-    "no_op": 0,
-    "rejected_ambiguous": 0,
-    "rejected_illegal": 0,
-    "rejected_malformed": 0,
-    "rejected_resize": 0,
-    "reordered": 0
+    "horizon4_preemptions": 0,
+    "preemptions": 0
   },
   "metrics_generic": {
     "calls": 0,
-    "exception_fallback": 0,
-    "no_op": 0,
-    "rejected_ambiguous": 0,
-    "rejected_illegal": 0,
-    "rejected_malformed": 0,
-    "rejected_resize": 0,
-    "reordered": 0
+    "horizon4_preemptions": 0,
+    "preemptions": 0
   },
   "metrics_hooks": [
     "kag03_metrics",
@@ -41,13 +31,12 @@
   ],
   "metrics_initial": {
     "calls": 0,
-    "exception_fallback": 0,
-    "no_op": 0,
-    "rejected_ambiguous": 0,
-    "rejected_illegal": 0,
-    "rejected_malformed": 0,
-    "rejected_resize": 0,
-    "reordered": 0
+    "horizon4_preemptions": 0,
+    "preemptions": 0
   },
-  "schema": "kag03_terminal_market_freeze.v1"
+  "schema": "kag03_preempt_horizon_freeze.v1",
+  "semantic_replacement": {
+    "from": "for horizon in (3, 2, 1):",
+    "to": "for horizon in (4, 3, 2, 1):"
+  }
 }

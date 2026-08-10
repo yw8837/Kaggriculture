@@ -252,7 +252,7 @@ def _preempt_shift(obs, action, step):
     # Near-clone routes often expose their next premium sale through public
     # state. Prefer a three-turn horizon against public-route competition; fall back to
     # two and one turn when the longer shift is not safe.
-    for horizon in (3, 2, 1):
+    for horizon in ((4, 3, 2, 1) if _seat(obs) == 0 else (3, 2, 1)):
         future = _future_sells_at(step, horizon)
         if not future:
             continue
@@ -283,6 +283,7 @@ def _preempt_shift(obs, action, step):
             trial_remaining[item] = max(0, int(trial_remaining.get(item, 0) or 0) - target)
             shifted[item] = target
         if shifted:
+            _kag04_record_preemption(horizon)
             action["market"] = trial_market[:10]
             state["due_step"] = step + horizon
             state["due"] = shifted
@@ -485,15 +486,11 @@ def _kag04_base_agent(obs):
 def _kaggle_submission_entrypoint(obs):
     return agent(obs)
 
-# KAG04_TETSU_V16_OPENING_SHEEP_DELTA
-# The only treatment is COW 2 -> 1 and SHEEP 2 -> 3 in one already-planned
-# opening market action. All other base behavior remains untouched.
+# KAG04_TETSU_V16_SEAT0_HORIZON4_METRICS
 _KAG04_METRICS = {
     "calls": 0,
-    "applied": 0,
-    "fallback_malformed": 0,
-    "fallback_ambiguous": 0,
-    "fallback_owned_animals": 0,
+    "preemptions": 0,
+    "horizon4_preemptions": 0,
 }
 
 
@@ -519,109 +516,12 @@ def reset_rescue_metrics():
     return kag04_metrics()
 
 
-def _kag04_own_animal_count(obs):
-    if not isinstance(obs, dict):
-        return None
-    player = obs.get("player")
-    farms = obs.get("farms")
-    private = obs.get("private")
-    if (
-        not isinstance(player, int)
-        or isinstance(player, bool)
-        or not isinstance(farms, list)
-        or player < 0
-        or player >= len(farms)
-        or not isinstance(farms[player], dict)
-        or not isinstance(private, dict)
-    ):
-        return None
-    tiles = farms[player].get("tiles")
-    shed = private.get("shed")
-    if not isinstance(tiles, list) or not isinstance(shed, dict):
-        return None
-    count = 0
-    for row in tiles:
-        if not isinstance(row, list):
-            return None
-        for tile in row:
-            if tile is None or tile == "LOCKED":
-                continue
-            if not isinstance(tile, dict):
-                return None
-            animal = tile.get("animal")
-            if animal is None:
-                continue
-            if not isinstance(animal, str) or not animal:
-                return None
-            count += 1
-    for animal in ("COW", "SHEEP", "GOOSE"):
-        quantity = shed.get(animal, 0)
-        if not isinstance(quantity, int) or isinstance(quantity, bool) or quantity < 0:
-            return None
-        count += quantity
-    return count
-
-
-def _kag04_rewrite_market(base_action):
-    if not isinstance(base_action, dict):
-        return "malformed", None
-    market = base_action.get("market")
-    if not isinstance(market, list):
-        return "malformed", None
-    cow_index = None
-    sheep_index = None
-    for index, order in enumerate(market):
-        if not isinstance(order, list) or not order or not isinstance(order[0], str):
-            return "malformed", None
-        if order[0] != "BUY_ANIMAL":
-            continue
-        if (
-            len(order) != 3
-            or not isinstance(order[1], str)
-            or not isinstance(order[2], int)
-            or isinstance(order[2], bool)
-        ):
-            return "malformed", None
-        if order == ["BUY_ANIMAL", "COW", 2]:
-            if cow_index is not None:
-                return "ambiguous", None
-            cow_index = index
-        elif order == ["BUY_ANIMAL", "SHEEP", 2]:
-            if sheep_index is not None:
-                return "ambiguous", None
-            sheep_index = index
-        else:
-            return "ambiguous", None
-    if cow_index is None or sheep_index is None:
-        return "ambiguous", None
-    rewritten_market = list(market)
-    rewritten_market[cow_index] = ["BUY_ANIMAL", "COW", 1]
-    rewritten_market[sheep_index] = ["BUY_ANIMAL", "SHEEP", 3]
-    candidate = dict(base_action)
-    candidate["market"] = rewritten_market
-    return "applied", candidate
-
-
-def _kag04_overlay(obs, base_action):
-    _KAG04_METRICS["calls"] += 1
-    owned_animals = _kag04_own_animal_count(obs)
-    if owned_animals is None:
-        _KAG04_METRICS["fallback_malformed"] += 1
-        return base_action
-    if owned_animals != 0:
-        _KAG04_METRICS["fallback_owned_animals"] += 1
-        return base_action
-    result, candidate = _kag04_rewrite_market(base_action)
-    if result == "malformed":
-        _KAG04_METRICS["fallback_malformed"] += 1
-        return base_action
-    if result == "ambiguous":
-        _KAG04_METRICS["fallback_ambiguous"] += 1
-        return base_action
-    _KAG04_METRICS["applied"] += 1
-    return candidate
+def _kag04_record_preemption(horizon):
+    _KAG04_METRICS["preemptions"] += 1
+    if horizon == 4:
+        _KAG04_METRICS["horizon4_preemptions"] += 1
 
 
 def agent(obs):
-    base_action = _kag04_base_agent(obs)
-    return _kag04_overlay(obs, base_action)
+    _KAG04_METRICS["calls"] += 1
+    return _kag04_base_agent(obs)

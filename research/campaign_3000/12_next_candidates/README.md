@@ -1,16 +1,17 @@
-# Kag_03 / Kag_04 — closed candidate planning
+# Kag_03 / Kag_04 — closed implementation freeze
 
-This directory starts the next pair only after the Kag_01/Kag_02 analysis.
-It is not an upload, a competition submission, a public release, or seed-opening authority.
+This pair follows the persistent campaign checklist and the named Kag_01/Kag_02 analysis. It is not an upload, competition submission, public release, or seed-opening authority.
 
-| Slot | What changes | What stays separate |
+| Slot | Single delta over exact Kag_01/Tetsu v16 | Reused-seed diagnostic only |
 | --- | --- | --- |
-| Kag_03 | One bounded terminal-market delta over Kag_01. | Farmer and hands must remain the exact control action vectors. |
-| Kag_04 | A design-only sheep-first policy family. | It cannot borrow Kag_03 mutations or public code before provenance and license approval. |
+| Kag_03 | Premium SELL preemption horizons `(3,2,1) → (4,3,2,1)` for both seats. | 5 opponents × 16 historical seeds × both seats: 154–0–6, score 0.9625, mean margin +6288.2625; direct Kag_01 32–0, +985.8125. |
+| Kag_04 | Seat 0 uses `(4,3,2,1)`; seat 1 keeps exact `(3,2,1)`. | Same reused panel: 138–16–6, score 0.9125, mean margin +6193.525; direct Kag_01 16–16–0, +492.90625. |
 
-The six ranges are reservations only. Each is `CLOSED`; no fresh game has been executed.
-Before any development run, create a clean two-stage S/E freeze with exact source, builder, runner, gate, opponent, environment, and seed-scan hashes, then obtain an independent auditor's exact OPEN authority.
+The diagnostics reused historical seeds `50000–50015`; they are selection evidence, not fresh promotion evidence. All six new ranges remain pristine `CLOSED` with zero games:
 
-`seed_collision_scan.json` records the pre-reservation empty intersections. The final freeze must rerun `seed_reservation.py`, which excludes only the reservation record and its own output—not this whole directory—so later evidence is still scanned.
+- Kag_03: development `56000–56015`, confirmation `57000–57063`, robustness `58000–58031`.
+- Kag_04: development `59000–59015`, confirmation `60000–60063`, robustness `61000–61031`.
 
-The evaluation panel deliberately includes the Kag_01 control plus the four historical public fixtures. Every lane is both seats. Kag_02 demonstrated why aggregate margin alone is unsafe, so every opponent gets its own noninferiority check.
+The development panel is exact Kag_01 plus Ray, Boatlee, Kag_02/Kaito, and Fa04 G1, both seats. The gate requires the exact 160 cells, exact frozen source/environment identity, zero failures/abnormal states, complete causal metrics, overall score/margin floors, a strict direct Kag_01 win, and only a catastrophic per-opponent guard. It does **not** claim full per-opponent noninferiority or a guaranteed 3000 rating.
+
+Before any new seed runs, regenerate the reservation scan and clean two-stage S/E freeze, then obtain the independent auditor's exact OPEN verdict. Any source mutation invalidates this freeze and requires a full re-freeze.

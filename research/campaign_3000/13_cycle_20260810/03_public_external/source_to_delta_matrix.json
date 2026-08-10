@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "artifact": "cycle_20260810_public_external_source_to_delta_matrix",
+  "status": "HISTORICAL_INITIAL_MATRIX_SUPERSEDED_BY_BROWSER_REFRESH_AND_AUTORESEARCH",
+  "scope": {
+    "candidate_controls": {
+      "Kag_01": "exact Tetsu v16",
+      "Kag_02": "retired v22 price-impact candidate",
+      "Kag_03": "initial existing-SELL reorder overlay; later rejected 0-32 against exact Kag_01",
+      "Kag_04": "initial COW2/SHEEP2 to COW1/SHEEP3 overlay; later rejected 0-32 against exact Kag_01"
+    },
+    "external_actions": "NONE",
+    "source_code_use": "NONE"
+  },
+  "inventory": {
+    "competition": "Kaggriculture",
+    "as_of": "2026-08-10",
+    "current_code_count": null,
+    "current_discussion_count": null,
+    "current_models_count": null,
+    "verdict": "NOT_VERIFIED_NOT_ZERO",
+    "reason": "Official Kaggle surfaces and client/API collector were not usable in the allowed environment; exact attempts are recorded in query_log.md."
+  },
+  "sources": [
+    {
+      "id": "S01_current_inventory_gap",
+      "source_type": "official-current-surface-attempt",
+      "urls": [
+        "https://www.kaggle.com/competitions/kaggriculture",
+        "https://www.kaggle.com/competitions/kaggriculture/models"
+      ],
+      "provenance": "Web collector opened both pages on 2026-08-10; each returned content type text/html with zero indexed lines. Code/Discussion and v1 API URLs were reported unsafe by that collector. The official Kaggle CLI could not initialise its user cache, and Agent-Reach/Insane Search were unavailable locally. See query_log.md.",
+      "finding": "A current Code/Discussion/Models inventory cannot be established from these attempts.",
+      "kag01_or_kag02_defect": "Kag_01's historical signal later regressed and Kag_02's public-v22 context did not survive the exact local gate; unpinned current-page claims are therefore an evidentiary defect.",
+      "bounded_kag03_delta": "None. Do not mine a current-page absence into an action change.",
+      "bounded_kag04_delta": "None. Do not mine a current-page absence into an animal-mix change.",
+      "metric": "Authenticated/working official capture must provide page URL, retrieval time, item ID/version, source hash, license, and captured Code/Discussion/Models counts.",
+      "risk": "False zero inventory or stale-public-score claim.",
+      "falsifier": "A successful official capture with a different count or a newer relevant item invalidates this inventory status and requires an append-only refresh."
+    },
+    {
+      "id": "S02_kaito_v22_retirement_boundary",
+      "source_type": "official-page-capture plus exact-local-gate",
+      "urls": [
+        "https://www.kaggle.com/code/kaitofukami/44-46-strict-future-top-30-v22-price-impact"
+      ],
+      "local_evidence": [
+        {
+          "path": "research/campaign_3000/07_release/evidence/raw/kaitofukami_44-46-strict-future-top-30-v22-price-impact_page_20260808T2036Z.md",
+          "fact": "Captured page labels v22 Price Impact and reports a 2957.6 public score for its linked version."
+        },
+        {
+          "path": "research/campaign_3000/10_results/kag_02_development/gate.json",
+          "sha256": "1444D13F28FDB4313495B9A1549C1EC567C3B0E2D6B7B18882123E8D3F6E1812",
+          "fact": "Exact local Kag_02 v22 candidate is strict NO_GO: 0.25 aggregate match score and negative lanes against Boatlee, Ray, and Tetsu."
+        }
+      ],
+      "finding": "A public notebook/page result neither identifies the exact local artifact nor overrides its fixed-panel failure.",
+      "kag01_or_kag02_defect": "Kag_02's price-impact/market-response family has per-opponent collapse despite positive aggregate mean margin.",
+      "bounded_kag03_delta": "Retain only reorder of pre-existing legal SELL orders; no price-impact score, order creation/deletion, BUY mutation, or non-SELL mutation.",
+      "bounded_kag04_delta": "Retain only guarded opening animal quantities; no price, forecast, SELL ranking, or market-response inputs.",
+      "metric": "Kag_03: every changed market entry must be a permutation of existing SELL entries. Kag_04: `applied` only for exact COW2/SHEEP2 shape; all other actions are exact-base fallback.",
+      "risk": "Reintroducing a retired v22 mechanism under a new label or treating a page score as exact-artifact evidence.",
+      "falsifier": "Any candidate source scan finding price-impact/forecast/market-response logic, or a gate result with a failing direct-Tetsu/per-opponent lane, is NO_GO."
+    },
+    {
+      "id": "S03_kaggle_environments_action_contract",
+      "source_type": "official-GitHub-primary",
+      "urls": [
+        "https://github.com/Kaggle/kaggle-environments"
+      ],
+      "finding": "The official framework defines agents as observation-to-action functions and treats timeout, exception, and invalid action as distinct execution failures; it also exposes repeated evaluation and configuration controls.",
+      "kag01_or_kag02_defect": "Kag_02 did not clear the fixed panel; a broader overlay would add action-schema and runtime risk without explaining the failed lanes.",
+      "bounded_kag03_delta": "Exact-control fallback unless a reordered market is demonstrably the same existing legal SELL multiset; preserve farmer/hands and action shape.",
+      "bounded_kag04_delta": "Exact-control fallback unless own-animal count is zero and the base action has exactly one COW2 and one SHEEP2 BUY_ANIMAL order; preserve total quantity, market length, farmer, and hands.",
+      "metric": "Zero invalid actions, zero timeouts, source start=end, fallback counters, and both-seat completed rows.",
+      "risk": "A formally small mutation becomes invalid or times out in a state/action shape not represented by unit fixtures.",
+      "falsifier": "Any invalid/timeout/error row, or any action-diff outside the declared delta, invalidates the candidate run."
+    },
+    {
+      "id": "S04_lux_ai_ended_simulation_boundary",
+      "source_type": "primary-competition-paper-and-official-site",
+      "urls": [
+        "https://openreview.net/pdf?id=7t8kWYbOcj",
+        "https://www.lux-ai.org/"
+      ],
+      "finding": "Lux AI is a Kaggle-hosted multi-agent simulation setting whose published material explicitly distinguishes rule-based agents from learned/meta-learning agents.",
+      "kag01_or_kag02_defect": "Kag_02's weak lanes show why an opponent-conditional response should not be inferred from aggregate performance; Kag_01 is retained as a fixed control rather than an identity branch.",
+      "bounded_kag03_delta": "No opponent, team, replay, identity, or learned-policy branch. The only admissible treatment stays existing-SELL order reordering.",
+      "bounded_kag04_delta": "No opponent, team, replay, identity, seed, or learned-policy branch. The only admissible treatment stays the one guarded animal-quantity swap.",
+      "metric": "Static prohibited-context scan plus five fixed opponent lanes and both seats; report treatment coverage separately from score.",
+      "risk": "Illicit strategic transfer: importing meta-learning/opponent adaptation under an observable-state label.",
+      "falsifier": "Any source or generated action that branches on identity/opponent/replay/seed, or any unpinned learned artifact, rejects the delta."
+    },
+    {
+      "id": "S05_hungry_geese_ended_simulation_evaluation",
+      "source_type": "primary-research-on-ended-Kaggle-simulation",
+      "urls": [
+        "https://arxiv.org/abs/2109.01954",
+        "https://www.kaggle.com/competitions/hungry-geese/discussion/228596"
+      ],
+      "finding": "The Hungry Geese study reports that stochastic initialisation/food generation made policy convergence difficult. This is evaluation-method evidence, not an economic-policy analogue.",
+      "kag01_or_kag02_defect": "Kag_01's historical strength is not a 3000 claim; Kag_02's aggregate can hide lane loss. Single-seed or one-seat observations are not sufficient for a small treatment.",
+      "bounded_kag03_delta": "No new policy mechanism. Require both seats and clustered-by-seed reporting for the existing SELL-order treatment.",
+      "bounded_kag04_delta": "No new policy mechanism. Require an observed base-action witness and `applied`/fallback coverage before interpreting any score for the animal-mix treatment.",
+      "metric": "Exact 16-seed × 5-opponent × 2-seat development grid, direct Tetsu lane, seed-cluster uncertainty interval, and application-rate denominator.",
+      "risk": "Mistaking stochastic variance or a no-op overlay for treatment benefit.",
+      "falsifier": "Zero observed applications, confidence interval crossing the declared threshold, or failure to beat the Tetsu lane makes the hypothesis unsupported."
+    },
+    {
+      "id": "S06_korean_query_rejection",
+      "source_type": "Korean-query-coverage",
+      "urls": [],
+      "finding": "The Korean query returned real-goose husbandry and unrelated biological sources, not Kaggriculture or an algorithmic-bot primary source.",
+      "kag01_or_kag02_defect": "None; it is not decision evidence.",
+      "bounded_kag03_delta": "None.",
+      "bounded_kag04_delta": "None.",
+      "metric": "Retain a Korean source only if it has a stable primary URL, version/author, and a direct game-mechanism claim.",
+      "risk": "Keyword collision between game assets and real agriculture.",
+      "falsifier": "A future Korean primary source meeting the retention rule may be appended; this rejected query cannot support a design change."
+    }
+  ],
+  "cross_source_conclusion": {
+    "Kag_03": "No retained source justifies expanding beyond observable, existing-SELL reordering with exact fallback.",
+    "Kag_04": "No retained source establishes the 1-COW/3-SHEEP opening as superior. It remains a one-delta hypothesis whose only acceptable evidence is a future pinned, paired, coverage-reported evaluation.",
+    "promotion": "HOLD"
+  },
+  "supersession": {
+    "current_inventory": "research/campaign_3000/13_cycle_20260810/04_synthesis/live_browser_snapshot.json",
+    "final_evidence_bridge": "research/campaign_3000/13_cycle_20260810/04_synthesis/README.md",
+    "final_selection": "research/campaign_3000/13_cycle_20260810/05_autoresearch/final_selection.json",
+    "selected_Kag_03": "premium preemption horizons (4,3,2,1) for both seats",
+    "selected_Kag_04": "premium preemption horizons (4,3,2,1) only for seat 0",
+    "boundary": "The initial matrix remains provenance for rejected deltas; it is not the current candidate decision."
+  }
+}

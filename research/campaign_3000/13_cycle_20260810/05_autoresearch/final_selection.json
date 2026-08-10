@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "status": "SELECTED_FOR_CLOSED_FRESH_DEVELOPMENT_FREEZE",
+  "authority": {
+    "promotion_evidence": false,
+    "fresh_reserved_games_executed": 0,
+    "seed_opening": "FORBIDDEN_PENDING_CLEAN_S_E_FREEZE_AND_INDEPENDENT_AUDITOR_OPEN",
+    "save_run": "FORBIDDEN",
+    "competition_submission": "FORBIDDEN"
+  },
+  "selection_method": {
+    "control": "exact Kag_01/Tetsu v16",
+    "control_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+    "historical_reused_seeds": {"start": 50000, "end_inclusive": 50015, "count": 16},
+    "seats": [0, 1],
+    "panel": ["tetsu_v16", "ray_c45_exact", "boatlee_v14", "kaito_v22", "fa04_g1"],
+    "cells_per_candidate": 160,
+    "variant_screen_sha256": "F738423F448B6CCC5662172B0F9B22F18B660D210FA99C1F90BABBCE45686466",
+    "limitation": "All results in this artifact reuse historical development seeds and are selection diagnostics, not fresh promotion or leaderboard evidence."
+  },
+  "selected": {
+    "Kag_03": {
+      "candidate_path": "research/campaign_3000/12_next_candidates/kag_03/main.py",
+      "candidate_sha256": "9910E3332150698834AD792B6D9FAC66DE8AFE8DD905CB2FC672E9DAE9145A0C",
+      "candidate_bytes": 27994,
+      "single_delta": "premium preemption horizons (3,2,1) -> (4,3,2,1) for both seats",
+      "panel_report": "research/campaign_3000/13_cycle_20260810/05_autoresearch/diagnostic/kag_03_final_panel_reused.json",
+      "panel_report_sha256": "1B3DA78A84F18A1D712051FC49C893BE4EB04EDEAEBE9AB63B0A01CC82C5AB48",
+      "panel_report_bytes": 366631,
+      "overall": {"games": 160, "wins": 154, "ties": 0, "losses": 6, "match_score": 0.9625, "mean_margin": 6288.2625},
+      "seat_0": {"games": 80, "wins": 77, "ties": 0, "losses": 3, "match_score": 0.9625, "mean_margin": 6282.4875},
+      "seat_1": {"games": 80, "wins": 77, "ties": 0, "losses": 3, "match_score": 0.9625, "mean_margin": 6294.0375},
+      "direct_kag_01": {"games": 32, "wins": 32, "ties": 0, "losses": 0, "match_score": 1.0, "mean_margin": 985.8125, "minimum_margin": 275.0},
+      "candidate_metrics_total": {"calls": 115040, "preemptions": 1365, "horizon4_preemptions": 1144},
+      "failed_games": 0,
+      "hidden_abnormal_status_failures": 0
+    },
+    "Kag_04": {
+      "candidate_path": "research/campaign_3000/12_next_candidates/kag_04/main.py",
+      "candidate_sha256": "3B4E4D626D7F9062B5E1122198112FD4F23C2142B77962368362C4CB627A6708",
+      "candidate_bytes": 28040,
+      "single_delta": "seat 0 uses horizons (4,3,2,1); seat 1 keeps exact control horizons (3,2,1)",
+      "panel_report": "research/campaign_3000/13_cycle_20260810/05_autoresearch/diagnostic/kag_04_final_panel_reused.json",
+      "panel_report_sha256": "3B77AF21E4BAF2575057E2ADCB1444FD2606973C6975D0F6980492A4075DDF74",
+      "panel_report_bytes": 384489,
+      "overall": {"games": 160, "wins": 138, "ties": 16, "losses": 6, "match_score": 0.9125, "mean_margin": 6193.525},
+      "seat_0": {"games": 80, "wins": 77, "ties": 0, "losses": 3, "match_score": 0.9625, "mean_margin": 6282.4875},
+      "seat_1": {"games": 80, "wins": 61, "ties": 16, "losses": 3, "match_score": 0.8625, "mean_margin": 6104.5625},
+      "direct_kag_01": {"games": 32, "wins": 16, "ties": 16, "losses": 0, "match_score": 0.75, "mean_margin": 492.90625, "minimum_margin": 0.0},
+      "candidate_metrics_total": {"calls": 115040, "preemptions": 1388, "horizon4_preemptions": 572},
+      "failed_games": 0,
+      "hidden_abnormal_status_failures": 0
+    }
+  },
+  "rejected": [
+    {"slot": "Kag_03", "delta": "existing SELL slots sorted by descending inventory", "direct_kag_01": "0-0-32, mean margin -2007.3125"},
+    {"slot": "Kag_03", "delta": "actor-local WEED PASS rescue", "direct_kag_01": "32 ties; one trigger after ambiguity fix but zero terminal effect"},
+    {"slot": "Kag_04", "delta": "COW2/SHEEP2 -> COW1/SHEEP3", "direct_kag_01": "0-0-32"},
+    {"slot": "Kag_04", "delta": "adjacent COW2/SHEEP2 swap", "direct_kag_01": "32 ties despite 32 applications"},
+    {"slot": "Kag_04", "delta": "animal-buy prefix", "direct_kag_01": "32 ties despite 32 applications and 320 moved slots"}
+  ]
+}

@@ -1,24 +1,43 @@
 # Kag_03 / Kag_04 QA status
 
-This is a local construction checkpoint, not an execution or release verdict.
+Current state: local construction passes; all fresh pools remain CLOSED.
 
-## Completed without opening seeds
+## Candidate outcome so far
 
-- Kag_03 builder pins the exact Kag_01 control SHA and emits only a SELL-order permutation overlay.
-- Static adversarial checks cover control-prefix equality, forbidden observation fields, forbidden-field metamorphism, non-market equality, control-object immutability, legal fallback, and runner-compatible metrics hooks.
-- Kag_04 source is a materialized implementation-freeze input: `kag_04/main.py`, 31,455 bytes, SHA-256 `797E2BFE...DA20F191`. Its only recorded delta is exact Tetsu `COW2/SHEEP2 -> COW1/SHEEP3`; seed authority remains CLOSED.
-- JSON parsing and Python compilation passed for all 18 Kag_03/Kag_04 planning, source, test, and receipt files.
-- Focused pytest passed after exact source/environment pin hardening: `34 passed in 0.64s` across Kag_03, Kag_04, and the shared development gate/catalog tests. The sandbox-safe run used the bundled Python 3.12 runtime, the existing `.venv` site-packages, and a repo-local `--basetemp`.
-- Ruff passed for both builders, both candidate test files, and the shared reservation/gate tooling.
-- The bundled Python runtime materialized and compiled Kag_03, verified one legal SELL permutation with exact farmer/hands and control-object preservation, and verified the runner-compatible metrics hook. Frozen input source: `9034026D...A186FE36`, 33,206 bytes.
-- Final source-materialization reservation adapter result: `all_pools_collision_free=true`, 1,696 observed input seeds, observed digest `B918500D...D98446FD`, evidence-file digest `62482780...A19F2A39`, 397 scanned text files, 202 seed-bearing files, and 483 enumerated files.
-- The development-only plan records the exact engine/configuration, runner, two candidates, five opponent paths/hashes/bytes, default scenario, both seats, exact runner commands, and runner-started/raw/gate receipt paths. The gate rejects self-consistent candidate/opponent swaps and typed environment-mapping mutations. It does not authorize either command.
-- A development PASS now requires beating the direct Kag_01/Tetsu v16 lane on both strict conditions: match score `> 0.50` and mean margin `> 0.0`. Equality or non-inferiority is `DEVELOPMENT_NO_GO`; no result guarantees a 3000 score.
+- Kag_03 is exact Tetsu v16 except the premium-preemption horizon tuple changes from
+  `(3, 2, 1)` to `(4, 3, 2, 1)` for both seats, plus action-neutral counters.
+- Kag_04 applies that same horizon extension only in seat 0; seat 1 keeps the exact control
+  horizon tuple. Its counters are action-neutral.
+- Historical reused-seed diagnostics selected these variants but do not promote them:
+  Kag_03 beat exact Kag_01 32–0 with mean margin `+985.8125`; Kag_04 produced
+  16 wins and 16 ties with mean margin `+492.90625`.
+- Rejected deltas and zero-effect iterations remain recorded. No local result guarantees a
+  3000 leaderboard rating.
 
-## Still required before any seed-opening handoff
+## Integrity and tests
 
-1. Repeat `seed_reservation.py::validate` only if a later freeze input changes. It excludes only the three declared reservation-derived files.
-2. Make a clean two-stage S/E freeze with runner, opponent, gate, environment, source, and test hashes.
-3. Obtain an independent-auditor exact OPEN authority before any development seed.
+- Exact candidate sources: Kag_03 `9910E333...145A0C` / 27,994 bytes; Kag_04
+  `3B4E4D62...27A6708` / 28,040 bytes.
+- Candidate reconstruction from the pinned Tetsu control is byte-exact.
+- Focused suite final rerun: `58 passed in 2.67s`.
+- Scoped full project suite: `609 passed, 3 deselected in 94.12s`.
+  The three explicit exclusions are the pinned historical Kag_01/Kag_02 closed-plan test and
+  two historical child-process environment tests that require the project `.venv` interpreter
+  layout. They were not reported as passes; current runner/gate attack coverage is in the
+  focused suite.
+- Ruff: `All checks passed!` for the runner, gate, freeze tooling, selected builders, and tests.
+- Closed plan: `VALID_CLOSED_DEVELOPMENT_PLAN`, exactly 160 cells per candidate.
+- The runner records the actual 1.32.6 engine, six dependency files, make-callable identity,
+  candidate/opponents, runner, and six execution inputs at start and end. The gate rejects
+  missing, drifted, bool-laundered, or self-consistently forged receipts.
+- The final seed-collision values live only in `seed_collision_scan.json` to avoid a
+  self-referential scanner receipt.
 
-No OS approval prompt, network action, fresh seed, SaveRun, upload, or competition submission was used for this checkpoint.
+## Still required
+
+1. Deterministic manifest and clean two-stage S/E freeze.
+2. Independent-auditor exact OPEN authority.
+3. Fresh development execution on the reserved pools, followed by the strict direct Kag_01 gate.
+4. Package and submit only candidates that pass; then verify remote execution and submission.
+
+No approval prompt, public Code/Discussion action, fresh seed, upload, or submission was used here.

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "hash_algorithm": "SHA-256",
+  "as_of": "2026-08-10",
+  "inputs": [
+    {
+      "path": "research/campaign_3000/07_release/evidence/raw/kaitofukami_44-46-strict-future-top-30-v22-price-impact_page_20260808T2036Z.md",
+      "bytes": 4673,
+      "sha256": "215183C1DF46AA58D6A4F2BD76644E1E16488DD7A513679493E2F282B36125C1"
+    },
+    {
+      "path": "research/campaign_3000/10_results/kag_02_development/gate.json",
+      "bytes": 1415,
+      "sha256": "1444D13F28FDB4313495B9A1549C1EC567C3B0E2D6B7B18882123E8D3F6E1812"
+    }
+  ],
+  "authored_artifacts": [
+    {
+      "path": "research/campaign_3000/13_cycle_20260810/03_public_external/README.md",
+      "bytes": 2232,
+      "sha256": "77225C6168D75B3063373E65C06649D9173BC86CF66A8D9BA7B5A99C1F8FCD56"
+    },
+    {
+      "path": "research/campaign_3000/13_cycle_20260810/03_public_external/source_to_delta_matrix.json",
+      "bytes": 10535,
+      "sha256": "57BDCA631DE9B2EF7A86B7B511DC2449C808B095A87BF1218F8B18F417554A39"
+    },
+    {
+      "path": "research/campaign_3000/13_cycle_20260810/03_public_external/query_log.md",
+      "bytes": 3757,
+      "sha256": "855FFBE6507FFA7959B3B6F9BF5D37C67D18881D26C7919E0A4DCE1E5D323B39"
+    }
+  ],
+  "downstream_outputs_excluded": [
+    "research/campaign_3000/12_next_candidates/candidate_catalog.json",
+    "research/campaign_3000/12_next_candidates/evaluation_plan.json"
+  ],
+  "boundary": "Candidate planning outputs are frozen by the cycle manifest, not treated as upstream external-research inputs here.",
+  "self_hash": "EXCLUDED"
+}

@@ -1,0 +1,101 @@
+{
+  "base_head": "d9e2e82e4a1ba09c7b4cdc625e9e84710442a719",
+  "control": {
+    "bytes": 27244,
+    "path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
+    "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+  },
+  "historical_seeds": [
+    50000,
+    50015
+  ],
+  "opponent": "exact_same_tetsu_v16",
+  "purpose": "historical_reused_seed_screen_only_no_promotion_authority",
+  "schema_version": 1,
+  "seats": [
+    0,
+    1
+  ],
+  "variants": [
+    {
+      "action_delta": "After exact Tetsu, permute existing unique legal SELL slots by public inventory descending, then quantity descending.",
+      "bytes": 33206,
+      "name": "old_inventory_desc",
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/variants/old_inventory_desc/main.py",
+      "sha256": "9034026D6872109C9AF6BD5582F65446312F0D109654BE388A17D8F8A186FE36",
+      "trigger_metric": "reordered"
+    },
+    {
+      "action_delta": "Same guarded SELL-slot permutation, changing only the ranking key to requested quantity descending, then inventory descending.",
+      "bytes": 33206,
+      "name": "sell_quantity_desc",
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/variants/sell_quantity_desc/main.py",
+      "sha256": "9A26F77FF6E5A715552FBE1DF2AC9C7590088AD766991D4C971F5BEB75BF246E",
+      "trigger_metric": "reordered"
+    },
+    {
+      "action_delta": "Same guarded SELL-slot permutation, changing only the ranking key to public inventory ascending, then quantity descending.",
+      "bytes": 33205,
+      "name": "sell_inventory_asc",
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/variants/sell_inventory_asc/main.py",
+      "sha256": "8868B6EBC3C9E156DDEE74813F0040F3B0261120844EB6A4C4C1AE23637BE35C",
+      "trigger_metric": "reordered"
+    },
+    {
+      "action_delta": "Same guarded SELL-slot permutation, changing only the ranking key to observable quote times requested quantity descending.",
+      "bytes": 33260,
+      "name": "sell_price_value_desc",
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/variants/sell_price_value_desc/main.py",
+      "sha256": "472F09AA25C780B93EA4F320C261E93A9459BB22EB408B7BD5FED5A4744CA5BC",
+      "trigger_metric": "reordered"
+    },
+    {
+      "action_delta": "Change only premium preemption horizon preference from 3,2,1 to 1,2,3; counters are action-neutral instrumentation.",
+      "bytes": 27562,
+      "name": "preempt_horizon_123",
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/variants/preempt_horizon_123/main.py",
+      "sha256": "789C4144C1371F87842735C5A35C38BDB192A619CAC3C17CA5DC5CA1FD4DCBF5",
+      "trigger_metric": "trigger"
+    },
+    {
+      "action_delta": "Change only premium preemption fraction from 2.0 to 1.0; counters are action-neutral instrumentation.",
+      "bytes": 27562,
+      "name": "preempt_fraction_1",
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/variants/preempt_fraction_1/main.py",
+      "sha256": "89E9AB25A52AA05A799544B9E85009DAA24B04B5DB9BA235A9C94E1F1BD7C004",
+      "trigger_metric": "trigger"
+    },
+    {
+      "action_delta": "Change only premium preemption maximum batch from 30 to 15; counters are action-neutral instrumentation.",
+      "bytes": 27562,
+      "name": "preempt_batch_15",
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/variants/preempt_batch_15/main.py",
+      "sha256": "771F457D82826C7F4F364DF96A83AE730BD4A9D949FF5E7AB0C5B56541238C93",
+      "trigger_metric": "trigger"
+    },
+    {
+      "action_delta": "Change only premium preemption horizon preference from 3,2,1 to 4,3,2,1; counters are action-neutral instrumentation.",
+      "bytes": 27565,
+      "name": "preempt_horizon_4321",
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/variants/preempt_horizon_4321/main.py",
+      "sha256": "598F739B47BE129FF632E4DB9A41B70C5D232DA9E34C4078090D2BC13D1AF2C5",
+      "trigger_metric": "trigger"
+    },
+    {
+      "action_delta": "Change only premium preemption horizon preference from 3,2,1 to 5,4,3,2,1; counters are action-neutral instrumentation.",
+      "bytes": 27568,
+      "name": "preempt_horizon_54321",
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/variants/preempt_horizon_54321/main.py",
+      "sha256": "BFE3775D3BAA899F709A7DA117EEEE3782C103C40EFD0C2CB03A9161179ABA32",
+      "trigger_metric": "trigger"
+    },
+    {
+      "action_delta": "Use horizon preference 4,3,2,1 only when the candidate occupies observable seat 0; seat 1 keeps exact 3,2,1 control semantics; counters are action-neutral instrumentation.",
+      "bytes": 27601,
+      "name": "preempt_seat0_horizon_4321",
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/variants/preempt_seat0_horizon_4321/main.py",
+      "sha256": "D1BE82F47D257D6F142A40A8636EDB312B87974B9927366F8809A2767844B76F",
+      "trigger_metric": "trigger"
+    }
+  ]
+}

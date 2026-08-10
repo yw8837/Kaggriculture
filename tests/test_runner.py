@@ -2,9 +2,11 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sys
 from pathlib import Path
 from types import SimpleNamespace
 
+import pytest
 from kaggle_environments import make
 
 from kaggriculture_lab.evaluation import runner
@@ -72,6 +74,8 @@ def test_run_batch_writes_start_receipt_and_source_provenance(
     opponent = tmp_path / "opponent.py"
     candidate.write_text("def agent(obs): return {}\n", encoding="utf-8")
     opponent.write_text("def agent(obs): return {}\n", encoding="utf-8")
+    pinned_input = tmp_path / "evaluation_plan.json"
+    pinned_input.write_text('{"status":"frozen"}\n', encoding="utf-8")
 
     def fake_run(spec: runner.GameSpec) -> GameResult:
         return GameResult(
@@ -83,6 +87,7 @@ def test_run_batch_writes_start_receipt_and_source_provenance(
     output = tmp_path / "evaluation.json"
     report = runner.run_batch(
         "candidate.py", ["opponent.py"], [7], output, 1, tmp_path,
+        input_paths=[pinned_input],
     )
 
     receipt = tmp_path / "evaluation.started.json"
@@ -93,9 +98,213 @@ def test_run_batch_writes_start_receipt_and_source_provenance(
     assert receipt_payload["effective_scenarios_sha256"] == runner._json_sha256(
         {"default": {"episodeSteps": 720}}
     )
+    assert receipt_payload["runtime_environment_at_start"] == report[
+        "runtime_environment_at_start"
+    ]
+    assert receipt_payload["execution_inputs_at_start"] == report[
+        "execution_inputs_at_start"
+    ]
+    assert report["runtime_environment_unchanged_during_run"] is True
+    assert report["execution_inputs_unchanged_during_run"] is True
+    assert report["execution_context_unchanged_during_run"] is True
+    assert report["execution_gate_valid"] is True
+    pinned_key = pinned_input.resolve().as_posix()
+    pinned_record = report["execution_inputs_at_start"]["pinned_inputs"][pinned_key]
+    assert type(pinned_record["bytes"]) is int
+    assert pinned_record["sha256"] == hashlib.sha256(
+        pinned_input.read_bytes()
+    ).hexdigest().upper()
     assert report["sources_unchanged_during_run"] is True
     assert report["candidate_sha256_at_start"] == report["candidate_sha256_at_end"]
     assert report["start_receipt_sha256"] == hashlib.sha256(receipt.read_bytes()).hexdigest().upper()
+
+
+def test_runtime_environment_snapshot_is_process_stable_and_exact() -> None:
+    first = runner._runtime_environment_snapshot()
+    second = runner._runtime_environment_snapshot()
+
+    assert first == second
+    assert first["distribution_name"] == "kaggle-environments"
+    assert first["distribution_version"] == "1.32.6"
+    assert set(first["runtime_dependency_files"]) == {
+        "package_init",
+        "core",
+        "utils",
+        "agent",
+        "kaggriculture_py",
+        "kaggriculture_json",
+    }
+    root = Path(first["distribution_root"])
+    for record in first["runtime_dependency_files"].values():
+        assert record["exists"] is True
+        assert type(record["bytes"]) is int and record["bytes"] > 0
+        assert type(record["sha256"]) is str and len(record["sha256"]) == 64
+        assert Path(record["path"]).is_relative_to(root)
+    for record in first["imported_module_paths"].values():
+        assert record["error"] is None
+        assert Path(record["path"]).is_relative_to(root)
+    assert first["make_callable_error"] is None
+    assert first["make_callable_contract"]["module"] == "kaggle_environments.core"
+    assert type(first["make_callable_contract_matches_expected"]) is bool
+
+
+def test_run_batch_preserves_false_report_on_runtime_environment_drift(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    candidate = tmp_path / "candidate.py"
+    opponent = tmp_path / "opponent.py"
+    candidate.write_text("def agent(obs): return {}\n", encoding="utf-8")
+    opponent.write_text("def agent(obs): return {}\n", encoding="utf-8")
+    snapshots = iter(
+        [
+            {"schema_version": 1, "distribution_version": "1.32.6", "sha": "A"},
+            {"schema_version": 1, "distribution_version": "1.32.7", "sha": "B"},
+        ]
+    )
+    monkeypatch.setattr(runner, "_runtime_environment_snapshot", lambda: next(snapshots))
+    monkeypatch.setattr(
+        runner,
+        "_run_game",
+        lambda spec: GameResult(
+            spec.opponent_name, spec.seed, spec.seat, 10.0, 5.0,
+            "DONE", "DONE", 0.01, None,
+        ),
+    )
+    output = tmp_path / "runtime-drift.json"
+
+    report = runner.run_batch(
+        "candidate.py", ["opponent.py"], [7], output, 1, tmp_path,
+    )
+
+    assert report["runtime_environment_unchanged_during_run"] is False
+    assert report["execution_context_unchanged_during_run"] is False
+    assert report["execution_gate_valid"] is False
+    assert json.loads(output.read_text(encoding="utf-8")) == report
+
+
+def test_run_batch_detects_pinned_input_drift_and_keeps_completed_report(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    candidate = tmp_path / "candidate.py"
+    opponent = tmp_path / "opponent.py"
+    pinned_input = tmp_path / "candidate_catalog.json"
+    candidate.write_text("def agent(obs): return {}\n", encoding="utf-8")
+    opponent.write_text("def agent(obs): return {}\n", encoding="utf-8")
+    pinned_input.write_text('{"revision":1}\n', encoding="utf-8")
+
+    def mutate_input(spec: runner.GameSpec) -> GameResult:
+        pinned_input.write_text('{"revision":2}\n', encoding="utf-8")
+        return GameResult(
+            spec.opponent_name, spec.seed, spec.seat, 10.0, 5.0,
+            "DONE", "DONE", 0.01, None,
+        )
+
+    monkeypatch.setattr(runner, "_run_game", mutate_input)
+    output = tmp_path / "input-drift.json"
+    report = runner.run_batch(
+        "candidate.py", ["opponent.py"], [7], output, 1, tmp_path,
+        input_paths=[pinned_input],
+    )
+
+    key = pinned_input.resolve().as_posix()
+    assert report["execution_inputs_at_start"]["pinned_inputs"][key]["sha256"] != (
+        report["execution_inputs_at_end"]["pinned_inputs"][key]["sha256"]
+    )
+    assert report["execution_inputs_unchanged_during_run"] is False
+    assert report["execution_gate_valid"] is False
+    assert json.loads(output.read_text(encoding="utf-8")) == report
+
+
+def test_run_batch_detects_runner_snapshot_drift(tmp_path: Path, monkeypatch) -> None:
+    candidate = tmp_path / "candidate.py"
+    opponent = tmp_path / "opponent.py"
+    candidate.write_text("def agent(obs): return {}\n", encoding="utf-8")
+    opponent.write_text("def agent(obs): return {}\n", encoding="utf-8")
+    snapshots = iter(
+        [
+            {"schema_version": 1, "runner": {"sha256": "A"}, "pinned_inputs": {}},
+            {"schema_version": 1, "runner": {"sha256": "B"}, "pinned_inputs": {}},
+        ]
+    )
+    monkeypatch.setattr(
+        runner, "_execution_input_snapshot", lambda _paths: next(snapshots)
+    )
+    monkeypatch.setattr(
+        runner,
+        "_run_game",
+        lambda spec: GameResult(
+            spec.opponent_name, spec.seed, spec.seat, 10.0, 5.0,
+            "DONE", "DONE", 0.01, None,
+        ),
+    )
+
+    report = runner.run_batch(
+        "candidate.py", ["opponent.py"], [7], tmp_path / "runner-drift.json",
+        1, tmp_path,
+    )
+
+    assert report["execution_inputs_unchanged_during_run"] is False
+    assert report["execution_context_unchanged_during_run"] is False
+    assert report["execution_gate_valid"] is False
+
+
+def test_main_passes_repeatable_and_scenario_execution_input_pins(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    first_pin = tmp_path / "candidate_catalog.json"
+    second_pin = tmp_path / "development_gate.py"
+    scenario_pin = tmp_path / "development_scenarios.json"
+    for path in (first_pin, second_pin, scenario_pin):
+        path.write_text("{}\n", encoding="utf-8")
+    captured: dict[str, object] = {}
+
+    def fake_run_batch(*args: object) -> dict[str, object]:
+        captured["args"] = args
+        return {"summary": {}}
+
+    monkeypatch.setattr(runner, "run_batch", fake_run_batch)
+    monkeypatch.setattr(runner, "_load_scenarios", lambda _path: {"default": {}})
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "runner",
+            "--agent", "candidate.py",
+            "--opponents", "opponent.py",
+            "--seeds", "7",
+            "--scenario-config", str(scenario_pin),
+            "--input-pin", str(first_pin),
+            "--input-pin", str(second_pin),
+            "--output", str(tmp_path / "report.json"),
+            "--workers", "1",
+        ],
+    )
+
+    runner.main()
+
+    args = captured["args"]
+    assert isinstance(args, tuple)
+    assert args[7] == [first_pin, second_pin, scenario_pin]
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [("seeds", [True]), ("workers", True), ("opponents", [Path("opponent.py")])],
+)
+def test_run_batch_rejects_lossy_input_types(
+    tmp_path: Path, field: str, value: object,
+) -> None:
+    kwargs = {
+        "candidate_ref": "candidate.py",
+        "opponents": ["opponent.py"],
+        "seeds": [7],
+        "output": tmp_path / "invalid.json",
+        "workers": 1,
+        "project_root": tmp_path,
+    }
+    kwargs[field] = value
+    with pytest.raises(TypeError):
+        runner.run_batch(**kwargs)
 
 
 def test_run_batch_expands_and_hashes_registered_scenarios(

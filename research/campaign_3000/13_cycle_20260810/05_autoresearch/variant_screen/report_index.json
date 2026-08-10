@@ -1,0 +1,45 @@
+{
+  "reports": [
+    {
+      "name": "old_inventory_desc",
+      "report_path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/reports/old_inventory_desc.json"
+    },
+    {
+      "name": "sell_quantity_desc",
+      "report_path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/reports/sell_quantity_desc.json"
+    },
+    {
+      "name": "sell_inventory_asc",
+      "report_path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/reports/sell_inventory_asc.json"
+    },
+    {
+      "name": "sell_price_value_desc",
+      "report_path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/reports/sell_price_value_desc.json"
+    },
+    {
+      "name": "preempt_horizon_123",
+      "report_path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/reports/preempt_horizon_123.json"
+    },
+    {
+      "name": "preempt_fraction_1",
+      "report_path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/reports/preempt_fraction_1.json"
+    },
+    {
+      "name": "preempt_batch_15",
+      "report_path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/reports/preempt_batch_15.json"
+    },
+    {
+      "name": "preempt_horizon_4321",
+      "report_path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/reports/preempt_horizon_4321.json"
+    },
+    {
+      "name": "preempt_horizon_54321",
+      "report_path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/reports/preempt_horizon_54321.json"
+    },
+    {
+      "name": "preempt_seat0_horizon_4321",
+      "report_path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/reports/preempt_seat0_horizon_4321.json"
+    }
+  ],
+  "schema_version": 1
+}

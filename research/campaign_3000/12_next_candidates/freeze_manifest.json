@@ -1,92 +1,638 @@
 {
-  "schema_version": 1,
   "artifact_kind": "kag_03_kag_04_closed_implementation_freeze_manifest",
-  "status": "CLOSED_IMPLEMENTATION_FREEZE",
-  "base_head": "3a817948beb9f51af4966fcdbe5a93c36bc7840e",
-  "binding_path": "research/campaign_3000/12_next_candidates/execution_binding.json",
-  "manifest_policy": "This manifest excludes itself and execution_binding.json. S commits these exact inputs; E may change execution_binding.json only.",
   "authority": {
-    "fresh_seed_execution": "FORBIDDEN_UNTIL_INDEPENDENT_AUDITOR_EXACT_OPEN",
-    "save_run": "FORBIDDEN",
-    "upload": "FORBIDDEN",
     "competition_submission": "FORBIDDEN",
-    "publication": "FORBIDDEN"
+    "fresh_seed_execution": "FORBIDDEN_UNTIL_INDEPENDENT_AUDITOR_EXACT_OPEN",
+    "publication": "FORBIDDEN",
+    "save_run": "FORBIDDEN",
+    "upload": "FORBIDDEN"
   },
-  "engine": {
-    "package": "kaggle-environments",
-    "version": "1.32.6",
-    "environment": "kaggriculture",
-    "episode_steps": 720,
-    "kaggriculture_py_sha256": "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF",
-    "environment_configuration_sha256": "1A9006518CCBE403A70E107BB041CC2489E38DA637AE0E3872500010963C46F3"
-  },
+  "binding_path": "research/campaign_3000/12_next_candidates/execution_binding.json",
   "candidates": {
     "Kag_03": {
+      "bytes": 27994,
+      "development_pool": [
+        56000,
+        56015
+      ],
       "path": "research/campaign_3000/12_next_candidates/kag_03/main.py",
-      "sha256": "9034026D6872109C9AF6BD5582F65446312F0D109654BE388A17D8F8A186FE36",
-      "bytes": 33206,
-      "development_seeds": [56000, 56015]
+      "reused_selection_report_sha256": "1B3DA78A84F18A1D712051FC49C893BE4EB04EDEAEBE9AB63B0A01CC82C5AB48",
+      "sha256": "9910E3332150698834AD792B6D9FAC66DE8AFE8DD905CB2FC672E9DAE9145A0C"
     },
     "Kag_04": {
+      "bytes": 28040,
+      "development_pool": [
+        59000,
+        59015
+      ],
       "path": "research/campaign_3000/12_next_candidates/kag_04/main.py",
-      "sha256": "797E2BFED6F17964CB08E3B1A77D72A978BDB8EE2C9EA9E7E552A454DA20F191",
-      "bytes": 31455,
-      "development_seeds": [59000, 59015]
+      "reused_selection_report_sha256": "3B77AF21E4BAF2575057E2ADCB1444FD2606973C6975D0F6980492A4075DDF74",
+      "sha256": "3B4E4D626D7F9062B5E1122198112FD4F23C2142B77962368362C4CB627A6708"
     }
   },
   "development_contract": {
+    "causal_metrics": {
+      "actual_runtime_environment_start_equals_end_and_matches_plan": true,
+      "both_seats_required": true,
+      "calls_per_game": 719,
+      "candidate_and_opponent_source_start_equals_end": true,
+      "candidate_metrics_exact_keys": [
+        "calls",
+        "preemptions",
+        "horizon4_preemptions"
+      ],
+      "candidate_metrics_required": true,
+      "default_scenario_only": true,
+      "exact_complete_grid": true,
+      "execution_gate_valid": true,
+      "execution_inputs_start_equals_end_and_match_frozen_files": true,
+      "failures": 0,
+      "finite_money_and_runtime": true,
+      "hidden_abnormal_status_failures": 0,
+      "minimum_total_horizon4_preemptions_exclusive": 0,
+      "minimum_total_preemptions_exclusive": 0,
+      "resolved_environment_seed_matches_requested": true
+    },
     "cells_per_candidate": 160,
-    "opponents": ["tetsu_v16", "ray_c45_exact", "boatlee_v14", "kaito_v22", "fa04_g1"],
-    "seats": [0, 1],
+    "minimum_to_remain_a_candidate": "Strict direct Kag_01/Tetsu v16 match score > 0.50 AND mean margin > 0.0; equality is NO_GO.",
+    "opponents": [
+      "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
+      "research/campaign_3000/06_candidates/snapshots/ray_c45_exact.py",
+      "research/campaign_3000/06_candidates/snapshots/boatlee_v14.py",
+      "research/campaign_3000/06_candidates/snapshots/kaito_v22.py",
+      "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py"
+    ],
     "scenario": "default",
-    "minimum_to_remain_a_candidate": "Strict direct Kag_01/Tetsu v16 match score > 0.50 AND mean margin > 0.0; equality or noninferiority is NO_GO.",
-    "score_claim": "No local result guarantees a 3000 leaderboard score."
+    "score_claim": "No local result guarantees a 3000 leaderboard score.",
+    "seats": [
+      0,
+      1
+    ]
   },
+  "engine": {
+    "environment": "kaggriculture",
+    "environment_configuration": {
+      "actTimeout": 1,
+      "boardSize": 10,
+      "episodeSteps": 720,
+      "farmHandCostMult": 1,
+      "marketParams": {},
+      "maxMarketOrdersPerTurn": 10,
+      "runTimeout": 1200,
+      "seed": null,
+      "shedCapacity": 100,
+      "startingMoney": 3000,
+      "townCenterSellInterval": 24,
+      "townShopSellInterval": 4,
+      "townShopUnlockInterval": 3,
+      "turnsPerDay": 24,
+      "weedSpawnChance": 0.005
+    },
+    "environment_configuration_sha256": "1A9006518CCBE403A70E107BB041CC2489E38DA637AE0E3872500010963C46F3",
+    "episode_steps": 720,
+    "kaggriculture_py_sha256": "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF",
+    "package": "kaggle-environments",
+    "runtime_dependency_manifest": {
+      "agent": {
+        "bytes": 8090,
+        "relative_path": "kaggle_environments/agent.py",
+        "sha256": "9B7682CE9921C8F34080A8BE0F7B41598CC12AC7EB14D24E4B707883F25213B6"
+      },
+      "core": {
+        "bytes": 30284,
+        "relative_path": "kaggle_environments/core.py",
+        "sha256": "0922C4599A1B6E0D8C3DADF06AE5297F98138D859D686F00DAEE6F36E6D45D0E"
+      },
+      "kaggriculture_json": {
+        "bytes": 5877,
+        "relative_path": "kaggle_environments/envs/kaggriculture/kaggriculture.json",
+        "sha256": "7F196F4AAF9B4E482FBD61BA4BF19F5CEC4DA0F81938ECE756954035A65C0BB5"
+      },
+      "kaggriculture_py": {
+        "bytes": 39801,
+        "relative_path": "kaggle_environments/envs/kaggriculture/kaggriculture.py",
+        "sha256": "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF"
+      },
+      "package_init": {
+        "bytes": 4713,
+        "relative_path": "kaggle_environments/__init__.py",
+        "sha256": "05304FFE18CB783E24CB825B441047A9CBC45B201BE11E7B83507A035BC33A19"
+      },
+      "utils": {
+        "bytes": 8634,
+        "relative_path": "kaggle_environments/utils.py",
+        "sha256": "537B627B11784D424147EF57EBB0369B039BF83C9F891E81F10486B1F552334B"
+      }
+    },
+    "runtime_make_callable_contract": {
+      "ast_function_sha256": "7A9BCC66212C822AF494904756ECC915F6EC5DEEAF316EDB417648787E09E340",
+      "ast_make_count": 1,
+      "code_equals_compiled_source": true,
+      "compiled_make_count": 1,
+      "defaults_sha256": "310DDDF0453ADA7D5A566EF2CDC450C58912C9FC466C552322FA9A0D27D0371C",
+      "function_source_sha256": "3090CF7871CCF6C046138987B22B47956DE1B3C2B7CFF9FC3D5ED617AFEDFEB7",
+      "function_type": true,
+      "globals_is_core_module": true,
+      "module": "kaggle_environments.core",
+      "package_make_is_core_make": true,
+      "qualname": "make",
+      "source_path_matches_core": true,
+      "startup_environment": {
+        "PYTHONHOME": null,
+        "PYTHONINSPECT": null,
+        "PYTHONPATH": null,
+        "PYTHONSTARTUP": null,
+        "PYTHONUSERBASE": null
+      }
+    },
+    "version": "1.32.6"
+  },
+  "implementation_commit": "PENDING_S_COMMIT",
+  "input_count": 74,
+  "inputs": [
+    {
+      "bytes": 5282,
+      "path": ".gitattributes",
+      "role": "eol_policy",
+      "sha256": "1DAF32CD89C427F0A77ACC5D009C4C8D7DC57FEB8CDBA2D3E9E5D33D632BE9CF"
+    },
+    {
+      "bytes": 1269,
+      "path": "pyproject.toml",
+      "role": "dependency_contract",
+      "sha256": "349C8B5AA7A27E05E3C9B60A0AB398D1D536607A2FD465B5A5FA29880B412D93"
+    },
+    {
+      "bytes": 11618,
+      "path": "CAMPAIGN_DIRECTIVE.md",
+      "role": "persistent_directive",
+      "sha256": "4E7637759A0602EB4FFAAEF6F36AE24370ADFB90096EC90A0C88658E8D6E7AE8"
+    },
+    {
+      "bytes": 980,
+      "path": "CLAUDE.md",
+      "role": "project_instruction_router",
+      "sha256": "89504C8DB5BF8A5259CF8F18ECE581569CE4B23243EE89509C309541C93B709E"
+    },
+    {
+      "bytes": 3511,
+      "path": ".claude/skills/kaggriculture-3000-orchestrator/SKILL.md",
+      "role": "harness_skill",
+      "sha256": "75D01E21D218ABDF2EA671D9D09317B6C5BD9DC54FC57C067E2EAF201A0D8F77"
+    },
+    {
+      "bytes": 2590,
+      "path": ".omc/skills/kaggriculture-campaign-cycle.md",
+      "role": "cycle_skill",
+      "sha256": "447EC84CB004B52AE8814F08D7BDC05A0DF92A95D4FCA4C168E87E0B43A0319F"
+    },
+    {
+      "bytes": 1407,
+      "path": ".claude/agents/lb-replay-analyst.md",
+      "role": "harness_lb_role",
+      "sha256": "9863578558F0953623F957201E2E06543B23BD3F379D6BFAAA7A994FD1793C4C"
+    },
+    {
+      "bytes": 1237,
+      "path": ".claude/agents/public-meta-researcher.md",
+      "role": "harness_public_role",
+      "sha256": "848CC92F02D8E084FD4214D990EAB20905B7CDA2675567F6A444DDFA0E2FA910"
+    },
+    {
+      "bytes": 1128,
+      "path": ".claude/agents/external-methods-researcher.md",
+      "role": "harness_external_role",
+      "sha256": "910E2C5E9E036AAD47B869F3A32D9C8D1762471EF5E20B01AB2E64767C88CA5A"
+    },
+    {
+      "bytes": 1205,
+      "path": ".claude/agents/qa-integrator.md",
+      "role": "harness_qa_role",
+      "sha256": "7F010DE46B0F1E282FA98C18D8543B45D44C9970002FF858946DAAC22FEDF958"
+    },
+    {
+      "bytes": 6873,
+      "path": "research/campaign_3000/13_cycle_20260810/00_checklist/checklist.json",
+      "role": "cycle_checklist",
+      "sha256": "3FC8A85CB250A8D2E03ABF20F29E8AD56E5F1A43EC3A432C9E62F855E704826A"
+    },
+    {
+      "bytes": 1043,
+      "path": "research/campaign_3000/13_cycle_20260810/00_checklist/README.md",
+      "role": "cycle_checklist_readme",
+      "sha256": "375A12C7519A41BAC3274AF5A44F8C6E05BCEFB183FA03C9E036F92BBAB7B3E7"
+    },
+    {
+      "bytes": 10330,
+      "path": "research/campaign_3000/13_cycle_20260810/04_synthesis/live_browser_snapshot.json",
+      "role": "current_live_snapshot",
+      "sha256": "63E3320560D91AFE0B2D20481861276BEBF11212A26B2CDE9F9AB466FA180997"
+    },
+    {
+      "bytes": 2063,
+      "path": "research/campaign_3000/13_cycle_20260810/04_synthesis/README.md",
+      "role": "current_synthesis",
+      "sha256": "8CAFFABE55C5D9C09359062BB4F106042C6BA21AE5F8CD0F09752AE11A14879A"
+    },
+    {
+      "bytes": 2771,
+      "path": "research/campaign_3000/13_cycle_20260810/04_synthesis/external_mechanism_addendum.md",
+      "role": "external_mechanism_addendum",
+      "sha256": "FB5AD17C1F5048DDFC1607DCB54982E8235B786773C960028A4A2FF8B7C6B8A6"
+    },
+    {
+      "bytes": 9413,
+      "path": "research/campaign_3000/13_cycle_20260810/02_previous_submissions/comparison.md",
+      "role": "previous_submission_analysis",
+      "sha256": "968F680B2F53314C3CA43BAB3B8E0D694C2099B9AC95AA5C1879B26E07549BF5"
+    },
+    {
+      "bytes": 4563,
+      "path": "research/campaign_3000/13_cycle_20260810/02_previous_submissions/evidence_manifest.json",
+      "role": "previous_submission_manifest",
+      "sha256": "9E1F807E82171EB9DBB6E65F2011A41A8EE06016DBC89055B8662150FAA1A2E2"
+    },
+    {
+      "bytes": 1744,
+      "path": "research/campaign_3000/13_cycle_20260810/02_previous_submissions/README.md",
+      "role": "previous_submission_readme",
+      "sha256": "D69047A09CFA5C73E69F4C7EF2B4C62CB10091A74B3324708165DBEC3B2CA422"
+    },
+    {
+      "bytes": 10535,
+      "path": "research/campaign_3000/13_cycle_20260810/03_public_external/source_to_delta_matrix.json",
+      "role": "external_source_delta_matrix",
+      "sha256": "57BDCA631DE9B2EF7A86B7B511DC2449C808B095A87BF1218F8B18F417554A39"
+    },
+    {
+      "bytes": 1562,
+      "path": "research/campaign_3000/13_cycle_20260810/03_public_external/provenance_hashes.json",
+      "role": "external_cycle_provenance",
+      "sha256": "215DB35AB4AF3D9894B2FDB90CB505AEB606968B16B1D2548637B30BDDB3B1D1"
+    },
+    {
+      "bytes": 3757,
+      "path": "research/campaign_3000/13_cycle_20260810/03_public_external/query_log.md",
+      "role": "external_cycle_query_log",
+      "sha256": "855FFBE6507FFA7959B3B6F9BF5D37C67D18881D26C7919E0A4DCE1E5D323B39"
+    },
+    {
+      "bytes": 2232,
+      "path": "research/campaign_3000/13_cycle_20260810/03_public_external/README.md",
+      "role": "external_cycle_readme",
+      "sha256": "77225C6168D75B3063373E65C06649D9173BC86CF66A8D9BA7B5A99C1F8FCD56"
+    },
+    {
+      "bytes": 2341,
+      "path": "research/campaign_3000/03_external/manifest.json",
+      "role": "external_research_manifest",
+      "sha256": "1D2578AB7BCB44AEB9E740F874832F83CC96E4F97B758835DBC5967C17CBE893"
+    },
+    {
+      "bytes": 4141,
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/final_selection.json",
+      "role": "selection_decision",
+      "sha256": "F7F928DF79BAF801379ECD47BEB88571D851490C21F9289D7A77E7E37AF64E28"
+    },
+    {
+      "bytes": 9426,
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/screen_summary.json",
+      "role": "variant_screen_summary",
+      "sha256": "F738423F448B6CCC5662172B0F9B22F18B660D210FA99C1F90BABBCE45686466"
+    },
+    {
+      "bytes": 5146,
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/variant_manifest.json",
+      "role": "variant_source_manifest",
+      "sha256": "5E3B6790B3E6AC74DF3F52DDBDA1D4C44743952E283B759F38854B15B4042981"
+    },
+    {
+      "bytes": 1835,
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/report_index.json",
+      "role": "variant_report_index",
+      "sha256": "7092A677BC27755A5FE9B050B284A72C5A14B345084F294C6F47B5312349DEBE"
+    },
+    {
+      "bytes": 965,
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/mission.md",
+      "role": "autoresearch_mission",
+      "sha256": "B98867CE3D94C266603185979B6E2538FBC5E26AFC43BF173B5FE6A48CFCE798"
+    },
+    {
+      "bytes": 757,
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/evaluator.json",
+      "role": "autoresearch_evaluator",
+      "sha256": "93F54579FBFB37B7617CCFD74A65B5AFFC0F3BDB030BF537ADEE1FA3FA77E2CB"
+    },
+    {
+      "bytes": 575,
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/runs/20260810T031000Z/decision-log.md",
+      "role": "autoresearch_decision_log",
+      "sha256": "40A4780D54D6D188714B1E75B34A334A0948DEE29C8AA4955E7575846CB76141"
+    },
+    {
+      "bytes": 366631,
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/diagnostic/kag_03_final_panel_reused.json",
+      "role": "kag03_reused_panel",
+      "sha256": "1B3DA78A84F18A1D712051FC49C893BE4EB04EDEAEBE9AB63B0A01CC82C5AB48"
+    },
+    {
+      "bytes": 384489,
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/diagnostic/kag_04_final_panel_reused.json",
+      "role": "kag04_reused_panel",
+      "sha256": "3B77AF21E4BAF2575057E2ADCB1444FD2606973C6975D0F6980492A4075DDF74"
+    },
+    {
+      "bytes": 1750,
+      "path": "research/campaign_3000/12_next_candidates/README.md",
+      "role": "campaign_readme",
+      "sha256": "A4EDE6AA1982A0839FC8AD868C8A1529C2EF38F8104AB26D568A32B13AA34832"
+    },
+    {
+      "bytes": 2371,
+      "path": "research/campaign_3000/12_next_candidates/QA_STATUS.md",
+      "role": "qa_status",
+      "sha256": "5C079617DEC2CD4E04DA13AB1AD10A2022120BF1BA17213E963250E63C868419"
+    },
+    {
+      "bytes": 10157,
+      "path": "research/campaign_3000/12_next_candidates/candidate_catalog.json",
+      "role": "candidate_catalog",
+      "sha256": "40E1ED7C03CDB9DA04240E4EEFAD3306AB66EA0248BA231F1B79E35BC546871A"
+    },
+    {
+      "bytes": 11538,
+      "path": "research/campaign_3000/12_next_candidates/evaluation_plan.json",
+      "role": "evaluation_plan",
+      "sha256": "3144388E81F6D7A056D67BD0D55697F2A10DF346089B1C9E2FA08A21A3EDEF4E"
+    },
+    {
+      "bytes": 162,
+      "path": "research/campaign_3000/12_next_candidates/development_scenarios.json",
+      "role": "development_scenarios",
+      "sha256": "6C507736A17415A7056BA515A1F3B98A0BCFC2D89BEA8BA9AD0E60E4805BE006"
+    },
+    {
+      "bytes": 42559,
+      "path": "research/campaign_3000/12_next_candidates/development_gate.py",
+      "role": "development_gate",
+      "sha256": "68ACBF8BB84103D2058A2D1EED4AB229D903E34A16CD640AACB350743F55D030"
+    },
+    {
+      "bytes": 11562,
+      "path": "research/campaign_3000/12_next_candidates/build_freeze_manifest.py",
+      "role": "freeze_builder",
+      "sha256": "28C9F2AA1A21F9B656CAC4B83C8D47E23714B3F235C9EE29845C3D8540935BA0"
+    },
+    {
+      "bytes": 13625,
+      "path": "research/campaign_3000/12_next_candidates/verify_freeze.py",
+      "role": "freeze_verifier",
+      "sha256": "8FC693A8FF713328437E38421066061B9F4C162AD5E08E55734F1DE2AC760AEC"
+    },
+    {
+      "bytes": 3193,
+      "path": "research/campaign_3000/12_next_candidates/seed_reservation.py",
+      "role": "seed_reservation_validator",
+      "sha256": "13FAEF4405AAE02A091BF27AA5136A7E205BD6457626C3C04F7611C92C82122B"
+    },
+    {
+      "bytes": 2021,
+      "path": "research/campaign_3000/12_next_candidates/seed_collision_scan.json",
+      "role": "seed_collision_receipt",
+      "sha256": "E3C31CC8F0C198BF052B629E4A87729939E713BBE238F3A47C8734A9F712CB98"
+    },
+    {
+      "bytes": 4923,
+      "path": "research/campaign_3000/12_next_candidates/verification.json",
+      "role": "construction_verification",
+      "sha256": "F2E9870E7496489EBE1A0E2CC752E37DBB9E8B4D47DF28A27FEE53FF3F7A7FBC"
+    },
+    {
+      "bytes": 2021,
+      "path": "research/campaign_3000/12_next_candidates/kag_03/README.md",
+      "role": "kag03_readme",
+      "sha256": "465C5155BD6376F8D5EA354008F5698AD0302B0C8140A78D1C6539802A039F9A"
+    },
+    {
+      "bytes": 27994,
+      "path": "research/campaign_3000/12_next_candidates/kag_03/main.py",
+      "role": "kag03_candidate",
+      "sha256": "9910E3332150698834AD792B6D9FAC66DE8AFE8DD905CB2FC672E9DAE9145A0C"
+    },
+    {
+      "bytes": 1048,
+      "path": "research/campaign_3000/12_next_candidates/kag_03/freeze_receipt.json",
+      "role": "kag03_materialization_receipt",
+      "sha256": "5D38442994976FFD4E907F3685FAD16DA3C0ED984982D6307AEDDD4B24F264AA"
+    },
+    {
+      "bytes": 1912,
+      "path": "research/campaign_3000/12_next_candidates/kag_04/README.md",
+      "role": "kag04_readme",
+      "sha256": "F8C50A61AEBE37709C5BA84CFFCF8CB0D01BC58AB6D9FFE729B94012BC406A03"
+    },
+    {
+      "bytes": 4775,
+      "path": "research/campaign_3000/12_next_candidates/kag_04/design.json",
+      "role": "kag04_design",
+      "sha256": "40971EA44614EE0F3067E419D3FC831F733325E938704C0865CC89113C4C04CD"
+    },
+    {
+      "bytes": 2981,
+      "path": "research/campaign_3000/12_next_candidates/kag_04/artifact_hashes.json",
+      "role": "kag04_artifact_manifest",
+      "sha256": "7A5E98DE7681CC4395E46096567CAF417AE1FA842755369F365F5D7B894B02CE"
+    },
+    {
+      "bytes": 28040,
+      "path": "research/campaign_3000/12_next_candidates/kag_04/main.py",
+      "role": "kag04_candidate",
+      "sha256": "3B4E4D626D7F9062B5E1122198112FD4F23C2142B77962368362C4CB627A6708"
+    },
+    {
+      "bytes": 598,
+      "path": "research/campaign_3000/12_next_candidates/kag_04/materialized_receipt.json",
+      "role": "kag04_materialization_receipt",
+      "sha256": "BB970D8A547E5F93F439824FC3EB39DDE0C639A9176EDFD6731ECFB489460F2D"
+    },
+    {
+      "bytes": 821,
+      "path": "research/campaign_3000/12_next_candidates/kag_04/rejected_iterations.json",
+      "role": "kag04_rejected_iterations",
+      "sha256": "455BEAB63D2F71E89F91F2F64ED7A1EC08B2170CA9C943405A32B4C2859CD6FB"
+    },
+    {
+      "bytes": 1145,
+      "path": "research/campaign_3000/12_next_candidates/kag_04/static_diff_proof.json",
+      "role": "kag04_static_diff_proof",
+      "sha256": "7DF928BC7974CD3F13DE90E8CA18357989A6FEDE15105ADB337EF606DD4F4A87"
+    },
+    {
+      "bytes": 10924,
+      "path": "src/kaggriculture_lab/research/kag03_actor_local_weed.py",
+      "role": "rejected_kag03_weed_builder",
+      "sha256": "4B76FB236540BD2DF08F02653F8DA768103558FD4268356CDB97D5C015C2DA47"
+    },
+    {
+      "bytes": 12079,
+      "path": "tests/test_kag03_actor_local_weed.py",
+      "role": "rejected_kag03_weed_tests",
+      "sha256": "0A540B52D02FC9A7FCD709A4C32228421711C32635846B6B4AB647D256E6B6FD"
+    },
+    {
+      "bytes": 9046,
+      "path": "src/kaggriculture_lab/research/kag04_animal_buy_prefix.py",
+      "role": "rejected_kag04_animal_prefix_builder",
+      "sha256": "72D3DA60E8AF8C2B8E994BFD4A77505A9A85DE33B3A6D51E891FACF70CC0A05C"
+    },
+    {
+      "bytes": 2851,
+      "path": "tests/test_kag04_animal_buy_prefix.py",
+      "role": "rejected_kag04_animal_prefix_tests",
+      "sha256": "28E2BFD8F921BE7CAFBC1075292C8AACEF27DADC6F847D7266EBE1837D3C4296"
+    },
+    {
+      "bytes": 8742,
+      "path": "src/kaggriculture_lab/research/kag04_late_inventory_liquidation.py",
+      "role": "rejected_kag04_liquidation_builder",
+      "sha256": "EC2E4079B8FFD4413895C2A867F404052EBF2D447A45FC80D40928B0AF227CCC"
+    },
+    {
+      "bytes": 5285,
+      "path": "tests/test_kag04_late_inventory_liquidation.py",
+      "role": "rejected_kag04_liquidation_tests",
+      "sha256": "EED8A5083F8BCB24DCE21B9103CED09A2EED0E70145B0AE7381F8BBA8D04699D"
+    },
+    {
+      "bytes": 8896,
+      "path": "src/kaggriculture_lab/research/kag04_sheep_first_adjacent_swap.py",
+      "role": "rejected_kag04_adjacent_swap_builder",
+      "sha256": "C5DC9642A9A4CA0BDB05C4675E77D368BCED89B506E056BBD8D981D78A76E749"
+    },
+    {
+      "bytes": 5424,
+      "path": "tests/test_kag04_sheep_first_adjacent_swap.py",
+      "role": "rejected_kag04_adjacent_swap_tests",
+      "sha256": "8F38663345BB016C3FC029E90065E7C4837813FD91CFA733D3853712BA45E26A"
+    },
+    {
+      "bytes": 5800,
+      "path": "src/kaggriculture_lab/research/kag03_preempt_horizon.py",
+      "role": "kag03_builder",
+      "sha256": "BF5AF8433CEBFBB2FCE9C1F86BCF250B5F52B212B8E86C38B0B517DEE6389CE9"
+    },
+    {
+      "bytes": 4865,
+      "path": "src/kaggriculture_lab/research/kag04_seat0_horizon4.py",
+      "role": "kag04_builder",
+      "sha256": "308A1F9FC6CD16530AFB36441C81E91630C6EB0BB51D1A2716181376287832FF"
+    },
+    {
+      "bytes": 5484,
+      "path": "tests/test_kag03_preempt_horizon.py",
+      "role": "kag03_tests",
+      "sha256": "C899F253D935B8ED039A49C1B30B3D10642855016F13DFAE83599FFF246694C0"
+    },
+    {
+      "bytes": 2368,
+      "path": "tests/test_kag04_seat0_horizon4.py",
+      "role": "kag04_tests",
+      "sha256": "2AB9A87D5AF288D6CB6715A40AC10F43D47251BD2CA890C4BB73E2CC4FE8F9BB"
+    },
+    {
+      "bytes": 24537,
+      "path": "tests/test_next_candidate_catalog.py",
+      "role": "shared_gate_tests",
+      "sha256": "0B99B532EE9C5A2A8387A94C0C6B8C017B634D34550B0B8D375A44630D30E8E4"
+    },
+    {
+      "bytes": 36124,
+      "path": "src/kaggriculture_lab/evaluation/runner.py",
+      "role": "runner",
+      "sha256": "B90997A1D457779C7B76B329335B22CA38B5EE53A6086E9FDD6DB2088523A4A7"
+    },
+    {
+      "bytes": 18676,
+      "path": "tests/test_runner.py",
+      "role": "runner_tests",
+      "sha256": "273C9A53415F5089C5A407505151B07C6503EF1CF7DB110220E44413C88B80F8"
+    },
+    {
+      "bytes": 27244,
+      "path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
+      "role": "opponent_tetsu",
+      "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+    },
+    {
+      "bytes": 26545,
+      "path": "research/campaign_3000/06_candidates/snapshots/ray_c45_exact.py",
+      "role": "opponent_ray",
+      "sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73"
+    },
+    {
+      "bytes": 26304,
+      "path": "research/campaign_3000/06_candidates/snapshots/boatlee_v14.py",
+      "role": "opponent_boatlee",
+      "sha256": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B"
+    },
+    {
+      "bytes": 18609,
+      "path": "research/campaign_3000/06_candidates/snapshots/kaito_v22.py",
+      "role": "opponent_kaito",
+      "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A"
+    },
+    {
+      "bytes": 197808,
+      "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py",
+      "role": "opponent_fa04_g1",
+      "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+    },
+    {
+      "bytes": 5413,
+      "path": "research/campaign_3000/07_release/TETSU_IP_VERDICT.md",
+      "role": "tetsu_ip_verdict",
+      "sha256": "DA8764985D0EFCFC63867DB673E242D82B9D72CFE7495BFCB932A2DD6F0DF721"
+    }
+  ],
+  "manifest_policy": "The manifest excludes itself and execution_binding.json. S commits these exact inputs; E changes execution_binding.json only.",
+  "qa": {
+    "actual_engine_baseline": "PASS_CURRENT_1.32.6_SIX_DEPENDENCIES_AND_MAKE_CONTRACT",
+    "closed_plan": "VALID_CLOSED_DEVELOPMENT_PLAN",
+    "development_cells_per_candidate": 160,
+    "external_actions": 0,
+    "focused_tests": "58 passed in 2.67s",
+    "fresh_games_executed": 0,
+    "ruff": "PASS",
+    "scoped_full_suite": "609 passed, 3 deselected in 94.12s"
+  },
+  "schema_version": 2,
   "seed_collision_evidence": {
     "all_six_pools_closed_and_collision_free": true,
-    "observed_seed_count": 1696,
-    "observed_seed_values_sha256": "B918500DE0FD53A5159F4EBA12C06589A392E7E66AC6DB2CCF49882D98446FD5",
-    "seed_evidence_files_sha256": "62482780F6A46EB0C4B584692748BD12133CC0DF1405C79C305327A7A19F2A39",
-    "fresh_games_executed": 0
+    "fresh_games_executed": 0,
+    "observed_seed_count": 1727,
+    "observed_seed_values_sha256": "BB7CDD7722D3D61D072674CE15E5DDE1E0E5DDB568051ABCDFBDFFAC9C4FD13C",
+    "seed_evidence_files_sha256": "A5F1CB5EA0A72232B462159A0125681D63D3867D056A0B3F93A33553EE833B0E"
   },
-  "qa": {
-    "focused_pytest": "34 passed in 0.64s",
-    "ruff": "All checks passed!",
-    "plan_validation": "VALID_CLOSED_DEVELOPMENT_PLAN"
+  "selection_boundary": {
+    "Kag_03_reused_panel": {
+      "games": 160,
+      "losses": 6,
+      "match_score": 0.9625,
+      "mean_margin": 6288.2625,
+      "ties": 0,
+      "wins": 154
+    },
+    "Kag_04_reused_panel": {
+      "games": 160,
+      "losses": 6,
+      "match_score": 0.9125,
+      "mean_margin": 6193.525,
+      "ties": 16,
+      "wins": 138
+    },
+    "fresh_reserved_games_executed": 0,
+    "promotion_evidence": false
   },
-  "input_count": 32,
-  "inputs": [
-    {"role": "eol_policy", "path": ".gitattributes", "bytes": 5282, "sha256": "1DAF32CD89C427F0A77ACC5D009C4C8D7DC57FEB8CDBA2D3E9E5D33D632BE9CF"},
-    {"role": "dependency_contract", "path": "pyproject.toml", "bytes": 1269, "sha256": "349C8B5AA7A27E05E3C9B60A0AB398D1D536607A2FD465B5A5FA29880B412D93"},
-    {"role": "campaign_readme", "path": "research/campaign_3000/12_next_candidates/README.md", "bytes": 1350, "sha256": "56EE4BFD50D5D8201A35FB4676DA1A0BBCC69E56D00D3C6EF0C3982F83F16B2A"},
-    {"role": "qa_status", "path": "research/campaign_3000/12_next_candidates/QA_STATUS.md", "bytes": 2834, "sha256": "1F7CECBD95296E175E76B3F4FE765C5EDC51C6FFBB13A28BFA4D32B230AA616D"},
-    {"role": "candidate_catalog", "path": "research/campaign_3000/12_next_candidates/candidate_catalog.json", "bytes": 7807, "sha256": "F82CE5E41A07997C99D9C57A78C27E0A4DB98005A350B2E84F86867DCA2E2982"},
-    {"role": "evaluation_plan", "path": "research/campaign_3000/12_next_candidates/evaluation_plan.json", "bytes": 7564, "sha256": "4337397C6C1C440C221FBEF9F7E600496CF28410E6764A4630A7D37407E26608"},
-    {"role": "development_scenarios", "path": "research/campaign_3000/12_next_candidates/development_scenarios.json", "bytes": 162, "sha256": "6C507736A17415A7056BA515A1F3B98A0BCFC2D89BEA8BA9AD0E60E4805BE006"},
-    {"role": "development_gate", "path": "research/campaign_3000/12_next_candidates/development_gate.py", "bytes": 26940, "sha256": "208DCB94D2CF93500DE032B5B3B83E6D2E9E8F75A70887F8EEC8D2542EF33D82"},
-    {"role": "freeze_verifier", "path": "research/campaign_3000/12_next_candidates/verify_freeze.py", "bytes": 4860, "sha256": "D5CD563BD958507D8290E52CBF2FDE456ED995843AABB5A6FBE3DA52EEEE8C96"},
-    {"role": "seed_reservation_validator", "path": "research/campaign_3000/12_next_candidates/seed_reservation.py", "bytes": 3040, "sha256": "5BFBE15084C29ECAF79D35BD64AE0D4E61882CB0034C360E79FB051F65C4ABF9"},
-    {"role": "seed_collision_receipt", "path": "research/campaign_3000/12_next_candidates/seed_collision_scan.json", "bytes": 1903, "sha256": "450DD57926C70B2D2F75BFEC697C886BB9E4B3F214D37942A9995CA9B990B861"},
-    {"role": "construction_verification", "path": "research/campaign_3000/12_next_candidates/verification.json", "bytes": 2476, "sha256": "7B6388CD4048B1F1597DC3704275AA798ECDA5CD0E2B93395A6ED2F00FEFE1D9"},
-    {"role": "kag03_readme", "path": "research/campaign_3000/12_next_candidates/kag_03/README.md", "bytes": 5032, "sha256": "7A79DC20EB0FE5A98FA58B8C0637F82209AF3C6801BF510A92DBD1D2319E1CA8"},
-    {"role": "kag03_candidate", "path": "research/campaign_3000/12_next_candidates/kag_03/main.py", "bytes": 33206, "sha256": "9034026D6872109C9AF6BD5582F65446312F0D109654BE388A17D8F8A186FE36"},
-    {"role": "kag03_materialization_receipt", "path": "research/campaign_3000/12_next_candidates/kag_03/freeze_receipt.json", "bytes": 1286, "sha256": "6B4E0311128AB7FF6001925993A232A9C878BCA52EF690AD72189B874620155A"},
-    {"role": "kag04_readme", "path": "research/campaign_3000/12_next_candidates/kag_04/README.md", "bytes": 2303, "sha256": "31C3188EB00713D3015C3DF69C99C7B029948F785CC934936917B386BD9E3168"},
-    {"role": "kag04_design", "path": "research/campaign_3000/12_next_candidates/kag_04/design.json", "bytes": 6253, "sha256": "1DA5031F689AB81666F5052F8DE5F2D0A9C94CC37DDC4924A48B74A6DCE959C5"},
-    {"role": "kag04_artifact_manifest", "path": "research/campaign_3000/12_next_candidates/kag_04/artifact_hashes.json", "bytes": 2101, "sha256": "E370EDC440C46384C82BE1C17BF95D1C8A061E5D77736A9DDFA3CC88DD32D3F2"},
-    {"role": "kag04_candidate", "path": "research/campaign_3000/12_next_candidates/kag_04/main.py", "bytes": 31455, "sha256": "797E2BFED6F17964CB08E3B1A77D72A978BDB8EE2C9EA9E7E552A454DA20F191"},
-    {"role": "kag04_materialization_receipt", "path": "research/campaign_3000/12_next_candidates/kag_04/materialized_receipt.json", "bytes": 517, "sha256": "DB558BD2391C93DB3D5638ACB0CE85B632F17C025F3951A78A39C1C284994899"},
-    {"role": "kag03_builder", "path": "src/kaggriculture_lab/candidates/kag03_terminal_market.py", "bytes": 10744, "sha256": "66FA5419C8AA782EABDD74218AEE370F96409068A8C82331DAA4A8458351E0B5"},
-    {"role": "kag04_builder", "path": "src/kaggriculture_lab/candidates/kag04_sheep_first.py", "bytes": 7659, "sha256": "2C96234EB4036D63DFBB420F284FA0020F435495DDCE0ED8A3F098399DB89EC0"},
-    {"role": "kag03_tests", "path": "tests/test_kag03_terminal_market.py", "bytes": 14518, "sha256": "E8885C9BC8FA197D71F662BE78100359FFD533031EE8EA8C23AAC5FB7AE592C0"},
-    {"role": "kag04_tests", "path": "tests/test_kag04_sheep_first.py", "bytes": 4996, "sha256": "F246A319814403E25EA95D27AAA588D5A761C49AA0AFEF384562A18302BC538C"},
-    {"role": "shared_gate_tests", "path": "tests/test_next_candidate_catalog.py", "bytes": 11065, "sha256": "3D73927CB2A77CC218C1110779732CC70712E4EC0C271399FF0168B3F5E6F006"},
-    {"role": "runner", "path": "src/kaggriculture_lab/evaluation/runner.py", "bytes": 26229, "sha256": "51E7BF197223BECE8F2BA7D002BE213630C56EFB289C6A132AB91C02A563F713"},
-    {"role": "opponent_tetsu", "path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py", "bytes": 27244, "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"},
-    {"role": "opponent_ray", "path": "research/campaign_3000/06_candidates/snapshots/ray_c45_exact.py", "bytes": 26545, "sha256": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73"},
-    {"role": "opponent_boatlee", "path": "research/campaign_3000/06_candidates/snapshots/boatlee_v14.py", "bytes": 26304, "sha256": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B"},
-    {"role": "opponent_kaito", "path": "research/campaign_3000/06_candidates/snapshots/kaito_v22.py", "bytes": 18609, "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A"},
-    {"role": "opponent_fa04_g1", "path": "experiments/source_snapshots/fa04_top_trace/G1_sell_guard.py", "bytes": 197808, "sha256": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"},
-    {"role": "tetsu_ip_verdict", "path": "research/campaign_3000/07_release/TETSU_IP_VERDICT.md", "bytes": 5413, "sha256": "DA8764985D0EFCFC63867DB673E242D82B9D72CFE7495BFCB932A2DD6F0DF721"}
-  ]
+  "status": "CLOSED_IMPLEMENTATION_FREEZE_PENDING_S_E_BINDING"
 }

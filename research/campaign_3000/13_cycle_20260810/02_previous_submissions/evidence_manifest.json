@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "artifact_kind": "append_only_kag_01_kag_02_previous_submission_comparison",
+  "created_for_cycle": "2026-08-10",
+  "external_actions": {
+    "upload": false,
+    "save_run": false,
+    "competition_submission": false,
+    "publication": false,
+    "current_api_attempt": {
+      "mode": "read_only",
+      "result": "BLOCKED_BEFORE_API_INITIALIZATION",
+      "request_issued": false,
+      "retries": 0,
+      "error": "uv cache initialization failed before the Kaggle command ran (os error 183: file already exists)"
+    }
+  },
+  "facts": {
+    "current_official_kag_01_kag_02_rating_or_episode_data": "UNAVAILABLE_THIS_CAPTURE",
+    "private_saverun_is_competition_submission": false,
+    "action_alignment_contract": {
+      "emission_observations": 720,
+      "aligned_action_pairs": 719,
+      "recorded_action_offset": 1,
+      "source": "src/kaggriculture_lab/evaluation/fa05_runtime.py"
+    }
+  },
+  "inputs": [
+    {"path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py", "bytes": 27244, "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"},
+    {"path": "research/campaign_3000/06_candidates/snapshots/kaito_v22.py", "bytes": 18609, "sha256": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A"},
+    {"path": "research/campaign_3000/10_results/kag_01_development/raw_report.json", "bytes": 282533, "sha256": "16021BBAD2107C42FDBD56CD9E7E2D7DFCCAFA67BA8AFBC30B43682F3AA826EF"},
+    {"path": "research/campaign_3000/10_results/kag_02_development/raw_report.json", "bytes": 283504, "sha256": "6993C43A328A25C4117A3192E0D19E257F8AA0EC6936E84A0DD7EDCB30083887"},
+    {"path": "research/campaign_3000/10_results/kag_01_development/gate.json", "bytes": 1424, "sha256": "58355B4186E184AAD571AB3A189215392ECF184D4A3A784F2E713F8F9D06DF0C"},
+    {"path": "research/campaign_3000/10_results/kag_02_development/gate.json", "bytes": 1415, "sha256": "1444D13F28FDB4313495B9A1549C1EC567C3B0E2D6B7B18882123E8D3F6E1812"},
+    {"path": "research/campaign_3000/10_results/kag_01_development/evidence_manifest.json", "bytes": 2400, "sha256": "712DEBADB1BAE4247687B788A1986AB2B90DF32A52F390AB2BBD5213A5A2B09A"},
+    {"path": "research/campaign_3000/10_results/kag_02_development/evidence_manifest.json", "bytes": 2400, "sha256": "F9E9C7629B6EA95D989712D1F8ED685835DC8120D31292FD51B33E414F82FD7D"},
+    {"path": "research/campaign_3000/11_saverun_results/remote_receipts.json", "bytes": 7154, "sha256": "B5D361741F193CB1AA72194090B9AFB3C6825278541E02C82874300EE2922871"},
+    {"path": "research/campaign_3000/01_internal/our_submissions.json", "bytes": 33083, "sha256": "FB9CBA49FCFAED851377DCC803B20A2CADFFFFE0D78799909E75471D1FF67E55"},
+    {"path": "research/campaign_3000/01_internal/replay_inventory.jsonl", "bytes": 118939, "sha256": "F700901DED687B63D1BA34DE897032B840544379C7571CA82BFD2C59F776A5E8"},
+    {"path": "research/campaign_3000/01_internal/replay_integrity_report.json", "bytes": 1260, "sha256": "BC2374A4279753ECF27088ECCA901BDA90AB4DDFFC403F16702EA3A9C8A8ED26"},
+    {"path": "research/campaign_3000/01_internal/runner_done_overwrite_defect.json", "bytes": 3122, "sha256": "9BE2CDF8421D310E018CB79FCBCC6E3902BA90C2B1AF13EDF87727B296F96485"},
+    {"path": "research/campaign_3000/06_candidates/lifecycle.json", "bytes": 1696, "sha256": "3A535E485F1B14870E03380D3672F3CD899051A45F3EB4B9FB4D5094F7B2785D"},
+    {"path": "src/kaggriculture_lab/evaluation/fa05_runtime.py", "bytes": 5743, "sha256": "A364F36577C7BB62E5A4469CA3B23508790ECC7618D12011DBDDDC82E22BE89B"},
+    {"path": "src/kaggriculture_lab/evaluation/runner.py", "bytes": 26229, "sha256": "51E7BF197223BECE8F2BA7D002BE213630C56EFB289C6A132AB91C02A563F713"},
+    {"path": "research/campaign_3000/02_public_meta/mechanisms.md", "bytes": 12465, "sha256": "D766AC56DACD3217F59AFCCB731A4F65F2E768F02DF790224224CB67F9B3F7A1"}
+  ],
+  "limitations": [
+    "The 2026-08-10 current official API call failed locally before API initialization; no API absence is interpreted as an empty population.",
+    "Kag_01 and Kag_02 were private Save & Runs, not competition submissions; no current public score, rating series, episode, or replay is attributable to either archive.",
+    "The frozen public replay corpus contains other submission episodes and cannot be attributed to Kag_01 or Kag_02.",
+    "The two local grids use distinct seed ranges and opponent sets, so their aggregate results are not a paired causal comparison.",
+    "No new episode, replay, seed evaluation, or external action was run for this report."
+  ]
+}

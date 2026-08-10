@@ -1,10 +1,11 @@
 {
-  "artifact_kind": "kag_04_tetsu_v16_opening_sheep_materialization",
+  "artifact_kind": "kag_04_tetsu_v16_seat0_horizon4_materialization",
   "base_sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
-  "delta": "COW 2 -> 1 and SHEEP 2 -> 3 only when the guarded opening shape is exact",
+  "decision_delta": "seat 0 horizon loop (3,2,1) to (4,3,2,1); seat 1 unchanged",
+  "instrumentation": "calls, preemptions, horizon4_preemptions only",
   "license": "Apache-2.0 page-level mapping inference; preserve the Tetsu lineage attribution",
-  "output_bytes": 31455,
-  "output_sha256": "797E2BFED6F17964CB08E3B1A77D72A978BDB8EE2C9EA9E7E552A454DA20F191",
-  "schema_version": 1,
-  "status": "MATERIALIZED_NOT_EVALUATED"
+  "output_bytes": 28040,
+  "output_sha256": "3B4E4D626D7F9062B5E1122198112FD4F23C2142B77962368362C4CB627A6708",
+  "schema_version": 3,
+  "status": "MATERIALIZED_SCREEN_POSITIVE_NOT_PROMOTED"
 }

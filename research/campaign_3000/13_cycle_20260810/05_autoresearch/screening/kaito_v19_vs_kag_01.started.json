@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-08-10T03:35:14.073149+00:00",
+  "git_head_at_start": "d9e2e82e4a1ba09c7b4cdc625e9e84710442a719",
+  "candidate": "research\\campaign_3000\\02_public_meta\\raw\\kernel_outputs\\kaitofukami__41-49-future-unseen-v19-replication-to-control\\main.py",
+  "candidate_path": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\research\\campaign_3000\\02_public_meta\\raw\\kernel_outputs\\kaitofukami__41-49-future-unseen-v19-replication-to-control\\main.py",
+  "candidate_sha256_at_start": "9F18C729B16133443C981B0456515EF21824DA72C89CE1387EDAB69C7E2FB536",
+  "opponents": [
+    "research\\campaign_3000\\06_candidates\\snapshots\\tetsu_v16.py"
+  ],
+  "opponent_paths": {
+    "research\\campaign_3000\\06_candidates\\snapshots\\tetsu_v16.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\research\\campaign_3000\\06_candidates\\snapshots\\tetsu_v16.py"
+  },
+  "opponent_sha256_at_start": {
+    "research\\campaign_3000\\06_candidates\\snapshots\\tetsu_v16.py": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
+  },
+  "seeds": [
+    50000,
+    50001,
+    50002,
+    50003,
+    50004,
+    50005,
+    50006,
+    50007,
+    50008,
+    50009,
+    50010,
+    50011,
+    50012,
+    50013,
+    50014,
+    50015
+  ],
+  "seat_policy": "both seats",
+  "workers": 3,
+  "scenario_overrides": {
+    "default": {}
+  },
+  "effective_scenarios": {
+    "default": {
+      "episodeSteps": 720
+    }
+  },
+  "effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE"
+}

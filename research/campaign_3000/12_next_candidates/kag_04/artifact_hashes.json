@@ -1,55 +1,77 @@
 {
-  "schema_version": 2,
+  "schema_version": 4,
   "artifact_kind": "kag_04_derivative_hash_manifest",
-  "evidence_commit": "3a817948beb9f51af4966fcdbe5a93c36bc7840e",
+  "status": "MATERIALIZED_SCREEN_POSITIVE_NOT_PROMOTED",
   "files": [
     {
       "role": "builder",
-      "path": "src/kaggriculture_lab/candidates/kag04_sheep_first.py",
-      "sha256": "2C96234EB4036D63DFBB420F284FA0020F435495DDCE0ED8A3F098399DB89EC0"
+      "path": "src/kaggriculture_lab/research/kag04_seat0_horizon4.py",
+      "bytes": 4865,
+      "sha256": "308A1F9FC6CD16530AFB36441C81E91630C6EB0BB51D1A2716181376287832FF"
     },
     {
-      "role": "unit_tests_passed_in_focused_suite",
-      "path": "tests/test_kag04_sheep_first.py",
-      "sha256": "F246A319814403E25EA95D27AAA588D5A761C49AA0AFEF384562A18302BC538C"
+      "role": "focused_unit_tests",
+      "path": "tests/test_kag04_seat0_horizon4.py",
+      "bytes": 2368,
+      "sha256": "2AB9A87D5AF288D6CB6715A40AC10F43D47251BD2CA890C4BB73E2CC4FE8F9BB"
+    },
+    {
+      "role": "materialized_main",
+      "path": "research/campaign_3000/12_next_candidates/kag_04/main.py",
+      "bytes": 28040,
+      "sha256": "3B4E4D626D7F9062B5E1122198112FD4F23C2142B77962368362C4CB627A6708"
     },
     {
       "role": "design",
       "path": "research/campaign_3000/12_next_candidates/kag_04/design.json",
-      "sha256": "1DA5031F689AB81666F5052F8DE5F2D0A9C94CC37DDC4924A48B74A6DCE959C5"
+      "bytes": 4775,
+      "sha256": "40971EA44614EE0F3067E419D3FC831F733325E938704C0865CC89113C4C04CD"
     },
     {
       "role": "readme",
       "path": "research/campaign_3000/12_next_candidates/kag_04/README.md",
-      "sha256": "31C3188EB00713D3015C3DF69C99C7B029948F785CC934936917B386BD9E3168"
+      "bytes": 1912,
+      "sha256": "F8C50A61AEBE37709C5BA84CFFCF8CB0D01BC58AB6D9FFE729B94012BC406A03"
     },
     {
-      "role": "canonical_materialized_receipt",
+      "role": "materialized_receipt",
       "path": "research/campaign_3000/12_next_candidates/kag_04/materialized_receipt.json",
-      "sha256": "DB558BD2391C93DB3D5638ACB0CE85B632F17C025F3951A78A39C1C284994899"
+      "bytes": 598,
+      "sha256": "BB970D8A547E5F93F439824FC3EB39DDE0C639A9176EDFD6731ECFB489460F2D"
+    },
+    {
+      "role": "rejected_iterations",
+      "path": "research/campaign_3000/12_next_candidates/kag_04/rejected_iterations.json",
+      "bytes": 821,
+      "sha256": "455BEAB63D2F71E89F91F2F64ED7A1EC08B2170CA9C943405A32B4C2859CD6FB"
+    },
+    {
+      "role": "static_diff_proof",
+      "path": "research/campaign_3000/12_next_candidates/kag_04/static_diff_proof.json",
+      "bytes": 1145,
+      "sha256": "7DF928BC7974CD3F13DE90E8CA18357989A6FEDE15105ADB337EF606DD4F4A87"
     }
   ],
   "pinned_inputs": [
     {
       "role": "exact_base",
       "path": "research/campaign_3000/06_candidates/snapshots/tetsu_v16.py",
+      "bytes": 27244,
       "sha256": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6"
     },
     {
-      "role": "license_and_lineage_evidence",
-      "path": "research/campaign_3000/07_release/TETSU_IP_VERDICT.md",
-      "sha256": "DA8764985D0EFCFC63867DB673E242D82B9D72CFE7495BFCB932A2DD6F0DF721"
+      "role": "screen_report",
+      "path": "research/campaign_3000/13_cycle_20260810/05_autoresearch/variant_screen/reports/preempt_seat0_horizon_4321.json",
+      "bytes": 78635,
+      "sha256": "FEF8EDBCF0241EDE8378B229201E991C9BCD5FDDD0F1A2AC3166D0A037DA2DD6"
     }
   ],
-  "materialization": {
-    "main_py_present": true,
-    "main_py_sha256": "797E2BFED6F17964CB08E3B1A77D72A978BDB8EE2C9EA9E7E552A454DA20F191",
-    "main_py_bytes": 31455,
-    "status": "MATERIALIZED_NOT_EVALUATED"
-  },
   "validation": {
+    "static_builder_equivalence": "PASS",
+    "static_diff_proof": "PASS",
+    "ruff": "PASS: ruff check src/kaggriculture_lab/research/kag04_seat0_horizon4.py tests/test_kag04_seat0_horizon4.py",
+    "focused_pytest": "NOT_RUN: uv trampoline failed to spawn Python child process (permission denied, os error 5)",
     "json_parse": "PASS_STATIC_READ",
-    "focused_tests": "34 passed across Kag_03, Kag_04, and the shared development gate",
     "hash_algorithm": "SHA-256",
     "manifest_self_hash": "NOT_RECORDED_TO_AVOID_A_SELF_REFERENTIAL_HASH_CLAIM"
   }

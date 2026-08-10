@@ -8,10 +8,12 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.metadata
 import json
 import math
 import re
 import statistics
+import sys
 from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
@@ -23,6 +25,76 @@ PLAN_PATH = HERE / "evaluation_plan.json"
 SCENARIOS_PATH = HERE / "development_scenarios.json"
 SLOTS = ("Kag_03", "Kag_04")
 SHA256_RE = re.compile(r"[0-9A-Fa-f]{64}")
+CANDIDATE_METRIC_KEYS = ("calls", "preemptions", "horizon4_preemptions")
+EXPECTED_CANDIDATE_CALLS_PER_GAME = 719
+EXPECTED_RUNTIME_DEPENDENCY_MANIFEST = {
+    "package_init": {
+        "relative_path": "kaggle_environments/__init__.py",
+        "bytes": 4713,
+        "sha256": "05304FFE18CB783E24CB825B441047A9CBC45B201BE11E7B83507A035BC33A19",
+    },
+    "core": {
+        "relative_path": "kaggle_environments/core.py",
+        "bytes": 30284,
+        "sha256": "0922C4599A1B6E0D8C3DADF06AE5297F98138D859D686F00DAEE6F36E6D45D0E",
+    },
+    "utils": {
+        "relative_path": "kaggle_environments/utils.py",
+        "bytes": 8634,
+        "sha256": "537B627B11784D424147EF57EBB0369B039BF83C9F891E81F10486B1F552334B",
+    },
+    "agent": {
+        "relative_path": "kaggle_environments/agent.py",
+        "bytes": 8090,
+        "sha256": "9B7682CE9921C8F34080A8BE0F7B41598CC12AC7EB14D24E4B707883F25213B6",
+    },
+    "kaggriculture_py": {
+        "relative_path": "kaggle_environments/envs/kaggriculture/kaggriculture.py",
+        "bytes": 39801,
+        "sha256": "FB9215C5E21A25243E2D13E75B3D70A79CF7D78FFF150A90F1BB5EACF9BA2BCF",
+    },
+    "kaggriculture_json": {
+        "relative_path": "kaggle_environments/envs/kaggriculture/kaggriculture.json",
+        "bytes": 5877,
+        "sha256": "7F196F4AAF9B4E482FBD61BA4BF19F5CEC4DA0F81938ECE756954035A65C0BB5",
+    },
+}
+EXPECTED_RUNTIME_MAKE_CALLABLE_CONTRACT = {
+    "package_make_is_core_make": True,
+    "function_type": True,
+    "globals_is_core_module": True,
+    "module": "kaggle_environments.core",
+    "qualname": "make",
+    "source_path_matches_core": True,
+    "compiled_make_count": 1,
+    "ast_make_count": 1,
+    "ast_function_sha256": "7A9BCC66212C822AF494904756ECC915F6EC5DEEAF316EDB417648787E09E340",
+    "function_source_sha256": "3090CF7871CCF6C046138987B22B47956DE1B3C2B7CFF9FC3D5ED617AFEDFEB7",
+    "code_equals_compiled_source": True,
+    "startup_environment": {
+        "PYTHONPATH": None,
+        "PYTHONHOME": None,
+        "PYTHONSTARTUP": None,
+        "PYTHONINSPECT": None,
+        "PYTHONUSERBASE": None,
+    },
+    "defaults_sha256": "310DDDF0453ADA7D5A566EF2CDC450C58912C9FC466C552322FA9A0D27D0371C",
+}
+EXPECTED_EXECUTION_INPUT_PATHS = [
+    "research/campaign_3000/12_next_candidates/candidate_catalog.json",
+    "research/campaign_3000/12_next_candidates/evaluation_plan.json",
+    "research/campaign_3000/12_next_candidates/development_gate.py",
+    "research/campaign_3000/12_next_candidates/development_scenarios.json",
+    "research/campaign_3000/12_next_candidates/freeze_manifest.json",
+    "research/campaign_3000/12_next_candidates/execution_binding.json",
+]
+RUNTIME_IMPORTED_DEPENDENCY_LABELS = (
+    "package_init",
+    "core",
+    "utils",
+    "agent",
+    "kaggriculture_py",
+)
 
 
 def _load(path: Path) -> dict[str, Any]:
@@ -68,12 +140,15 @@ def _opponent_paths(plan: Mapping[str, Any]) -> list[str]:
     return paths
 
 
-def _opponent_aliases(plan: Mapping[str, Any]) -> list[str]:
-    opponents = plan["runner"]["opponents"]
-    aliases = [item["alias"] for item in opponents]
-    if not all(isinstance(alias, str) and alias for alias in aliases):
-        raise TypeError("runner opponent aliases must be non-empty strings")
-    return aliases
+def _opponent_path_for_alias(plan: Mapping[str, Any], alias: str) -> str:
+    matches = [
+        item["path"]
+        for item in plan["runner"]["opponents"]
+        if item.get("alias") == alias
+    ]
+    if len(matches) != 1:
+        raise ValueError(f"expected exactly one opponent path for alias: {alias}")
+    return matches[0]
 
 
 def _canonical_json_sha256(value: object) -> str:
@@ -96,6 +171,82 @@ def _canonical_json_equals(actual: object, expected: object) -> bool:
 
 def _file_sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest().upper()
+
+
+def _current_file_snapshot(path: Path) -> dict[str, Any]:
+    resolved = path.resolve()
+    try:
+        payload = resolved.read_bytes()
+    except OSError as exc:
+        return {
+            "path": resolved.as_posix(),
+            "exists": False,
+            "bytes": None,
+            "sha256": None,
+            "read_error": f"{type(exc).__name__}: {exc}",
+        }
+    return {
+        "path": resolved.as_posix(),
+        "exists": True,
+        "bytes": len(payload),
+        "sha256": hashlib.sha256(payload).hexdigest().upper(),
+        "read_error": None,
+    }
+
+
+def _expected_runtime_environment_snapshot(
+    engine: Mapping[str, Any],
+) -> dict[str, Any]:
+    distribution = importlib.metadata.distribution("kaggle-environments")
+    distribution_root = Path(distribution.locate_file("")).resolve()
+    if distribution.version != engine.get("version"):
+        raise ValueError("installed kaggle-environments version does not match the plan")
+    manifest = engine.get("runtime_dependency_manifest")
+    if not isinstance(manifest, Mapping):
+        raise TypeError("runtime dependency manifest is missing")
+    dependency_files: dict[str, dict[str, Any]] = {}
+    for label, pin in manifest.items():
+        if not isinstance(pin, Mapping):
+            raise TypeError(f"runtime dependency pin is malformed: {label}")
+        record = _current_file_snapshot(distribution_root / str(pin.get("relative_path")))
+        if (
+            record["exists"] is not True
+            or record["read_error"] is not None
+            or record["bytes"] != pin.get("bytes")
+            or record["sha256"] != pin.get("sha256")
+        ):
+            raise ValueError(f"installed runtime dependency does not match plan: {label}")
+        dependency_files[label] = record
+    imported_module_paths = {
+        label: {"path": dependency_files[label]["path"], "error": None}
+        for label in RUNTIME_IMPORTED_DEPENDENCY_LABELS
+    }
+    return {
+        "schema_version": 1,
+        "distribution_name": "kaggle-environments",
+        "distribution_version": distribution.version,
+        "distribution_root": distribution_root.as_posix(),
+        "distribution_error": None,
+        "python_executable": Path(sys.executable).resolve().as_posix(),
+        "imported_module_paths": imported_module_paths,
+        "runtime_dependency_files": dependency_files,
+        "make_callable_contract": engine.get("runtime_make_callable_contract"),
+        "make_callable_contract_matches_expected": True,
+        "make_callable_error": None,
+    }
+
+
+def _expected_execution_inputs_snapshot(plan: Mapping[str, Any]) -> dict[str, Any]:
+    runner = plan["runner"]
+    paths = [ROOT / path for path in runner["execution_input_paths"]]
+    return {
+        "schema_version": 1,
+        "runner": _current_file_snapshot(ROOT / runner["source"]["path"]),
+        "pinned_inputs": {
+            path.resolve().as_posix(): _current_file_snapshot(path)
+            for path in sorted(paths, key=lambda item: item.resolve().as_posix())
+        },
+    }
 
 
 def _valid_file_pin(value: object) -> bool:
@@ -131,7 +282,7 @@ def expected_development_cells(
     pool = _development_pool(catalog, slot)
     return [
         {"scenario": "default", "opponent": opponent, "seed": seed, "seat": seat}
-        for opponent in _opponent_aliases(plan)
+        for opponent in _opponent_paths(plan)
         for seed in range(pool["start"], pool["end_inclusive"] + 1)
         for seat in plan["runner"]["seats"]
     ]
@@ -144,10 +295,16 @@ def _expected_runner_cli(slot: str, catalog: Mapping[str, Any], plan: Mapping[st
     seeds = ",".join(str(seed) for seed in range(pool["start"], pool["end_inclusive"] + 1))
     raw_report = plan["slots"][slot]["raw_report"]
     scenario_config = plan["runner"]["scenario_config"]
+    input_pin_cli = " ".join(
+        f"--input-pin {path}"
+        for path in plan["runner"]["execution_input_paths"]
+        if path != scenario_config
+    )
     return (
         ".\\.venv\\Scripts\\python.exe -m kaggriculture_lab.evaluation.runner "
         f"--agent {candidate} --opponents {opponents} --seeds {seeds} "
-        f"--scenario-config {scenario_config} --output {raw_report} --workers 8"
+        f"--scenario-config {scenario_config} {input_pin_cli} "
+        f"--output {raw_report} --workers 8"
     )
 
 
@@ -197,6 +354,26 @@ def validate_plan() -> dict[str, Any]:
             != engine.get("environment_configuration_sha256")
         ):
             errors.append("engine environment configuration hash mismatch")
+        if not _canonical_json_equals(
+            engine.get("runtime_dependency_manifest"),
+            EXPECTED_RUNTIME_DEPENDENCY_MANIFEST,
+        ):
+            errors.append("engine runtime dependency manifest changed")
+        if not _canonical_json_equals(
+            engine.get("runtime_make_callable_contract"),
+            EXPECTED_RUNTIME_MAKE_CALLABLE_CONTRACT,
+        ):
+            errors.append("engine runtime make callable contract changed")
+        try:
+            _expected_runtime_environment_snapshot(engine)
+        except (
+            KeyError,
+            OSError,
+            TypeError,
+            ValueError,
+            importlib.metadata.PackageNotFoundError,
+        ) as exc:
+            errors.append(f"installed runtime environment does not match the plan: {exc}")
     if scenarios != {
         "schema_version": 1,
         "status": "CLOSED_DEFAULT_ONLY",
@@ -218,6 +395,10 @@ def validate_plan() -> dict[str, Any]:
             errors.append("development seats must be exactly both seats")
         if runner.get("scenario_names") != ["default"]:
             errors.append("development scenario must be default only")
+        if runner.get("execution_input_paths") != EXPECTED_EXECUTION_INPUT_PATHS:
+            errors.append("runner execution input paths are not exact")
+        elif any(not (ROOT / path).is_file() for path in EXPECTED_EXECUTION_INPUT_PATHS):
+            errors.append("runner execution input path is missing")
         if runner.get("workers") != 8:
             errors.append("development worker count must remain pinned")
         for opponent in runner.get("opponents", []):
@@ -229,6 +410,13 @@ def validate_plan() -> dict[str, Any]:
     if not isinstance(slot_plans, Mapping) or set(slot_plans) != set(SLOTS):
         errors.append("development execution slots must be exactly Kag_03 and Kag_04")
         slot_plans = {}
+
+    tetsu_paths = [
+        item.get("path")
+        for item in runner.get("opponents", [])
+        if isinstance(item, Mapping) and item.get("alias") == "tetsu_v16"
+    ] if isinstance(runner, Mapping) else []
+    expected_control_path = tetsu_paths[0] if len(tetsu_paths) == 1 else None
 
     pools: list[set[int]] = []
     for slot in SLOTS:
@@ -253,17 +441,35 @@ def validate_plan() -> dict[str, Any]:
             "sha256": slot_plan.get("candidate_source_sha256"),
             "bytes": slot_plan.get("candidate_source_bytes"),
         }
+        builder_pin = {
+            "path": slot_plan.get("builder_path"),
+            "sha256": slot_plan.get("builder_sha256"),
+            "bytes": slot_plan.get("builder_bytes"),
+        }
         if not _valid_file_pin(candidate_pin):
             errors.append(f"candidate source pin does not match current bytes: {slot}")
-        if (
-            not isinstance(implementation, Mapping)
-            or implementation.get("candidate_source_sha256")
-            != slot_plan.get("candidate_source_sha256")
-            or implementation.get("candidate_source_bytes")
-            != slot_plan.get("candidate_source_bytes")
-            or slot_plan.get("candidate_status") != "CLOSED_IMPLEMENTATION_FREEZE"
-        ):
+        if not _valid_file_pin(builder_pin):
+            errors.append(f"builder source pin does not match current bytes: {slot}")
+        if not isinstance(implementation, Mapping):
             errors.append(f"catalog and execution candidate pins disagree: {slot}")
+        else:
+            if (
+                implementation.get("candidate_path") != slot_plan.get("candidate_path")
+                or implementation.get("candidate_source_sha256")
+                != slot_plan.get("candidate_source_sha256")
+                or implementation.get("candidate_source_bytes")
+                != slot_plan.get("candidate_source_bytes")
+                or slot_plan.get("candidate_status") != "CLOSED_IMPLEMENTATION_FREEZE"
+            ):
+                errors.append(f"catalog and execution candidate pins disagree: {slot}")
+            if (
+                implementation.get("builder_path") != slot_plan.get("builder_path")
+                or implementation.get("builder_sha256") != slot_plan.get("builder_sha256")
+                or implementation.get("builder_bytes") != slot_plan.get("builder_bytes")
+            ):
+                errors.append(f"catalog and execution builder pins disagree: {slot}")
+            if implementation.get("control_path") != expected_control_path:
+                errors.append(f"catalog control path is not the frozen Tetsu control: {slot}")
         for phase, pool in candidate["seed_pools"].items():
             if not isinstance(pool, Mapping):
                 errors.append(f"pool is not an object: {slot}/{phase}")
@@ -302,6 +508,26 @@ def validate_plan() -> dict[str, Any]:
     if not isinstance(gate, Mapping):
         errors.append("development gate is missing")
     else:
+        expected_integrity = {
+            "exact_complete_grid": True,
+            "both_seats_required": True,
+            "finite_money_and_runtime": True,
+            "failures": 0,
+            "hidden_abnormal_status_failures": 0,
+            "candidate_and_opponent_source_start_equals_end": True,
+            "actual_runtime_environment_start_equals_end_and_matches_plan": True,
+            "execution_inputs_start_equals_end_and_match_frozen_files": True,
+            "execution_gate_valid": True,
+            "resolved_environment_seed_matches_requested": True,
+            "default_scenario_only": True,
+            "candidate_metrics_required": True,
+            "candidate_metrics_exact_keys": list(CANDIDATE_METRIC_KEYS),
+            "calls_per_game": EXPECTED_CANDIDATE_CALLS_PER_GAME,
+            "minimum_total_preemptions_exclusive": 0,
+            "minimum_total_horizon4_preemptions_exclusive": 0,
+        }
+        if not _canonical_json_equals(gate.get("integrity"), expected_integrity):
+            errors.append("development integrity gate changed")
         performance = gate.get("performance")
         direct_tetsu = (
             performance.get("direct_tetsu_v16_control")
@@ -351,7 +577,7 @@ def _cell_key(row: Mapping[str, Any]) -> tuple[str, str, int, int]:
     seat = row.get("seat")
     if not isinstance(scenario, str) or not isinstance(opponent, str):
         raise TypeError("row scenario and opponent must be strings")
-    if not _is_int(seed) or seat not in (0, 1):
+    if not _is_int(seed) or not _is_int(seat) or seat not in (0, 1):
         raise TypeError("row seed and seat must be exact integers")
     return scenario, opponent, seed, seat
 
@@ -430,23 +656,91 @@ def _source_integrity(
     ):
         errors.append("candidate source hash is missing, changed, or not the frozen slot hash")
     opponents = plan["runner"]["opponents"]
-    expected_aliases = [item["alias"] for item in opponents]
-    expected_hashes = {item["alias"]: item["sha256"] for item in opponents}
-    if report.get("opponents") != expected_aliases:
-        errors.append("report opponent aliases do not match the frozen panel")
+    expected_paths = [item["path"] for item in opponents]
+    expected_hashes = {item["path"]: item["sha256"] for item in opponents}
+    if report.get("opponents") != expected_paths:
+        errors.append("report opponent paths do not match the frozen panel")
     start = report.get("opponent_sha256_at_start")
     end = report.get("opponent_sha256_at_end")
     if not isinstance(start, Mapping) or not isinstance(end, Mapping):
         return [*errors, "opponent hash receipts are missing"]
-    if set(start) != set(expected_aliases) or set(end) != set(expected_aliases):
+    if set(start) != set(expected_paths) or set(end) != set(expected_paths):
         errors.append("opponent hash receipt keys do not match the fixed panel")
     elif any(
-        not _sha256(start[alias])
-        or str(start[alias]).upper() != expected_hashes[alias]
-        or str(end[alias]).upper() != expected_hashes[alias]
-        for alias in expected_aliases
+        not _sha256(start[path])
+        or str(start[path]).upper() != expected_hashes[path]
+        or str(end[path]).upper() != expected_hashes[path]
+        for path in expected_paths
     ):
         errors.append("opponent source hash is malformed, changed, or not the frozen hash")
+    return errors
+
+
+def _execution_context_integrity(
+    report: Mapping[str, Any], plan: Mapping[str, Any]
+) -> list[str]:
+    errors: list[str] = []
+    schema_version = report.get("execution_context_schema_version")
+    if not _is_int(schema_version) or schema_version != 1:
+        errors.append("execution context schema version is not exact")
+    for name in (
+        "runtime_environment_unchanged_during_run",
+        "execution_inputs_unchanged_during_run",
+        "execution_context_unchanged_during_run",
+        "execution_gate_valid",
+    ):
+        if report.get(name) is not True:
+            errors.append(f"{name} is not exact true")
+
+    runtime_start = report.get("runtime_environment_at_start")
+    runtime_end = report.get("runtime_environment_at_end")
+    if not isinstance(runtime_start, Mapping) or not isinstance(runtime_end, Mapping):
+        errors.append("runtime environment start/end snapshots are missing")
+    else:
+        try:
+            if report.get("runtime_environment_at_start_sha256") != _canonical_json_sha256(
+                runtime_start
+            ):
+                errors.append("runtime environment start hash mismatch")
+            if report.get("runtime_environment_at_end_sha256") != _canonical_json_sha256(
+                runtime_end
+            ):
+                errors.append("runtime environment end hash mismatch")
+            if not _canonical_json_equals(runtime_start, runtime_end):
+                errors.append("runtime environment changed during run")
+            expected_runtime = _expected_runtime_environment_snapshot(plan["engine"])
+            if not _canonical_json_equals(runtime_start, expected_runtime):
+                errors.append("runtime environment does not match the frozen plan and host")
+        except (
+            KeyError,
+            OSError,
+            TypeError,
+            ValueError,
+            importlib.metadata.PackageNotFoundError,
+        ) as exc:
+            errors.append(f"runtime environment snapshot validation failed: {exc}")
+
+    inputs_start = report.get("execution_inputs_at_start")
+    inputs_end = report.get("execution_inputs_at_end")
+    if not isinstance(inputs_start, Mapping) or not isinstance(inputs_end, Mapping):
+        errors.append("execution input start/end snapshots are missing")
+    else:
+        try:
+            if report.get("execution_inputs_at_start_sha256") != _canonical_json_sha256(
+                inputs_start
+            ):
+                errors.append("execution input start hash mismatch")
+            if report.get("execution_inputs_at_end_sha256") != _canonical_json_sha256(
+                inputs_end
+            ):
+                errors.append("execution input end hash mismatch")
+            if not _canonical_json_equals(inputs_start, inputs_end):
+                errors.append("execution inputs changed during run")
+            expected_inputs = _expected_execution_inputs_snapshot(plan)
+            if not _canonical_json_equals(inputs_start, expected_inputs):
+                errors.append("execution inputs do not match current frozen files")
+        except (KeyError, OSError, TypeError, ValueError) as exc:
+            errors.append(f"execution input snapshot validation failed: {exc}")
     return errors
 
 
@@ -459,8 +753,9 @@ def gate_report(slot: str, report: Mapping[str, Any]) -> dict[str, Any]:
         (row["scenario"], row["opponent"], row["seed"], row["seat"])
         for row in expected_development_cells(slot, catalog, plan)
     }
-    expected_opponents = set(_opponent_aliases(plan))
+    expected_opponents = set(_opponent_paths(plan))
     errors = _source_integrity(report, slot, plan)
+    errors.extend(_execution_context_integrity(report, plan))
     expected_effective_scenarios = {"default": {"episodeSteps": 720}}
     if report.get("scenario_overrides") != {"default": {}}:
         errors.append("report scenario overrides are not exact default-only")
@@ -504,10 +799,31 @@ def gate_report(slot: str, report: Mapping[str, Any]) -> dict[str, Any]:
 
     outcomes: list[float] = []
     margins: list[float] = []
+    candidate_metrics_games = 0
+    candidate_metrics_total = {name: 0 for name in CANDIDATE_METRIC_KEYS}
     per_opponent: dict[str, list[tuple[float, float]]] = {
         opponent: [] for opponent in expected_opponents
     }
     for key, row in indexed.items():
+        candidate_metrics = row.get("candidate_metrics")
+        if not isinstance(candidate_metrics, Mapping):
+            errors.append(f"candidate metrics are missing or not an object: {key}")
+        elif set(candidate_metrics) != set(CANDIDATE_METRIC_KEYS):
+            errors.append(f"candidate metric keys are not exact: {key}")
+        elif any(
+            not _is_int(candidate_metrics[name]) or candidate_metrics[name] < 0
+            for name in CANDIDATE_METRIC_KEYS
+        ):
+            errors.append(f"candidate metric values are not exact nonnegative integers: {key}")
+        elif candidate_metrics["calls"] != EXPECTED_CANDIDATE_CALLS_PER_GAME:
+            errors.append(f"candidate metric calls are not exactly 719: {key}")
+        else:
+            candidate_metrics_games += 1
+            for name in CANDIDATE_METRIC_KEYS:
+                candidate_metrics_total[name] += candidate_metrics[name]
+        if key[1] not in per_opponent:
+            errors.append(f"unexpected opponent path: {key}")
+            continue
         if (
             row.get("error") is not None
             or row.get("candidate_status") != "DONE"
@@ -525,7 +841,11 @@ def gate_report(slot: str, report: Mapping[str, Any]) -> dict[str, Any]:
         if "hidden_abnormal_status" not in row or row.get("hidden_abnormal_status") is not None:
             errors.append(f"hidden abnormal status: {key}")
             continue
-        if row.get("resolved_environment_seed") != key[2]:
+        resolved_environment_seed = row.get("resolved_environment_seed")
+        if (
+            not _is_int(resolved_environment_seed)
+            or resolved_environment_seed != key[2]
+        ):
             errors.append(f"resolved environment seed mismatch: {key}")
             continue
         expected_effective_configuration = {"episodeSteps": 720, "seed": key[2]}
@@ -575,6 +895,30 @@ def gate_report(slot: str, report: Mapping[str, Any]) -> dict[str, Any]:
             value = summary.get(name)
             if not _is_int(value) or value != expected_value:
                 errors.append(f"report summary {name} is not exact")
+        if (
+            not _is_int(summary.get("candidate_metrics_games"))
+            or summary.get("candidate_metrics_games") != expected_count
+            or summary.get("candidate_metrics_games") != candidate_metrics_games
+        ):
+            errors.append("report summary candidate_metrics_games is not exact")
+        reported_metrics_total = summary.get("candidate_metrics_total")
+        if (
+            not isinstance(reported_metrics_total, Mapping)
+            or set(reported_metrics_total) != set(CANDIDATE_METRIC_KEYS)
+            or any(
+                not _is_int(reported_metrics_total[name])
+                or reported_metrics_total[name] < 0
+                for name in CANDIDATE_METRIC_KEYS
+            )
+        ):
+            errors.append("report summary candidate_metrics_total is malformed")
+        elif dict(reported_metrics_total) != candidate_metrics_total:
+            errors.append("report summary candidate_metrics_total does not match game rows")
+
+    if candidate_metrics_total["preemptions"] <= 0:
+        errors.append("candidate metrics show zero preemptions")
+    if candidate_metrics_total["horizon4_preemptions"] <= 0:
+        errors.append("candidate metrics show zero horizon4 preemptions")
 
     if errors:
         return {
@@ -588,9 +932,11 @@ def gate_report(slot: str, report: Mapping[str, Any]) -> dict[str, Any]:
     gate = plan["development_gate"]["performance"]
     direct_tetsu = gate["direct_tetsu_v16_control"]
     catastrophic = gate["per_opponent_catastrophic_regression"]
-    tetsu_alias = "tetsu_v16"
+    tetsu_path = _opponent_path_for_alias(plan, "tetsu_v16")
     summary = {
         "raw_games": len(indexed),
+        "candidate_metrics_games": candidate_metrics_games,
+        "candidate_metrics_total": candidate_metrics_total,
         "match_score": statistics.fmean(outcomes),
         "mean_margin": statistics.fmean(margins),
         "per_opponent": {
@@ -606,11 +952,11 @@ def gate_report(slot: str, report: Mapping[str, Any]) -> dict[str, Any]:
         "overall_match_score": summary["match_score"] >= gate["minimum_overall_match_score"],
         "overall_mean_margin": summary["mean_margin"] >= gate["minimum_overall_mean_margin"],
         "direct_tetsu_match_score_strictly_above_half": (
-            summary["per_opponent"][tetsu_alias]["match_score"]
+            summary["per_opponent"][tetsu_path]["match_score"]
             > direct_tetsu["minimum_match_score_exclusive"]
         ),
         "direct_tetsu_mean_margin_strictly_positive": (
-            summary["per_opponent"][tetsu_alias]["mean_margin"]
+            summary["per_opponent"][tetsu_path]["mean_margin"]
             > direct_tetsu["minimum_mean_margin_exclusive"]
         ),
         "no_catastrophic_opponent_lane": all(

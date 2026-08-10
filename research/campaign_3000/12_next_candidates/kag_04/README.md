@@ -1,23 +1,23 @@
-# Kag_04 - Tetsu v16 Opening Sheep Bias
+# Kag_04 — Tetsu v16 seat-0 horizon-four preemption
 
-Status: **MATERIALIZED IMPLEMENTATION-FREEZE INPUT / NOT EVALUATED / HOLD**. `main.py` is 31,455 bytes with SHA-256 `797E2BFED6F17964CB08E3B1A77D72A978BDB8EE2C9EA9E7E552A454DA20F191`. Construction evidence records compile, guarded rewrite, base immutability, and `rescue_metrics` (`applied=1`) smoke PASS. No seed evaluation, package, or Kaggle action is evidenced here.
+Status: materialized implementation-freeze input. `main.py` is 28,040 bytes, SHA-256 `3B4E4D626D7F9062B5E1122198112FD4F23C2142B77962368362C4CB627A6708`, and is byte-identical to the deterministic builder output.
 
-Kag_04 is an Apache-2.0-page-mapping-inference derivative of exact Tetsu v16, not clean-room work. The required base is `research/campaign_3000/06_candidates/snapshots/tetsu_v16.py`, SHA-256 `997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6`. Before packaging, preserve the attribution chain documented in `07_release/TETSU_IP_VERDICT.md` and provide Apache-2.0 license text.
+The only action decision delta is:
 
-The only delta is guarded opening sheep bias:
-
-- Own placed/held animals must total zero.
-- Base market must contain exactly one `BUY_ANIMAL COW 2`, exactly one `BUY_ANIMAL SHEEP 2`, and no other animal purchase.
-- It changes only those quantities to `COW 1` and `SHEEP 3`.
-- Total animal quantity stays four. Market length, every other order, farmer, and hands are preserved.
-- Any malformed or ambiguous shape, or any own animal, returns the exact base-action object.
-
-The runtime reads only the current own/public farm structure, own shed, and base market shape. It does not use step/day, seeds, replays, opponents, identity, price/price-impact, forecasts, SELL ordering, or Kag_03 behavior. Counters expose `calls`, `applied`, and each fallback class through `kag04_metrics()`, `get_metrics()`, and `rescue_metrics()`; `reset_rescue_metrics()` resets then returns a snapshot.
-
-The materialization command used for this frozen input was:
-
-```text
-python -m kaggriculture_lab.candidates.kag04_sheep_first --base research/campaign_3000/06_candidates/snapshots/tetsu_v16.py --output research/campaign_3000/12_next_candidates/kag_04/main.py --receipt research/campaign_3000/12_next_candidates/kag_04/materialized_receipt.json
+```python
+for horizon in ((4, 3, 2, 1) if _seat(obs) == 0 else (3, 2, 1)):
 ```
 
-The canonical receipt is `materialized_receipt.json`. Any source change requires a new receipt and complete S/E re-freeze. Fresh-seed evaluation still requires the separately recorded OPEN authority. Packaging additionally requires the attribution and license files.
+Seat 0 may try the existing four-turn premium-sale horizon before the original 3/2/1 sequence. Seat 1 retains exact 3/2/1. No new order rule, route, repayment, liquidation, fallback, forecast, identity, opponent, seed, replay, or fixed-step branch is added. `calls`, `preemptions`, and `horizon4_preemptions` are action-neutral metrics only.
+
+The source is a Tetsu v16 derivative, not clean-room work. The exact base SHA-256 is `997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6`. Preserve the conditional Apache-2.0 lineage and limitations in `research/campaign_3000/07_release/TETSU_IP_VERDICT.md`.
+
+The reused direct screen was 16 wins, 16 ties, 0 losses, score `0.75`, mean margin `+492.90625`. The exact production panel over five opponents was 138 wins, 16 ties, 6 losses, score `0.9125`, mean margin `+6193.525`, with 572 horizon-four preemptions. These used already-consumed historical seeds and are selection diagnostics, not fresh promotion evidence.
+
+Earlier animal quantity, adjacent swap, and animal-prefix deltas are retained only as rejected provenance. Fresh execution, packaging, submission, and external action remain forbidden pending the clean S/E freeze and independent auditor OPEN.
+
+Materialize with:
+
+```text
+python -m kaggriculture_lab.research.kag04_seat0_horizon4 --base research/campaign_3000/06_candidates/snapshots/tetsu_v16.py --output research/campaign_3000/12_next_candidates/kag_04/main.py --receipt research/campaign_3000/12_next_candidates/kag_04/materialized_receipt.json
+```

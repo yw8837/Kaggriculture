@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "started_at_utc": "2026-08-10T03:57:52.406851+00:00",
+  "git_head_at_start": "d9e2e82e4a1ba09c7b4cdc625e9e84710442a719",
+  "candidate": "research\\campaign_3000\\12_next_candidates\\kag_04\\main.py",
+  "candidate_path": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\research\\campaign_3000\\12_next_candidates\\kag_04\\main.py",
+  "candidate_sha256_at_start": "3B4E4D626D7F9062B5E1122198112FD4F23C2142B77962368362C4CB627A6708",
+  "opponents": [
+    "research\\campaign_3000\\06_candidates\\snapshots\\tetsu_v16.py",
+    "research\\campaign_3000\\06_candidates\\snapshots\\ray_c45_exact.py",
+    "research\\campaign_3000\\06_candidates\\snapshots\\boatlee_v14.py",
+    "research\\campaign_3000\\06_candidates\\snapshots\\kaito_v22.py",
+    "experiments\\source_snapshots\\fa04_top_trace\\G1_sell_guard.py"
+  ],
+  "opponent_paths": {
+    "research\\campaign_3000\\06_candidates\\snapshots\\tetsu_v16.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\research\\campaign_3000\\06_candidates\\snapshots\\tetsu_v16.py",
+    "research\\campaign_3000\\06_candidates\\snapshots\\ray_c45_exact.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\research\\campaign_3000\\06_candidates\\snapshots\\ray_c45_exact.py",
+    "research\\campaign_3000\\06_candidates\\snapshots\\boatlee_v14.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\research\\campaign_3000\\06_candidates\\snapshots\\boatlee_v14.py",
+    "research\\campaign_3000\\06_candidates\\snapshots\\kaito_v22.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\research\\campaign_3000\\06_candidates\\snapshots\\kaito_v22.py",
+    "experiments\\source_snapshots\\fa04_top_trace\\G1_sell_guard.py": "C:\\Users\\\ucd5c\uc6a9\uc6b0\\Documents\\Codex\\2026-07-31\\kaggriculture-3-github\\work\\campaign_3000\\experiments\\source_snapshots\\fa04_top_trace\\G1_sell_guard.py"
+  },
+  "opponent_sha256_at_start": {
+    "research\\campaign_3000\\06_candidates\\snapshots\\tetsu_v16.py": "997E6BFC5234534E246E945BC61C87858EBF997AB85B0A5C9427DD4ED710F1B6",
+    "research\\campaign_3000\\06_candidates\\snapshots\\ray_c45_exact.py": "6CC3B69E487052A8DEDC1A90D0D1296BA38577349E8D3BA8147E583605378F73",
+    "research\\campaign_3000\\06_candidates\\snapshots\\boatlee_v14.py": "A7F827B9438885B34B7FD5BF8165458A72F8BB83031A288DD4640F21ADE3294B",
+    "research\\campaign_3000\\06_candidates\\snapshots\\kaito_v22.py": "62FB5A5F66F0011092A2B51E3192879BA583D5D815D761F176091C615657147A",
+    "experiments\\source_snapshots\\fa04_top_trace\\G1_sell_guard.py": "81159A18DF3CD1A5CAABE5EDBBA0A597561775F77A49465FA39DF6802A706922"
+  },
+  "seeds": [
+    50000,
+    50001,
+    50002,
+    50003,
+    50004,
+    50005,
+    50006,
+    50007,
+    50008,
+    50009,
+    50010,
+    50011,
+    50012,
+    50013,
+    50014,
+    50015
+  ],
+  "seat_policy": "both seats",
+  "workers": 6,
+  "scenario_overrides": {
+    "default": {}
+  },
+  "effective_scenarios": {
+    "default": {
+      "episodeSteps": 720
+    }
+  },
+  "effective_scenarios_sha256": "F960E92B52D309B1302B2EF5D97DF2300DFF0523FCE97FE5B12E70FD3C5010CE"
+}

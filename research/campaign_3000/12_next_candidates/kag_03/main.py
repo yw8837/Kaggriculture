@@ -61,6 +61,34 @@ _PREEMPT_START = 120
 _PREEMPT_STOP = 680
 _PREMIUM = ("STRAWBERRY", "MELON", "MILK", "WOOL")
 
+_KAG03_COUNTERS = {
+    "calls": 0,
+    "preemptions": 0,
+    "horizon4_preemptions": 0,
+}
+
+
+def kag03_metrics():
+    """Return action-neutral instrumentation only."""
+    return dict(_KAG03_COUNTERS)
+
+
+def get_metrics():
+    """Generic evaluator hook."""
+    return kag03_metrics()
+
+
+def rescue_metrics():
+    """Runner-discoverable evaluator hook."""
+    return kag03_metrics()
+
+
+def reset_rescue_metrics():
+    """Reset instrumentation only; it cannot alter future actions."""
+    for name in _KAG03_COUNTERS:
+        _KAG03_COUNTERS[name] = 0
+    return kag03_metrics()
+
 
 def _get(value, key, default=None):
     if isinstance(value, dict):
@@ -252,7 +280,7 @@ def _preempt_shift(obs, action, step):
     # Near-clone routes often expose their next premium sale through public
     # state. Prefer a three-turn horizon against public-route competition; fall back to
     # two and one turn when the longer shift is not safe.
-    for horizon in (3, 2, 1):
+    for horizon in (4, 3, 2, 1):
         future = _future_sells_at(step, horizon)
         if not future:
             continue
@@ -283,6 +311,9 @@ def _preempt_shift(obs, action, step):
             trial_remaining[item] = max(0, int(trial_remaining.get(item, 0) or 0) - target)
             shifted[item] = target
         if shifted:
+            _KAG03_COUNTERS["preemptions"] += 1
+            if horizon == 4:
+                _KAG03_COUNTERS["horizon4_preemptions"] += 1
             action["market"] = trial_market[:10]
             state["due_step"] = step + horizon
             state["due"] = shifted
@@ -464,7 +495,8 @@ def _terminal_liquidation(obs, action, step):
     return action
 
 
-def _kag03_control_agent(obs):
+def agent(obs):
+    _KAG03_COUNTERS["calls"] += 1
     try:
         step = min(max(0, int(_get(obs, "step", 0) or 0)), len(_ACTIONS) - 1)
         action = _weed_repair_action(obs, _copy_action(_ACTIONS[step]), step)
@@ -484,181 +516,3 @@ def _kag03_control_agent(obs):
 
 def _kaggle_submission_entrypoint(obs):
     return agent(obs)
-
-
-# KAG_03_TERMINAL_MARKET_DELTA
-# This delta deliberately has no horizon, seat, episode, or opponent trigger.
-_KAG03_MAX_MARKET_ORDERS = 10
-_KAG03_COUNTERS = {
-    "calls": 0,
-    "reordered": 0,
-    "no_op": 0,
-    "rejected_malformed": 0,
-    "rejected_ambiguous": 0,
-    "rejected_illegal": 0,
-    "rejected_resize": 0,
-    "exception_fallback": 0,
-}
-
-
-def kag03_metrics():
-    """Return delta-only counters; no counter influences an action."""
-    return dict(_KAG03_COUNTERS)
-
-
-def get_metrics():
-    """Optional generic post-episode metrics hook for an external evaluator."""
-    return kag03_metrics()
-
-
-def rescue_metrics():
-    """Runner-compatible alias for the immutable metrics snapshot."""
-    return kag03_metrics()
-
-
-def reset_rescue_metrics():
-    """Reset counters only; the action path has no dependency on these values."""
-    for name in _KAG03_COUNTERS:
-        _KAG03_COUNTERS[name] = 0
-    return kag03_metrics()
-
-
-def _kag03_is_int(value):
-    return isinstance(value, int) and not isinstance(value, bool)
-
-
-def _kag03_valid_non_sell(order):
-    if not isinstance(order, list) or not order:
-        return False
-    op = order[0]
-    if op in ("HIRE", "BUY_LAND"):
-        return len(order) == 1
-    if op in ("BUY_SEED", "BUY_PRODUCT", "BUY_ANIMAL"):
-        return (
-            len(order) == 3
-            and isinstance(order[1], str)
-            and bool(order[1])
-            and _kag03_is_int(order[2])
-            and order[2] > 0
-        )
-    return False
-
-
-def _kag03_validate_market(obs, control_action):
-    """Return sortable SELL rows, or a conservative fallback reason."""
-    if not isinstance(obs, dict) or not isinstance(control_action, dict):
-        return "rejected_malformed", None
-    if not isinstance(control_action.get("farmer"), list):
-        return "rejected_malformed", None
-    if not isinstance(control_action.get("hands"), list):
-        return "rejected_malformed", None
-    market = control_action.get("market")
-    if not isinstance(market, list):
-        return "rejected_malformed", None
-    if len(market) > _KAG03_MAX_MARKET_ORDERS:
-        return "rejected_resize", None
-
-    private = obs.get("private")
-    visible_market = obs.get("market")
-    if not isinstance(private, dict) or not isinstance(visible_market, dict):
-        return "rejected_malformed", None
-    shed = private.get("shed")
-    inventory = visible_market.get("inventory")
-    if not isinstance(shed, dict) or not isinstance(inventory, dict):
-        return "rejected_malformed", None
-
-    rows = []
-    seen_items = set()
-    for index, order in enumerate(market):
-        if not isinstance(order, list) or not order:
-            return "rejected_malformed", None
-        if order[0] != "SELL":
-            if not _kag03_valid_non_sell(order):
-                return "rejected_malformed", None
-            continue
-        if (
-            len(order) != 3
-            or not isinstance(order[1], str)
-            or not order[1]
-            or not _kag03_is_int(order[2])
-            or order[2] <= 0
-        ):
-            return "rejected_malformed", None
-        item = order[1]
-        quantity = order[2]
-        available = shed.get(item)
-        current_inventory = inventory.get(item)
-        if (
-            item not in _MARKET_PARAMS
-            or item not in inventory
-            or not _kag03_is_int(available)
-            or available < quantity
-            or not _kag03_is_int(current_inventory)
-            or current_inventory < 0
-        ):
-            return "rejected_illegal", None
-        if item in seen_items:
-            return "rejected_ambiguous", None
-        seen_items.add(item)
-        rows.append((current_inventory, quantity, item, index, order))
-    return None, rows
-
-
-def _kag03_only_sell_permutation(original, candidate):
-    if len(original) != len(candidate):
-        return False
-    original_sells = []
-    candidate_sells = []
-    for old, new in zip(original, candidate):
-        if old[0] != "SELL" and new != old:
-            return False
-        if old[0] == "SELL":
-            original_sells.append(tuple(old))
-        if new[0] == "SELL":
-            candidate_sells.append(tuple(new))
-    return sorted(original_sells) == sorted(candidate_sells)
-
-
-def _kag03_control_market_delta(obs, control_action):
-    """Return control unchanged unless a checked SELL-slot permutation exists."""
-    _KAG03_COUNTERS["calls"] += 1
-    try:
-        reason, rows = _kag03_validate_market(obs, control_action)
-        if reason is not None:
-            _KAG03_COUNTERS[reason] += 1
-            return control_action
-        if len(rows) < 2:
-            _KAG03_COUNTERS["no_op"] += 1
-            return control_action
-
-        market = control_action["market"]
-        ranked = sorted(rows, key=lambda row: (-row[0], -row[1], row[2], row[3]))
-        ranked_orders = iter(row[4] for row in ranked)
-        candidate_market = [
-            next(ranked_orders) if order[0] == "SELL" else order for order in market
-        ]
-        if candidate_market == market:
-            _KAG03_COUNTERS["no_op"] += 1
-            return control_action
-        if not _kag03_only_sell_permutation(market, candidate_market):
-            _KAG03_COUNTERS["rejected_resize"] += 1
-            return control_action
-
-        candidate_action = copy.deepcopy(control_action)
-        candidate_action["market"] = candidate_market
-        if (
-            candidate_action.get("farmer") != control_action.get("farmer")
-            or candidate_action.get("hands") != control_action.get("hands")
-        ):
-            _KAG03_COUNTERS["exception_fallback"] += 1
-            return control_action
-        _KAG03_COUNTERS["reordered"] += 1
-        return candidate_action
-    except Exception:
-        _KAG03_COUNTERS["exception_fallback"] += 1
-        return control_action
-
-
-def agent(obs):
-    control_action = _kag03_control_agent(obs)
-    return _kag03_control_market_delta(obs, control_action)

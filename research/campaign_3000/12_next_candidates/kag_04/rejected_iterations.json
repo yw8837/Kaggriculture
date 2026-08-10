@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "status": "HISTORICAL_REJECTED_ITERATIONS",
+  "iterations": [
+    {
+      "id": "opening_quantity_shift",
+      "delta": "BUY_ANIMAL COW2/SHEEP2 to COW1/SHEEP3",
+      "result": "32 ties, applied=32, economic effect=0",
+      "verdict": "REJECTED"
+    },
+    {
+      "id": "animal_buy_prefix",
+      "builder": "src/kaggriculture_lab/research/kag04_animal_buy_prefix.py",
+      "materialized_main_sha256": "7E1B681C2A37835E37ADFC1D3BF4B8AC9E9841E1867602D16882C5288AB607BA",
+      "delta": "stable front-load of existing BUY_ANIMAL COW2/SHEEP2 rows",
+      "result": "32 ties, applied=32, moved_slots_total=320, economic effect=0",
+      "verdict": "REJECTED"
+    }
+  ],
+  "retention": "These are retained for provenance only and must not be frozen or evaluated as current Kag_04 candidates."
+}

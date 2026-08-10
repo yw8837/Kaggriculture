@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "cycle_id": "campaign_3000_20260810_kag_03_kag_04",
+  "new_candidates": ["Kag_03", "Kag_04"],
+  "user_specified_previous_submissions": ["Kag_01", "Kag_02"],
+  "status_policy": ["PENDING", "PASS", "PARTIAL", "FAIL", "UNVERIFIED", "NOT_APPLICABLE"],
+  "completion_rule": "Every required row must be PASS; partial rows do not add up to completion.",
+  "rows": [
+    {"id": "directive_persistence", "status": "PASS", "evidence": ["CAMPAIGN_DIRECTIVE.md", "CLAUDE.md", ".claude/skills/kaggriculture-3000-orchestrator/SKILL.md", ".omc/skills/kaggriculture-campaign-cycle.md"]},
+    {"id": "our_current_submission_inventory", "status": "PASS", "evidence": ["research/campaign_3000/13_cycle_20260810/04_synthesis/live_browser_snapshot.json#our_submission_ui"]},
+    {"id": "leaderboard_top25_current", "status": "PASS", "evidence": ["research/campaign_3000/13_cycle_20260810/04_synthesis/live_browser_snapshot.json#leaderboard"]},
+    {"id": "public_code_current_population", "status": "PASS", "evidence": ["research/campaign_3000/13_cycle_20260810/04_synthesis/live_browser_snapshot.json#public_meta/code", "research/campaign_3000/13_cycle_20260810/03_public_external/source_to_delta_matrix.json"]},
+    {"id": "discussion_current_population", "status": "PASS", "evidence": ["research/campaign_3000/13_cycle_20260810/04_synthesis/live_browser_snapshot.json#public_meta/discussion"]},
+    {"id": "models_current_population_and_analysis", "status": "PASS", "evidence": ["research/campaign_3000/13_cycle_20260810/04_synthesis/live_browser_snapshot.json#public_meta/models", "research/campaign_3000/02_public_meta/model_v8/disposition.json"]},
+    {"id": "ended_bot_competitions_and_external_primary_sources", "status": "PASS", "evidence": ["research/campaign_3000/03_external/manifest.json", "research/campaign_3000/03_external/competition_cases.md", "research/campaign_3000/03_external/paper_mechanisms.md", "research/campaign_3000/13_cycle_20260810/03_public_external/source_to_delta_matrix.json", "research/campaign_3000/13_cycle_20260810/03_public_external/query_log.md"]},
+    {"id": "previous_submission_kag_01_analysis", "status": "PASS", "evidence": ["research/campaign_3000/13_cycle_20260810/02_previous_submissions/comparison.md", "research/campaign_3000/13_cycle_20260810/04_synthesis/live_browser_snapshot.json#list_episodes/kag_01", "research/campaign_3000/13_cycle_20260810/04_synthesis/live_browser_snapshot.json#recent_replay_evidence/kag_01"]},
+    {"id": "previous_submission_kag_02_analysis", "status": "PASS", "evidence": ["research/campaign_3000/13_cycle_20260810/02_previous_submissions/comparison.md", "research/campaign_3000/13_cycle_20260810/04_synthesis/live_browser_snapshot.json#list_episodes/kag_02", "research/campaign_3000/13_cycle_20260810/04_synthesis/live_browser_snapshot.json#recent_replay_evidence/kag_02"]},
+    {"id": "research_to_candidate_evidence_bridge", "status": "PASS", "evidence": ["research/campaign_3000/13_cycle_20260810/04_synthesis/README.md", "research/campaign_3000/13_cycle_20260810/04_synthesis/live_browser_snapshot.json#candidate_decision"]},
+    {"id": "kag_03_design_and_source_freeze", "status": "PASS", "evidence": ["research/campaign_3000/12_next_candidates/kag_03/main.py", "research/campaign_3000/12_next_candidates/kag_03/freeze_receipt.json", "src/kaggriculture_lab/research/kag03_preempt_horizon.py", "tests/test_kag03_preempt_horizon.py"]},
+    {"id": "kag_04_design_and_source_freeze", "status": "PASS", "evidence": ["research/campaign_3000/12_next_candidates/kag_04/main.py", "research/campaign_3000/12_next_candidates/kag_04/artifact_hashes.json", "src/kaggriculture_lab/research/kag04_seat0_horizon4.py", "tests/test_kag04_seat0_horizon4.py"]},
+    {"id": "historical_reused_candidate_diagnostic", "status": "PASS", "evidence": ["research/campaign_3000/13_cycle_20260810/05_autoresearch/final_selection.json", "research/campaign_3000/13_cycle_20260810/05_autoresearch/diagnostic/kag_03_final_panel_reused.json", "research/campaign_3000/13_cycle_20260810/05_autoresearch/diagnostic/kag_04_final_panel_reused.json"], "boundary": "Historical seeds only; selection evidence, not promotion."},
+    {"id": "fresh_development_and_direct_kag_01_strict_win", "status": "PENDING", "evidence": ["research/campaign_3000/12_next_candidates/evaluation_plan.json"], "boundary": "All six fresh pools remain CLOSED and zero games were executed."},
+    {"id": "opponent_scenario_seat_runtime_safety_qa", "status": "PASS", "evidence": ["research/campaign_3000/12_next_candidates/development_gate.py", "src/kaggriculture_lab/evaluation/runner.py", "tests/test_next_candidate_catalog.py", "tests/test_runner.py", "research/campaign_3000/12_next_candidates/verification.json"], "boundary": "Static/adversarial safety contract passed; fresh performance execution remains a separate pending checklist row."},
+    {"id": "independent_audit", "status": "PENDING", "evidence": []},
+    {"id": "competition_submission", "status": "PENDING", "evidence": []}
+  ],
+  "tool_and_skill_ledger": {
+    "Harness": {"status": "USED", "evidence": ["CLAUDE.md", ".claude/agents", ".claude/skills/kaggriculture-3000-orchestrator/SKILL.md"]},
+    "UltraQA": {"status": "USED_SCOPED_PASS", "evidence": ["research/campaign_3000/12_next_candidates/verification.json", "609 passed, 3 explicitly documented historical-harness deselections"]},
+    "Autoresearch": {"status": "USED_CURRENT_MISSION", "evidence": ["research/campaign_3000/13_cycle_20260810/05_autoresearch/mission.md", "research/campaign_3000/13_cycle_20260810/05_autoresearch/evaluator.json", "research/campaign_3000/13_cycle_20260810/05_autoresearch/runs/20260810T031000Z/decision-log.md"]},
+    "Agent-Reach": {"status": "UNAVAILABLE_CURRENT_RUNTIME", "evidence": ["project venv: ModuleNotFoundError agent_reach; global python: command not found"]},
+    "Insane Search": {"status": "UNAVAILABLE_CURRENT_RUNTIME", "evidence": ["WSL launch failed with E_ACCESS_DENIED before retrieval; authenticated Chrome and primary-source web search used as fallback"]},
+    "Context7": {"status": "UNAVAILABLE_CURRENT_TOOLSET", "evidence": ["no Context7 tool exposed; mcporter wrapper denied by sandbox"]},
+    "Serena": {"status": "UNAVAILABLE_CURRENT_TOOLSET", "evidence": ["no Serena tool exposed; mcporter wrapper denied by sandbox"]},
+    "Learner": {"status": "USED_AS_SKILLIFY_ALIAS", "evidence": [".omc/skills/kaggriculture-campaign-cycle.md"]},
+    "Skillify": {"status": "USED", "evidence": [".omc/skills/kaggriculture-campaign-cycle.md"]},
+    "Consolidate memory": {"status": "NOT_APPLICABLE_NO_SUPPORTED_MEMORY_ROOT", "evidence": ["durable project directive and skill used instead"]},
+    "Self-improve": {"status": "NOT_USED_TRUST_GATE_UNSATISFIED", "evidence": ["mandatory repository/benchmark trust contract not established"]}
+  },
+  "external_mutations": []
+}

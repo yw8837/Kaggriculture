@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "mission": "kag03_kag04_direct_kag01_improvement",
+  "evaluator": "research/campaign_3000/13_cycle_20260810/05_autoresearch/evaluate_diagnostic.py",
+  "inputs": {
+    "Kag_03": "research/campaign_3000/13_cycle_20260810/05_autoresearch/diagnostic/kag_03_vs_kag_01.json",
+    "Kag_04": "research/campaign_3000/13_cycle_20260810/05_autoresearch/diagnostic/kag_04_vs_kag_01.json"
+  },
+  "contract": {
+    "scenario": "default",
+    "opponent": "tetsu_v16",
+    "historical_seed_start": 50000,
+    "historical_seed_end_inclusive": 50015,
+    "seats": [0, 1],
+    "expected_games_per_slot": 32,
+    "minimum_match_score_exclusive": 0.5,
+    "minimum_mean_margin_exclusive": 0.0,
+    "failures": 0,
+    "promotion_evidence": false
+  }
+}
