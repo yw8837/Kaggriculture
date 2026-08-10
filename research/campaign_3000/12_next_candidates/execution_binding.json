@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
   "artifact_kind": "kag_03_kag_04_execution_freeze_binding",
-  "status": "PENDING_S_E_BINDING",
+  "status": "CLOSED_EXECUTION_FREEZE",
   "base_head": "1338617ced11fb9529cf85d22a451b8964c58f30",
-  "implementation_commit": "PENDING_S_COMMIT",
+  "implementation_commit": "155c4a2af4b4e10d335884ff481b92ced9155610",
   "implementation_manifest": {
     "path": "research/campaign_3000/12_next_candidates/freeze_manifest.json",
     "sha256": "8FA09B3B07F7D484E1831BA47F25039AAB7A59D188414E1FE49C83A091A123C0",
